@@ -50,7 +50,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="BotonNuevo" min="-2" pref="135" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                           <Component id="BotonSalir" min="-2" pref="135" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -83,7 +83,7 @@
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tipofiltro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="filtro" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="BotonBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -173,7 +173,7 @@
               <Font name="Cambria" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/farmacia/icono/a&#xf1;adir1.jpg"/>
+              <Image iconType="3" name="/com/farmacia/icon/a&#xf1;adir1.jpg"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nuevo"/>
           </Properties>
@@ -187,7 +187,7 @@
               <Font name="Cambria" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/farmacia/icono/salir1.png"/>
+              <Image iconType="3" name="/com/farmacia/icon/eliminar1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
@@ -219,7 +219,7 @@
               <Font name="Cambria" size="16" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/farmacia/icono/buscar1.jpg"/>
+              <Image iconType="3" name="/com/farmacia/icon/buscar1.jpg"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>

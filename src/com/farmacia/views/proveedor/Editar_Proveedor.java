@@ -608,7 +608,9 @@ public class Editar_Proveedor extends javax.swing.JDialog {
     }//GEN-LAST:event_cbx1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        setVisible(false);
+    Consulta_Proveedor cp = new Consulta_Proveedor(new javax.swing.JFrame(),true);   
+    setVisible(false);
+    cp.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulaKeyTyped

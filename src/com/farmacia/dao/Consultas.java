@@ -9,6 +9,7 @@ import com.farmacia.entities.mappers.EntidadesMappers;
 import com.farmacia.entities1.Clientes;
 import com.farmacia.entities1.Correo_Cliente;
 import com.farmacia.entities1.Laboratorio;
+import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Telefono_Cliente;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -156,6 +157,67 @@ public class Consultas {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }
     return cor;
+    }
+    
+    public ArrayList<Precios> listarPrecioCompra(String query){
+        ArrayList<Precios> telf = new ArrayList();
+        try {
+            conect = con.conectar();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            jss = conect.createStatement();
+                    } catch (SQLException ex) {
+            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            rs = jss.executeQuery(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            while(rs.next()){
+                Precios objeto = EntidadesMappers.getPrecioCompraFromResultSet(rs);    
+                telf.add(objeto);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return telf;
+    }
+    
+    public Precios listarPreciosProductos(String query){
+        Precios precios = null;
+       try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            jss = conect.createStatement();
+            rs = jss.executeQuery(query);
+            while(rs.next()){
+                precios = EntidadesMappers.getPreciosProductosFromResultSet(rs);    
+              }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    return precios;
     }
     
 }

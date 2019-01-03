@@ -251,7 +251,7 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
             System.out.println(proveedor.getCedula_ruc());
             if (proveedor != null) {
                 Editar_Proveedor ep = new Editar_Proveedor(new javax.swing.JFrame(), true, proveedor);
-                setVisible(true);
+                setVisible(false);
                 ep.setVisible(true);
 
             }

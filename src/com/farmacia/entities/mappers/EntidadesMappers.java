@@ -20,6 +20,7 @@ import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
 import com.farmacia.entities1.MarcaProducto;
+import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.Telefono_Cliente;
 import com.farmacia.entities1.TipoProducto;
@@ -322,6 +323,38 @@ public class EntidadesMappers {
             obj.setId_tipo_Telefono(rs.getLong("id_Tipo_Telefono"));
             obj.setNumero(rs.getString("Numero"));
             obj.setCedula(rs.getString("Cedula"));
+
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
+    public static Precios getPrecioCompraFromResultSet(ResultSet rs) {
+        Precios obj = new Precios();
+        try {
+            obj.setId_precio(rs.getLong("id_precio"));
+            System.out.println("id pre"+obj.getId_precio());
+            obj.setId_producto(rs.getLong("id_producto"));
+            obj.setPrecio_compra(rs.getDouble("precio_compra"));
+            System.out.println("compra"+obj.getPrecio_compra());
+            obj.setPrecio_venta(rs.getDouble("precio_venta"));
+            
+
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+     public static Precios getPreciosProductosFromResultSet(ResultSet rs) {
+        Precios obj = new Precios();
+        try {
+            obj.setId_precio(rs.getLong("id_precio"));
+            obj.setId_producto(rs.getLong("id_producto"));
+            obj.setPrecio_compra(rs.getDouble("precio_compra"));
+            obj.setPrecio_venta(rs.getDouble("precio_venta"));
+            
+            
 
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);

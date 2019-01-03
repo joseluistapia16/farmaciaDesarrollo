@@ -5,11 +5,15 @@
  */
 package com.farmacia.views.laboratorio;
 
+//import com.objetos.conponentes.Tablas;
+//import com.objetos.dao.CRUD;
+//import com.objetos.dao.Consultas;
+//import com.objetos.entities.Laboratorio;
+//import com.objetos.file.Archivos;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Laboratorio;
-//import com.objetos.file.Archivos;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -107,7 +111,7 @@ public class Consulta_Lab extends javax.swing.JDialog {
         });
 
         BotonNuevo.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        BotonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/añadir1.jpg"))); // NOI18N
+        BotonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/añadir1.jpg"))); // NOI18N
         BotonNuevo.setText("Nuevo");
         BotonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +120,7 @@ public class Consulta_Lab extends javax.swing.JDialog {
         });
 
         BotonSalir.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/salir1.png"))); // NOI18N
+        BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/eliminar1.png"))); // NOI18N
         BotonSalir.setText("Salir");
         BotonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,7 +132,7 @@ public class Consulta_Lab extends javax.swing.JDialog {
         tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RUC", "Nombre", "Direccion", "Telefono" }));
 
         BotonBuscar.setFont(new java.awt.Font("Cambria", 1, 16)); // NOI18N
-        BotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/buscar1.jpg"))); // NOI18N
+        BotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/buscar1.jpg"))); // NOI18N
         BotonBuscar.setText("Buscar");
         BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +152,7 @@ public class Consulta_Lab extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addComponent(BotonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(121, 121, 121)
+                        .addGap(117, 117, 117)
                         .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(164, 164, 164)
@@ -173,7 +177,7 @@ public class Consulta_Lab extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonBuscar))
@@ -248,11 +252,11 @@ public class Consulta_Lab extends javax.swing.JDialog {
                             = new Editar_Lab(new javax.swing.JFrame(), true, objeto, i);
                     doc.setVisible(true);
 
-                    // setVisible(false);
+                   // setVisible(false);
                     // listar = Archivos.leerLab("Lab.txt");
                     listar = cr.ListarLab();
                     Tablas.listarLab(listar, Tabla);
-                    // setVisible(true);
+                   // setVisible(true);
                 }
             }
         } catch (Exception e) {
@@ -265,13 +269,14 @@ public class Consulta_Lab extends javax.swing.JDialog {
 //              JOptionPane.showMessageDialog(null, "Filtro invalido!");
 //        }else{
 
-        String query = "select * from laboratorio where " + (String) tipofiltro.getSelectedItem()
-                + " like '%" + f + "%'";
-        System.err.println(query);
-        listar = cr.ListarLabBtn(query);
-        System.err.println(query);
-        Tablas.listarLab(listar, Tabla);
-
+            String query ="select * from laboratorio where "+(String)tipofiltro.getSelectedItem()+
+                    " like '%"+f+"%'";
+            System.err.println(query);
+            listar=cr.ListarLabBtn(query);
+            System.err.println(query);
+            Tablas.listarLab(listar, Tabla);
+            
+          
 //        }
 
     }//GEN-LAST:event_BotonBuscarActionPerformed

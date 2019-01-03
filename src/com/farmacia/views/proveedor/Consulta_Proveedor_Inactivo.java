@@ -237,7 +237,7 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //setVisible(false);
-        Consulta_Proveedor cp = new Consulta_Proveedor(new javax.swing.JFrame(), true);
+       Consulta_Proveedor cp = new Consulta_Proveedor(new javax.swing.JFrame(), true);
         setVisible(false);
         cp.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed

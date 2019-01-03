@@ -11,6 +11,7 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.validaciones.ComponentesFaltantes;
 import com.farmacia.dao.CRUD;
 import com.farmacia.conponentes.Tablas;
+import com.farmacia.views.producto.MantenimientoProducto;
 import com.farmacia.views.proveedor.Consulta_Proveedor_Compra;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -415,8 +416,8 @@ public static String FechaActual() {
         return formatoFecha.format(fecha);
     }
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
-        Products Prod = new Products(new javax.swing.JFrame(), true);
-        Prod.setVisible(true);
+     //   Products Prod = new Products(new javax.swing.JFrame(), true);
+      //  Prod.setVisible(true);
         lista.clear();
         lista = crud.listarTodoJoinProductos(1);
         Tablas.cargarJoinProductosMCompra(tbacargarProductosA, lista);

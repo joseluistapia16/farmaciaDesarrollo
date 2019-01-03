@@ -301,7 +301,7 @@
                   <EmptySpace pref="25" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jLabel7" pref="104" max="32767" attributes="0"/>
+                          <Component id="jLabel7" pref="0" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="TipoPago" min="-2" pref="89" max="-2" attributes="0"/>
                       </Group>

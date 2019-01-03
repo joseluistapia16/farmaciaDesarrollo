@@ -5,11 +5,15 @@
  */
 package com.farmacia.views.laboratorio;
 
+//import com.objetos.dao.CRUD;
+//import com.objetos.dao.Consultas;
+//import com.objetos.entities.Laboratorio;
+//import com.objetos.fecha.Fecha;
+//import com.objetos.file.Archivos;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.fecha.Fecha;
-//import com.objetos.file.Archivos;
 import com.farmacia.validaciones.Validacion;
 import java.awt.Image;
 import java.sql.Date;
@@ -250,7 +254,7 @@ public class Ingresar_Lab extends javax.swing.JDialog {
         );
 
         BotonImagen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        BotonImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/imagen1.jpg"))); // NOI18N
+        BotonImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/imagen1.jpg"))); // NOI18N
         BotonImagen.setText("Imagen");
         BotonImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,7 +268,7 @@ public class Ingresar_Lab extends javax.swing.JDialog {
         jLabel1.setText("NUEVO LABORATORIO");
 
         BotonGuardar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        BotonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/guardar.jpg"))); // NOI18N
+        BotonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/guardar1.jpg"))); // NOI18N
         BotonGuardar.setText("Guardar");
         BotonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,7 +277,7 @@ public class Ingresar_Lab extends javax.swing.JDialog {
         });
 
         BotonSalir.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/salir1.png"))); // NOI18N
+        BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/salir1.png"))); // NOI18N
         BotonSalir.setText("Salir");
         BotonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,7 +286,7 @@ public class Ingresar_Lab extends javax.swing.JDialog {
         });
 
         BotonSinImagen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        BotonSinImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/sinimagen1.jpeg"))); // NOI18N
+        BotonSinImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/sinimagen1.jpeg"))); // NOI18N
         BotonSinImagen.setText("Sin Imagen");
         BotonSinImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -433,7 +437,7 @@ public class Ingresar_Lab extends javax.swing.JDialog {
         fecha1 = calen.getFecha();
         int com = Fecha.compararFecha(fecha1, (Date) Fecha.FechaSql());
 
-        if (com == 1) {
+        if (com == 1 || com == 0) {
             JOptionPane.showMessageDialog(null, "Fecha invalida");
             fecha1 = null;
             fecha.setText(" ");
@@ -444,11 +448,11 @@ public class Ingresar_Lab extends javax.swing.JDialog {
     }//GEN-LAST:event_BotonFechaActionPerformed
 
     private void nombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombreFocusLost
-        nombre.setText(nombre.getText().toUpperCase());
+nombre.setText(nombre.getText().toUpperCase());
     }//GEN-LAST:event_nombreFocusLost
 
     private void direccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_direccionFocusLost
-        direccion.setText(direccion.getText().toUpperCase());
+direccion.setText(direccion.getText().toUpperCase());
     }//GEN-LAST:event_direccionFocusLost
 
     private void correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoActionPerformed
@@ -470,7 +474,7 @@ public class Ingresar_Lab extends javax.swing.JDialog {
 
     public void VaciarImagen() {
         // String fil = "\\G:\\sin-imagen.png";
-        String fil = "com.farmacia.icono/sinimagen1.jpeg";
+        String fil = "//home//ineval//Escritorio//P-FARMACIA UBUNTU//sin-imagen.png";
         imagen.setIcon(new ImageIcon(fil));
         ImageIcon icon = new ImageIcon(fil);
         Image img = icon.getImage();
@@ -516,8 +520,15 @@ public class Ingresar_Lab extends javax.swing.JDialog {
             obj.setImagen(rutaimagen);
             obj.setCorreo(correo.getText());
 
+//            String cadena = "";
+//            cadena = cadena + obj.getRUC() + "; "
+//                    + obj.getNombre() + "; "
+//                    + obj.getDireccion() + "; "
+//                    + obj.getTelefono() + "; "
+//                    + obj.getFecha() + "; "
+//                    + obj.getImagen() + "; " + "\n";
             try {
-
+                // Archivos.CrearArchi("Lab.txt", cadena, true);
                 cc.insertarLab(obj);
                 lista.clear();
                 JOptionPane.showMessageDialog(this, "Laboratorio guardado ");

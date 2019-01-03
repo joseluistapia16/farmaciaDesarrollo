@@ -3,32 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.farmacia.views.compras;
+package com.farmacia.views.producto;
 
-import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
-import com.farmacia.join_entidades.listarJoinProductosCompras;
-import com.farmacia.conponentes.Formulario;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.filtros.filtrosProductos;
+
+import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
+import com.farmacia.join_entidades.listarJoinProductosCompras;
+
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author User
  */
 public class MantenimientoProducto extends javax.swing.JDialog {
-    filtrosProductos fil = new filtrosProductos(); 
+
+    filtrosProductos fil = new filtrosProductos();
     CRUD crud = new CRUD();
-     listarJoinProductosCompras objeto = null;
-     static ArrayList<listarJoinProductosCompras> listar = null;
-     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
+    listarJoinProductosCompras objeto = null;
+    static ArrayList<listarJoinProductosCompras> listar = null;
+    ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     ArrayList<listarJoinProductosCompras> lista = crud.listarTodoJoinProductos(1);
+
     public MantenimientoProducto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-         Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
+        Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
     }
 
     /**
@@ -47,6 +52,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         tipofiltro = new javax.swing.JComboBox<>();
         filtrar = new javax.swing.JButton();
         btnSalir2 = new javax.swing.JButton();
+        btnProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -62,11 +68,11 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             }
         ));
         tbacargarProductos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tbacargarProductosMousePressed(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbacargarProductosMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbacargarProductosMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(tbacargarProductos);
@@ -88,6 +94,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
 
         tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
 
+        filtrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/buscar1.jpg"))); // NOI18N
         filtrar.setText("Buscar");
         filtrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,11 +102,19 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             }
         });
 
-        btnSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/imagenes/action_exit_close_remove_13915.png"))); // NOI18N
+        btnSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/action_exit_close_remove_13915.png"))); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalir2ActionPerformed(evt);
+            }
+        });
+
+        btnProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/base-de-datos.png"))); // NOI18N
+        btnProducto.setText("NUEVO PRODUCTO");
+        btnProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductoActionPerformed(evt);
             }
         });
 
@@ -108,40 +123,46 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(340, 340, 340))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 833, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(144, 144, 144))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(filtrar)))
+                        .addGap(159, 159, 159))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnProducto)
                         .addGap(18, 18, 18)
-                        .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(filtrar)
-                        .addGap(196, 196, 196))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnSalir2)
-                        .addGap(37, 37, 37))))
+                        .addGap(53, 53, 53))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filtrar))
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProducto))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -161,7 +182,8 @@ public class MantenimientoProducto extends javax.swing.JDialog {
                 i = tbacargarProductos.getSelectedRow();
                 objeto = devuelveObjeto(tbacargarProductos.getValueAt(i, 0).toString(), lista);
                 if (objeto != null) {
-                    modificarProducto acc = new modificarProducto(new javax.swing.JFrame(), true,objeto);
+                    System.out.println("holaaaaa");
+                    modificarProducto acc = new modificarProducto(new javax.swing.JFrame(), true, objeto);
                     acc.setVisible(true);
                     lista.clear();
                     lista = crud.listarTodoJoinProductos(1);
@@ -177,9 +199,10 @@ public class MantenimientoProducto extends javax.swing.JDialog {
 
             }
         } catch (Exception e) {
+            Logger.getLogger(MantenimientoProducto.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_tbacargarProductosMousePressed
-     public listarJoinProductosCompras devuelveObjeto(String datos, ArrayList<listarJoinProductosCompras> listarobj) {
+    public listarJoinProductosCompras devuelveObjeto(String datos, ArrayList<listarJoinProductosCompras> listarobj) {
         listarJoinProductosCompras objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
             if (datos.equals(listarobj.get(i).getId_productos().toString())) {
@@ -200,46 +223,54 @@ public class MantenimientoProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_filtroKeyReleased
 
     private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
-        String f =filtro.getText().toUpperCase();   
-        String query="";
-            int pos =tipofiltro.getSelectedIndex();
-            if("".equals(f)){
-                query = fil.comboProductoTodo();
-            }
-            if(pos==0){
-                if("".equals(f)){
+        String f = filtro.getText().toUpperCase();
+        String query = "";
+        int pos = tipofiltro.getSelectedIndex();
+        if ("".equals(f)) {
+            query = fil.comboProductoTodo();
+        }
+        if (pos == 0) {
+            if ("".equals(f)) {
                 Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
-                }else{
-                query = fil.comboProductoCodigo()+f;
+            } else {
+                query = fil.comboProductoCodigo() + f;
                 System.out.println(query);
-                }
             }
-            if(pos==1){
-             query = fil.comboProductoNombre()+f+"%'";
-                }
-            if(pos==2){
-             query = fil.comboProductoTipo()+f+"%'";
-            }
-            if(pos==3){
-             query = fil.comboProductoMedida()+f+"%'";
-            }
-            if(pos==4){
-            query = fil.comboProductoEnvase()+f+"%'";
-            }
-            if(pos==5){
-             query = fil.comboProductoMarca()+f+"%'";
-            }
-           // System.err.println(query);
-            listar=crud.filtroBusquedaProducto(query);
-           // System.err.println(query);
-            Tablas.cargarFiltroProductos(tbacargarProductos, listar);
-            query="";
-            
+        }
+        if (pos == 1) {
+            query = fil.comboProductoNombre() + f + "%'";
+        }
+        if (pos == 2) {
+            query = fil.comboProductoTipo() + f + "%'";
+        }
+        if (pos == 3) {
+            query = fil.comboProductoMedida() + f + "%'";
+        }
+        if (pos == 4) {
+            query = fil.comboProductoEnvase() + f + "%'";
+        }
+        if (pos == 5) {
+            query = fil.comboProductoMarca() + f + "%'";
+        }
+        // System.err.println(query);
+        listar = crud.filtroBusquedaProducto(query);
+        // System.err.println(query);
+        Tablas.cargarFiltroProductos(tbacargarProductos, listar);
+        query = "";
+
     }//GEN-LAST:event_filtrarActionPerformed
 
     private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
         setVisible(false);
     }//GEN-LAST:event_btnSalir2ActionPerformed
+
+    private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
+        Products Prod = new Products(new javax.swing.JFrame(), true);
+        Prod.setVisible(true);
+        lista.clear();
+        lista = crud.listarTodoJoinProductos(1);
+        Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
+    }//GEN-LAST:event_btnProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,6 +298,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(MantenimientoProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -284,6 +316,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnProducto;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JButton filtrar;
     private javax.swing.JTextField filtro;

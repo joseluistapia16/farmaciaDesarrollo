@@ -11,7 +11,8 @@ import java.awt.Toolkit;
 import sistemafarmacia.Fondo;
 import sistemafarmacia.VariablesFunciones;
 import com.farmacia.entities1.Usuario;
-import com.farmacia.views.compras.Products;
+
+import com.farmacia.views.producto.MantenimientoProducto;
 import com.farmacia.views.proveedor.Consulta_Proveedor;
 
 public class FrmPrincipal extends javax.swing.JFrame {
@@ -383,8 +384,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-        Products p1 = new Products(new javax.swing.JFrame(), true);
-        p1.setVisible(true);
+//        Products p1 = new Products(new javax.swing.JFrame(), true);
+//        p1.setVisible(true);
+          MantenimientoProducto p1 = new MantenimientoProducto(new javax.swing.JFrame(), true);
+          p1.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed

@@ -5,11 +5,15 @@
  */
 package com.farmacia.views.laboratorio;
 
+//import com.objetos.dao.CRUD;
+//import com.objetos.dao.Consultas;
+//import com.objetos.entities.Laboratorio;
+//import com.objetos.fecha.Fecha;
+//import com.objetos.file.Archivos;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.fecha.Fecha;
-//import com.objetos.file.Archivos;
 import com.farmacia.validaciones.Validacion;
 //import static com.objetos.views.Consulta_Lab.listar;
 import java.awt.Image;
@@ -277,7 +281,7 @@ public class Editar_Lab extends javax.swing.JDialog {
         jLabel1.setText("LABORATORIO");
 
         BotonImagen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        BotonImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/imagen1.jpg"))); // NOI18N
+        BotonImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/imagen1.jpg"))); // NOI18N
         BotonImagen.setText("Imagen");
         BotonImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,7 +290,7 @@ public class Editar_Lab extends javax.swing.JDialog {
         });
 
         BotonGuardar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        BotonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/guardar.jpg"))); // NOI18N
+        BotonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/guardar1.jpg"))); // NOI18N
         BotonGuardar.setText("Guardar");
         BotonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,7 +299,7 @@ public class Editar_Lab extends javax.swing.JDialog {
         });
 
         BotonSalir.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/salir1.png"))); // NOI18N
+        BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/salir1.png"))); // NOI18N
         BotonSalir.setText("Salir");
         BotonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,7 +308,7 @@ public class Editar_Lab extends javax.swing.JDialog {
         });
 
         BotonSinImagen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        BotonSinImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/sinimagen1.jpeg"))); // NOI18N
+        BotonSinImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/sinimagen1.jpeg"))); // NOI18N
         BotonSinImagen.setText("Sin Imagen");
         BotonSinImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,7 +317,7 @@ public class Editar_Lab extends javax.swing.JDialog {
         });
 
         BotonEliminar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        BotonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/eliminar1.png"))); // NOI18N
+        BotonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/eliminar1.png"))); // NOI18N
         BotonEliminar.setText("Eliminar");
         BotonEliminar.setToolTipText("");
         BotonEliminar.addActionListener(new java.awt.event.ActionListener() {

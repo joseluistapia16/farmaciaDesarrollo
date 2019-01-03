@@ -363,7 +363,7 @@
               <Font name="Times New Roman" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/objetos/icon/imagen1.jpg"/>
+              <Image iconType="3" name="/com/farmacia/icono/imagen1.jpg"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Imagen"/>
           </Properties>
@@ -377,7 +377,7 @@
               <Font name="Times New Roman" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/objetos/icon/guardar.jpg"/>
+              <Image iconType="3" name="/com/farmacia/icono/guardar1.jpg"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
@@ -391,7 +391,7 @@
               <Font name="Times New Roman" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/objetos/icon/salir1.png"/>
+              <Image iconType="3" name="/com/farmacia/icono/salir1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
@@ -405,7 +405,7 @@
               <Font name="Times New Roman" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/objetos/icon/sinimagen1.jpeg"/>
+              <Image iconType="3" name="/com/farmacia/icono/sinimagen1.jpeg"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Sin Imagen"/>
           </Properties>
@@ -419,7 +419,7 @@
               <Font name="Times New Roman" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/objetos/icon/eliminar1.png"/>
+              <Image iconType="3" name="/com/farmacia/icono/eliminar1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>

@@ -10,6 +10,7 @@ import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
+import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.fecha.Fecha;
 import java.util.ArrayList;
@@ -102,6 +103,47 @@ public class Formulario {
         arreglo[0] = "Elija una opcion...";
         for (int i = 0; i < lista.size(); i++) {
             arreglo[(i + 1)] = lista.get(i).getNombreMarca();
+        }
+        return arreglo;
+
+    }
+     public static DefaultComboBoxModel listarComboPrecioCompraPro(ArrayList<Precios> lista) {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        Object[] arreglo = arregloCompra(lista);
+        System.out.println(lista.size() + " tam " + arreglo.length);
+        for (int i = 0; i < arreglo.length; i++) {
+            model.addElement(arreglo[i]);
+        }
+        return model;
+
+    }
+
+    private static Object[] arregloCompra(ArrayList<Precios> lista) {
+        Object[] arreglo = new Object[lista.size() + 1];
+        arreglo[0] = "Elija una opcion...";
+        for (int i = 0; i < lista.size(); i++) {
+            arreglo[(i + 1)] = ""+lista.get(i).getPrecio_compra();
+        }
+        return arreglo;
+
+    }
+    //listarComboPrecioVentaPro
+    public static DefaultComboBoxModel listarComboPrecioVentaPro(ArrayList<Precios> lista) {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        Object[] arreglo = arregloVenta(lista);
+        System.out.println(lista.size() + " tam " + arreglo.length);
+        for (int i = 0; i < arreglo.length; i++) {
+            model.addElement(arreglo[i]);
+        }
+        return model;
+
+    }
+
+    private static Object[] arregloVenta(ArrayList<Precios> lista) {
+        Object[] arreglo = new Object[lista.size() + 1];
+        arreglo[0] = "Elija una opcion...";
+        for (int i = 0; i < lista.size(); i++) {
+            arreglo[(i + 1)] = lista.get(i).getPrecio_venta();
         }
         return arreglo;
 

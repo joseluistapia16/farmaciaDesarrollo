@@ -496,7 +496,9 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
     }//GEN-LAST:event_cbx1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Consulta_Proveedor_Inactivo cpi = new Consulta_Proveedor_Inactivo(new javax.swing.JFrame(),true);
         setVisible(false);
+        cpi.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulaKeyTyped

@@ -11,13 +11,19 @@ package com.farmacia.entities1;
  */
 public class Obcx {
     private String tcd;
+    private Double precio;
     private int tipos;
+    
 
     public Obcx() {
     }
 
     public Obcx(String tcd) {
         this.tcd = tcd;
+    }
+
+    public Obcx(Double precio) {
+        this.precio = precio;
     }
     
     public Obcx(String tcd, int tipos) {
@@ -39,5 +45,13 @@ public class Obcx {
 
     public void setTipos(int tipos) {
         this.tipos = tipos;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 }

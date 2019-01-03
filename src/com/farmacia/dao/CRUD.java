@@ -19,6 +19,7 @@ import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.Obcx;
+import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.validaciones.ValidarIngresoProducto;
@@ -539,7 +540,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call getNombreComboProducto(?,?,?) }");
+                    "{ call getNombreComboProducto(?,?,?,?) }");
             prodProAlm.setLong(1, op);
             prodProAlm.setLong(2, id);
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
@@ -972,15 +973,15 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call listarLaboratorio()}");
+                    "{ call listarLaboratorio() }");
             pro.executeUpdate();
             rs = pro.getResultSet();
             while (rs.next()) {
                 Laboratorio obj = EntidadesMappers.getLaboratorioFromResultSet(rs);
                 lista.add(obj);
-                conect.commit();
-
+                
             }
+            conect.commit();
         } catch (Exception e) {
             try {
                 conect.rollback();
@@ -1688,5 +1689,189 @@ public class CRUD {
             }
         }
         return valor;
+    } 
+    
+    public String actualizarPrecioCompra(Precios obj) {
+        //ArrayList<Productos> lista = new ArrayList<Productos>();
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call actualizarPrecioCompra(?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_producto());
+            prodProAlm.setDouble(2, obj.getPrecio_compra());
+            prodProAlm.setDouble(3, obj.getPrecio_venta());
+            prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor1");
+            //  rs = prodProAlm.getResultSet();
+//            while (rs.next()) {
+//                MarcaProducto obj = EntidadesMappers.getMarcaProductoFromResultSet(rs);
+//                lista.add(obj);
+//            }
+
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
     }
+    public String actualizarPrecioProductos(String query) {
+        //ArrayList<Productos> lista = new ArrayList<Productos>();
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call actualizarPrecioProducto(?,?)}");
+            pro.setString(1, query);
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
+    public Double getNombreComboPrecioPro(Long op, Long id) {
+        //ArrayList<Productos> lista = new ArrayList<Productos>();
+        Double valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call getNombreComboProducto(?,?,?,?) }");
+            prodProAlm.setLong(1, op);
+            prodProAlm.setLong(2, id);
+            prodProAlm.registerOutParameter("valord", Types.DOUBLE);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getDouble("valord");
+            //  rs = prodProAlm.getResultSet();
+//            while (rs.next()) {
+//                MarcaProducto obj = EntidadesMappers.getMarcaProductoFromResultSet(rs);
+//                lista.add(obj);
+//            }
+
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
+    public String guardarNuevoPrecio(Long op,Precios obj) {//jefferson compras
+        String valor = null;
+        System.out.println(obj.getId_producto() + "  PRUEBA PRECIO " + obj.getPrecio_venta());
+        //int por1 = Integer.valueOf(por);
+        try {
+//            connn = con.Conexion("Modulo_Cliente");
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call ingresoDePrecios(?,?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, op);
+            prodProAlm.setLong(2, obj.getId_producto());
+            prodProAlm.setDouble(3, obj.getPrecio_compra());
+            prodProAlm.setDouble(4, obj.getPrecio_venta());
+            prodProAlm.setString(5, obj.getFecha_registro());
+            prodProAlm.setLong(6, obj.getId_usuario());
+            prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor1");
+            conect.commit();
+        } catch (Exception ex) {
+            try {
+                conect.rollback();
+
+            } catch (Exception ex1) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return valor;
+
+    }
+    
+   public String BuscarIDProductoNuevo(Productos obj) {
+        String valor = null;
+        //int por1 = Integer.valueOf(por);
+        try {
+//            connn = con.Conexion("Modulo_Cliente");
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call BuscarIDProductoNuevo(?,?,?,?,?,?,?,?,?,?,?,?) }");
+            prodProAlm.setString(1, obj.getNombre());
+            prodProAlm.setString(2, obj.getDescripcion());
+            prodProAlm.setDate(3, obj.getFecha_registro());
+            prodProAlm.setDouble(4, obj.getPeso());
+            prodProAlm.setLong(5, obj.getId_tipo());
+            prodProAlm.setLong(6, obj.getId_medidas());
+            prodProAlm.setLong(7, obj.getId_envase());
+            prodProAlm.setLong(8, obj.getId_marcas());
+            prodProAlm.setLong(9, obj.getId_usuario());
+            prodProAlm.setString(10, obj.getIva());
+            prodProAlm.setLong(11, obj.getCantidad_minima());
+            prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor1");
+        } catch (Exception ex) {
+            try {
+                conect.rollback();
+
+            } catch (Exception ex1) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return valor;
+
+    }
+    
 }
