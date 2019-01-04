@@ -7,7 +7,8 @@ public class main {
 
     public static void main(String[] args) {
         new FrmLogin().setVisible(true);
-        System.out.println("Vamos ...");
+        System.out.println("Vamos loco...");
+         System.out.println("Prueba...");
     }
     
 }
