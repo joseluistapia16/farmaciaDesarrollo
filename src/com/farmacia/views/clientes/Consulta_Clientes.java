@@ -55,6 +55,7 @@ public class Consulta_Clientes extends javax.swing.JDialog {
         BotonSalir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        BotonSalir1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);
@@ -97,7 +98,7 @@ public class Consulta_Clientes extends javax.swing.JDialog {
             tabla.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        BotonNuevo.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
+        BotonNuevo.setFont(new java.awt.Font("Cambria", 1, 11)); // NOI18N
         BotonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/agregarCliente.png"))); // NOI18N
         BotonNuevo.setText("Nuevo");
         BotonNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +107,7 @@ public class Consulta_Clientes extends javax.swing.JDialog {
             }
         });
 
-        BotonActualizar.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
+        BotonActualizar.setFont(new java.awt.Font("Cambria", 1, 11)); // NOI18N
         BotonActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/update.png"))); // NOI18N
         BotonActualizar.setText("Actualizar");
         BotonActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +128,7 @@ public class Consulta_Clientes extends javax.swing.JDialog {
         });
 
         BotonSalir.setBackground(new java.awt.Color(255, 255, 255));
-        BotonSalir.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
+        BotonSalir.setFont(new java.awt.Font("Cambria", 1, 11)); // NOI18N
         BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/salir1.png"))); // NOI18N
         BotonSalir.setText("Salir");
         BotonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +154,7 @@ public class Consulta_Clientes extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Cambria", 1, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/Inactivo.png"))); // NOI18N
         jButton1.setText("Eliminados");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -162,20 +163,19 @@ public class Consulta_Clientes extends javax.swing.JDialog {
             }
         });
 
+        BotonSalir1.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
+        BotonSalir1.setText("Reporte");
+        BotonSalir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalir1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BotonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jButton1)
-                .addGap(31, 31, 31)
-                .addComponent(BotonActualizar)
-                .addGap(29, 29, 29)
-                .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -185,9 +185,19 @@ public class Consulta_Clientes extends javax.swing.JDialog {
                         .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(BotonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(BotonActualizar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BotonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,13 +209,14 @@ public class Consulta_Clientes extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(BotonActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BotonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1)
-                    .addComponent(BotonNuevo))
-                .addGap(0, 27, Short.MAX_VALUE))
+                    .addComponent(BotonNuevo)
+                    .addComponent(BotonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -283,6 +294,25 @@ public class Consulta_Clientes extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void BotonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalir1ActionPerformed
+        ArrayList cliente = new ArrayList();
+        ClienteR cliente1 = new ClienteR (cedula.getText(),nombre.getText(),apellido.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),direccion.getText(),fecha_reg.getText());
+        cliente.add(cliente1);
+        try{
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("ClienteA.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(cliente));
+            JDialog frame = new JDialog (this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Activar_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BotonSalir1ActionPerformed
+
     public Clientes buscarObjeto(String cedula, ArrayList<Clientes> lis) {
         Clientes pro = new Clientes();
         pro = null;
@@ -354,6 +384,7 @@ public class Consulta_Clientes extends javax.swing.JDialog {
     private javax.swing.JButton BotonActualizar;
     private javax.swing.JButton BotonNuevo;
     private javax.swing.JButton BotonSalir;
+    private javax.swing.JButton BotonSalir1;
     private javax.swing.JTextField buscar1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
