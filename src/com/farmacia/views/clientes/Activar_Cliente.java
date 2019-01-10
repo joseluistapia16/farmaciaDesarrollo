@@ -13,12 +13,14 @@ package com.farmacia.views.clientes;
 //import com.farmacia.domain.Obcx;
 //import com.farmacia.domain.Telefono_Cliente;
 
+import com.farmacia.ClasesReporte.ClienteR;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Clientes;
 import com.farmacia.entities1.Correo_Cliente;
 import com.farmacia.entities1.Obcx;
 import com.farmacia.entities1.Telefono_Cliente;
+import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.sql.CallableStatement;
@@ -29,7 +31,16 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
+
 
 /**
  *
@@ -51,6 +62,8 @@ public class Activar_Cliente extends javax.swing.JDialog {
     Consultas llamar = new Consultas();
     private Date fecha_registro;
     CRUD cc= new CRUD();
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 
     public Activar_Cliente(java.awt.Frame parent, boolean modal, Clientes cliente) {
         super(parent, modal);
@@ -99,6 +112,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
         cbx2 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         BotonAgregarT = new javax.swing.JButton();
+        BotonSalir1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -231,17 +245,20 @@ public class Activar_Cliente extends javax.swing.JDialog {
             }
         });
 
+        BotonSalir1.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
+        BotonSalir1.setText("Reporte");
+        BotonSalir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonSalir1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(BotonActivar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -281,6 +298,14 @@ public class Activar_Cliente extends javax.swing.JDialog {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(BotonActivar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,7 +345,8 @@ public class Activar_Cliente extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonActivar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonSalir))
+                    .addComponent(BotonSalir)
+                    .addComponent(BotonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -476,6 +502,26 @@ public class Activar_Cliente extends javax.swing.JDialog {
         direccion.setText(direccion.getText().toUpperCase());
     }//GEN-LAST:event_direccionFocusLost
 
+    private void BotonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalir1ActionPerformed
+        ArrayList cliente = new ArrayList();
+        ClienteR cliente1 = new ClienteR (cedula.getText(),nombre.getText(),apellido.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),direccion.getText(),fecha_reg.getText());
+        cliente.add(cliente1);                    
+           try{ 
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("ClienteI.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(cliente));
+            JDialog frame = new JDialog (this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+            } catch (JRException ex) {
+            Logger.getLogger(Activar_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+    }//GEN-LAST:event_BotonSalir1ActionPerformed
+
     public void Habilitar(boolean lok) {
         BotonAgregarT.setEnabled(lok);
         BotonAgregarC.setEnabled(lok);
@@ -579,6 +625,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
     private javax.swing.JButton BotonAgregarC;
     private javax.swing.JButton BotonAgregarT;
     private javax.swing.JButton BotonSalir;
+    private javax.swing.JButton BotonSalir1;
     private javax.swing.JTextField apellido;
     private javax.swing.JComboBox<String> cbx1;
     private javax.swing.JComboBox<String> cbx2;
