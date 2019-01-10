@@ -106,14 +106,13 @@ public class OrdenCompra extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbacargarProductosA = new javax.swing.JTable();
         btnGuardar = new javax.swing.JButton();
-        btnMantemiento = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbaListaComprasB = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/ic_add_shopping_cart_128_28122.png"))); // NOI18N
+        btnProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/producto.png"))); // NOI18N
         btnProducto.setText("Producto");
         btnProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +120,7 @@ public class OrdenCompra extends javax.swing.JDialog {
             }
         });
 
-        btnSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/action_exit_close_remove_13915.png"))); // NOI18N
+        btnSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/action_exit_close_remove_13915.png"))); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +128,7 @@ public class OrdenCompra extends javax.swing.JDialog {
             }
         });
 
-        btnProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/icons8-proveedor-32.png"))); // NOI18N
+        btnProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/icons8-proveedor-32.png"))); // NOI18N
         btnProveedor.setText("Proveedor");
         btnProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +239,7 @@ public class OrdenCompra extends javax.swing.JDialog {
                 .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -307,19 +306,11 @@ public class OrdenCompra extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tbacargarProductosA);
 
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/folder_add_icon-icons.com_74436.png"))); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/folder_add_icon-icons.com_74436.png"))); // NOI18N
         btnGuardar.setText("añadir");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
-            }
-        });
-
-        btnMantemiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/preview_search_find_locate_1551.png"))); // NOI18N
-        btnMantemiento.setText("Mantenimiento");
-        btnMantemiento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMantemientoActionPerformed(evt);
             }
         });
 
@@ -373,9 +364,7 @@ public class OrdenCompra extends javax.swing.JDialog {
                                         .addGap(42, 42, 42)
                                         .addComponent(btnProveedor)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(btnMantemiento)))
+                                        .addComponent(btnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane2)))
@@ -386,14 +375,12 @@ public class OrdenCompra extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnProveedor)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnProducto)
-                                .addComponent(btnMantemiento)))
+                            .addComponent(btnProducto))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -560,15 +547,6 @@ public static String FechaActual() {
         }
     }//GEN-LAST:event_tbacargarProductosAMousePressed
 
-    private void btnMantemientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMantemientoActionPerformed
-        MantenimientoProducto mant = new MantenimientoProducto(new javax.swing.JFrame(), true);
-        mant.setVisible(true);
-        lista.clear();
-        lista = crud.listarTodoJoinProductos(1);
-        Tablas.cargarJoinProductosMCompra(tbacargarProductosA, lista);
-
-    }//GEN-LAST:event_btnMantemientoActionPerformed
-
     private void jLabel10MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseDragged
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
@@ -631,7 +609,6 @@ public static String FechaActual() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> TipoPago;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnMantemiento;
     private javax.swing.JButton btnProducto;
     private javax.swing.JButton btnProveedor;
     private javax.swing.JButton btnSalir2;

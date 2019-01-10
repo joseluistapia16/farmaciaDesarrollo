@@ -44,8 +44,6 @@
                                       <Component id="btnProveedor" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                                       <Component id="btnProducto" min="-2" pref="120" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Component id="btnMantemiento" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -64,15 +62,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Component id="jLabel10" min="-2" pref="50" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnProveedor" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="btnProducto" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnMantemiento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnProducto" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
@@ -97,7 +92,7 @@
     <Component class="javax.swing.JButton" name="btnProducto">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/com/objetos/icon/ic_add_shopping_cart_128_28122.png"/>
+          <Image iconType="3" name="/com/farmacia/icon/producto.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Producto"/>
       </Properties>
@@ -108,7 +103,7 @@
     <Component class="javax.swing.JButton" name="btnSalir2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/com/objetos/icon/action_exit_close_remove_13915.png"/>
+          <Image iconType="3" name="/com/farmacia/icon/action_exit_close_remove_13915.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="SALIR"/>
       </Properties>
@@ -119,7 +114,7 @@
     <Component class="javax.swing.JButton" name="btnProveedor">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/com/objetos/icon/icons8-proveedor-32.png"/>
+          <Image iconType="3" name="/com/farmacia/icon/icons8-proveedor-32.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Proveedor"/>
       </Properties>
@@ -451,23 +446,12 @@
     <Component class="javax.swing.JButton" name="btnGuardar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/com/objetos/icon/folder_add_icon-icons.com_74436.png"/>
+          <Image iconType="3" name="/com/farmacia/icon/folder_add_icon-icons.com_74436.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="a&#xf1;adir"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnMantemiento">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/com/objetos/icon/preview_search_find_locate_1551.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Mantenimiento"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMantemientoActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
