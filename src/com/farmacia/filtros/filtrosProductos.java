@@ -198,4 +198,117 @@ public class filtrosProductos {
 
         return query;
     }
+    /////////////////
+    public static String comboProductoCodigoNotaPedido() {
+
+        String query = "SELECT df.id_detalle_faltantes,df.id_producto,p.nombre AS producto,m.id_marcas,m.nombre AS marca,"
+                + "p.id_envase,en.nombre AS envase,p.id_medidas,me.nombre_medida AS medida,t.id_tipo,t.nombre AS tipo,"
+                + "df.cantidad,df.estado,pr.precio_compra AS precio"
+                + " FROM detalle_faltantes df "
+                + "JOIN productos p ON  p.id_productos= df.id_producto "
+                + "JOIN tipo t ON t.id_tipo=p.id_tipo"
+                + " JOIN marcas m ON m.id_marcas=p.id_marcas "
+                + "JOIN envase en ON en.id_envase = p.id_envase "
+                + "JOIN medidas me ON me.id_medidas = p.id_medidas "
+                + "JOIN precios pr ON pr.id_productos = p.id_productos "
+                + "WHERE df.estado= 'NO' AND p.`id_productos`=";
+        return query;
+    }
+
+    public String comboProductoNombreNotaPedido() {
+        String query = "SELECT df.id_detalle_faltantes,df.id_producto,p.nombre AS producto,m.id_marcas,m.nombre AS marca,"
+                + "p.id_envase,en.nombre AS envase,p.id_medidas,me.nombre_medida AS medida,t.id_tipo,t.nombre AS tipo,"
+                + "df.cantidad,df.estado,pr.precio_compra AS precio"
+                + " FROM detalle_faltantes df "
+                + "JOIN productos p ON  p.id_productos= df.id_producto "
+                + "JOIN tipo t ON t.id_tipo=p.id_tipo"
+                + " JOIN marcas m ON m.id_marcas=p.id_marcas "
+                + "JOIN envase en ON en.id_envase = p.id_envase "
+                + "JOIN medidas me ON me.id_medidas = p.id_medidas "
+                + "JOIN precios pr ON pr.id_productos = p.id_productos "
+                + "WHERE df.estado= 'NO' AND p.`nombre` like '%";
+        return query;
+
+    }
+
+    public String comboProductoTipoNotaPedido() {
+        String query = "SELECT df.id_detalle_faltantes,df.id_producto,p.nombre AS producto,m.id_marcas,m.nombre AS marca,"
+                + "p.id_envase,en.nombre AS envase,p.id_medidas,me.nombre_medida AS medida,t.id_tipo,t.nombre AS tipo,"
+                + "df.cantidad,df.estado,pr.precio_compra AS precio"
+                + " FROM detalle_faltantes df "
+                + "JOIN productos p ON  p.id_productos= df.id_producto "
+                + "JOIN tipo t ON t.id_tipo=p.id_tipo"
+                + " JOIN marcas m ON m.id_marcas=p.id_marcas "
+                + "JOIN envase en ON en.id_envase = p.id_envase "
+                + "JOIN medidas me ON me.id_medidas = p.id_medidas "
+                + "JOIN precios pr ON pr.id_productos = p.id_productos "
+                + "WHERE df.estado= 'NO' AND t.nombre like '%";
+        return query;
+
+    }
+
+    public String comboProductoMedidaNotaPedido() {
+        String query = "SELECT df.id_detalle_faltantes,df.id_producto,p.nombre AS producto,m.id_marcas,m.nombre AS marca,"
+                + "p.id_envase,en.nombre AS envase,p.id_medidas,me.nombre_medida AS medida,t.id_tipo,t.nombre AS tipo,"
+                + "df.cantidad,df.estado,pr.precio_compra AS precio"
+                + " FROM detalle_faltantes df "
+                + "JOIN productos p ON  p.id_productos= df.id_producto "
+                + "JOIN tipo t ON t.id_tipo=p.id_tipo"
+                + " JOIN marcas m ON m.id_marcas=p.id_marcas "
+                + "JOIN envase en ON en.id_envase = p.id_envase "
+                + "JOIN medidas me ON me.id_medidas = p.id_medidas "
+                + "JOIN precios pr ON pr.id_productos = p.id_productos "
+                + "WHERE df.estado= 'NO' AND me.nombre_medida like '%";
+        return query;
+
+    }
+
+    public String comboProductoEnvaseNotaPedido() {
+        String query = "SELECT df.id_detalle_faltantes,df.id_producto,p.nombre AS producto,m.id_marcas,m.nombre AS marca,"
+                + "p.id_envase,en.nombre AS envase,p.id_medidas,me.nombre_medida AS medida,t.id_tipo,t.nombre AS tipo,"
+                + "df.cantidad,df.estado,pr.precio_compra AS precio"
+                + " FROM detalle_faltantes df "
+                + "JOIN productos p ON  p.id_productos= df.id_producto "
+                + "JOIN tipo t ON t.id_tipo=p.id_tipo"
+                + " JOIN marcas m ON m.id_marcas=p.id_marcas "
+                + "JOIN envase en ON en.id_envase = p.id_envase "
+                + "JOIN medidas me ON me.id_medidas = p.id_medidas "
+                + "JOIN precios pr ON pr.id_productos = p.id_productos "
+                + "WHERE df.estado= 'NO' AND en.nombre like '%";
+        return query;
+
+    }
+
+    public String comboProductoMarcaNotaPedido() {
+        String query = "SELECT df.id_detalle_faltantes,df.id_producto,p.nombre AS producto,m.id_marcas,m.nombre AS marca,"
+                + "p.id_envase,en.nombre AS envase,p.id_medidas,me.nombre_medida AS medida,t.id_tipo,t.nombre AS tipo,"
+                + "df.cantidad,df.estado,pr.precio_compra AS precio"
+                + " FROM detalle_faltantes df "
+                + "JOIN productos p ON  p.id_productos= df.id_producto "
+                + "JOIN tipo t ON t.id_tipo=p.id_tipo"
+                + " JOIN marcas m ON m.id_marcas=p.id_marcas "
+                + "JOIN envase en ON en.id_envase = p.id_envase "
+                + "JOIN medidas me ON me.id_medidas = p.id_medidas "
+                + "JOIN precios pr ON pr.id_productos = p.id_productos "
+                + "WHERE df.estado= 'NO' AND m.nombre like '%";
+        return query;
+
+    }
+
+    public String comboProductoTodoNotaPedido() {
+         String query = "SELECT df.id_detalle_faltantes,df.id_producto,p.nombre AS producto,m.id_marcas,m.nombre AS marca,"
+                + "p.id_envase,en.nombre AS envase,p.id_medidas,me.nombre_medida AS medida,t.id_tipo,t.nombre AS tipo,"
+                + "df.cantidad,df.estado,pr.precio_compra AS precio"
+                + " FROM detalle_faltantes df "
+                + "JOIN productos p ON  p.id_productos= df.id_producto "
+                + "JOIN tipo t ON t.id_tipo=p.id_tipo"
+                + " JOIN marcas m ON m.id_marcas=p.id_marcas "
+                + "JOIN envase en ON en.id_envase = p.id_envase "
+                + "JOIN medidas me ON me.id_medidas = p.id_medidas "
+                + "JOIN precios pr ON pr.id_productos = p.id_productos "
+                + "WHERE df.estado= 'NO' ORDER BY producto";
+
+        return query;
+
+    }
 }
