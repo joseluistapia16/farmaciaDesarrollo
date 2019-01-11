@@ -6,24 +6,37 @@
 package com.farmacia.views.clientes;
 
 
+
+import com.farmacia.ClasesReporte.TablaCliente;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.Conexion;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Clientes;
+import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 
 public class Consulta_Clientes extends javax.swing.JDialog {
 
     int x, y;
     Consultas llamar = new Consultas();
-
     Clientes clientes = new Clientes();
     public ArrayList<Clientes> lista = null;
-
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     public Consulta_Clientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
@@ -55,7 +68,7 @@ public class Consulta_Clientes extends javax.swing.JDialog {
         BotonSalir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        BotonSalir1 = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);
@@ -163,11 +176,11 @@ public class Consulta_Clientes extends javax.swing.JDialog {
             }
         });
 
-        BotonSalir1.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
-        BotonSalir1.setText("Reporte");
-        BotonSalir1.addActionListener(new java.awt.event.ActionListener() {
+        btnReporte.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
+        btnReporte.setText("Reporte");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSalir1ActionPerformed(evt);
+                btnReporteActionPerformed(evt);
             }
         });
 
@@ -193,7 +206,7 @@ public class Consulta_Clientes extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(BotonActualizar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BotonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -215,7 +228,7 @@ public class Consulta_Clientes extends javax.swing.JDialog {
                     .addComponent(BotonSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1)
                     .addComponent(BotonNuevo)
-                    .addComponent(BotonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -294,13 +307,14 @@ public class Consulta_Clientes extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void BotonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalir1ActionPerformed
-        ArrayList cliente = new ArrayList();
-        ClienteR cliente1 = new ClienteR (cedula.getText(),nombre.getText(),apellido.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),direccion.getText(),fecha_reg.getText());
-        cliente.add(cliente1);
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        ArrayList tablac = new ArrayList();
+        for(int i=0;i<tabla.getRowCount();i++){
+        TablaCliente tabla1 = new TablaCliente (tabla.getValueAt(i,0).toString(),tabla.getValueAt(i,1).toString(),tabla.getValueAt(i,2).toString(),tabla.getValueAt(i,3).toString(),tabla.getValueAt(i,4).toString());
+        tablac.add(tabla1);}
         try{
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("ClienteA.jasper");
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(cliente));
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("TablaCliente.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog (this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
@@ -309,9 +323,9 @@ public class Consulta_Clientes extends javax.swing.JDialog {
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
         } catch (JRException ex) {
-            Logger.getLogger(Activar_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consulta_Clientes.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_BotonSalir1ActionPerformed
+    }//GEN-LAST:event_btnReporteActionPerformed
 
     public Clientes buscarObjeto(String cedula, ArrayList<Clientes> lis) {
         Clientes pro = new Clientes();
@@ -384,7 +398,7 @@ public class Consulta_Clientes extends javax.swing.JDialog {
     private javax.swing.JButton BotonActualizar;
     private javax.swing.JButton BotonNuevo;
     private javax.swing.JButton BotonSalir;
-    private javax.swing.JButton BotonSalir1;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JTextField buscar1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
