@@ -901,6 +901,9 @@ public class NotePedidos extends javax.swing.JDialog {
 
         
         
+        
+        
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
