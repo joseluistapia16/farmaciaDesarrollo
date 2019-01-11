@@ -6,10 +6,9 @@
 package com.farmacia.dao;
 
 import com.farmacia.entities.mappers.EntidadesMappers;
+import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinProveedor;
-import com.farmacia.join_entidades.ListarNotas;
-//
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.entities1.Correo;
@@ -22,6 +21,8 @@ import com.farmacia.entities1.Obcx;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.TipoProducto;
+import com.farmacia.join_entidades.JoinListarNotaPedidos;
+import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ValidarIngresoProducto;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -467,39 +468,6 @@ public class CRUD {
     }
     //////////////////////////////////////////////////////////////////////////////////////////
 
-    public ArrayList<ListarNotas> listarNotas(int op) {
-        ArrayList<ListarNotas> lista = new ArrayList<ListarNotas>();
-
-        try {
-            conect = con.conectar();
-            conect.setAutoCommit(false);
-            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
-                    "{ call ListarRegistroDeNotas(?)}");
-            prcProcedimientoAlmacenado.setInt(1, op);
-            prcProcedimientoAlmacenado.execute();
-            rs = prcProcedimientoAlmacenado.getResultSet();
-            while (rs.next()) {
-                ListarNotas obj = EntidadesMappers.getListarNotasFromResultSet(rs);
-                lista.add(obj);
-            }
-            conect.commit();
-        } catch (Exception e) {
-            try {
-                conect.rollback();
-                e.printStackTrace();
-            } catch (SQLException ex) {
-                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } finally {
-            try {
-                conect.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return lista;
-    }
-
     public ArrayList<listarJoinProductosCompras> filtroBusquedaProducto(String query) {
         ArrayList<listarJoinProductosCompras> lista = new ArrayList<listarJoinProductosCompras>();
 
@@ -592,12 +560,6 @@ public class CRUD {
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.execute();
             valor = prodProAlm.getString("valor");
-            //  rs = prodProAlm.getResultSet();
-//            while (rs.next()) {
-//                MarcaProducto obj = EntidadesMappers.getMarcaProductoFromResultSet(rs);
-//                lista.add(obj);
-//            }
-
             conect.commit();
         } catch (Exception e) {
             try {
@@ -1873,5 +1835,137 @@ public class CRUD {
         return valor;
 
     }
-    
+   public ArrayList<JoinListarNotaPedidos> listarNotas(int op) {
+        ArrayList<JoinListarNotaPedidos> lista = new ArrayList<JoinListarNotaPedidos>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call ListadoNotasPedidos(?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                JoinListarNotaPedidos obj = EntidadesMappers.getListadoNotaPedidosFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    } 
+   public String insertarCabeceraNotaPedido(CabeceraNotaPedido obj ) {
+
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call insertarCabeceraNotaPedido(?,?,?,?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_proveedor());
+            prodProAlm.setLong(2, obj.getId_usuario()); 
+            prodProAlm.setString(3, obj.getFecha_creacion());
+            prodProAlm.setString(4, obj.getPlazo());
+            prodProAlm.setString(5, obj.getForma_pago());
+            prodProAlm.setDouble(6, obj.getIva());
+            prodProAlm.setDouble(7, obj.getDescuento());
+            prodProAlm.setDouble(8, obj.getTotal());
+            
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    public String buscarIDCabeceraNotaPedido(String queryL) {
+        String id = "";
+        try {
+            conect = con.conectar();
+
+            java.sql.Statement st = conect.createStatement();
+            rs = st.executeQuery(queryL);
+            rs.next();
+            id = rs.getString("id_cabecera_nota_pedidos");
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+
+    }
+public void InsertarDetallesNotaPedidos(ArrayList<String> queryL) {
+        try {
+            conect = con.conectar();
+            for (int i = 0; i < queryL.size(); i++) {
+                java.sql.Statement st = conect.createStatement();
+                st.executeUpdate(queryL.get(i));
+            }
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedido(String query) {
+        ArrayList<listarJoinProductosNotaPedidos> lista = new ArrayList<listarJoinProductosNotaPedidos>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call filtroProducto(?) }");
+            prcProcedimientoAlmacenado.setString(1, query);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                listarJoinProductosNotaPedidos obj = EntidadesMappers.getJoinTodosProductosFromResultSetNota(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+   
 }
