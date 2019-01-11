@@ -896,14 +896,12 @@ public class NotePedidos extends javax.swing.JDialog {
         }
         listar = crud.filtroBusquedaProductoNotaPedido(query);
 
-        
-        
-        
         Tablas.cargarFiltroProductosNota(t_Nota_faltantes, listar);
         query = "";
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
+        Double iva = 0.00, descuento = 0.00, total = 0.00;
         try {
             if (evt.getClickCount() == 2) {
                 int r = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este producto de la lista?", "", JOptionPane.YES_NO_OPTION);
@@ -916,10 +914,21 @@ public class NotePedidos extends javax.swing.JDialog {
 
                     int resta = (Integer.valueOf(objeto.getCantidad()) - Integer.parseInt((String) tbaListaFaltantes.getValueAt(i, 6)));
                     getPosicion(objeto.getId_producto(), resta);
+                    Double iva1 = Double.parseDouble(txtIva.getText());
+                    Double descuento1 = Double.parseDouble(txtDescuento.getText());
+                    Double total1 = Double.parseDouble(txtTotal.getText());
 
-//                    for (int j = 0; j < tbaListaFaltantes.getRowCount(); j++) {
-//                        
-//                    }
+                    iva = iva1 - iva;
+                    iva = redondearDecimales(iva, 2);
+                    descuento = descuento1 - descuento;
+                    descuento = redondearDecimales(descuento, 2);
+                    total = total1 - total;
+                    total = redondearDecimales(total, 2);
+
+                    txtIva.setText(iva.toString());
+                    txtDescuento.setText(descuento.toString());
+                    txtTotal.setText(total.toString());
+
                     lista1.remove(i);
 
                     Tablas.cargarJoinProductoDetallesFaltantes(tbaListaFaltantes, lista1);
