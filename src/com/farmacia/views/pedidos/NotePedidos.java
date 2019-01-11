@@ -896,6 +896,9 @@ public class NotePedidos extends javax.swing.JDialog {
         }
         listar = crud.filtroBusquedaProductoNotaPedido(query);
 
+        
+        
+        
         Tablas.cargarFiltroProductosNota(t_Nota_faltantes, listar);
         query = "";
     }//GEN-LAST:event_btnBuscarActionPerformed
