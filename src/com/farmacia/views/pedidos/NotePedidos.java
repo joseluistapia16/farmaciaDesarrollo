@@ -38,13 +38,13 @@ public class NotePedidos extends javax.swing.JDialog {
 
         setUndecorated(true);
         initComponents();
-//        PanelSec.setEnabled(false);
-//        filtro.setEnabled(false);
-//        t_Nota_faltantes.setEnabled(false);
-//        tbaListaFaltantes.setEnabled(false);
-//        btnBuscar.setEnabled(false);
-//        btnGuardar.setEnabled(false);
-//        btnNuevo.setEnabled(false);
+        PanelSec.setEnabled(false);
+        filtro.setEnabled(false);
+        t_Nota_faltantes.setEnabled(false);
+        tbaListaFaltantes.setEnabled(false);
+        btnBuscar.setEnabled(false);
+        btnGuardar.setEnabled(false);
+        btnNuevo.setEnabled(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         Total();
@@ -711,30 +711,30 @@ public class NotePedidos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
-//        Consulta_proveedor_Nota Prov = new Consulta_proveedor_Nota(new javax.swing.JFrame(), true);
-//        Prov.setVisible(true);
-//
-//        proveedorC = Prov.getProveedor();
-//        if (proveedorC != null) {
-//            PanelSec.setEnabled(true);
-//            filtro.setEnabled(true);
-//            t_Nota_faltantes.setEnabled(true);
-//            tbaListaFaltantes.setEnabled(true);
-//            btnBuscar.setEnabled(true);
-//            btnGuardar.setEnabled(true);
-//            //
-//            txtCodigoProveedor.setText(proveedorC.getId_proveedor().toString());
-//            txtRuc1.setText(proveedorC.getCedula_ruc());
-//            txtNombre1.setText(proveedorC.getEntidad());
-//            txtCorreo1.setText(proveedorC.getMail());
-//            txtRepresentante.setText(proveedorC.getRepresentante());
-//            txtTipo1.setText(proveedorC.getClase());
-//            txtTelefono1.setText(proveedorC.getTelefono());
-//            txtDireccion1.setText(proveedorC.getDireccion());
-//
-//        } else {
-//            JOptionPane.showMessageDialog(null, " Elija un Proveedor  ");
-//        }
+        Consulta_proveedor_Nota Prov = new Consulta_proveedor_Nota(new javax.swing.JFrame(), true);
+        Prov.setVisible(true);
+
+        proveedorC = Prov.getProveedor();
+        if (proveedorC != null) {
+            PanelSec.setEnabled(true);
+            filtro.setEnabled(true);
+            t_Nota_faltantes.setEnabled(true);
+            tbaListaFaltantes.setEnabled(true);
+            btnBuscar.setEnabled(true);
+            btnGuardar.setEnabled(true);
+            //
+            txtCodigoProveedor.setText(proveedorC.getId_proveedor().toString());
+            txtRuc1.setText(proveedorC.getCedula_ruc());
+            txtNombre1.setText(proveedorC.getEntidad());
+            txtCorreo1.setText(proveedorC.getMail());
+            txtRepresentante.setText(proveedorC.getRepresentante());
+            txtTipo1.setText(proveedorC.getClase());
+            txtTelefono1.setText(proveedorC.getTelefono());
+            txtDireccion1.setText(proveedorC.getDireccion());
+
+        } else {
+            JOptionPane.showMessageDialog(null, " Elija un Proveedor  ");
+        }
 
     }//GEN-LAST:event_btnProveedorActionPerformed
 

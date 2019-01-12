@@ -202,23 +202,25 @@ public class EntidadesMappers {
         return obj;
     }
     ///////////////////////////////////////////////////////////////////////////////////////////
-    public static ListarNotas getListarNotasFromResultSet(ResultSet rs) {
-        ListarNotas obj = new ListarNotas();
-        try {
-            obj.setId_cabecera_nota_pedidos(rs.getLong("ID_CABECERA_NOTA_PEDIDOS"));
-            obj.setNumero_nota(rs.getString("NUMERO_NOTA"));
-            obj.setId_proveedor(rs.getLong("CODIGO"));
-            obj.setNombre(rs.getString("NOMBRE"));
-            obj.setRepresentante(rs.getString("REPRESENTANTE"));
-            obj.setFecha_creacion(rs.getDate("FECHA_CREACION"));
-            obj.setHora(rs.getTime("HORA"));
-            obj.setEstado(rs.getString("ESTADO"));
-         
-        } catch (SQLException ex) {
-            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return obj;
-    }
+//    public static ListarNotas getListarNotasFromResultSet(ResultSet rs) {
+//        ListarNotas obj = new ListarNotas();
+//        try {
+//            //SELECT ,p.entidad ,p.representante,cnp.fecha_creacion,cnp.estado,cnp.iva,cnp.descuento,cnp.total
+//
+//            obj.setId_cabecera_nota_pedidos(rs.getLong("ID_CABECERA_NOTA_PEDIDOS"));
+//            obj.setId_proveedor(rs.getLong("CODIGO"));
+//            obj.setEntidad(rs.getString("NOMBRE"));
+//            obj.setRepresentante(rs.getString("REPRESENTANTE"));
+//            obj.setFecha_creacion(rs.getString("FECHA_CREACION"));
+//            obj.setDescuento(rs.getDouble("DESCUENTO"));
+//            obj.setIva(rs.getDouble("IVA"));
+//            obj.setTotal(rs.getDouble("TOTAL"));
+//         
+//        } catch (SQLException ex) {
+//            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return obj;
+//    }
     public static Correo getCorreoFromResultSet(ResultSet rs){
         Correo obj = new Correo();   
         try {                     

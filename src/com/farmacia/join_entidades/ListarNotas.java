@@ -4,29 +4,30 @@ package com.farmacia.join_entidades;
 import java.sql.Date;
 import java.sql.Time;
 
-
 public class ListarNotas {
     private Long id_cabecera_nota_pedidos;
-    private String numero_nota;
     private Long id_proveedor;
-    private String nombre;
+    private String entidad;
     private String representante;
-    private Date fecha_creacion;
+    private String fecha_creacion;
     private String estado;
-    private Time hora;
+    private Double iva;
+    private Double descuento;
+    private Double total;
 
     public ListarNotas() {
     }
 
-    public ListarNotas(Long id_cabecera_nota_pedidos, String numero_nota, Long id_proveedor, String nombre, String representante, Date fecha_creacion, String estado, Time hora) {
+    public ListarNotas(Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String fecha_creacion, String estado, Double iva, Double descuento, Double total) {
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
-        this.numero_nota = numero_nota;
         this.id_proveedor = id_proveedor;
-        this.nombre = nombre;
+        this.entidad = entidad;
         this.representante = representante;
         this.fecha_creacion = fecha_creacion;
         this.estado = estado;
-        this.hora = hora;
+        this.iva = iva;
+        this.descuento = descuento;
+        this.total = total;
     }
 
     public Long getId_cabecera_nota_pedidos() {
@@ -37,14 +38,6 @@ public class ListarNotas {
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
     }
 
-    public String getNumero_nota() {
-        return numero_nota;
-    }
-
-    public void setNumero_nota(String numero_nota) {
-        this.numero_nota = numero_nota;
-    }
-
     public Long getId_proveedor() {
         return id_proveedor;
     }
@@ -53,12 +46,12 @@ public class ListarNotas {
         this.id_proveedor = id_proveedor;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getEntidad() {
+        return entidad;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setEntidad(String entidad) {
+        this.entidad = entidad;
     }
 
     public String getRepresentante() {
@@ -69,11 +62,11 @@ public class ListarNotas {
         this.representante = representante;
     }
 
-    public Date getFecha_creacion() {
+    public String getFecha_creacion() {
         return fecha_creacion;
     }
 
-    public void setFecha_creacion(Date fecha_creacion) {
+    public void setFecha_creacion(String fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
     }
 
@@ -85,12 +78,28 @@ public class ListarNotas {
         this.estado = estado;
     }
 
-    public Time getHora() {
-        return hora;
+    public Double getIva() {
+        return iva;
     }
 
-    public void setHora(Time hora) {
-        this.hora = hora;
+    public void setIva(Double iva) {
+        this.iva = iva;
     }
-    
+
+    public Double getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(Double descuento) {
+        this.descuento = descuento;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
 }

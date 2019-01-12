@@ -606,13 +606,13 @@ public class Tablas {
     }
      public static void CargarJoinListadoNotaPedidos(JTable Tabla, ArrayList<JoinListarNotaPedidos> lista) {
 
-        int[] a = {5, 5, 52, 60, 90, 110, 15, 50, 10};
+        int[] a = {5, 5, 52,90,150, 110, 15, 50, 10};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"N#", "CODIGO", "PROVEEDOR", "REPRESENTANTE", "TELEFONO", "FECHA DE CREACION", "IVA", "DESCUENTO", "TOTAL"};
+        String[] Co = {"N", "CODIGO", "PROVEEDOR", "REPRESENTANTE", "TELEFONO", "FECHA DE CREACION", "IVA", "DESCUENTO", "TOTAL"};
         String[] Filas = new String[9];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
