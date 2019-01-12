@@ -10,13 +10,13 @@ import java.util.ArrayList;
 public class ListadoDeNotas extends javax.swing.JDialog {
 
     CRUD crud = new CRUD();
-    ArrayList<ListarNotas> lista = crud.listarNotas(1);
+    //ArrayList<ListarNotas> lista = crud.listarNotas(1);
 
     public ListadoDeNotas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        Tablas.CargarJoinRegistrosdeNota(tblRegistrodeNotas, lista);
+//        Tablas.CargarJoinRegistrosdeNota(tblRegistrodeNotas, lista);
     }
 
     
