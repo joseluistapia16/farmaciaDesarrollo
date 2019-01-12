@@ -38,13 +38,13 @@ public class NotePedidos extends javax.swing.JDialog {
 
         setUndecorated(true);
         initComponents();
-        PanelSec.setEnabled(false);
-        filtro.setEnabled(false);
-        t_Nota_faltantes.setEnabled(false);
-        tbaListaFaltantes.setEnabled(false);
-        btnBuscar.setEnabled(false);
-        btnGuardar.setEnabled(false);
-        btnNuevo.setEnabled(false);
+//        PanelSec.setEnabled(false);
+//        filtro.setEnabled(false);
+//        t_Nota_faltantes.setEnabled(false);
+//        tbaListaFaltantes.setEnabled(false);
+//        btnBuscar.setEnabled(false);
+//        btnGuardar.setEnabled(false);
+//        btnNuevo.setEnabled(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         Total();
@@ -264,7 +264,6 @@ public class NotePedidos extends javax.swing.JDialog {
 
         jLabel4.setText("Telefono :");
 
-        btnProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/icons8-proveedor-32.png"))); // NOI18N
         btnProveedor.setText("Proveedor");
         btnProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -475,7 +474,6 @@ public class NotePedidos extends javax.swing.JDialog {
 
         tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
 
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/preview_search_find_locate_1551.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -585,7 +583,6 @@ public class NotePedidos extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/folder_add_icon-icons.com_74436.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -593,7 +590,6 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         });
 
-        btnSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/action_exit_close_remove_13915.png"))); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -625,7 +621,6 @@ public class NotePedidos extends javax.swing.JDialog {
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("$");
 
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/producto.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

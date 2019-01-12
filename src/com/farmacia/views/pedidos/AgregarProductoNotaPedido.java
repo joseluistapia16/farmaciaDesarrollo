@@ -109,7 +109,6 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
         jLabel6.setText("Marca:");
 
-        btnAnadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/folder_add_icon-icons.com_74436.png"))); // NOI18N
         btnAnadir.setText("AÑADIR");
         btnAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +132,6 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         jLabel14.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel14.setText("Cantidad:");
 
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/action_exit_close_remove_13915.png"))); // NOI18N
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

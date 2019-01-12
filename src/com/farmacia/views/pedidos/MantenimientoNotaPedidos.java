@@ -11,6 +11,7 @@ import com.farmacia.join_entidades.JoinListarNotaPedidos;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -66,7 +67,6 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
         });
         tblProduc.setViewportView(tblRegistrodeNotas);
 
-        btnSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/action_exit_close_remove_13915.png"))); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +112,6 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
             }
         });
 
-        filtrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/preview_search_find_locate_1551.png"))); // NOI18N
         filtrar.setText("Buscar");
         filtrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +164,14 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_tblRegistrodeNotasMouseClicked
 
     private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
-        setVisible(false);
+        int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
+
+        if (r == JOptionPane.YES_OPTION) {
+            setVisible(false);
+
+        } else {
+
+        }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void txtfiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfiltroActionPerformed

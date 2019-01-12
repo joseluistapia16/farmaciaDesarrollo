@@ -76,7 +76,7 @@ public class EntidadesMappers {
         return obj;
     }
     
-    public static joinProductoDetallesFaltantes getJoinDetallesFaltantesFromResultSet(ResultSet rs) {
+     public static joinProductoDetallesFaltantes getJoinDetallesFaltantesFromResultSet(ResultSet rs) {
         joinProductoDetallesFaltantes obj = new joinProductoDetallesFaltantes();
         try {
             obj.setId_detalle_faltantes(rs.getLong("ID_DETALLE_FALTANTES"));            
@@ -87,7 +87,15 @@ public class EntidadesMappers {
             obj.setId_tipo(rs.getLong("ID_TIPO"));
             obj.setNombre_tipo(rs.getString("TIPO"));
             obj.setCantidad(rs.getInt("CANTIDAD"));
+            obj.setId_medida(rs.getLong("ID_MEDIDAS"));
+            obj.setMedida(rs.getString("MEDIDA"));
+            obj.setId_envase(rs.getLong("ID_ENVASE"));
+            obj.setEnvase(rs.getString("ENVASE"));
             obj.setEstado(rs.getString("ESTADO"));
+            obj.setId_precios(rs.getLong("ID_PRECIO"));
+            obj.setPrecios(rs.getDouble("PRECIO"));
+            obj.setIva(rs.getString("IVA"));
+            
             
          
         } catch (SQLException ex) {

@@ -127,42 +127,42 @@ public class Tablas {
 
     }
 /////////////////////////////////////////
-    public static void cargarJoinProductoDetallesFaltantes(JTable Tabla,ArrayList<joinProductoDetallesFaltantes> lista) {
-       
-        int[] a = {10, 30, 32, 52,15,15};
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
-        model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "MARCA","TIPO", "PRODUCTO","CANTIDAD","ESTADO"};
-        String[] Filas = new String[6];
-        model = new DefaultTableModel(null, Co);
-        Tabla.setShowGrid(true);
-        for (int i = 0; i < lista.size(); i++) {
-            Filas[0] = "" + lista.get(i).getId_producto().toString();
-            Filas[1] = lista.get(i).getMarca();
-            Filas[2] = lista.get(i).getNombre_tipo();
-            Filas[3] = lista.get(i).getNombre_producto();
-            Filas[4] = lista.get(i).getCantidad().toString();
-            Filas[5] = lista.get(i).getEstado();
-            model.addRow(Filas);
-            Tabla.setModel(model);
-            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
-            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
-            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
-            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
-            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
-            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
-            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
-        } 
-
-    }
+//    public static void cargarJoinProductoDetallesFaltantes(JTable Tabla,ArrayList<joinProductoDetallesFaltantes> lista) {
+//       
+//        int[] a = {10, 30, 32, 52,15,15};
+//        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+//        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+//        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+//        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
+//        model = Tablas.VaciarTabla(Tabla);
+//        String[] Co = {"CODIGO", "MARCA","TIPO", "PRODUCTO","CANTIDAD","ESTADO"};
+//        String[] Filas = new String[6];
+//        model = new DefaultTableModel(null, Co);
+//        Tabla.setShowGrid(true);
+//        for (int i = 0; i < lista.size(); i++) {
+//            Filas[0] = "" + lista.get(i).getId_producto().toString();
+//            Filas[1] = lista.get(i).getMarca();
+//            Filas[2] = lista.get(i).getNombre_tipo();
+//            Filas[3] = lista.get(i).getNombre_producto();
+//            Filas[4] = lista.get(i).getCantidad().toString();
+//            Filas[5] = lista.get(i).getEstado();
+//            model.addRow(Filas);
+//            Tabla.setModel(model);
+//            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+//            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+//            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+//            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+//            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+//            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+//            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
+//        } 
+//
+//    }
 /////////////////////////////// cargar productos en ordencompra
     public static void cargarJoinProductosMCompra(JTable Tabla,ArrayList<listarJoinProductosCompras> lista) {
        
@@ -316,46 +316,46 @@ public class Tablas {
         } 
 
     }
-    public static void CargarJoinRegistrosdeNota(JTable Tabla,ArrayList<ListarNotas> lista) {
-       
-        int[] a = {10, 55, 52, 52, 52, 52, 15};
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
-        model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"N#", "CODIGO DE PROVEEDOR", "NOMBRE", "REPRESENTANTE","FECHA DE CREACION","HORA","ESTADO"};
-        String[] Filas = new String[7];
-        model = new DefaultTableModel(null, Co);
-        Tabla.setShowGrid(true);
-        for (int i = 0; i < lista.size(); i++) {
-            Filas[0] = "" + lista.get(i).getId_cabecera_nota_pedidos().toString();
-            Filas[1] = lista.get(i).getId_proveedor().toString();
-            Filas[2] = lista.get(i).getNombre();
-            Filas[3] = lista.get(i).getRepresentante();
-            Filas[4] = lista.get(i).getFecha_creacion().toString();
-            Filas[5] = lista.get(i).getHora().toString();
-            Filas[6] = lista.get(i).getEstado();
-          
-            model.addRow(Filas);
-            Tabla.setModel(model);
-            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
-            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
-            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
-            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
-            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
-            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
-            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
-            Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
-        } 
-
-    }
+//    public static void CargarJoinRegistrosdeNota(JTable Tabla,ArrayList<ListarNotas> lista) {
+//       
+//        int[] a = {10, 55, 52, 52, 52, 52, 15};
+//        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+//        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+//        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+//        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
+//        model = Tablas.VaciarTabla(Tabla);
+//        String[] Co = {"N#", "CODIGO DE PROVEEDOR", "NOMBRE", "REPRESENTANTE","FECHA DE CREACION","HORA","ESTADO"};
+//        String[] Filas = new String[7];
+//        model = new DefaultTableModel(null, Co);
+//        Tabla.setShowGrid(true);
+//        for (int i = 0; i < lista.size(); i++) {
+//            Filas[0] = "" + lista.get(i).getId_cabecera_nota_pedidos().toString();
+//            Filas[1] = lista.get(i).getId_proveedor().toString();
+//            Filas[2] = lista.get(i).getNombre();
+//            Filas[3] = lista.get(i).getRepresentante();
+//            Filas[4] = lista.get(i).getFecha_creacion().toString();
+//            Filas[5] = lista.get(i).getHora().toString();
+//            Filas[6] = lista.get(i).getEstado();
+//          
+//            model.addRow(Filas);
+//            Tabla.setModel(model);
+//            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+//            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+//            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+//            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+//            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+//            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+//            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
+//            Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
+//        } 
+//
+//    }
     
     public static void cargarFiltroProductos(JTable Tabla,ArrayList<listarJoinProductosCompras> lista) {
        
@@ -777,6 +777,52 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
             Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
+        }
+
+    }
+    ////////////////////////////
+    public static void cargarJoinProductoDetallesFaltantes(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
+
+        int[] a = {10, 30, 32, 52, 15, 15, 15, 10};
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
+        model = Tablas.VaciarTabla(Tabla);
+        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD", "PRECIO"};
+        String[] Filas = new String[8];
+        model = new DefaultTableModel(null, Co);
+        Tabla.setShowGrid(true);
+        for (int i = 0; i < lista.size(); i++) {
+
+            Filas[0] = "" + lista.get(i).getId_producto().toString();
+            Filas[1] = lista.get(i).getMarca();
+            Filas[2] = lista.get(i).getNombre_tipo();
+            Filas[3] = lista.get(i).getNombre_producto();
+            Filas[4] = lista.get(i).getEnvase();
+            Filas[5] = lista.get(i).getMedida();
+            Filas[6] = lista.get(i).getCantidad().toString();
+            Filas[7] = lista.get(i).getPrecios().toString();
+
+            model.addRow(Filas);
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
+            Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
+            Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
+
         }
 
     }

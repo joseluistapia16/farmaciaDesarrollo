@@ -186,7 +186,7 @@ public class CRUD {
         return lista;
     }
 
-    public ArrayList<joinProductoDetallesFaltantes> listarFaltantesDetalles(int op) {
+     public ArrayList<joinProductoDetallesFaltantes> listarFaltantesDetalles(int op) {
         ArrayList<joinProductoDetallesFaltantes> lista = new ArrayList<joinProductoDetallesFaltantes>();
 
         try {
