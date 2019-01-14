@@ -1,13 +1,10 @@
 package com.farmacia.views.pedidos;
 
-//import com.farmacia.join_entidades.JoinListarNotaPedidos;
-//import com.objetos.componentes.Tablas;
-//import static com.objetos.componentes.Tablas.filtro;
-//import com.objetos.dao.CRUD;
-//import com.objetos.filtros.filtrosProductos;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.join_entidades.JoinListarNotaPedidos;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -20,6 +17,8 @@ import javax.swing.table.TableRowSorter;
 public class MantenimientoNotaPedidos extends javax.swing.JDialog {
 
     CRUD crud = new CRUD();
+    int x, y;
+    JoinListarNotaPedidos objeto = null;
     ArrayList<JoinListarNotaPedidos> lista = crud.listarNotas(1);
 
     public MantenimientoNotaPedidos(java.awt.Frame parent, boolean modal) {
@@ -92,6 +91,9 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
             }
         });
         tblRegistrodeNotas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblRegistrodeNotasMousePressed(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblRegistrodeNotasMouseClicked(evt);
             }
@@ -99,6 +101,16 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
         tblProduc.setViewportView(tblRegistrodeNotas);
 
         jPanel1.setBackground(new java.awt.Color(0, 189, 189));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jLabel7.setForeground(java.awt.Color.white);
@@ -128,14 +140,14 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tblProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnSalir2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(filtrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tblProduc))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -198,7 +210,42 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     private void txtfiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfiltroActionPerformed
+    public JoinListarNotaPedidos devuelveObjeto(String datos, ArrayList<JoinListarNotaPedidos> listarobj) {
+        JoinListarNotaPedidos objeto1 = null;
+        for (int i = 0; i < listarobj.size(); i++) {
+            if (datos.equals(listarobj.get(i).getId_cabecera_nota_pedidos().toString())) {
+                objeto1 = listarobj.get(i);
+                break;
+            }
+        }
+        return objeto1;
 
+    }
+    private void tblRegistrodeNotasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegistrodeNotasMousePressed
+        int i = 0;
+        String msg = null;
+        if (evt.getClickCount() == 2) {
+            i = tblRegistrodeNotas.getSelectedRow();
+            objeto = devuelveObjeto(tblRegistrodeNotas.getValueAt(i, 0).toString(), lista);
+            if (objeto != null) {
+                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true);
+                Man.setVisible(true);
+                 if (msg == null) {
+                 
+                 }
+            }
+        }
+    }//GEN-LAST:event_tblRegistrodeNotasMousePressed
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_jPanel1MouseDragged
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
