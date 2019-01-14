@@ -54,7 +54,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
         //FECHA DEL SISTEMA
         java.util.Date sistFecha = new java.util.Date();
-        SimpleDateFormat formato = new SimpleDateFormat("YYYY/dd/MM");
+        SimpleDateFormat formato = new SimpleDateFormat("YYYY/MM/dd");
         txtFecha.setText(formato.format(sistFecha));
 
         //HORA DEL SISTEMA
@@ -67,7 +67,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
         public void actionPerformed(ActionEvent e) {
             java.util.Date sistHora = new java.util.Date();
-            String pmAm = "hh:mm:ss";
+            String pmAm = "HH:mm:ss";
             SimpleDateFormat format = new SimpleDateFormat(pmAm);
             Calendar hoy = Calendar.getInstance();
             txtHora.setText(String.format(format.format(sistHora), hoy));
@@ -367,6 +367,8 @@ public class NotePedidos extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel9.setText("Fecha :");
+
+        txtFecha.setEditable(false);
 
         jLabel10.setText("Plazo:");
 
@@ -761,37 +763,39 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+//        if (txtTotal.getText() != null) {
+            ArrayList<String> queryL = new ArrayList<String>();
+            ArrayList<String> queryL1 = new ArrayList<String>();
+            String id_cab = "";
+            String cad = "";
+            String cad1 = "";
+            CabeceraNotaPedido cn = new CabeceraNotaPedido();
+            cn.setId_proveedor(Long.valueOf(txtCodigoProveedor.getText()));
+            cn.setId_usuario(Long.valueOf("2"));
+            cn.setFecha_creacion(txtFecha.getText() + " " + txtHora.getText());
+            cn.setPlazo(cbxPlazo.getSelectedItem().toString());
+            cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
+            cn.setIva(Double.valueOf(txtIva.getText()));
+            cn.setDescuento(Double.valueOf(txtDescuento.getText()));
+            cn.setTotal(Double.valueOf(txtTotal.getText()));
 
-        ArrayList<String> queryL = new ArrayList<String>();
-        ArrayList<String> queryL1 = new ArrayList<String>();
-        String id_cab = "";
-        String cad = "";
-        String cad1 = "";
-        CabeceraNotaPedido cn = new CabeceraNotaPedido();
-        cn.setId_proveedor(Long.valueOf(txtCodigoProveedor.getText()));
-        cn.setId_usuario(Long.valueOf("2"));
-        cn.setFecha_creacion(txtFecha.getText() + " " + txtHora.getText());
-        cn.setPlazo(cbxPlazo.getSelectedItem().toString());
-        cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
-        cn.setIva(Double.valueOf(txtIva.getText()));
-        cn.setDescuento(Double.valueOf(txtDescuento.getText()));
-        cn.setTotal(Double.valueOf(txtTotal.getText()));
+            id_cab = crud.insertarCabeceraNotaPedido(cn);
 
-        id_cab = crud.insertarCabeceraNotaPedido(cn);
+            String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + txtTotal.getText();
+            id_cab = crud.buscarIDCabeceraNotaPedido(query);
 
-        String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + txtTotal.getText();
-        id_cab = crud.buscarIDCabeceraNotaPedido(query);
+            for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+                cad1 = "INSERT INTO detalle_nota_pedidos(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`total`,`iva`)VALUES(" + id_cab + "," + lista.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 6).toString() + "," + tbaListaFaltantes.getValueAt(i, 10) + "," + tbaListaFaltantes.getValueAt(i, 9).toString() + ")";
+                queryL1.add(cad1);
+            }
+            crud.InsertarDetallesNotaPedidos(queryL1);
+            queryL1.clear();
 
-        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-            cad1 = "INSERT INTO detalle_nota_pedidos(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`total`,`iva`)VALUES(" + id_cab + "," + lista.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 6).toString() + "," + tbaListaFaltantes.getValueAt(i, 10) + "," + tbaListaFaltantes.getValueAt(i, 9).toString() + ")";
-            queryL1.add(cad1);
-        }
-        crud.InsertarDetallesNotaPedidos(queryL1);
-        queryL1.clear();
-
-        JOptionPane.showMessageDialog(null, " Guardado con Exito ");
-        btnNuevo.setEnabled(true);
-
+            JOptionPane.showMessageDialog(null, " Guardado con Exito ");
+            btnNuevo.setEnabled(true);
+//        } else {
+//            JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
+//        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
@@ -804,7 +808,6 @@ public class NotePedidos extends javax.swing.JDialog {
                 i = t_Nota_faltantes.getSelectedRow();
                 objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
                 if (objeto != null) {
-
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
                     msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
@@ -812,10 +815,8 @@ public class NotePedidos extends javax.swing.JDialog {
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                         if (np.getObjf().getCantidad() > 0) {
-
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion(objeto.getId_producto(), suma);
-
                             lista1.add(np.getObjf());
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                             Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
@@ -896,9 +897,9 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
-        Double iva= 0.00;
-                    Double descuento= 0.00;
-                    Double total= 0.00;
+        Double iva = 0.00;
+        Double descuento = 0.00;
+        Double total = 0.00;
         try {
             if (evt.getClickCount() == 2) {
                 int r = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este producto de la lista?", "", JOptionPane.YES_NO_OPTION);
@@ -911,25 +912,22 @@ public class NotePedidos extends javax.swing.JDialog {
 
                     int resta = (Integer.valueOf(objeto.getCantidad()) - Integer.parseInt((String) tbaListaFaltantes.getValueAt(i, 6)));
                     getPosicion(objeto.getId_producto(), resta);
-                    
-                     iva= Double.valueOf(tbaListaFaltantes.getValueAt(i, 9).toString());
-                    descuento= Double.valueOf(tbaListaFaltantes.getValueAt(i, 8).toString());
-                    total= Double.valueOf(tbaListaFaltantes.getValueAt(i, 10).toString());
-                  
-                    
-                    
-                  Double iva1= Double.parseDouble(txtIva.getText());
-                  Double descuento1= Double.parseDouble(txtDescuento.getText());
-                  Double total1= Double.parseDouble(txtTotal.getText());
-                    
 
-                  iva=iva1-iva;
-                  iva=redondearDecimales(iva,2);
-                  descuento= descuento1-descuento; 
-                  descuento=redondearDecimales(descuento,2);
-                  total=total1-total;                    
-                  total=redondearDecimales(total,2);
-                    
+                    iva = Double.valueOf(tbaListaFaltantes.getValueAt(i, 9).toString());
+                    descuento = Double.valueOf(tbaListaFaltantes.getValueAt(i, 8).toString());
+                    total = Double.valueOf(tbaListaFaltantes.getValueAt(i, 10).toString());
+
+                    Double iva1 = Double.parseDouble(txtIva.getText());
+                    Double descuento1 = Double.parseDouble(txtDescuento.getText());
+                    Double total1 = Double.parseDouble(txtTotal.getText());
+
+                    iva = iva1 - iva;
+                    iva = redondearDecimales(iva, 2);
+                    descuento = descuento1 - descuento;
+                    descuento = redondearDecimales(descuento, 2);
+                    total = total1 - total;
+                    total = redondearDecimales(total, 2);
+
                     txtIva.setText(iva.toString());
                     txtDescuento.setText(descuento.toString());
                     txtTotal.setText(total.toString());
@@ -980,6 +978,9 @@ public class NotePedidos extends javax.swing.JDialog {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         Reiniciar();
+        btnBuscar.setEnabled(false);
+        btnGuardar.setEnabled(false);
+        t_Nota_faltantes.setEnabled(false);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

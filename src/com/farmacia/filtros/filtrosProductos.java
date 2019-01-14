@@ -210,8 +210,8 @@ public class filtrosProductos {
                 + " JOIN marcas m ON m.id_marcas=p.id_marcas "
                 + "JOIN envase en ON en.id_envase = p.id_envase "
                 + "JOIN medidas me ON me.id_medidas = p.id_medidas "
-                + "JOIN precios pr ON pr.id_productos = p.id_productos "
-                + "WHERE df.estado= 'NO' AND p.`id_productos`=";
+                + "JOIN precios pr ON pr.id_producto = p.id_productos "
+                + "WHERE df.estado= 'OK' AND pr.estado ='A' AND p.`id_productos`=";
         return query;
     }
 
@@ -225,8 +225,8 @@ public class filtrosProductos {
                 + " JOIN marcas m ON m.id_marcas=p.id_marcas "
                 + "JOIN envase en ON en.id_envase = p.id_envase "
                 + "JOIN medidas me ON me.id_medidas = p.id_medidas "
-                + "JOIN precios pr ON pr.id_productos = p.id_productos "
-                + "WHERE df.estado= 'NO' AND p.`nombre` like '%";
+                + "JOIN precios pr ON pr.id_producto = p.id_productos "
+                + "WHERE df.estado= 'OK'  AND pr.estado ='A' AND p.`nombre` like '%";
         return query;
 
     }
@@ -241,8 +241,8 @@ public class filtrosProductos {
                 + " JOIN marcas m ON m.id_marcas=p.id_marcas "
                 + "JOIN envase en ON en.id_envase = p.id_envase "
                 + "JOIN medidas me ON me.id_medidas = p.id_medidas "
-                + "JOIN precios pr ON pr.id_productos = p.id_productos "
-                + "WHERE df.estado= 'NO' AND t.nombre like '%";
+                + "JOIN precios pr ON pr.id_producto = p.id_productos "
+                + "WHERE df.estado= 'OK' AND pr.estado ='A' AND t.nombre like '%";
         return query;
 
     }
@@ -257,8 +257,8 @@ public class filtrosProductos {
                 + " JOIN marcas m ON m.id_marcas=p.id_marcas "
                 + "JOIN envase en ON en.id_envase = p.id_envase "
                 + "JOIN medidas me ON me.id_medidas = p.id_medidas "
-                + "JOIN precios pr ON pr.id_productos = p.id_productos "
-                + "WHERE df.estado= 'NO' AND me.nombre_medida like '%";
+                + "JOIN precios pr ON pr.id_producto = p.id_productos "
+                + "WHERE df.estado= 'OK' AND pr.estado ='A' AND me.nombre_medida like '%";
         return query;
 
     }
@@ -273,8 +273,8 @@ public class filtrosProductos {
                 + " JOIN marcas m ON m.id_marcas=p.id_marcas "
                 + "JOIN envase en ON en.id_envase = p.id_envase "
                 + "JOIN medidas me ON me.id_medidas = p.id_medidas "
-                + "JOIN precios pr ON pr.id_productos = p.id_productos "
-                + "WHERE df.estado= 'NO' AND en.nombre like '%";
+                + "JOIN precios pr ON pr.id_producto = p.id_productos "
+                + "WHERE df.estado='OK' AND pr.estado ='A' AND en.nombre like '%";
         return query;
 
     }
@@ -289,8 +289,8 @@ public class filtrosProductos {
                 + " JOIN marcas m ON m.id_marcas=p.id_marcas "
                 + "JOIN envase en ON en.id_envase = p.id_envase "
                 + "JOIN medidas me ON me.id_medidas = p.id_medidas "
-                + "JOIN precios pr ON pr.id_productos = p.id_productos "
-                + "WHERE df.estado= 'NO' AND m.nombre like '%";
+                + "JOIN precios pr ON pr.id_producto = p.id_productos "
+                + "WHERE df.estado= 'OK' AND pr.estado ='A' AND m.nombre like '%";
         return query;
 
     }
@@ -305,8 +305,8 @@ public class filtrosProductos {
                 + " JOIN marcas m ON m.id_marcas=p.id_marcas "
                 + "JOIN envase en ON en.id_envase = p.id_envase "
                 + "JOIN medidas me ON me.id_medidas = p.id_medidas "
-                + "JOIN precios pr ON pr.id_productos = p.id_productos "
-                + "WHERE df.estado= 'NO' ORDER BY producto";
+                + "JOIN precios pr ON pr.id_producto = p.id_productos "
+                + "WHERE df.estado= 'OK' AND pr.estado ='A' ORDER BY producto";
 
         return query;
 
