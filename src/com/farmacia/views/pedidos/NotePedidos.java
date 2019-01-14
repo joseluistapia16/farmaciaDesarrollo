@@ -896,7 +896,9 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
-        Double iva = 0.00, descuento = 0.00, total = 0.00;
+        Double iva= 0.00;
+                    Double descuento= 0.00;
+                    Double total= 0.00;
         try {
             if (evt.getClickCount() == 2) {
                 int r = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este producto de la lista?", "", JOptionPane.YES_NO_OPTION);
@@ -909,17 +911,25 @@ public class NotePedidos extends javax.swing.JDialog {
 
                     int resta = (Integer.valueOf(objeto.getCantidad()) - Integer.parseInt((String) tbaListaFaltantes.getValueAt(i, 6)));
                     getPosicion(objeto.getId_producto(), resta);
-                    Double iva1 = Double.parseDouble(txtIva.getText());
-                    Double descuento1 = Double.parseDouble(txtDescuento.getText());
-                    Double total1 = Double.parseDouble(txtTotal.getText());
+                    
+                     iva= Double.valueOf(tbaListaFaltantes.getValueAt(i, 9).toString());
+                    descuento= Double.valueOf(tbaListaFaltantes.getValueAt(i, 8).toString());
+                    total= Double.valueOf(tbaListaFaltantes.getValueAt(i, 10).toString());
+                  
+                    
+                    
+                  Double iva1= Double.parseDouble(txtIva.getText());
+                  Double descuento1= Double.parseDouble(txtDescuento.getText());
+                  Double total1= Double.parseDouble(txtTotal.getText());
+                    
 
-                    iva = iva1 - iva;
-                    iva = redondearDecimales(iva, 2);
-                    descuento = descuento1 - descuento;
-                    descuento = redondearDecimales(descuento, 2);
-                    total = total1 - total;
-                    total = redondearDecimales(total, 2);
-
+                  iva=iva1-iva;
+                  iva=redondearDecimales(iva,2);
+                  descuento= descuento1-descuento; 
+                  descuento=redondearDecimales(descuento,2);
+                  total=total1-total;                    
+                  total=redondearDecimales(total,2);
+                    
                     txtIva.setText(iva.toString());
                     txtDescuento.setText(descuento.toString());
                     txtTotal.setText(total.toString());

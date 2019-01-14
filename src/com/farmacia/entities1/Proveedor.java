@@ -20,11 +20,12 @@ public class Proveedor {
     private int id_correos;
     private String telefono;
     private String correo;
+    private String direccionImagen;
 
     public Proveedor() {
     }
 
-    public Proveedor(int id, String ruc, String nombre, String representante, String direccion, int id_proveedor_clase, int id_telefonos, int id_correos, String telefono, String correo) {
+    public Proveedor(int id, String ruc, String nombre, String representante, String direccion, int id_proveedor_clase, int id_telefonos, int id_correos, String telefono, String correo, String direccionImagen) {
         this.id = id;
         this.ruc = ruc;
         this.nombre = nombre;
@@ -35,6 +36,7 @@ public class Proveedor {
         this.id_correos = id_correos;
         this.telefono = telefono;
         this.correo = correo;
+        this.direccionImagen = direccionImagen;
     }
 
     public int getId() {
@@ -115,6 +117,14 @@ public class Proveedor {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getDireccionImagen() {
+        return direccionImagen;
+    }
+
+    public void setDireccionImagen(String direccionImagen) {
+        this.direccionImagen = direccionImagen;
     }
 
     

@@ -28,11 +28,12 @@ public class ListarJoinProveedor {
     private Long id_tipo_correo;
     private String mail;
     private String tipo_correo;
+    private String direccionImagen;
 
     public ListarJoinProveedor() {
     }
 
-    public ListarJoinProveedor(Long id_proveedor, Long id_proveedor_clase, String clase, String cedula_ruc, String entidad, String representante, String direccion, Date fecha_registro, String estado, Long id_tipo_telefono, String telefono, String tipo_telefon, Long id_tipo_correo, String mail, String tipo_correo) {
+    public ListarJoinProveedor(Long id_proveedor, Long id_proveedor_clase, String clase, String cedula_ruc, String entidad, String representante, String direccion, Date fecha_registro, String estado, Long id_tipo_telefono, String telefono, String tipo_telefon, Long id_tipo_correo, String mail, String tipo_correo, String direccionImagen) {
         this.id_proveedor = id_proveedor;
         this.id_proveedor_clase = id_proveedor_clase;
         this.clase = clase;
@@ -48,6 +49,7 @@ public class ListarJoinProveedor {
         this.id_tipo_correo = id_tipo_correo;
         this.mail = mail;
         this.tipo_correo = tipo_correo;
+        this.direccionImagen = direccionImagen;
     }
 
     public Long getId_proveedor() {
@@ -170,5 +172,12 @@ public class ListarJoinProveedor {
         this.tipo_correo = tipo_correo;
     }
 
+    public String getDireccionImagen() {
+        return direccionImagen;
+    }
+
+    public void setDireccionImagen(String direccionImagen) {
+        this.direccionImagen = direccionImagen;
+    }
     
 }
