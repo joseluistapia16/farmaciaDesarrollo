@@ -5,16 +5,28 @@
  */
 package com.farmacia.views.proveedor;
 
+import com.farmacia.ClasesReporte.Formulario_Proveedor;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.objetos.views.proveedor.Proveedor_Inactivo;
+import java.awt.Dimension;
 import static java.awt.Frame.ICONIFIED;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
 
@@ -24,6 +36,8 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
     //Llamar llamar = new Llamar();
     ListarJoinProveedor proveedor = new ListarJoinProveedor();
     public ArrayList<ListarJoinProveedor> lista = null;
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 
     public Consulta_Proveedor_Inactivo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -50,6 +64,7 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
         buscar1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        Reporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -142,7 +157,7 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(78, 161, 76));
         jButton2.setText("ACTUALIZAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -151,11 +166,19 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jButton1.setText("Atras");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        Reporte.setText("Imprimir");
+        Reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReporteActionPerformed(evt);
             }
         });
 
@@ -170,12 +193,14 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(203, 203, 203)
+                .addGap(48, 48, 48)
+                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,8 +211,9 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(0, 28, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(Reporte))
+                .addGap(0, 29, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 340));
@@ -241,6 +267,28 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
         setVisible(false);
         cp.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
+        java.util.List lista = new ArrayList();
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            Formulario_Proveedor proveedor = new Formulario_Proveedor(tabla.getValueAt(i, 0).toString(), tabla.getValueAt(i, 1).toString(), tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i,3).toString());
+            lista.add(proveedor);
+        }
+
+        try {
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("ReporteproveedorInactivo.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Consulta_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ReporteActionPerformed
 //
     public ListarJoinProveedor buscarObjeto(String cedula, ArrayList<ListarJoinProveedor> lis) {
         ListarJoinProveedor pro = new ListarJoinProveedor();
@@ -301,6 +349,7 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Reporte;
     private javax.swing.JTextField buscar1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

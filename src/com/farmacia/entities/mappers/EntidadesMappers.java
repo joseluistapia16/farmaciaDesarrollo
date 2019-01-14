@@ -194,6 +194,7 @@ public class EntidadesMappers {
             obj.setMail(rs.getString("CORREO"));
            // obj.setTipo_correo(rs.getString("TIPO_CORREO"));
            // obj.setTelefono(telefono);
+           obj.setDireccionImagen(rs.getString("direccionImagen"));
             
          
         } catch (SQLException ex) {
