@@ -16,6 +16,7 @@ package com.farmacia.views.proveedor;
 //import com.Farmacia.Objetos.Telefono;
 
 //import com.Farmacia.Ventanas.Consulta_Proveedor;
+import com.farmacia.ClasesReporte.Ficha_proveedor;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.Correo;
@@ -24,6 +25,8 @@ import com.farmacia.entities1.Fecha;
 import com.farmacia.entities1.Obcx;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.filtros.filtrosProductos;
+import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.sql.CallableStatement;
@@ -34,14 +37,25 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
  * @author ANGEL JESUS
  */
 public class Editar_Proveedor extends javax.swing.JDialog {
-
+    private String rutaimagen = "";
     int x, y;
     CRUD crud=new CRUD();
     filtrosProductos fil = new filtrosProductos();
@@ -56,10 +70,10 @@ public class Editar_Proveedor extends javax.swing.JDialog {
     Long tip1=null,tip3=null;
     String tip2=null;
     Obcx obcx = new Obcx();
-//    Connection coneccion;
-//    Conectar conectar = new Conectar();
-//    Llamar llamar = new Llamar();
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     private Date fecha_registro;
+    public String fot;
 
     public Editar_Proveedor(java.awt.Frame parent, boolean modal,ListarJoinProveedor proveedor1) {
         super(parent, modal);
@@ -101,11 +115,14 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         btnagregarCorreo = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         cedula = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        dire = new javax.swing.JTextArea();
+        dire = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        imagen = new javax.swing.JLabel();
         Guardar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btnInactivar = new javax.swing.JButton();
+        Reporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -131,24 +148,31 @@ public class Editar_Proveedor extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel2.setText("Fecha de Ingreso :");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 15, 150, -1));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel3.setText("Entidad/Razon Social :");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 102, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel4.setText("Contacto :");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 147, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel5.setText("Telefono :");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel6.setText("Correo :");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jLabel7.setText("Direccion :");
+        jLabel7.setText("  Direccion :");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 190, -1, -1));
 
         fecha.setEditable(false);
         fecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -159,6 +183,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 fechaActionPerformed(evt);
             }
         });
+        jPanel2.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 13, 150, -1));
 
         nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nombre.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -166,6 +191,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 nombreFocusLost(evt);
             }
         });
+        jPanel2.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 102, 150, 25));
 
         contacto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         contacto.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -173,6 +199,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 contactoFocusLost(evt);
             }
         });
+        jPanel2.add(contacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 145, 160, 25));
 
         cbx1.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
         cbx1.addActionListener(new java.awt.event.ActionListener() {
@@ -180,8 +207,10 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 cbx1ActionPerformed(evt);
             }
         });
+        jPanel2.add(cbx1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 150, 25));
 
         cbx2.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
+        jPanel2.add(cbx2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 150, 25));
 
         btnagregarTelf.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         btnagregarTelf.setText("Agregar");
@@ -190,6 +219,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 btnagregarTelfActionPerformed(evt);
             }
         });
+        jPanel2.add(btnagregarTelf, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, -1, 25));
 
         btnagregarCorreo.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         btnagregarCorreo.setText("Agregar");
@@ -198,9 +228,11 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 btnagregarCorreoActionPerformed(evt);
             }
         });
+        jPanel2.add(btnagregarCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, -1, 25));
 
         jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel8.setText("Cedula/Ruc :");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 58, -1, -1));
 
         cedula.setEditable(false);
         cedula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -210,96 +242,35 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 cedulaKeyTyped(evt);
             }
         });
+        jPanel2.add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 58, 150, 25));
 
-        dire.setColumns(20);
-        dire.setRows(5);
+        dire.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         dire.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 direFocusLost(evt);
             }
         });
-        jScrollPane1.setViewportView(dire);
+        jPanel2.add(dire, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 188, 150, 25));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel4)
-                        .addGap(12, 12, 12)
-                        .addComponent(contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(78, 78, 78)
-                        .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel5)
-                        .addGap(16, 16, 16)
-                        .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(btnagregarTelf))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(9, 9, 9)
-                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel6)
-                        .addGap(30, 30, 30)
-                        .addComponent(cbx2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(btnagregarCorreo))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(jLabel7)
-                        .addGap(12, 12, 12)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnagregarTelf, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel6))
-                    .addComponent(cbx2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnagregarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(0, 18, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        jButton3.setText("Agregar Imagen");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
+
+        jButton6.setText("Eliminar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, -1, -1));
+
+        imagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.add(imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 120, 100));
 
         Guardar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         Guardar.setForeground(new java.awt.Color(71, 151, 69));
@@ -328,6 +299,15 @@ public class Editar_Proveedor extends javax.swing.JDialog {
             }
         });
 
+        Reporte.setBackground(new java.awt.Color(254, 254, 254));
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        Reporte.setText("Reporte");
+        Reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -335,34 +315,38 @@ public class Editar_Proveedor extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
-                .addComponent(btnInactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(btnInactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Guardar)
-                    .addComponent(btnInactivar)
-                    .addComponent(jButton4))
-                .addGap(0, 20, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton4)
+                        .addComponent(btnInactivar))
+                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 319));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -413,6 +397,8 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         tip1=pro.getId_proveedor_clase();
         tip2=pro.getEstado();
         tip3=pro.getId_proveedor();
+        getPicture2(pro.getDireccionImagen());
+    
     }
 
     private void btnagregarTelfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarTelfActionPerformed
@@ -542,6 +528,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
             p.setTelefono(cbx1.getSelectedItem().toString());
             p.setMail(cbx2.getSelectedItem().toString());
             p.setId_proveedor(tip3);
+            p.setDireccionImagen(rutaimagen);
             String valor = crud.insertarProveedor(p);
             JOptionPane.showMessageDialog(null, valor);
             Consulta_Proveedor mp = new Consulta_Proveedor(new javax.swing.JFrame(), true);
@@ -664,9 +651,41 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         contacto.setText(contacto.getText().toUpperCase());
     }//GEN-LAST:event_contactoFocusLost
 
+    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
+        ArrayList proveedor = new ArrayList();
+        System.out.println(imagen.getText());
+        Ficha_proveedor proveedor1 = new Ficha_proveedor(fecha.getText(),cedula.getText(),nombre.getText(),dire.getText(),contacto.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),rutaimagen);
+        proveedor.add(proveedor1);
+        try {
+            JasperReport reporte =  (JasperReport) JRLoader.loadObject("ReporteFichaProveedor.jasper");            
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(proveedor));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Editar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_ReporteActionPerformed
+
     private void direFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_direFocusLost
-        dire.setText(dire.getText().toUpperCase());
+        // TODO add your handling code here:
     }//GEN-LAST:event_direFocusLost
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String pass = "";
+        getPicture1(pass);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        VaciarImagen();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 //    public String eliminarEditor(String por) {
 //        String mensaje = null;
 //     //   int por1 = Integer.valueOf(por);
@@ -698,7 +717,71 @@ public class Editar_Proveedor extends javax.swing.JDialog {
 //        return mensaje;
 //
 //    }
-
+    public void VaciarImagen() {
+        // String fil = "\\G:\\sin-imagen.png";
+        //   String  fil= "\\home\\ineval\\Escritorio\\P-FARMACIA\\sin-imagen.png"; //Windows
+         fot = "logologin.png";
+        imagen.setIcon(new ImageIcon(fot));
+        ImageIcon icon = new ImageIcon(fot);
+        Image img = icon.getImage();
+        System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+        Image newimg = img.getScaledInstance(259, 221, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon newIcono = new ImageIcon(newimg);
+        imagen.setIcon(newIcono);
+        rutaimagen = fot;
+    }
+    
+    private void getPicture1(String path) {
+        JFileChooser dig = new JFileChooser(path);
+        dig.setFileFilter(new FileNameExtensionFilter("Archivos de imagen",
+                "tif", "jpg", "jpeg", "png", "gif"));
+        int opcion = dig.showOpenDialog(this);
+        if (opcion == JFileChooser.APPROVE_OPTION) {
+            fot = dig.getSelectedFile().getPath();
+            rutaimagen = dig.getSelectedFile().getPath();
+            imagen.setIcon(new ImageIcon(fot));
+            ImageIcon icon = new ImageIcon(fot);
+            Image img = icon.getImage();
+            Image newimg = img.getScaledInstance(110,106, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon newIcono = new ImageIcon(newimg);
+            imagen.setIcon(newIcono);            
+            System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+            System.out.println("ruta= "+rutaimagen +"\n"+
+                                "ruta2 "+fot);
+        }
+    }
+    public void vaciarimagen(){
+        fot = "logologin.png";
+        imagen.setIcon(new ImageIcon(fot));
+        ImageIcon icon = new ImageIcon(fot);
+        Image img = icon.getImage();
+        System.out.println(fil + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+        Image newimg = img.getScaledInstance(259, 221, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon newIcono = new ImageIcon(newimg);
+        imagen.setIcon(newIcono);
+        rutaimagen = fot;
+    }
+    
+        private void getPicture2(String u) {
+        String path = null;
+        //JFileChooser dig = new JFileChooser(path);
+      //  dig.setFileFilter(new FileNameExtensionFilter("Archivos de imagen",
+          //      "tif", "jpg", "jpeg", "png", "gif"));
+      //  int opcion = dig.showOpenDialog(this);
+       // if (opcion == JFileChooser.APPROVE_OPTION) {
+          //  fot = dig.getSelectedFile().getPath();
+         //   rutaimagen = dig.getSelectedFile().getPath();
+            imagen.setIcon(new ImageIcon(u));
+            ImageIcon icon = new ImageIcon(u);
+            Image img = icon.getImage();
+            Image newimg = img.getScaledInstance(110,106, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon newIcono = new ImageIcon(newimg);
+            imagen.setIcon(newIcono);            
+            System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+       // }
+    }
+    
+    
     public void Habilitar(boolean lok) {
         btnagregarTelf.setEnabled(lok);
         btnagregarCorreo.setEnabled(lok);
@@ -811,6 +894,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Guardar;
+    private javax.swing.JButton Reporte;
     private javax.swing.JButton btnInactivar;
     private javax.swing.JButton btnagregarCorreo;
     private javax.swing.JButton btnagregarTelf;
@@ -818,9 +902,12 @@ public class Editar_Proveedor extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbx2;
     private javax.swing.JTextField cedula;
     private javax.swing.JTextField contacto;
-    private javax.swing.JTextArea dire;
+    private javax.swing.JTextField dire;
     private javax.swing.JTextField fecha;
+    private javax.swing.JLabel imagen;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -831,7 +918,6 @@ public class Editar_Proveedor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 
