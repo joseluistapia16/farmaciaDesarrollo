@@ -148,4 +148,29 @@ public class Formulario {
         return arreglo;
 
     }
+    public static DefaultComboBoxModel listarComboEstadoPrecios(ArrayList<Precios> lista) {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        Object[] arreglo = arregloEstadoPro(lista);
+        
+        for (int i = 0; i < arreglo.length; i++) {
+           if("A".equals(lista.get(i).getEstado())){
+           model.setSelectedItem("ACTIVO");
+           }
+           if("I".equals(lista.get(i).getEstado())){
+           model.setSelectedItem(2);
+           }
+        }
+        return model;
+
+    }
+
+    private static Object[] arregloEstadoPro(ArrayList<Precios> lista) {
+        Object[] arreglo = new Object[lista.size()];
+        //arreglo[0] = "Elija una opcion...";
+        for (int i = 0; i < lista.size(); i++) {
+            arreglo[(i)] = lista.get(i).getEstado();
+        }
+        return arreglo;
+
+    }
 }
