@@ -13,7 +13,6 @@ package com.farmacia.views.clientes;
 //import com.farmacia.domain.Obcx;
 //import com.farmacia.domain.Telefono_Cliente;
 
-import com.farmacia.ClasesReporte.ClienteR;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Clientes;
@@ -504,7 +503,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
 
     private void BotonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalir1ActionPerformed
         ArrayList cliente = new ArrayList();
-        ClienteR cliente1 = new ClienteR (cedula.getText(),nombre.getText(),apellido.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),direccion.getText(),fecha_reg.getText());
+        Clientes cliente1 = new Clientes (cedula.getText(),nombre.getText(),apellido.getText(),direccion.getText(),Date.valueOf(fecha_reg.getText()),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString());
         cliente.add(cliente1);                    
            try{ 
             JasperReport reporte = (JasperReport) JRLoader.loadObject("ClienteI.jasper");

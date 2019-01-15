@@ -20,6 +20,14 @@ public class Clientes extends Persona {
         super(id_Clientes, cedula, nombre, apellido, direccion, estado, fecha_reg, str_telefono, str_correo);
     }
 
+    public Clientes(String cedula, String nombre, String apellido, String direccion, Date fecha_reg, String str_telefono, String str_correo) {
+        super(cedula, nombre, apellido, direccion, fecha_reg, str_telefono, str_correo);
+    }
+
+    public Clientes(String cedula, String nombre, String apellido, String direccion, Date fecha_reg) {
+        super(cedula, nombre, apellido, direccion, fecha_reg);
+    }
+
    
 
 }

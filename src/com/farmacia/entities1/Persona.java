@@ -49,6 +49,26 @@ public class Persona {
         this.str_correo = str_correo;
     }
 
+    public Persona(String cedula, String nombre, String apellido, String direccion, Date fecha_reg, String str_telefono, String str_correo) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.fecha_reg = fecha_reg;
+        this.str_telefono = str_telefono;
+        this.str_correo = str_correo;
+    }
+
+    public Persona(String cedula, String nombre, String apellido, String direccion, Date fecha_reg) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.fecha_reg = fecha_reg;
+    }
+    
+    
+
     public Long getId_Clientes() {
         return id_Clientes;
     }
