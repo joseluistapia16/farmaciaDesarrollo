@@ -5,26 +5,36 @@ import java.sql.Date;
 import java.sql.Time;
 
 
-public class JoinListarNotaPedidos {
+public class JoinListarNotaPedidosCabecera {
     private Long id_cabecera_nota_pedidos;
     private Long id_proveedor;
     private String entidad;
     private String representante;
     private String telefono;
+    private Long id_proveedor_clase;
+    private String clase;
+    private String direccion;
+    private String cedula_ruc;
+    private String correo;
     private String fecha_creacion;
     private Double iva;
     private Double descuento;
     private Double total;
 
-    public JoinListarNotaPedidos() {
+    public JoinListarNotaPedidosCabecera() {
     }
 
-    public JoinListarNotaPedidos(Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String telefono, String fecha_creacion, Double iva, Double descuento, Double total) {
+    public JoinListarNotaPedidosCabecera(Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String telefono, Long id_proveedor_clase, String clase, String direccion, String cedula_ruc, String correo, String fecha_creacion, Double iva, Double descuento, Double total) {
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
         this.id_proveedor = id_proveedor;
         this.entidad = entidad;
         this.representante = representante;
         this.telefono = telefono;
+        this.id_proveedor_clase = id_proveedor_clase;
+        this.clase = clase;
+        this.direccion = direccion;
+        this.cedula_ruc = cedula_ruc;
+        this.correo = correo;
         this.fecha_creacion = fecha_creacion;
         this.iva = iva;
         this.descuento = descuento;
@@ -69,6 +79,46 @@ public class JoinListarNotaPedidos {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public Long getId_proveedor_clase() {
+        return id_proveedor_clase;
+    }
+
+    public void setId_proveedor_clase(Long id_proveedor_clase) {
+        this.id_proveedor_clase = id_proveedor_clase;
+    }
+
+    public String getClase() {
+        return clase;
+    }
+
+    public void setClase(String clase) {
+        this.clase = clase;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCedula_ruc() {
+        return cedula_ruc;
+    }
+
+    public void setCedula_ruc(String cedula_ruc) {
+        this.cedula_ruc = cedula_ruc;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public String getFecha_creacion() {

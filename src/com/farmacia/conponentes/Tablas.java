@@ -19,7 +19,8 @@ import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.fecha.Fecha;
-import com.farmacia.join_entidades.JoinListarNotaPedidos;
+import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
+import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -604,7 +605,7 @@ public class Tablas {
         }
 
     }
-     public static void CargarJoinListadoNotaPedidos(JTable Tabla, ArrayList<JoinListarNotaPedidos> lista) {
+     public static void CargarJoinListadoNotaPedidos(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
 
         int[] a = {5, 5, 52,90,150, 110, 15, 50, 10};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
@@ -823,6 +824,35 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
             Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
 
+        }
+
+    }
+    public static void listarProveedorNotaPedido(ArrayList<ListarJoinProveedorNotaPedido> lista, JTable Tabla) {
+        int[] a = {10, 30, 32, 52};
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
+        model = Tablas.VaciarTabla(Tabla);
+        String[] Co = {"Cedula_Ruc", "Entidad", "Contacto", "Fecha de Ingreso"};
+        String[] Filas = new String[4];
+        model = new DefaultTableModel(null, Co);
+        Tabla.setShowGrid(true);
+        for (int i = 0; i < lista.size(); i++) {
+            Filas[0] = lista.get(i).getCedula_ruc();
+            Filas[1] = lista.get(i).getEntidad();
+            Filas[2] = lista.get(i).getRepresentante();
+            Filas[3] = (lista.get(i).getFecha_registro()).toString();
+            model.addRow(Filas);
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
         }
 
     }

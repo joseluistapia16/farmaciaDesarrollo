@@ -24,7 +24,8 @@ import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.Telefono_Cliente;
 import com.farmacia.entities1.TipoProducto;
-import com.farmacia.join_entidades.JoinListarNotaPedidos;
+import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
+import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -374,8 +375,8 @@ public class EntidadesMappers {
         }
         return obj;
     }
-     public static JoinListarNotaPedidos getListadoNotaPedidosFromResultSet(ResultSet rs) {
-        JoinListarNotaPedidos obj = new JoinListarNotaPedidos();
+     public static JoinListarNotaPedidosCabecera getListadoNotaPedidosFromResultSet(ResultSet rs) {
+        JoinListarNotaPedidosCabecera obj = new JoinListarNotaPedidosCabecera();
         try {
 
             obj.setId_cabecera_nota_pedidos(rs.getLong("ID_CABECERA_NOTA_PEDIDOS"));
@@ -383,6 +384,9 @@ public class EntidadesMappers {
             obj.setEntidad(rs.getString("PROVEEDOR"));
             obj.setRepresentante(rs.getString("REPRESENTANTE"));
             obj.setTelefono(rs.getString("TELEFONO"));
+            obj.setCorreo(rs.getString("CORREO"));
+            obj.setClase(rs.getString("CLASE"));
+            obj.setCedula_ruc(rs.getString("CEDULA_RUC"));
             obj.setFecha_creacion(rs.getString("FECHA_CREACION"));
             obj.setIva(rs.getDouble("IVA"));
             obj.setDescuento(rs.getDouble("DESCUENTO"));
@@ -409,6 +413,29 @@ public class EntidadesMappers {
             obj.setCantidad(rs.getInt("CANTIDAD"));
             obj.setPrecio(rs.getDouble("PRECIO"));
          
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+     public static ListarJoinProveedorNotaPedido getListarJoinProveedorNotaPedidoFromResultSet(ResultSet rs) {
+        ListarJoinProveedorNotaPedido obj = new ListarJoinProveedorNotaPedido();
+        try {
+            obj.setId_proveedor(rs.getLong("ID_PROVEEDOR"));
+            obj.setId_proveedor_clase(rs.getLong("ID_PROVEEDOR_CLASE"));
+            obj.setClase(rs.getString("CLASE"));
+            obj.setCedula_ruc(rs.getString("CEDULA_RUC"));
+            obj.setEntidad(rs.getString("ENTIDAD"));
+            obj.setRepresentante(rs.getString("REPRESENTANTE"));
+            obj.setDireccion(rs.getString("DIRECCION"));
+            obj.setFecha_registro(rs.getDate("FECHA_REGISTRO"));
+            obj.setEstado(rs.getString("ESTADO"));
+         //   obj.set//Id_tipo_telefono(rs.getLong("ID_TIPO_TELEFONO"));
+            obj.setTelefono(rs.getString("TELEFONO"));
+           // obj.setTipo_telefon(rs.getString("TIPO_TELEFON"));
+          //  obj.setId_tipo_correo(rs.getLong("ID_TIPO_CORREO"));
+            obj.setMail(rs.getString("CORREO"));
+        
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }

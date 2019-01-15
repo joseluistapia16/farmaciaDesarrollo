@@ -2,7 +2,7 @@ package com.farmacia.views.pedidos;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
-import com.farmacia.join_entidades.JoinListarNotaPedidos;
+import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.KeyAdapter;
@@ -18,8 +18,8 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
 
     CRUD crud = new CRUD();
     int x, y;
-    JoinListarNotaPedidos objeto = null;
-    ArrayList<JoinListarNotaPedidos> lista = crud.listarNotas(1);
+    JoinListarNotaPedidosCabecera objeto = null;
+    ArrayList<JoinListarNotaPedidosCabecera> lista = crud.listarNotas(1);
 
     public MantenimientoNotaPedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -210,8 +210,8 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     private void txtfiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfiltroActionPerformed
-    public JoinListarNotaPedidos devuelveObjeto(String datos, ArrayList<JoinListarNotaPedidos> listarobj) {
-        JoinListarNotaPedidos objeto1 = null;
+    public JoinListarNotaPedidosCabecera devuelveObjeto(String datos, ArrayList<JoinListarNotaPedidosCabecera> listarobj) {
+        JoinListarNotaPedidosCabecera objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
             if (datos.equals(listarobj.get(i).getId_cabecera_nota_pedidos().toString())) {
                 objeto1 = listarobj.get(i);
@@ -223,16 +223,16 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     }
     private void tblRegistrodeNotasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegistrodeNotasMousePressed
         int i = 0;
-        String msg = null;
+        
         if (evt.getClickCount() == 2) {
             i = tblRegistrodeNotas.getSelectedRow();
             objeto = devuelveObjeto(tblRegistrodeNotas.getValueAt(i, 0).toString(), lista);
+            
             if (objeto != null) {
-                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true);
+                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true,objeto);
                 Man.setVisible(true);
-                 if (msg == null) {
+                
                  
-                 }
             }
         }
     }//GEN-LAST:event_tblRegistrodeNotasMousePressed

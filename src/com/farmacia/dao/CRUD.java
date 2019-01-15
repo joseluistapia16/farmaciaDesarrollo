@@ -21,7 +21,8 @@ import com.farmacia.entities1.Obcx;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.TipoProducto;
-import com.farmacia.join_entidades.JoinListarNotaPedidos;
+import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
+import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ValidarIngresoProducto;
 import java.sql.CallableStatement;
@@ -1836,8 +1837,8 @@ public class CRUD {
         return valor;
 
     }
-   public ArrayList<JoinListarNotaPedidos> listarNotas(int op) {
-        ArrayList<JoinListarNotaPedidos> lista = new ArrayList<JoinListarNotaPedidos>();
+   public ArrayList<JoinListarNotaPedidosCabecera> listarNotas(int op) {
+        ArrayList<JoinListarNotaPedidosCabecera> lista = new ArrayList<JoinListarNotaPedidosCabecera>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
@@ -1847,7 +1848,7 @@ public class CRUD {
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
-                JoinListarNotaPedidos obj = EntidadesMappers.getListadoNotaPedidosFromResultSet(rs);
+                JoinListarNotaPedidosCabecera obj = EntidadesMappers.getListadoNotaPedidosFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();
@@ -1949,6 +1950,38 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
                 listarJoinProductosNotaPedidos obj = EntidadesMappers.getJoinTodosProductosFromResultSetNota(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+ public ArrayList<ListarJoinProveedorNotaPedido> listarProveedoresNotaPedido(Long op) {
+        ArrayList<ListarJoinProveedorNotaPedido> lista = new ArrayList<ListarJoinProveedorNotaPedido>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call ListarProveedor(?) }");
+            prodProAlm.setLong(1, op);
+            prodProAlm.execute();
+            rs = prodProAlm.getResultSet();
+            while (rs.next()) {
+                ListarJoinProveedorNotaPedido obj = EntidadesMappers.getListarJoinProveedorNotaPedidoFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();

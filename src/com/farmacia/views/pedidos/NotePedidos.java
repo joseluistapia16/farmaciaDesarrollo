@@ -5,6 +5,7 @@ import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.ListarJoinProveedor;
+import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
@@ -28,7 +29,7 @@ public class NotePedidos extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     filtrosProductos fil = new filtrosProductos();
     joinProductoDetallesFaltantes objeto = null;
-    ListarJoinProveedor proveedorC = null;
+    ListarJoinProveedorNotaPedido proveedorC = null;
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();

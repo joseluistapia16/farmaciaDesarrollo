@@ -3,6 +3,7 @@ package com.farmacia.views.pedidos;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.join_entidades.ListarJoinProveedor;
+import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -11,9 +12,9 @@ import javax.swing.JOptionPane;
 public class Consulta_proveedor_Nota extends javax.swing.JDialog {
 
     int x, y;
-    ListarJoinProveedor proveedor = null;
+    ListarJoinProveedorNotaPedido proveedor = null;
     CRUD crud = new CRUD();
-    ArrayList<ListarJoinProveedor> lista = crud.listarProveedores(Long.valueOf("1"));
+    ArrayList<ListarJoinProveedorNotaPedido> lista = crud.listarProveedoresNotaPedido(Long.valueOf("1"));
 
     public Consulta_proveedor_Nota(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -22,7 +23,7 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setLocationRelativeTo(null);
         setLayout(null);
-        Tablas.listarProveedor(lista, tabla);
+        Tablas.listarProveedorNotaPedido(lista, tabla);
     }
 
     @SuppressWarnings("unchecked")
@@ -173,15 +174,15 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
 
         if (evt.getClickCount() == 2) {
             id = tabla.getSelectedRow();
-            lista = crud.listarProveedores(Long.valueOf("1"));
+            lista = crud.listarProveedoresNotaPedido(Long.valueOf("1"));
             proveedor = buscarObjeto(tabla.getValueAt(id, 0).toString(), lista);
             //    System.out.println(proveedor.getCedula_ruc());
             lista.clear();
             setVisible(false);
         }
     }//GEN-LAST:event_tablaMousePressed
-    public ListarJoinProveedor buscarObjeto(String cedula, ArrayList<ListarJoinProveedor> lis) {
-        ListarJoinProveedor pro = new ListarJoinProveedor();
+    public ListarJoinProveedorNotaPedido buscarObjeto(String cedula, ArrayList<ListarJoinProveedorNotaPedido> lis) {
+        ListarJoinProveedorNotaPedido pro = new ListarJoinProveedorNotaPedido();
         pro = null;
         //int ced = Integer.valueOf(cedula);
         for (int i = 0; i < lis.size(); i++) {
@@ -192,11 +193,11 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
         return pro;
     }
 
-    public ListarJoinProveedor getProveedor() {
+    public ListarJoinProveedorNotaPedido getProveedor() {
         return proveedor;
     }
 
-    public void setProveedor(ListarJoinProveedor proveedor) {
+    public void setProveedor(ListarJoinProveedorNotaPedido proveedor) {
         this.proveedor = proveedor;
     }
 
