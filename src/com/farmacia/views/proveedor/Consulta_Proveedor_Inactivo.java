@@ -5,7 +5,6 @@
  */
 package com.farmacia.views.proveedor;
 
-import com.farmacia.ClasesReporte.Formulario_Proveedor;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
@@ -15,6 +14,7 @@ import static java.awt.Frame.ICONIFIED;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -271,7 +271,7 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         java.util.List lista = new ArrayList();
         for (int i = 0; i < tabla.getRowCount(); i++) {
-            Formulario_Proveedor proveedor = new Formulario_Proveedor(tabla.getValueAt(i, 0).toString(), tabla.getValueAt(i, 1).toString(), tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i,3).toString());
+            ListarJoinProveedor proveedor = new ListarJoinProveedor(tabla.getValueAt(i, 0).toString(), tabla.getValueAt(i, 1).toString(), tabla.getValueAt(i, 2).toString(),Date.valueOf(tabla.getValueAt(i,3).toString()));
             lista.add(proveedor);
         }
 

@@ -16,7 +16,6 @@ package com.farmacia.views.proveedor;
 //import com.Farmacia.Objetos.Telefono;
 
 //import com.Farmacia.Ventanas.Consulta_Proveedor;
-import com.farmacia.ClasesReporte.Ficha_proveedor;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.Correo;
@@ -316,10 +315,6 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
@@ -329,6 +324,10 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 .addGap(46, 46, 46)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -654,7 +653,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         ArrayList proveedor = new ArrayList();
         System.out.println(imagen.getText());
-        Ficha_proveedor proveedor1 = new Ficha_proveedor(fecha.getText(),cedula.getText(),nombre.getText(),dire.getText(),contacto.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),rutaimagen);
+        ListarJoinProveedor proveedor1 = new ListarJoinProveedor(cedula.getText(),nombre.getText(),contacto.getText(),dire.getText(),Date.valueOf(fecha.getText()),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),rutaimagen);
         proveedor.add(proveedor1);
         try {
             JasperReport reporte =  (JasperReport) JRLoader.loadObject("ReporteFichaProveedor.jasper");            

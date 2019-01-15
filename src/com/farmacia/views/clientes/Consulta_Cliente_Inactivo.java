@@ -9,7 +9,6 @@ package com.farmacia.views.clientes;
 //import com.farmacia.dao.Conectar;
 //import com.farmacia.dao.ConsultasSQL;
 //import com.farmacia.domain.Clientes;
-import com.farmacia.ClasesReporte.TablaCliente;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Clientes;
@@ -17,6 +16,7 @@ import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -271,7 +271,7 @@ public class Consulta_Cliente_Inactivo extends javax.swing.JDialog {
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         ArrayList tablac = new ArrayList();
         for(int i=0;i<tabla.getRowCount();i++){
-            TablaCliente tabla1 = new TablaCliente (tabla.getValueAt(i,0).toString(),tabla.getValueAt(i,1).toString(),tabla.getValueAt(i,2).toString(),tabla.getValueAt(i,3).toString(),tabla.getValueAt(i,4).toString());
+            Clientes tabla1 = new Clientes (tabla.getValueAt(i,0).toString(),tabla.getValueAt(i,1).toString(),tabla.getValueAt(i,2).toString(),tabla.getValueAt(i,3).toString(),Date.valueOf(tabla.getValueAt(i,4).toString()));
             tablac.add(tabla1);}
         try{
             JasperReport reporte = (JasperReport) JRLoader.loadObject("TablaClienteInactivos.jasper");
