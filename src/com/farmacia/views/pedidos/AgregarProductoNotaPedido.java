@@ -9,6 +9,7 @@ import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -426,26 +427,31 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
     private void txtporcentajeDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtporcentajeDescuentoKeyTyped
 
-        char Validar = evt.getKeyChar();
-       
-        if (Character.isLetter(Validar) ){
-//                txtporcentajeDescuento.getText().length()>=100) {
-            getToolkit();
+        char car = evt.getKeyChar();
+        if (txtporcentajeDescuento.getText().length() >= 10) {
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Ingrese solo Numeros");
         }
-        //&& txtporcentajeDescuento.getText().length() <= 100 >
-       
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
+//        char Validar = evt.getKeyChar();
+//       
+//        if (Character.isLetter(Validar) ){
+//            getToolkit();
+//            evt.consume();
+//            JOptionPane.showMessageDialog(rootPane, "Ingrese solo Numeros");
+//        }
+
     }//GEN-LAST:event_txtporcentajeDescuentoKeyTyped
 
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
-//        Point point = MouseInfo.getPointerInfo().getLocation();
-//        setLocation(point.x - x, point.y - y);
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jPanel3MouseDragged
 
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
-//        x = evt.getX();
-//        y = evt.getY();
+        x = evt.getX();
+        y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
 
     /**

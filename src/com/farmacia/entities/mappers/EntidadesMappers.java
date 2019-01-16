@@ -5,7 +5,6 @@
  */
 package com.farmacia.entities.mappers;
 
-
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.join_entidades.ListarNotas;
@@ -50,13 +49,13 @@ public class EntidadesMappers {
             obj.setDescripcion(rs.getString("DESCRIPCION"));
             obj.setPeso(rs.getDouble("PESO"));
             obj.setFecha_registro(rs.getDate("FECHA_REGISTRO"));
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-    
+
     public static FaltantesCabeceraDetalles getJoinProductosFromResultSet(ResultSet rs) {
         FaltantesCabeceraDetalles obj = new FaltantesCabeceraDetalles();
         try {
@@ -69,18 +68,17 @@ public class EntidadesMappers {
             obj.setId_productos(rs.getLong("ID_PRODUCTOS"));
             obj.setNombre(rs.getString("NOMBRE"));
             obj.setDescripcion(rs.getString("DESCRIPCION"));
-       
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-    
-     public static joinProductoDetallesFaltantes getJoinDetallesFaltantesFromResultSet(ResultSet rs) {
+
+    public static joinProductoDetallesFaltantes getJoinDetallesFaltantesFromResultSet(ResultSet rs) {
         joinProductoDetallesFaltantes obj = new joinProductoDetallesFaltantes();
         try {
-            obj.setId_detalle_faltantes(rs.getLong("ID_DETALLE_FALTANTES"));            
+            obj.setId_detalle_faltantes(rs.getLong("ID_DETALLE_FALTANTES"));
             obj.setId_producto(rs.getLong("ID_PRODUCTO"));
             obj.setNombre_producto(rs.getString("PRODUCTO"));
             obj.setId_marcas(rs.getLong("ID_MARCAS"));
@@ -96,15 +94,13 @@ public class EntidadesMappers {
             obj.setId_precios(rs.getLong("ID_PRECIO"));
             obj.setPrecios(rs.getDouble("PRECIO"));
             obj.setIva(rs.getString("IVA"));
-            
-            
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-    
+
     public static listarJoinProductosCompras getJoinTodosProductosFromResultSet(ResultSet rs) {
         listarJoinProductosCompras obj = new listarJoinProductosCompras();
         try {
@@ -124,48 +120,49 @@ public class EntidadesMappers {
             obj.setId_usuario(rs.getLong("ID_USUARIO"));
             obj.setIva(rs.getString("IVA"));
             obj.setCantidad_minima(rs.getLong("CANTIDAD_MINIMA"));
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
+
     public static TipoProducto getTipoProductoFromResultSet(ResultSet rs) {
         TipoProducto obj = new TipoProducto();
         try {
             obj.setId_tipo(rs.getLong("ID_TIPO"));
             obj.setNombreTipo(rs.getString("NOMBRE"));
-            
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
+
     public static MedidaProducto getMedidaProductoFromResultSet(ResultSet rs) {
         MedidaProducto obj = new MedidaProducto();
         try {
             obj.setId_medidas(rs.getLong("ID_MEDIDAS"));
             obj.setNombre_medida(rs.getString("NOMBRE_MEDIDA"));
-            
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
+
     public static EnvaseProducto getEnvaseProductoFromResultSet(ResultSet rs) {
         EnvaseProducto obj = new EnvaseProducto();
         try {
             obj.setId_envase(rs.getLong("ID_ENVASE"));
             obj.setNombreEnvase(rs.getString("NOMBRE"));
-            
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
+
     public static MarcaProducto getMarcaProductoFromResultSet(ResultSet rs) {
         MarcaProducto obj = new MarcaProducto();
         try {
@@ -176,6 +173,7 @@ public class EntidadesMappers {
         }
         return obj;
     }
+
     public static ListarJoinProveedor getListarJoinProveedorFromResultSet(ResultSet rs) {
         ListarJoinProveedor obj = new ListarJoinProveedor();
         try {
@@ -188,21 +186,21 @@ public class EntidadesMappers {
             obj.setDireccion(rs.getString("DIRECCION"));
             obj.setFecha_registro(rs.getDate("FECHA_REGISTRO"));
             obj.setEstado(rs.getString("ESTADO"));
-         //   obj.set//Id_tipo_telefono(rs.getLong("ID_TIPO_TELEFONO"));
+            //   obj.set//Id_tipo_telefono(rs.getLong("ID_TIPO_TELEFONO"));
             obj.setTelefono(rs.getString("TELEFONO"));
-           // obj.setTipo_telefon(rs.getString("TIPO_TELEFON"));
-          //  obj.setId_tipo_correo(rs.getLong("ID_TIPO_CORREO"));
+            // obj.setTipo_telefon(rs.getString("TIPO_TELEFON"));
+            //  obj.setId_tipo_correo(rs.getLong("ID_TIPO_CORREO"));
             obj.setMail(rs.getString("CORREO"));
-           // obj.setTipo_correo(rs.getString("TIPO_CORREO"));
-           // obj.setTelefono(telefono);
-           obj.setDireccionImagen(rs.getString("direccionImagen"));
-            
-         
+            // obj.setTipo_correo(rs.getString("TIPO_CORREO"));
+            // obj.setTelefono(telefono);
+            obj.setDireccionImagen(rs.getString("direccionImagen"));
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
+
     ///////////////////////////////////////////////////////////////////////////////////////////
 //    public static ListarNotas getListarNotasFromResultSet(ResultSet rs) {
 //        ListarNotas obj = new ListarNotas();
@@ -223,22 +221,21 @@ public class EntidadesMappers {
 //        }
 //        return obj;
 //    }
-    public static Correo getCorreoFromResultSet(ResultSet rs){
-        Correo obj = new Correo();   
-        try {                     
+    public static Correo getCorreoFromResultSet(ResultSet rs) {
+        Correo obj = new Correo();
+        try {
             obj.setId_correo(rs.getLong("ID_PROMAIL"));
-          //  obj.setId_proveedor(rs.getLong("ID_PROVEEDOR"));
+            //  obj.setId_proveedor(rs.getLong("ID_PROVEEDOR"));
             obj.setId_tipo_correo(rs.getInt("ID_TIPO_CORREO"));
-            obj.setCorreo(rs.getString("MAIL"));                        
-            obj.setTipo_correo(rs.getString("TIPO_CORREO"));  
+            obj.setCorreo(rs.getString("MAIL"));
+            obj.setTipo_correo(rs.getString("TIPO_CORREO"));
             obj.setCedula_ruc(rs.getString("CEDULA_RUC"));
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-    
-    
+
 //    public static Proveedor getProveedorFromResultSet (ResultSet rs){
 //    Proveedor obj = new Proveedor();   
 //        try {
@@ -255,9 +252,8 @@ public class EntidadesMappers {
 //        }
 //      return obj;
 //    }
-    
-    public static Telefono getTelefonoFromResultSet (ResultSet rs){
-    Telefono obj = new Telefono();   
+    public static Telefono getTelefonoFromResultSet(ResultSet rs) {
+        Telefono obj = new Telefono();
         try {
             obj.setId_telefono(rs.getLong("id_protelefono"));
             //obj.setId_proveedor(rs.getLong("ID_PROVEEDOR"));
@@ -265,12 +261,13 @@ public class EntidadesMappers {
             obj.setTelefono(rs.getString("telefono"));
             obj.setTipoTelefono(rs.getString("TIPO_TELEFONO"));
             obj.setCedula_ruc(rs.getString("CEDULA_RUC"));
-            
+
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
-   return obj;
-}
+        return obj;
+    }
+
     public static FaltantesCabeceraDetalles getJoinTodosProductosFaltantesFromResultSet(ResultSet rs) {//piguiFaltantes
         FaltantesCabeceraDetalles obj = new FaltantesCabeceraDetalles();
         try {
@@ -286,6 +283,7 @@ public class EntidadesMappers {
         }
         return obj;
     }
+
     public static Laboratorio getLaboratorioFromResultSet(ResultSet rs) {//KELLY LABORATORIO
         Laboratorio obj = new Laboratorio();
         try {
@@ -302,6 +300,7 @@ public class EntidadesMappers {
         }
         return obj;
     }
+
     public static Correo_Cliente getCorreoClientesFromResultSet(ResultSet rs) {//kelly cliente
         Correo_Cliente obj = new Correo_Cliente();
         try {
@@ -313,6 +312,7 @@ public class EntidadesMappers {
         }
         return obj;
     }
+
     public static Clientes getClienteFromResultSet(ResultSet rs) {
         Clientes obj = new Clientes();
         try {
@@ -343,15 +343,15 @@ public class EntidadesMappers {
         }
         return obj;
     }
-    
+
     public static Precios getPrecioCompraFromResultSet(ResultSet rs) {
         Precios obj = new Precios();
         try {
             obj.setId_precio(rs.getLong("id_precio"));
-            System.out.println("id pre"+obj.getId_precio());
+            System.out.println("id pre" + obj.getId_precio());
             obj.setId_producto(rs.getLong("id_producto"));
             obj.setPrecio_compra(rs.getDouble("precio_compra"));
-            System.out.println("compra"+obj.getPrecio_compra());
+            System.out.println("compra" + obj.getPrecio_compra());
             obj.setPrecio_venta(rs.getDouble("precio_venta"));
             obj.setEstado(rs.getString("ESTADO"));
             obj.setEstadoPrecio(rs.getString("ESTADO1"));
@@ -361,7 +361,8 @@ public class EntidadesMappers {
         }
         return obj;
     }
-     public static Precios getPreciosProductosFromResultSet(ResultSet rs) {
+
+    public static Precios getPreciosProductosFromResultSet(ResultSet rs) {
         Precios obj = new Precios();
         try {
             obj.setId_precio(rs.getLong("id_precio"));
@@ -369,37 +370,39 @@ public class EntidadesMappers {
             obj.setPrecio_compra(rs.getDouble("precio_compra"));
             obj.setPrecio_venta(rs.getDouble("precio_venta"));
             obj.setEstado(rs.getString("ESTADO"));
-            
-            
 
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-     public static JoinListarNotaPedidosCabecera getListadoNotaPedidosFromResultSet(ResultSet rs) {
+
+    public static JoinListarNotaPedidosCabecera getListadoNotaPedidosFromResultSet(ResultSet rs) {
         JoinListarNotaPedidosCabecera obj = new JoinListarNotaPedidosCabecera();
         try {
 
             obj.setId_cabecera_nota_pedidos(rs.getLong("ID_CABECERA_NOTA_PEDIDOS"));
             obj.setId_proveedor(rs.getLong("ID_PROVEEDOR"));
-            obj.setEntidad(rs.getString("PROVEEDOR"));
-            obj.setRepresentante(rs.getString("REPRESENTANTE"));
-            obj.setTelefono(rs.getString("TELEFONO"));
             obj.setCorreo(rs.getString("CORREO"));
+            obj.setId_proveedor_clase(rs.getLong("ID_PROVEEDOR_CLASE"));
             obj.setClase(rs.getString("CLASE"));
+            obj.setDireccion(rs.getString("DIRECCION"));
             obj.setCedula_ruc(rs.getString("CEDULA_RUC"));
+            obj.setRepresentante(rs.getString("REPRESENTANTE"));
+            obj.setEntidad(rs.getString("PROVEEDOR"));
+            obj.setTelefono(rs.getString("TELEFONO"));
             obj.setFecha_creacion(rs.getString("FECHA_CREACION"));
             obj.setIva(rs.getDouble("IVA"));
             obj.setDescuento(rs.getDouble("DESCUENTO"));
             obj.setTotal(rs.getDouble("TOTAL"));
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-     public static listarJoinProductosNotaPedidos getJoinTodosProductosFromResultSetNota(ResultSet rs) {
+
+    public static listarJoinProductosNotaPedidos getJoinTodosProductosFromResultSetNota(ResultSet rs) {
         listarJoinProductosNotaPedidos obj = new listarJoinProductosNotaPedidos();
         try {
             obj.setId_productos(rs.getLong("ID_PRODUCTO"));
@@ -414,13 +417,14 @@ public class EntidadesMappers {
             obj.setNombreMarca(rs.getString("MARCA"));
             obj.setCantidad(rs.getInt("CANTIDAD"));
             obj.setPrecio(rs.getDouble("PRECIO"));
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-     public static ListarJoinProveedorNotaPedido getListarJoinProveedorNotaPedidoFromResultSet(ResultSet rs) {
+
+    public static ListarJoinProveedorNotaPedido getListarJoinProveedorNotaPedidoFromResultSet(ResultSet rs) {
         ListarJoinProveedorNotaPedido obj = new ListarJoinProveedorNotaPedido();
         try {
             obj.setId_proveedor(rs.getLong("ID_PROVEEDOR"));
@@ -432,12 +436,12 @@ public class EntidadesMappers {
             obj.setDireccion(rs.getString("DIRECCION"));
             obj.setFecha_registro(rs.getDate("FECHA_REGISTRO"));
             obj.setEstado(rs.getString("ESTADO"));
-         //   obj.set//Id_tipo_telefono(rs.getLong("ID_TIPO_TELEFONO"));
+            //   obj.set//Id_tipo_telefono(rs.getLong("ID_TIPO_TELEFONO"));
             obj.setTelefono(rs.getString("TELEFONO"));
-           // obj.setTipo_telefon(rs.getString("TIPO_TELEFON"));
-          //  obj.setId_tipo_correo(rs.getLong("ID_TIPO_CORREO"));
+            // obj.setTipo_telefon(rs.getString("TIPO_TELEFON"));
+            //  obj.setId_tipo_correo(rs.getLong("ID_TIPO_CORREO"));
             obj.setMail(rs.getString("CORREO"));
-        
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
