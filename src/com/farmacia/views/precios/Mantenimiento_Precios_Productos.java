@@ -5,6 +5,7 @@
  */
 package com.farmacia.views.precios;
 
+
 import com.farmacia.conponentes.Formulario;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
@@ -33,7 +34,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
     Precios precios = null;
     int x, y;
     Long id_pro, id_precio;
-    String fecha = "", hora = "", strEstado;
+    String fecha = "", hora = "";
     Double dbe_compra = null, dbe_venta = null;
     ArrayList<Precios> listaPrecios = null;
     // ArrayList<Precios> listavalorIva = llamar.listarPreciosProductos("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,`porcentaje_descuento`,`valor_descuento` FROM `precios` WHERE `id_producto`= " + id_pro );
@@ -67,22 +68,11 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
     }
 
     public void llenarCombo() {
-        listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado ,estado1 FROM `precios` WHERE `id_producto`= " + id_pro);
+        listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado FROM `precios` WHERE `id_producto`= " + id_pro);
         precios = llamar.listarPreciosProductos("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado FROM `precios` WHERE `id_producto`= " + id_pro + " and estado='A'");
         cbx1.setModel(Formulario.listarComboPrecioCompraPro(listaPrecios));
         cbx2.setModel(Formulario.listarComboPrecioVentaPro(listaPrecios));
-        // cbxEstado.setModel(Formulario.listarComboEstadoPrecios(listaPrecios));
-        strEstado = crud.getNombreComboProducto(Long.valueOf("8"), id_pro);
-        strEstado = estado(strEstado);
-        cbxEstado.setSelectedItem(strEstado);
-    }
-
-    public String estado(String valor) {
-        if ("A".equals(valor)) {
-            return "ACTIVO";
-        } else {
-            return "INACTIVO";
-        }
+       // cbxEstado.setModel(Formulario.listarComboEstadoPrecios(listaPrecios));
     }
 
     public void ActualizarCombo() {
@@ -392,22 +382,17 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
                 // System.out.println(" "+x+" "+valorIva.getPrecio_compra());
                 for (int i = 0; i < listaPrecios.size(); i++) {
                     if (Objects.equals(x, listaPrecios.get(i).getPrecio_compra())) {
-                        System.out.println("cambio de posicion");
-                        String esta = listaPrecios.get(i).getEstadoPrecio();
-                        esta = estado(esta);
-                        cbxEstado.setSelectedItem(esta);
+                        
+                        System.out.println("seeee");
                     }
 
                 }
-
             } else {
                 cbx2.setSelectedIndex(getPosicionCompra(x));
                 for (int i = 0; i < listaPrecios.size(); i++) {
                     if (Objects.equals(x, listaPrecios.get(i).getPrecio_compra())) {
-                        System.out.println("no hace nada");
-                        String esta = listaPrecios.get(i).getEstadoPrecio();
-                        esta = estado(esta);
-                        cbxEstado.setSelectedItem(esta);
+                        
+                        System.out.println("seeee");
                     }
 
                 }
@@ -416,7 +401,6 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }//GEN-LAST:event_cbx1ActionPerformed
 
     private void cbx2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx2ActionPerformed

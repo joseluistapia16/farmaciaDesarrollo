@@ -5,6 +5,7 @@
  */
 package com.farmacia.views.producto;
 
+
 import com.farmacia.conponentes.Formulario;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.EnvaseProducto;
@@ -49,25 +50,24 @@ public class modificarProducto extends javax.swing.JDialog {
     public modificarProducto(java.awt.Frame parent, boolean modal, listarJoinProductosCompras obj2) {
         super(parent, modal);
         initComponents();
-        obj1 = obj2;
+        obj1=obj2;
         setLocationRelativeTo(null);
         listarCombos(obj1);
         llenarFormulario(obj1);
         Habilitar(false);
     }
-
-    public void listarCombos(listarJoinProductosCompras obj) {
-        lista = crud.listarTodoTipoProductos1();
-        listam = crud.listarTodoMedidasProductos();
-        listae = crud.listarTodoEnvaseProductos();
-        listama = crud.listarTodoMarcaProductos();
-
+    public void listarCombos(listarJoinProductosCompras obj){
+    lista = crud.listarTodoTipoProductos1();
+    listam = crud.listarTodoMedidasProductos();
+    listae = crud.listarTodoEnvaseProductos();
+    listama = crud.listarTodoMarcaProductos();
+    
         cbxTipos1.setModel(Formulario.listarComboTipoPro(lista));
         cbxMedida1.setModel(Formulario.listarComboMedidaPro(listam));
         cbxEnvase1.setModel(Formulario.listarComboEnvasePro(listae));
         cbxMarca1.setModel(Formulario.listarComboMarcaPro(listama));
-
-        str_tipo = crud.getNombreComboProducto(Long.valueOf("1"), obj.getId_tipo());
+        
+    str_tipo = crud.getNombreComboProducto(Long.valueOf("1"), obj.getId_tipo());
         cbxTipos1.setSelectedItem(str_tipo);
         str_medidas = crud.getNombreComboProducto(Long.valueOf("2"), obj.getId_medida());
         cbxMedida1.setSelectedItem(str_medidas);
@@ -79,7 +79,8 @@ public class modificarProducto extends javax.swing.JDialog {
         strIva = crud.getNombreComboProducto(Long.valueOf("5"), obj.getId_productos());
         cbxIva.setSelectedItem(strIva);
     }
-
+    
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -757,7 +758,7 @@ public class modificarProducto extends javax.swing.JDialog {
         txtDescripcion1.setText(obj.getDescripcion());
         txtPeso1.setText(obj.getPeso().toString());
         txtFechaActual1.setText(obj.getFecha_registro().toString());
-
+        
         txtcantMinima.setText(obj.getCantidad_minima().toString());
         System.out.println(//"id_medida: "+obj.getId_medida()+"/n"+
                 "id_tipo:" + id_tipo);
@@ -765,11 +766,12 @@ public class modificarProducto extends javax.swing.JDialog {
 //                            "id_marca"+obj.getId_marca());
 //        
     }
-
+    
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+   
 
     private void cbxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMarcaActionPerformed
         seleccionId();
@@ -884,7 +886,7 @@ public class modificarProducto extends javax.swing.JDialog {
             valor = crud.eliminarProducto(Long.valueOf(codigo.getText()));
             JOptionPane.showMessageDialog(this, valor);
             this.setVisible(false);
-        }
+        } 
         // listarJoinProductosCompras cp =new listarJoinProductosCompras();
 
     }//GEN-LAST:event_btneliminarActionPerformed
