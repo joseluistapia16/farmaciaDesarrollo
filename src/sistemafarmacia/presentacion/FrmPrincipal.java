@@ -450,6 +450,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void mnuCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCliente1ActionPerformed
        Consulta_Proveedor pro = new Consulta_Proveedor(new javax.swing.JFrame(), true);
        pro.setVisible(true);
+       
     }//GEN-LAST:event_mnuCliente1ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
