@@ -7,6 +7,7 @@ package com.farmacia.views.pedidos;
 
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
+import com.farmacia.validaciones.Validacion;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
@@ -20,11 +21,13 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
     int x, y;
     joinProductoDetallesFaltantes objf = new joinProductoDetallesFaltantes();
+    Validacion v = new Validacion();
 
     public AgregarProductoNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
+
         this.setLocationRelativeTo(null);
     }
 
@@ -74,7 +77,6 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel3.setBorder(null);
         jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel3MouseDragged(evt);
@@ -200,6 +202,9 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         jLabel5.setText("Descuento:");
 
         txtporcentajeDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtporcentajeDescuentoKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtporcentajeDescuentoKeyTyped(evt);
             }
@@ -426,21 +431,11 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPrecioKeyTyped
 
     private void txtporcentajeDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtporcentajeDescuentoKeyTyped
-
-        char car = evt.getKeyChar();
-        if (txtporcentajeDescuento.getText().length() >= 10) {
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
             evt.consume();
+//            JOptionPane.showMessageDialog(null, "INGRESE NUMEROS");
         }
-        if ((car < '0' || car > '9')) {
-            evt.consume();
-        }
-//        char Validar = evt.getKeyChar();
-//       
-//        if (Character.isLetter(Validar) ){
-//            getToolkit();
-//            evt.consume();
-//            JOptionPane.showMessageDialog(rootPane, "Ingrese solo Numeros");
-//        }
 
     }//GEN-LAST:event_txtporcentajeDescuentoKeyTyped
 
@@ -453,6 +448,21 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
+    String CADENA = "";
+    private void txtporcentajeDescuentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtporcentajeDescuentoKeyReleased
+        int largor = txtporcentajeDescuento.getText().length();
+        if (largor > 2) {
+            if (Integer.parseInt(txtporcentajeDescuento.getText()) == 100) {
+                CADENA = txtporcentajeDescuento.getText();
+                txtporcentajeDescuento.setText(CADENA);
+            } else {
+                CADENA = txtporcentajeDescuento.getText().substring(0, 2);
+                txtporcentajeDescuento.setText(CADENA);
+                JOptionPane.showMessageDialog(null, "INGRESE VALOR CORRECTO");
+            }
+        }
+
+    }//GEN-LAST:event_txtporcentajeDescuentoKeyReleased
 
     /**
      * @param args the command line arguments

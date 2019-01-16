@@ -772,7 +772,12 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-//        if (txtTotal.getText() != null) {
+
+//        if (txtTotal.getText() == "0.0 ") {
+//            JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
+//        }else{
+        System.out.println("dd " + txtTotal.getText());
+
         ArrayList<String> queryL = new ArrayList<String>();
         ArrayList<String> queryL1 = new ArrayList<String>();
         String id_cab = "";
@@ -802,8 +807,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
         JOptionPane.showMessageDialog(null, " Guardado con Exito ");
         btnNuevo.setEnabled(true);
-//        } else {
-//            JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
+
 //        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 

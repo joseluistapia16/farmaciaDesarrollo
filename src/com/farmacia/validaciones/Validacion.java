@@ -9,16 +9,20 @@ import com.farmacia.entities1.Clientes;
 import com.farmacia.entities1.Correo_Cliente;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.Telefono_Cliente;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Usuario
  */
 public class Validacion {
+
     public static boolean validarRUC(ArrayList<Laboratorio> lista, String ruc) {
         boolean valor = false;
         if (ruc.length() < 10) {
@@ -47,7 +51,7 @@ public class Validacion {
         }
         return valor;
     }
-    
+
     public static boolean Telefono(String cel) {
         boolean Cel;
         Pattern pattern = Pattern.compile("[0-9]*");
@@ -59,27 +63,25 @@ public class Validacion {
         }
         return Cel;
     }
-    
-    public static boolean validarVariables(String valor){
-        int conta=0;
-         for(int i=0;i<valor.length();i++){
-             if(valor.charAt(i)==' '){
-                 conta++;
-             }
-         }
-         if(conta>0){
-            return false; 
-         }else{
-             return true;
-         }
+
+    public static boolean validarVariables(String valor) {
+        int conta = 0;
+        for (int i = 0; i < valor.length(); i++) {
+            if (valor.charAt(i) == ' ') {
+                conta++;
+            }
+        }
+        if (conta > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
-    
-    
-      public static boolean Cedula(String cedula) {
+
+    public static boolean Cedula(String cedula) {
         boolean cedulaCorrecta = false;
         try {
-            if (cedula.length() == 10)
-            {
+            if (cedula.length() == 10) {
                 int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
                 if (tercerDigito < 6) {
                     int[] coefValCedula = {2, 1, 2, 1, 2, 1, 2, 1, 2};
@@ -113,7 +115,6 @@ public class Validacion {
         }
         return cedulaCorrecta;
     }
- 
 
     public static boolean Email(String Mail) {
         Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
@@ -125,9 +126,10 @@ public class Validacion {
             return false;
         }
     }
+
     public static boolean validarCedula(ArrayList<Clientes> lista, String cedula) {
         boolean valor = false;
-        if (cedula.length() <10) {
+        if (cedula.length() < 10) {
             valor = false;
         } else {
             boolean valor1 = buscarCedula(lista, cedula);
@@ -141,8 +143,6 @@ public class Validacion {
         return valor;
     }
 
-    
-    
     public static boolean buscarCedula(ArrayList<Clientes> lista, String cedula) {
         boolean valor = false;
         for (int i = 0; i < lista.size(); i++) {
@@ -168,7 +168,7 @@ public class Validacion {
         }
         return valor;
     }
-    
+
     public static boolean buscarCorreo(ArrayList<Correo_Cliente> lista, String cor) {
         boolean valor = false;
         for (int i = 0; i < lista.size(); i++) {
@@ -181,4 +181,17 @@ public class Validacion {
         }
         return valor;
     }
+
+//    public void limitarCaracteres(JTextField campo) {
+//        campo.addKeyListener(new KeyAdapter() {
+//            public void KeyTyped(KeyEvent e) {
+//                char c = e.getKeyChar();
+//                
+//                if (campo > 100) {
+//                    JOptionPane.showMessageDialog(null,"INGRESE UN VALOR CORRECTO");
+//                    e.consume();
+//                }
+//            }
+//        });
+//    }
 }
