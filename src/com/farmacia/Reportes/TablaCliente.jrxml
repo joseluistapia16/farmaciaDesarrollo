@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f48d56dc-2bbb-4b4a-98c5-646658ccc995">
-	<property name="ireport.zoom" value="1.2100000000000013"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="4.177248169415659"/>
+	<property name="ireport.x" value="1856"/>
+	<property name="ireport.y" value="309"/>
 	<field name="cedula" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="apellido" class="java.lang.String"/>
 	<field name="direccion" class="java.lang.String"/>
-	<field name="fecharegistro" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -118,13 +118,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="463" y="3" width="88" height="19" uuid="a9047a06-fbff-40aa-b2a5-07d28c4c1852"/>
-				<textElement textAlignment="Center">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{fecharegistro}]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="3" y="1" width="549" height="1" uuid="7913a563-d631-46b7-b2d8-946983e52809"/>
 			</line>
@@ -149,6 +142,13 @@
 			<line>
 				<reportElement x="107" y="2" width="1" height="21" uuid="bfce673e-4714-4e69-a048-01975ef16fdb"/>
 			</line>
+			<textField>
+				<reportElement x="463" y="3" width="88" height="20" uuid="16832938-f91f-4920-bc0a-6a8dbdbd0e6c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

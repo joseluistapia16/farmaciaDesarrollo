@@ -177,17 +177,18 @@ public class Consulta_Cliente_Inactivo extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jButton2)
+                        .addGap(69, 69, 69)
+                        .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,7 +272,7 @@ public class Consulta_Cliente_Inactivo extends javax.swing.JDialog {
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         ArrayList tablac = new ArrayList();
         for(int i=0;i<tabla.getRowCount();i++){
-            Clientes tabla1 = new Clientes (tabla.getValueAt(i,0).toString(),tabla.getValueAt(i,1).toString(),tabla.getValueAt(i,2).toString(),tabla.getValueAt(i,3).toString(),Date.valueOf(tabla.getValueAt(i,4).toString()));
+            Clientes tabla1 = new Clientes (tabla.getValueAt(i,0).toString(),tabla.getValueAt(i,1).toString(),tabla.getValueAt(i,2).toString(),tabla.getValueAt(i,3).toString(),tabla.getValueAt(i,4).toString());
             tablac.add(tabla1);}
         try{
             JasperReport reporte = (JasperReport) JRLoader.loadObject("TablaClienteInactivos.jasper");

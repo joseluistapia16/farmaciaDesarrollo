@@ -6,10 +6,10 @@
 	<field name="cedula" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="apellido" class="java.lang.String"/>
-	<field name="telefono" class="java.lang.String"/>
-	<field name="correo" class="java.lang.String"/>
+	<field name="str_telefono" class="java.lang.String"/>
+	<field name="str_correo" class="java.lang.String"/>
 	<field name="direccion" class="java.lang.String"/>
-	<field name="fecharegistro" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -74,13 +74,6 @@
 				</textElement>
 				<text><![CDATA[Apellido:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="310" y="71" width="179" height="20" uuid="1d24e8bf-f63f-44b7-a5ad-a85a7ffa49de"/>
-				<textElement>
-					<font size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="108" y="71" width="161" height="20" uuid="f584bb17-a35d-443f-8497-16247eb644fd"/>
 				<textElement>
@@ -88,13 +81,6 @@
 				</textElement>
 				<text><![CDATA[Telefono:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="310" y="91" width="179" height="20" uuid="a471f316-3e9a-4327-a6d3-21fadc8a1c53"/>
-				<textElement>
-					<font size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="108" y="91" width="161" height="20" uuid="34b172c5-a554-4cce-b775-e605f15f0198"/>
 				<textElement>
@@ -116,13 +102,6 @@
 				</textElement>
 				<text><![CDATA[Direccion:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="310" y="131" width="179" height="20" uuid="8eb5e232-623e-4d43-8b93-b9c763399bdf"/>
-				<textElement>
-					<font size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{fecharegistro}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="108" y="131" width="161" height="20" uuid="c5b0b57f-19b9-4d7a-8f05-dc2374596c68"/>
 				<textElement>
@@ -130,6 +109,27 @@
 				</textElement>
 				<text><![CDATA[Fecha de registro:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="310" y="131" width="179" height="20" uuid="dd6c43d1-a088-40ba-b4ba-ff4b24d30f2f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="71" width="179" height="20" uuid="1c93fe4c-bf42-42f9-b2fe-6a09c156e479"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{str_telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="91" width="179" height="20" uuid="3b51f164-a998-4da1-a384-209b802fde21"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{str_correo}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

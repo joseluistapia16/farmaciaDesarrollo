@@ -51,27 +51,7 @@ public class ListarJoinProveedor {
         this.tipo_correo = tipo_correo;
         this.direccionImagen = direccionImagen;
     }
-
-    public ListarJoinProveedor(String cedula_ruc, String entidad, String representante, Date fecha_registro) {
-        this.cedula_ruc = cedula_ruc;
-        this.entidad = entidad;
-        this.representante = representante;
-        this.fecha_registro = fecha_registro;
-    }        
-
-    public ListarJoinProveedor(String cedula_ruc, String entidad, String representante, String direccion, Date fecha_registro, String telefono, String mail, String direccionImagen) {
-        this.cedula_ruc = cedula_ruc;
-        this.entidad = entidad;
-        this.representante = representante;
-        this.direccion = direccion;
-        this.fecha_registro = fecha_registro;
-        this.telefono = telefono;
-        this.mail = mail;
-        this.direccionImagen = direccionImagen;
-    }
-
-       
-
+    
     public Long getId_proveedor() {
         return id_proveedor;
     }
