@@ -7,6 +7,7 @@ package com.farmacia.views.proveedor;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ProveedorRep;
 import java.awt.Dimension;
 //import com.Farmacia.DAO.Conectar;
 //import com.Farmacia.CRUD.Llamar;
@@ -315,7 +316,7 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         java.util.List lista = new ArrayList();
         for (int i = 0; i < tabla.getRowCount(); i++) {
-            ListarJoinProveedor proveedor = new ListarJoinProveedor(tabla.getValueAt(i, 0).toString(), tabla.getValueAt(i, 1).toString(), tabla.getValueAt(i, 2).toString(),Date.valueOf(tabla.getValueAt(i,3).toString()));
+            ProveedorRep proveedor = new ProveedorRep (tabla.getValueAt(i, 0).toString(), tabla.getValueAt(i, 1).toString(), tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i,3).toString());
             lista.add(proveedor);
         }
         try {
