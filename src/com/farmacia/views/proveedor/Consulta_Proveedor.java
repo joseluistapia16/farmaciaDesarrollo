@@ -28,6 +28,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
+
 public class Consulta_Proveedor extends javax.swing.JDialog {
     int x, y;
     CRUD crud = new CRUD();    

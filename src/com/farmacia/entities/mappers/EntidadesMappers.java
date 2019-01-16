@@ -354,6 +354,7 @@ public class EntidadesMappers {
             System.out.println("compra"+obj.getPrecio_compra());
             obj.setPrecio_venta(rs.getDouble("precio_venta"));
             obj.setEstado(rs.getString("ESTADO"));
+            obj.setEstadoPrecio(rs.getString("ESTADO1"));
 
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
