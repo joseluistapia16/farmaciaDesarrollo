@@ -491,13 +491,21 @@ public class NotePedidos extends javax.swing.JDialog {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8 "
             }
-        ));
-        t_Nota_faltantes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                t_Nota_faltantesMousePressed(evt);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
+        });
+        t_Nota_faltantes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 t_Nota_faltantesMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                t_Nota_faltantesMousePressed(evt);
             }
         });
         tblProduc.setViewportView(t_Nota_faltantes);
@@ -765,35 +773,35 @@ public class NotePedidos extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 //        if (txtTotal.getText() != null) {
-            ArrayList<String> queryL = new ArrayList<String>();
-            ArrayList<String> queryL1 = new ArrayList<String>();
-            String id_cab = "";
-            String cad = "";
-            String cad1 = "";
-            CabeceraNotaPedido cn = new CabeceraNotaPedido();
-            cn.setId_proveedor(Long.valueOf(txtCodigoProveedor.getText()));
-            cn.setId_usuario(Long.valueOf("2"));
-            cn.setFecha_creacion(txtFecha.getText() + " " + txtHora.getText());
-            cn.setPlazo(cbxPlazo.getSelectedItem().toString());
-            cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
-            cn.setIva(Double.valueOf(txtIva.getText()));
-            cn.setDescuento(Double.valueOf(txtDescuento.getText()));
-            cn.setTotal(Double.valueOf(txtTotal.getText()));
+        ArrayList<String> queryL = new ArrayList<String>();
+        ArrayList<String> queryL1 = new ArrayList<String>();
+        String id_cab = "";
+        String cad = "";
+        String cad1 = "";
+        CabeceraNotaPedido cn = new CabeceraNotaPedido();
+        cn.setId_proveedor(Long.valueOf(txtCodigoProveedor.getText()));
+        cn.setId_usuario(Long.valueOf("2"));
+        cn.setFecha_creacion(txtFecha.getText() + " " + txtHora.getText());
+        cn.setPlazo(cbxPlazo.getSelectedItem().toString());
+        cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
+        cn.setIva(Double.valueOf(txtIva.getText()));
+        cn.setDescuento(Double.valueOf(txtDescuento.getText()));
+        cn.setTotal(Double.valueOf(txtTotal.getText()));
 
-            id_cab = crud.insertarCabeceraNotaPedido(cn);
+        id_cab = crud.insertarCabeceraNotaPedido(cn);
 
-            String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + txtTotal.getText();
-            id_cab = crud.buscarIDCabeceraNotaPedido(query);
+        String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + txtTotal.getText();
+        id_cab = crud.buscarIDCabeceraNotaPedido(query);
 
-            for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-                cad1 = "INSERT INTO detalle_nota_pedidos(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`total`,`iva`)VALUES(" + id_cab + "," + lista.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 6).toString() + "," + tbaListaFaltantes.getValueAt(i, 10) + "," + tbaListaFaltantes.getValueAt(i, 9).toString() + ")";
-                queryL1.add(cad1);
-            }
-            crud.InsertarDetallesNotaPedidos(queryL1);
-            queryL1.clear();
+        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+            cad1 = "INSERT INTO detalle_nota_pedidos(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`total`,`iva`)VALUES(" + id_cab + "," + lista.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 6).toString() + "," + tbaListaFaltantes.getValueAt(i, 10) + "," + tbaListaFaltantes.getValueAt(i, 9).toString() + ")";
+            queryL1.add(cad1);
+        }
+        crud.InsertarDetallesNotaPedidos(queryL1);
+        queryL1.clear();
 
-            JOptionPane.showMessageDialog(null, " Guardado con Exito ");
-            btnNuevo.setEnabled(true);
+        JOptionPane.showMessageDialog(null, " Guardado con Exito ");
+        btnNuevo.setEnabled(true);
 //        } else {
 //            JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
 //        }

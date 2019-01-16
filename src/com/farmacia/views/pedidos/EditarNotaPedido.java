@@ -67,8 +67,13 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         txtIva.setText(obj.getIva().toString());
         txtDescuento.setText(obj.getDescuento().toString());
         txtTotal.setText(obj.getTotal().toString());
+        txtTelefono1.setText(obj.getTelefono());
+        txtRepresentante.setText(obj.getRepresentante());
         txtFechaCreacion.setText(obj.getFecha_creacion());
-//        txtCorreo1.setText(obj.get);
+        txt_Numero.setText(obj.getId_cabecera_nota_pedidos().toString());
+        txtDireccion1.setText(obj.getDireccion());
+        txtTipo1.setText(obj.getClase());
+//       
         objf.setId_proveedor(obj.getId_proveedor());
         objf.setEntidad(obj.getEntidad());
         objf.setCorreo(obj.getCorreo());
@@ -77,6 +82,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         objf.setIva(obj.getIva());
         objf.setDescuento(obj.getDescuento());
         objf.setTotal(obj.getTotal());
+        objf.setId_cabecera_nota_pedidos(obj.getId_cabecera_nota_pedidos());
+        objf.setDireccion(obj.getDireccion());
+        objf.setClase(obj.getClase());
+        objf.setTelefono(obj.getTelefono());
+        objf.setRepresentante(obj.getRepresentante());
         
     }
 
@@ -195,7 +205,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         cbxPlazo = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        txtFechaCreacion1 = new javax.swing.JTextField();
+        txt_Numero = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
         PanelSec = new javax.swing.JPanel();
         filtro = new javax.swing.JTextField();
         tipofiltro = new javax.swing.JComboBox<>();
@@ -215,7 +226,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        btnNuevo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -416,24 +426,33 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Editar Nota de Pedido ");
 
-        txtFechaCreacion1.setEditable(false);
+        txt_Numero.setEditable(false);
+
+        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel15.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("#");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(348, Short.MAX_VALUE)
                 .addComponent(jLabel7)
-                .addGap(278, 278, 278)
-                .addComponent(txtFechaCreacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(205, 205, 205)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(txtFechaCreacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel15))
         );
 
         filtro.addActionListener(new java.awt.event.ActionListener() {
@@ -513,12 +532,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 "CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, true, false, true, true, true, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Long.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
         tbaListaFaltantes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -595,13 +614,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("$");
 
-        btnNuevo.setText("Nuevo");
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -611,8 +623,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(btnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnNuevo)
                         .addGap(18, 18, 18)
                         .addComponent(btnSalir2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -663,9 +673,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                     .addComponent(jLabel19)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar)
-                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -919,13 +928,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
-
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        Reiniciar();
-        btnBuscar.setEnabled(false);
-        btnGuardar.setEnabled(false);
-        t_Nota_faltantes.setEnabled(false);
-    }//GEN-LAST:event_btnNuevoActionPerformed
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
         joinProductoDetallesFaltantes objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
@@ -975,7 +977,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     private javax.swing.JPanel PanelSec;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JComboBox<String> cbxFormaP;
     private javax.swing.JComboBox<String> cbxPlazo;
@@ -986,6 +987,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     public static javax.swing.JLabel jLabel12;
     public static javax.swing.JLabel jLabel13;
     public static javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     public static javax.swing.JLabel jLabel17;
     public static javax.swing.JLabel jLabel18;
@@ -1014,7 +1016,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     public static javax.swing.JTextField txtDescuento;
     public static javax.swing.JTextField txtDireccion1;
     private javax.swing.JTextField txtFechaCreacion;
-    private javax.swing.JTextField txtFechaCreacion1;
     public static javax.swing.JTextField txtIva;
     public static javax.swing.JTextField txtNombre1;
     public static javax.swing.JTextField txtRepresentante;
@@ -1022,5 +1023,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     public static javax.swing.JTextField txtTelefono1;
     public static javax.swing.JTextField txtTipo1;
     public static javax.swing.JTextField txtTotal;
+    private javax.swing.JTextField txt_Numero;
     // End of variables declaration//GEN-END:variables
 }
