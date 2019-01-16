@@ -11,8 +11,12 @@ import java.awt.Toolkit;
 import sistemafarmacia.Fondo;
 import sistemafarmacia.VariablesFunciones;
 import com.farmacia.entities1.Usuario;
+import com.farmacia.views.compras.CabeceraCompra;
+import com.farmacia.views.pedidos.MantenimientoNotaPedidos;
+import com.farmacia.views.pedidos.NotePedidos;
 
 import com.farmacia.views.producto.MantenimientoProducto;
+import com.farmacia.views.producto.Products;
 import com.farmacia.views.proveedor.Consulta_Proveedor;
 
 public class FrmPrincipal extends javax.swing.JFrame {
@@ -78,6 +82,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mnuRegistrarVenta = new javax.swing.JMenuItem();
         mnuCliente = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        mnuRegistrarVenta1 = new javax.swing.JMenuItem();
+        mnuCliente1 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         mnuAyuda = new javax.swing.JMenu();
         mnuAcerca = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -273,6 +282,42 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setText("Compras");
+
+        mnuRegistrarVenta1.setText("Registrar Nota Pedido");
+        mnuRegistrarVenta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuRegistrarVenta1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuRegistrarVenta1);
+
+        mnuCliente1.setText("Proveedores");
+        mnuCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCliente1ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuCliente1);
+
+        jMenuItem8.setText("Registrar Compra");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem8);
+
+        jMenuItem9.setText("Mantenimiento Nota Pedido");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem9);
+
+        jMenuBar1.add(jMenu4);
+
         mnuAyuda.setText("Ayuda");
 
         mnuAcerca.setText("Acerca de ...");
@@ -306,7 +351,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
                 .addComponent(pnlPie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -321,6 +366,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
 ////        DlgProducto producto= new DlgProducto(this, rootPaneCheckingEnabled);
 ////        producto.setVisible(rootPaneCheckingEnabled);
+            Products pr = new Products(new javax.swing.JFrame(), true);
+            pr.setVisible(true);
     }//GEN-LAST:event_btnProductoActionPerformed
 
     private void mnuLaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLaboratorioActionPerformed
@@ -395,6 +442,26 @@ public class FrmPrincipal extends javax.swing.JFrame {
         p.setVisible(true);
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
+    private void mnuRegistrarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarVenta1ActionPerformed
+        NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true);
+        np.setVisible(true);
+    }//GEN-LAST:event_mnuRegistrarVenta1ActionPerformed
+
+    private void mnuCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCliente1ActionPerformed
+       Consulta_Proveedor pro = new Consulta_Proveedor(new javax.swing.JFrame(), true);
+       pro.setVisible(true);
+    }//GEN-LAST:event_mnuCliente1ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+       CabeceraCompra CB=new CabeceraCompra(new javax.swing.JFrame(), true);
+       CB.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+      MantenimientoNotaPedidos mp=new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
+      mp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -439,6 +506,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -448,14 +516,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel lblNombreUsuario;
     private javax.swing.JLabel lblPrivilegio;
     private javax.swing.JMenuItem mnuAcerca;
     private javax.swing.JMenu mnuAyuda;
     private javax.swing.JMenuItem mnuCliente;
+    private javax.swing.JMenuItem mnuCliente1;
     private javax.swing.JMenuItem mnuLaboratorio;
     private javax.swing.JMenuItem mnuRegistrarVenta;
+    private javax.swing.JMenuItem mnuRegistrarVenta1;
     private javax.swing.JPanel pnlBanner;
     private javax.swing.JPanel pnlPie;
     // End of variables declaration//GEN-END:variables

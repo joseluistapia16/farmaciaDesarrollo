@@ -11,6 +11,7 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.validaciones.ComponentesFaltantes;
 import com.farmacia.dao.CRUD;
 import com.farmacia.conponentes.Tablas;
+import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.views.producto.MantenimientoProducto;
 import com.farmacia.views.proveedor.Consulta_Proveedor_Compra;
 import java.awt.MouseInfo;
@@ -42,6 +43,13 @@ public class OrdenCompra extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        
+    }
+    public OrdenCompra(java.awt.Frame parent, boolean modal,JoinListarNotaPedidosCabecera Obj) {
+        super(parent, modal);
+        setUndecorated(true);
+        initComponents();
+        this.setLocationRelativeTo(null);
         setLayout(null);
         txtFecha.setText(FechaActual());
 
@@ -56,7 +64,6 @@ public class OrdenCompra extends javax.swing.JDialog {
 
         Tablas.cargarJoinProductosMCompra(tbacargarProductosA, lista);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

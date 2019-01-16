@@ -16,6 +16,7 @@ public class JoinListarNotaPedidosCabecera {
     private String direccion;
     private String cedula_ruc;
     private String correo;
+    private String Plazo;
     private String fecha_creacion;
     private Double iva;
     private Double descuento;
@@ -24,7 +25,7 @@ public class JoinListarNotaPedidosCabecera {
     public JoinListarNotaPedidosCabecera() {
     }
 
-    public JoinListarNotaPedidosCabecera(Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String telefono, Long id_proveedor_clase, String clase, String direccion, String cedula_ruc, String correo, String fecha_creacion, Double iva, Double descuento, Double total) {
+    public JoinListarNotaPedidosCabecera(Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String telefono, Long id_proveedor_clase, String clase, String direccion, String cedula_ruc, String correo, String Plazo, String fecha_creacion, Double iva, Double descuento, Double total) {
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
         this.id_proveedor = id_proveedor;
         this.entidad = entidad;
@@ -35,6 +36,7 @@ public class JoinListarNotaPedidosCabecera {
         this.direccion = direccion;
         this.cedula_ruc = cedula_ruc;
         this.correo = correo;
+        this.Plazo = Plazo;
         this.fecha_creacion = fecha_creacion;
         this.iva = iva;
         this.descuento = descuento;
@@ -121,6 +123,14 @@ public class JoinListarNotaPedidosCabecera {
         this.correo = correo;
     }
 
+    public String getPlazo() {
+        return Plazo;
+    }
+
+    public void setPlazo(String Plazo) {
+        this.Plazo = Plazo;
+    }
+
     public String getFecha_creacion() {
         return fecha_creacion;
     }
@@ -152,6 +162,5 @@ public class JoinListarNotaPedidosCabecera {
     public void setTotal(Double total) {
         this.total = total;
     }
-
-
+    
 }
