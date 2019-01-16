@@ -15,6 +15,7 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.entities1.Clientes;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Laboratorio;
+import com.farmacia.entities1.ListarPuntoVenta;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.TipoProducto;
@@ -870,6 +871,38 @@ public class Tablas {
 
         }
 
+    }
+    public static void cargarJoinPuntoVenta(JTable Tabla,ArrayList<ListarPuntoVenta> lista) {
+       
+        int[] a = {5, 30, 32, 52,80};
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.LEFT);
+        tcr1.setHorizontalAlignment(SwingConstants.CENTER);
+        model = VaciarTabla(Tabla);
+        String[] Co = {"ID", "Nombre", "Localidad", "Direccion","Observación"};
+        String[] Filas = new String[6];
+        model = new DefaultTableModel(null, Co);
+        Tabla.setShowGrid(true);
+        for (int i = 0; i < lista.size(); i++) {
+            Filas[0] = "" + lista.get(i).getId_punto_venta().toString();
+            Filas[1] = lista.get(i).getNombre();
+            Filas[2] = lista.get(i).getLocalidad();
+            Filas[3] = lista.get(i).getDireccion();
+            Filas[4] = lista.get(i).getObservacion();
+            model.addRow(Filas);
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        }
     }
     public static void listarProveedorNotaPedido(ArrayList<ListarJoinProveedorNotaPedido> lista, JTable Tabla) {
         int[] a = {10, 30, 32, 52};

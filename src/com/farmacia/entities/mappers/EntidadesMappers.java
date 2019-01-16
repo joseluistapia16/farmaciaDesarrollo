@@ -16,6 +16,7 @@ import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.Correo_Cliente;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Laboratorio;
+import com.farmacia.entities1.ListarPuntoVenta;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
 import com.farmacia.entities1.MarcaProducto;
@@ -23,6 +24,7 @@ import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.Telefono_Cliente;
 import com.farmacia.entities1.TipoProducto;
+import com.farmacia.entities1.fc_localidad_guayas;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
@@ -121,6 +123,20 @@ public class EntidadesMappers {
             obj.setIva(rs.getString("IVA"));
             obj.setCantidad_minima(rs.getLong("CANTIDAD_MINIMA"));
 
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
+    public static ListarPuntoVenta getJoinLocalidadGyFromResultSet(ResultSet rs) {
+        ListarPuntoVenta obj = new ListarPuntoVenta();
+        try {
+            obj.setId_punto_venta(rs.getLong("id_punto_venta"));
+            obj.setNombre(rs.getString("nombre"));
+            obj.setLocalidad(rs.getString("localidad"));
+            obj.setDireccion(rs.getString("direccion"));
+            obj.setObservacion(rs.getString("observacion"));
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -467,6 +483,34 @@ public class EntidadesMappers {
             //  obj.setId_tipo_correo(rs.getLong("ID_TIPO_CORREO"));
             obj.setMail(rs.getString("CORREO"));
 
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    public static fc_localidad_guayas getLocalidadGuayasFromResultSet(ResultSet rs) {
+        fc_localidad_guayas obj = new fc_localidad_guayas();
+        try {
+            obj.setId_localidad_guayas(rs.getLong("ID_LOCALIDAD_GUAYAS"));
+            obj.setLocalidad(rs.getString("LOCALIDAD"));
+            
+         
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
+    public static ListarPuntoVenta getPuntoVentaFromResultSet(ResultSet rs) {
+        ListarPuntoVenta obj = new ListarPuntoVenta();
+        try {
+            obj.setId_punto_venta(rs.getLong("id_punto_venta"));
+            obj.setNombre(rs.getString("nombre"));
+            obj.setLocalidad(rs.getString("localidad"));
+            obj.setDireccion(rs.getString("direccion"));
+            obj.setObservacion(rs.getString("observacion"));
+            
+         
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
