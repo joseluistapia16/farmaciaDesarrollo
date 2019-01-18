@@ -25,6 +25,7 @@ import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.Telefono_Cliente;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.entities1.fc_localidad_guayas;
+import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
@@ -393,7 +394,7 @@ public class EntidadesMappers {
         return obj;
     }
 
-    public static JoinListarNotaPedidosCabecera getListadoNotaPedidosFromResultSet(ResultSet rs) {
+    public static JoinListarNotaPedidosCabecera getListadoCabeceraNotaPedidosFromResultSet(ResultSet rs) {
         JoinListarNotaPedidosCabecera obj = new JoinListarNotaPedidosCabecera();
         try {
 
@@ -412,6 +413,26 @@ public class EntidadesMappers {
             obj.setDescuento(rs.getDouble("DESCUENTO"));
             obj.setTotal(rs.getDouble("TOTAL"));
 
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+     public static JoinListarDetalleNotaPedido getDetallePedidosFromResultSet(ResultSet rs) {
+        JoinListarDetalleNotaPedido obj = new JoinListarDetalleNotaPedido();
+        try {
+
+            obj.setId_producto(rs.getLong("ID_PRODUCTO"));
+            obj.setMarca(rs.getString("MARCA"));
+            obj.setTipo(rs.getString("TIPO"));
+            obj.setProducto(rs.getString("PRODUCTO"));
+            obj.setEnvase(rs.getString("ENVASE"));
+            obj.setMedida(rs.getString("MEDIDA"));
+            obj.setCantidad(rs.getInt("CANTIDAD"));
+            obj.setPrecio(rs.getDouble("PRECIO"));
+            obj.setDescuento(rs.getDouble("DESCUENTO"));
+            obj.setIva(rs.getDouble("IVA"));
+            obj.setTotal(rs.getDouble("TOTAL"));
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -19,14 +19,14 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     int x, y;
     JoinListarNotaPedidosCabecera objeto = null;
-    ArrayList<JoinListarNotaPedidosCabecera> lista = crud.listarNotas(1);
+    ArrayList<JoinListarNotaPedidosCabecera> lista = crud.listarCabeceraNotaPedido(1);
 
     public MantenimientoNotaPedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-        Tablas.CargarJoinListadoNotaPedidos(tblRegistrodeNotas, lista);
+        Tablas.CargarJoinListadoCabeceraNotaPedidos(tblRegistrodeNotas, lista);
     }
 
     @SuppressWarnings("unchecked")

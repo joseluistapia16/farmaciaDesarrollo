@@ -28,6 +28,7 @@ import com.farmacia.entities1.TipoProducto;
 import com.farmacia.entities1.Usuario;
 import com.farmacia.entities1.Usuario_S;
 import com.farmacia.entities1.fc_localidad_guayas;
+import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
@@ -1844,18 +1845,18 @@ public class CRUD {
         return valor;
 
     }
-   public ArrayList<JoinListarNotaPedidosCabecera> listarNotas(int op) {
+   public ArrayList<JoinListarNotaPedidosCabecera> listarCabeceraNotaPedido(int op) {
         ArrayList<JoinListarNotaPedidosCabecera> lista = new ArrayList<JoinListarNotaPedidosCabecera>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
-                    "{ call ListarRegistroDeNotas(?)}");
+                    "{ call ListarRegistroCabeceraNotaPedido(?)}");
             prcProcedimientoAlmacenado.setInt(1, op);
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
-                JoinListarNotaPedidosCabecera obj = EntidadesMappers.getListadoNotaPedidosFromResultSet(rs);
+                JoinListarNotaPedidosCabecera obj = EntidadesMappers.getListadoCabeceraNotaPedidosFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();
@@ -1875,18 +1876,19 @@ public class CRUD {
         }
         return lista;
     } 
-   public ArrayList<JoinListarNotaPedidosCabecera> listarCabeceraPedido(int op) {
-        ArrayList<JoinListarNotaPedidosCabecera> lista = new ArrayList<JoinListarNotaPedidosCabecera>();
+   public ArrayList<JoinListarDetalleNotaPedido> listarDetalleNotaPedido(int op,String id) {
+        ArrayList<JoinListarDetalleNotaPedido> lista = new ArrayList<JoinListarDetalleNotaPedido>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
-                    "{ call ListarRegistroDeNotas(?)}");
+                    "{ call ListarRegistroDetalleNotaPedido(?,?)}");
             prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.setString(2, id);
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
-                JoinListarNotaPedidosCabecera obj = EntidadesMappers.getCabeceraPedidosFromResultSet(rs);
+                JoinListarDetalleNotaPedido obj = EntidadesMappers.getDetallePedidosFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();
