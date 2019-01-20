@@ -413,7 +413,7 @@ public class EntidadesMappers {
             obj.setIva(rs.getDouble("IVA"));
             obj.setDescuento(rs.getDouble("DESCUENTO"));
             obj.setTotal(rs.getDouble("TOTAL"));
-            obj.setPlazo(rs.getString("PLAZO"));
+//            obj.setPlazo(rs.getString("PLAZO"));
 
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);

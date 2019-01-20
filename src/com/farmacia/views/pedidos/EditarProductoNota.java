@@ -414,17 +414,23 @@ public class EditarProductoNota extends javax.swing.JDialog {
     }//GEN-LAST:event_txtcantidadActionPerformed
     public void Total() {
         Double total = 0.00;
+        Double PorcentajeDescuento = 0.00;
         Double Cantidad = Double.parseDouble(txtcantidad.getText());
         Double Precio = Double.parseDouble(txtPrecio.getText());
-        Double PorcentajeDescuento = Double.parseDouble(txtporcentajeDescuento.getText());
+//        if (txtporcentajeDescuento.getText()!= null) {
+        PorcentajeDescuento = Double.parseDouble(txtporcentajeDescuento.getText());
         Double ValorDescuento = Cantidad * Precio * PorcentajeDescuento / 100;
-//        Double ValorDescuento = redondearDecimales(ValorDescuento, 2);
+        ValorDescuento = redondearDecimales(ValorDescuento, 2);
+
         txtDescuento.setText(Double.valueOf(ValorDescuento).toString());
         Double IVA = Double.parseDouble(txtIva.getText());
 
         total = Cantidad * Precio + IVA - ValorDescuento;
         total = redondearDecimales(total, 2);
         txtTotal.setText(Double.valueOf(total).toString());
+//        }else{
+        
+//        }
     }
 
 //    public void ValorDescuento() {
@@ -531,7 +537,9 @@ public class EditarProductoNota extends javax.swing.JDialog {
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         Total();
+
         btnEditar.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
     String CADENA = "";
