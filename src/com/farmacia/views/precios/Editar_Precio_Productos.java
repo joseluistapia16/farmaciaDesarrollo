@@ -336,7 +336,7 @@ public class Editar_Precio_Productos extends javax.swing.JDialog {
 
     public boolean Validar() {
         boolean pos = false;
-        lista_v = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,porcentaje_descuento,valor_descuento FROM `precios` WHERE `id_producto`= " + id_producto);
+        lista_v = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,estado FROM `precios` WHERE `id_producto`= " + id_producto);
         // System.out.println(id_producto + " " + lista_t.get(0).getId_producto());
         for (int i = 0; i < lista_v.size(); i++) {
             // System.out.println(223 + " hol"+id_producto +" " +lista_t.get(i).getPrecio_compra());

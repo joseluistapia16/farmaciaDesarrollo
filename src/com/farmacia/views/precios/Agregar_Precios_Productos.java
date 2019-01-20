@@ -18,12 +18,21 @@ package com.farmacia.views.precios;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Precios;
+import com.farmacia.views.compras.OrdenCompra;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -36,13 +45,15 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     private Double precioCompra;
     private Double precioVenta;
     private Long id_precio;
+    String FechaActual;
     public String[] verificar = new String[10];
     CRUD crud = new CRUD();
     static Long id_producto;
     public ArrayList<Precios> lista_t = null;
     Consultas llamar = new Consultas();
     Precios objeto=null;
-    
+    Date date = new Date();
+    DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     public Long getId_precio() {
         return id_precio;
     }
@@ -65,24 +76,27 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         
     }   
-    public Agregar_Precios_Productos(java.awt.Frame parent, boolean modal, Long id,Precios obj1) {
+    public Agregar_Precios_Productos(java.awt.Frame parent, boolean modal, Long id) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
         // Habilitar(false);
         id_producto = id;
-        objeto=obj1;
+       
         lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,estado FROM `precios` WHERE `id_producto`= " + id_producto);
         for (int i = 0; i < lista_t.size(); i++) {
             System.out.println(223 + " hol" + id_producto + " " + lista_t.get(i).getPrecio_compra());
         }
-        llenarPrecios();
+        //llenarPrecios();
+        
+   
     }
     public void llenarPrecios(){
     nuevo1.setText(objeto.getPrecio_compra().toString());
     nuevo2.setText(objeto.getPrecio_venta().toString());
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -266,31 +280,31 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
         boolean pos = Validar();
         boolean var = false;
-        Long idPre = null;
+        String valor = null;
+        FechaActual=hourdateFormat.format(date);
         if (pos == false) {
             setPrecio(Double.valueOf(nuevo1.getText()));
             Precios pr = new Precios();
             pr.setId_producto(id_producto);
             pr.setPrecio_compra(Double.valueOf(nuevo1.getText()));
             pr.setPrecio_venta(Double.valueOf(nuevo2.getText()));
-            idPre = Long.valueOf(crud.actualizarPrecioCompra(pr));
-            if (idPre != null) {
-                System.out.println("id precio: " + idPre);
-                JOptionPane.showMessageDialog(null, "Precios Actualizados");
+            pr.setFecha_registro(FechaActual);
+            pr.setId_usuario(Long.valueOf("2"));
+            valor = crud.actualizarPrecioCompra(pr);
+            if (valor != null) {
+                JOptionPane.showMessageDialog(null, valor);
             }
-            setId_precio(idPre);
+            //setId_precio(idPre);
 //            setPrecioCompra(Double.valueOf(nuevo1.getText()));
 //            setPrecioVenta(Double.valueOf(nuevo2.getText()));
             setVisible(false);
 
         }
-
-
     }//GEN-LAST:event_BotonGuardarActionPerformed
     public boolean Validar() {
         boolean pos = false;
 //        lista_t = llamar.listarTelefonoCliente("Modulo_Cliente", "select * from Telefono");
-        lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,porcentaje_descuento,valor_descuento FROM `precios` WHERE `id_producto`= " + id_producto);
+        lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,estado FROM `precios` WHERE `id_producto`= " + id_producto);
         // System.out.println(id_producto + " " + lista_t.get(0).getId_producto());
         for (int i = 0; i < lista_t.size(); i++) {
             // System.out.println(223 + " hol"+id_producto +" " +lista_t.get(i).getPrecio_compra());
@@ -301,13 +315,17 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
                 Double PrecioVenta = Double.valueOf(nuevo2.getText());
 
                 if (Objects.equals(lista_t.get(i).getPrecio_compra(), PrecioCompra)) {
-                    JOptionPane.showMessageDialog(null, "El precio Compra ya existe");
-                    pos = true;
+                    int h = Confirmacion("El precio "+nuevo1.getText()+" ya existe desea mantenerlo?");
+                    if(h==0){
+                    pos = false;
+                    }else{pos = true;}
+                   
                 }
                 if (Objects.equals(lista_t.get(i).getPrecio_venta(), PrecioVenta)) {
-                    JOptionPane.showMessageDialog(null, "El precio Venta ya existe");
-                    pos = true;
-                    return pos;
+                    int h = Confirmacion("El precio "+nuevo1.getText()+" ya existe desea mantenerlo?");
+                    if(h==0){
+                    pos = false;
+                    }else{pos = true;}
 
                 }
 
@@ -315,7 +333,11 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         }
         return pos;
     }
-
+    public int Confirmacion(String msx) {
+        int select = JOptionPane.showConfirmDialog(null, msx, "Confirmar", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
+        System.out.println(select);
+        return select;
+    }
 
     private void nuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo1ActionPerformed
 
