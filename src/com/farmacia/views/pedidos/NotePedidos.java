@@ -64,6 +64,8 @@ public class NotePedidos extends javax.swing.JDialog {
 
     }
 
+
+
     class horas implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
