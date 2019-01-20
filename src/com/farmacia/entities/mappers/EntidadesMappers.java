@@ -17,6 +17,7 @@ import com.farmacia.entities1.Correo_Cliente;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.ListarPuntoVenta;
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
 import com.farmacia.entities1.MarcaProducto;
@@ -439,6 +440,26 @@ public class EntidadesMappers {
         }
         return obj;
     }
+//     public static JoinListarDetalleNotaPedido getDetallePedidosFromResultSet(ResultSet rs) {
+//        JoinListarDetalleNotaPedido obj = new JoinListarDetalleNotaPedido();
+//        try {
+//
+//            obj.setId_producto(rs.getLong("ID_PRODUCTO"));
+//            obj.setMarca(rs.getString("MARCA"));
+//            obj.setTipo(rs.getString("TIPO"));
+//            obj.setProducto(rs.getString("PRODUCTO"));
+//            obj.setEnvase(rs.getString("ENVASE"));
+//            obj.setMedida(rs.getString("MEDIDA"));
+//            obj.setCantidad(rs.getInt("CANTIDAD"));
+//            obj.setPrecio(rs.getDouble("PRECIO"));
+//            obj.setDescuento(rs.getDouble("DESCUENTO"));
+//            obj.setIva(rs.getDouble("IVA"));
+//            obj.setTotal(rs.getDouble("TOTAL"));
+//        } catch (SQLException ex) {
+//            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return obj;
+//    }
     public static JoinListarNotaPedidosCabecera getCabeceraPedidosFromResultSet(ResultSet rs) {
         JoinListarNotaPedidosCabecera obj = new JoinListarNotaPedidosCabecera();
         try {
@@ -530,6 +551,31 @@ public class EntidadesMappers {
             obj.setNombre(rs.getString("nombre"));
             obj.setLocalidad(rs.getString("localidad"));
             obj.setDireccion(rs.getString("direccion"));
+            obj.setObservacion(rs.getString("observacion"));
+            
+         
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    public static Listar_usuario getUsuarioFromResultSet(ResultSet rs) {
+        Listar_usuario obj = new Listar_usuario();
+        try {
+            obj.setId_sesion(rs.getLong("id_sesion"));
+            obj.setFecha_registro(rs.getDate("fecha_registro"));
+            obj.setCedula(rs.getString("cedula"));
+            obj.setApellidos(rs.getString("apellidos"));
+            obj.setNombres(rs.getString("nombres"));
+            obj.setDireccion(rs.getString("direccion"));
+            obj.setTelefono(rs.getString("telefono"));
+            obj.setConvencional(rs.getString("convencional"));
+            obj.setCorreo(rs.getString("correo"));
+            obj.setCargo(rs.getString("cargo"));
+            obj.setGenero(rs.getString("genero"));
+            obj.setDiscapacidad(rs.getString("discapacidad"));
+            obj.setPorcentaje(rs.getString("porcentaje"));
+            obj.setEstado(rs.getString("estado"));
             obj.setObservacion(rs.getString("observacion"));
             
          
