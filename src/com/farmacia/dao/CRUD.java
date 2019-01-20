@@ -839,7 +839,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call insertarProveedor(?,?,?,?,?,?,?,?,?) }");
+                    "{ call insertarProveedor(?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setLong(1, obj.getId_proveedor_clase());
             prodProAlm.setString(2, obj.getCedula_ruc());
             prodProAlm.setString(3, obj.getEntidad());
@@ -848,6 +848,7 @@ public class CRUD {
             prodProAlm.setDate(6, obj.getFecha_registro());
             prodProAlm.setString(7, obj.getTelefono());
             prodProAlm.setString(8, obj.getMail());
+            prodProAlm.setString(9, obj.getDireccionImagen());
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.execute();
             valor = prodProAlm.getString("valor");
