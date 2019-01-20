@@ -93,6 +93,11 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         });
 
         tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
+        tipofiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipofiltroActionPerformed(evt);
+            }
+        });
 
         filtrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/buscar1.jpg"))); // NOI18N
         filtrar.setText("Buscar");
@@ -271,6 +276,10 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         lista = crud.listarTodoJoinProductos(1);
         Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
     }//GEN-LAST:event_btnProductoActionPerformed
+
+    private void tipofiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipofiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipofiltroActionPerformed
 
     /**
      * @param args the command line arguments

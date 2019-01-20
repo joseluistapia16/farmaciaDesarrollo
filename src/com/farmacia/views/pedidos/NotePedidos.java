@@ -64,6 +64,8 @@ public class NotePedidos extends javax.swing.JDialog {
 
     }
 
+
+
     class horas implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
@@ -831,6 +833,7 @@ public class NotePedidos extends javax.swing.JDialog {
                             lista1.add(np.getObjf());
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                             Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
+                            
                             Total();
                             TotalIVA();
                             TotalDescuento();
