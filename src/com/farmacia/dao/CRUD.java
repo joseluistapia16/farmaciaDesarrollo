@@ -1857,7 +1857,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
-                    "{ call ListarRegistroCabeceraNotaPedido(?)}");
+                    "{ call ListarRegistroDeNotas(?)}");
             prcProcedimientoAlmacenado.setInt(1, op);
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
