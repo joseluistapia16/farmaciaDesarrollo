@@ -49,22 +49,22 @@ public class Persona {
         this.str_correo = str_correo;
     }
 
-    public Persona(String cedula, String nombre, String apellido, String direccion, Date fecha_reg, String str_telefono, String str_correo) {
+    public Persona(String cedula, String nombre, String apellido, String direccion, String estado, String str_telefono, String str_correo) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
-        this.fecha_reg = fecha_reg;
+        this.estado = estado;
         this.str_telefono = str_telefono;
         this.str_correo = str_correo;
     }
 
-    public Persona(String cedula, String nombre, String apellido, String direccion, Date fecha_reg) {
+    public Persona(String cedula, String nombre, String apellido, String direccion, String estado) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
-        this.fecha_reg = fecha_reg;
+        this.estado = estado;
     }
     
     

@@ -503,7 +503,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
 
     private void BotonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalir1ActionPerformed
         ArrayList cliente = new ArrayList();
-        Clientes cliente1 = new Clientes (cedula.getText(),nombre.getText(),apellido.getText(),direccion.getText(),Date.valueOf(fecha_reg.getText()),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString());
+        Clientes cliente1 = new Clientes (cedula.getText(),nombre.getText(),apellido.getText(),direccion.getText(),fecha_reg.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString());
         cliente.add(cliente1);                    
            try{ 
             JasperReport reporte = (JasperReport) JRLoader.loadObject("ClienteI.jasper");

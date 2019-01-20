@@ -41,7 +41,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     static Long id_producto;
     public ArrayList<Precios> lista_t = null;
     Consultas llamar = new Consultas();
-
+    Precios objeto=null;
     
     public Long getId_precio() {
         return id_precio;
@@ -58,21 +58,31 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
-
-    public Agregar_Precios_Productos(java.awt.Frame parent, boolean modal, Long id) {
+    public Agregar_Precios_Productos(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        setUndecorated(true);
+        initComponents();
+        setLocationRelativeTo(null);
+        
+    }   
+    public Agregar_Precios_Productos(java.awt.Frame parent, boolean modal, Long id,Precios obj1) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
         // Habilitar(false);
         id_producto = id;
-        lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,porcentaje_descuento,valor_descuento FROM `precios` WHERE `id_producto`= " + id_producto);
+        objeto=obj1;
+        lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,estado FROM `precios` WHERE `id_producto`= " + id_producto);
         for (int i = 0; i < lista_t.size(); i++) {
             System.out.println(223 + " hol" + id_producto + " " + lista_t.get(i).getPrecio_compra());
         }
-
+        llenarPrecios();
     }
-
+    public void llenarPrecios(){
+    nuevo1.setText(objeto.getPrecio_compra().toString());
+    nuevo2.setText(objeto.getPrecio_venta().toString());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -410,7 +420,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Agregar_Precios_Productos dialog = new Agregar_Precios_Productos(new javax.swing.JFrame(), true, id_producto);
+                Agregar_Precios_Productos dialog = new Agregar_Precios_Productos(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -6,6 +6,7 @@
 package com.farmacia.dao;
 
 import com.farmacia.entities.mappers.EntidadesMappers;
+import com.farmacia.entities1.Bitacora_seguridad;
 import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinProveedor;
@@ -14,13 +15,19 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Laboratorio;
+import com.farmacia.entities1.ListarPuntoVenta;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.Obcx;
 import com.farmacia.entities1.Precios;
+import com.farmacia.entities1.Punto_venta;
+import com.farmacia.entities1.Rol;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.TipoProducto;
+import com.farmacia.entities1.Usuario;
+import com.farmacia.entities1.Usuario_S;
+import com.farmacia.entities1.fc_localidad_guayas;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
@@ -2013,6 +2020,278 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
             rs = prodProAlm.getResultSet();
             while (rs.next()) {
                 ListarJoinProveedorNotaPedido obj = EntidadesMappers.getListarJoinProveedorNotaPedidoFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+ 
+ public String insertarPunto_venta(Punto_venta pv) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call nuevo_punto_venta(?,?,?,?,?)}");
+            pro.setString(1, pv.getLocalidad());
+            pro.setString(2, pv.getNombre());
+            pro.setString(3, pv.getDireccion());
+            pro.setString(4, pv.getDir_ip());
+            pro.registerOutParameter("salida", Types.VARCHAR);
+            pro.executeUpdate();
+            valor = pro.getString("salida");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
+    public String actualizarPunto_venta(Punto_venta pv) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call actualizar_punto_venta(?,?,?,?,?,?,?)}");
+            pro.setLong(1, pv.getId_punto_venta());
+            pro.setString(2, pv.getLocalidad());
+            pro.setString(3, pv.getNombre());
+            pro.setString(4, pv.getDireccion());
+            pro.setString(5, pv.getDir_ip());
+            pro.setString(6,pv.getObservacion());
+            pro.registerOutParameter("salida", Types.VARCHAR);
+            pro.executeUpdate();
+            valor = pro.getString("salida");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+
+    public String Iniciar_sesion(Usuario_S us) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call iniciar_sesion(?,?,?,?,?)}");
+            pro.setString(1, us.getCorreo());
+            pro.setString(2, us.getPassword());
+            pro.setString(3, us.getIp_equipo());
+          //  pro.setString(4, us.getIp_publico());
+            pro.setString(4, us.getUsuario_equipo());
+            pro.registerOutParameter("salida", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getString("salida");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+
+     public String Nuevo_usuario(Punto_venta pv, Usuario_S us,Rol r) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call nuevo_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            pro.setString(1, pv.getNombre());
+            pro.setString(2, r.getNombre());
+            pro.setString(3, us.getCedula());
+            pro.setString(4, us.getNombre());
+            pro.setString(5, us.getApellido());
+            pro.setString(6, us.getTelefono());
+            pro.setString(7, us.getCorreo());
+            pro.setString(8, us.getPassword());
+            pro.setString(9, us.getPassword());
+            pro.setString(10, us.getRuta_imagen());
+            pro.setLong(11, us.getId_usuario_registro());
+            pro.setString(12, us.getIp_equipo());
+            pro.setString(13, us.getIp_publico());
+            pro.setString(14, us.getUsuario_equipo());
+            pro.setString(15, us.getDir_ip_completa());
+            pro.registerOutParameter("salida", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getString("salida");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+      public String bitacoraSeguridad(Bitacora_seguridad bs) {
+        
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call bitacora_seguridad(?,?,?,?,?)}");
+            pro.setString(1, bs.getUser());
+            pro.setString(2, bs.getPassword());
+            pro.setString(3, bs.getIp_equipo());
+            pro.setString(4, bs.getUsuario_equipo());
+            pro.setString(5, bs.getDir_ip_completa());
+            pro.executeUpdate();
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+       
+      }
+      
+      
+      public ArrayList<ListarPuntoVenta> listar_punto_venta() {
+       ArrayList<ListarPuntoVenta> valor = new ArrayList<ListarPuntoVenta>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call listarPuntoVenta()}");
+              rs = pro.executeQuery();
+              while (rs.next()) {
+                ListarPuntoVenta obj = EntidadesMappers.getPuntoVentaFromResultSet(rs);
+                valor.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+
+      public ArrayList<fc_localidad_guayas> listarLocalidadGuayas() {
+        ArrayList<fc_localidad_guayas> lista = new ArrayList<fc_localidad_guayas>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call listaComboLocalidadr }");
+            //   prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                fc_localidad_guayas obj = EntidadesMappers.getLocalidadGuayasFromResultSet(rs);
+                lista.add(obj);
+            }
+
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+      public ArrayList<ListarPuntoVenta> filtroBusquedaPV(String query) {
+        ArrayList<ListarPuntoVenta> lista = new ArrayList<ListarPuntoVenta>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call filtroProducto(?) }");
+            prcProcedimientoAlmacenado.setString(1, query);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                ListarPuntoVenta obj = EntidadesMappers.getJoinLocalidadGyFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();

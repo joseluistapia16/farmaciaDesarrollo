@@ -363,12 +363,12 @@ public class Ingreso_de_Precios extends javax.swing.JDialog {
         ArrayList<Obcx> lista = new ArrayList();
         boolean band = false;
         int pos = 0;
-        Agregar_Precios_Productos ic = new Agregar_Precios_Productos(new javax.swing.JFrame(), true, id_pro);
-        ic.setVisible(true);
+//        Agregar_Precios_Productos ic = new Agregar_Precios_Productos(new javax.swing.JFrame(), true, id_pro);
+//        ic.setVisible(true);
 
 
-        id_precio = ic.getId_precio();
-        listaPrecios.clear();
+//        id_precio = ic.getId_precio();
+//        listaPrecios.clear();
         cbx1.removeAll();
         cbx2.removeAll();
         System.out.println("idpro: " + id_pro);
@@ -380,8 +380,8 @@ public class Ingreso_de_Precios extends javax.swing.JDialog {
         Precios pr = new Precios();
         pr.setPrecio_compra(Double.valueOf(cbx1.getSelectedItem().toString()));
         pr.setPrecio_venta(Double.valueOf(cbx2.getSelectedItem().toString()));
-        Editar_Precio_Productos ed = new Editar_Precio_Productos(new javax.swing.JFrame(), true, id_pro, precios.getId_precio(), pr);
-        ed.setVisible(true);
+  ///      Editar_Precio_Productos ed = new Editar_Precio_Productos(new javax.swing.JFrame(), true, id_pro, precios.getId_precio(), pr);
+     //   ed.setVisible(true);
     }//GEN-LAST:event_editarPrecioCompraActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed

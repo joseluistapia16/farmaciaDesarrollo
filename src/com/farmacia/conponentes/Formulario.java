@@ -12,6 +12,7 @@ import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.TipoProducto;
+import com.farmacia.entities1.fc_localidad_guayas;
 import com.farmacia.fecha.Fecha;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
@@ -169,6 +170,26 @@ public class Formulario {
         //arreglo[0] = "Elija una opcion...";
         for (int i = 0; i < lista.size(); i++) {
             arreglo[(i)] = lista.get(i).getEstado();
+        }
+        return arreglo;
+
+    }
+        public static DefaultComboBoxModel listarComboTipoLocalidad(ArrayList<fc_localidad_guayas> lista) {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        Object[] arreglo = arreglo10(lista);
+        System.out.println(lista.size() + " tam " + arreglo.length);
+        for (int i = 0; i < arreglo.length; i++) {
+            model.addElement(arreglo[i]);
+        }
+        return model;
+
+    }
+
+    private static Object[] arreglo10(ArrayList<fc_localidad_guayas> lista) {
+        Object[] arreglo = new Object[lista.size() + 1];
+        arreglo[0] = "Elija una opcion...";
+        for (int i = 0; i < lista.size(); i++) {
+            arreglo[(i + 1)] = lista.get(i).getLocalidad();
         }
         return arreglo;
 
