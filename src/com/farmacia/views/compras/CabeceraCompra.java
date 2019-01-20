@@ -29,6 +29,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
+        
     }
 
     /**
