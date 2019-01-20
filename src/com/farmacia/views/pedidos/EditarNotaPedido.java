@@ -31,8 +31,10 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     filtrosProductos fil = new filtrosProductos();
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
-    ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
 
+    joinProductoDetallesFaltantes objeto = null;
+//    ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
+    ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     JoinListarNotaPedidosCabecera objf = new JoinListarNotaPedidosCabecera();
 
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
@@ -692,40 +694,33 @@ public void Total() {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
-//       int i = 0;
-//
-//        String msg = null;
-//
-//        try {
-//            if (evt.getClickCount() == 2) {
-//                i = t_Nota_faltantes.getSelectedRow();
-//                objetop = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
-//                if (objetop != null) {
-//                    AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objetop);
-//                    np.setVisible(true);
-//                    msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objetop.getId_producto().toString());
-//
-//                    if (msg == null) {
-//                        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-//                        if (np.getObjf().getCantidad() > 0) {
-//                            int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
-//                            getPosicion(objeto.getId_producto(), suma);
-//                            lista1.add(np.getObjf());
-//                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-//                            Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
-//                        }
-//                    } else {
-//                        JOptionPane.showMessageDialog(this, msg);
-//                    }
-//
-//                }
-//            }
-//
-//        } catch (Exception e) {
-//        }
+        int i = 0;
+        String msg = null;
 
+        if (evt.getClickCount() == 2) {
+            i = t_Nota_faltantes.getSelectedRow();
+            objeto = devuelveObjeto2(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
+            if (objeto != null) {
+                AgregarProductoEditarNotaPedido1 np = new AgregarProductoEditarNotaPedido1(new javax.swing.JFrame(), true, objeto);
+                np.setVisible(true);
+                msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
+                if (msg == null) {
+                
+                }
+            }
+        }
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
+    public joinProductoDetallesFaltantes devuelveObjeto2(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
+        joinProductoDetallesFaltantes objeto1 = null;
+        for (int i = 0; i < listarobj.size(); i++) {
+            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
+                objeto1 = listarobj.get(i);
+                break;
+            }
+        }
+        return objeto1;
 
+    }
     private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
 
     }//GEN-LAST:event_filtroActionPerformed
