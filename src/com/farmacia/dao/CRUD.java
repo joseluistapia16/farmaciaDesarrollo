@@ -1851,7 +1851,38 @@ public class CRUD {
         }
         return valor;
 
-    }
+    }//getListadoCabeceraNotaPedidoEnComprasFromResultSet
+    public ArrayList<JoinListarNotaPedidosCabecera> listarCabeceraNotaPedidoEnCompras(int op) {
+        ArrayList<JoinListarNotaPedidosCabecera> lista = new ArrayList<JoinListarNotaPedidosCabecera>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call ListarRegistroDeNotas(?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                JoinListarNotaPedidosCabecera obj = EntidadesMappers.getListadoCabeceraNotaPedidoEnComprasFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    } 
    public ArrayList<JoinListarNotaPedidosCabecera> listarCabeceraNotaPedido(int op) {
         ArrayList<JoinListarNotaPedidosCabecera> lista = new ArrayList<JoinListarNotaPedidosCabecera>();
         try {

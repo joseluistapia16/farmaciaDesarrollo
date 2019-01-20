@@ -420,6 +420,31 @@ public class EntidadesMappers {
         }
         return obj;
     }
+    public static JoinListarNotaPedidosCabecera getListadoCabeceraNotaPedidoEnComprasFromResultSet(ResultSet rs) {
+        JoinListarNotaPedidosCabecera obj = new JoinListarNotaPedidosCabecera();
+        try {
+
+            obj.setId_cabecera_nota_pedidos(rs.getLong("ID_CABECERA_NOTA_PEDIDOS"));
+            obj.setId_proveedor(rs.getLong("ID_PROVEEDOR"));
+            obj.setCorreo(rs.getString("CORREO"));
+            obj.setId_proveedor_clase(rs.getLong("ID_PROVEEDOR_CLASE"));
+            obj.setClase(rs.getString("CLASE"));
+            obj.setDireccion(rs.getString("DIRECCION"));
+            obj.setCedula_ruc(rs.getString("CEDULA_RUC"));
+            obj.setRepresentante(rs.getString("REPRESENTANTE"));
+            obj.setEntidad(rs.getString("PROVEEDOR"));
+            obj.setTelefono(rs.getString("TELEFONO"));
+            obj.setFecha_creacion(rs.getString("FECHA_CREACION"));
+            obj.setIva(rs.getDouble("IVA"));
+            obj.setDescuento(rs.getDouble("DESCUENTO"));
+            obj.setTotal(rs.getDouble("TOTAL"));
+            obj.setPlazo(rs.getString("PLAZO"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
      public static JoinListarDetalleNotaPedido getDetallePedidosFromResultSet(ResultSet rs) {
         JoinListarDetalleNotaPedido obj = new JoinListarDetalleNotaPedido();
         try {

@@ -22,7 +22,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     int x, y;
     JoinListarNotaPedidosCabecera objeto = null;
-    ArrayList<JoinListarNotaPedidosCabecera> lista = crud.listarCabeceraNotaPedido(3);
+    ArrayList<JoinListarNotaPedidosCabecera> lista = crud.listarCabeceraNotaPedidoEnCompras(3);
     
     public CabeceraCompra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
