@@ -10,7 +10,7 @@
 	<field name="contacto" class="java.lang.String"/>
 	<field name="telefono" class="java.lang.String"/>
 	<field name="correo" class="java.lang.String"/>
-	<field name="imagen" class="java.lang.String"/>
+	<field name="direccionImagen" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -133,7 +133,7 @@
 			</staticText>
 			<image>
 				<reportElement x="179" y="0" width="219" height="113" uuid="cddd3082-5683-4987-b04c-2e13bd993612"/>
-				<imageExpression><![CDATA[$F{imagen}.toString()]]></imageExpression>
+				<imageExpression><![CDATA[$F{direccionImagen}.toString()]]></imageExpression>
 			</image>
 		</band>
 	</detail>
