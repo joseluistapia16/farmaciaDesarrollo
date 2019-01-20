@@ -2461,7 +2461,7 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
-                    "{call listarProductoVentas(?,?)}");
+                    "{call listarProductosVentas(?,?)}");
             prcProcedimientoAlmacenado.setString(1, op1);
             prcProcedimientoAlmacenado.setString(2, op2);
             prcProcedimientoAlmacenado.execute();
