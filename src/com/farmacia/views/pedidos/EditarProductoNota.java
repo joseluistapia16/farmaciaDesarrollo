@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class EditarProductoNota extends javax.swing.JDialog {
-
+    
     int x, y;
     JoinListarDetalleNotaPedido objf = new JoinListarDetalleNotaPedido();
 
@@ -26,14 +26,14 @@ public class EditarProductoNota extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-
+    
     public EditarProductoNota(java.awt.Frame parent, boolean modal, JoinListarDetalleNotaPedido obj1) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         llenarFormulario(obj1);
         this.setLocationRelativeTo(null);
-
+        
         btnEditar.setEnabled(false);
     }
 
@@ -83,6 +83,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         jLabel17 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         txtporcentajeDescuento = new javax.swing.JTextField();
+        btnEditar1 = new javax.swing.JButton();
 
         txtPrecio1.setEditable(false);
 
@@ -233,6 +234,11 @@ public class EditarProductoNota extends javax.swing.JDialog {
         });
 
         btnEditar.setText("EDITAR");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -255,6 +261,13 @@ public class EditarProductoNota extends javax.swing.JDialog {
             }
         });
 
+        btnEditar1.setText("ELIMINAR");
+        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -264,6 +277,8 @@ public class EditarProductoNota extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEditar1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSalir))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -386,10 +401,11 @@ public class EditarProductoNota extends javax.swing.JDialog {
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -417,25 +433,32 @@ public class EditarProductoNota extends javax.swing.JDialog {
         Double PorcentajeDescuento = 0.00;
         Double Cantidad = Double.parseDouble(txtcantidad.getText());
         Double Precio = Double.parseDouble(txtPrecio.getText());
-        if (txtporcentajeDescuento.getText().equals(null)) {
-            System.out.println("dhfsbkdjf");
+        
+        if (txtporcentajeDescuento.getText().equals("")) {
+//        PorcentajeDescuento = Double.parseDouble(txtporcentajeDescuento.getText());
+            PorcentajeDescuento = 0.00;
+            Double ValorDescuento = Cantidad * Precio * PorcentajeDescuento / 100;
+            ValorDescuento = redondearDecimales(ValorDescuento, 2);
+            
+            txtDescuento.setText(Double.valueOf(ValorDescuento).toString());
             Double IVA = Double.parseDouble(txtIva.getText());
-            total = Cantidad * Precio + IVA;
+            
+            total = Cantidad * Precio + IVA - ValorDescuento;
             total = redondearDecimales(total, 2);
             txtTotal.setText(Double.valueOf(total).toString());
-
+        } else {
+            PorcentajeDescuento = Double.parseDouble(txtporcentajeDescuento.getText());
+//            PorcentajeDescuento = 0.00;
+            Double ValorDescuento = Cantidad * Precio * PorcentajeDescuento / 100;
+            ValorDescuento = redondearDecimales(ValorDescuento, 2);
+            
+            txtDescuento.setText(Double.valueOf(ValorDescuento).toString());
+            Double IVA = Double.parseDouble(txtIva.getText());
+            
+            total = Cantidad * Precio + IVA - ValorDescuento;
+            total = redondearDecimales(total, 2);
+            txtTotal.setText(Double.valueOf(total).toString());
         }
-        PorcentajeDescuento = Double.parseDouble(txtporcentajeDescuento.getText());
-        Double ValorDescuento = Cantidad * Precio * PorcentajeDescuento / 100;
-        ValorDescuento = redondearDecimales(ValorDescuento, 2);
-
-        txtDescuento.setText(Double.valueOf(ValorDescuento).toString());
-        Double IVA = Double.parseDouble(txtIva.getText());
-
-        total = Cantidad * Precio + IVA - ValorDescuento;
-        total = redondearDecimales(total, 2);
-        txtTotal.setText(Double.valueOf(total).toString());
-
     }
 
 //    public void ValorDescuento() {
@@ -472,12 +495,12 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
-
+        
         if (r == JOptionPane.YES_OPTION) {
             setVisible(false);
-
+            
         } else {
-
+            
         }
     }//GEN-LAST:event_btnSalirActionPerformed
 
@@ -542,9 +565,9 @@ public class EditarProductoNota extends javax.swing.JDialog {
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        
         Total();
-
+        
         btnEditar.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
     String CADENA = "";
@@ -569,6 +592,22 @@ public class EditarProductoNota extends javax.swing.JDialog {
             //            JOptionPane.showMessageDialog(null, "INGRESE NUMEROS");
         }
     }//GEN-LAST:event_txtporcentajeDescuentoKeyTyped
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int r = JOptionPane.showConfirmDialog(null, "¿Desea Actualizar?", "", JOptionPane.YES_NO_OPTION);
+        
+        if (r == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "Actualizado");
+            setVisible(false);
+            
+        } else {
+            
+        }        
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
+    
+    }//GEN-LAST:event_btnEditar1ActionPerformed
     private void llenarFormulario(JoinListarDetalleNotaPedido obj) {
         codigo.setText(obj.getId_producto().toString());
         Medida.setText(obj.getMedida());
@@ -596,7 +635,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
 //        objf.setEntidad(obj.getEntidad());
 
     }
-
+    
     public JoinListarDetalleNotaPedido getObjf() {
         return objf;
     }
@@ -646,6 +685,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Medida;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEditar1;
     private javax.swing.JButton btnSalir;
     private javax.swing.JTextField codigo;
     private javax.swing.JButton jButton1;
