@@ -286,9 +286,9 @@ public class Iniciar_sesion extends javax.swing.JDialog {
             Usuario_S obj = new Usuario_S();
             obj.setCorreo(usuario.getText());
             obj.setPassword(contrasena.getText());
-            obj.setIp_equipo(Operaciones.getIpDispositivo());
-            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
-            obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
+//            obj.setIp_equipo(Operaciones.getIpDispositivo());
+//            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
+//            obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
             bs.setUser(usuario.getText());
             bs.setPassword(contrasena.getText());
             bs.setIp_equipo(Operaciones.getIpDispositivo());
