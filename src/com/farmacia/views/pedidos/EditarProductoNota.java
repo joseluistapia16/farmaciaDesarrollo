@@ -609,6 +609,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
     
     }//GEN-LAST:event_btnEditar1ActionPerformed
     private void llenarFormulario(JoinListarDetalleNotaPedido obj) {
+        
         codigo.setText(obj.getId_producto().toString());
         Medida.setText(obj.getMedida());
         producto.setText(obj.getProducto());
