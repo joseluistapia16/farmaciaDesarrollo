@@ -4,6 +4,7 @@ import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.filtros.filtrosProductos;
+import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
@@ -29,33 +30,38 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     int x, y;
     CRUD crud = new CRUD();
     filtrosProductos fil = new filtrosProductos();
-    joinProductoDetallesFaltantes objeto = null;
-    ListarJoinProveedorNotaPedido proveedorC = null;
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
-    ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
-        JoinListarNotaPedidosCabecera objf = new JoinListarNotaPedidosCabecera();
+
+    JoinListarNotaPedidosCabecera objf = new JoinListarNotaPedidosCabecera();
+
+    ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
+    JoinListarDetalleNotaPedido objetop = null;
 
     public EditarNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
 
         setUndecorated(true);
         initComponents();
-        
 
     }
-    public EditarNotaPedido(java.awt.Frame parent, boolean modal,JoinListarNotaPedidosCabecera obj1) {
+
+    public EditarNotaPedido(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1) {
         super(parent, modal);
 
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-//        Total();
-//        TotalIVA();
-//        TotalDescuento();
         llenarFormulario(obj1);
         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+        String i = txt_Numero.getText().toString();
+
+        lista3 = crud.listarDetalleNotaPedido(1, i);
+        Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+        Total();
+        TotalIVA();
+        TotalDescuento();
 
     }
 
@@ -64,9 +70,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         txtNombre1.setText(obj.getEntidad());
         txtCorreo1.setText(obj.getCorreo());
         txtRuc1.setText(obj.getCedula_ruc());
-        txtIva.setText(obj.getIva().toString());
-        txtDescuento.setText(obj.getDescuento().toString());
-        txtTotal.setText(obj.getTotal().toString());
+//        txtIva.setText(obj.getIva().toString());
+//        txtDescuento.setText(obj.getDescuento().toString());
+//        txtTotal.setText(obj.getTotal().toString());
         txtTelefono1.setText(obj.getTelefono());
         txtRepresentante.setText(obj.getRepresentante());
         txtFechaCreacion.setText(obj.getFecha_creacion());
@@ -79,97 +85,15 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         objf.setCorreo(obj.getCorreo());
         objf.setCedula_ruc(obj.getCedula_ruc());
         objf.setFecha_creacion(obj.getFecha_creacion());
-        objf.setIva(obj.getIva());
-        objf.setDescuento(obj.getDescuento());
-        objf.setTotal(obj.getTotal());
+//        objf.setIva(obj.getIva());
+//        objf.setDescuento(obj.getDescuento());
+//        objf.setTotal(obj.getTotal());
         objf.setId_cabecera_nota_pedidos(obj.getId_cabecera_nota_pedidos());
         objf.setDireccion(obj.getDireccion());
         objf.setClase(obj.getClase());
         objf.setTelefono(obj.getTelefono());
         objf.setRepresentante(obj.getRepresentante());
-        
-    }
 
-    public static double redondearDecimales(double valorInicial, int numeroDecimales) {
-        double parteEntera, resultado;
-        resultado = valorInicial;
-        parteEntera = Math.floor(resultado);
-        resultado = (resultado - parteEntera) * Math.pow(10, numeroDecimales);
-        resultado = Math.round(resultado);
-        resultado = (resultado / Math.pow(10, numeroDecimales)) + parteEntera;
-        return resultado;
-    }
-
-    public void Total() {
-        Double total = 0.00;
-
-        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-            int Cantidad = lista1.get(i).getCantidad();
-            Double Precio = lista1.get(i).getPrecios();
-            Double PorcDesc = lista1.get(i).getPorcentaje_descuento();
-            Double ValorDesc = Cantidad * Precio * PorcDesc / 100;
-            Double iva = 0.12;
-            Double iva1 = 0.00;
-            if (lista1.get(i).getIva().equals("SI")) {
-                iva1 = Cantidad * iva * Precio;
-
-                total = total + ((Double) lista1.get(i).getPrecios() * Integer.valueOf(lista1.get(i).getCantidad()) + iva1 - ValorDesc);
-                total = redondearDecimales(total, 2);
-            }
-            if (lista1.get(i).getIva().equals("NO")) {
-
-                total = total + ((Double) lista1.get(i).getPrecios() * Integer.valueOf(lista1.get(i).getCantidad()) - ValorDesc);
-                total = redondearDecimales(total, 2);
-            }
-        }
-        txtTotal.setText(Double.valueOf(total).toString());
-//       txtTotal.setText(String.format("%5.2f", total));
-    }
-
-    public void TotalIVA() {
-        Double totalIva = 0.00;
-
-        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-            Double Iva = 0.12;
-            Double Iva2 = 0.00;
-            Double Precio = lista1.get(i).getPrecios();
-            int Cantidad = lista1.get(i).getCantidad();
-            if (lista1.get(i).getIva().equals("SI")) {
-                Iva2 = Cantidad * Iva * Precio;
-                totalIva = totalIva + Iva2;
-                totalIva = redondearDecimales(totalIva, 2);
-            }
-            if (lista1.get(i).getIva().equals("NO")) {
-                totalIva = totalIva + Iva2;
-                totalIva = redondearDecimales(totalIva, 2);
-            }
-
-        }
-        txtIva.setText(Double.valueOf(totalIva).toString());
-
-//        txtIva.setText(String.format("%5.2f", totalIva));
-    }
-
-    public void TotalDescuento() {
-        Double TotalDescuento = 0.00;
-        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-            Double Precio = lista1.get(i).getPrecios();
-            Double PorcDesc = lista1.get(i).getPorcentaje_descuento();
-            int Cantidad = lista1.get(i).getCantidad();
-            Double ValorDesc = Cantidad * Precio * PorcDesc / 100;
-
-            TotalDescuento = TotalDescuento + ValorDesc;
-            TotalDescuento = redondearDecimales(TotalDescuento, 2);
-        }
-        txtDescuento.setText(Double.valueOf(TotalDescuento).toString());
-
-//        txtDescuento.setText(String.format("%5.2f", TotalDescuento));
-    }
-
-    public static String FechaActual() {
-        Date fecha = new Date();
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("YYYY/MM/dd");
-        return formatoFecha.format(fecha);
     }
 
     @SuppressWarnings("unchecked")
@@ -387,7 +311,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cbxFormaP, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -484,11 +408,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             }
         ));
         t_Nota_faltantes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                t_Nota_faltantesMousePressed(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 t_Nota_faltantesMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                t_Nota_faltantesMousePressed(evt);
             }
         });
         tblProduc.setViewportView(t_Nota_faltantes);
@@ -553,14 +477,16 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelSec, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
-            .addComponent(jScrollPane1)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 29, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -570,7 +496,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelSec, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -674,7 +600,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar)
                     .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -692,7 +618,52 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+public void Total() {
+        Double total = 0.00;
 
+        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+            int Cantidad = lista3.get(i).getCantidad();
+            Double Precio = lista3.get(i).getPrecio();
+            Double Desc = lista3.get(i).getDescuento();
+            Double iva = lista3.get(i).getIva();
+            Double total1 = Cantidad * Precio + iva - Desc;
+            total = total + total1;
+            total = redondearDecimales(total, 2);
+        }
+        txtTotal.setText(Double.valueOf(total).toString());
+    }
+
+    public void TotalIVA() {
+        Double totalIva = 0.00;
+
+        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+            Double Iva1 = lista3.get(i).getIva();
+            totalIva = totalIva + Iva1;
+            totalIva = redondearDecimales(totalIva, 2);
+        }
+        txtIva.setText(Double.valueOf(totalIva).toString());
+
+    }
+
+    public void TotalDescuento() {
+        Double TotalDescuento = 0.00;
+        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+            Double descuento = lista3.get(i).getDescuento();
+            TotalDescuento = TotalDescuento + descuento;
+            TotalDescuento = redondearDecimales(TotalDescuento, 2);
+        }
+        txtDescuento.setText(Double.valueOf(TotalDescuento).toString());
+    }
+
+    public static double redondearDecimales(double valorInicial, int numeroDecimales) {
+        double parteEntera, resultado;
+        resultado = valorInicial;
+        parteEntera = Math.floor(resultado);
+        resultado = (resultado - parteEntera) * Math.pow(10, numeroDecimales);
+        resultado = Math.round(resultado);
+        resultado = (resultado / Math.pow(10, numeroDecimales)) + parteEntera;
+        return resultado;
+    }
     private void txtRepresentanteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepresentanteKeyReleased
 
 
@@ -716,96 +687,44 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-////        if (txtTotal.getText() != null) {
-//            ArrayList<String> queryL = new ArrayList<String>();
-//            ArrayList<String> queryL1 = new ArrayList<String>();
-//            String id_cab = "";
-//            String cad = "";
-//            String cad1 = "";
-//            CabeceraNotaPedido cn = new CabeceraNotaPedido();
-//            cn.setId_proveedor(Long.valueOf(txtCodigoProveedor.getText()));
-//            cn.setId_usuario(Long.valueOf("2"));
-////            cn.setFecha_creacion(txtFechaCreacion.getText() + " " + txtHora.getText());
-//            cn.setPlazo(cbxPlazo.getSelectedItem().toString());
-//            cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
-//            cn.setIva(Double.valueOf(txtIva.getText()));
-//            cn.setDescuento(Double.valueOf(txtDescuento.getText()));
-//            cn.setTotal(Double.valueOf(txtTotal.getText()));
-//
-//            id_cab = crud.insertarCabeceraNotaPedido(cn);
-//
-////            String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFechaCreacion.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + txtTotal.getText();
-//            id_cab = crud.buscarIDCabeceraNotaPedido(query);
-//
-//            for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-//                cad1 = "INSERT INTO detalle_nota_pedidos(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`total`,`iva`)VALUES(" + id_cab + "," + lista.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 6).toString() + "," + tbaListaFaltantes.getValueAt(i, 10) + "," + tbaListaFaltantes.getValueAt(i, 9).toString() + ")";
-//                queryL1.add(cad1);
-//            }
-//            crud.InsertarDetallesNotaPedidos(queryL1);
-//            queryL1.clear();
-//
-//            JOptionPane.showMessageDialog(null, " Guardado con Exito ");
-//            btnNuevo.setEnabled(true);
-////        } else {
-////            JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
-////        }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
-        int i = 0;
-
-        String msg = null;
-
-        try {
-            if (evt.getClickCount() == 2) {
-                i = t_Nota_faltantes.getSelectedRow();
-                objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
-                if (objeto != null) {
-                    AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
-                    np.setVisible(true);
-                    msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
-
-                    if (msg == null) {
-                        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                        if (np.getObjf().getCantidad() > 0) {
-                            int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
-                            getPosicion(objeto.getId_producto(), suma);
-                            lista1.add(np.getObjf());
-                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                            Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
-                            Total();
-                            TotalIVA();
-                            TotalDescuento();
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(this, msg);
-                    }
-
-                }
-            }
-
-        } catch (Exception e) {
-        }
+//       int i = 0;
+//
+//        String msg = null;
+//
+//        try {
+//            if (evt.getClickCount() == 2) {
+//                i = t_Nota_faltantes.getSelectedRow();
+//                objetop = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
+//                if (objetop != null) {
+//                    AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objetop);
+//                    np.setVisible(true);
+//                    msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objetop.getId_producto().toString());
+//
+//                    if (msg == null) {
+//                        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+//                        if (np.getObjf().getCantidad() > 0) {
+//                            int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
+//                            getPosicion(objeto.getId_producto(), suma);
+//                            lista1.add(np.getObjf());
+//                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+//                            Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
+//                        }
+//                    } else {
+//                        JOptionPane.showMessageDialog(this, msg);
+//                    }
+//
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//        }
 
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
 
-    private void getPosicion(Long id, int valor) {
-        for (int i = 0; i < lista.size(); i++) {
-            if (id == lista.get(i).getId_producto()) {
-                lista.get(i).setCantidad(valor);
-            }
-        }
-
-    }
-
-    private void getPosicion2(Long id, int valor) {
-        for (int i = 0; i < lista1.size(); i++) {
-            if (id == lista1.get(i).getId_producto()) {
-                lista1.get(i).setCantidad(valor);
-            }
-        }
-
-    }
     private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
 
     }//GEN-LAST:event_filtroActionPerformed
@@ -848,56 +767,32 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         Tablas.cargarFiltroProductosNota(t_Nota_faltantes, listar);
         query = "";
     }//GEN-LAST:event_btnBuscarActionPerformed
+    public JoinListarDetalleNotaPedido devuelveObjeto(String datos, ArrayList<JoinListarDetalleNotaPedido> listarobj) {
+        JoinListarDetalleNotaPedido objeto1 = null;
+        for (int i = 0; i < listarobj.size(); i++) {
+            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
+                objeto1 = listarobj.get(i);
+                break;
+            }
+        }
+        return objeto1;
 
+    }
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
-        Double iva = 0.00;
-        Double descuento = 0.00;
-        Double total = 0.00;
-        try {
-            if (evt.getClickCount() == 2) {
-                int r = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este producto de la lista?", "", JOptionPane.YES_NO_OPTION);
 
-                if (r == JOptionPane.YES_OPTION) {
+        int i = 0;
 
-                    int i = tbaListaFaltantes.getSelectedRow();
+        if (evt.getClickCount() == 2) {
+            i = tbaListaFaltantes.getSelectedRow();
+            objetop = devuelveObjeto(tbaListaFaltantes.getValueAt(i, 0).toString(), lista3);
 
-                    objeto = devuelveObjeto(tbaListaFaltantes.getValueAt(i, 0).toString(), lista);
-
-                    int resta = (Integer.valueOf(objeto.getCantidad()) - Integer.parseInt((String) tbaListaFaltantes.getValueAt(i, 6)));
-                    getPosicion(objeto.getId_producto(), resta);
-
-                    iva = Double.valueOf(tbaListaFaltantes.getValueAt(i, 9).toString());
-                    descuento = Double.valueOf(tbaListaFaltantes.getValueAt(i, 8).toString());
-                    total = Double.valueOf(tbaListaFaltantes.getValueAt(i, 10).toString());
-
-                    Double iva1 = Double.parseDouble(txtIva.getText());
-                    Double descuento1 = Double.parseDouble(txtDescuento.getText());
-                    Double total1 = Double.parseDouble(txtTotal.getText());
-
-                    iva = iva1 - iva;
-                    iva = redondearDecimales(iva, 2);
-                    descuento = descuento1 - descuento;
-                    descuento = redondearDecimales(descuento, 2);
-                    total = total1 - total;
-                    total = redondearDecimales(total, 2);
-
-                    txtIva.setText(iva.toString());
-                    txtDescuento.setText(descuento.toString());
-                    txtTotal.setText(total.toString());
-
-                    lista1.remove(i);
-
-                    Tablas.cargarJoinProductoDetallesFaltantes(tbaListaFaltantes, lista1);
-                    Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
-                    Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-
-                } else {
-
-                }
+            if (objetop != null) {
+                EditarProductoNota Man = new EditarProductoNota(new javax.swing.JFrame(), true, objetop);
+                Man.setVisible(true);
 
             }
-        } catch (Exception e) {
         }
+
     }//GEN-LAST:event_tbaListaFaltantesMousePressed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
@@ -928,34 +823,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
-    public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
-        joinProductoDetallesFaltantes objeto1 = null;
-        for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
-                objeto1 = listarobj.get(i);
-                break;
-            }
-        }
-        return objeto1;
-
-    }
-
-    private void Reiniciar() {
-        txtCodigoProveedor.setText("");
-        txtCorreo1.setText("");
-        txtDescuento.setText("");
-        txtNombre1.setText("");
-        txtRepresentante.setText("");
-        txtDireccion1.setText("");
-        txtRuc1.setText("");
-        txtTipo1.setText("");
-        txtTelefono1.setText("");
-        txtIva.setText("");
-        txtTotal.setText("");
-        lista1.clear();
-        Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
-        tbaListaFaltantes.clearSelection();
-    }
 
     public static void main(String args[]) {
 

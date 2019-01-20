@@ -507,7 +507,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             p.setFecha_registro(fecha_registro);
             p.setTelefono(cbx1.getSelectedItem().toString());
             p.setMail(cbx2.getSelectedItem().toString());
-            
+            p.setDireccionImagen(rutaimagen);
             String pro = crud.insertarNuevoProveedor(p);
             if (pro != null) {
 

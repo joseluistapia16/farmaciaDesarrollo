@@ -7,6 +7,7 @@ package com.farmacia.conponentes;
 
 //import com.objetos.domain.Laboratorio;
 //import com.objetos.fecha.Fecha;
+import com.farmacia.dao.Consultas;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.join_entidades.ListarNotas;
@@ -19,8 +20,10 @@ import com.farmacia.entities1.ListarPuntoVenta;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
+import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.fecha.Fecha;
+import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
@@ -38,7 +41,10 @@ import javax.swing.table.TableRowSorter;
  */
 public class Tablas {
 
-    
+//<<<<<<< HEAD
+    private boolean[] editable = {false, false, false, false, true, false};
+//=======
+//>>>>>>> origin/JoseLuis
     static DefaultTableModel model;
 
     public static DefaultTableModel VaciarTabla(JTable tabla) {
@@ -58,12 +64,12 @@ public class Tablas {
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"RUC" , "Nombre", "Direccion", "Telefono", "Fecha"};
-     //   Date[] Ca = {Date.valueOf("Fecha")};
+        String[] Co = {"RUC", "Nombre", "Direccion", "Telefono", "Fecha"};
+        //   Date[] Ca = {Date.valueOf("Fecha")};
         String[] Filas = new String[5];
-      //  Date[] Fila = new Date [1];
+        //  Date[] Fila = new Date [1];
         model = new DefaultTableModel(null, Co);
-      //  laboratorio = new DefaultTableModel(null, Ca);
+        //  laboratorio = new DefaultTableModel(null, Ca);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
             Filas[0] = lista.get(i).getRUC();
@@ -72,7 +78,7 @@ public class Tablas {
             Filas[3] = lista.get(i).getTelefono();
             Filas[4] = Fecha.getStringFecha(lista.get(i).getFecha());
             model.addRow(Filas);
-       //     laboratorio.addRow(Fila);
+            //     laboratorio.addRow(Fila);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
             Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
@@ -89,18 +95,15 @@ public class Tablas {
     }
     /// 17/11/2018 jefferson Anchundia modulo Faltantes 15:15:00  
 
+    public static void cargarJoinProducto(JTable Tabla, ArrayList<FaltantesCabeceraDetalles> lista) {
 
-
-   
-    public static void cargarJoinProducto(JTable Tabla,ArrayList<FaltantesCabeceraDetalles> lista) {
-       
-        int[] a = {10, 30, 32, 52,15,30};
+        int[] a = {10, 30, 32, 52, 15, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "MARCA", "PRODUCTO","DESCRIPCION","CANTIDAD","ESTADO"};
+        String[] Co = {"CODIGO", "MARCA", "PRODUCTO", "DESCRIPCION", "CANTIDAD", "ESTADO"};
         String[] Filas = new String[6];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -111,7 +114,7 @@ public class Tablas {
             Filas[3] = lista.get(i).getDescripcion();
             Filas[4] = lista.get(i).getCantidad().toString();
             Filas[5] = lista.get(i).getEstado();
-            
+
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -126,7 +129,7 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
             Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
-        } 
+        }
 
     }
 /////////////////////////////////////////
@@ -167,15 +170,16 @@ public class Tablas {
 //
 //    }
 /////////////////////////////// cargar productos en ordencompra
-    public static void cargarJoinProductosMCompra(JTable Tabla,ArrayList<listarJoinProductosCompras> lista) {
-       
-        int[] a = {10, 30, 32, 52,15,30};
+
+    public static void cargarJoinProductosMCompra(JTable Tabla, ArrayList<listarJoinProductosCompras> lista) {
+
+        int[] a = {10, 30, 32, 52, 15, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "PRODUCTO", "TIPO", "MEDIDA","ENVASE","MARCA"};
+        String[] Co = {"CODIGO", "PRODUCTO", "TIPO", "MEDIDA", "ENVASE", "MARCA"};
         String[] Filas = new String[6];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -200,18 +204,19 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
             Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
-        } 
+        }
 
     }
-    public static void cargarJoinProductoIngresoCompras(JTable Tabla,ArrayList<joinProductoDetallesFaltantes> lista) {
-       
-        int[] a = {10, 30, 32, 52,15,30};
+
+    public static void cargarJoinProductoIngresoCompras(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
+
+        int[] a = {10, 30, 32, 52, 15, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO","PRODUCTO", "MARCA","TIPO","MEDIDA" ,"CANTIDAD"};
+        String[] Co = {"CODIGO", "PRODUCTO", "MARCA", "TIPO", "MEDIDA", "CANTIDAD"};
         String[] Filas = new String[6];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -236,22 +241,23 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
             Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
-        } 
+        }
 
     }
-    public static void cargarFaltantes(JTable Tabla,ArrayList<joinProductoDetallesFaltantes> lista) {
+
+    public static void cargarFaltantes(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
 //        for (int i = 0; i < lista.size(); i++) {
 //             System.out.println("tabla  "+lista.get(i).getCantidad().toString());
 //        }
 //        
         //DefaultTableModel model1;
-        int[] a = {10, 30, 32, 52,15};
+        int[] a = {10, 30, 32, 52, 15};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "TIPO", "MARCA", "PRODUCTO","CANTIDAD"};
+        String[] Co = {"CODIGO", "TIPO", "MARCA", "PRODUCTO", "CANTIDAD"};
         String[] Filas = new String[5];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -261,7 +267,7 @@ public class Tablas {
             Filas[2] = lista.get(i).getMarca();
             Filas[3] = lista.get(i).getNombre_producto();
             Filas[4] = lista.get(i).getCantidad().toString();
-             
+
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -274,18 +280,19 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
             Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
-        } 
+        }
 
     }
-    public static void CargarJoinProveedores(JTable Tabla,ArrayList<ListarJoinProveedor> lista) {
-       
+
+    public static void CargarJoinProveedores(JTable Tabla, ArrayList<ListarJoinProveedor> lista) {
+
         int[] a = {30, 20, 55, 52, 52, 52, 52, 15};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO","RUC", "NOMBRE", "REPRESENTANTE", "DIRECCION","TELEFONO","MAIL","CLASE"};
+        String[] Co = {"CODIGO", "RUC", "NOMBRE", "REPRESENTANTE", "DIRECCION", "TELEFONO", "MAIL", "CLASE"};
         String[] Filas = new String[8];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -316,7 +323,7 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[7]);
             Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
-        } 
+        }
 
     }
 //    public static void CargarJoinRegistrosdeNota(JTable Tabla,ArrayList<ListarNotas> lista) {
@@ -359,16 +366,16 @@ public class Tablas {
 //        } 
 //
 //    }
-    
-    public static void cargarFiltroProductos(JTable Tabla,ArrayList<listarJoinProductosCompras> lista) {
-       
-        int[] a = {10, 30, 32, 52,15,30};
+
+    public static void cargarFiltroProductos(JTable Tabla, ArrayList<listarJoinProductosCompras> lista) {
+
+        int[] a = {10, 30, 32, 52, 15, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "PRODUCTO", "TIPO", "MEDIDA","ENVASE","MARCA"};
+        String[] Co = {"CODIGO", "PRODUCTO", "TIPO", "MEDIDA", "ENVASE", "MARCA"};
         String[] Filas = new String[6];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -393,9 +400,10 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
             Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
-        } 
+        }
 
     }
+
     ///////////maquilon proveedor
     public static void listarProveedor(ArrayList<ListarJoinProveedor> lista, JTable Tabla) {
         int[] a = {10, 30, 32, 52};
@@ -426,15 +434,16 @@ public class Tablas {
         }
 
     }
-    public static void cargarJoinProductosFaltantes(JTable Tabla,ArrayList<FaltantesCabeceraDetalles> lista) {//piguiFaltantes
-       
-        int[] a = {10, 30, 32, 52,15,30};
+
+    public static void cargarJoinProductosFaltantes(JTable Tabla, ArrayList<FaltantesCabeceraDetalles> lista) {//piguiFaltantes
+
+        int[] a = {10, 30, 32, 52, 15, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "MARCA", "PRODUCTO","DESCRIPCION","CANTIDAD","ESTADO"};
+        String[] Co = {"CODIGO", "MARCA", "PRODUCTO", "DESCRIPCION", "CANTIDAD", "ESTADO"};
         String[] Filas = new String[6];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -445,7 +454,7 @@ public class Tablas {
             Filas[3] = lista.get(i).getDescripcion();
             Filas[4] = lista.get(i).getCantidad().toString();
             Filas[5] = lista.get(i).getEstado();
-            
+
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -460,9 +469,10 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
             Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
-        } 
+        }
 
     }
+
     public static void listarClientes(ArrayList<Clientes> lista, JTable Tabla) {
         int[] a = {10, 30, 30, 30, 15};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
@@ -495,13 +505,13 @@ public class Tablas {
         }
 
     }
+
     public static void filtro(String valor, JTable Tabla) {
-        TableRowSorter<DefaultTableModel> tr = new 
-        TableRowSorter<>(model);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(model);
         Tabla.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter("(?i)" + valor));
     }
-    
+
     public static void listarTipoProducto(ArrayList<TipoProducto> lista, JTable Tabla) {
         int[] a = {10, 30, 32, 52,};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
@@ -523,7 +533,7 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
             Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
         }
-        
+
     }
 
     public static void listarEnvase(ArrayList<EnvaseProducto> lista, JTable Tabla) {
@@ -549,7 +559,7 @@ public class Tablas {
         }
 
     }
-    
+
     public static void listarMedidas(ArrayList<MedidaProducto> lista, JTable Tabla) {
         int[] a = {15, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
@@ -579,7 +589,7 @@ public class Tablas {
         }
 
     }
-    
+
     public static void listarMarcas(ArrayList<MarcaProducto> lista, JTable Tabla) {
         int[] a = {15, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
@@ -607,9 +617,14 @@ public class Tablas {
         }
 
     }
-     public static void CargarJoinListadoNotaPedidos(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
 
-        int[] a = {5, 5, 52,90,150, 110, 15, 50, 10};
+//<<<<<<< HEAD
+//    public static void CargarJoinListadoNotaPedidos(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
+//=======
+    public static void CargarJoinListadoCabeceraNotaPedidos(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
+//>>>>>>> origin/JoseLuis
+
+        int[] a = {5, 5, 52, 90, 150, 110, 15, 50, 10};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -653,9 +668,10 @@ public class Tablas {
         }
 
     }
-     public static void CargarJoinListaCabeceraPedido(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
 
-        int[] a = {5, 5, 52,90,150, 110, 15, 50};
+    public static void CargarJoinListaCabeceraPedido(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
+
+        int[] a = {5, 5, 52, 90, 150, 110, 15, 50};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -674,7 +690,6 @@ public class Tablas {
             Filas[5] = lista.get(i).getFecha_creacion();
             Filas[6] = "" + lista.get(i).getPlazo();
             Filas[7] = "" + lista.get(i).getDescuento().toString();
-            
 
             model.addRow(Filas);
             Tabla.setModel(model);
@@ -694,10 +709,11 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
             Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
-            
+
         }
 
     }
+
     public static void cargarJoinProductoIngresoNotas(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
 
         int[] a = {10, 30, 32, 70, 15, 30, 10, 10, 20, 10, 5};
@@ -827,6 +843,7 @@ public class Tablas {
         }
 
     }
+
     ////////////////////////////
     public static void cargarJoinProductoDetallesFaltantes(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
 
@@ -873,17 +890,18 @@ public class Tablas {
         }
 
     }
-    public static void cargarJoinPuntoVenta(JTable Tabla,ArrayList<ListarPuntoVenta> lista) {
-       
-        int[] a = {5, 30, 32, 52,80};
+
+    public static void cargarJoinPuntoVenta(JTable Tabla, ArrayList<ListarPuntoVenta> lista) {
+
+        int[] a = {5, 30, 32, 52, 80};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.LEFT);
         tcr1.setHorizontalAlignment(SwingConstants.CENTER);
-        model = VaciarTabla(Tabla);// vacias tabla
+        model = VaciarTabla(Tabla);
         String[] Co = {"Codigo", "Nombre", "Localidad", "Direccion","Observación"};
         String[] Filas = new String[5];
-        model = new DefaultTableModel(null, Co);
+             model = new DefaultTableModel(null, Co);// eso es chi
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
             Filas[0] = "" + lista.get(i).getId_punto_venta().toString();
@@ -905,6 +923,7 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
         }
     }
+
     public static void listarProveedorNotaPedido(ArrayList<ListarJoinProveedorNotaPedido> lista, JTable Tabla) {
         int[] a = {10, 30, 32, 52};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
@@ -934,6 +953,7 @@ public class Tablas {
         }
 
     }
+
     public static void cargarJoinUsuario(JTable Tabla,ArrayList<Listar_usuario> lista) {
        
         int[] a = {10, 50, 40, 52, 52, 80, 30, 30, 52, 30, 30, 40, 30, 10 , 80};
@@ -996,5 +1016,109 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(14).setPreferredWidth(a[14]);
             Tabla.getColumnModel().getColumn(14).setCellRenderer(tcr);
         }
+//=======
+    }
+//<<<<<<< HEAD
+    public void visualizar(JTable tabla,Long id) {
+
+        tabla.setDefaultRenderer(Object.class, new Render());
+        DefaultTableModel dt = new DefaultTableModel(new String[]{"CODIGO PRECIO", "CODIGO PRODUCTO", "PRECIO COMPRA", "PRECIO VENTA", "ESTADO",}, 0) {
+
+            Class[] types = new Class[]{
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int row, int column) {
+                return editable[column];
+            }
+        };
+
+//        JButton btn_visualizar = new JButton("Visualizar");
+//        btn_visualizar.setName("v");
+        Consultas llamar = new Consultas();
+        Precios vo = new Precios();
+        //Long id= Long.valueOf("22");
+        ArrayList<Precios> list = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado FROM `precios` WHERE `id_producto`= " + id);
+
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                // model.addRow(new Object[]{});
+                Object fila[] = new Object[6];
+                vo = list.get(i);
+                fila[0] = vo.getId_precio();
+                fila[1] = vo.getId_producto();
+                fila[2] = vo.getPrecio_compra();
+                fila[3] = vo.getPrecio_venta();
+                String ac = (String) vo.getEstado();
+                if ("A".equals(ac)) {
+                    fila[4] = true;
+                } else {
+                    fila[4] = false;
+                }
+                //  fila[5] = btn_visualizar;
+                
+                dt.addRow(fila);
+            
+            }
+
+        }
+
+        tabla.setModel(dt);
+
+    }
+    public static void cargarJoinRegistroDetalleNotas(JTable Tabla, ArrayList<JoinListarDetalleNotaPedido> lista) {
+
+        int[] a = {10, 30, 32, 70, 15, 30, 10, 10, 20, 10, 5};
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
+        model = Tablas.VaciarTabla(Tabla);
+        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
+        String[] Filas = new String[11];
+        model = new DefaultTableModel(null, Co);
+        Tabla.setShowGrid(true);
+        for (int i = 0; i < lista.size(); i++) {
+            Filas[0] = "" + lista.get(i).getId_producto().toString();
+            Filas[1] = lista.get(i).getMarca();
+            Filas[2] = lista.get(i).getTipo();
+            Filas[3] = lista.get(i).getProducto();
+            Filas[4] = lista.get(i).getEnvase();
+            Filas[5] = lista.get(i).getMedida();
+            Filas[6] = "" + lista.get(i).getCantidad();
+            Filas[7] = lista.get(i).getPrecio().toString();
+            Filas[8] =  lista.get(i).getDescuento().toString();
+            Filas[9] = lista.get(i).getIva().toString();
+            Filas[10] =lista.get(i).getTotal().toString();
+            model.addRow(Filas);
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
+            Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
+            Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(8).setPreferredWidth(a[8]);
+            Tabla.getColumnModel().getColumn(8).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(9).setPreferredWidth(a[9]);
+            Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
+            Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
+        }
+
     }
 }

@@ -48,20 +48,20 @@ public class Editar_Precio_Productos extends javax.swing.JDialog {
 
     }
 
-    public Editar_Precio_Productos(java.awt.Frame parent, boolean modal, Long id, Long id_precio1, Precios pr1) {
+    public Editar_Precio_Productos(java.awt.Frame parent, boolean modal, Long id, Precios pr1) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
         // Habilitar(false);
         id_producto = id;
-        id_precio = id_precio1;
-        lista_v = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,porcentaje_descuento,valor_descuento FROM `precios` WHERE `id_producto`= " + id_producto);
+       // id_precio = id_precio1;
+        lista_v = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,estado FROM `precios` WHERE `id_producto`= " + id_producto);
         precios = pr1;
-        for (int i = 0; i < lista_v.size(); i++) {
-            System.out.println(id_producto + " " + lista_v.get(i).getPrecio_compra() + " " + lista_v.get(i).getPrecio_venta());
-
-        }
+//        for (int i = 0; i < lista_v.size(); i++) {
+//            System.out.println(id_producto + " " + lista_v.get(i).getPrecio_compra() + " " + lista_v.get(i).getPrecio_venta());
+//
+//        }
         llenar();
     }
 
@@ -317,7 +317,7 @@ public class Editar_Precio_Productos extends javax.swing.JDialog {
             Double Venta = precios.getPrecio_venta();
             Double PrecioCompra = Double.valueOf(nuevo1.getText());
             Double PrecioVenta = Double.valueOf(nuevo2.getText());
-            valor = crud.actualizarPrecioProductos("UPDATE precios SET `precio_compra`= " + PrecioCompra + " ,`precio_venta`= " + PrecioVenta + " WHERE `id_producto`= " + id_producto + " AND `id_precio`= " + id_precio + " AND `precio_compra`= " + Compra + " AND `precio_venta`= " + Venta);
+            valor = crud.actualizarPrecioProductos("UPDATE precios SET `precio_compra`= " + PrecioCompra + " ,`precio_venta`= " + PrecioVenta + " WHERE `id_producto`= " + id_producto + " AND `id_precio`= " + precios.getId_precio() + " AND `precio_compra`= " + Compra + " AND `precio_venta`= " + Venta);
             JOptionPane.showMessageDialog(this, valor);
             setVisible(false);
 
@@ -336,7 +336,7 @@ public class Editar_Precio_Productos extends javax.swing.JDialog {
 
     public boolean Validar() {
         boolean pos = false;
-        lista_v = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,porcentaje_descuento,valor_descuento FROM `precios` WHERE `id_producto`= " + id_producto);
+        lista_v = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,estado FROM `precios` WHERE `id_producto`= " + id_producto);
         // System.out.println(id_producto + " " + lista_t.get(0).getId_producto());
         for (int i = 0; i < lista_v.size(); i++) {
             // System.out.println(223 + " hol"+id_producto +" " +lista_t.get(i).getPrecio_compra());

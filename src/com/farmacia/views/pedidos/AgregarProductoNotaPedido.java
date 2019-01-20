@@ -27,7 +27,6 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
-
         this.setLocationRelativeTo(null);
     }
 
