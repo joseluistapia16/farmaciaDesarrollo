@@ -31,6 +31,7 @@ import com.farmacia.entities1.fc_localidad_guayas;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 //>>>>>>> origin/JoseLuis
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
+import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import java.sql.ResultSet;
@@ -604,6 +605,35 @@ public class EntidadesMappers {
             obj.setObservacion(rs.getString("observacion"));
             
          
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    /////////// mapper identidad listar producto ventas
+    public static JoinListarProductosVentas getJoinTodosProductosVentasFromResultSet(ResultSet rs) {
+        JoinListarProductosVentas obj = new JoinListarProductosVentas();
+       
+        try {
+    
+            obj.setId_producto(rs.getLong("Codigo"));
+            obj.setProducto_nombre(rs.getString("Nombre del producto"));
+            obj.setProducto_descripcion(rs.getString("Descripcion"));
+            //obj.setId_tipo(rs.getLong("ID_TIPO"));
+            obj.setTipo_nombre(rs.getString("Tipo"));
+            //obj.setId_medida(rs.getLong("ID_MEDIDAS"));
+            obj.setMedida_nombre(rs.getString("Medida"));
+            //obj.setId_envase(rs.getLong("ID_ENVASE"));
+            obj.setEnvase_nombre(rs.getString("Envase"));
+            //obj.setId_marca(rs.getLong("ID_MARCAS"));
+            obj.setMarca_nombre(rs.getString("Marca"));
+            //obj.setId_stock(rs.getLong("ID_PRODUCTO"));
+            obj.setStock(rs.getDouble("Stock"));
+            obj.setIva(rs.getString("Iva"));
+            //obj.setId_precio(rs.getLong("ID_PRECIO"));
+            obj.setPrecio_venta(rs.getDouble("Precio de venta"));
+            
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
