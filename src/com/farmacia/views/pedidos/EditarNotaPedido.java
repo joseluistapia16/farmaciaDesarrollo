@@ -79,6 +79,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         txt_Numero.setText(obj.getId_cabecera_nota_pedidos().toString());
         txtDireccion1.setText(obj.getDireccion());
         txtTipo1.setText(obj.getClase());
+//        cbxPlazo.
 //       
         objf.setId_proveedor(obj.getId_proveedor());
         objf.setEntidad(obj.getEntidad());
