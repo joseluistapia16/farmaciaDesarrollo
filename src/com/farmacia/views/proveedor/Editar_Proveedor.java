@@ -485,7 +485,8 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         tip1=pro.getId_proveedor_clase();
         tip2=pro.getEstado();
         tip3=pro.getId_proveedor();
-        getPicture1(pro.getDireccionImagen());
+        getPicture2(pro.getDireccionImagen());
+        System.out.println(pro.getDireccionImagen()+"hola perra");
     
     }
 
@@ -602,7 +603,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         int h = Confirmacion("Deseas Actualizar el proveedor con Cedula/Ruc : "
                 + cedula.getText() + " y Nombre : " + nombre.getText());
-        if (h == 0) {
+        if (h == 0){
            // ArrayList<ListarJoinProveedor> lista=;
             ListarJoinProveedor p = new ListarJoinProveedor();            
             p.setId_proveedor_clase(tip1);
@@ -745,7 +746,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         ProveedorRep proveedor1 = new ProveedorRep(cedula.getText(),nombre.getText(),contacto.getText(),dire.getText(),fecha.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString());
         proveedor.add(proveedor1);
         try {
-            JasperReport reporte =  (JasperReport) JRLoader.loadObject("ReporteFichaProveedor.jasper");            
+            JasperReport reporte =  (JasperReport) JRLoader.loadObject("Editar_Proveedor.jasper");            
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(proveedor));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
@@ -838,6 +839,26 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                                 "ruta2 "+fot);
         }
     }
+
+        private void getPicture2(String path) {
+        //JFileChooser dig = new JFileChooser(path);
+        //dig.setFileFilter(new FileNameExtensionFilter("Archivos de imagen",
+              //  "tif", "jpg", "jpeg", "png", "gif"));
+        //int opcion = dig.showOpenDialog(this);
+        //if (opcion == JFileChooser.APPROVE_OPTION) {
+            //fot = dig.getSelectedFile().getPath();
+            //rutaimagen = dig.getSelectedFile().getPath();
+            imagen.setIcon(new ImageIcon(path));
+            ImageIcon icon = new ImageIcon(path);
+            Image img = icon.getImage();
+            Image newimg = img.getScaledInstance(110,106, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon newIcono = new ImageIcon(newimg);
+            imagen.setIcon(newIcono);            
+            System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+            System.out.println("ruta= "+rutaimagen +"\n"+
+                                "ruta2 "+fot);
+        }
+    
     public void vaciarimagen(){
         fot = "logologin.png";
         imagen.setIcon(new ImageIcon(fot));

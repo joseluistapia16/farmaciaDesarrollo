@@ -3,7 +3,7 @@
 	<property name="ireport.zoom" value="1.2100000000000133"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<field name="cedula_ruc" class="java.lang.String"/>
+	<field name="cedula" class="java.lang.String"/>
 	<field name="entidad" class="java.lang.String"/>
 	<field name="contacto" class="java.lang.String"/>
 	<field name="fecha_ingreso" class="java.lang.String"/>
@@ -15,14 +15,14 @@
 			<frame>
 				<reportElement x="0" y="0" width="555" height="107" uuid="a76665ae-e587-4c6b-a25e-e006f523fbbe"/>
 				<staticText>
-					<reportElement x="137" y="46" width="309" height="29" uuid="a5f389e5-4e7e-4833-ac06-5458651b08b2"/>
+					<reportElement x="90" y="47" width="383" height="29" uuid="a5f389e5-4e7e-4833-ac06-5458651b08b2"/>
 					<textElement textAlignment="Center">
 						<font size="22" isBold="true" isItalic="true"/>
 					</textElement>
-					<text><![CDATA[Reporte Proveedor Inactivos]]></text>
+					<text><![CDATA[Reporte Proveedor de Compra]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="137" y="17" width="307" height="29" uuid="0400a306-822c-47b2-b7d4-4c036b3ba8bf"/>
+					<reportElement x="90" y="18" width="383" height="29" uuid="0400a306-822c-47b2-b7d4-4c036b3ba8bf"/>
 					<textElement textAlignment="Center">
 						<font size="22" isBold="true" isItalic="true"/>
 					</textElement>
@@ -91,7 +91,7 @@
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cedula_ruc}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="137" y="3" width="163" height="17" uuid="57e156e0-fcf6-496b-b3f6-8c1a52e828cd"/>

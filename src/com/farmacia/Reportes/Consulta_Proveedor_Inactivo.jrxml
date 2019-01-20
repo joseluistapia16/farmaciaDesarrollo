@@ -3,8 +3,7 @@
 	<property name="ireport.zoom" value="1.2100000000000133"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<import value="net.sf.jasperreports.viewer.zoom"/>
-	<field name="cedula_ruc" class="java.lang.String"/>
+	<field name="cedula" class="java.lang.String"/>
 	<field name="entidad" class="java.lang.String"/>
 	<field name="contacto" class="java.lang.String"/>
 	<field name="fecha_ingreso" class="java.lang.String"/>
@@ -20,7 +19,7 @@
 					<textElement textAlignment="Center">
 						<font size="22" isBold="true" isItalic="true"/>
 					</textElement>
-					<text><![CDATA[Reporte Proveedor]]></text>
+					<text><![CDATA[Reporte Proveedor Inactivos]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="137" y="17" width="307" height="29" uuid="0400a306-822c-47b2-b7d4-4c036b3ba8bf"/>
@@ -92,7 +91,7 @@
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cedula_ruc}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="137" y="3" width="163" height="17" uuid="57e156e0-fcf6-496b-b3f6-8c1a52e828cd"/>
