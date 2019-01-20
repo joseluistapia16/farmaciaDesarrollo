@@ -28,7 +28,10 @@ import com.farmacia.entities1.TipoProducto;
 import com.farmacia.entities1.Usuario;
 import com.farmacia.entities1.Usuario_S;
 import com.farmacia.entities1.fc_localidad_guayas;
+//<<<<<<< HEAD
+//=======
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
+//>>>>>>> origin/JoseLuis
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
@@ -836,7 +839,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call insertarProveedor(?,?,?,?,?,?,?,?,?) }");
+                    "{ call insertarProveedor(?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setLong(1, obj.getId_proveedor_clase());
             prodProAlm.setString(2, obj.getCedula_ruc());
             prodProAlm.setString(3, obj.getEntidad());
@@ -845,6 +848,7 @@ public class CRUD {
             prodProAlm.setDate(6, obj.getFecha_registro());
             prodProAlm.setString(7, obj.getTelefono());
             prodProAlm.setString(8, obj.getMail());
+            prodProAlm.setString(9, obj.getDireccionImagen());
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.execute();
             valor = prodProAlm.getString("valor");
@@ -1670,10 +1674,12 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call actualizarPrecioCompra(?,?,?,?) }");
+                    "{ call actualizarPrecioCompra(?,?,?,?,?,?) }");
             prodProAlm.setLong(1, obj.getId_producto());
             prodProAlm.setDouble(2, obj.getPrecio_compra());
             prodProAlm.setDouble(3, obj.getPrecio_venta());
+            prodProAlm.setString(4, obj.getFecha_registro());
+            prodProAlm.setLong(5, obj.getId_usuario());
             prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
             valor = prodProAlm.getString("valor1");
@@ -1851,7 +1857,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
-                    "{ call ListarRegistroCabeceraNotaPedido(?)}");
+                    "{ call ListarRegistroDeNotas(?)}");
             prcProcedimientoAlmacenado.setInt(1, op);
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();

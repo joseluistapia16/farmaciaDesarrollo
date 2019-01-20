@@ -47,6 +47,16 @@ public class Laboratorio {
         this.correo = correo;
     }
 
+    public Laboratorio(String RUC, String nombre, String direccion, String telefono, String imagen) {
+        this.RUC = RUC;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.imagen = imagen;
+    }
+
+    
+    
     public Long getId_Laboratorio() {
         return id_Laboratorio;
     }

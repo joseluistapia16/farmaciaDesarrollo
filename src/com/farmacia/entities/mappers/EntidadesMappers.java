@@ -25,7 +25,10 @@ import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.Telefono_Cliente;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.entities1.fc_localidad_guayas;
+//<<<<<<< HEAD
+//=======
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
+//>>>>>>> origin/JoseLuis
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
@@ -365,13 +368,10 @@ public class EntidadesMappers {
         Precios obj = new Precios();
         try {
             obj.setId_precio(rs.getLong("id_precio"));
-            System.out.println("id pre" + obj.getId_precio());
             obj.setId_producto(rs.getLong("id_producto"));
             obj.setPrecio_compra(rs.getDouble("precio_compra"));
-            System.out.println("compra" + obj.getPrecio_compra());
             obj.setPrecio_venta(rs.getDouble("precio_venta"));
-            obj.setEstado(rs.getString("ESTADO"));
-            obj.setEstadoPrecio(rs.getString("ESTADO1"));
+            obj.setEstado(rs.getString("estado"));
 
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
@@ -412,6 +412,7 @@ public class EntidadesMappers {
             obj.setIva(rs.getDouble("IVA"));
             obj.setDescuento(rs.getDouble("DESCUENTO"));
             obj.setTotal(rs.getDouble("TOTAL"));
+            obj.setPlazo(rs.getString("PLAZO"));
 
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);

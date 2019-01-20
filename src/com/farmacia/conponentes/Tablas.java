@@ -7,6 +7,7 @@ package com.farmacia.conponentes;
 
 //import com.objetos.domain.Laboratorio;
 //import com.objetos.fecha.Fecha;
+import com.farmacia.dao.Consultas;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.join_entidades.ListarNotas;
@@ -18,6 +19,7 @@ import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.ListarPuntoVenta;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
+import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.fecha.Fecha;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
@@ -38,6 +40,10 @@ import javax.swing.table.TableRowSorter;
  */
 public class Tablas {
 
+//<<<<<<< HEAD
+    private boolean[] editable = {false, false, false, false, true, false};
+//=======
+//>>>>>>> origin/JoseLuis
     static DefaultTableModel model;
 
     public static DefaultTableModel VaciarTabla(JTable tabla) {
@@ -611,7 +617,11 @@ public class Tablas {
 
     }
 
+//<<<<<<< HEAD
+//    public static void CargarJoinListadoNotaPedidos(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
+//=======
     public static void CargarJoinListadoCabeceraNotaPedidos(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
+//>>>>>>> origin/JoseLuis
 
         int[] a = {5, 5, 52, 90, 150, 110, 15, 50, 10};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
@@ -943,6 +953,58 @@ public class Tablas {
 
     }
 
+//<<<<<<< HEAD
+    public void visualizar(JTable tabla,Long id) {
+
+        tabla.setDefaultRenderer(Object.class, new Render());
+        DefaultTableModel dt = new DefaultTableModel(new String[]{"CODIGO PRECIO", "CODIGO PRODUCTO", "PRECIO COMPRA", "PRECIO VENTA", "ESTADO",}, 0) {
+
+            Class[] types = new Class[]{
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int row, int column) {
+                return editable[column];
+            }
+        };
+
+//        JButton btn_visualizar = new JButton("Visualizar");
+//        btn_visualizar.setName("v");
+        Consultas llamar = new Consultas();
+        Precios vo = new Precios();
+        //Long id= Long.valueOf("22");
+        ArrayList<Precios> list = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado FROM `precios` WHERE `id_producto`= " + id);
+
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                // model.addRow(new Object[]{});
+                Object fila[] = new Object[6];
+                vo = list.get(i);
+                fila[0] = vo.getId_precio();
+                fila[1] = vo.getId_producto();
+                fila[2] = vo.getPrecio_compra();
+                fila[3] = vo.getPrecio_venta();
+                String ac = (String) vo.getEstado();
+                if ("A".equals(ac)) {
+                    fila[4] = true;
+                } else {
+                    fila[4] = false;
+                }
+                //  fila[5] = btn_visualizar;
+                
+                dt.addRow(fila);
+            
+            }
+
+        }
+
+        tabla.setModel(dt);
+//=======
+    }
     public static void cargarJoinRegistroDetalleNotas(JTable Tabla, ArrayList<JoinListarDetalleNotaPedido> lista) {
 
         int[] a = {10, 30, 32, 70, 15, 30, 10, 10, 20, 10, 5};
@@ -992,6 +1054,7 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
             Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
         }
+//>>>>>>> origin/JoseLuis
 
     }
 }
