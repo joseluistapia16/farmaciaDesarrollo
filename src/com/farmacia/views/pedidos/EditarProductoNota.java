@@ -417,25 +417,32 @@ public class EditarProductoNota extends javax.swing.JDialog {
         Double PorcentajeDescuento = 0.00;
         Double Cantidad = Double.parseDouble(txtcantidad.getText());
         Double Precio = Double.parseDouble(txtPrecio.getText());
-        if (txtporcentajeDescuento.getText().equals(null)) {
-            System.out.println("dhfsbkdjf");
+
+        if (txtporcentajeDescuento.getText().equals("")) {
+//        PorcentajeDescuento = Double.parseDouble(txtporcentajeDescuento.getText());
+            PorcentajeDescuento = 0.00;
+            Double ValorDescuento = Cantidad * Precio * PorcentajeDescuento / 100;
+            ValorDescuento = redondearDecimales(ValorDescuento, 2);
+
+            txtDescuento.setText(Double.valueOf(ValorDescuento).toString());
             Double IVA = Double.parseDouble(txtIva.getText());
-            total = Cantidad * Precio + IVA;
+
+            total = Cantidad * Precio + IVA - ValorDescuento;
             total = redondearDecimales(total, 2);
             txtTotal.setText(Double.valueOf(total).toString());
+        } else {
+            PorcentajeDescuento = Double.parseDouble(txtporcentajeDescuento.getText());
+//            PorcentajeDescuento = 0.00;
+            Double ValorDescuento = Cantidad * Precio * PorcentajeDescuento / 100;
+            ValorDescuento = redondearDecimales(ValorDescuento, 2);
 
+            txtDescuento.setText(Double.valueOf(ValorDescuento).toString());
+            Double IVA = Double.parseDouble(txtIva.getText());
+
+            total = Cantidad * Precio + IVA - ValorDescuento;
+            total = redondearDecimales(total, 2);
+            txtTotal.setText(Double.valueOf(total).toString());
         }
-        PorcentajeDescuento = Double.parseDouble(txtporcentajeDescuento.getText());
-        Double ValorDescuento = Cantidad * Precio * PorcentajeDescuento / 100;
-        ValorDescuento = redondearDecimales(ValorDescuento, 2);
-
-        txtDescuento.setText(Double.valueOf(ValorDescuento).toString());
-        Double IVA = Double.parseDouble(txtIva.getText());
-
-        total = Cantidad * Precio + IVA - ValorDescuento;
-        total = redondearDecimales(total, 2);
-        txtTotal.setText(Double.valueOf(total).toString());
-
     }
 
 //    public void ValorDescuento() {
