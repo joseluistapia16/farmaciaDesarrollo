@@ -485,9 +485,8 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         tip1=pro.getId_proveedor_clase();
         tip2=pro.getEstado();
         tip3=pro.getId_proveedor();
-        getPicture2(pro.getDireccionImagen());
+        getPicture2(pro.getDireccionImagen());     
         System.out.println(pro.getDireccionImagen());
-    
     }
 
     private void btnagregarTelfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarTelfActionPerformed
@@ -741,9 +740,8 @@ public class Editar_Proveedor extends javax.swing.JDialog {
     }//GEN-LAST:event_contactoFocusLost
 
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
-        ArrayList proveedor = new ArrayList();
-        System.out.println(imagen.getText());
-        ProveedorRep proveedor1 = new ProveedorRep(cedula.getText(),nombre.getText(),contacto.getText(),dire.getText(),fecha.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString());
+        ArrayList proveedor = new ArrayList();        
+        ProveedorRep proveedor1 = new ProveedorRep(cedula.getText(),nombre.getText(),contacto.getText(),dire.getText(),fecha.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),rutaimagen);
         proveedor.add(proveedor1);
         try {
             JasperReport reporte =  (JasperReport) JRLoader.loadObject("Editar_Proveedor.jasper");            
@@ -956,6 +954,14 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Editar_Proveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
