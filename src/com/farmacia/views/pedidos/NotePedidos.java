@@ -514,16 +514,13 @@ public class NotePedidos extends javax.swing.JDialog {
             PanelSecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelSecLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PanelSecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelSecLayout.createSequentialGroup()
-                        .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(tblProduc))
-                .addContainerGap())
+                .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscar)
+                .addContainerGap(438, Short.MAX_VALUE))
+            .addComponent(tblProduc, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         PanelSecLayout.setVerticalGroup(
             PanelSecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -576,7 +573,7 @@ public class NotePedidos extends javax.swing.JDialog {
                         .addGap(0, 95, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -820,6 +817,7 @@ public class NotePedidos extends javax.swing.JDialog {
                 if (objeto != null) {
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
+                    
                     msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_precios().toString());
 
                     if (msg == null) {

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-
 public class EditarNotaPedido extends javax.swing.JDialog {
 
     int x, y;
@@ -26,7 +25,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     JoinListarNotaPedidosCabecera objf = new JoinListarNotaPedidosCabecera();
-
+    String codigocabecera = "";
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
     JoinListarDetalleNotaPedido objetop = null;
 
@@ -47,10 +46,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         this.setResizable(false);
         llenarFormulario(obj1);
         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-        String i = txt_Numero.getText().toString();
+        codigocabecera = txt_Numero.getText().toString();
 
-        lista3 = crud.listarDetalleNotaPedido(1, i);
+        lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
         Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+
         Total();
         TotalIVA();
         TotalDescuento();
@@ -62,25 +62,19 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         txtNombre1.setText(obj.getEntidad());
         txtCorreo1.setText(obj.getCorreo());
         txtRuc1.setText(obj.getCedula_ruc());
-//        txtIva.setText(obj.getIva().toString());
-//        txtDescuento.setText(obj.getDescuento().toString());
-//        txtTotal.setText(obj.getTotal().toString());
         txtTelefono1.setText(obj.getTelefono());
         txtRepresentante.setText(obj.getRepresentante());
         txtFechaCreacion.setText(obj.getFecha_creacion());
         txt_Numero.setText(obj.getId_cabecera_nota_pedidos().toString());
         txtDireccion1.setText(obj.getDireccion());
         txtTipo1.setText(obj.getClase());
-//        cbxPlazo.
+//        cbxPlazo.setModel(obj.getPlazo());
 //       
         objf.setId_proveedor(obj.getId_proveedor());
         objf.setEntidad(obj.getEntidad());
         objf.setCorreo(obj.getCorreo());
         objf.setCedula_ruc(obj.getCedula_ruc());
         objf.setFecha_creacion(obj.getFecha_creacion());
-//        objf.setIva(obj.getIva());
-//        objf.setDescuento(obj.getDescuento());
-//        objf.setTotal(obj.getTotal());
         objf.setId_cabecera_nota_pedidos(obj.getId_cabecera_nota_pedidos());
         objf.setDireccion(obj.getDireccion());
         objf.setClase(obj.getClase());
@@ -132,7 +126,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         t_Nota_faltantes = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbaListaFaltantes = new javax.swing.JTable();
-        btnGuardar = new javax.swing.JButton();
         btnSalir2 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
@@ -143,6 +136,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -495,13 +489,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -533,6 +520,13 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("$");
 
+        btnEditar.setText("EDITAR");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -541,8 +535,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addGap(18, 18, 18)
+                        .addComponent(btnEditar)
+                        .addGap(20, 20, 20)
                         .addComponent(btnSalir2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -591,8 +585,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -679,10 +673,6 @@ public void Total() {
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
         int i = 0;
         String msg = null;
@@ -700,7 +690,7 @@ public void Total() {
                         int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                         getPosicion(objeto.getId_producto(), suma);
                         lista1.add(np.getObjf());
-                        
+
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
                         Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
@@ -777,7 +767,7 @@ public void Total() {
     public JoinListarDetalleNotaPedido devuelveObjeto(String datos, ArrayList<JoinListarDetalleNotaPedido> listarobj) {
         JoinListarDetalleNotaPedido objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
+            if (datos.equals(listarobj.get(i).getId_precio().toString())) {
                 objeto1 = listarobj.get(i);
                 break;
             }
@@ -791,12 +781,17 @@ public void Total() {
 
         if (evt.getClickCount() == 2) {
             i = tbaListaFaltantes.getSelectedRow();
-            objetop = devuelveObjeto(tbaListaFaltantes.getValueAt(i, 0).toString(), lista3);
+            objetop = devuelveObjeto(lista3.get(i).getId_precio().toString(), lista3);
 
             if (objetop != null) {
                 EditarProductoNota Man = new EditarProductoNota(new javax.swing.JFrame(), true, objetop);
                 Man.setVisible(true);
-
+                lista3.clear();
+                lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
+                Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+                Total();
+                TotalIVA();
+                TotalDescuento();
             }
         }
 
@@ -831,6 +826,19 @@ public void Total() {
         y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int r = JOptionPane.showConfirmDialog(null, "¿Desea Actualizar?", "", JOptionPane.YES_NO_OPTION);
+
+        if (r == JOptionPane.YES_OPTION) {
+
+            JOptionPane.showMessageDialog(null, "Actualizado");
+            setVisible(false);
+
+        } else {
+
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -850,7 +858,7 @@ public void Total() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelSec;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JComboBox<String> cbxFormaP;
     private javax.swing.JComboBox<String> cbxPlazo;

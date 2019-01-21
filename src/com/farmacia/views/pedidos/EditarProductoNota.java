@@ -20,7 +20,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
     int x, y;
     JoinListarDetalleNotaPedido objf = new JoinListarDetalleNotaPedido();
-    DetalleNotaPedido obj2 = null;
+    JoinListarDetalleNotaPedido obj2 = null;
     CRUD crud = new CRUD();
 
     /**
@@ -37,7 +37,8 @@ public class EditarProductoNota extends javax.swing.JDialog {
         initComponents();
         llenarFormulario(obj1);
         this.setLocationRelativeTo(null);
-
+        obj2 = obj1;
+        System.out.println("id detalle " + obj1.getId_detalle_nota_pedido());
         btnEditar.setEnabled(false);
     }
 
@@ -87,7 +88,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         jLabel17 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         txtporcentajeDescuento = new javax.swing.JTextField();
-        btnEditar1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         txtPrecio1.setEditable(false);
 
@@ -265,10 +266,10 @@ public class EditarProductoNota extends javax.swing.JDialog {
             }
         });
 
-        btnEditar1.setText("ELIMINAR");
-        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditar1ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -282,7 +283,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditar1)
+                        .addComponent(btnEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSalir))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -409,7 +410,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -616,12 +617,31 @@ public class EditarProductoNota extends javax.swing.JDialog {
         obj.setDescuento(Double.parseDouble(txtDescuento.getText()));
         obj.setIva(Double.parseDouble(txtIva.getText()));
         obj.setTotal(Double.parseDouble(txtTotal.getText()));
-        obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedidos());
+        obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedido());
         crud.ActualizarNotaPedidos(obj);
     }
-    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int r = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar?", "", JOptionPane.YES_NO_OPTION);
 
-    }//GEN-LAST:event_btnEditar1ActionPerformed
+        if (r == JOptionPane.YES_OPTION) {
+            EliminarDetalleNotaPedido();
+
+            JOptionPane.showMessageDialog(null, "Eliminado");
+            setVisible(false);
+
+        } else {
+
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void EliminarDetalleNotaPedido() {
+        DetalleNotaPedido obj = new DetalleNotaPedido();
+        obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedido());
+        crud.EliminarDetalleNotaPedido(obj);
+//        Habilitar(false);
+//        JOptionPane.showMessageDialog(null, "Detalle Eliminado");
+    }
+
     private void llenarFormulario(JoinListarDetalleNotaPedido obj) {
 
         codigo.setText(obj.getId_producto().toString());
@@ -700,7 +720,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Medida;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEditar1;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JTextField codigo;
     private javax.swing.JButton jButton1;

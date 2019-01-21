@@ -452,6 +452,7 @@ public class EntidadesMappers {
         try {
             obj.setId_detalle_nota_pedido(rs.getLong("ID_DETALLE_NOTA_PEDIDOS"));
             obj.setId_producto(rs.getLong("ID_PRODUCTO"));
+            obj.setId_precio(rs.getLong("ID_PRECIO"));
             obj.setMarca(rs.getString("MARCA"));
             obj.setTipo(rs.getString("TIPO"));
             obj.setProducto(rs.getString("PRODUCTO"));
