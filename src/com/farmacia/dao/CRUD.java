@@ -1947,6 +1947,38 @@ public class CRUD {
         }
         return lista;
     }
+    public ArrayList<JoinListarDetalleNotaPedido> listarDetalleNotaPedidoEnCompra(int op, String id) {
+        ArrayList<JoinListarDetalleNotaPedido> lista = new ArrayList<JoinListarDetalleNotaPedido>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call ListarRegistroDetalleNotaPedido(?,?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.setString(2, id);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                JoinListarDetalleNotaPedido obj = EntidadesMappers.getDetallePedidoEnCompraFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
 
     public String insertarCabeceraNotaPedido(CabeceraNotaPedido obj) {
 
@@ -2591,6 +2623,40 @@ public class CRUD {
         }
         return dato;
 
+    }
+    
+    public Double eliminardetalleCompra(JoinListarDetalleNotaPedido dnp) {
+        Double valor =0.0;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call eliminarDetalleCompra(?,?,?)}");
+            // System.err.println("Error "+lab.getId_Laboratorio());
+            
+            pro.setDouble(1, dnp.getDescuento());
+            pro.setDouble(2, dnp.getPrecio());
+            
+            pro.registerOutParameter("valor3", Types.DOUBLE);
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getDouble("valor3");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
     }
 
 }

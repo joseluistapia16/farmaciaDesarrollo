@@ -22,12 +22,13 @@ public class CabeceraCompra extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     int x, y;
     JoinListarNotaPedidosCabecera objeto = null;
-    ArrayList<JoinListarNotaPedidosCabecera> lista = crud.listarCabeceraNotaPedidoEnCompras(3);
-    
+    ArrayList<JoinListarNotaPedidosCabecera> lista = null;
+    String buscar="";
     public CabeceraCompra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        lista = crud.listarCabeceraNotaPedidoEnCompras(3);
         Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
         
     }
@@ -41,36 +42,15 @@ public class CabeceraCompra extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtfiltro = new javax.swing.JTextField();
-        filtrar = new javax.swing.JButton();
         btnSalir2 = new javax.swing.JButton();
         tblProduc = new javax.swing.JScrollPane();
         tbaCabeceraPedido = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        buscar1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        txtfiltro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtfiltroActionPerformed(evt);
-            }
-        });
-        txtfiltro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtfiltroKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtfiltroKeyTyped(evt);
-            }
-        });
-
-        filtrar.setText("Buscar");
-        filtrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtrarActionPerformed(evt);
-            }
-        });
 
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +113,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
-                .addGap(285, 285, 285))
+                .addGap(360, 360, 360))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,17 +123,22 @@ public class CabeceraCompra extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        jLabel2.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/buscar1.jpg"))); // NOI18N
+        jLabel2.setText("Buscar :");
+
+        buscar1.setPreferredSize(new java.awt.Dimension(6, 28));
+        buscar1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                buscar1KeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(filtrar)
-                .addContainerGap(401, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalir2)
@@ -162,16 +147,22 @@ public class CabeceraCompra extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(tblProduc)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(474, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(15, 15, 15)
                 .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,22 +171,6 @@ public class CabeceraCompra extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtfiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfiltroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtfiltroActionPerformed
-
-    private void txtfiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyReleased
-
-    }//GEN-LAST:event_txtfiltroKeyReleased
-
-    private void txtfiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyTyped
-
-    }//GEN-LAST:event_txtfiltroKeyTyped
-
-    private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
-
-    }//GEN-LAST:event_filtrarActionPerformed
 
     private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
@@ -213,12 +188,17 @@ public class CabeceraCompra extends javax.swing.JDialog {
 
         if (evt.getClickCount() == 2) {
             i = tbaCabeceraPedido.getSelectedRow();
+            lista = crud.listarCabeceraNotaPedidoEnCompras(3);
             objeto = devuelveObjeto(tbaCabeceraPedido.getValueAt(i, 0).toString(), lista);
-
+            
             if (objeto != null) {
                 OrdenCompra Man = new OrdenCompra(new javax.swing.JFrame(), true,objeto);
+                this.setVisible(false);
                 Man.setVisible(true);
-
+                
+                //lista.clear();
+                
+               // Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
             }
         }
     }//GEN-LAST:event_tbaCabeceraPedidoMousePressed
@@ -246,6 +226,11 @@ public class CabeceraCompra extends javax.swing.JDialog {
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_jPanel1MousePressed
+
+    private void buscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscar1KeyReleased
+        buscar = buscar1.getText();
+        Tablas.filtro(buscar, tbaCabeceraPedido);
+    }//GEN-LAST:event_buscar1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -291,15 +276,11 @@ public class CabeceraCompra extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir2;
-    private javax.swing.JButton filtrar;
+    private javax.swing.JTextField buscar1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JTable tbaCabeceraPedido;
     private javax.swing.JScrollPane tblProduc;
-    private javax.swing.JTextField txtfiltro;
     // End of variables declaration//GEN-END:variables
 }

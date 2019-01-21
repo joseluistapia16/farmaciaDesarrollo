@@ -8,6 +8,7 @@ package com.farmacia.pruebas;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.validaciones.ValidarIngresoProducto;
 import com.farmacia.dao.CRUD;
+import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import java.util.ArrayList;
 
 /**
@@ -36,8 +37,13 @@ f();
     }
     public static void f(){
     CRUD cr = new CRUD();
-    
+    JoinListarDetalleNotaPedido n=new JoinListarDetalleNotaPedido();
+    n.setDescuento(34.56);
+    n.setPrecio(23.45);
+    Double valor = cr.eliminardetalleCompra(n);
+        System.out.println("valor= "+valor);
 //    String valor=cr.getNombreTipo(Long.valueOf("1"),Long.valueOf("6"));
 //        System.out.println(""+valor);
     }
+    
 }
