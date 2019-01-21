@@ -34,7 +34,7 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
     int x, y;
     CRUD crud = new CRUD();    
     ListarJoinProveedor proveedor = null;    
-    ArrayList<ListarJoinProveedor> lista = crud.listarProveedores(Long.valueOf("1"));
+    ArrayList<ListarJoinProveedor> lista = null;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 
@@ -42,9 +42,10 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
-        setLocationRelativeTo(null);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(this);
+        setLocationRelativeTo(this);
         setLayout(null);
+        lista = crud.listarProveedores(Long.valueOf("1"));
         //   coneccion = conectar.Conexion("farmacia");
         //    lista = llamar.listarProveedor("farmacia", "select * from proveedor where estado = 'A' ");
         Tablas.listarProveedor(lista, tabla);
@@ -255,7 +256,9 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
         Ingresar_Proveedor ip = new Ingresar_Proveedor(new javax.swing.JFrame(), true);
         setVisible(false);
         ip.setVisible(true);
-
+        lista.clear();
+        lista = crud.listarProveedores(Long.valueOf("1"));
+        Tablas.listarProveedor(lista, tabla);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -272,7 +275,7 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
             id = tabla.getSelectedRow();
             lista = crud.listarProveedores(Long.valueOf("1"));
             proveedor = buscarObjeto(tabla.getValueAt(id, 0).toString(), lista);
-            System.out.println(proveedor.getCedula_ruc());
+            System.out.println("si pasa algo"+proveedor.getCedula_ruc());
             if (proveedor != null) {
                 Editar_Proveedor ep = new Editar_Proveedor(new javax.swing.JFrame(), true, proveedor);
                 setVisible(false);

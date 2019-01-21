@@ -80,7 +80,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
-        //proveedores = proveedor1;
+        proveedor = proveedor1;
         ArrayList<Obcx> listat = null;
         ArrayList<Obcx> listad = null;
         ArrayList<Obcx> listac = null;
@@ -486,7 +486,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         tip2=pro.getEstado();
         tip3=pro.getId_proveedor();
         getPicture2(pro.getDireccionImagen());
-        System.out.println(pro.getDireccionImagen()+"hola perra");
+        System.out.println(pro.getDireccionImagen());
     
     }
 
