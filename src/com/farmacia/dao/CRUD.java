@@ -2595,22 +2595,21 @@ public class CRUD {
         return valor;
     }
     
-    public Double eliminardetalleCompra(JoinListarDetalleNotaPedido dnp) {
-        Double valor =0.0;
+    public String eliminardetalleCompra(JoinListarDetalleNotaPedido dnp) {
+        String valor = null;
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
                     "{ call eliminarDetalleCompra(?,?,?)}");
-            // System.err.println("Error "+lab.getId_Laboratorio());
-            
+                       
             pro.setDouble(1, dnp.getDescuento());
             pro.setDouble(2, dnp.getPrecio());
             
-            pro.registerOutParameter("valor3", Types.DOUBLE);
+            pro.registerOutParameter("valor", Types.VARCHAR);
             pro.executeUpdate();
             //pro.execute();
-            valor = pro.getDouble("valor3");
+            valor = pro.getString("valor");
             conect.commit();
         } catch (Exception e) {
             try {
