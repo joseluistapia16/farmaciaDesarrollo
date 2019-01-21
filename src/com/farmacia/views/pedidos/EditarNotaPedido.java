@@ -343,6 +343,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jLabel7.setText("Editar Nota de Pedido ");
 
         txt_Numero.setEditable(false);
+        txt_Numero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_NumeroActionPerformed(evt);
+            }
+        });
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
@@ -829,6 +834,10 @@ public void Total() {
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
+
+    private void txt_NumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NumeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_NumeroActionPerformed
 
     public static void main(String args[]) {
 

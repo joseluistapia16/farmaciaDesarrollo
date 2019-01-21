@@ -17,6 +17,7 @@ public class JoinListarNotaPedidosCabecera {
     private String cedula_ruc;
     private String correo;
     private String Plazo;
+    private String forma_pago;
     private String fecha_creacion;
     private Double iva;
     private Double descuento;
@@ -25,7 +26,7 @@ public class JoinListarNotaPedidosCabecera {
     public JoinListarNotaPedidosCabecera() {
     }
 
-    public JoinListarNotaPedidosCabecera(Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String telefono, Long id_proveedor_clase, String clase, String direccion, String cedula_ruc, String correo, String Plazo, String fecha_creacion, Double iva, Double descuento, Double total) {
+    public JoinListarNotaPedidosCabecera(Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String telefono, Long id_proveedor_clase, String clase, String direccion, String cedula_ruc, String correo, String Plazo, String forma_pago, String fecha_creacion, Double iva, Double descuento, Double total) {
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
         this.id_proveedor = id_proveedor;
         this.entidad = entidad;
@@ -37,6 +38,7 @@ public class JoinListarNotaPedidosCabecera {
         this.cedula_ruc = cedula_ruc;
         this.correo = correo;
         this.Plazo = Plazo;
+        this.forma_pago = forma_pago;
         this.fecha_creacion = fecha_creacion;
         this.iva = iva;
         this.descuento = descuento;
@@ -131,6 +133,14 @@ public class JoinListarNotaPedidosCabecera {
         this.Plazo = Plazo;
     }
 
+    public String getForma_pago() {
+        return forma_pago;
+    }
+
+    public void setForma_pago(String forma_pago) {
+        this.forma_pago = forma_pago;
+    }
+
     public String getFecha_creacion() {
         return fecha_creacion;
     }
@@ -162,5 +172,6 @@ public class JoinListarNotaPedidosCabecera {
     public void setTotal(Double total) {
         this.total = total;
     }
+
     
 }
