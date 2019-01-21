@@ -836,7 +836,7 @@ public class CRUD {
     }
 
     public String insertarNuevoProveedor(ListarJoinProveedor obj) {
-        ArrayList<ListarJoinProveedor> lista = new ArrayList<ListarJoinProveedor>();
+       // ArrayList<ListarJoinProveedor> lista = new ArrayList();
         String valor = "";
         try {
             conect = con.conectar();
@@ -855,11 +855,6 @@ public class CRUD {
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.execute();
             valor = prodProAlm.getString("valor");
-            //  rs = prodProAlm.getResultSet();
-//            while (rs.next()) {
-//                MarcaProducto obj = EntidadesMappers.getMarcaProductoFromResultSet(rs);
-//                lista.add(obj);
-//            }
 
             conect.commit();
         } catch (Exception e) {

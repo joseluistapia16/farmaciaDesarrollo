@@ -35,9 +35,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Ingresar_Proveedor extends javax.swing.JDialog {
     private String rutaimagen = "";
     int x, y;
-    public ArrayList<Obcx> listat = new ArrayList();
+    public static ArrayList<Obcx> listat = new ArrayList();
     //blic ArrayList<Obcx> listad = new ArrayList();
-    public ArrayList<Obcx> listac = new ArrayList();
+    public static ArrayList<Obcx> listac = new ArrayList();
     public String[] verificar1 = new String[10];
     public String[] verificar2 = new String[10];
 
@@ -403,7 +403,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ArrayList<Obcx> lista = new ArrayList();
+       // ArrayList<Obcx> lista = new ArrayList();
         boolean band = false;
         int pos = 0;
         Ingresar_Telefono ic = new Ingresar_Telefono(new javax.swing.JFrame(), true, cedula.getText());
@@ -422,7 +422,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
                 cbx1.addItem(ic.getTelefono() + " " + ic.getTexto());
                 Obcx pol = new Obcx(ic.getTelefono(), ic.getTipo());
 
-                lista.add(pol);
+                //lista.add(pol);
                 listat.add(pol);
                 pos++;
             }
@@ -510,7 +510,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             p.setDireccionImagen(rutaimagen);
             String pro = crud.insertarNuevoProveedor(p);
             if (pro != null) {
-
+                
                 crud.insertarTelefono(listat,cedula.getText());
                 crud.insertarCorreo(listac,cedula.getText());
                 //insertarDireccion(listad);
