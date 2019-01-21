@@ -158,9 +158,9 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -204,7 +204,8 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_txtfiltroKeyTyped
 
     private void txtfiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyReleased
-
+        String buscar = txtfiltro.getText();
+        Tablas.filtro(buscar, tblRegistrodeNotas);
     }//GEN-LAST:event_txtfiltroKeyReleased
 
     private void txtfiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfiltroActionPerformed
@@ -223,16 +224,15 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     }
     private void tblRegistrodeNotasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegistrodeNotasMousePressed
         int i = 0;
-        
+
         if (evt.getClickCount() == 2) {
             i = tblRegistrodeNotas.getSelectedRow();
             objeto = devuelveObjeto(tblRegistrodeNotas.getValueAt(i, 0).toString(), lista);
-            
+
             if (objeto != null) {
-                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true,objeto);
+                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true, objeto);
                 Man.setVisible(true);
-                
-                 
+
             }
         }
     }//GEN-LAST:event_tblRegistrodeNotasMousePressed
