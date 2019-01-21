@@ -2,14 +2,14 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d5ea5dd-64e9-4be5-8170-31f086dc7197">
 	<property name="ireport.zoom" value="1.3310000000000026"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="204"/>
-	<field name="RUC" class="java.lang.String"/>
-	<field name="nombre" class="java.lang.String"/>
-	<field name="direccion" class="java.lang.String"/>
-	<field name="telefono" class="java.lang.String"/>
-	<field name="fecha" class="java.lang.String"/>
-	<field name="imagen" class="java.lang.String"/>
-	<field name="correo" class="java.lang.String"/>
+	<property name="ireport.y" value="48"/>
+	<field name="valor1" class="java.lang.String"/>
+	<field name="valor2" class="java.lang.String"/>
+	<field name="valor3" class="java.lang.String"/>
+	<field name="valor4" class="java.lang.String"/>
+	<field name="valor5" class="java.lang.String"/>
+	<field name="valor6" class="java.lang.String"/>
+	<field name="valor7" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -75,32 +75,50 @@
 				<text><![CDATA[RUC:]]></text>
 			</staticText>
 			<image>
-				<reportElement x="179" y="0" width="219" height="113" uuid="cddd3082-5683-4987-b04c-2e13bd993612"/>
-				<imageExpression><![CDATA[$F{imagen}.toString()]]></imageExpression>
+				<reportElement x="146" y="6" width="219" height="113" uuid="cddd3082-5683-4987-b04c-2e13bd993612"/>
+				<imageExpression><![CDATA[$F{valor6}.toString()]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="248" y="131" width="161" height="20" uuid="4a4eb47c-b77d-4a8b-b02a-3a9d18a60ed4"/>
-				<textFieldExpression><![CDATA[$F{RUC}]]></textFieldExpression>
+				<reportElement x="248" y="131" width="135" height="20" uuid="a1ab9d62-7fef-45cd-989e-745a61f66bdb"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="248" y="151" width="161" height="20" uuid="2997e08e-6e67-4ef0-ace9-0ded5de5eb8b"/>
-				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				<reportElement x="248" y="151" width="135" height="20" uuid="154af57b-8157-4a45-9788-1a0e92cac47c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor2}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="248" y="171" width="161" height="20" uuid="6c21c7ea-fafc-4ba0-91dd-75cbd95abe99"/>
-				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+				<reportElement x="248" y="171" width="135" height="20" uuid="e00c87e0-7701-4bd4-bb77-bf3abd8de6ba"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor3}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="248" y="191" width="161" height="20" uuid="6bbf769b-afcc-4ae0-ad63-5421c05b1ed7"/>
-				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+				<reportElement x="248" y="191" width="135" height="20" uuid="c5c1df9f-0f74-44a9-a126-b4f31185d4b4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor4}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="248" y="211" width="161" height="20" uuid="7a5f875d-7d0e-4935-a65f-03c57c7ba2f1"/>
-				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+				<reportElement x="248" y="211" width="135" height="20" uuid="02506ef1-e290-4165-8e48-4302dc64a551"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor5}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="248" y="231" width="161" height="20" uuid="e0cf44fb-be9b-420e-9849-187648c6376f"/>
-				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
+				<reportElement x="248" y="231" width="135" height="20" uuid="dcdd8e0b-c7d9-4326-af25-c1c7a1b6225b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor7}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
