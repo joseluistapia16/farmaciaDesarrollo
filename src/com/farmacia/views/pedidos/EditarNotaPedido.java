@@ -46,7 +46,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         this.setResizable(false);
         llenarFormulario(obj1);
         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-        codigocabecera = txt_Numero.getText().toString();
+        codigocabecera = txtNumero.getText().toString();
 
         lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
         Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
@@ -65,7 +65,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         txtTelefono1.setText(obj.getTelefono());
         txtRepresentante.setText(obj.getRepresentante());
         txtFechaCreacion.setText(obj.getFecha_creacion());
-        txt_Numero.setText(obj.getId_cabecera_nota_pedidos().toString());
+        txtNumero.setText(obj.getId_cabecera_nota_pedidos().toString());
         txtDireccion1.setText(obj.getDireccion());
         txtTipo1.setText(obj.getClase());
 //        cbxPlazo.setModel(obj.getPlazo());
@@ -116,8 +116,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         cbxPlazo = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        txt_Numero = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
+        txtNumero = new javax.swing.JTextField();
         PanelSec = new javax.swing.JPanel();
         filtro = new javax.swing.JTextField();
         tipofiltro = new javax.swing.JComboBox<>();
@@ -298,7 +298,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addComponent(cbxFormaP, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -337,13 +337,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Editar Nota de Pedido ");
 
-        txt_Numero.setEditable(false);
-        txt_Numero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_NumeroActionPerformed(evt);
-            }
-        });
-
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -355,20 +348,20 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(348, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
-                .addGap(205, 205, 205)
+                .addGap(214, 214, 214)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel15))
+                .addComponent(jLabel15)
+                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         filtro.addActionListener(new java.awt.event.ActionListener() {
@@ -844,9 +837,9 @@ public void Total() {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void txt_NumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NumeroActionPerformed
+    private void txt_NumeroActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_NumeroActionPerformed
+    }                                          
 
 
     public static void main(String args[]) {
@@ -910,11 +903,11 @@ public void Total() {
     private javax.swing.JTextField txtFechaCreacion;
     public static javax.swing.JTextField txtIva;
     public static javax.swing.JTextField txtNombre1;
+    public static javax.swing.JTextField txtNumero;
     public static javax.swing.JTextField txtRepresentante;
     public static javax.swing.JTextField txtRuc1;
     public static javax.swing.JTextField txtTelefono1;
     public static javax.swing.JTextField txtTipo1;
     public static javax.swing.JTextField txtTotal;
-    private javax.swing.JTextField txt_Numero;
     // End of variables declaration//GEN-END:variables
 }

@@ -489,6 +489,7 @@ public class EntidadesMappers {
         }
         return obj;
     }
+
 //     public static JoinListarDetalleNotaPedido getDetallePedidosFromResultSet(ResultSet rs) {
 //        JoinListarDetalleNotaPedido obj = new JoinListarDetalleNotaPedido();
 //        try {
