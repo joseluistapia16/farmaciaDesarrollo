@@ -21,6 +21,7 @@ import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
 import com.farmacia.entities1.MarcaProducto;
+import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.Telefono_Cliente;
@@ -653,6 +654,27 @@ public class EntidadesMappers {
             obj.setIva(rs.getString("Iva"));
             //obj.setId_precio(rs.getLong("ID_PRECIO"));
             obj.setPrecio_venta(rs.getDouble("Precio de venta"));
+            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    /////////// mapper identidad listar cliente ventas
+    public static Persona getTodosClienteVentasFromResultSet(ResultSet rs) {
+        Persona obj = new Persona();
+       
+        try {
+    
+            obj.setId_Clientes(rs.getLong("Codigo"));
+            obj.setCedula(rs.getString("Cedula"));
+            obj.setNombre(rs.getString("Nombre"));
+            obj.setApellido(rs.getString("Apellido"));
+            obj.setDireccion(rs.getString("Direccion"));
+            obj.setStr_telefono(rs.getString("Telefono"));
+            obj.setStr_correo(rs.getString("correo"));
+     
             
 
         } catch (SQLException ex) {

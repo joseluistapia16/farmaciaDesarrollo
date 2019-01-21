@@ -7,6 +7,7 @@ import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
+import com.farmacia.validaciones.ComponentesFaltantes;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -689,16 +690,16 @@ public void Total() {
 
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
         int i = 0;
-//        String msg = null;
+        String msg = null;
 
         if (evt.getClickCount() == 2) {
             i = t_Nota_faltantes.getSelectedRow();
-            objeto = devuelveObjeto2(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
+            objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
             if (objeto != null) {
                 AgregarProductoEditarNotaPedido1 np = new AgregarProductoEditarNotaPedido1(new javax.swing.JFrame(), true, objeto);
                 np.setVisible(true);
-//                msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
-//                if (msg == null) {
+                msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
+                if (msg == null) {
                     Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                     if (np.getObjf().getCantidad() > 0) {
                         int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
@@ -710,7 +711,7 @@ public void Total() {
                         Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
 //                    Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
 
-//                    }
+                    }
 
                 }
             }
@@ -728,7 +729,7 @@ public void Total() {
     public joinProductoDetallesFaltantes devuelveObjeto2(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
         joinProductoDetallesFaltantes objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
+            if (datos.equals(listarobj.get(i).getId_precios().toString())) {
                 objeto1 = listarobj.get(i);
                 break;
             }

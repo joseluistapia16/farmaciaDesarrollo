@@ -7,7 +7,8 @@ package com.farmacia.views.ventas;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
-import com.farmacia.join_entidades.JoinListarProductosVentas;
+import com.farmacia.entities1.Persona;
+
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,15 +16,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Jomugue
  */
-public class ConsultarProductoVentas extends javax.swing.JDialog {
+public class ConsultarClienteVentas extends javax.swing.JDialog {
 
     CRUD crud = new CRUD();
-    ArrayList<JoinListarProductosVentas> lista = null;
-    //crud.ListarTodoJoinProductosVentas("%A%","buscar_nombre");
+    ArrayList<Persona> lista = null;
     DefaultTableModel model;
-    JoinListarProductosVentas objeto = null;
+    Persona objeto = null;
 
-    public ConsultarProductoVentas(java.awt.Frame parent, boolean modal) {
+    public ConsultarClienteVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -42,7 +42,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaProductoVentas = new javax.swing.JTable();
+        TablaClienteVentas = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         CbxFiltro = new javax.swing.JComboBox<>();
         TxtFiltro = new javax.swing.JTextField();
@@ -53,7 +53,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        TablaProductoVentas.setModel(new javax.swing.table.DefaultTableModel(
+        TablaClienteVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -64,7 +64,12 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(TablaProductoVentas);
+        TablaClienteVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaClienteVentasMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablaClienteVentas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,7 +90,12 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        CbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
+        CbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "CEDULA", "NOMBRE", "APELLIDO", "DIRECCION", "TELEFONO", "CORREO", " " }));
+        CbxFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CbxFiltroActionPerformed(evt);
+            }
+        });
 
         TxtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +121,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                 .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnBuscar)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +134,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jLabel1.setText("Productos");
+        jLabel1.setText("Clientes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,38 +176,46 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
         int pos = CbxFiltro.getSelectedIndex();
         if (pos == 0) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_codigo");
+            lista = crud.ListarTodoClienteVentas(query, "buscar_codigo");
 
         }
         if (pos == 1) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_nombre");
+            lista = crud.ListarTodoClienteVentas(query, "buscar_cedula");
 
         }
         if (pos == 2) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_tipo");
+            lista = crud.ListarTodoClienteVentas(query, "buscar_nombre");
 
         }
         if (pos == 3) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_medida");
+            lista = crud.ListarTodoClienteVentas(query, "buscar_apellido");
 
         }
         if (pos == 4) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_envase");
+            lista = crud.ListarTodoClienteVentas(query, "buscar_direccion");
 
         }
         if (pos == 5) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_marca");
+            lista = crud.ListarTodoClienteVentas(query, "buscar_telefono");
 
         }
         if (pos == 6) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_codigo");
+            lista = crud.ListarTodoClienteVentas(query, "buscar_correo");
             
         }
 
         //lista = crud.ListarTodoJoinProductosVentas(query, "buscar_nombre");
-        Tablas.cargarJoinProductosVentas(TablaProductoVentas, lista);
+        Tablas.cargarClienteVentas(TablaClienteVentas, lista);
         query = "";
     }//GEN-LAST:event_BtnBuscarActionPerformed
+
+    private void CbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CbxFiltroActionPerformed
+
+    private void TablaClienteVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClienteVentasMousePressed
+
+    }//GEN-LAST:event_TablaClienteVentasMousePressed
 
     /**
      * @param args the command line arguments
@@ -216,14 +234,18 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarProductoVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarClienteVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarProductoVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarClienteVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarProductoVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarClienteVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarProductoVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarClienteVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -232,7 +254,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ConsultarProductoVentas dialog = new ConsultarProductoVentas(new javax.swing.JFrame(), true);
+                ConsultarClienteVentas dialog = new ConsultarClienteVentas(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -247,7 +269,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
     private javax.swing.JComboBox<String> CbxFiltro;
-    private javax.swing.JTable TablaProductoVentas;
+    private javax.swing.JTable TablaClienteVentas;
     private javax.swing.JTextField TxtFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

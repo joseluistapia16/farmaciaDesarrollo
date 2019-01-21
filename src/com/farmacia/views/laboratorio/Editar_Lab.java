@@ -12,6 +12,7 @@ package com.farmacia.views.laboratorio;
 //import com.objetos.file.Archivos;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.fecha.Fecha;
 import com.farmacia.validaciones.Validacion;
@@ -51,6 +52,7 @@ public class Editar_Lab extends javax.swing.JDialog {
     boolean corr = true;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+    public String fil;
 //    private String rutaimagen = "", msge = "";
 
     /**
@@ -71,6 +73,9 @@ public class Editar_Lab extends javax.swing.JDialog {
         posi = poss;
         obj2 = obj;
         llenarDatos(obj);
+        Image img= new ImageIcon("img.cliente.png").getImage();
+        ImageIcon img2=new ImageIcon(img.getScaledInstance(258,227, Image.SCALE_SMOOTH));
+        imagen.setIcon(img2);
     }
 
     private void llenarDatos(Laboratorio obj) {
@@ -512,7 +517,7 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
 
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         ArrayList Laboratorio = new ArrayList();
-        Laboratorio lab = new Laboratorio (ruc.getText(),nombre.getText(),direccion.getText(),telefono.getText(),Date.valueOf(fecha.getText()),imagen.getText(),correo.getText());
+        ClaseReporte lab = new ClaseReporte(ruc.getText(),nombre.getText(),direccion.getText(),telefono.getText(),fecha.getText(),imagen.getText(),correo.getText());
         Laboratorio.add(lab);
         try{
             JasperReport reporte = (JasperReport) JRLoader.loadObject("Editar_Lab.jasper");
@@ -554,7 +559,7 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
     public void VaciarImagen() {
         // String fil = "\\G:\\sin-imagen.png";
         //   String  fil= "\\home\\ineval\\Escritorio\\P-FARMACIA\\sin-imagen.png"; //Windows
-        String fil = "F:\\vinculacion V2\\ANCHUNDIA30-11-02018\\P_Farmacia00\\sin-imagen.png"; 
+        fil = "img.cliente.png"; 
         imagen.setIcon(new ImageIcon(fil));
         ImageIcon icon = new ImageIcon(fil);
         Image img = icon.getImage();
@@ -571,7 +576,16 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
                 "tif", "jpg", "jpeg", "png", "gif"));
         int opcion = dig.showOpenDialog(this);
         if (opcion == JFileChooser.APPROVE_OPTION) {
-            String fil = dig.getSelectedFile().getPath();
+            fil = dig.getSelectedFile().getPath();
+            rutaimagen = dig.getSelectedFile().getPath();
+            imagen.setIcon(new ImageIcon(fil));
+            ImageIcon icon = new ImageIcon(fil);
+            Image img = icon.getImage();
+            Image newimg = img.getScaledInstance(259,221, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon newIcono = new ImageIcon(newimg);
+            imagen.setIcon(newIcono);            
+            System.out.println(fil + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+            /*String fil = dig.getSelectedFile().getPath();
             imagen.setIcon(new ImageIcon(fil));
             ImageIcon icon = new ImageIcon(fil);
             Image img = icon.getImage();
@@ -580,7 +594,7 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
             imagen.setIcon(newIcono);
             rutaimagen = dig.getSelectedFile().getPath();
             // rutaimagen = Cadenas.getPathMysql(dig.getSelectedFile().getPath());
-            System.out.println(fil + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+            System.out.println(fil + " Foto " + imagen.getWidth() + " " + imagen.getHeight());*/
         }
     }
 

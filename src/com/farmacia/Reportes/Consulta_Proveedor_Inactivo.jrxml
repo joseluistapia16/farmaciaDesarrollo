@@ -91,21 +91,21 @@
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="137" y="3" width="163" height="17" uuid="57e156e0-fcf6-496b-b3f6-8c1a52e828cd"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{entidad}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="301" y="3" width="145" height="17" uuid="87c9e5b9-d2b6-4f52-a7db-f0ce8120a765"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{contacto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{entidad}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="136" y="1" width="1" height="19" uuid="90ba0402-b878-4543-a821-8a2a3b00235e"/>
@@ -127,7 +127,7 @@
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{contacto}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="446" y="1" width="1" height="19" uuid="06ab843d-5a89-450c-a044-cccb371aac32"/>

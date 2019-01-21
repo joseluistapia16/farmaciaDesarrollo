@@ -6,6 +6,7 @@
 package com.farmacia.views.ventas;
 
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.Persona;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import java.util.ArrayList;
 
@@ -26,7 +27,14 @@ public class PruebaModuloVentas {
         listar = crud.ListarTodoJoinProductosVentas("22","buscar_codigo");
         
         System.out.println(listar.get(0).getId_producto().toString());
-                
+        
+        ArrayList<Persona> listar1 =null;
+        
+        
+Persona per =new Persona();
+
+
+
 
     }
 
