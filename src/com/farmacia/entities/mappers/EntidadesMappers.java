@@ -449,7 +449,7 @@ public class EntidadesMappers {
      public static JoinListarDetalleNotaPedido getDetallePedidosFromResultSet(ResultSet rs) {
         JoinListarDetalleNotaPedido obj = new JoinListarDetalleNotaPedido();
         try {
-
+            obj.setId_detalle_nota_pedido(rs.getLong("ID_DETALLE_NOTA_PEDIDOS"));
             obj.setId_producto(rs.getLong("ID_PRODUCTO"));
             obj.setMarca(rs.getString("MARCA"));
             obj.setTipo(rs.getString("TIPO"));

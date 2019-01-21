@@ -13,6 +13,7 @@ import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.entities1.Correo;
+import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.ListarPuntoVenta;
@@ -200,7 +201,7 @@ public class CRUD {
         return lista;
     }
 
-     public ArrayList<joinProductoDetallesFaltantes> listarFaltantesDetalles(int op) {
+    public ArrayList<joinProductoDetallesFaltantes> listarFaltantesDetalles(int op) {
         ArrayList<joinProductoDetallesFaltantes> lista = new ArrayList<joinProductoDetallesFaltantes>();
 
         try {
@@ -709,7 +710,7 @@ public class CRUD {
             prodProAlm.setString(7, obj.getTelefono());
             prodProAlm.setString(8, obj.getMail());
             prodProAlm.setString(9, obj.getCedula_ruc());
-            prodProAlm.setString(10,obj.getDireccionImagen());
+            prodProAlm.setString(10, obj.getDireccionImagen());
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.execute();
             valor = prodProAlm.getString("valor");
@@ -957,7 +958,7 @@ public class CRUD {
             while (rs.next()) {
                 Laboratorio obj = EntidadesMappers.getLaboratorioFromResultSet(rs);
                 lista.add(obj);
-                
+
             }
             conect.commit();
         } catch (Exception e) {
@@ -1574,7 +1575,7 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public String editarMedidaProducto(String nombre, Long id) {
         String valor = null;
         try {
@@ -1607,7 +1608,6 @@ public class CRUD {
     }
 
     // marca
-    
     public String editarMarcaProducto(String nombre, Long id) {
         String valor = null;
         try {
@@ -1667,8 +1667,8 @@ public class CRUD {
             }
         }
         return valor;
-    } 
-    
+    }
+
     public String actualizarPrecioCompra(Precios obj) {
         //ArrayList<Productos> lista = new ArrayList<Productos>();
         String valor = null;
@@ -1708,6 +1708,7 @@ public class CRUD {
         }
         return valor;
     }
+
     public String actualizarPrecioProductos(String query) {
         //ArrayList<Productos> lista = new ArrayList<Productos>();
         String valor = null;
@@ -1737,7 +1738,7 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public Double getNombreComboPrecioPro(Long op, Long id) {
         //ArrayList<Productos> lista = new ArrayList<Productos>();
         Double valor = null;
@@ -1774,8 +1775,8 @@ public class CRUD {
         }
         return valor;
     }
-    
-    public String guardarNuevoPrecio(Long op,Precios obj) {//jefferson compras
+
+    public String guardarNuevoPrecio(Long op, Precios obj) {//jefferson compras
         String valor = null;
         System.out.println(obj.getId_producto() + "  PRUEBA PRECIO " + obj.getPrecio_venta());
         //int por1 = Integer.valueOf(por);
@@ -1812,8 +1813,8 @@ public class CRUD {
         return valor;
 
     }
-    
-   public String BuscarIDProductoNuevo(Productos obj) {
+
+    public String BuscarIDProductoNuevo(Productos obj) {
         String valor = null;
         //int por1 = Integer.valueOf(por);
         try {
@@ -1853,6 +1854,7 @@ public class CRUD {
         return valor;
 
     }//getListadoCabeceraNotaPedidoEnComprasFromResultSet
+
     public ArrayList<JoinListarNotaPedidosCabecera> listarCabeceraNotaPedidoEnCompras(int op) {
         ArrayList<JoinListarNotaPedidosCabecera> lista = new ArrayList<JoinListarNotaPedidosCabecera>();
         try {
@@ -1883,8 +1885,9 @@ public class CRUD {
             }
         }
         return lista;
-    } 
-   public ArrayList<JoinListarNotaPedidosCabecera> listarCabeceraNotaPedido(int op) {
+    }
+
+    public ArrayList<JoinListarNotaPedidosCabecera> listarCabeceraNotaPedido(int op) {
         ArrayList<JoinListarNotaPedidosCabecera> lista = new ArrayList<JoinListarNotaPedidosCabecera>();
         try {
             conect = con.conectar();
@@ -1914,8 +1917,9 @@ public class CRUD {
             }
         }
         return lista;
-    } 
-   public ArrayList<JoinListarDetalleNotaPedido> listarDetalleNotaPedido(int op,String id) {
+    }
+
+    public ArrayList<JoinListarDetalleNotaPedido> listarDetalleNotaPedido(int op, String id) {
         ArrayList<JoinListarDetalleNotaPedido> lista = new ArrayList<JoinListarDetalleNotaPedido>();
         try {
             conect = con.conectar();
@@ -1946,8 +1950,9 @@ public class CRUD {
             }
         }
         return lista;
-    } 
-   public String insertarCabeceraNotaPedido(CabeceraNotaPedido obj ) {
+    }
+
+    public String insertarCabeceraNotaPedido(CabeceraNotaPedido obj) {
 
         String valor = "";
         try {
@@ -1956,14 +1961,14 @@ public class CRUD {
             CallableStatement prodProAlm = conect.prepareCall(
                     "{ call insertarCabeceraNotaPedido(?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setLong(1, obj.getId_proveedor());
-            prodProAlm.setLong(2, obj.getId_usuario()); 
+            prodProAlm.setLong(2, obj.getId_usuario());
             prodProAlm.setString(3, obj.getFecha_creacion());
             prodProAlm.setString(4, obj.getPlazo());
             prodProAlm.setString(5, obj.getForma_pago());
             prodProAlm.setDouble(6, obj.getIva());
             prodProAlm.setDouble(7, obj.getDescuento());
             prodProAlm.setDouble(8, obj.getTotal());
-            
+
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.executeUpdate();
             valor = prodProAlm.getString("valor");
@@ -1984,6 +1989,7 @@ public class CRUD {
         }
         return valor;
     }
+
     public String buscarIDCabeceraNotaPedido(String queryL) {
         String id = "";
         try {
@@ -2002,7 +2008,8 @@ public class CRUD {
         return id;
 
     }
-public void InsertarDetallesNotaPedidos(ArrayList<String> queryL) {
+
+    public void InsertarDetallesNotaPedidos(ArrayList<String> queryL) {
         try {
             conect = con.conectar();
             for (int i = 0; i < queryL.size(); i++) {
@@ -2017,7 +2024,8 @@ public void InsertarDetallesNotaPedidos(ArrayList<String> queryL) {
         }
 
     }
-public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedido(String query) {
+
+    public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedido(String query) {
         ArrayList<listarJoinProductosNotaPedidos> lista = new ArrayList<listarJoinProductosNotaPedidos>();
         try {
             conect = con.conectar();
@@ -2048,7 +2056,8 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
         }
         return lista;
     }
- public ArrayList<ListarJoinProveedorNotaPedido> listarProveedoresNotaPedido(Long op) {
+
+    public ArrayList<ListarJoinProveedorNotaPedido> listarProveedoresNotaPedido(Long op) {
         ArrayList<ListarJoinProveedorNotaPedido> lista = new ArrayList<ListarJoinProveedorNotaPedido>();
 
         try {
@@ -2080,8 +2089,8 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
         }
         return lista;
     }
- 
- public String insertarPunto_venta(Punto_venta pv) {
+
+    public String insertarPunto_venta(Punto_venta pv) {
         String valor = null;
         try {
             conect = con.conectar();
@@ -2112,7 +2121,7 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
         }
         return valor;
     }
-    
+
     public String actualizarPunto_venta(Punto_venta pv) {
         String valor = null;
         try {
@@ -2125,7 +2134,7 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
             pro.setString(3, pv.getNombre());
             pro.setString(4, pv.getDireccion());
             pro.setString(5, pv.getDir_ip());
-            pro.setString(6,pv.getObservacion());
+            pro.setString(6, pv.getObservacion());
             pro.registerOutParameter("salida", Types.VARCHAR);
             pro.executeUpdate();
             valor = pro.getString("salida");
@@ -2181,7 +2190,7 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
         return valor;
     }
 
-     public String Nuevo_usuario(Punto_venta pv, Usuario_S us,Rol r) {
+    public String Nuevo_usuario(Punto_venta pv, Usuario_S us, Rol r) {
         String valor = null;
         try {
             conect = con.conectar();
@@ -2224,8 +2233,9 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
         }
         return valor;
     }
-      public String bitacoraSeguridad(Bitacora_seguridad bs) {
-        
+
+    public String bitacoraSeguridad(Bitacora_seguridad bs) {
+
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
@@ -2253,19 +2263,18 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
             }
         }
         return null;
-       
-      }
-      
-      
-      public ArrayList<ListarPuntoVenta> listar_punto_venta() {
-       ArrayList<ListarPuntoVenta> valor = new ArrayList<ListarPuntoVenta>();
+
+    }
+
+    public ArrayList<ListarPuntoVenta> listar_punto_venta() {
+        ArrayList<ListarPuntoVenta> valor = new ArrayList<ListarPuntoVenta>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
                     "{ call listarPuntoVenta()}");
-              rs = pro.executeQuery();
-              while (rs.next()) {
+            rs = pro.executeQuery();
+            while (rs.next()) {
                 ListarPuntoVenta obj = EntidadesMappers.getPuntoVentaFromResultSet(rs);
                 valor.add(obj);
             }
@@ -2287,7 +2296,7 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
         return valor;
     }
 
-      public ArrayList<fc_localidad_guayas> listarLocalidadGuayas() {
+    public ArrayList<fc_localidad_guayas> listarLocalidadGuayas() {
         ArrayList<fc_localidad_guayas> lista = new ArrayList<fc_localidad_guayas>();
 
         try {
@@ -2320,7 +2329,8 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
         }
         return lista;
     }
-      public ArrayList<ListarPuntoVenta> filtroBusquedaPV(String query) {
+
+    public ArrayList<ListarPuntoVenta> filtroBusquedaPV(String query) {
         ArrayList<ListarPuntoVenta> lista = new ArrayList<ListarPuntoVenta>();
 
         try {
@@ -2352,7 +2362,8 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
         }
         return lista;
     }
-      public String getLocalidadComboGuayas(Long op, Long id) {
+
+    public String getLocalidadComboGuayas(Long op, Long id) {
         //ArrayList<Productos> lista = new ArrayList<Productos>();
         String valor = "";
         try {
@@ -2388,16 +2399,16 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
         }
         return valor;
     }
-      
+
     public ArrayList<Listar_usuario> get_listar_usuario() {
-       ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
+        ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
                     "{ call mostrar_usuario()}");
-              rs = pro.executeQuery();
-              while (rs.next()) {
+            rs = pro.executeQuery();
+            while (rs.next()) {
                 Listar_usuario obj = EntidadesMappers.getUsuarioFromResultSet(rs);
                 valor.add(obj);
             }
@@ -2418,7 +2429,7 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
         }
         return valor;
     }
-    
+
     public ArrayList<Listar_usuario> filtroBusquedaUsuario(String query) {
         ArrayList<Listar_usuario> lista = new ArrayList<Listar_usuario>();
 
@@ -2451,9 +2462,8 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
         }
         return lista;
     }
-    
+
     //////  listar Producto venta  
-      
     public ArrayList<JoinListarProductosVentas> ListarTodoJoinProductosVentas(String op1, String op2) {
         ArrayList<JoinListarProductosVentas> lista = new ArrayList<JoinListarProductosVentas>();
 
@@ -2487,5 +2497,39 @@ public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedid
         }
         return lista;
     }
-   
+
+    public String ActualizarNotaPedidos(DetalleNotaPedido dnp) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call actualizar(?,?,?,?,?)}");
+            // System.err.println("Error "+lab.getId_Laboratorio());
+            pro.setInt(1, dnp.getCantidad());
+            pro.setDouble(2, dnp.getDescuento());
+            pro.setDouble(3, dnp.getIva());
+            pro.setDouble(4, dnp.getTotal());
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+
 }

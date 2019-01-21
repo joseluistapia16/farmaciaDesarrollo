@@ -5,6 +5,8 @@
  */
 package com.farmacia.views.pedidos;
 
+import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -15,9 +17,11 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class EditarProductoNota extends javax.swing.JDialog {
-    
+
     int x, y;
     JoinListarDetalleNotaPedido objf = new JoinListarDetalleNotaPedido();
+    DetalleNotaPedido obj2 = null;
+    CRUD crud = new CRUD();
 
     /**
      * Creates new form EditarProductoNota
@@ -26,14 +30,14 @@ public class EditarProductoNota extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
+
     public EditarProductoNota(java.awt.Frame parent, boolean modal, JoinListarDetalleNotaPedido obj1) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         llenarFormulario(obj1);
         this.setLocationRelativeTo(null);
-        
+
         btnEditar.setEnabled(false);
     }
 
@@ -433,16 +437,16 @@ public class EditarProductoNota extends javax.swing.JDialog {
         Double PorcentajeDescuento = 0.00;
         Double Cantidad = Double.parseDouble(txtcantidad.getText());
         Double Precio = Double.parseDouble(txtPrecio.getText());
-        
+
         if (txtporcentajeDescuento.getText().equals("")) {
 //        PorcentajeDescuento = Double.parseDouble(txtporcentajeDescuento.getText());
             PorcentajeDescuento = 0.00;
             Double ValorDescuento = Cantidad * Precio * PorcentajeDescuento / 100;
             ValorDescuento = redondearDecimales(ValorDescuento, 2);
-            
+
             txtDescuento.setText(Double.valueOf(ValorDescuento).toString());
             Double IVA = Double.parseDouble(txtIva.getText());
-            
+
             total = Cantidad * Precio + IVA - ValorDescuento;
             total = redondearDecimales(total, 2);
             txtTotal.setText(Double.valueOf(total).toString());
@@ -451,10 +455,10 @@ public class EditarProductoNota extends javax.swing.JDialog {
 //            PorcentajeDescuento = 0.00;
             Double ValorDescuento = Cantidad * Precio * PorcentajeDescuento / 100;
             ValorDescuento = redondearDecimales(ValorDescuento, 2);
-            
+
             txtDescuento.setText(Double.valueOf(ValorDescuento).toString());
             Double IVA = Double.parseDouble(txtIva.getText());
-            
+
             total = Cantidad * Precio + IVA - ValorDescuento;
             total = redondearDecimales(total, 2);
             txtTotal.setText(Double.valueOf(total).toString());
@@ -495,12 +499,12 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
-        
+
         if (r == JOptionPane.YES_OPTION) {
             setVisible(false);
-            
+
         } else {
-            
+
         }
     }//GEN-LAST:event_btnSalirActionPerformed
 
@@ -565,9 +569,9 @@ public class EditarProductoNota extends javax.swing.JDialog {
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         Total();
-        
+
         btnEditar.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
     String CADENA = "";
@@ -595,21 +599,31 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Actualizar?", "", JOptionPane.YES_NO_OPTION);
-        
+
         if (r == JOptionPane.YES_OPTION) {
+            Guardar();
             JOptionPane.showMessageDialog(null, "Actualizado");
             setVisible(false);
-            
-        } else {
-            
-        }        
-    }//GEN-LAST:event_btnEditarActionPerformed
 
+        } else {
+
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+    private void Guardar() {
+
+        DetalleNotaPedido obj = new DetalleNotaPedido();
+        obj.setCantidad(Integer.parseInt(txtcantidad.getText()));
+        obj.setDescuento(Double.parseDouble(txtDescuento.getText()));
+        obj.setIva(Double.parseDouble(txtIva.getText()));
+        obj.setTotal(Double.parseDouble(txtTotal.getText()));
+        obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedidos());
+        crud.ActualizarNotaPedidos(obj);
+    }
     private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
-    
+
     }//GEN-LAST:event_btnEditar1ActionPerformed
     private void llenarFormulario(JoinListarDetalleNotaPedido obj) {
-        
+
         codigo.setText(obj.getId_producto().toString());
         Medida.setText(obj.getMedida());
         producto.setText(obj.getProducto());
@@ -636,7 +650,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
 //        objf.setEntidad(obj.getEntidad());
 
     }
-    
+
     public JoinListarDetalleNotaPedido getObjf() {
         return objf;
     }

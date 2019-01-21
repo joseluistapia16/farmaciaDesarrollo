@@ -2,28 +2,17 @@ package com.farmacia.views.pedidos;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
-import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
-import com.farmacia.join_entidades.ListarJoinProveedor;
-import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
-import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
-import com.farmacia.validaciones.ComponentesFaltantes;
 import java.awt.MouseInfo;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.Timer;
+
 
 public class EditarNotaPedido extends javax.swing.JDialog {
 
