@@ -18,6 +18,7 @@ import com.farmacia.views.pedidos.NotePedidos;
 import com.farmacia.views.producto.MantenimientoProducto;
 import com.farmacia.views.producto.Products;
 import com.farmacia.views.proveedor.Consulta_Proveedor;
+import com.farmacia.views.ventas.MenuPreVentas;
 
 public class FrmPrincipal extends javax.swing.JFrame {
 
@@ -381,6 +382,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void mnuRegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarVentaActionPerformed
 //        DlgGenerarVenta generarVenta= new DlgGenerarVenta(this, rootPaneCheckingEnabled);
 //        generarVenta.setVisible(rootPaneCheckingEnabled);
+        MenuPreVentas mp=new MenuPreVentas(new javax.swing.JFrame(), true);
+        mp.setVisible(true);
     }//GEN-LAST:event_mnuRegistrarVentaActionPerformed
 
     private void mnuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClienteActionPerformed
