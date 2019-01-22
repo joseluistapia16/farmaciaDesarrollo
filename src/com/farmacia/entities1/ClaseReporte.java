@@ -34,6 +34,11 @@ public class ClaseReporte {
         this.valor6 = valor6;
         this.valor7 = valor7;
     }
+
+    public ClaseReporte(String valor1, String valor2) {
+        this.valor1 = valor1;
+        this.valor2 = valor2;
+    }
     
     
 

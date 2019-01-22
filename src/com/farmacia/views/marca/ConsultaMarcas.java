@@ -7,13 +7,25 @@ package com.farmacia.views.marca;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.validaciones.ValidarIngresoProducto;
+import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
@@ -26,6 +38,8 @@ public class ConsultaMarcas extends javax.swing.JDialog {
     DefaultTableModel model;
     ArrayList<MarcaProducto> medidas;
     ValidarIngresoProducto validar = new ValidarIngresoProducto();
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 
     public ConsultaMarcas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -65,10 +79,9 @@ public class ConsultaMarcas extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         actualizar_bt = new javax.swing.JButton();
         nuevo_btn = new javax.swing.JButton();
+        Reporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jPanel1.setBorder(null);
 
         tablamedidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -171,6 +184,14 @@ public class ConsultaMarcas extends javax.swing.JDialog {
             }
         });
 
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        Reporte.setText("Imprimir");
+        Reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -179,17 +200,24 @@ public class ConsultaMarcas extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(nuevo_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(actualizar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nuevo_btn)
-                    .addComponent(actualizar_bt))
-                .addGap(8, 8, 8))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nuevo_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(actualizar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -276,6 +304,27 @@ public class ConsultaMarcas extends javax.swing.JDialog {
         setVisible(false);
         am.setVisible(true);
     }//GEN-LAST:event_nuevo_btnActionPerformed
+
+    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
+        java.util.List lista = new ArrayList();
+        for (int i = 0; i < tablamedidas.getRowCount(); i++) {
+            ClaseReporte medida = new ClaseReporte (tablamedidas.getValueAt(i, 0).toString(),tablamedidas.getValueAt(i, 1).toString());
+            lista.add(medida);
+        }
+        try {
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("ConsultaMarcas.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(ConsultaMarcas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ReporteActionPerformed
     public MarcaProducto devuelveObjeto(int cas, ArrayList<MarcaProducto> lista) {
         MarcaProducto objeto1 = null;
         for (int i = 0; i < lista.size(); i++) {
@@ -345,6 +394,7 @@ public class ConsultaMarcas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Reporte;
     private javax.swing.JButton actualizar_bt;
     private javax.swing.JTextField busqueda_tf;
     private javax.swing.JLabel jLabel1;
