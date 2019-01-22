@@ -7,10 +7,22 @@ package com.farmacia.view.principal;
 
 import com.farmacia.dao.CRUD;
 import com.farmacia.conponentes.Tablas;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.TipoProducto;
+import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
@@ -21,7 +33,8 @@ public class Tipo_Producto extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     TipoProducto tp = new TipoProducto();
     ArrayList<TipoProducto> altp = null;
-    
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     /**
      * Creates new form EstoEsPrueba
      *
@@ -65,6 +78,7 @@ public class Tipo_Producto extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         nuevo_btn = new javax.swing.JButton();
         actualizar_bt = new javax.swing.JButton();
+        Reporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -156,6 +170,14 @@ public class Tipo_Producto extends javax.swing.JDialog {
             }
         });
 
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        Reporte.setText("Imprimir");
+        Reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -163,9 +185,14 @@ public class Tipo_Producto extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(nuevo_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addComponent(actualizar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(150, 150, 150)
+                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(150, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,6 +202,11 @@ public class Tipo_Producto extends javax.swing.JDialog {
                     .addComponent(nuevo_btn)
                     .addComponent(actualizar_bt))
                 .addGap(8, 8, 8))
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(8, 8, 8)
+                    .addComponent(Reporte, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -256,6 +288,27 @@ public class Tipo_Producto extends javax.swing.JDialog {
         Tablas.filtro(valor, tipop_tb);
     }//GEN-LAST:event_busqueda_tfKeyReleased
 
+    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
+        java.util.List lista = new ArrayList();
+        for (int i = 0; i < tipop_tb.getRowCount(); i++) {
+            ClaseReporte medida = new ClaseReporte (tipop_tb.getValueAt(i, 0).toString(),tipop_tb.getValueAt(i, 1).toString());
+            lista.add(medida);
+        }
+        try {
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("Tipo_Producto.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Tipo_Producto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ReporteActionPerformed
+
     public TipoProducto devuelveObjeto(int id, ArrayList<TipoProducto> lista) {
         TipoProducto gh = new TipoProducto();
         for (int i = 0; i < lista.size(); i++) {
@@ -309,6 +362,7 @@ public class Tipo_Producto extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Reporte;
     private javax.swing.JButton actualizar_bt;
     private javax.swing.JTextField busqueda_tf;
     private javax.swing.JLabel jLabel1;

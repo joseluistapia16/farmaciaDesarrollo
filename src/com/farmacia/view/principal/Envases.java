@@ -7,11 +7,14 @@ package com.farmacia.view.principal;
 
 import com.farmacia.dao.CRUD;
 import com.farmacia.conponentes.Tablas;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.EnvaseProducto;
+import java.awt.Dimension;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -22,7 +25,8 @@ public class Envases extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     EnvaseProducto tp = new EnvaseProducto();
     ArrayList<EnvaseProducto> altp = null;
-
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     /**
      * Creates new form EstoEsPrueba
      *

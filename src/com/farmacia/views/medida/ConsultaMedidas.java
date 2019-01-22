@@ -7,12 +7,24 @@ package com.farmacia.views.medida;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.MedidaProducto;
+import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
@@ -24,6 +36,8 @@ public class ConsultaMedidas extends javax.swing.JDialog {
     MedidaProducto medidap;
     DefaultTableModel model;
     ArrayList<MedidaProducto> medidas;
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 
     public ConsultaMedidas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -57,6 +71,7 @@ public class ConsultaMedidas extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
         eliminar_bt = new javax.swing.JButton();
         nuevo_btn = new javax.swing.JButton();
+        Reporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -163,6 +178,14 @@ public class ConsultaMedidas extends javax.swing.JDialog {
             }
         });
 
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        Reporte.setText("Imprimir");
+        Reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -170,6 +193,8 @@ public class ConsultaMedidas extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(nuevo_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(eliminar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -180,7 +205,8 @@ public class ConsultaMedidas extends javax.swing.JDialog {
                 .addGap(8, 8, 8)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevo_btn)
-                    .addComponent(eliminar_bt))
+                    .addComponent(eliminar_bt)
+                    .addComponent(Reporte))
                 .addGap(8, 8, 8))
         );
 
@@ -272,6 +298,27 @@ public class ConsultaMedidas extends javax.swing.JDialog {
         setVisible(false);
         am.setVisible(true);
     }//GEN-LAST:event_nuevo_btnActionPerformed
+
+    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
+        java.util.List lista = new ArrayList();
+        for (int i = 0; i < tablamedidas.getRowCount(); i++) {
+            ClaseReporte medida = new ClaseReporte (tablamedidas.getValueAt(i, 0).toString(),tablamedidas.getValueAt(i, 1).toString());
+            lista.add(medida);
+        }
+        try {
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("ConsultaMedidas.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(ConsultaMedidas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ReporteActionPerformed
     public MedidaProducto devuelveObjeto(int cas, ArrayList<MedidaProducto> lista) {
         MedidaProducto objeto1 = null;
         for (int i = 0; i < lista.size(); i++) {
@@ -327,6 +374,7 @@ public class ConsultaMedidas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Reporte;
     private javax.swing.JTextField busqueda_tf;
     private javax.swing.JButton eliminar_bt;
     private javax.swing.JLabel jLabel2;
