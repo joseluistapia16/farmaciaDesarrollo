@@ -111,7 +111,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
         cbx2 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         BotonAgregarT = new javax.swing.JButton();
-        BotonSalir1 = new javax.swing.JButton();
+        reporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -244,11 +244,11 @@ public class Activar_Cliente extends javax.swing.JDialog {
             }
         });
 
-        BotonSalir1.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
-        BotonSalir1.setText("Reporte");
-        BotonSalir1.addActionListener(new java.awt.event.ActionListener() {
+        reporte.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
+        reporte.setText("Reporte");
+        reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSalir1ActionPerformed(evt);
+                reporteActionPerformed(evt);
             }
         });
 
@@ -297,14 +297,14 @@ public class Activar_Cliente extends javax.swing.JDialog {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(BotonActivar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BotonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(BotonActivar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
                 .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
+                .addGap(78, 78, 78))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,12 +341,12 @@ public class Activar_Cliente extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonActivar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonSalir)
-                    .addComponent(BotonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24))
+                    .addComponent(reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -501,7 +501,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
         direccion.setText(direccion.getText().toUpperCase());
     }//GEN-LAST:event_direccionFocusLost
 
-    private void BotonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalir1ActionPerformed
+    private void reporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteActionPerformed
         ArrayList cliente = new ArrayList();
         Clientes cliente1 = new Clientes (cedula.getText(),nombre.getText(),apellido.getText(),direccion.getText(),fecha_reg.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString());
         cliente.add(cliente1);                    
@@ -519,7 +519,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
             Logger.getLogger(Activar_Cliente.class.getName()).log(Level.SEVERE, null, ex);
         } 
         
-    }//GEN-LAST:event_BotonSalir1ActionPerformed
+    }//GEN-LAST:event_reporteActionPerformed
 
     public void Habilitar(boolean lok) {
         BotonAgregarT.setEnabled(lok);
@@ -624,7 +624,6 @@ public class Activar_Cliente extends javax.swing.JDialog {
     private javax.swing.JButton BotonAgregarC;
     private javax.swing.JButton BotonAgregarT;
     private javax.swing.JButton BotonSalir;
-    private javax.swing.JButton BotonSalir1;
     private javax.swing.JTextField apellido;
     private javax.swing.JComboBox<String> cbx1;
     private javax.swing.JComboBox<String> cbx2;
@@ -642,6 +641,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nombre;
+    private javax.swing.JButton reporte;
     // End of variables declaration//GEN-END:variables
 
     private void setExtendedState(int ICONIFIED) {

@@ -11,6 +11,7 @@ import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.Direccion;
 import com.farmacia.entities1.Fecha;
 import com.farmacia.entities1.Obcx;
+import com.farmacia.entities1.ProveedorRep;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.views.clientes.Ingresar_Telefono;
@@ -18,6 +19,8 @@ import com.farmacia.views.proveedor.Calendario1;
 import com.farmacia.views.proveedor.Consulta_Proveedor;
 import com.farmacia.views.proveedor.Consulta_Proveedor_Inactivo;
 import com.farmacia.views.proveedor.Ingresar_Correo;
+import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.sql.CallableStatement;
@@ -28,14 +31,25 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
  * @author ANGEL JESUS
  */
 public class Proveedor_Inactivo extends javax.swing.JDialog {
-
+    private String rutaimagen = "";
     int x, y;
     CRUD crud = new CRUD();
     filtrosProductos fil = new filtrosProductos();
@@ -50,7 +64,9 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
     Obcx obcx = new Obcx();
     Long tip1 = null, tip3 = null;
     String tip2 = null;
-
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+    public String fot;
     private Date fecha_registro;
 
     public Proveedor_Inactivo(java.awt.Frame parent, boolean modal, ListarJoinProveedor proveedor1) {
@@ -76,6 +92,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        Reporte = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -85,7 +102,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         fecha = new javax.swing.JTextField();
-        nombre = new javax.swing.JTextField();
+        dire = new javax.swing.JTextField();
         contacto = new javax.swing.JTextField();
         cbx1 = new javax.swing.JComboBox<>();
         cbx2 = new javax.swing.JComboBox<>();
@@ -93,8 +110,10 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         cedula = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        dire = new javax.swing.JTextArea();
+        nombre1 = new javax.swing.JTextField();
+        imagen = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         Guardar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         Recuperar = new javax.swing.JButton();
@@ -103,6 +122,15 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        Reporte.setBackground(new java.awt.Color(254, 254, 254));
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        Reporte.setText("Reporte");
+        Reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReporteActionPerformed(evt);
+            }
+        });
 
         jLabel9.setBackground(new java.awt.Color(0, 153, 153));
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -150,7 +178,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             }
         });
 
-        nombre.setPreferredSize(new java.awt.Dimension(6, 28));
+        dire.setPreferredSize(new java.awt.Dimension(6, 28));
 
         contacto.setPreferredSize(new java.awt.Dimension(6, 28));
 
@@ -194,85 +222,146 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         cedula.setEditable(false);
         cedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         cedula.setPreferredSize(new java.awt.Dimension(6, 28));
+        cedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cedulaActionPerformed(evt);
+            }
+        });
         cedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 cedulaKeyTyped(evt);
             }
         });
 
-        dire.setColumns(20);
-        dire.setRows(5);
-        jScrollPane1.setViewportView(dire);
+        nombre1.setPreferredSize(new java.awt.Dimension(6, 28));
+
+        imagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jButton6.setText("Eliminar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Agregar Imagen");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel7)
+                                .addGap(34, 34, 34)
+                                .addComponent(dire, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbx2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(78, 78, 78)
-                        .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel5)
-                        .addGap(8, 8, 8)
-                        .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(9, 9, 9)
-                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel6)
-                        .addGap(22, 22, 22)
-                        .addComponent(cbx2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jLabel7)
-                        .addGap(3, 3, 3)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(68, 68, 68)
+                                        .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(37, 37, 37)))
+                        .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(cbx2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jButton3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel7))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(dire, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(cbx2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(15, 15, 15))
         );
 
         Guardar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
@@ -316,11 +405,13 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
-                .addComponent(Recuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
+                .addGap(45, 45, 45)
+                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(Recuperar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addGap(51, 51, 51))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,15 +419,17 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Guardar)
-                    .addComponent(Recuperar)
-                    .addComponent(jButton4))
-                .addGap(0, 9, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton4)
+                        .addComponent(Recuperar)
+                        .addComponent(Reporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 294));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 340));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -350,7 +443,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             cedula.setText(String.valueOf(pro.getCedula_ruc()));
         }
         dire.setText(pro.getDireccion());
-        nombre.setText(pro.getEntidad());
+        dire.setText(pro.getEntidad());
         contacto.setText(pro.getRepresentante());
         for (int i = 0; i < telefonos.size(); i++) {
             if (pro.getCedula_ruc().equals(telefonos.get(i).getCedula_ruc())) {
@@ -386,7 +479,8 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         tip1 = pro.getId_proveedor_clase();
         tip2 = pro.getEstado();
         tip3 = pro.getId_proveedor();
-
+        getPicture2(pro.getDireccionImagen());     
+        System.out.println(pro.getDireccionImagen());
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -443,13 +537,13 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
 //    }
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         int h = Confirmacion("Deseas Actualizar el proveedor con Cedula/Ruc : "
-                + cedula.getText() + " y Nombre : " + nombre.getText());
+                + cedula.getText() + " y Nombre : " + dire.getText());
         if (h == 0) {
             // ArrayList<ListarJoinProveedor> lista=;
             ListarJoinProveedor p = new ListarJoinProveedor();
             p.setId_proveedor_clase(tip1);
             p.setCedula_ruc(cedula.getText());
-            p.setEntidad(nombre.getText());
+            p.setEntidad(dire.getText());
             p.setRepresentante(contacto.getText());
             p.setDireccion(dire.getText());
             System.out.println(fecha_registro);
@@ -540,6 +634,40 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
     private void cbx2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbx2ActionPerformed
+
+    private void cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cedulaActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        VaciarImagen();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String pass = "";
+        getPicture1(pass);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
+        ArrayList proveedor = new ArrayList();        
+        ProveedorRep proveedor1 = new ProveedorRep(cedula.getText(),nombre1.getText(),contacto.getText(),dire.getText(),fecha.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),rutaimagen);
+        proveedor.add(proveedor1);
+        try {
+            JasperReport reporte =  (JasperReport) JRLoader.loadObject("Editar_Proveedor.jasper");            
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(proveedor));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Proveedor_Inactivo.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }//GEN-LAST:event_ReporteActionPerformed
 //    public String recuperarProveedor(String por) {
 //        String mensaje = null;
 //       // int por1 = Integer.valueOf(por);
@@ -571,13 +699,77 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
 //        return mensaje;
 //
 //    }
+public void VaciarImagen() {
+        // String fil = "\\G:\\sin-imagen.png";
+        //   String  fil= "\\home\\ineval\\Escritorio\\P-FARMACIA\\sin-imagen.png"; //Windows
+         fot = "logologin.png";
+        imagen.setIcon(new ImageIcon(fot));
+        ImageIcon icon = new ImageIcon(fot);
+        Image img = icon.getImage();
+        System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+        Image newimg = img.getScaledInstance(259, 221, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon newIcono = new ImageIcon(newimg);
+        imagen.setIcon(newIcono);
+        rutaimagen = fot;
+    }
+    
+    private void getPicture1(String path) {
+        JFileChooser dig = new JFileChooser(path);
+        dig.setFileFilter(new FileNameExtensionFilter("Archivos de imagen",
+                "tif", "jpg", "jpeg", "png", "gif"));
+        int opcion = dig.showOpenDialog(this);
+        if (opcion == JFileChooser.APPROVE_OPTION) {
+            fot = dig.getSelectedFile().getPath();
+            rutaimagen = dig.getSelectedFile().getPath();
+            imagen.setIcon(new ImageIcon(fot));
+            ImageIcon icon = new ImageIcon(fot);
+            Image img = icon.getImage();
+            Image newimg = img.getScaledInstance(110,106, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon newIcono = new ImageIcon(newimg);
+            imagen.setIcon(newIcono);            
+            System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+            System.out.println("ruta= "+rutaimagen +"\n"+
+                                "ruta2 "+fot);
+        }
+    }
 
+        private void getPicture2(String path) {
+        //JFileChooser dig = new JFileChooser(path);
+        //dig.setFileFilter(new FileNameExtensionFilter("Archivos de imagen",
+              //  "tif", "jpg", "jpeg", "png", "gif"));
+        //int opcion = dig.showOpenDialog(this);
+        //if (opcion == JFileChooser.APPROVE_OPTION) {
+            //fot = dig.getSelectedFile().getPath();
+            //rutaimagen = dig.getSelectedFile().getPath();
+            rutaimagen = path;
+            imagen.setIcon(new ImageIcon(path));
+            ImageIcon icon = new ImageIcon(path);
+            Image img = icon.getImage();
+            Image newimg = img.getScaledInstance(110,106, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon newIcono = new ImageIcon(newimg);
+            imagen.setIcon(newIcono);            
+            System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+            System.out.println("ruta= "+rutaimagen +"\n"+
+                                "ruta2 "+fot);
+        }
+    
+    public void vaciarimagen(){
+        fot = "logologin.png";
+        imagen.setIcon(new ImageIcon(fot));
+        ImageIcon icon = new ImageIcon(fot);
+        Image img = icon.getImage();
+        System.out.println(fil + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+        Image newimg = img.getScaledInstance(259, 221, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon newIcono = new ImageIcon(newimg);
+        imagen.setIcon(newIcono);
+        rutaimagen = fot;
+    }
     public void Habilitar(boolean lok) {
         jButton1.setEnabled(lok);
         jButton2.setEnabled(lok);
         dire.setEnabled(lok);
         //cedula.setEnabled(lok);
-        nombre.setEnabled(lok);
+        dire.setEnabled(lok);
         contacto.setEnabled(lok);
         Guardar.setEnabled(lok);
     }
@@ -690,15 +882,19 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Guardar;
     private javax.swing.JButton Recuperar;
+    private javax.swing.JButton Reporte;
     private javax.swing.JComboBox<String> cbx1;
     private javax.swing.JComboBox<String> cbx2;
     private javax.swing.JTextField cedula;
     private javax.swing.JTextField contacto;
-    private javax.swing.JTextArea dire;
+    private javax.swing.JTextField dire;
     private javax.swing.JTextField fecha;
+    private javax.swing.JLabel imagen;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -709,8 +905,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField nombre;
+    private javax.swing.JTextField nombre1;
     // End of variables declaration//GEN-END:variables
 
     private void setExtendedState(int ICONIFIED) {
