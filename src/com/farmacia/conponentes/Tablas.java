@@ -1087,6 +1087,7 @@ public class Tablas {
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
+//            Filas[0] = lista.get(i).getId_detalle_nota_pedido().toString();
             Filas[0] = "" + lista.get(i).getId_producto().toString();
             Filas[1] = lista.get(i).getMarca();
             Filas[2] = lista.get(i).getTipo();
@@ -1122,6 +1123,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
             Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(11).setPreferredWidth(a[11]);
+//            Tabla.getColumnModel().getColumn(11).setCellRenderer(tcr);
         }
     }
     public static void cargarJoinRegistroDetalleCompras(JTable Tabla, ArrayList<JoinListarDetalleNotaPedido> lista) {

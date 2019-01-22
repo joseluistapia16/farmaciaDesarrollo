@@ -2567,12 +2567,12 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call actualizar(?,?,?,?,?)}");
-            // System.err.println("Error "+lab.getId_Laboratorio());
-            pro.setInt(1, dnp.getCantidad());
-            pro.setDouble(2, dnp.getDescuento());
-            pro.setDouble(3, dnp.getIva());
-            pro.setDouble(4, dnp.getTotal());
+                    "{ call ActualizarDetalleNotaPedido(?,?,?,?,?,?)}");
+            pro.setLong(1, dnp.getId_detalle_nota_pedidos());
+            pro.setInt(2, dnp.getCantidad());
+            pro.setDouble(3, dnp.getDescuento());
+            pro.setDouble(4, dnp.getIva());
+            pro.setDouble(5, dnp.getTotal());
             pro.registerOutParameter("valor", Types.VARCHAR);
             pro.executeUpdate();
             //pro.execute();
@@ -2593,6 +2593,36 @@ public class CRUD {
             }
         }
         return valor;
+    }
+     public String EliminarDetalleNotaPedido(DetalleNotaPedido det) { 
+        String dato = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call EliminarDetalleNotaPedido(?,?)}");
+            pro.setLong(1, det.getId_detalle_nota_pedidos());
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            dato = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return dato;
+
     }
     
     public String eliminardetalleCompra(JoinListarDetalleNotaPedido dnp) {
@@ -2627,4 +2657,5 @@ public class CRUD {
         }
         return valor;
     }
+
 }
