@@ -139,7 +139,6 @@ public class ListaDePedidos extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/ic_add_shopping_cart_128_28122.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +173,6 @@ public class ListaDePedidos extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(tbaProductosA);
 
-        btnSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/action_exit_close_remove_13915.png"))); // NOI18N
         btnSalir2.setText("Regresar");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,7 +233,6 @@ public class ListaDePedidos extends javax.swing.JDialog {
             }
         });
 
-        filtrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/preview_search_find_locate_1551.png"))); // NOI18N
         filtrar.setText("Buscar");
         filtrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,7 +263,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
                             .addComponent(jScrollPane1))))
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 121, Short.MAX_VALUE)
+                .addGap(0, 160, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

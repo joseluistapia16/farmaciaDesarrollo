@@ -464,6 +464,8 @@ public class EntidadesMappers {
             obj.setDescuento(rs.getDouble("DESCUENTO"));
             obj.setIva(rs.getDouble("IVA"));
             obj.setTotal(rs.getDouble("TOTAL"));
+            obj.setId_precio(rs.getLong("id_precio"));
+            obj.setId_cabecera_nota_pedido(rs.getLong("id_cabecera_nota_pedidos"));
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
