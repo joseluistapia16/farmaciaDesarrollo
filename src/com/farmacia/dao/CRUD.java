@@ -2603,8 +2603,8 @@ public class CRUD {
             CallableStatement pro = conect.prepareCall(
                     "{ call eliminarDetalleCompra(?,?,?)}");
                        
-            pro.setDouble(1, dnp.getDescuento());
-            pro.setDouble(2, dnp.getPrecio());
+            pro.setLong(1, dnp.getId_cabecera_nota_pedido());
+            pro.setLong(2, dnp.getId_detalle_nota_pedido());
             
             pro.registerOutParameter("valor", Types.VARCHAR);
             pro.executeUpdate();
