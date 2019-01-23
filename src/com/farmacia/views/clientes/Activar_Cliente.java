@@ -411,7 +411,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
             Obcx pol = new Obcx(ic.getTelefono(), ic.getTipo());
             lista.add(pol);
             listat = lista;
-            cc.insertarTelefono(lista, cedula.getText());
+            cc.insertarTelefonoCliente(lista, cedula.getText());
             //System.out.println(lista.get(0).getTcd() + " " + lista.get(0).getTipos());
 
         }
@@ -431,7 +431,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
             Obcx pol = new Obcx(ic.getCorreo());
             lista.add(pol);
             listac = lista;
-            cc.insertarCorreo(lista, cedula.getText());
+            cc.insertarCorreoCliente(lista, cedula.getText());
             // System.out.println(lista.get(0).getTcd() + " " + lista.get(0).getTipos());
         }
     }//GEN-LAST:event_BotonAgregarCActionPerformed
