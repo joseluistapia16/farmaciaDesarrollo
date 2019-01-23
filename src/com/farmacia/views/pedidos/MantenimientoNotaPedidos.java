@@ -2,17 +2,29 @@ package com.farmacia.views.pedidos;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
+import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 public class MantenimientoNotaPedidos extends javax.swing.JDialog {
 
@@ -20,7 +32,8 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     int x, y;
     JoinListarNotaPedidosCabecera objeto = null;
     ArrayList<JoinListarNotaPedidosCabecera> lista = crud.listarCabeceraNotaPedido(1);
-
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     public MantenimientoNotaPedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
@@ -41,6 +54,7 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
         tblRegistrodeNotas = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        Reporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -134,6 +148,14 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        Reporte.setText("Imprimir");
+        Reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -141,7 +163,11 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSalir2)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnSalir2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(filtrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -162,7 +188,9 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Reporte))
                 .addContainerGap())
         );
 
@@ -247,6 +275,27 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jPanel1MouseDragged
 
+    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
+        java.util.List lista = new ArrayList();
+        for (int i = 0; i < tblRegistrodeNotas.getRowCount(); i++) {
+            ClaseReporte medida = new ClaseReporte (tblRegistrodeNotas.getValueAt(i, 0).toString(),tblRegistrodeNotas.getValueAt(i, 1).toString(),tblRegistrodeNotas.getValueAt(i,2).toString(),tblRegistrodeNotas.getValueAt(i,3).toString(),tblRegistrodeNotas.getValueAt(i,4).toString(),tblRegistrodeNotas.getValueAt(i,5).toString(),tblRegistrodeNotas.getValueAt(i,6).toString(),tblRegistrodeNotas.getValueAt(i,7).toString(),tblRegistrodeNotas.getValueAt(i,8).toString());
+            lista.add(medida);
+        }
+        try {
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("MantenimientoNotaPedidos.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(MantenimientoNotaPedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ReporteActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -294,6 +343,7 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Reporte;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JButton filtrar;
     private javax.swing.JLabel jLabel7;

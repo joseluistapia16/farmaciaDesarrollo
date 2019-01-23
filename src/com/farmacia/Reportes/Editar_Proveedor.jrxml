@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d5ea5dd-64e9-4be5-8170-31f086dc7197">
 	<property name="ireport.zoom" value="1.3310000000000026"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="96"/>
 	<field name="fecha_ingreso" class="java.lang.String"/>
 	<field name="cedula" class="java.lang.String"/>
 	<field name="entidad" class="java.lang.String"/>
@@ -32,107 +32,107 @@
 		<band height="10" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="274" splitType="Stretch">
+		<band height="315" splitType="Stretch">
 			<textField>
-				<reportElement x="260" y="131" width="226" height="20" uuid="0f817a4f-de35-4786-b69f-544a28458463"/>
+				<reportElement x="260" y="164" width="226" height="20" uuid="0f817a4f-de35-4786-b69f-544a28458463"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="260" y="151" width="226" height="20" uuid="6c8cd08b-cb27-45e5-ae4f-008948335927"/>
+				<reportElement x="260" y="184" width="226" height="20" uuid="6c8cd08b-cb27-45e5-ae4f-008948335927"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="260" y="171" width="226" height="20" uuid="f0285d67-08e5-47bb-9011-caae6270d423"/>
+				<reportElement x="260" y="204" width="226" height="20" uuid="f0285d67-08e5-47bb-9011-caae6270d423"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{entidad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="260" y="191" width="226" height="20" uuid="df1bf1b8-7946-4a16-863c-17dd7a7bcbc4"/>
+				<reportElement x="260" y="224" width="226" height="20" uuid="df1bf1b8-7946-4a16-863c-17dd7a7bcbc4"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="260" y="211" width="226" height="20" uuid="5592058d-4536-4e76-870e-5ccc79347a8c"/>
+				<reportElement x="260" y="244" width="226" height="20" uuid="5592058d-4536-4e76-870e-5ccc79347a8c"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{contacto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="260" y="231" width="226" height="20" uuid="9a8d9433-130d-4a95-bf39-06cbee4416cf"/>
+				<reportElement x="260" y="264" width="226" height="20" uuid="9a8d9433-130d-4a95-bf39-06cbee4416cf"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="260" y="251" width="226" height="20" uuid="96f77b16-4a27-4439-a5a2-bd4e9032749a"/>
+				<reportElement x="260" y="284" width="226" height="20" uuid="96f77b16-4a27-4439-a5a2-bd4e9032749a"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="100" y="251" width="148" height="20" uuid="3d4f3bc8-ad59-48e4-9f7e-a394c5014feb"/>
+				<reportElement x="100" y="284" width="148" height="20" uuid="3d4f3bc8-ad59-48e4-9f7e-a394c5014feb"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Correo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="231" width="148" height="20" uuid="a95420e8-4bf6-4f95-91ac-4a2f66d99623"/>
+				<reportElement x="100" y="264" width="148" height="20" uuid="a95420e8-4bf6-4f95-91ac-4a2f66d99623"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Telefono:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="211" width="148" height="20" uuid="4cca63dc-cd6a-4b7c-bc83-4df212c25a28"/>
+				<reportElement x="100" y="244" width="148" height="20" uuid="4cca63dc-cd6a-4b7c-bc83-4df212c25a28"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Contacto:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="191" width="148" height="20" uuid="d125c13d-56f1-4342-8224-4a6ffbca5fb0"/>
+				<reportElement x="100" y="224" width="148" height="20" uuid="d125c13d-56f1-4342-8224-4a6ffbca5fb0"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Direccion:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="171" width="148" height="20" uuid="90e90105-60e9-4323-8c2d-e7400eb5b28f"/>
+				<reportElement x="100" y="204" width="148" height="20" uuid="90e90105-60e9-4323-8c2d-e7400eb5b28f"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Entidad:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="151" width="148" height="20" uuid="192cbde8-c432-477d-9306-581f39020372"/>
+				<reportElement x="100" y="184" width="148" height="20" uuid="192cbde8-c432-477d-9306-581f39020372"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cedula:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="131" width="148" height="20" uuid="d6fc49bb-8cf1-4041-8062-b216954a8840"/>
+				<reportElement x="100" y="164" width="148" height="20" uuid="d6fc49bb-8cf1-4041-8062-b216954a8840"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha de Ingreso:]]></text>
 			</staticText>
-			<image>
-				<reportElement x="179" y="0" width="219" height="113" uuid="cddd3082-5683-4987-b04c-2e13bd993612"/>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="100" y="0" width="386" height="139" uuid="cddd3082-5683-4987-b04c-2e13bd993612"/>
 				<imageExpression><![CDATA[$F{imagen}.toString()]]></imageExpression>
 			</image>
 		</band>

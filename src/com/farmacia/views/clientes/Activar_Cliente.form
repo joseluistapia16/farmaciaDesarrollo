@@ -102,14 +102,14 @@
                   <EmptySpace min="58" max="32767" attributes="0"/>
               </Group>
               <Component id="jLabel9" max="32767" attributes="0"/>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                  <Component id="BotonActivar" min="-2" pref="123" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="BotonSalir1" min="-2" pref="121" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="BotonActivar" min="-2" pref="121" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                  <Component id="reporte" min="-2" pref="121" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Component id="BotonSalir" min="-2" pref="121" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -157,13 +157,13 @@
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="BotonActivar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="BotonSalir" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="BotonSalir1" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="reporte" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -398,7 +398,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonAgregarTActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="BotonSalir1">
+        <Component class="javax.swing.JButton" name="reporte">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cambria" size="15" style="1"/>
@@ -406,7 +406,7 @@
             <Property name="text" type="java.lang.String" value="Reporte"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonSalir1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reporteActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

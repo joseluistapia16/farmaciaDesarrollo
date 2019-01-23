@@ -200,6 +200,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="nuevo_btn" min="-2" pref="120" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="Reporte" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="eliminar_bt" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -213,6 +215,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="nuevo_btn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="eliminar_bt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Reporte" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   </Group>
@@ -240,6 +243,17 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevo_btnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Reporte">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Ubuntu" size="15" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Imprimir"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReporteActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
