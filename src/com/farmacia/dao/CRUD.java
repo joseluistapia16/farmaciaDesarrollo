@@ -869,7 +869,7 @@ public class CRUD {
 //    }
 
     public String insertarNuevoProveedor(ListarJoinProveedor obj) {
-       // ArrayList<ListarJoinProveedor> lista = new ArrayList();
+        // ArrayList<ListarJoinProveedor> lista = new ArrayList();
         String valor = "";
         try {
             conect = con.conectar();
@@ -1979,6 +1979,7 @@ public class CRUD {
         }
         return lista;
     }
+
     public ArrayList<JoinListarDetalleNotaPedido> listarDetalleNotaPedidoEnCompra(int op, String id) {
         ArrayList<JoinListarDetalleNotaPedido> lista = new ArrayList<JoinListarDetalleNotaPedido>();
         try {
@@ -2557,6 +2558,7 @@ public class CRUD {
         }
         return lista;
     }
+
     //////// Listar Cliente Ventas
     public ArrayList<Persona> ListarTodoClienteVentas(String op1, String op2) {
         ArrayList<Persona> lista = new ArrayList<Persona>();
@@ -2590,7 +2592,7 @@ public class CRUD {
             }
         }
         return lista;
-       
+
     }
 
     public String ActualizarNotaPedidos(DetalleNotaPedido dnp) {
@@ -2626,7 +2628,8 @@ public class CRUD {
         }
         return valor;
     }
-     public String EliminarDetalleNotaPedido(DetalleNotaPedido det) { 
+
+    public String EliminarDetalleNotaPedido(DetalleNotaPedido det) {
         String dato = null;
         try {
             conect = con.conectar();
@@ -2656,7 +2659,7 @@ public class CRUD {
         return dato;
 
     }
-    
+
     public String eliminardetalleCompra(JoinListarDetalleNotaPedido dnp) {
         String valor = null;
         try {
@@ -2664,10 +2667,10 @@ public class CRUD {
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
                     "{ call eliminarDetalleCompra(?,?,?)}");
-                       
+
             pro.setLong(1, dnp.getId_cabecera_nota_pedido());
             pro.setLong(2, dnp.getId_detalle_nota_pedido());
-            
+
             pro.registerOutParameter("valor", Types.VARCHAR);
             pro.executeUpdate();
             //pro.execute();
@@ -2690,4 +2693,79 @@ public class CRUD {
         return valor;
     }
 
+    public static void InsertarBDCompras(String id_cabecera, ArrayList<joinProductoDetallesFaltantes> lista) {
+        String cad1 = "";
+        String[] Filas = new String[11];
+
+        for (int i = 0; i < lista.size(); i++) {
+            Filas[0] = "" + lista.get(i).getId_producto().toString();
+            Filas[1] = lista.get(i).getMarca();
+            Filas[2] = lista.get(i).getNombre_tipo();
+            Filas[3] = lista.get(i).getNombre_producto();
+            Filas[4] = lista.get(i).getEnvase();
+            Filas[5] = lista.get(i).getMedida();
+            Filas[6] = lista.get(i).getCantidad().toString();
+            Filas[7] = lista.get(i).getPrecios().toString();
+            int Cantidad = lista.get(i).getCantidad();
+            Double Precio = lista.get(i).getPrecios();
+            Double PorcDesc = lista.get(i).getPorcentaje_descuento();
+            Double ValorDes = Cantidad * Precio * PorcDesc / 100;
+            ValorDes = redondearDecimales(ValorDes, 2);
+            Double iva = 0.12;
+            Double iva1 = 0.00;
+//            Filas[8] = String.format("%5.2f", ValorDes);
+            Filas[8] = "" + ValorDes;
+            if (lista.get(i).getIva().equals("SI")) {
+                iva1 = Cantidad * iva * Precio;
+                iva1 = redondearDecimales(iva1, 2);
+//                Filas[9] = String.format("%5.2f", iva1);
+                Filas[9] = "" + iva1;
+
+                Double importe = Cantidad * Precio + iva1 - ValorDes;
+                importe = redondearDecimales(importe, 2);
+                Filas[10] = "" + importe;
+//                Filas[10] = String.format("%5.2f", importe);
+            }
+            if (lista.get(i).getIva().equals("NO")) {
+                Filas[9] = "" + 0;
+                Double importe = Cantidad * Precio - ValorDes;
+                importe = redondearDecimales(importe, 2);
+//                Filas[10] = String.format("%5.2f", importe);
+                Filas[10] = "" + importe;
+
+            }
+            cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`) VALUES ('"+lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "');";
+
+        }
+        System.out.println(cad1);
+        CRUD crud = new CRUD();
+        crud.insertarDetallesEnRegistroCompras(cad1);
+        cad1 = "";
+    }
+
+    public static double redondearDecimales(double valorInicial, int numeroDecimales) {
+        double parteEntera, resultado;
+        resultado = valorInicial;
+        parteEntera = Math.floor(resultado);
+        resultado = (resultado - parteEntera) * Math.pow(10, numeroDecimales);
+        resultado = Math.round(resultado);
+        resultado = (resultado / Math.pow(10, numeroDecimales)) + parteEntera;
+        return resultado;
+    }
+
+    public void insertarDetallesEnRegistroCompras(String query) {
+        try {
+            conect = con.conectar();
+
+            java.sql.Statement st = conect.createStatement();
+            st.executeUpdate(query);
+
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

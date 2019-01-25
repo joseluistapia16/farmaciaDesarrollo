@@ -169,9 +169,8 @@ public class FrmLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
         String username = txtUsuario.getText();
         String password = txpContrasenia.getText();
         Usuario usuario = new Usuario();

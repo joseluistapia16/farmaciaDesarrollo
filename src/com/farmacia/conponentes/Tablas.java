@@ -792,61 +792,7 @@ public class Tablas {
         }
 
     }
-     public static void InsertarBDCompras(ArrayList<joinProductoDetallesFaltantes> lista) {
-
-        String[] Filas = new String[11];
-        for (int i = 0; i < lista.size(); i++) {
-            Filas[0] = "" + lista.get(i).getId_producto().toString();
-            Filas[1] = lista.get(i).getMarca();
-            Filas[2] = lista.get(i).getNombre_tipo();
-            Filas[3] = lista.get(i).getNombre_producto();
-            Filas[4] = lista.get(i).getEnvase();
-            Filas[5] = lista.get(i).getMedida();
-            Filas[6] = lista.get(i).getCantidad().toString();
-            Filas[7] = lista.get(i).getPrecios().toString();
-            int Cantidad = lista.get(i).getCantidad();
-            Double Precio = lista.get(i).getPrecios();
-            Double PorcDesc = lista.get(i).getPorcentaje_descuento();
-            Double ValorDes = Cantidad * Precio * PorcDesc / 100;
-            ValorDes = redondearDecimales(ValorDes, 2);
-            Double iva = 0.12;
-            Double iva1 = 0.00;
-//            Filas[8] = String.format("%5.2f", ValorDes);
-            Filas[8] = "" + ValorDes;
-            if (lista.get(i).getIva().equals("SI")) {
-                iva1 = Cantidad * iva * Precio;
-                iva1 = redondearDecimales(iva1, 2);
-//                Filas[9] = String.format("%5.2f", iva1);
-                Filas[9] = "" + iva1;
-
-                Double importe = Cantidad * Precio + iva1 - ValorDes;
-                importe = redondearDecimales(importe, 2);
-                Filas[10] = "" + importe;
-//                Filas[10] = String.format("%5.2f", importe);
-            }
-            if (lista.get(i).getIva().equals("NO")) {
-                Filas[9] = "" + 0;
-                Double importe = Cantidad * Precio - ValorDes;
-                importe = redondearDecimales(importe, 2);
-//                Filas[10] = String.format("%5.2f", importe);
-                Filas[10] = "" + importe;
-
-            }
-            
-        ArrayList<String> queryL1 = new ArrayList<String>();
-        String cad1 = "";
-        String id_cab = "";
-
-
-            cad1 = "INSERT INTO (`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`) VALUES ("+lista.get(i).getId_precios()+","+lista.get(i).+");";
-            queryL1.add(cad1);
-            System.out.println(cad1);
-       
-            
-        }
-
-    }
-
+     
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
         resultado = valorInicial;

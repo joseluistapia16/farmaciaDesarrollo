@@ -620,8 +620,8 @@ public static String FechaActual() {
         return formatoFecha.format(fecha);
     }
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
-        //   Products Prod = new Products(new javax.swing.JFrame(), true);
-        //  Prod.setVisible(true);
+//           Products Prod = new Products(new javax.swing.JFrame(), true);
+//          Prod.setVisible(true);
 //        lista.clear();
 //        lista = crud.listarTodoJoinProductos(1);
 //        Tablas.cargarJoinProductosMCompra(tbacargarProductosA, lista);
@@ -798,6 +798,9 @@ public static String FechaActual() {
                     btnSalir2.setEnabled(false);
                 }
             } else {
+                EditarProductoEnCompras epc=new EditarProductoEnCompras(new javax.swing.JFrame(), true, detalle);
+                epc.setVisible(true);
+                actualizarTabla2();
             }
         }
     }//GEN-LAST:event_tbaListaComprasBMousePressed
@@ -828,11 +831,9 @@ public static String FechaActual() {
                             getPosicion(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, listaCompra );
-                            Tablas.cargarJoinProductoIngresoNotas(tbaListaComprasB, lista1);
-
-                            Total();
-                            TotalIVA();
-                            TotalDescuento();
+                            
+                            crud.InsertarBDCompras(txt_Numero.getText(), lista1);
+                            actualizarTabla2();
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, msg);
