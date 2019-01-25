@@ -68,7 +68,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         txtNumero.setText(obj.getId_cabecera_nota_pedidos().toString());
         txtDireccion1.setText(obj.getDireccion());
         txtTipo1.setText(obj.getClase());
-//        cbxPlazo.setModel(obj.getPlazo());
+        cbxPlazo.setSelectedItem(obj.getPlazo());
+        cbxFormaP.setSelectedItem(obj.getForma_pago());
 //       
         objf.setId_proveedor(obj.getId_proveedor());
         objf.setEntidad(obj.getEntidad());
@@ -80,6 +81,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         objf.setClase(obj.getClase());
         objf.setTelefono(obj.getTelefono());
         objf.setRepresentante(obj.getRepresentante());
+        objf.setPlazo(obj.getPlazo());
+        objf.setForma_pago(obj.getForma_pago());
 
     }
 
@@ -679,9 +682,10 @@ public void Total() {
             i = t_Nota_faltantes.getSelectedRow();
             objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
             if (objeto != null) {
-                AgregarProductoEditarNotaPedido1 np = new AgregarProductoEditarNotaPedido1(new javax.swing.JFrame(), true, objeto);
+                AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objeto);
                 np.setVisible(true);
                 msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
+//  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
                 if (msg == null) {
                     Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                     if (np.getObjf().getCantidad() > 0) {

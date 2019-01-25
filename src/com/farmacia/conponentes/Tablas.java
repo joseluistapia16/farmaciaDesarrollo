@@ -620,11 +620,7 @@ public class Tablas {
 
     }
 
-//<<<<<<< HEAD
-//    public static void CargarJoinListadoNotaPedidos(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
-//=======
     public static void CargarJoinListadoCabeceraNotaPedidos(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
-//>>>>>>> origin/JoseLuis
 
         int[] a = {5, 5, 52, 90, 150, 110, 15, 50, 10};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
@@ -718,53 +714,56 @@ public class Tablas {
 
     public static void cargarJoinProductoIngresoNotas(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
 
-        int[] a = {10, 30, 32, 70, 15, 30, 10, 10, 20, 10, 5};
+        int[] a = {10, 30, 32, 70, 15, 30, 10,10 ,10, 20, 10, 5};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
-        String[] Filas = new String[11];
+        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA","BONO", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
+        String[] Filas = new String[12];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
+            int Cantidad = lista.get(i).getCantidad();
+            Double Precio = lista.get(i).getPrecios();
+            Precio = redondearDecimales(Precio, 2);
+            Double PorcDesc = lista.get(i).getPorcentaje_descuento();
+            Double ValorDes = Cantidad * Precio * PorcDesc / 100;
+            ValorDes = redondearDecimales(ValorDes, 2);
+            Double PrecioTotal = Cantidad * Precio;
+            PrecioTotal = redondearDecimales(PrecioTotal, 2);
+            Double iva = 0.12;
+            Double iva1 = 0.00;
+            int Bono = lista.get(i).getBono();
+            int CantidadTotal = Bono + Cantidad;
+            Double PrecioBono = PrecioTotal / CantidadTotal;
+            PrecioBono = redondearDecimales(PrecioBono, 2);
             Filas[0] = "" + lista.get(i).getId_producto().toString();
             Filas[1] = lista.get(i).getMarca();
             Filas[2] = lista.get(i).getNombre_tipo();
             Filas[3] = lista.get(i).getNombre_producto();
             Filas[4] = lista.get(i).getEnvase();
             Filas[5] = lista.get(i).getMedida();
-            Filas[6] = lista.get(i).getCantidad().toString();
-            Filas[7] = lista.get(i).getPrecios().toString();
-            int Cantidad = lista.get(i).getCantidad();
-            Double Precio = lista.get(i).getPrecios();
-            Double PorcDesc = lista.get(i).getPorcentaje_descuento();
-            Double ValorDes = Cantidad * Precio * PorcDesc / 100;
-            ValorDes = redondearDecimales(ValorDes, 2);
-            Double iva = 0.12;
-            Double iva1 = 0.00;
-//            Filas[8] = String.format("%5.2f", ValorDes);
-            Filas[8] = "" + ValorDes;
+            Filas[6] = ""+Bono;
+            Filas[7] = ""+CantidadTotal;
+            Filas[8] = ""+PrecioBono;
+            Filas[9] = "" + ValorDes;
             if (lista.get(i).getIva().equals("SI")) {
                 iva1 = Cantidad * iva * Precio;
                 iva1 = redondearDecimales(iva1, 2);
-//                Filas[9] = String.format("%5.2f", iva1);
-                Filas[9] = "" + iva1;
-
+                Filas[10] = "" + iva1;
                 Double importe = Cantidad * Precio + iva1 - ValorDes;
                 importe = redondearDecimales(importe, 2);
-                Filas[10] = "" + importe;
-//                Filas[10] = String.format("%5.2f", importe);
+                Filas[11] = "" + importe;
             }
             if (lista.get(i).getIva().equals("NO")) {
-                Filas[9] = "" + 0;
+                Filas[10] = "" + 0;
                 Double importe = Cantidad * Precio - ValorDes;
                 importe = redondearDecimales(importe, 2);
-//                Filas[10] = String.format("%5.2f", importe);
-                Filas[10] = "" + importe;
-
+                Filas[11] = "" + importe;
             }
+            System.out.println("can " + Cantidad);
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -789,6 +788,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
             Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(11).setPreferredWidth(a[11]);
+            Tabla.getColumnModel().getColumn(11).setCellRenderer(tcr);
         }
 
     }
@@ -1018,9 +1019,7 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(14).setPreferredWidth(a[14]);
             Tabla.getColumnModel().getColumn(14).setCellRenderer(tcr);
         }
-//=======
     }
-//<<<<<<< HEAD
 
     public void visualizar(JTable tabla, Long id) {//1
 
@@ -1127,15 +1126,16 @@ public class Tablas {
 //            Tabla.getColumnModel().getColumn(11).setCellRenderer(tcr);
         }
     }
+
     public static void cargarJoinRegistroDetalleCompras(JTable Tabla, ArrayList<JoinListarDetalleNotaPedido> lista) {
 
-        int[] a = {10,10, 30, 32, 70, 15, 30, 10, 10, 20, 10, 5};
+        int[] a = {10, 10, 30, 32, 70, 15, 30, 10, 10, 20, 10, 5};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"N#","CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
+        String[] Co = {"N#", "CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
         String[] Filas = new String[12];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -1253,7 +1253,6 @@ public class Tablas {
             Filas[4] = lista.get(i).getDireccion();
             Filas[5] = lista.get(i).getStr_telefono();
             Filas[6] = lista.get(i).getStr_correo();
-            
 
             model.addRow(Filas);
             Tabla.setModel(model);
@@ -1271,7 +1270,6 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
             Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
-
 
         }
     }
@@ -1397,11 +1395,11 @@ public class Tablas {
             Filas[3] = lista.get(i).getProducto();
             Filas[4] = lista.get(i).getEnvase();
             Filas[5] = lista.get(i).getMedida();
-            Filas[6] = ""+lista.get(i).getCantidad();
+            Filas[6] = "" + lista.get(i).getCantidad();
             Filas[7] = lista.get(i).getPrecio().toString();
             Filas[8] = lista.get(i).getDescuento().toString();
             Filas[9] = lista.get(i).getIva().toString();
-            Filas[10] =lista.get(i).getTotal().toString();
+            Filas[10] = lista.get(i).getTotal().toString();
 
         }
         model.addRow(Filas);
@@ -1429,6 +1427,5 @@ public class Tablas {
         Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
         Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
     }
-
 
 }

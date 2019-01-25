@@ -38,7 +38,6 @@ public class EditarProductoNota extends javax.swing.JDialog {
         llenarFormulario(obj1);
         this.setLocationRelativeTo(null);
         obj2 = obj1;
-        System.out.println("id detalle " + obj1.getId_detalle_nota_pedido());
         btnEditar.setEnabled(false);
     }
 

@@ -26,6 +26,7 @@ public class JoinListarDetalleNotaPedido {
     private String medida;
     private Long id_cabecera_nota_pedido;
     private int cantidad;
+    private int bono;
     private Double precio;
     private Double descuento;
     private Double iva;
@@ -34,7 +35,7 @@ public class JoinListarDetalleNotaPedido {
     public JoinListarDetalleNotaPedido() {
     }
 
-    public JoinListarDetalleNotaPedido(Long id_detalle_nota_pedido, Long id_precio, Long id_producto, String producto, Long id_marca, String marca, Long id_tipo, String tipo, Long id_envase, String envase, Long id_medida, String medida, Long id_cabecera_nota_pedido, int cantidad, Double precio, Double descuento, Double iva, Double total) {
+    public JoinListarDetalleNotaPedido(Long id_detalle_nota_pedido, Long id_precio, Long id_producto, String producto, Long id_marca, String marca, Long id_tipo, String tipo, Long id_envase, String envase, Long id_medida, String medida, Long id_cabecera_nota_pedido, int cantidad, int bono, Double precio, Double descuento, Double iva, Double total) {
         this.id_detalle_nota_pedido = id_detalle_nota_pedido;
         this.id_precio = id_precio;
         this.id_producto = id_producto;
@@ -49,6 +50,7 @@ public class JoinListarDetalleNotaPedido {
         this.medida = medida;
         this.id_cabecera_nota_pedido = id_cabecera_nota_pedido;
         this.cantidad = cantidad;
+        this.bono = bono;
         this.precio = precio;
         this.descuento = descuento;
         this.iva = iva;
@@ -167,6 +169,14 @@ public class JoinListarDetalleNotaPedido {
         this.cantidad = cantidad;
     }
 
+    public int getBono() {
+        return bono;
+    }
+
+    public void setBono(int bono) {
+        this.bono = bono;
+    }
+
     public Double getPrecio() {
         return precio;
     }
@@ -198,6 +208,5 @@ public class JoinListarDetalleNotaPedido {
     public void setTotal(Double total) {
         this.total = total;
     }
-
     
 }

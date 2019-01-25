@@ -14,7 +14,7 @@ public class DetalleNotaPedido {
     private Long id_detalle_nota_pedidos;
     private Long id_precio;
     private Long id_cabecera_nota_pedidos;
-    private int cantidad;
+    private Integer cantidad;
     private Double precio;
     private Double descuento;
     private Double iva;
@@ -23,7 +23,7 @@ public class DetalleNotaPedido {
     public DetalleNotaPedido() {
     }
 
-    public DetalleNotaPedido(Long id_detalle_nota_pedidos, Long id_precio, Long id_cabecera_nota_pedidos, int cantidad, Double precio, Double descuento, Double iva, Double total) {
+    public DetalleNotaPedido(Long id_detalle_nota_pedidos, Long id_precio, Long id_cabecera_nota_pedidos, Integer cantidad, Double precio, Double descuento, Double iva, Double total) {
         this.id_detalle_nota_pedidos = id_detalle_nota_pedidos;
         this.id_precio = id_precio;
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
@@ -58,11 +58,11 @@ public class DetalleNotaPedido {
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
     }
 
-    public int getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -97,5 +97,5 @@ public class DetalleNotaPedido {
     public void setTotal(Double total) {
         this.total = total;
     }
-    
+
 }

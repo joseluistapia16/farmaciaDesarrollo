@@ -15,14 +15,29 @@ import javax.swing.JTable;
  * @author alumno
  */
 public class ComponentesFaltantes {
+
     CRUD crud = new CRUD();
-ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
-    
-    public static String validarListaFaltantes(JTable tabla, String Id_precios) {
+    ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
+
+    public static String validarListaFaltantes(JTable tabla, String id_producto) {
         String o, msg = null;
         for (int i = 0; i < tabla.getRowCount(); i++) {
             o = (String) tabla.getValueAt(i, 0);
-            if (o.equals(Id_precios)) {
+            if (o.equals(id_producto)) {
+                msg = "El producto ya fue Seleccionado!";
+                break;
+            }
+
+        }
+
+        return msg;
+    }
+
+    public static String validarListaFaltantesNota(JTable tabla, String id_producto) {
+        String o, msg = null;
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            o = (String) tabla.getValueAt(i, 0);
+            if (o.equals(id_producto)) {
                 msg = "El producto ya fue Seleccionado!";
                 break;
             }
