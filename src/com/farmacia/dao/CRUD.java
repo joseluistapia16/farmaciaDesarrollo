@@ -31,10 +31,7 @@ import com.farmacia.entities1.TipoProducto;
 import com.farmacia.entities1.Usuario;
 import com.farmacia.entities1.Usuario_S;
 import com.farmacia.entities1.fc_localidad_guayas;
-//<<<<<<< HEAD
-//=======
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
-//>>>>>>> origin/JoseLuis
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;

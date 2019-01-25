@@ -412,6 +412,8 @@ public class EntidadesMappers {
             obj.setEntidad(rs.getString("PROVEEDOR"));
             obj.setTelefono(rs.getString("TELEFONO"));
             obj.setFecha_creacion(rs.getString("FECHA_CREACION"));
+            obj.setForma_pago(rs.getString("FORMA_PAGO"));
+            obj.setPlazo(rs.getString("PLAZO"));
             obj.setIva(rs.getDouble("IVA"));
             obj.setDescuento(rs.getDouble("DESCUENTO"));
             obj.setTotal(rs.getDouble("TOTAL"));
