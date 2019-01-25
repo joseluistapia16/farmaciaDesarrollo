@@ -666,7 +666,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
             Obcx pol = new Obcx(ic.getTelefono(), ic.getTipo());
             lista.add(pol);
             listac = lista;
-            crud.insertarCorreo(lista,cedula.getText());
+            crud.insertarCorreoCliente(lista,cedula.getText());
             // System.out.println(lista.get(0).getTcd() + " " + lista.get(0).getTipos());
         }
     }//GEN-LAST:event_btnagregarCorreoActionPerformed

@@ -832,6 +832,38 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+//    public void insertarTelefonoCliente( ArrayList<Obcx> lis, String cedula1) {
+//        String valor = null;
+//          for (int i = 0; i < lis.size(); i++) {
+//        try {
+//            conect = con.conectar();
+//            conect.setAutoCommit(false);
+//            CallableStatement pro = conect.prepareCall(
+//                    "{ call insertarTelefono(?,?,?,?)}");
+//            pro.setString(1, cedula1);
+//            pro.setInt(2, lis.get(i).getTipos());
+//            pro.setString(3, lis.get(i).getTcd());
+//            pro.registerOutParameter("msg", Types.VARCHAR);
+//            pro.executeUpdate();
+//            //pro.execute();
+//            valor = pro.getString("msg");
+//            conect.commit();
+//        } catch (Exception ex) {
+//                try {
+//                    conect.rollback();
+//
+//                } catch (SQLException ex1) {
+//                        Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex1);
+//                }
+//                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//        try {
+//            conect.close();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     public String insertarNuevoProveedor(ListarJoinProveedor obj) {
        // ArrayList<ListarJoinProveedor> lista = new ArrayList();
@@ -1154,7 +1186,7 @@ public class CRUD {
                 conect = con.conectar();
                 conect.setAutoCommit(false);
                 CallableStatement pro = conect.prepareCall(
-                        "{ call insertarTelefono(?,?,?,?)}");
+                        "{ call insertarTelefonoCliente(?,?,?,?)}");
                 pro.setString(1, cedula1);
                 pro.setInt(2, lis.get(i).getTipos());
                 pro.setString(3, lis.get(i).getTcd());
@@ -1187,7 +1219,7 @@ public class CRUD {
                 conect = con.conectar();
                 conect.setAutoCommit(false);
                 CallableStatement prc = conect.prepareCall(""
-                        + "{ call insertarCorreo(?,?,?) }");
+                        + "{ call insertarCorreoCliente(?,?,?) }");
                 prc.setString(1, cedula1);
                 prc.setString(2, lis.get(i).getTcd());
                 //prcProcedimientoAlmacenado.setLong(3, lis.get(i).getTipo());

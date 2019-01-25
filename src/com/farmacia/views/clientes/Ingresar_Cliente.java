@@ -401,8 +401,8 @@ public class Ingresar_Cliente extends javax.swing.JDialog {
                     cbx1.getSelectedItem().toString(), cbx2.getSelectedItem().toString());
             if (pro != null) {
 
-                cc.insertarTelefono(listat, cedula.getText());
-                cc.insertarCorreo(listac, cedula.getText());
+                cc.insertarTelefonoCliente(listat, cedula.getText());
+                cc.insertarCorreoCliente(listac, cedula.getText());
 
                 JOptionPane.showMessageDialog(null, pro);
                 Consulta_Clientes mp = new Consulta_Clientes(new javax.swing.JFrame(), true);
