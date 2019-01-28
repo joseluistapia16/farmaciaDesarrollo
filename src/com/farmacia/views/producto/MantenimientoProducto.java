@@ -7,14 +7,24 @@ package com.farmacia.views.producto;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.filtros.filtrosProductos;
 
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
+import java.awt.Dimension;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
@@ -28,7 +38,8 @@ public class MantenimientoProducto extends javax.swing.JDialog {
     static ArrayList<listarJoinProductosCompras> listar = null;
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     ArrayList<listarJoinProductosCompras> lista = crud.listarTodoJoinProductos(1);
-
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     public MantenimientoProducto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -53,6 +64,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         filtrar = new javax.swing.JButton();
         btnSalir2 = new javax.swing.JButton();
         btnProducto = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -123,6 +135,14 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             }
         });
 
+        btnReporte.setFont(new java.awt.Font("Cambria", 1, 11)); // NOI18N
+        btnReporte.setText("Reporte");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,12 +164,15 @@ public class MantenimientoProducto extends javax.swing.JDialog {
                                 .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addComponent(filtrar)))
-                        .addGap(159, 159, 159))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnProducto)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSalir2)
-                        .addGap(53, 53, 53))))
+                        .addGap(159, 159, 159))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(btnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,11 +186,12 @@ public class MantenimientoProducto extends javax.swing.JDialog {
                     .addComponent(filtrar))
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProducto))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnProducto)
+                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -281,6 +305,26 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tipofiltroActionPerformed
 
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        ArrayList tablac = new ArrayList();
+        for(int i=0;i<tbacargarProductos.getRowCount();i++){
+            ClaseReporte tabla1 = new ClaseReporte (tbacargarProductos.getValueAt(i,0).toString(),tbacargarProductos.getValueAt(i,1).toString(),tbacargarProductos.getValueAt(i,2).toString(),tbacargarProductos.getValueAt(i,3).toString());
+            tablac.add(tabla1);}
+        try{
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("MantenimientoProducto.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog (this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(MantenimientoProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReporteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -326,6 +370,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnProducto;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JButton filtrar;
     private javax.swing.JTextField filtro;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f48d56dc-2bbb-4b4a-98c5-646658ccc995">
-	<property name="ireport.zoom" value="4.177248169415659"/>
-	<property name="ireport.x" value="1856"/>
-	<property name="ireport.y" value="309"/>
+	<property name="ireport.zoom" value="1.331000000000003"/>
+	<property name="ireport.x" value="23"/>
+	<property name="ireport.y" value="0"/>
 	<field name="cedula" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="apellido" class="java.lang.String"/>
@@ -28,37 +28,37 @@
 	<columnHeader>
 		<band height="27" splitType="Stretch">
 			<staticText>
-				<reportElement x="4" y="5" width="100" height="19" uuid="eb622d31-6cc8-44bf-95cd-276a08e729c1"/>
+				<reportElement mode="Opaque" x="4" y="5" width="103" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="eb622d31-6cc8-44bf-95cd-276a08e729c1"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[cedula]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="112" y="5" width="112" height="19" uuid="7b13d387-f18e-4011-b6db-552cf1bb2513"/>
+				<reportElement mode="Opaque" x="108" y="5" width="117" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="7b13d387-f18e-4011-b6db-552cf1bb2513"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="228" y="5" width="112" height="19" uuid="cd8bf839-fdab-42d7-b514-d3a11adf72df"/>
+				<reportElement mode="Opaque" x="226" y="5" width="115" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="cd8bf839-fdab-42d7-b514-d3a11adf72df"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[apellido]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="344" y="5" width="115" height="19" uuid="dd0ae0f8-b7b3-4fb1-9a67-c36a7beb8cf1"/>
+				<reportElement mode="Opaque" x="342" y="5" width="119" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="dd0ae0f8-b7b3-4fb1-9a67-c36a7beb8cf1"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[direccion]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="463" y="5" width="88" height="19" uuid="63c5194a-84fb-4d9b-9a93-67328d0a4a36"/>
+				<reportElement mode="Opaque" x="462" y="5" width="89" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="63c5194a-84fb-4d9b-9a93-67328d0a4a36"/>
 				<textElement textAlignment="Center">
-					<font isBold="false"/>
+					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[fecha registro]]></text>
 			</staticText>
@@ -91,7 +91,7 @@
 	<detail>
 		<band height="25" splitType="Stretch">
 			<textField>
-				<reportElement x="4" y="2" width="100" height="19" uuid="d6fa6643-a0ba-4267-86bd-f487b80c0e0c"/>
+				<reportElement x="4" y="2" width="103" height="19" uuid="d6fa6643-a0ba-4267-86bd-f487b80c0e0c"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>

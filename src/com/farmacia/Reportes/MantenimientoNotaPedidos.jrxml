@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eef98107-54aa-473e-a5d9-7af6f92b3a9b">
-	<property name="ireport.zoom" value="1.4641000000000066"/>
-	<property name="ireport.x" value="88"/>
-	<property name="ireport.y" value="8"/>
+	<property name="ireport.zoom" value="1.9487171000000094"/>
+	<property name="ireport.x" value="455"/>
+	<property name="ireport.y" value="87"/>
 	<field name="valor1" class="java.lang.String"/>
 	<field name="valor2" class="java.lang.String"/>
 	<field name="valor3" class="java.lang.String"/>
@@ -16,7 +16,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="56" splitType="Stretch">
 			<staticText>
 				<reportElement x="126" y="15" width="554" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
 				<textElement textAlignment="Center">
@@ -27,26 +27,26 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="8" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="26" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="3" y="4" width="90" height="20" forecolor="#000000" backcolor="#66CCFF" uuid="8afff2ca-0669-48e1-8fe1-1d61be11be33"/>
+				<reportElement mode="Opaque" x="3" y="4" width="90" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="8afff2ca-0669-48e1-8fe1-1d61be11be33"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[N#]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="94" y="4" width="90" height="20" forecolor="#000000" backcolor="#66CCFF" uuid="8769a2a2-f1be-44c4-882c-814c6507aa91"/>
+				<reportElement mode="Opaque" x="94" y="4" width="90" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="8769a2a2-f1be-44c4-882c-814c6507aa91"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CODIGO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="185" y="4" width="90" height="20" forecolor="#000000" backcolor="#66CCFF" uuid="50baa94f-b0ec-4c55-8e72-af907afefed6"/>
+				<reportElement mode="Opaque" x="185" y="4" width="90" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="50baa94f-b0ec-4c55-8e72-af907afefed6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
@@ -59,7 +59,7 @@
 				<reportElement x="93" y="4" width="1" height="20" uuid="c9c1c045-c0da-4e6f-a4ec-5e61b3e48c02"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="276" y="4" width="90" height="20" forecolor="#000000" backcolor="#66CCFF" uuid="c287f15e-d57b-4328-b98c-5d0da4d0cab1"/>
+				<reportElement mode="Opaque" x="276" y="4" width="90" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="c287f15e-d57b-4328-b98c-5d0da4d0cab1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
@@ -78,35 +78,35 @@
 				<reportElement x="184" y="4" width="1" height="20" uuid="2fbe5c9b-ef0d-422f-8731-0b4eadf7405c"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="367" y="4" width="90" height="20" forecolor="#000000" backcolor="#66CCFF" uuid="731c7982-0bb9-4a1d-85e4-4c7e601b5966"/>
+				<reportElement mode="Opaque" x="367" y="4" width="90" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="731c7982-0bb9-4a1d-85e4-4c7e601b5966"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TELEFONO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="458" y="4" width="90" height="20" forecolor="#000000" backcolor="#66CCFF" uuid="78f40315-4250-42a3-b705-5b843209b032"/>
+				<reportElement mode="Opaque" x="458" y="4" width="90" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="78f40315-4250-42a3-b705-5b843209b032"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FECHA CREACION]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="549" y="4" width="90" height="20" forecolor="#000000" backcolor="#66CCFF" uuid="4d56d13e-58f7-4718-bdfd-e802789dd6bc"/>
+				<reportElement mode="Opaque" x="549" y="4" width="90" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="4d56d13e-58f7-4718-bdfd-e802789dd6bc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[IVA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="640" y="4" width="90" height="20" forecolor="#000000" backcolor="#66CCFF" uuid="4b861484-c2c9-4d2e-b28c-42955a1f29ca"/>
+				<reportElement mode="Opaque" x="640" y="4" width="90" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="4b861484-c2c9-4d2e-b28c-42955a1f29ca"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DESCUENTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="731" y="4" width="68" height="20" forecolor="#000000" backcolor="#66CCFF" uuid="9ed66265-e0cc-41bf-a74f-61d1ddc5c922"/>
+				<reportElement mode="Opaque" x="731" y="4" width="68" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="9ed66265-e0cc-41bf-a74f-61d1ddc5c922"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
 				</textElement>
@@ -126,6 +126,9 @@
 			</line>
 			<line>
 				<reportElement x="799" y="4" width="1" height="20" uuid="1d82e0b3-0d7d-4646-a54c-aefaab918579"/>
+			</line>
+			<line>
+				<reportElement x="2" y="3" width="797" height="1" uuid="8a314501-da0f-4b25-93a1-847320d9fea8"/>
 			</line>
 		</band>
 	</columnHeader>
