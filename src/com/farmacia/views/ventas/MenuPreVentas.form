@@ -227,7 +227,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="TxtProddescripcion2" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Component id="TxtProdNombre" min="-2" pref="150" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="BtnBuscarprodnombre" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
@@ -244,9 +244,9 @@
                                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="TxtProdiva" max="32767" attributes="0"/>
-                                          <Component id="TxtProdpreunit" max="32767" attributes="0"/>
+                                          <Component id="TxtProdUnit" max="32767" attributes="0"/>
                                           <Component id="TxtProddescuento" max="32767" attributes="0"/>
-                                          <Component id="TxtProdcantidad" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="TxtProdCantidad" alignment="0" max="32767" attributes="0"/>
                                           <Component id="TxtProdtotal" max="32767" attributes="0"/>
                                           <Component id="TxtPvp" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
                                       </Group>
@@ -254,7 +254,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="TxtProdnombre" min="-2" pref="340" max="-2" attributes="0"/>
+                                      <Component id="TxtProdDetalle" min="-2" pref="340" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -268,14 +268,14 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TxtProddescripcion2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtProdNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BtnBuscarprodnombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtProdnombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtProdDetalle" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -285,12 +285,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtProdcantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtProdCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtProdpreunit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtProdUnit" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -319,9 +319,15 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="TxtProddescripcion2">
+            <Component class="javax.swing.JTextField" name="TxtProdNombre">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="TxtProdnombre">
+            <Component class="javax.swing.JTextField" name="TxtProdDetalle">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="BtnBuscarprodnombre">
               <Properties>
@@ -366,9 +372,19 @@
                 <Property name="text" type="java.lang.String" value="Descuento:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="TxtProdcantidad">
+            <Component class="javax.swing.JTextField" name="TxtProdCantidad">
+              <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtProdCantidadKeyReleased"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtProdCantidadKeyTyped"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="TxtProdpreunit">
+            <Component class="javax.swing.JTextField" name="TxtProdUnit">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtProddescuento">
               <Events>
@@ -383,6 +399,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtPvp">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtProdtotal">
             </Component>
@@ -390,6 +409,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Adicionar Item"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton11">
               <Properties>
