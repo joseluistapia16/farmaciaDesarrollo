@@ -86,6 +86,9 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbacargarProductosMousePressed(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbacargarProductosMouseReleased(evt);
+            }
         });
         jScrollPane1.setViewportView(tbacargarProductos);
 
@@ -308,7 +311,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         ArrayList tablac = new ArrayList();
         for(int i=0;i<tbacargarProductos.getRowCount();i++){
-            ClaseReporte tabla1 = new ClaseReporte (tbacargarProductos.getValueAt(i,0).toString(),tbacargarProductos.getValueAt(i,1).toString(),tbacargarProductos.getValueAt(i,2).toString(),tbacargarProductos.getValueAt(i,3).toString());
+            ClaseReporte tabla1 = new ClaseReporte (tbacargarProductos.getValueAt(i,0).toString(),tbacargarProductos.getValueAt(i,1).toString(),tbacargarProductos.getValueAt(i,2).toString(),tbacargarProductos.getValueAt(i,3).toString(),tbacargarProductos.getValueAt(i,4).toString(),tbacargarProductos.getValueAt(i,5).toString());
             tablac.add(tabla1);}
         try{
             JasperReport reporte = (JasperReport) JRLoader.loadObject("MantenimientoProducto.jasper");
@@ -324,6 +327,10 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             Logger.getLogger(MantenimientoProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnReporteActionPerformed
+
+    private void tbacargarProductosMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbacargarProductosMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbacargarProductosMouseReleased
 
     /**
      * @param args the command line arguments
