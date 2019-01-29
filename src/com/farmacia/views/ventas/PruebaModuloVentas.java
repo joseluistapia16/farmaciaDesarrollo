@@ -10,6 +10,7 @@ import com.farmacia.entities1.Persona;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author Jomugue
@@ -22,6 +23,12 @@ public class PruebaModuloVentas {
     public static void main(String[] args) {
 
         CRUD crud = new CRUD();
+        
+        MenuPreVentas menu1 = new MenuPreVentas(new javax.swing.JFrame(), true);
+        menu1.setVisible(true);
+        
+        menu1.TxtProdNombre.setText("hola");
+        
         ArrayList<JoinListarProductosVentas> listar = null;
 
         listar = crud.ListarTodoJoinProductosVentas("22","buscar_codigo");

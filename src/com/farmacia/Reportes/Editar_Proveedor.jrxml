@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d5ea5dd-64e9-4be5-8170-31f086dc7197">
 	<property name="ireport.zoom" value="1.3310000000000026"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.x" value="42"/>
+	<property name="ireport.y" value="48"/>
 	<field name="fecha_ingreso" class="java.lang.String"/>
 	<field name="cedula" class="java.lang.String"/>
 	<field name="entidad" class="java.lang.String"/>
@@ -15,15 +15,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="45" splitType="Stretch">
-			<staticText>
-				<reportElement x="164" y="10" width="234" height="24" uuid="b948fcd0-7788-40a9-844e-f25d554655a5"/>
-				<textElement textAlignment="Center">
-					<font size="20" isBold="true" isItalic="true"/>
-				</textElement>
-				<text><![CDATA[Ficha Proveedor]]></text>
-			</staticText>
-		</band>
+		<band height="11" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band height="8" splitType="Stretch"/>
@@ -34,21 +26,21 @@
 	<detail>
 		<band height="315" splitType="Stretch">
 			<textField>
-				<reportElement x="260" y="164" width="226" height="20" uuid="0f817a4f-de35-4786-b69f-544a28458463"/>
+				<reportElement x="260" y="183" width="226" height="20" uuid="0f817a4f-de35-4786-b69f-544a28458463"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="260" y="184" width="226" height="20" uuid="6c8cd08b-cb27-45e5-ae4f-008948335927"/>
+				<reportElement x="261" y="204" width="225" height="20" uuid="6c8cd08b-cb27-45e5-ae4f-008948335927"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="260" y="204" width="226" height="20" uuid="f0285d67-08e5-47bb-9011-caae6270d423"/>
+				<reportElement x="261" y="244" width="225" height="20" uuid="f0285d67-08e5-47bb-9011-caae6270d423"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -62,7 +54,7 @@
 				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="260" y="244" width="226" height="20" uuid="5592058d-4536-4e76-870e-5ccc79347a8c"/>
+				<reportElement x="261" y="163" width="225" height="20" uuid="5592058d-4536-4e76-870e-5ccc79347a8c"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>

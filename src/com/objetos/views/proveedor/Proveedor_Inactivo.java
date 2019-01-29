@@ -234,6 +234,11 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         });
 
         nombre1.setPreferredSize(new java.awt.Dimension(6, 28));
+        nombre1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombre1ActionPerformed(evt);
+            }
+        });
 
         imagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -288,26 +293,22 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(68, 68, 68)
-                                        .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(37, 37, 37)))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(42, 42, 42)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton3)
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -443,7 +444,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             cedula.setText(String.valueOf(pro.getCedula_ruc()));
         }
         dire.setText(pro.getDireccion());
-        dire.setText(pro.getEntidad());
+        nombre1.setText(pro.getEntidad());
         contacto.setText(pro.getRepresentante());
         for (int i = 0; i < telefonos.size(); i++) {
             if (pro.getCedula_ruc().equals(telefonos.get(i).getCedula_ruc())) {
@@ -543,7 +544,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             ListarJoinProveedor p = new ListarJoinProveedor();
             p.setId_proveedor_clase(tip1);
             p.setCedula_ruc(cedula.getText());
-            p.setEntidad(dire.getText());
+            p.setEntidad(nombre1.getText());
             p.setRepresentante(contacto.getText());
             p.setDireccion(dire.getText());
             System.out.println(fecha_registro);
@@ -552,9 +553,10 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             p.setTelefono(cbx1.getSelectedItem().toString());
             p.setMail(cbx2.getSelectedItem().toString());
             p.setId_proveedor(tip3);
+            p.setDireccionImagen(rutaimagen);
             String valor = crud.insertarProveedor(p);
             JOptionPane.showMessageDialog(null, valor);
-            Consulta_Proveedor mp = new Consulta_Proveedor(new javax.swing.JFrame(), true);
+            Consulta_Proveedor_Inactivo mp = new Consulta_Proveedor_Inactivo(new javax.swing.JFrame(), true);
             setVisible(false);
             mp.setVisible(true);
 
@@ -668,6 +670,10 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             Logger.getLogger(Proveedor_Inactivo.class.getName()).log(Level.SEVERE, null, ex);
         }        
     }//GEN-LAST:event_ReporteActionPerformed
+
+    private void nombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombre1ActionPerformed
 //    public String recuperarProveedor(String por) {
 //        String mensaje = null;
 //       // int por1 = Integer.valueOf(por);

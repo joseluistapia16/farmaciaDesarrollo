@@ -10,15 +10,25 @@ import com.farmacia.conponentes.Formulario;
 import com.farmacia.conponentes.Tablas;
 import static com.farmacia.conponentes.Tablas.filtro;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.ListarPuntoVenta;
 import com.farmacia.entities1.fc_localidad_guayas;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.views.producto.MantenimientoProducto;
 import com.farmacia.views.producto.modificarProducto;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
@@ -30,7 +40,8 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
     Filtros_modulo_seguridad fil = new Filtros_modulo_seguridad();
     ArrayList<ListarPuntoVenta> listar = crud.listar_punto_venta();
     ListarPuntoVenta objeto = null;
-    
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     public Mostrar_punto_venta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -56,6 +67,7 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
         btnListar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -124,7 +136,7 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -142,6 +154,7 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
             }
         });
 
+        btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnNuevo.setText("NUEVO");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,6 +162,7 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
             }
         });
 
+        btnSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,16 +170,19 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
             }
         });
 
+        btnReporte.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReporte.setText("REPORTE");
+        btnReporte.setToolTipText("");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(295, Short.MAX_VALUE)
-                .addComponent(btnNuevo)
-                .addGap(131, 131, 131)
-                .addComponent(btnSalir)
-                .addGap(301, 301, 301))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -180,6 +197,14 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
                         .addComponent(btnListar)))
                 .addGap(47, 47, 47))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(193, 193, 193))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,11 +218,12 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
                     .addComponent(btnListar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevo)
-                    .addComponent(btnSalir))
-                .addGap(22, 22, 22))
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -287,6 +313,26 @@ public ListarPuntoVenta devuelveObjeto(String datos, ArrayList<ListarPuntoVenta>
         }
     }//GEN-LAST:event_jtPuntoVentaMousePressed
 
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        ArrayList tablac = new ArrayList();
+        for(int i=0;i<jtPuntoVenta.getRowCount();i++){
+            ClaseReporte tabla1 = new ClaseReporte (jtPuntoVenta.getValueAt(i,0).toString(),jtPuntoVenta.getValueAt(i,1).toString(),jtPuntoVenta.getValueAt(i,2).toString(),jtPuntoVenta.getValueAt(i,3).toString(),jtPuntoVenta.getValueAt(i,4).toString());
+            tablac.add(tabla1);}
+        try{
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("Mostrar_punto_venta.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog (this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Mostrar_punto_venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReporteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -334,6 +380,7 @@ public ListarPuntoVenta devuelveObjeto(String datos, ArrayList<ListarPuntoVenta>
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JButton jButton1;

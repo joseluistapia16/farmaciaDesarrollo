@@ -16,8 +16,8 @@
 	<title>
 		<band height="54" splitType="Stretch">
 			<staticText>
-				<reportElement x="108" y="12" width="336" height="32" uuid="542e0d02-855d-428f-a4e0-335851f39fdb"/>
-				<textElement>
+				<reportElement x="108" y="10" width="381" height="32" uuid="542e0d02-855d-428f-a4e0-335851f39fdb"/>
+				<textElement textAlignment="Center">
 					<font size="24" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Ficha de Cliente Inactivo]]></text>
