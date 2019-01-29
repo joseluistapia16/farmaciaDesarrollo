@@ -2,12 +2,24 @@ package com.farmacia.views.pedidos;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ProveedorRep;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
+import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 public class Consulta_proveedor_Nota extends javax.swing.JDialog {
 
@@ -15,7 +27,8 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
     ListarJoinProveedorNotaPedido proveedor = null;
     CRUD crud = new CRUD();
     ArrayList<ListarJoinProveedorNotaPedido> lista = crud.listarProveedoresNotaPedido(Long.valueOf("1"));
-
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     public Consulta_proveedor_Nota(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
@@ -38,11 +51,13 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
         tabla = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         buscar1 = new javax.swing.JTextField();
+        Reporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btnSalir2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +147,14 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        Reporte.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        Reporte.setText("IMPRIMIR");
+        Reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,8 +163,11 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSalir2)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(237, 237, 237))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -154,7 +180,9 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -232,6 +260,27 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
+    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
+        java.util.List lista = new ArrayList();
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            ProveedorRep proveedor = new ProveedorRep (tabla.getValueAt(i, 0).toString(), tabla.getValueAt(i, 1).toString(), tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i,3).toString());
+            lista.add(proveedor);
+        }
+        try {
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("Consulta_Proveedor.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Consulta_proveedor_Nota.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ReporteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -278,6 +327,7 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Reporte;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JTextField buscar1;
     private javax.swing.JLabel jLabel2;

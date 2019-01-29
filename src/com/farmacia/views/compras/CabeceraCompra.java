@@ -7,11 +7,23 @@ package com.farmacia.views.compras;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
+import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
@@ -24,6 +36,8 @@ public class CabeceraCompra extends javax.swing.JDialog {
     JoinListarNotaPedidosCabecera objeto = null;
     ArrayList<JoinListarNotaPedidosCabecera> lista = null;
     String buscar="";
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     public CabeceraCompra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -49,9 +63,11 @@ public class CabeceraCompra extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         buscar1 = new javax.swing.JTextField();
+        Reporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        btnSalir2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +127,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(361, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(360, 360, 360))
         );
@@ -134,6 +150,14 @@ public class CabeceraCompra extends javax.swing.JDialog {
             }
         });
 
+        Reporte.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        Reporte.setText("IMPRIMIR");
+        Reporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,8 +165,10 @@ public class CabeceraCompra extends javax.swing.JDialog {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir2)
-                .addGap(35, 35, 35))
+                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tblProduc)
@@ -165,7 +191,9 @@ public class CabeceraCompra extends javax.swing.JDialog {
                 .addGap(15, 15, 15)
                 .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6))
         );
 
@@ -232,6 +260,27 @@ public class CabeceraCompra extends javax.swing.JDialog {
         Tablas.filtro(buscar, tbaCabeceraPedido);
     }//GEN-LAST:event_buscar1KeyReleased
 
+    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
+        java.util.List lista = new ArrayList();
+        for (int i = 0; i < tbaCabeceraPedido.getRowCount(); i++) {
+            ClaseReporte cabecera = new ClaseReporte(tbaCabeceraPedido.getValueAt(i, 0).toString(),tbaCabeceraPedido.getValueAt(i, 1).toString(),tbaCabeceraPedido.getValueAt(i, 2).toString(),tbaCabeceraPedido.getValueAt(i, 3).toString(),tbaCabeceraPedido.getValueAt(i, 4).toString(),tbaCabeceraPedido.getValueAt(i, 5).toString(),tbaCabeceraPedido.getValueAt(i, 6).toString(),tbaCabeceraPedido.getValueAt(i, 7).toString());
+            lista.add(cabecera);
+        }
+        try {
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("CabeceraCompra.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(CabeceraCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ReporteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -275,6 +324,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Reporte;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JTextField buscar1;
     private javax.swing.JLabel jLabel2;

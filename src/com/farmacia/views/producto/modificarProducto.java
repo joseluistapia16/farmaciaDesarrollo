@@ -60,21 +60,27 @@ public class modificarProducto extends javax.swing.JDialog {
     }
 
     public modificarProducto(java.awt.Frame parent, boolean modal, listarJoinProductosCompras obj2) {
+       
         super(parent, modal);
+         try{
         initComponents();
         obj1 = obj2;
         setLocationRelativeTo(null);
         listarCombos(obj1);
         llenarFormulario(obj1);
         Habilitar(false);
+        }catch(Exception ex){
+        Logger.getLogger(modificarProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void listarCombos(listarJoinProductosCompras obj) {
+        
         lista = crud.listarTodoTipoProductos1();
         listam = crud.listarTodoMedidasProductos();
         listae = crud.listarTodoEnvaseProductos();
         listama = crud.listarTodoMarcaProductos();
-
+        
         cbxTipos1.setModel(Formulario.listarComboTipoPro(lista));
         cbxMedida1.setModel(Formulario.listarComboMedidaPro(listam));
         cbxEnvase1.setModel(Formulario.listarComboEnvasePro(listae));
@@ -414,7 +420,6 @@ public class modificarProducto extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/folder_add_icon-icons.com_74436.png"))); // NOI18N
         btnModificar.setText("MODIFICAR");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -450,7 +455,6 @@ public class modificarProducto extends javax.swing.JDialog {
         txtFechaActual1.setEditable(false);
         txtFechaActual1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/action_exit_close_remove_13915.png"))); // NOI18N
         btnCerrar.setText("CERRAR");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -458,7 +462,6 @@ public class modificarProducto extends javax.swing.JDialog {
             }
         });
 
-        btneliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/eliminar1.png"))); // NOI18N
         btneliminar.setText("ELIMINAR");
         btneliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -729,7 +732,6 @@ public class modificarProducto extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/guardar1.jpg"))); // NOI18N
         btnGuardar.setText("GUARDAR");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -781,11 +783,11 @@ public class modificarProducto extends javax.swing.JDialog {
                 .addGap(8, 8, 8)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btneliminar)
-                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(btneliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -806,65 +808,6 @@ public class modificarProducto extends javax.swing.JDialog {
 //        
     }
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
-    }//GEN-LAST:event_btnAgregarActionPerformed
-
-
-    private void cbxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMarcaActionPerformed
-        seleccionId();
-    }//GEN-LAST:event_cbxMarcaActionPerformed
-
-    private void cbxMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMedidaActionPerformed
-        seleccionId();
-    }//GEN-LAST:event_cbxMedidaActionPerformed
-
-    private void txtDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusLost
-        txtDescripcion.setText(txtDescripcion.getText().toUpperCase());
-    }//GEN-LAST:event_txtDescripcionFocusLost
-
-    private void cbxTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTiposActionPerformed
-        seleccionId();
-    }//GEN-LAST:event_cbxTiposActionPerformed
-
-    private void btnAgregarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTipoActionPerformed
-//        AgregarTipo nuevotipo = new AgregarTipo(new javax.swing.JFrame(), true);
-//        nuevotipo.setVisible(true);
-//        lista = crud.listarTodoTipoProductos1();
-//        cbxTipos.setModel(Formulario.listarComboTipoPro(lista));
-    }//GEN-LAST:event_btnAgregarTipoActionPerformed
-
-    private void btnAgregarMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedidaActionPerformed
-//        AgregarMedida agremed = new AgregarMedida(new javax.swing.JFrame(), true);
-//        agremed.setVisible(true);
-//        listam = crud.listarTodoMedidasProductos();//     listarTodoTipoProductos1();
-//        cbxMedida.setModel(Formulario.listarComboMedidaPro(listam));
-    }//GEN-LAST:event_btnAgregarMedidaActionPerformed
-
-    private void btnAgreMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreMarcaActionPerformed
-//        AgregarMarca agremar = new AgregarMarca(new javax.swing.JFrame(), true);
-//        agremar.setVisible(true);
-//        listama = crud.listarTodoMarcaProductos();//     listarTodoTipoProductos1();
-//        cbxMarca.setModel(Formulario.listarComboMarcaPro(listama));
-    }//GEN-LAST:event_btnAgreMarcaActionPerformed
-
-    private void txtPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPesoActionPerformed
-
-    private void btnAgreEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreEnvaseActionPerformed
-        AgregarEnvase agreenv = new AgregarEnvase(new javax.swing.JFrame(), true);
-        agreenv.setVisible(true);
-    }//GEN-LAST:event_btnAgreEnvaseActionPerformed
-
-    private void cbxEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEnvaseActionPerformed
-        seleccionId();
-        // System.out.println(" " + listae.get(pos_envase).getId_envase() + " " + listae.get(pos_envase).getNombreEnvase());
-    }//GEN-LAST:event_cbxEnvaseActionPerformed
-
-    private void nombre1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombre1FocusLost
-        nombre1.setText(nombre1.getText().toUpperCase());
-    }//GEN-LAST:event_nombre1FocusLost
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         //        String valor="";
@@ -1058,6 +1001,69 @@ public class modificarProducto extends javax.swing.JDialog {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_ReporteActionPerformed
+
+    private void nombre1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombre1FocusLost
+        nombre1.setText(nombre1.getText().toUpperCase());
+    }//GEN-LAST:event_nombre1FocusLost
+
+    private void cbxEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEnvaseActionPerformed
+        seleccionId();
+        // System.out.println(" " + listae.get(pos_envase).getId_envase() + " " + listae.get(pos_envase).getNombreEnvase());
+    }//GEN-LAST:event_cbxEnvaseActionPerformed
+
+    private void btnAgreEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreEnvaseActionPerformed
+        AgregarEnvase agreenv = new AgregarEnvase(new javax.swing.JFrame(), true);
+        agreenv.setVisible(true);
+    }//GEN-LAST:event_btnAgreEnvaseActionPerformed
+
+    private void txtPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesoActionPerformed
+
+    private void btnAgreMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreMarcaActionPerformed
+        //        AgregarMarca agremar = new AgregarMarca(new javax.swing.JFrame(), true);
+        //        agremar.setVisible(true);
+        //        listama = crud.listarTodoMarcaProductos();//     listarTodoTipoProductos1();
+        //        cbxMarca.setModel(Formulario.listarComboMarcaPro(listama));
+    }//GEN-LAST:event_btnAgreMarcaActionPerformed
+
+    private void btnAgregarMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedidaActionPerformed
+        //        AgregarMedida agremed = new AgregarMedida(new javax.swing.JFrame(), true);
+        //        agremed.setVisible(true);
+        //        listam = crud.listarTodoMedidasProductos();//     listarTodoTipoProductos1();
+        //        cbxMedida.setModel(Formulario.listarComboMedidaPro(listam));
+    }//GEN-LAST:event_btnAgregarMedidaActionPerformed
+
+    private void btnAgregarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTipoActionPerformed
+        //        AgregarTipo nuevotipo = new AgregarTipo(new javax.swing.JFrame(), true);
+        //        nuevotipo.setVisible(true);
+        //        lista = crud.listarTodoTipoProductos1();
+        //        cbxTipos.setModel(Formulario.listarComboTipoPro(lista));
+    }//GEN-LAST:event_btnAgregarTipoActionPerformed
+
+    private void cbxTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTiposActionPerformed
+        seleccionId();
+    }//GEN-LAST:event_cbxTiposActionPerformed
+
+    private void txtDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusLost
+        txtDescripcion.setText(txtDescripcion.getText().toUpperCase());
+    }//GEN-LAST:event_txtDescripcionFocusLost
+
+    private void cbxMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMedidaActionPerformed
+        seleccionId();
+    }//GEN-LAST:event_cbxMedidaActionPerformed
+
+    private void cbxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMarcaActionPerformed
+        seleccionId();
+    }//GEN-LAST:event_cbxMarcaActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+
+    }//GEN-LAST:event_btnAgregarActionPerformed
     public void Habilitar(boolean valor) {
         codigo.setEnabled(valor);
         producto.setEnabled(valor);

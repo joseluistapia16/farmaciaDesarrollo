@@ -4,9 +4,21 @@ package com.farmacia.views.usuario;
 import com.farmacia.conponentes.Filtros_modulo_seguridad;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Listar_usuario;
+import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
@@ -17,7 +29,8 @@ public class Mostrar_usuario extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     ArrayList<Listar_usuario> listar = crud.get_listar_usuario();
     Filtros_modulo_seguridad fil = new Filtros_modulo_seguridad();
-    
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     public Mostrar_usuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -42,6 +55,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         btnListar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        Report = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -116,6 +130,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton2.setText("NUEVO");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,10 +138,19 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jButton3.setText("SALIR");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        Report.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        Report.setText("IMPRIMIR");
+        Report.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportActionPerformed(evt);
             }
         });
 
@@ -147,14 +171,17 @@ public class Mostrar_usuario extends javax.swing.JDialog {
                         .addGap(580, 580, 580)
                         .addComponent(btnListar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(406, 406, 406)
-                        .addComponent(jButton2)
-                        .addGap(196, 196, 196)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(Report, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(325, 325, 325))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,11 +195,12 @@ public class Mostrar_usuario extends javax.swing.JDialog {
                     .addComponent(btnListar))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(24, 24, 24))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Report, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -236,6 +264,27 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         Tablas.cargarJoinUsuario(jtUsuario, listar);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void ReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportActionPerformed
+        java.util.List lista = new ArrayList();
+        for (int i = 0; i <jtUsuario.getRowCount();i++) {
+            ClaseReporte reporte1 = new ClaseReporte(jtUsuario.getValueAt(i,0).toString(),jtUsuario.getValueAt(i,1).toString(),jtUsuario.getValueAt(i,2).toString(),jtUsuario.getValueAt(i,3).toString(),jtUsuario.getValueAt(i,4).toString(),jtUsuario.getValueAt(i,5).toString(),jtUsuario.getValueAt(i,6).toString(),jtUsuario.getValueAt(i,7).toString(),jtUsuario.getValueAt(i,8).toString(),jtUsuario.getValueAt(i,9).toString(),jtUsuario.getValueAt(i,10).toString(),jtUsuario.getValueAt(i,11).toString(),jtUsuario.getValueAt(i,12).toString(),jtUsuario.getValueAt(i,13).toString(),jtUsuario.getValueAt(i,14).toString());
+            lista.add(reporte1);
+        }
+        try {
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("Mostrar_usuario.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Mostrar_usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ReportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -279,6 +328,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Report;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnListar;
     private javax.swing.JComboBox<String> cbFiltro;
