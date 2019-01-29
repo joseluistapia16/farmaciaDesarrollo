@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21330d5a-2fa2-459c-bb52-45a419aadcfa">
 	<property name="ireport.zoom" value="1.1"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="268"/>
 	<field name="valor1" class="java.lang.String"/>
 	<field name="valor2" class="java.lang.String"/>
 	<field name="valor3" class="java.lang.String"/>
@@ -41,7 +41,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Identificador de Usuario:]]></text>
+				<text><![CDATA[Codigo:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="306" y="20" width="157" height="20" uuid="adafa827-42d1-4ff8-815e-5fd1d74a9a9f"/>
@@ -55,7 +55,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Fecha:]]></text>
+				<text><![CDATA[Medida:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="306" y="40" width="157" height="20" uuid="61c89186-1ac1-476e-97d3-e89e31586809"/>
@@ -69,7 +69,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Codigo:]]></text>
+				<text><![CDATA[Producto:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="306" y="60" width="157" height="20" uuid="85acb357-6ffe-4f45-b83d-a15f40525a49"/>
@@ -83,7 +83,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Iva:]]></text>
+				<text><![CDATA[Marca:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="306" y="80" width="157" height="20" uuid="77371806-9386-497c-9152-43119e823df2"/>
@@ -97,7 +97,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Producto:]]></text>
+				<text><![CDATA[Envase:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="306" y="100" width="157" height="20" uuid="152d7aae-7df8-4141-81e2-312468efa6dc"/>
@@ -111,7 +111,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Descripcion:]]></text>
+				<text><![CDATA[Tipo:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="306" y="120" width="157" height="20" uuid="1b1c5418-5ee9-4247-bde2-635240c761be"/>
@@ -125,7 +125,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Peso:]]></text>
+				<text><![CDATA[Cantidad:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="306" y="140" width="157" height="20" uuid="a7d77e55-aff5-45cb-beee-7a6f51cabc92"/>
@@ -139,7 +139,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Medida:]]></text>
+				<text><![CDATA[Precio:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="306" y="160" width="157" height="20" uuid="1727f72e-f93c-4205-9a2d-b41bc6b6c2fd"/>
@@ -153,7 +153,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tipo:]]></text>
+				<text><![CDATA[Descuento:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="306" y="180" width="157" height="20" uuid="e266dec8-29f6-4240-a2ec-3ee9c9cac28b"/>
@@ -167,7 +167,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Envase:]]></text>
+				<text><![CDATA[Valor Descuento:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="306" y="200" width="157" height="20" uuid="1d8a0b2b-6309-4aaf-af99-b30be9144a82"/>
@@ -181,7 +181,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Marca:]]></text>
+				<text><![CDATA[IVA:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="306" y="220" width="157" height="20" uuid="88c06d8e-a387-4e5f-8b12-a2d18acf42af"/>
@@ -195,7 +195,7 @@
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cantidad Minima:]]></text>
+				<text><![CDATA[TOTAL:]]></text>
 			</staticText>
 		</band>
 	</detail>
