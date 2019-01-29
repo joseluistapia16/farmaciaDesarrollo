@@ -462,6 +462,7 @@ public class EntidadesMappers {
             obj.setEnvase(rs.getString("ENVASE"));
             obj.setMedida(rs.getString("MEDIDA"));
             obj.setCantidad(rs.getInt("CANTIDAD"));
+            obj.setBono(rs.getInt("BONO"));
             obj.setPrecio(rs.getDouble("PRECIO"));
             obj.setDescuento(rs.getDouble("DESCUENTO"));
             obj.setIva(rs.getDouble("IVA"));
