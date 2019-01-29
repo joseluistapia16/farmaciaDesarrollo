@@ -628,6 +628,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
             setVisible(false);
 
         } else {
+            
 
         }
     }//GEN-LAST:event_btnEditarActionPerformed
