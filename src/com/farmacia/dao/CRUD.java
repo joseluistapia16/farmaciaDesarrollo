@@ -8,6 +8,7 @@ package com.farmacia.dao;
 import com.farmacia.entities.mappers.EntidadesMappers;
 import com.farmacia.entities1.Bitacora_seguridad;
 import com.farmacia.entities1.CabeceraNotaPedido;
+import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
@@ -70,28 +71,55 @@ public class CRUD {
 
     }
 
-    public void insertarCabeceraCompras(String queryL) {
+    public String insertarCabeceraCompras(Cabecera_compra obj) {
+    String valor = "";
         try {
             conect = con.conectar();
-            java.sql.Statement st = conect.createStatement();
-            st.executeUpdate(queryL);
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call insertarCabceraCompras(?,?,?,?,?,?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_proveedor());
+            prodProAlm.setLong(2, obj.getId_usuario());
+            prodProAlm.setString(3, obj.getFecha_creacion());
+            prodProAlm.setString(4, obj.getPlazo());
+            prodProAlm.setLong(5, obj.getId_sucursal());
+            prodProAlm.setString(6, obj.getId_tipoPago());
+            prodProAlm.setDouble(7, obj.getIva());
+            prodProAlm.setDouble(8, obj.getDescuento());
+            prodProAlm.setDouble(9, obj.getTotal());
+            prodProAlm.setDouble(10, obj.getIdcabecerapedido());
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
+          
 
-            conect.close();
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
+        return valor;
     }
 
-    public String buscarIDCabecera(String queryL) {
+    public String buscarIDPrecioEnStock(String query) {
         String id = "";
         try {
             conect = con.conectar();
 
             java.sql.Statement st = conect.createStatement();
-            rs = st.executeQuery(queryL);
+            rs = st.executeQuery(query);
             rs.next();
-            id = rs.getString("id_cabecera_compra");
+            id = rs.getString("id_cabecera");
             conect.close();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,7 +129,25 @@ public class CRUD {
         return id;
 
     }
+    public int buscarCantidadEnStock(String query) {
+        int id = 0;
+        try {
+            conect = con.conectar();
 
+            java.sql.Statement st = conect.createStatement();
+            rs = st.executeQuery(query);
+            rs.next();
+            id = rs.getInt("cantidad");
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+
+    }
+    //cambie a uno por uno
     public void insertarDetallesCompra(ArrayList<String> queryL) {
         try {
             conect = con.conectar();
@@ -109,6 +155,21 @@ public class CRUD {
                 java.sql.Statement st = conect.createStatement();
                 st.executeUpdate(queryL.get(i));
             }
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    public void insertarDetallesCompraRegistro(String queryL) {
+        try {
+            conect = con.conectar();
+//            for (int i = 0; i < queryL.size(); i++) {
+                java.sql.Statement st = conect.createStatement();
+                st.executeUpdate(queryL);
+            //}
             conect.close();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
