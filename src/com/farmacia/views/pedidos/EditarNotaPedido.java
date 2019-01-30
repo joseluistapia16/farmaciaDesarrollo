@@ -624,11 +624,11 @@ public void Total() {
             Double total1 = Cantidad * Precio + iva - Desc;
             total = total + total1;
             total = redondearDecimales(total, 2);
-            System.out.println("Cantidad "+Cantidad);
-            System.out.println("Precio "+Precio);
-            System.out.println("descuento "+Desc);
-            System.out.println("iva  "+iva);
-//            System.out.println("total "+to);
+//            System.out.println("Cantidad "+Cantidad);
+//            System.out.println("Precio "+Precio);
+//            System.out.println("descuento "+Desc);
+//            System.out.println("iva  "+iva);
+////            System.out.println("total "+to);
         }
         txtTotal.setText(Double.valueOf(total).toString());
     }
@@ -708,8 +708,9 @@ public void Total() {
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
 //                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
-                    Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
-
+                            Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+                            crud.InsertarBDCompras(txtNumero.getText(), lista1);
+                            actualizarTabla2();
                         }
 
                     }
@@ -718,6 +719,15 @@ public void Total() {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
+    public void actualizarTabla2() {
+        lista3.clear();
+        String id = txtNumero.getText().toString();
+        lista3 = crud.listarDetalleNotaPedido(1, id);
+        Tablas.cargarJoinRegistroDetalleCompras(tbaListaFaltantes, lista3);
+        Total();
+        TotalIVA();
+        TotalDescuento();
+    }
     private void getPosicion(Long id, int valor) {
         for (int i = 0; i < lista.size(); i++) {
             if (id == lista.get(i).getId_producto()) {
