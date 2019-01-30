@@ -20,33 +20,32 @@ import javax.swing.JOptionPane;
  * @author guest-qzjm76
  */
 public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
-    
+
     int x, y;
     joinProductoDetallesFaltantes objf = new joinProductoDetallesFaltantes();
     DetalleNotaPedido obj2 = null;
     Validacion v = new Validacion();
     CRUD crud = new CRUD();
-    
+
     public AgregarProductoEditarNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+
     public void Descuento() {
-        
+
     }
-    
+
     public AgregarProductoEditarNotaPedido(java.awt.Frame parent, boolean modal, joinProductoDetallesFaltantes obj1) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
         llenarFormulario(obj1);
-        System.out.println("idprecio " + obj1.getId_precios());
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -384,7 +383,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         objf.setNombre_tipo(obj.getNombre_tipo());
         objf.setPrecios(obj.getPrecios());
         objf.setIva(obj.getIva());
-        
+
     }
     private void txtcantidadproKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadproKeyTyped
         char c = evt.getKeyChar();
@@ -408,10 +407,10 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         /////////////
         if (!"".equals(txtporcentajeDescuento.getText())) {
             porc = txtporcentajeDescuento.getText();
-            
+
         } else {
             porc = "0.00";
-            
+
         }
         objf.setPorcentaje_descuento(Double.valueOf(porc));
         if (!"".equals(txtBono.getText())) {
@@ -424,14 +423,32 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
     public joinProductoDetallesFaltantes getObjf() {
         return objf;
     }
-    
+
     public void insertarProducto() {
+        Double Precio = Double.parseDouble(txtPrecio.getText());
+        int Cantidad = Integer.parseInt(txtcantidadpro.getText());
+        int bono = Integer.parseInt(txtBono.getText());
+        int CantidadTotal = bono + Cantidad;
+        Double PrecioTotal = Cantidad * Precio;
+
+        Double PrecioBono = CantidadTotal / PrecioTotal;
+
         DetalleNotaPedido obj = new DetalleNotaPedido();
-        
+
         obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedidos());
         obj.setId_precio(obj2.getId_precio());
         obj.setId_cabecera_nota_pedidos(obj2.getId_cabecera_nota_pedidos());
-//        obj.setCantidad(txtcantidadpro);
+        obj.setCantidad(Integer.parseInt(txtcantidadpro.getText()));
+        obj.setPrecio(PrecioBono);
+        obj.setDescuento(Double.parseDouble(txtporcentajeDescuento.getText()));
+        obj.setIva(Double.parseDouble(txtIva.getText()));
+        obj.setTotal(Double.parseDouble(txtporcentajeDescuento.getText()));
+
+//
+//        pro.setDouble(6, dnp.getDescuento());
+//        pro.setDouble(7, dnp.getIva());
+//        pro.setDouble(8, dnp.getTotal());
+//        pro.setDouble(9, dnp.getBono());
         crud.insertarProductoEditarNotaPedidos(obj);
     }
     private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
@@ -440,12 +457,12 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
-        
+
         if (r == JOptionPane.YES_OPTION) {
             setVisible(false);
-            
+
         } else {
-            
+
         }
     }//GEN-LAST:event_btnSalirActionPerformed
 
