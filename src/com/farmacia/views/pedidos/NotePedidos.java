@@ -788,8 +788,8 @@ public class NotePedidos extends javax.swing.JDialog {
 
             for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
                 cad1 = "INSERT INTO detalle_nota_pedidos"
-                        + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`)"
-                        + "VALUES(" + id_cab + "," + lista.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 6).toString() + "," + tbaListaFaltantes.getValueAt(i, 7) + "," + tbaListaFaltantes.getValueAt(i, 8) + "," + tbaListaFaltantes.getValueAt(i, 10) + "," + tbaListaFaltantes.getValueAt(i, 9).toString() + ")";
+                        + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
+                        + "VALUES(" + id_cab + "," + lista.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + tbaListaFaltantes.getValueAt(i, 8) + "," + tbaListaFaltantes.getValueAt(i, 9) + "," + tbaListaFaltantes.getValueAt(i, 11) + "," + tbaListaFaltantes.getValueAt(i, 10).toString() +","+tbaListaFaltantes.getValueAt(i,6)+ ")";
                 queryL1.add(cad1);
             }
             crud.InsertarDetallesNotaPedidos(queryL1);

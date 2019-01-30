@@ -396,11 +396,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             }
         ));
         t_Nota_faltantes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                t_Nota_faltantesMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 t_Nota_faltantesMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                t_Nota_faltantesMouseClicked(evt);
             }
         });
         tblProduc.setViewportView(t_Nota_faltantes);
@@ -441,15 +441,22 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
             },
             new String [] {
-                "CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"
+                "CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "BONO", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Long.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, true, true, false, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tbaListaFaltantes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -521,7 +528,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("$");
 
-        btnEditar.setText("EDITAR");
+        btnEditar.setText("GUARDAR");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -677,31 +684,33 @@ public void Total() {
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
         int i = 0;
         String msg = null;
-
-        if (evt.getClickCount() == 2) {
-            i = t_Nota_faltantes.getSelectedRow();
-            objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
-            if (objeto != null) {
-                AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objeto);
-                np.setVisible(true);
-                msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
+        try {
+            if (evt.getClickCount() == 2) {
+                i = t_Nota_faltantes.getSelectedRow();
+                objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
+                if (objeto != null) {
+                    AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objeto);
+                    np.setVisible(true);
+                    msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
 //  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
-                if (msg == null) {
-                    Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                    if (np.getObjf().getCantidad() > 0) {
-                        int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
-                        getPosicion(objeto.getId_producto(), suma);
-                        lista1.add(np.getObjf());
-
+                    if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                        if (np.getObjf().getCantidad() > 0) {
+                            int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
+                            getPosicion(objeto.getId_producto(), suma);
+                            lista1.add(np.getObjf());
 
-                        Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
+                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+
+                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
 //                    Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
 
-                    }
+                        }
 
+                    }
                 }
             }
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
     private void getPosicion(Long id, int valor) {
@@ -841,10 +850,9 @@ public void Total() {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void txt_NumeroActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void txt_NumeroActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }                                          
-
+    }
 
     public static void main(String args[]) {
 

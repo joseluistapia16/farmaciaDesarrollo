@@ -2659,12 +2659,13 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call ActualizarDetalleNotaPedido(?,?,?,?,?,?)}");
+                    "{ call ActualizarDetalleNotaPedido(?,?,?,?,?,?,?)}");
             pro.setLong(1, dnp.getId_detalle_nota_pedidos());
             pro.setInt(2, dnp.getCantidad());
             pro.setDouble(3, dnp.getDescuento());
             pro.setDouble(4, dnp.getIva());
             pro.setDouble(5, dnp.getTotal());
+            pro.setDouble(6, dnp.getBono());
             pro.registerOutParameter("valor", Types.VARCHAR);
             pro.executeUpdate();
             //pro.execute();
