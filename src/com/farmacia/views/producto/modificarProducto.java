@@ -110,10 +110,8 @@ public class modificarProducto extends javax.swing.JDialog {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnAgregar = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         txtFechaActual = new javax.swing.JTextField();
-        btnSalir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -176,26 +174,13 @@ public class modificarProducto extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PRODUCTO");
 
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/folder_add_icon-icons.com_74436.png"))); // NOI18N
-        btnAgregar.setText("AGREGAR");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarActionPerformed(evt);
-            }
-        });
-
+        
         jLabel12.setText("Fecha :");
 
         txtFechaActual.setEditable(false);
         txtFechaActual.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/action_exit_close_remove_13915.png"))); // NOI18N
-        btnSalir.setText("SALIR");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
+        
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -388,9 +373,7 @@ public class modificarProducto extends javax.swing.JDialog {
                 .addGap(22, 22, 22))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(125, 125, 125)
-                .addComponent(btnAgregar)
                 .addGap(37, 37, 37)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -407,9 +390,7 @@ public class modificarProducto extends javax.swing.JDialog {
                     .addComponent(txtFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar)
-                    .addComponent(btnSalir))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1057,13 +1038,6 @@ public class modificarProducto extends javax.swing.JDialog {
         seleccionId();
     }//GEN-LAST:event_cbxMarcaActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
-    }//GEN-LAST:event_btnAgregarActionPerformed
     public void Habilitar(boolean valor) {
         codigo.setEnabled(valor);
         producto.setEnabled(valor);
@@ -1180,7 +1154,6 @@ public class modificarProducto extends javax.swing.JDialog {
     private javax.swing.JButton btnAgreEnvase1;
     private javax.swing.JButton btnAgreMarca;
     private javax.swing.JButton btnAgreMarca1;
-    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAgregarMedida;
     private javax.swing.JButton btnAgregarMedida1;
     private javax.swing.JButton btnAgregarTipo;
@@ -1188,7 +1161,6 @@ public class modificarProducto extends javax.swing.JDialog {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btneliminar;
     private javax.swing.JComboBox<String> cbxEnvase;
     private javax.swing.JComboBox<String> cbxEnvase1;
