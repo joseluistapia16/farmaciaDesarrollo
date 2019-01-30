@@ -72,7 +72,7 @@ public class CRUD {
     }
 
     public String insertarCabeceraCompras(Cabecera_compra obj) {
-    String valor = "";
+        String valor = "";
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
@@ -91,7 +91,6 @@ public class CRUD {
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.executeUpdate();
             valor = prodProAlm.getString("valor");
-          
 
             conect.commit();
         } catch (Exception e) {
@@ -129,6 +128,7 @@ public class CRUD {
         return id;
 
     }
+
     public int buscarCantidadEnStock(String query) {
         int id = 0;
         try {
@@ -147,6 +147,7 @@ public class CRUD {
         return id;
 
     }
+
     //cambie a uno por uno
     public void insertarDetallesCompra(ArrayList<String> queryL) {
         try {
@@ -163,12 +164,13 @@ public class CRUD {
         }
 
     }
+
     public void insertarDetallesCompraRegistro(String queryL) {
         try {
             conect = con.conectar();
 //            for (int i = 0; i < queryL.size(); i++) {
-                java.sql.Statement st = conect.createStatement();
-                st.executeUpdate(queryL);
+            java.sql.Statement st = conect.createStatement();
+            st.executeUpdate(queryL);
             //}
             conect.close();
         } catch (SQLException ex) {
@@ -2688,6 +2690,46 @@ public class CRUD {
         return valor;
     }
 
+    public String insertarProductoEditarNotaPedidos(DetalleNotaPedido dnp) {
+        String valor = null;
+        try {
+            //id_detalle_nota_pedidos,id_precio,id_cabecera_nota_pedidos,cantidad,precio
+////,descuento,iva,total,bono
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call InsertarDetalleNotaPedido()}");
+            pro.setLong(1, dnp.getId_detalle_nota_pedidos());
+            pro.setLong(2, dnp.getId_precio());
+            pro.setLong(3, dnp.getId_cabecera_nota_pedidos());
+            pro.setInt(4, dnp.getCantidad());
+            pro.setDouble(5, dnp.getPrecio());
+            pro.setDouble(6, dnp.getDescuento());
+            pro.setDouble(7, dnp.getIva());
+            pro.setDouble(8, dnp.getTotal());
+            pro.setDouble(9, dnp.getBono());
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+
     public String EliminarDetalleNotaPedido(DetalleNotaPedido det) {
         String dato = null;
         try {
@@ -2793,7 +2835,7 @@ public class CRUD {
                 Filas[10] = "" + importe;
 
             }
-            cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`) VALUES ('"+lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "');";
+            cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`) VALUES ('" + lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "');";
 
         }
         System.out.println(cad1);

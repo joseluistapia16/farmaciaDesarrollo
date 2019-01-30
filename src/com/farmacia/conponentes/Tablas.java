@@ -735,6 +735,7 @@ public class Tablas {
             PrecioTotal = redondearDecimales(PrecioTotal, 2);
             Double iva = 0.12;
             Double iva1 = 0.00;
+            
             int Bono = lista.get(i).getBono();
             int CantidadTotal = Bono + Cantidad;
             Double PrecioBono = PrecioTotal / CantidadTotal;

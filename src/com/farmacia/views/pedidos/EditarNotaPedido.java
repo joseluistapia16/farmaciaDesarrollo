@@ -624,6 +624,11 @@ public void Total() {
             Double total1 = Cantidad * Precio + iva - Desc;
             total = total + total1;
             total = redondearDecimales(total, 2);
+            System.out.println("Cantidad "+Cantidad);
+            System.out.println("Precio "+Precio);
+            System.out.println("descuento "+Desc);
+            System.out.println("iva  "+iva);
+//            System.out.println("total "+to);
         }
         txtTotal.setText(Double.valueOf(total).toString());
     }
@@ -702,8 +707,8 @@ public void Total() {
 
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
-                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
-//                    Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+//                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
+                    Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
 
                         }
 
