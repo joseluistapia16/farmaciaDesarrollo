@@ -785,6 +785,7 @@ public class modificarProducto extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
     private void llenarFormulario(listarJoinProductosCompras obj) {
         codigo.setText(obj.getId_productos().toString());
         producto.setText(obj.getNombreProductos());

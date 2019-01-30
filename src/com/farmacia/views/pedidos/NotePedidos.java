@@ -104,6 +104,9 @@ public class NotePedidos extends javax.swing.JDialog {
                 total = redondearDecimales(total, 2);
             }
         }
+        total=redondearDecimales(total,2);
+        
+        
         txtTotal.setText(Double.valueOf(total).toString());
 //       txtTotal.setText(String.format("%5.2f", total));
     }
