@@ -725,6 +725,7 @@ public class Tablas {
         String[] Filas = new String[12];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
+        
         for (int i = 0; i < lista.size(); i++) {
             int Cantidad = lista.get(i).getCantidad();
             Double Precio = lista.get(i).getPrecios();
