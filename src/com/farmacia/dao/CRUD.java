@@ -2795,6 +2795,7 @@ public class CRUD {
         return valor;
     }
 
+    
     public static void InsertarBDCompras(String id_cabecera, ArrayList<joinProductoDetallesFaltantes> lista) {
         String cad1 = "";
         String[] Filas = new String[11];
