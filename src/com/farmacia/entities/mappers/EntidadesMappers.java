@@ -15,6 +15,7 @@ import com.farmacia.entities1.Clientes;
 import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.Correo_Cliente;
 import com.farmacia.entities1.EnvaseProducto;
+import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.ListarPuntoVenta;
 import com.farmacia.entities1.Listar_usuario;
@@ -686,6 +687,19 @@ public class EntidadesMappers {
 
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    public static Iva getIva(ResultSet rs) {
+        Iva obj = new Iva();
+        try {
+            obj.setId_iva(rs.getLong("id_iva"));
+            obj.setIva(rs.getDouble("iva"));
+            obj.setFecha(rs.getDate("fecha"));
+            obj.setId_usuario(rs.getLong("id_usuario"));
+
+        } catch (Exception ex) {
+            
         }
         return obj;
     }

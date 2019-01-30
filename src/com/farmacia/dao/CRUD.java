@@ -16,6 +16,7 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.entities1.EnvaseProducto;
+import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.ListarPuntoVenta;
 import com.farmacia.entities1.Listar_usuario;
@@ -2868,5 +2869,106 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public ArrayList<Iva> listarIva() {
+        ArrayList<Iva> lista = new ArrayList();
+        Iva iva = new Iva();
+        try {
+
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prc = conect.prepareCall(
+                    "{ call mostrar_iva() }"
+            );
+            prc.execute();
+            rs = prc.getResultSet();
+            while (rs.next()) {
+                iva = EntidadesMappers.getIva(rs);
+                lista.add(iva);
+            }
+            conect.commit();
+
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+
+    public String insertarIva(Double valor, int user) {
+        //ArrayList<Iva> lista = new ArrayList();
+        //Iva iva = new Iva();
+        String valor_res = "fallo";
+        try {
+            //System.out.println("hola perro");
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prc = conect.prepareCall(
+                    "{ call insertar_iva(?,?,?) }"
+            );
+            prc.setDouble(1, valor);
+            prc.setInt(2, user);
+            prc.registerOutParameter("msg", Types.VARCHAR);
+            prc.execute();
+            // rs=prc.getResultSet();
+            valor_res = prc.getString("msg");
+            conect.commit();
+
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return valor_res;
+    }
+
+    public String eliminar_iva(int id) {
+        //ArrayList<Iva> lista = new ArrayList();
+        //Iva iva = new Iva();
+        String valor_res = "fallo";
+        try {
+            //System.out.println("hola perro");
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prc = conect.prepareCall(
+                    "{ call eliminar_iva(?,?) }"
+            );
+            prc.setDouble(1, id);
+            //prc.setInt(2, user);
+            prc.registerOutParameter("msg", Types.VARCHAR);
+            prc.execute();
+            // rs=prc.getResultSet();
+            valor_res = prc.getString("msg");
+            conect.commit();
+
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return valor_res;
     }
 }
