@@ -5,6 +5,8 @@
  */
 package com.farmacia.views.pedidos;
 
+import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.validaciones.Validacion;
@@ -21,7 +23,9 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
 
     int x, y;
     joinProductoDetallesFaltantes objf = new joinProductoDetallesFaltantes();
+    DetalleNotaPedido obj2 = null;
     Validacion v = new Validacion();
+    CRUD crud = new CRUD();
 
     public AgregarProductoEditarNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -418,6 +422,34 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAnadirActionPerformed
     public joinProductoDetallesFaltantes getObjf() {
         return objf;
+    }
+
+    public void insertarProducto() {
+        Double Precio = Double.parseDouble(txtPrecio.getText());
+        int Cantidad = Integer.parseInt(txtcantidadpro.getText());
+        int bono = Integer.parseInt(txtBono.getText());
+        int CantidadTotal = bono + Cantidad;
+        Double PrecioTotal = Cantidad * Precio;
+
+        Double PrecioBono = CantidadTotal / PrecioTotal;
+
+        DetalleNotaPedido obj = new DetalleNotaPedido();
+
+        obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedidos());
+        obj.setId_precio(obj2.getId_precio());
+        obj.setId_cabecera_nota_pedidos(obj2.getId_cabecera_nota_pedidos());
+        obj.setCantidad(Integer.parseInt(txtcantidadpro.getText()));
+        obj.setPrecio(PrecioBono);
+        obj.setDescuento(Double.parseDouble(txtporcentajeDescuento.getText()));
+        obj.setIva(Double.parseDouble(txtIva.getText()));
+        obj.setTotal(Double.parseDouble(txtporcentajeDescuento.getText()));
+
+//
+//        pro.setDouble(6, dnp.getDescuento());
+//        pro.setDouble(7, dnp.getIva());
+//        pro.setDouble(8, dnp.getTotal());
+//        pro.setDouble(9, dnp.getBono());
+        crud.insertarProductoEditarNotaPedidos(obj);
     }
     private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
 

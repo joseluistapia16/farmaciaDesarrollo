@@ -20,6 +20,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
+
 /**
  *
  * @author carlos
@@ -55,7 +56,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         btnListar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        Report = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -146,11 +147,12 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             }
         });
 
-        Report.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
-        Report.setText("IMPRIMIR");
-        Report.addActionListener(new java.awt.event.ActionListener() {
+        btnReporte.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReporte.setText("REPORTE");
+        btnReporte.setToolTipText("");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReportActionPerformed(evt);
+                btnReporteActionPerformed(evt);
             }
         });
 
@@ -177,9 +179,9 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addComponent(Report, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67)
+                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(325, 325, 325))
         );
@@ -199,7 +201,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Report, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -264,26 +266,39 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         Tablas.cargarJoinUsuario(jtUsuario, listar);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void ReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportActionPerformed
-        java.util.List lista = new ArrayList();
-        for (int i = 0; i <jtUsuario.getRowCount();i++) {
-            ClaseReporte reporte1 = new ClaseReporte(jtUsuario.getValueAt(i,0).toString(),jtUsuario.getValueAt(i,1).toString(),jtUsuario.getValueAt(i,2).toString(),jtUsuario.getValueAt(i,3).toString(),jtUsuario.getValueAt(i,4).toString(),jtUsuario.getValueAt(i,5).toString(),jtUsuario.getValueAt(i,6).toString(),jtUsuario.getValueAt(i,7).toString(),jtUsuario.getValueAt(i,8).toString(),jtUsuario.getValueAt(i,9).toString(),jtUsuario.getValueAt(i,10).toString(),jtUsuario.getValueAt(i,11).toString(),jtUsuario.getValueAt(i,12).toString(),jtUsuario.getValueAt(i,13).toString(),jtUsuario.getValueAt(i,14).toString());
-            lista.add(reporte1);
-        }
-        try {
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        ArrayList tablac = new ArrayList();
+        for(int i=0;i<jtUsuario.getRowCount();i++){
+            ClaseReporte tabla1 = new ClaseReporte(jtUsuario.getValueAt(i,0).toString(),
+                    jtUsuario.getValueAt(i,1).toString(),
+                    jtUsuario.getValueAt(i,2).toString(),
+                    jtUsuario.getValueAt(i,3).toString(),
+                    jtUsuario.getValueAt(i,4).toString(),
+                    String.valueOf(jtUsuario.getValueAt(i,5)),
+                    jtUsuario.getValueAt(i,6).toString(),
+                    String.valueOf(jtUsuario.getValueAt(i,7)),
+                    jtUsuario.getValueAt(i,8).toString(),
+                    jtUsuario.getValueAt(i,9).toString(),
+                    jtUsuario.getValueAt(i,10).toString(),
+                    jtUsuario.getValueAt(i,11).toString(),
+                    jtUsuario.getValueAt(i,12).toString(),
+                    jtUsuario.getValueAt(i,13).toString(),
+                    jtUsuario.getValueAt(i,14).toString());
+            tablac.add(tabla1);}
+        try{
             JasperReport reporte = (JasperReport) JRLoader.loadObject("Mostrar_usuario.jasper");
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
-            JDialog frame = new JDialog(this);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog (this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho / 2, alto / 2));
+            frame.setSize(new Dimension(ancho/2,alto/2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
         } catch (JRException ex) {
             Logger.getLogger(Mostrar_usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_ReportActionPerformed
+    }//GEN-LAST:event_btnReporteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,9 +343,9 @@ public class Mostrar_usuario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Report;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnListar;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

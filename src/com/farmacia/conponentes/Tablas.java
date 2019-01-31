@@ -725,6 +725,7 @@ public class Tablas {
         String[] Filas = new String[12];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
+        
         for (int i = 0; i < lista.size(); i++) {
             int Cantidad = lista.get(i).getCantidad();
             Double Precio = lista.get(i).getPrecios();
@@ -736,6 +737,7 @@ public class Tablas {
             PrecioTotal = redondearDecimales(PrecioTotal, 2);
             Double iva = 0.12;
             Double iva1 = 0.00;
+            
             int Bono = lista.get(i).getBono();
             int CantidadTotal = Bono + Cantidad;
             Double PrecioBono = PrecioTotal / CantidadTotal;

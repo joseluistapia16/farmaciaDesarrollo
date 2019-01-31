@@ -2691,6 +2691,46 @@ public class CRUD {
         return valor;
     }
 
+    public String insertarProductoEditarNotaPedidos(DetalleNotaPedido dnp) {
+        String valor = null;
+        try {
+            //id_detalle_nota_pedidos,id_precio,id_cabecera_nota_pedidos,cantidad,precio
+////,descuento,iva,total,bono
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call InsertarDetalleNotaPedido()}");
+            pro.setLong(1, dnp.getId_detalle_nota_pedidos());
+            pro.setLong(2, dnp.getId_precio());
+            pro.setLong(3, dnp.getId_cabecera_nota_pedidos());
+            pro.setInt(4, dnp.getCantidad());
+            pro.setDouble(5, dnp.getPrecio());
+            pro.setDouble(6, dnp.getDescuento());
+            pro.setDouble(7, dnp.getIva());
+            pro.setDouble(8, dnp.getTotal());
+            pro.setDouble(9, dnp.getBono());
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+
     public String EliminarDetalleNotaPedido(DetalleNotaPedido det) {
         String dato = null;
         try {
@@ -2755,6 +2795,7 @@ public class CRUD {
         return valor;
     }
 
+    
     public static void InsertarBDCompras(String id_cabecera, ArrayList<joinProductoDetallesFaltantes> lista) {
         String cad1 = "";
         String[] Filas = new String[11];
