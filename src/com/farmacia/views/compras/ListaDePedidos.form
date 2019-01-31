@@ -178,14 +178,14 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/objetos/icon/ic_add_shopping_cart_128_28122.png"/>
+                  <Image iconType="3" name="/com/farmacia/icon/ic_add_shopping_cart_128_28122.png"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/objetos/icon/ic_add_shopping_cart_128_28122.png"/>
+                  <Image iconType="3" name="/com/farmacia/icon/ic_add_shopping_cart_128_28122.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -193,6 +193,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="btnAceptar">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/farmacia/icon/guardar.jpg"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Aceptar"/>
           </Properties>
           <Events>
@@ -259,6 +262,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="btnSalir2">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/farmacia/icon/action_exit_close_remove_13915.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Regresar"/>
           </Properties>
           <Events>
