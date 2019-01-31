@@ -135,7 +135,7 @@ public class Mostrar_iva extends javax.swing.JDialog {
     }//GEN-LAST:event_iva_valorActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Double valor = Double.valueOf(iva_valor.getText());
+        Double valor = (Double.valueOf(iva_valor.getText())/100);
         int user = 1;
         String res = crud.insertarIva(valor, user);
         JOptionPane.showMessageDialog(null, res);

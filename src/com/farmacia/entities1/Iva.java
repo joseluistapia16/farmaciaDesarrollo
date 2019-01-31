@@ -16,15 +16,17 @@ public class Iva {
     private double iva;
     private Date fecha;
     private Long id_usuario;
-
+    private String estado;
+    
     public Iva() {
     }
 
-    public Iva(Long id_iva, double iva, Date fecha, Long id_usuario) {
+    public Iva(Long id_iva, double iva, Date fecha, Long id_usuario, String estado) {
         this.id_iva = id_iva;
         this.iva = iva;
         this.fecha = fecha;
         this.id_usuario = id_usuario;
+        this.estado = estado;
     }
 
     public Long getId_iva() {
@@ -58,5 +60,14 @@ public class Iva {
     public void setId_usuario(Long id_usuario) {
         this.id_usuario = id_usuario;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     
 }

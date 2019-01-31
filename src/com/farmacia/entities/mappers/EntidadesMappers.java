@@ -197,6 +197,19 @@ public class EntidadesMappers {
         }
         return obj;
     }
+    public static Iva getIvaProductoFromResultSet(ResultSet rs) {
+        Iva obj = new Iva();
+        try {
+            obj.setId_iva(rs.getLong("id_iva"));
+            obj.setIva(rs.getDouble("iva"));
+            obj.setFecha(rs.getDate("fecha"));
+            obj.setId_usuario(rs.getLong("id_usuario"));
+            obj.setEstado(rs.getString("est"));
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
 
     public static ListarJoinProveedor getListarJoinProveedorFromResultSet(ResultSet rs) {
         ListarJoinProveedor obj = new ListarJoinProveedor();

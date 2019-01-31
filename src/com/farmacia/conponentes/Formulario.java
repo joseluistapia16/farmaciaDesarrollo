@@ -7,6 +7,7 @@ package com.farmacia.conponentes;
 
 import static com.farmacia.conponentes.Tablas.model;
 import com.farmacia.entities1.EnvaseProducto;
+import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
@@ -190,6 +191,27 @@ public class Formulario {
         arreglo[0] = "Elija una opcion...";
         for (int i = 0; i < lista.size(); i++) {
             arreglo[(i + 1)] = lista.get(i).getLocalidad();
+        }
+        return arreglo;
+
+    }
+    
+    public static DefaultComboBoxModel listarComboIva(ArrayList<Iva> lista) {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        Object[] arreglo = arreglo11(lista);
+        System.out.println(lista.size() + " tam " + arreglo.length);
+        for (int i = 0; i < arreglo.length; i++) {
+            model.addElement(arreglo[i]);
+        }
+        return model;
+
+    }
+    private static Object[] arreglo11(ArrayList<Iva> lista) {
+        Object[] arreglo = new Object[lista.size() + 2];
+        arreglo[0] = "Elija una opcion...";
+        arreglo[1] = "NO";
+        for (int i = 0; i < lista.size(); i++) {
+            arreglo[(i + 2)] = lista.get(i).getIva();
         }
         return arreglo;
 
