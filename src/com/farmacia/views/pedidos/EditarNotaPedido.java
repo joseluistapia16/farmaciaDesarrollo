@@ -8,6 +8,7 @@ import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ComponentesFaltantes;
+import static com.farmacia.views.pedidos.EditarProductoNota.redondearDecimales;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -613,7 +614,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public void Total() {
+
+
+    public void Total() {
         Double total = 0.00;
 
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
@@ -624,11 +627,11 @@ public void Total() {
             Double total1 = Cantidad * Precio + iva - Desc;
             total = total + total1;
             total = redondearDecimales(total, 2);
-//            System.out.println("Cantidad "+Cantidad);
-//            System.out.println("Precio "+Precio);
-//            System.out.println("descuento "+Desc);
-//            System.out.println("iva  "+iva);
-////            System.out.println("total "+to);
+            System.out.println("Cantidad "+Cantidad);
+            System.out.println("Precio "+Precio);
+            System.out.println("descuento "+Desc);
+            System.out.println("iva  "+iva);
+//            System.out.println("total "+to);
         }
         txtTotal.setText(Double.valueOf(total).toString());
     }
@@ -709,6 +712,7 @@ public void Total() {
 
 //                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
                             Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+
                             crud.InsertarBDCompras(txtNumero.getText(), lista1);
                             actualizarTabla2();
                         }
@@ -728,6 +732,7 @@ public void Total() {
         TotalIVA();
         TotalDescuento();
     }
+
     private void getPosicion(Long id, int valor) {
         for (int i = 0; i < lista.size(); i++) {
             if (id == lista.get(i).getId_producto()) {

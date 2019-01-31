@@ -8,8 +8,10 @@ package com.farmacia.views.pedidos;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
+import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +23,8 @@ public class EditarProductoNota extends javax.swing.JDialog {
     int x, y;
     JoinListarDetalleNotaPedido objf = new JoinListarDetalleNotaPedido();
     JoinListarDetalleNotaPedido obj2 = null;
+    ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
+
     CRUD crud = new CRUD();
 
     /**
@@ -39,6 +43,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         obj2 = obj1;
         btnEditar.setEnabled(false);
+//        Total();
     }
 
     /**
@@ -488,16 +493,8 @@ public class EditarProductoNota extends javax.swing.JDialog {
         }
     }
 
-//    public void ValorDescuento() {
-//        Double ValorDescu = 0.00;
-//        Double Cantidad = Double.parseDouble(txtcantidad.getText());
-//        Double Precio = Double.parseDouble(txtPrecio.getText());
-//        Double PorcentajeDescuento = Double.parseDouble(txtporcentajeDescuento.getText());
-//
-//        Double ValorDescu = Cantidad * Precio * PorcentajeDescuento / 100;
-//
-//        txtDescuento.setText(Double.valueOf(ValorDescu).toString());
-//    }
+    
+
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
         resultado = valorInicial;
@@ -628,7 +625,6 @@ public class EditarProductoNota extends javax.swing.JDialog {
             setVisible(false);
 
         } else {
-            
 
         }
     }//GEN-LAST:event_btnEditarActionPerformed

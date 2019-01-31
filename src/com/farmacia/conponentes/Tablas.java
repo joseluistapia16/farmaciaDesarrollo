@@ -715,17 +715,17 @@ public class Tablas {
 
     public static void cargarJoinProductoIngresoNotas(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
 
-        int[] a = {10, 30, 32, 70, 15, 30, 10,10 ,10, 20, 10, 5};
+        int[] a = {10, 30, 32, 70, 15, 30, 10, 10, 10, 20, 10, 5};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA","BONO", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
+        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "BONO", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
         String[] Filas = new String[12];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
-        
+
         for (int i = 0; i < lista.size(); i++) {
             int Cantidad = lista.get(i).getCantidad();
             Double Precio = lista.get(i).getPrecios();
@@ -735,9 +735,7 @@ public class Tablas {
             ValorDes = redondearDecimales(ValorDes, 2);
             Double PrecioTotal = Cantidad * Precio;
             PrecioTotal = redondearDecimales(PrecioTotal, 2);
-            Double iva = 0.12;
-            Double iva1 = 0.00;
-            
+
             int Bono = lista.get(i).getBono();
             int CantidadTotal = Bono + Cantidad;
             Double PrecioBono = PrecioTotal / CantidadTotal;
@@ -748,17 +746,26 @@ public class Tablas {
             Filas[3] = lista.get(i).getNombre_producto();
             Filas[4] = lista.get(i).getEnvase();
             Filas[5] = lista.get(i).getMedida();
-            Filas[6] = ""+Bono;
-            Filas[7] = ""+CantidadTotal;
-            Filas[8] = ""+PrecioBono;
+            Filas[6] = "" + Bono;
+            Filas[7] = "" + Cantidad;
+            Filas[8] = "" + PrecioBono;
             Filas[9] = "" + ValorDes;
             if (lista.get(i).getIva().equals("SI")) {
-                iva1 = Cantidad * iva * Precio;
-                iva1 = redondearDecimales(iva1, 2);
-                Filas[10] = "" + iva1;
-                Double importe = Cantidad * Precio + iva1 - ValorDes;
+                Double iva = 0.12;
+                Double ValorIVA = 0.00;
+                Double Precio2 = lista.get(i).getPrecios();
+                System.out.println("precio "+Precio2);
+                int Cantidad1 = lista.get(i).getCantidad();
+                System.out.println("Cantidad "+ Cantidad1);
+                ValorIVA = Cantidad1 * iva * Precio2;
+                
+                ValorIVA = redondearDecimales(ValorIVA, 2);
+                System.out.println("iva "+ValorIVA );
+                Filas[10] = "" + ValorIVA;
+                Double importe = Cantidad1 * Precio2 + ValorIVA - ValorDes;
                 importe = redondearDecimales(importe, 2);
                 Filas[11] = "" + importe;
+
             }
             if (lista.get(i).getIva().equals("NO")) {
                 Filas[10] = "" + 0;
@@ -795,7 +802,7 @@ public class Tablas {
         }
 
     }
-     
+
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
         resultado = valorInicial;
@@ -1077,13 +1084,13 @@ public class Tablas {
 
     public static void cargarJoinRegistroDetalleNotas(JTable Tabla, ArrayList<JoinListarDetalleNotaPedido> lista) {
 
-        int[] a = {10, 30, 32, 70, 15, 30,10, 10, 10, 20, 10, 5};
+        int[] a = {10, 30, 32, 70, 15, 30, 10, 10, 10, 20, 10, 5};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD","BONO", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
+        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD", "BONO", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
         String[] Filas = new String[12];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -1095,9 +1102,9 @@ public class Tablas {
             Filas[4] = lista.get(i).getEnvase();
             Filas[5] = lista.get(i).getMedida();
             Filas[6] = "" + lista.get(i).getCantidad();
-            System.out.println("bono "+lista.get(i).getBono());
             Filas[7] = "" + lista.get(i).getBono();
             Filas[8] = lista.get(i).getPrecio().toString();
+            System.out.println("dg " + lista.get(i).getPrecio().toString());
             Filas[9] = lista.get(i).getDescuento().toString();
             Filas[10] = lista.get(i).getIva().toString();
             Filas[11] = lista.get(i).getTotal().toString();
@@ -1378,6 +1385,7 @@ public class Tablas {
 //        }
 //
 //    }
+
     public static void listarIva(ArrayList<Iva> lista, JTable Tabla) {
         int[] a = {15, 30, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
@@ -1393,7 +1401,7 @@ public class Tablas {
         //  laboratorio = new DefaultTableModel(null, Ca);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
-           // Filas[0] = String.valueOf(lista.get(i).getIva() +"%");
+            // Filas[0] = String.valueOf(lista.get(i).getIva() +"%");
             Filas[0] = String.valueOf(lista.get(i).getIva());
             Filas[1] = String.valueOf(lista.get(i).getFecha());
             Filas[2] = String.valueOf(lista.get(i).getId_usuario());
@@ -1408,7 +1416,7 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
             Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
-       
+
         }
 
     }

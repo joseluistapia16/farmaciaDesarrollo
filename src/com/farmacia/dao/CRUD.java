@@ -5,6 +5,7 @@
  */
 package com.farmacia.dao;
 
+import com.farmacia.dao.PruebasDecimales.Prueba;
 import com.farmacia.entities.mappers.EntidadesMappers;
 import com.farmacia.entities1.Bitacora_seguridad;
 import com.farmacia.entities1.CabeceraNotaPedido;
@@ -48,6 +49,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 public class CRUD {
 
@@ -2795,7 +2797,6 @@ public class CRUD {
         return valor;
     }
 
-    
     public static void InsertarBDCompras(String id_cabecera, ArrayList<joinProductoDetallesFaltantes> lista) {
         String cad1 = "";
         String[] Filas = new String[11];
@@ -2844,6 +2845,60 @@ public class CRUD {
         CRUD crud = new CRUD();
         crud.insertarDetallesEnRegistroCompras(cad1);
         cad1 = "";
+    }
+
+    public static void cargarJoinProductoIngresoNotas(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
+        String cad1 = "";
+        String[] Filas = new String[11];
+
+        for (int i = 0; i < lista.size(); i++) {
+            int Cantidad = lista.get(i).getCantidad();
+            Double Precio = lista.get(i).getPrecios();
+            Precio = redondearDecimales(Precio, 2);
+            Double PorcDesc = lista.get(i).getPorcentaje_descuento();
+            Double ValorDes = Cantidad * Precio * PorcDesc / 100;
+            ValorDes = redondearDecimales(ValorDes, 2);
+            Double PrecioTotal = Cantidad * Precio;
+            PrecioTotal = redondearDecimales(PrecioTotal, 2);
+            Double iva = 0.12;
+            Double iva1 = 0.00;
+
+            int Bono = lista.get(i).getBono();
+            int CantidadTotal = Bono + Cantidad;
+            Double PrecioBono = PrecioTotal / CantidadTotal;
+            PrecioBono = redondearDecimales(PrecioBono, 2);
+            Filas[0] = "" + lista.get(i).getId_producto().toString();
+            Filas[1] = lista.get(i).getMarca();
+            Filas[2] = lista.get(i).getNombre_tipo();
+            Filas[3] = lista.get(i).getNombre_producto();
+            Filas[4] = lista.get(i).getEnvase();
+            Filas[5] = lista.get(i).getMedida();
+            Filas[6] = "" + Bono;
+            Filas[7] = "" + CantidadTotal;
+            Filas[8] = "" + PrecioBono;
+            Filas[9] = "" + ValorDes;
+            if (lista.get(i).getIva().equals("SI")) {
+                iva1 = Cantidad * iva * Precio;
+                iva1 = redondearDecimales(iva1, 2);
+                Filas[10] = "" + iva1;
+                Double importe = Cantidad * Precio + iva1 - ValorDes;
+                importe = redondearDecimales(importe, 2);
+                Filas[11] = "" + importe;
+            }
+            if (lista.get(i).getIva().equals("NO")) {
+                Filas[10] = "" + 0;
+                Double importe = Cantidad * Precio - ValorDes;
+                importe = redondearDecimales(importe, 2);
+                Filas[11] = "" + importe;
+            }
+//           cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`) VALUES ('" + lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "');";
+
+        }
+        System.out.println(cad1);
+        CRUD crud = new CRUD();
+        crud.insertarDetallesEnRegistroCompras(cad1);
+        cad1 = "";
+
     }
 
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
@@ -2971,5 +3026,42 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return valor_res;
+    }
+
+    public String Prueba(Prueba p) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    //cantidad,precio,iva,decuento,total
+                    "{ call Prueba(?,?,?,?,?)}");
+
+            pro.setLong(1, p.getCantidad());
+            pro.setBigDecimal(2, p.getPrecio());
+            pro.setBigDecimal(3, p.getIva());
+            pro.setBigDecimal(4, p.getDecuento());
+            pro.setBigDecimal(5, p.getTotal());
+
+//            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+//            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
     }
 }
