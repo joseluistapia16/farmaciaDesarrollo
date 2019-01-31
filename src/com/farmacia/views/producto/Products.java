@@ -8,6 +8,7 @@ package com.farmacia.views.producto;
 import com.farmacia.conponentes.Formulario;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.EnvaseProducto;
+import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
@@ -37,6 +38,7 @@ public class Products extends javax.swing.JDialog {
     ArrayList<MedidaProducto> listam = crud.listarTodoMedidasProductos();
     ArrayList<EnvaseProducto> listae = crud.listarTodoEnvaseProductos();
     ArrayList<MarcaProducto> listama = crud.listarTodoMarcaProductos();
+    ArrayList<Iva> listaIva = crud.listarTodoIvaProducto();
     Long id_tipo, id_medida, id_envase, id_marca;
     String error = "",IVA="",valorIDProd="";
 
@@ -50,6 +52,7 @@ public class Products extends javax.swing.JDialog {
         cbxMedida.setModel(Formulario.listarComboMedidaPro(listam));
         cbxEnvase.setModel(Formulario.listarComboEnvasePro(listae));
         cbxMarca.setModel(Formulario.listarComboMarcaPro(listama));
+        cbxIva.setModel(Formulario.listarComboIva(listaIva));
         txtFechaActual.setText(FechaActual());
         Habilitar(false);
     }
@@ -547,6 +550,7 @@ public class Products extends javax.swing.JDialog {
 
     private void cbxIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxIvaActionPerformed
         IVA=cbxIva.getSelectedItem().toString();
+        System.out.println("iba: "+IVA);
     }//GEN-LAST:event_cbxIvaActionPerformed
 
     private void ingresoDePrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresoDePrecioActionPerformed

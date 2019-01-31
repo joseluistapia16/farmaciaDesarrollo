@@ -111,9 +111,13 @@ public class OrdenCompra extends javax.swing.JDialog {
             Double Precio = lista3.get(i).getPrecio();
             Double Desc = lista3.get(i).getDescuento();
             Double iva = lista3.get(i).getIva();
+            System.out.println("suma: "+Cantidad+" + "+Precio+" + "+iva+" + "+Desc);
             Double total1 = Cantidad * Precio + iva - Desc;
+            System.out.println("lala: "+total1);
             total = total + total1;
-            total = redondearDecimales(total, 2);
+            System.out.println("total total: "+total);
+            
+//total = redondearDecimales(total, 2);
         }
         txtTotal.setText(Double.valueOf(total).toString());
     }
