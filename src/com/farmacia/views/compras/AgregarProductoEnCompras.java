@@ -365,6 +365,7 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
     private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
         String cant;
         String porc;
+        
         if (txtcantidadpro.getText() == null || "".equals(txtcantidadpro.getText())) {
             JOptionPane.showMessageDialog(null, "Ingrese Cantidad");
         } else {
