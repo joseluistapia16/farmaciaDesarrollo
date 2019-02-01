@@ -615,7 +615,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     public void Total() {
         Double total = 0.00;
 
@@ -627,10 +626,10 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Double total1 = Cantidad * Precio + iva - Desc;
             total = total + total1;
             total = redondearDecimales(total, 2);
-            System.out.println("Cantidad "+Cantidad);
-            System.out.println("Precio "+Precio);
-            System.out.println("descuento "+Desc);
-            System.out.println("iva  "+iva);
+            System.out.println("Cantidad " + Cantidad);
+            System.out.println("Precio " + Precio);
+            System.out.println("descuento " + Desc);
+            System.out.println("iva  " + iva);
 //            System.out.println("total "+to);
         }
         txtTotal.setText(Double.valueOf(total).toString());
@@ -683,7 +682,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
         if (r == JOptionPane.YES_OPTION) {
             setVisible(false);
-
+            MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
+            Man.setVisible(true);
         } else {
 
         }
@@ -713,8 +713,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
                             Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
 
-                            crud.InsertarBDCompras(txtNumero.getText(), lista1);
-                            actualizarTabla2();
+//                            crud.InsertarBDCompras(txtNumero.getText(), lista1);
+//                            actualizarTabla2();
                         }
 
                     }

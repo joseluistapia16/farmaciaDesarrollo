@@ -30,6 +30,7 @@ import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -727,19 +728,30 @@ public class Tablas {
         Tabla.setShowGrid(true);
 
         for (int i = 0; i < lista.size(); i++) {
-            int Cantidad = lista.get(i).getCantidad();
-            Double Precio = lista.get(i).getPrecios();
-            Precio = redondearDecimales(Precio, 2);
-            Double PorcDesc = lista.get(i).getPorcentaje_descuento();
-            Double ValorDes = Cantidad * Precio * PorcDesc / 100;
-            ValorDes = redondearDecimales(ValorDes, 2);
-            Double PrecioTotal = Cantidad * Precio;
-            PrecioTotal = redondearDecimales(PrecioTotal, 2);
-
-            int Bono = lista.get(i).getBono();
-            int CantidadTotal = Bono + Cantidad;
-            Double PrecioBono = PrecioTotal / CantidadTotal;
-            PrecioBono = redondearDecimales(PrecioBono, 2);
+//            int Cantidad = lista.get(i).getCantidad();
+//            Double Precio = lista.get(i).getPrecios();
+//            Precio = redondearDecimales(Precio, 2);
+//            Double PorcDesc = lista.get(i).getPorcentaje_descuento();
+//            Double ValorDes = Cantidad * Precio * PorcDesc / 100;
+//            ValorDes = redondearDecimales(ValorDes, 2);
+//            Double PrecioTotal = Cantidad * Precio;
+//            PrecioTotal = redondearDecimales(PrecioTotal, 2);
+//
+//            int Bono = lista.get(i).getBono();
+//            int CantidadTotal = Bono + Cantidad;
+//            Double PrecioBono = PrecioTotal / CantidadTotal;
+//            PrecioBono = redondearDecimales(PrecioBono, 2);
+            Integer Cant = lista.get(i).getCantidad();
+            BigDecimal Cantidad = new BigDecimal(Cant);
+            BigDecimal Precio = lista.get(i).getPrecios();
+            BigDecimal Subtotal = Cantidad.multiply(Precio);
+            System.out.println("Subtotal " + Subtotal);
+            Integer Bono = lista.get(i).getBono();
+            BigDecimal Bono1 = new BigDecimal(Bono);
+            BigDecimal CantidadTotal = Cantidad.add(Bono1);
+            BigDecimal PrecioBono = Subtotal;
+            BigDecimal PorcentajeDesc = lista.get(i).getPorcentaje_descuento();
+            BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
             Filas[0] = "" + lista.get(i).getId_producto().toString();
             Filas[1] = lista.get(i).getMarca();
             Filas[2] = lista.get(i).getNombre_tipo();
@@ -747,32 +759,37 @@ public class Tablas {
             Filas[4] = lista.get(i).getEnvase();
             Filas[5] = lista.get(i).getMedida();
             Filas[6] = "" + Bono;
-            Filas[7] = "" + Cantidad;
+            Filas[7] = "" + Cant;
             Filas[8] = "" + PrecioBono;
             Filas[9] = "" + ValorDes;
-            if (lista.get(i).getIva().equals("SI")) {
-                Double iva = 0.12;
-                Double ValorIVA = 0.00;
-                Double Precio2 = lista.get(i).getPrecios();
-                System.out.println("precio "+Precio2);
-                int Cantidad1 = lista.get(i).getCantidad();
-                System.out.println("Cantidad "+ Cantidad1);
-                ValorIVA = Cantidad1 * iva * Precio2;
-                
-                ValorIVA = redondearDecimales(ValorIVA, 2);
-                System.out.println("iva "+ValorIVA );
-                Filas[10] = "" + ValorIVA;
-                Double importe = Cantidad1 * Precio2 + ValorIVA - ValorDes;
-                importe = redondearDecimales(importe, 2);
-                Filas[11] = "" + importe;
-
+            if(lista.get(i).getIva().equals("NO")){
+            Filas[10] = "" + 0;
+            BigDecimal importe = Subtotal.subtract(ValorDes);
+            Filas[11] = "" + importe;
             }
-            if (lista.get(i).getIva().equals("NO")) {
-                Filas[10] = "" + 0;
-                Double importe = Cantidad * Precio - ValorDes;
-                importe = redondearDecimales(importe, 2);
-                Filas[11] = "" + importe;
-            }
+//            if (lista.get(i).getIva().equals("SI")) {
+//                Double iva = 0.12;
+//                Double ValorIVA = 0.00;
+//                Double Precio2 = lista.get(i).getPrecios();
+//                System.out.println("precio " + Precio2);
+//                int Cantidad1 = lista.get(i).getCantidad();
+//                System.out.println("Cantidad " + Cantidad1);
+//                ValorIVA = Cantidad1 * iva * Precio2;
+//
+//                ValorIVA = redondearDecimales(ValorIVA, 2);
+//                System.out.println("iva " + ValorIVA);
+//                Filas[10] = "" + ValorIVA;
+//                Double importe = Cantidad1 * Precio2 + ValorIVA - ValorDes;
+//                importe = redondearDecimales(importe, 2);
+//                Filas[11] = "" + importe;
+//
+//            }
+//            if (lista.get(i).getIva().equals("NO")) {
+//                Filas[10] = "" + 0;
+//                Double importe = Cantidad * Precio - ValorDes;
+//                importe = redondearDecimales(importe, 2);
+//                Filas[11] = "" + importe;
+//            }
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);

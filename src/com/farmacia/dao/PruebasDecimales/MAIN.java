@@ -20,36 +20,26 @@ public class MAIN {
     CRUD c = new CRUD();
 
     public static void main(String[] args) {
-        BigDecimal b1 = new BigDecimal("1400000000000000000000000000000000000000000000000000000000");
-        BigDecimal b2 = new BigDecimal("400000000000000000000000000000000000000000000000000000000");
+        BigDecimal b1 = new BigDecimal("30");
+        BigDecimal b2 = new BigDecimal("0.75");
+        BigDecimal iva = new BigDecimal("0.12");
+        BigDecimal desc = new BigDecimal("0.10");
         BigDecimal r = new BigDecimal("0.0");
+        BigDecimal total = new BigDecimal("0.0");
         r = b1.add(b2);
         System.out.println("Dato b1 " + b1);
         System.out.println("Dato b2 " + b2);
         System.out.println("");
 
-        System.out.println("Suma " + r);
-        System.out.println("");
 
-        r = b1.subtract(b2);
-        System.out.println("Resta " + r);
+        r = b1.multiply(b2).multiply(iva);
+        System.out.println("iva" + r);
+        
+        r = b1.multiply(b2).multiply(desc);
+        System.out.println("dec" + r);
         System.out.println("");
+//        total = b1.multiply(b2).add(b3)
 
-        r = b1.multiply(b2);
-        System.out.println("Multi " + r);
-        System.out.println("");
-
-        r = b1.divide(b2);
-        System.out.println("Divi " + r);
-        System.out.println("");
 
     }
-
-//    int itemCost;
-//    int totalCost = 0;
-//
-//    public BigDecimal calcular(int itemQuantity, BigDecimal itemPrice) {
-//        itemCost = itemPrice.multiply(itemQuantity);
-//        totalCost = totalCost + itemCost;
-//        return totalCost;
 }

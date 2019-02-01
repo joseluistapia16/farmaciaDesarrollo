@@ -203,8 +203,8 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInactivos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnInactivos)
+                    .addComponent(Reporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -272,7 +272,9 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
             objeto = devuelveObjeto(tblRegistrodeNotas.getValueAt(i, 0).toString(), lista);
 
             if (objeto != null) {
+                
                 EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true, objeto);
+                this.setVisible(false);
                 Man.setVisible(true);
 
             }
