@@ -2700,9 +2700,9 @@ public class CRUD {
                     "{ call ActualizarDetalleNotaPedido(?,?,?,?,?,?,?)}");
             pro.setLong(1, dnp.getId_detalle_nota_pedidos());
             pro.setInt(2, dnp.getCantidad());
-            pro.setDouble(3, dnp.getDescuento());
-            pro.setDouble(4, dnp.getIva());
-            pro.setDouble(5, dnp.getTotal());
+            pro.setBigDecimal(3, dnp.getDescuento());
+            pro.setBigDecimal(4, dnp.getIva());
+            pro.setBigDecimal(5, dnp.getTotal());
             pro.setDouble(6, dnp.getBono());
             pro.registerOutParameter("valor", Types.VARCHAR);
             pro.executeUpdate();
@@ -2739,10 +2739,10 @@ public class CRUD {
             pro.setLong(2, dnp.getId_precio());
             pro.setLong(3, dnp.getId_cabecera_nota_pedidos());
             pro.setInt(4, dnp.getCantidad());
-            pro.setDouble(5, dnp.getPrecio());
-            pro.setDouble(6, dnp.getDescuento());
-            pro.setDouble(7, dnp.getIva());
-            pro.setDouble(8, dnp.getTotal());
+            pro.setBigDecimal(5, dnp.getPrecio());
+            pro.setBigDecimal(6, dnp.getDescuento());
+            pro.setBigDecimal(7, dnp.getIva());
+            pro.setBigDecimal(8, dnp.getTotal());
             pro.setDouble(9, dnp.getBono());
             pro.registerOutParameter("valor", Types.VARCHAR);
             pro.executeUpdate();

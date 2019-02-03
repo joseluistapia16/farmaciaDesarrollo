@@ -42,15 +42,15 @@ public class Pruebas {
         //    System.out.println("num: "+i);
     }
 
-    public static void f() {
-        CRUD cr = new CRUD();
-        JoinListarDetalleNotaPedido n = new JoinListarDetalleNotaPedido();
-        n.setDescuento(34.56);
-        n.setPrecio(23.45);
-        //  Double valor = cr.eliminardetalleCompra(n);
-        //     System.out.println("valor= "+valor);
-//    String valor=cr.getNombreTipo(Long.valueOf("1"),Long.valueOf("6"));
-//        System.out.println(""+valor);
-    }
+//    public static void f() {
+//        CRUD cr = new CRUD();
+//        JoinListarDetalleNotaPedido n = new JoinListarDetalleNotaPedido();
+//        n.setDescuento(34.56);
+//        n.setPrecio(23.45);
+//        //  Double valor = cr.eliminardetalleCompra(n);
+//        //     System.out.println("valor= "+valor);
+////    String valor=cr.getNombreTipo(Long.valueOf("1"),Long.valueOf("6"));
+////        System.out.println(""+valor);
+//    }
 
 }

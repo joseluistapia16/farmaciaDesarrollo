@@ -131,6 +131,7 @@ public class NotePedidos extends javax.swing.JDialog {
         }
         txtIva.setText(TotalIva.toString());
     }
+
     public void TotalDescuento2() {
         BigDecimal TotalDesc = new BigDecimal("0.00");
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
@@ -780,7 +781,7 @@ public class NotePedidos extends javax.swing.JDialog {
             cn.setFecha_creacion(txtFecha.getText() + " " + txtHora.getText());
             cn.setPlazo(cbxPlazo.getSelectedItem().toString());
             cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
-            
+
             String iva1 = txtIva.getText();
             BigDecimal IVA = new BigDecimal(iva1);
             cn.setIva(IVA);//

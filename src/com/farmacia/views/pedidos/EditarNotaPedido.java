@@ -13,6 +13,7 @@ import static com.farmacia.views.pedidos.EditarProductoNota.redondearDecimales;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -620,14 +621,15 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                     .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19)
-                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel19)
+                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -648,45 +650,46 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     public void Total() {
-        Double total = 0.00;
+            BigDecimal Total = new BigDecimal("0.0000");
 
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-            int Cantidad = lista3.get(i).getCantidad();
-            Double Precio = lista3.get(i).getPrecio();
-            Double Desc = lista3.get(i).getDescuento();
-            Double iva = lista3.get(i).getIva();
-            Double total1 = Cantidad * Precio + iva - Desc;
-            total = total + total1;
-            total = redondearDecimales(total, 2);
-            System.out.println("Cantidad " + Cantidad);
-            System.out.println("Precio " + Precio);
-            System.out.println("descuento " + Desc);
-            System.out.println("iva  " + iva);
+            Integer Cantidad = lista3.get(i).getCantidad();
+            BigDecimal CANTIDAD = new BigDecimal(Cantidad);
+            BigDecimal Precio = lista3.get(i).getPrecio();
+            BigDecimal Desc = lista3.get(i).getDescuento();
+            BigDecimal iva = lista3.get(i).getIva();
+            BigDecimal total1 = CANTIDAD.multiply(Precio).add(iva).subtract(Desc);
+            Total = Total.add(total1);
+//            total = redondearDecimales(total, 2);
+//            System.out.println("Cantidad " + Cantidad);
+//            System.out.println("Precio " + Precio);
+//            System.out.println("descuento " + Desc);
+//            System.out.println("iva  " + iva);
 //            System.out.println("total "+to);
         }
-        txtTotal.setText(Double.valueOf(total).toString());
+        txtTotal.setText(Total.toString());
     }
 
     public void TotalIVA() {
-        Double totalIva = 0.00;
+        BigDecimal Total1Iva = new BigDecimal("0.0000");
 
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-            Double Iva1 = lista3.get(i).getIva();
-            totalIva = totalIva + Iva1;
-            totalIva = redondearDecimales(totalIva, 2);
+            BigDecimal Iva1 = lista3.get(i).getIva();
+            Total1Iva = Total1Iva.add(Iva1);
+//            totalIva = redondearDecimales(totalIva, 2);
         }
-        txtIva.setText(Double.valueOf(totalIva).toString());
+        txtIva.setText(Total1Iva.toString());
 
     }
 
     public void TotalDescuento() {
-        Double TotalDescuento = 0.00;
+        BigDecimal TotalDescuento = new BigDecimal("0.0000");
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-            Double descuento = lista3.get(i).getDescuento();
-            TotalDescuento = TotalDescuento + descuento;
-            TotalDescuento = redondearDecimales(TotalDescuento, 2);
+            BigDecimal descuento = lista3.get(i).getDescuento();
+            TotalDescuento = TotalDescuento.add(descuento);
+//            TotalDescuento = redondearDecimales(TotalDescuento, 2);
         }
-        txtDescuento.setText(Double.valueOf(TotalDescuento).toString());
+        txtDescuento.setText(TotalDescuento.toString());
     }
 
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {

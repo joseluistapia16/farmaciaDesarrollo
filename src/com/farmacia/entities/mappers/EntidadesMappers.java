@@ -428,9 +428,9 @@ public class EntidadesMappers {
             obj.setFecha_creacion(rs.getString("FECHA_CREACION"));
             obj.setForma_pago(rs.getString("FORMA_PAGO"));
             obj.setPlazo(rs.getString("PLAZO"));
-            obj.setIva(rs.getDouble("IVA"));
-            obj.setDescuento(rs.getDouble("DESCUENTO"));
-            obj.setTotal(rs.getDouble("TOTAL"));
+            obj.setIva(rs.getBigDecimal("IVA"));
+            obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
+            obj.setTotal(rs.getBigDecimal("TOTAL"));
 //            obj.setPlazo(rs.getString("PLAZO"));
 
         } catch (SQLException ex) {
@@ -453,9 +453,9 @@ public class EntidadesMappers {
             obj.setEntidad(rs.getString("PROVEEDOR"));
             obj.setTelefono(rs.getString("TELEFONO"));
             obj.setFecha_creacion(rs.getString("FECHA_CREACION"));
-            obj.setIva(rs.getDouble("IVA"));
-            obj.setDescuento(rs.getDouble("DESCUENTO"));
-            obj.setTotal(rs.getDouble("TOTAL"));
+            obj.setIva(rs.getBigDecimal("IVA"));
+            obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
+            obj.setTotal(rs.getBigDecimal("TOTAL"));
             obj.setPlazo(rs.getString("PLAZO"));
             obj.setForma_pago(rs.getString("FORMA_PAGO"));
 
@@ -477,10 +477,10 @@ public class EntidadesMappers {
             obj.setMedida(rs.getString("MEDIDA"));
             obj.setCantidad(rs.getInt("CANTIDAD"));
             obj.setBono(rs.getInt("BONO"));
-            obj.setPrecio(rs.getDouble("PRECIO"));
-            obj.setDescuento(rs.getDouble("DESCUENTO"));
-            obj.setIva(rs.getDouble("IVA"));
-            obj.setTotal(rs.getDouble("TOTAL"));
+            obj.setPrecio(rs.getBigDecimal("PRECIO"));
+            obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
+            obj.setIva(rs.getBigDecimal("IVA"));
+            obj.setTotal(rs.getBigDecimal("TOTAL"));
             obj.setId_precio(rs.getLong("id_precio"));
             obj.setId_cabecera_nota_pedido(rs.getLong("id_cabecera_nota_pedidos"));
         } catch (SQLException ex) {
@@ -499,10 +499,10 @@ public class EntidadesMappers {
             obj.setEnvase(rs.getString("ENVASE"));
             obj.setMedida(rs.getString("MEDIDA"));
             obj.setCantidad(rs.getInt("CANTIDAD"));
-            obj.setPrecio(rs.getDouble("PRECIO"));
-            obj.setDescuento(rs.getDouble("DESCUENTO"));
-            obj.setIva(rs.getDouble("IVA"));
-            obj.setTotal(rs.getDouble("TOTAL"));
+            obj.setPrecio(rs.getBigDecimal("PRECIO"));
+            obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
+            obj.setIva(rs.getBigDecimal("IVA"));
+            obj.setTotal(rs.getBigDecimal("TOTAL"));
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -544,9 +544,9 @@ public class EntidadesMappers {
             obj.setEntidad(rs.getString("PROVEEDOR"));
             obj.setTelefono(rs.getString("TELEFONO"));
             obj.setFecha_creacion(rs.getString("FECHA_CREACION"));
-            obj.setIva(rs.getDouble("IVA"));
-            obj.setDescuento(rs.getDouble("DESCUENTO"));
-            obj.setTotal(rs.getDouble("TOTAL"));
+            obj.setIva(rs.getBigDecimal("IVA"));
+            obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
+            obj.setTotal(rs.getBigDecimal("TOTAL"));
             obj.setPlazo(rs.getString("PLAZO"));
 
         } catch (SQLException ex) {

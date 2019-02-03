@@ -427,13 +427,15 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
     }
 
     public void insertarProducto() {
-        Double Precio = Double.parseDouble(txtPrecio.getText());
-        int Cantidad = Integer.parseInt(txtcantidadpro.getText());
-        int bono = Integer.parseInt(txtBono.getText());
-        int CantidadTotal = bono + Cantidad;
-        Double PrecioTotal = Cantidad * Precio;
-
-        Double PrecioBono = CantidadTotal / PrecioTotal;
+        String precio = txtPrecio.getText();
+        BigDecimal PRECIO = new BigDecimal(precio);
+        String Cantidad = txtcantidadpro.getText();
+        BigDecimal CANTIDAD = new BigDecimal(Cantidad);
+        String bono = txtBono.getText();
+        BigDecimal BONO = new BigDecimal(bono);
+        BigDecimal CantidadTotal = BONO.add(CANTIDAD);
+        BigDecimal PrecioTotal = CANTIDAD.multiply(PRECIO);
+        BigDecimal PrecioBono = CantidadTotal.divide(PrecioTotal);
 
         DetalleNotaPedido obj = new DetalleNotaPedido();
 
@@ -442,9 +444,15 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         obj.setId_cabecera_nota_pedidos(obj2.getId_cabecera_nota_pedidos());
         obj.setCantidad(Integer.parseInt(txtcantidadpro.getText()));
         obj.setPrecio(PrecioBono);
-        obj.setDescuento(Double.parseDouble(txtporcentajeDescuento.getText()));
-        obj.setIva(Double.parseDouble(txtIva.getText()));
-        obj.setTotal(Double.parseDouble(txtporcentajeDescuento.getText()));
+        String descuento=txtporcentajeDescuento.getText();
+        BigDecimal DESCUENTO = new BigDecimal(descuento);
+        obj.setDescuento(DESCUENTO);
+        String iva=txtIva.getText();
+        BigDecimal IVA = new BigDecimal(iva);
+        obj.setIva(IVA);
+        String total=txtporcentajeDescuento.getText();
+        BigDecimal TOTAL = new BigDecimal(total);
+        obj.setTotal(TOTAL);
 
 //
 //        pro.setDouble(6, dnp.getDescuento());

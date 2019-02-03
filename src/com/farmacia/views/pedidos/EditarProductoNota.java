@@ -11,6 +11,7 @@ import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -493,8 +494,6 @@ public class EditarProductoNota extends javax.swing.JDialog {
         }
     }
 
-    
-
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
         resultado = valorInicial;
@@ -635,9 +634,15 @@ public class EditarProductoNota extends javax.swing.JDialog {
         DetalleNotaPedido obj = new DetalleNotaPedido();
         obj.setCantidad(CantidadTotal);
         obj.setBono(Integer.parseInt(txtBono.getText()));
-        obj.setDescuento(Double.parseDouble(txtDescuento.getText()));
-        obj.setIva(Double.parseDouble(txtIva.getText()));
-        obj.setTotal(Double.parseDouble(txtTotal.getText()));
+        String descuento = txtDescuento.getText();
+        BigDecimal DESCUENTO = new BigDecimal(descuento);
+        obj.setDescuento(DESCUENTO);
+        String iva = txtIva.getText();
+        BigDecimal IVA = new BigDecimal(iva);
+        obj.setIva(IVA);
+        String total = txtTotal.getText();
+        BigDecimal TOTAL = new BigDecimal(total);
+        obj.setTotal(TOTAL);
         obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedido());
         crud.ActualizarNotaPedidos(obj);
     }

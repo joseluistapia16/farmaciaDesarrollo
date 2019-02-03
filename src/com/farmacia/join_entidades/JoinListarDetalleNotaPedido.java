@@ -5,6 +5,7 @@
  */
 package com.farmacia.join_entidades;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
@@ -25,17 +26,17 @@ public class JoinListarDetalleNotaPedido {
     private Long id_medida;
     private String medida;
     private Long id_cabecera_nota_pedido;
-    private int cantidad;
-    private int bono;
-    private Double precio;
-    private Double descuento;
-    private Double iva;
-    private Double total;
+    private Integer cantidad;
+    private Integer bono;
+    private BigDecimal precio;
+    private BigDecimal descuento;
+    private BigDecimal iva;
+    private BigDecimal total;
 
     public JoinListarDetalleNotaPedido() {
     }
 
-    public JoinListarDetalleNotaPedido(Long id_detalle_nota_pedido, Long id_precio, Long id_producto, String producto, Long id_marca, String marca, Long id_tipo, String tipo, Long id_envase, String envase, Long id_medida, String medida, Long id_cabecera_nota_pedido, int cantidad, int bono, Double precio, Double descuento, Double iva, Double total) {
+    public JoinListarDetalleNotaPedido(Long id_detalle_nota_pedido, Long id_precio, Long id_producto, String producto, Long id_marca, String marca, Long id_tipo, String tipo, Long id_envase, String envase, Long id_medida, String medida, Long id_cabecera_nota_pedido, Integer cantidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total) {
         this.id_detalle_nota_pedido = id_detalle_nota_pedido;
         this.id_precio = id_precio;
         this.id_producto = id_producto;
@@ -161,52 +162,52 @@ public class JoinListarDetalleNotaPedido {
         this.id_cabecera_nota_pedido = id_cabecera_nota_pedido;
     }
 
-    public int getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
-    public int getBono() {
+    public Integer getBono() {
         return bono;
     }
 
-    public void setBono(int bono) {
+    public void setBono(Integer bono) {
         this.bono = bono;
     }
 
-    public Double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 
-    public Double getDescuento() {
+    public BigDecimal getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(Double descuento) {
+    public void setDescuento(BigDecimal descuento) {
         this.descuento = descuento;
     }
 
-    public Double getIva() {
+    public BigDecimal getIva() {
         return iva;
     }
 
-    public void setIva(Double iva) {
+    public void setIva(BigDecimal iva) {
         this.iva = iva;
     }
 
-    public Double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
-    
+
 }
