@@ -1092,7 +1092,7 @@ public class Tablas {
             Filas[6] = "" + lista.get(i).getCantidad();
             Filas[7] = "" + lista.get(i).getBono();
             Filas[8] = lista.get(i).getPrecio().toString();
-            System.out.println("dg " + lista.get(i).getPrecio().toString());
+//            System.out.println("dg " + lista.get(i).getPrecio().toString());
             Filas[9] = lista.get(i).getDescuento().toString();
             Filas[10] = lista.get(i).getIva().toString();
             Filas[11] = lista.get(i).getTotal().toString();

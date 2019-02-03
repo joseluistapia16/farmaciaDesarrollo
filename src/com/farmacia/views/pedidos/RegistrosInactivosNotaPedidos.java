@@ -28,6 +28,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
     ArrayList<JoinListarNotaPedidosCabecera> lista = crud.listarCabeceraNotaPedido(2);
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+
     public RegistrosInactivosNotaPedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
@@ -217,6 +218,8 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
 
         if (r == JOptionPane.YES_OPTION) {
             setVisible(false);
+            MantenimientoNotaPedidos Mant = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
+            Mant.setVisible(true);
 
         } else {
 
@@ -278,16 +281,16 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         java.util.List lista = new ArrayList();
         for (int i = 0; i < tblRegistrodeNotas.getRowCount(); i++) {
-            ClaseReporte medida = new ClaseReporte (tblRegistrodeNotas.getValueAt(i, 0).toString(),tblRegistrodeNotas.getValueAt(i, 1).toString(),tblRegistrodeNotas.getValueAt(i,2).toString(),tblRegistrodeNotas.getValueAt(i,3).toString(),tblRegistrodeNotas.getValueAt(i,4).toString(),tblRegistrodeNotas.getValueAt(i,5).toString(),tblRegistrodeNotas.getValueAt(i,6).toString(),tblRegistrodeNotas.getValueAt(i,7).toString(),tblRegistrodeNotas.getValueAt(i,8).toString());
+            ClaseReporte medida = new ClaseReporte(tblRegistrodeNotas.getValueAt(i, 0).toString(), tblRegistrodeNotas.getValueAt(i, 1).toString(), tblRegistrodeNotas.getValueAt(i, 2).toString(), tblRegistrodeNotas.getValueAt(i, 3).toString(), tblRegistrodeNotas.getValueAt(i, 4).toString(), tblRegistrodeNotas.getValueAt(i, 5).toString(), tblRegistrodeNotas.getValueAt(i, 6).toString(), tblRegistrodeNotas.getValueAt(i, 7).toString(), tblRegistrodeNotas.getValueAt(i, 8).toString());
             lista.add(medida);
         }
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject("MantenimientoNotaPedidos.jasper");
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();

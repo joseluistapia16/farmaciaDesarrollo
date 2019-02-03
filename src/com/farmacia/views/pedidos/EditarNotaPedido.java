@@ -34,8 +34,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     filtrosProductos fil = new filtrosProductos();
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
-     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;    
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     joinProductoDetallesFaltantes objeto = null;
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
@@ -66,9 +66,10 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
         Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
 
-        Total();
+//        Total();
         TotalIVA();
         TotalDescuento();
+        Total();
 
     }
 
@@ -649,27 +650,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void Total() {
-            BigDecimal Total = new BigDecimal("0.0000");
-
-        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-            Integer Cantidad = lista3.get(i).getCantidad();
-            BigDecimal CANTIDAD = new BigDecimal(Cantidad);
-            BigDecimal Precio = lista3.get(i).getPrecio();
-            BigDecimal Desc = lista3.get(i).getDescuento();
-            BigDecimal iva = lista3.get(i).getIva();
-            BigDecimal total1 = CANTIDAD.multiply(Precio).add(iva).subtract(Desc);
-            Total = Total.add(total1);
-//            total = redondearDecimales(total, 2);
-//            System.out.println("Cantidad " + Cantidad);
-//            System.out.println("Precio " + Precio);
-//            System.out.println("descuento " + Desc);
-//            System.out.println("iva  " + iva);
-//            System.out.println("total "+to);
-        }
-        txtTotal.setText(Total.toString());
-    }
-
     public void TotalIVA() {
         BigDecimal Total1Iva = new BigDecimal("0.0000");
 
@@ -690,6 +670,16 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //            TotalDescuento = redondearDecimales(TotalDescuento, 2);
         }
         txtDescuento.setText(TotalDescuento.toString());
+    }
+
+    public void Total() {
+        BigDecimal Total_ = new BigDecimal("0.0000");
+        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+            BigDecimal total = lista3.get(i).getTotal();
+            Total_ = Total_.add(total);
+            
+        }
+        txtTotal.setText(Total_.toString());
     }
 
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
@@ -907,16 +897,17 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         ArrayList tablac = new ArrayList();
-        for(int i=0;i<tbaListaFaltantes.getRowCount();i++){
-            ClaseReporte tabla1 = new ClaseReporte (txtNumero.getText(),txtCodigoProveedor.getText(),txtNombre1.getText(),txtRepresentante.getText(),txtTelefono1.getText(),txtRuc1.getText(),txtCorreo1.getText(),txtDireccion1.getText(),txtTipo1.getText(),tbaListaFaltantes.getValueAt(i,0).toString(),tbaListaFaltantes.getValueAt(i,1).toString(),tbaListaFaltantes.getValueAt(i,2).toString(),tbaListaFaltantes.getValueAt(i,3).toString(),tbaListaFaltantes.getValueAt(i,4).toString(),tbaListaFaltantes.getValueAt(i,5).toString(),tbaListaFaltantes.getValueAt(i,6).toString(),tbaListaFaltantes.getValueAt(i,7).toString(),tbaListaFaltantes.getValueAt(i,8).toString(),tbaListaFaltantes.getValueAt(i,9).toString(),tbaListaFaltantes.getValueAt(i,10).toString(),tbaListaFaltantes.getValueAt(i,11).toString(),txtDescuento.getText(),txtIva.getText(),txtTotal.getText(),txtFechaCreacion.getText(),cbxPlazo.getSelectedItem().toString(),cbxFormaP.getSelectedItem().toString());
-            tablac.add(tabla1);}
-        try{
+        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+            ClaseReporte tabla1 = new ClaseReporte(txtNumero.getText(), txtCodigoProveedor.getText(), txtNombre1.getText(), txtRepresentante.getText(), txtTelefono1.getText(), txtRuc1.getText(), txtCorreo1.getText(), txtDireccion1.getText(), txtTipo1.getText(), tbaListaFaltantes.getValueAt(i, 0).toString(), tbaListaFaltantes.getValueAt(i, 1).toString(), tbaListaFaltantes.getValueAt(i, 2).toString(), tbaListaFaltantes.getValueAt(i, 3).toString(), tbaListaFaltantes.getValueAt(i, 4).toString(), tbaListaFaltantes.getValueAt(i, 5).toString(), tbaListaFaltantes.getValueAt(i, 6).toString(), tbaListaFaltantes.getValueAt(i, 7).toString(), tbaListaFaltantes.getValueAt(i, 8).toString(), tbaListaFaltantes.getValueAt(i, 9).toString(), tbaListaFaltantes.getValueAt(i, 10).toString(), tbaListaFaltantes.getValueAt(i, 11).toString(), txtDescuento.getText(), txtIva.getText(), txtTotal.getText(), txtFechaCreacion.getText(), cbxPlazo.getSelectedItem().toString(), cbxFormaP.getSelectedItem().toString());
+            tablac.add(tabla1);
+        }
+        try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject("EditarNotaPedido.jasper");
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
-            JDialog frame = new JDialog (this);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();

@@ -201,10 +201,11 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInactivos)
-                    .addComponent(Reporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Reporte, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnInactivos)))
                 .addContainerGap())
         );
 
@@ -315,6 +316,7 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     private void btnInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInactivosActionPerformed
 
         RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
+        this.setVisible(false);
         RIN.setVisible(true);
     }//GEN-LAST:event_btnInactivosActionPerformed
 

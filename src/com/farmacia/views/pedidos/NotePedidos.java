@@ -118,8 +118,8 @@ public class NotePedidos extends javax.swing.JDialog {
             BigDecimal Precio = lista1.get(i).getPrecios();
             Integer Cant = lista1.get(i).getCantidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
-            System.out.println("CAntidad " + Cantidad);
-            System.out.println("Precio " + Precio);
+//            System.out.println("CAntidad " + Cantidad);
+//            System.out.println("Precio " + Precio);
             String ivaget = lista1.get(i).getIva();
             BigDecimal IVA = new BigDecimal(ivaget);
             BigDecimal Subtotal = Cantidad.multiply(Precio);
