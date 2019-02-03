@@ -826,8 +826,8 @@ public class NotePedidos extends javax.swing.JDialog {
         try {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
-//                objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
+                objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
+//                objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
                 if (objeto != null) {
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
@@ -842,7 +842,7 @@ public class NotePedidos extends javax.swing.JDialog {
                             lista1.add(np.getObjf());
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                             Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
-                            
+
                             TotalPro();
                             TotalIVA();
                             TotalDescuento2();
@@ -920,9 +920,13 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
-        Double iva = 0.00;
-        Double descuento = 0.00;
-        Double total = 0.00;
+//        Double iva = 0.00;
+        BigDecimal iva = new BigDecimal("0.00");
+//        Double descuento = 0.00;
+        BigDecimal descuento = new BigDecimal("0.00");
+//        Double total = 0.00;
+        BigDecimal total = new BigDecimal("0.00");
+
         try {
             if (evt.getClickCount() == 2) {
                 int r = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este producto de la lista?", "", JOptionPane.YES_NO_OPTION);
@@ -932,22 +936,30 @@ public class NotePedidos extends javax.swing.JDialog {
                     objeto = devuelveObjeto2(tbaListaFaltantes.getValueAt(i, 0).toString(), lista);
 
                     int resta = (Integer.valueOf(objeto.getCantidad()) - Integer.parseInt((String) tbaListaFaltantes.getValueAt(i, 6)));
+                    System.out.println("eliminar************");
                     getPosicion2(objeto.getId_producto(), resta);
+                    System.out.println("ddfdf"+objeto.getId_producto());
 
-                    iva = Double.valueOf(tbaListaFaltantes.getValueAt(i, 9).toString());
-                    descuento = Double.valueOf(tbaListaFaltantes.getValueAt(i, 8).toString());
-                    total = Double.valueOf(tbaListaFaltantes.getValueAt(i, 10).toString());
+                    iva = (BigDecimal) tbaListaFaltantes.getValueAt(i, 9);
+                    System.out.println(" iva****"+iva);
+                    descuento = (BigDecimal) tbaListaFaltantes.getValueAt(i, 8);
+                    total = (BigDecimal) tbaListaFaltantes.getValueAt(i, 10);
 
-                    Double iva1 = Double.parseDouble(txtIva.getText());
-                    Double descuento1 = Double.parseDouble(txtDescuento.getText());
-                    Double total1 = Double.parseDouble(txtTotal.getText());
-
-                    iva = iva1 - iva;
-                    iva = redondearDecimales(iva, 2);
-                    descuento = descuento1 - descuento;
-                    descuento = redondearDecimales(descuento, 2);
-                    total = total1 - total;
-                    total = redondearDecimales(total, 2);
+                    String iva1 = txtIva.getText();
+                    System.out.println("iva "+iva1);
+                    BigDecimal IVA = new BigDecimal(iva1);
+                    String descuento1 = txtDescuento.getText();
+                    System.out.println("descuento"+descuento1);
+                    BigDecimal DESCUENTO = new BigDecimal(descuento1);
+                    String total1 = txtTotal.getText();
+                    System.out.println("total"+total1);
+                    BigDecimal TOTAL = new BigDecimal(total1);
+                    iva = IVA.subtract(iva);
+//                    iva = redondearDecimales(iva, 2);
+                    descuento = DESCUENTO.subtract(descuento);
+//                    descuento = redondearDecimales(descuento, 2);
+                    total = TOTAL.subtract(total);
+//                    total = redondearDecimales(total, 2);
 
                     txtIva.setText(iva.toString());
                     txtDescuento.setText(descuento.toString());
@@ -960,7 +972,7 @@ public class NotePedidos extends javax.swing.JDialog {
                     Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                     TotalPro();
                     TotalIVA();
-//                    TotalDescuento();
+                    TotalDescuento2();
 
                 } else {
 
