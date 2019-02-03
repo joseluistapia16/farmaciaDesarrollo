@@ -382,7 +382,7 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
             porc = "0.00";
 
         }
-        objf.setPorcentaje_descuento(Double.valueOf(porc));
+//        objf.setPorcentaje_descuento(Double.valueOf(porc));
 
         // setVisible(false);
     }//GEN-LAST:event_btnAnadirActionPerformed

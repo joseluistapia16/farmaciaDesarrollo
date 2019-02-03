@@ -405,11 +405,10 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         /////////////
         if (!"".equals(txtporcentajeDescuento.getText())) {
             porc = txtporcentajeDescuento.getText();
-
         } else {
-            porc = "0.00";
-
+            porc = "0.0000";
         }
+        ///////
         BigDecimal b1 = new BigDecimal(porc);
         objf.setPorcentaje_descuento(b1);
         if (!"".equals(txtBono.getText())) {
