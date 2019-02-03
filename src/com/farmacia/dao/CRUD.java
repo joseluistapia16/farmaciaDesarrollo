@@ -2122,9 +2122,9 @@ public class CRUD {
             prodProAlm.setString(3, obj.getFecha_creacion());
             prodProAlm.setString(4, obj.getPlazo());
             prodProAlm.setString(5, obj.getForma_pago());
-            prodProAlm.setDouble(6, obj.getIva());
-            prodProAlm.setDouble(7, obj.getDescuento());
-            prodProAlm.setDouble(8, obj.getTotal());
+            prodProAlm.setBigDecimal(6, obj.getIva());
+            prodProAlm.setBigDecimal(7, obj.getDescuento());
+            prodProAlm.setBigDecimal(8, obj.getTotal());
 
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.executeUpdate();

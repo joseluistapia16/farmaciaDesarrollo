@@ -1,6 +1,7 @@
 
 package com.farmacia.entities1;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -15,15 +16,15 @@ public class CabeceraNotaPedido {
     private String estado;
     private String plazo;
     private String forma_pago;
-    private Double iva;
-    private Double descuento;
-    private Double total;
+    private BigDecimal iva;
+    private BigDecimal descuento;
+    private BigDecimal total;
  
 
     public CabeceraNotaPedido() {
     }
 
-    public CabeceraNotaPedido(Long id_cabecera_nota_pedidos, Long id_proveedor, Long id_usuario, String fecha_creacion, String estado, String plazo, String forma_pago, Double iva, Double descuento, Double total) {
+    public CabeceraNotaPedido(Long id_cabecera_nota_pedidos, Long id_proveedor, Long id_usuario, String fecha_creacion, String estado, String plazo, String forma_pago, BigDecimal iva, BigDecimal descuento, BigDecimal total) {
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
         this.id_proveedor = id_proveedor;
         this.id_usuario = id_usuario;
@@ -92,29 +93,28 @@ public class CabeceraNotaPedido {
         this.forma_pago = forma_pago;
     }
 
-    public Double getIva() {
+    public BigDecimal getIva() {
         return iva;
     }
 
-    public void setIva(Double iva) {
+    public void setIva(BigDecimal iva) {
         this.iva = iva;
     }
 
-    public Double getDescuento() {
+    public BigDecimal getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(Double descuento) {
+    public void setDescuento(BigDecimal descuento) {
         this.descuento = descuento;
     }
 
-    public Double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
-    
 }

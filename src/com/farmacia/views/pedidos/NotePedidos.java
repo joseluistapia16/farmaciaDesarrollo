@@ -45,9 +45,9 @@ public class NotePedidos extends javax.swing.JDialog {
 //        btnNuevo.setEnabled(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        TotalPro();
-        TotalIVA();
         TotalDescuento2();
+        TotalPro();
+        TotalIVA2();
         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
         //FECHA DEL SISTEMA
@@ -110,7 +110,7 @@ public class NotePedidos extends javax.swing.JDialog {
         txtTotal.setText(TotalPro.toString());
     }
 
-    public void TotalIVA() {
+    public void TotalIVA2() {
         BigDecimal TotalIva = new BigDecimal("0.00");
 
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
@@ -118,8 +118,8 @@ public class NotePedidos extends javax.swing.JDialog {
             BigDecimal Precio = lista1.get(i).getPrecios();
             Integer Cant = lista1.get(i).getCantidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
-//            System.out.println("CAntidad " + Cantidad);
-//            System.out.println("Precio " + Precio);
+            System.out.println("CAntidad " + Cantidad);
+            System.out.println("Precio " + Precio);
             String ivaget = lista1.get(i).getIva();
             BigDecimal IVA = new BigDecimal(ivaget);
             BigDecimal Subtotal = Cantidad.multiply(Precio);
@@ -131,37 +131,21 @@ public class NotePedidos extends javax.swing.JDialog {
         }
         txtIva.setText(TotalIva.toString());
     }
-//    public void TotalDescuento() {
-//        Double TotalDescuento = 0.00;
-//        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-//            BigDecimal Precio = lista1.get(i).getPrecios();
-//            BigDecimal PorcDesc = lista1.get(i).getPorcentaje_descuento();
-//            int Cantidad = lista1.get(i).getCantidad();
-//            BigDecimal ValorDesc = Cantidad * Precio * PorcDesc / 100;
-//
-//            TotalDescuento = TotalDescuento + ValorDesc;
-//            TotalDescuento = redondearDecimales(TotalDescuento, 2);
-//        }
-//        txtDescuento.setText(Double.valueOf(TotalDescuento).toString());
-//
-////        txtDescuento.setText(String.format("%5.2f", TotalDescuento));
-//    }
-
     public void TotalDescuento2() {
         BigDecimal TotalDesc = new BigDecimal("0.00");
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
             BigDecimal Precio = lista1.get(i).getPrecios();
-            System.out.println("precio " + Precio);
+//            System.out.println("precio " + Precio);
             BigDecimal PorcDesc = lista1.get(i).getPorcentaje_descuento();
-            System.out.println("porcent " + PorcDesc);
+//            System.out.println("porcent " + PorcDesc);
             Integer Cant = lista1.get(i).getCantidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
             BigDecimal Subtotal = Cantidad.multiply(Precio);
-            System.out.println("Subtotal " + Subtotal);
+//            System.out.println("Subtotal " + Subtotal);
             BigDecimal ValorDesc = Subtotal.multiply(PorcDesc).divide(new BigDecimal("100"));
 
             TotalDesc = TotalDesc.add(ValorDesc);
-            System.out.println("TotalDEsc " + TotalDesc);
+//            System.out.println("TotalDEsc " + TotalDesc);
         }
         txtDescuento.setText(TotalDesc.toString());
     }
@@ -796,9 +780,16 @@ public class NotePedidos extends javax.swing.JDialog {
             cn.setFecha_creacion(txtFecha.getText() + " " + txtHora.getText());
             cn.setPlazo(cbxPlazo.getSelectedItem().toString());
             cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
-            cn.setIva(Double.valueOf(txtIva.getText()));
-            cn.setDescuento(Double.valueOf(txtDescuento.getText()));
-            cn.setTotal(Double.valueOf(txtTotal.getText()));
+            
+            String iva1 = txtIva.getText();
+            BigDecimal IVA = new BigDecimal(iva1);
+            cn.setIva(IVA);//
+            String descuento1 = txtDescuento.getText();
+            BigDecimal DESCUENTO = new BigDecimal(descuento1);
+            cn.setDescuento(DESCUENTO);//
+            String total1 = txtTotal.getText();
+            BigDecimal TOTAL = new BigDecimal(total1);
+            cn.setTotal(TOTAL);//
             id_cab = crud.insertarCabeceraNotaPedido(cn);
 
             String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + txtTotal.getText();
@@ -843,10 +834,9 @@ public class NotePedidos extends javax.swing.JDialog {
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                             Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
 
-                            TotalPro();
-                            TotalIVA();
                             TotalDescuento2();
-
+                            TotalPro();
+                            TotalIVA2();
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, msg);
@@ -938,21 +928,21 @@ public class NotePedidos extends javax.swing.JDialog {
                     int resta = (Integer.valueOf(objeto.getCantidad()) - Integer.parseInt((String) tbaListaFaltantes.getValueAt(i, 6)));
                     System.out.println("eliminar************");
                     getPosicion2(objeto.getId_producto(), resta);
-                    System.out.println("ddfdf"+objeto.getId_producto());
+                    System.out.println("ddfdf" + objeto.getId_producto());
 
                     iva = (BigDecimal) tbaListaFaltantes.getValueAt(i, 9);
-                    System.out.println(" iva****"+iva);
+                    System.out.println(" iva****" + iva);
                     descuento = (BigDecimal) tbaListaFaltantes.getValueAt(i, 8);
                     total = (BigDecimal) tbaListaFaltantes.getValueAt(i, 10);
 
                     String iva1 = txtIva.getText();
-                    System.out.println("iva "+iva1);
+                    System.out.println("iva " + iva1);
                     BigDecimal IVA = new BigDecimal(iva1);
                     String descuento1 = txtDescuento.getText();
-                    System.out.println("descuento"+descuento1);
+                    System.out.println("descuento" + descuento1);
                     BigDecimal DESCUENTO = new BigDecimal(descuento1);
                     String total1 = txtTotal.getText();
-                    System.out.println("total"+total1);
+                    System.out.println("total" + total1);
                     BigDecimal TOTAL = new BigDecimal(total1);
                     iva = IVA.subtract(iva);
 //                    iva = redondearDecimales(iva, 2);
@@ -971,7 +961,7 @@ public class NotePedidos extends javax.swing.JDialog {
                     Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
                     Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                     TotalPro();
-                    TotalIVA();
+                    TotalIVA2();
                     TotalDescuento2();
 
                 } else {
