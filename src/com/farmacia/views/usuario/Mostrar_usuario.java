@@ -131,7 +131,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jButton2.setText("NUEVO");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,8 +147,8 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             }
         });
 
-        btnReporte.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnReporte.setText("REPORTE");
+        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnReporte.setText("IMPRIMIR");
         btnReporte.setToolTipText("");
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

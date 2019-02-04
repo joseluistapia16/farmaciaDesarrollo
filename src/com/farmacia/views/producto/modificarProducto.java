@@ -176,14 +176,26 @@ public class modificarProducto extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PRODUCTO");
 
-       
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/folder_add_icon-icons.com_74436.png"))); // NOI18N
+        btnAgregar.setText("AGREGAR");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("Fecha :");
 
         txtFechaActual.setEditable(false);
         txtFechaActual.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/action_exit_close_remove_13915.png"))); // NOI18N
+        btnSalir.setText("SALIR");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -587,7 +599,7 @@ public class modificarProducto extends javax.swing.JDialog {
 
         Reporte.setBackground(new java.awt.Color(254, 254, 254));
         Reporte.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        Reporte.setText("Reporte");
+        Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ReporteActionPerformed(evt);
@@ -666,11 +678,10 @@ public class modificarProducto extends javax.swing.JDialog {
                         .addComponent(txtcantMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(editarPrecio)
-                        .addGap(63, 63, 63))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160))
+                        .addGap(63, 63, 63))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -718,9 +729,9 @@ public class modificarProducto extends javax.swing.JDialog {
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtcantMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(8, 8, 8)
+                .addGap(18, 18, 18)
                 .addComponent(Reporte)
-                .addContainerGap())
+                .addGap(5, 5, 5))
         );
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/guardar.jpg"))); // NOI18N

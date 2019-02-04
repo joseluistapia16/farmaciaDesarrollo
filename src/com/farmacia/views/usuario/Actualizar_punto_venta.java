@@ -195,7 +195,7 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
                         .addGap(82, 82, 82))))
         );
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jButton1.setText("ACTUALIZAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,7 +203,7 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jButton2.setText("CANCELAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,8 +211,8 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
             }
         });
 
-        BotonSalir1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        BotonSalir1.setText("REPORTE");
+        BotonSalir1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        BotonSalir1.setText("IMPRIMIR");
         BotonSalir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonSalir1ActionPerformed(evt);
@@ -249,7 +249,7 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

@@ -25,16 +25,17 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel1" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <Component id="BtnNumeroventa" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="BtnGenerarventa" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="BtnImprimir" min="-2" max="-2" attributes="0"/>
+              <Component id="BtnNumeroventa" min="-2" pref="140" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="BtnGenerarventa" min="-2" pref="140" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnReporte" min="-2" pref="120" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="BtnLimpiar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="BtnGuardar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="BtnModificar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="BtnEliminar" min="-2" max="-2" attributes="0"/>
@@ -46,13 +47,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BtnNumeroventa" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnGenerarventa" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="BtnNumeroventa" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="BtnGenerarventa" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="BtnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BtnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BtnModificar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BtnEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnReporte" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
@@ -78,7 +79,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="136" pref="1187" max="32767" attributes="0"/>
+                  <EmptySpace min="136" pref="1214" max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
@@ -442,7 +443,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="667" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -628,6 +629,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="BtnNumeroventa">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Ubuntu" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Generar N&#xb0; Venta"/>
       </Properties>
       <Events>
@@ -636,12 +640,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="BtnGenerarventa">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Ubuntu" size="13" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Generar Venta"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnImprimir">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Imprimir"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="BtnLimpiar">
@@ -653,16 +655,33 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnGuardarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtnModificar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modificar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnModificarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtnEliminar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnReporte">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Ubuntu" size="13" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

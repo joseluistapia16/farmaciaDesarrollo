@@ -854,7 +854,7 @@
         <Component class="javax.swing.JButton" name="btnSalir2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="18" style="1"/>
+              <Font name="Ubuntu" size="13" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SALIR"/>
           </Properties>
@@ -934,7 +934,7 @@
         <Component class="javax.swing.JButton" name="btnEditar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="18" style="1"/>
+              <Font name="Ubuntu" size="13" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="GUARDAR"/>
           </Properties>
@@ -945,9 +945,9 @@
         <Component class="javax.swing.JButton" name="btnReporte">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="18" style="1"/>
+              <Font name="Ubuntu" size="13" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Reporte"/>
+            <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporteActionPerformed"/>
