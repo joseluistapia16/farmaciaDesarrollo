@@ -20,6 +20,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -103,45 +104,36 @@ public class OrdenCompra extends javax.swing.JDialog {
     }
 
     @SuppressWarnings("unchecked")
-    public void Total() {
-        Double total = 0.00;
-
-        for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
-            int Cantidad = lista3.get(i).getCantidad();
-            Double Precio = lista3.get(i).getPrecio();
-            Double Desc = lista3.get(i).getDescuento();
-            Double iva = lista3.get(i).getIva();
-            System.out.println("suma: "+Cantidad+" + "+Precio+" + "+iva+" + "+Desc);
-            Double total1 = Cantidad * Precio + iva - Desc;
-            System.out.println("lala: "+total1);
-            total = total + total1;
-            System.out.println("total total: "+total);
-            
-//total = redondearDecimales(total, 2);
-        }
-        txtTotal.setText(Double.valueOf(total).toString());
-    }
-
     public void TotalIVA() {
-        Double totalIva = 0.00;
+        BigDecimal Total1Iva = new BigDecimal("0.0000");
 
         for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
-            Double Iva1 = lista3.get(i).getIva();
-            totalIva = totalIva + Iva1;
-            totalIva = redondearDecimales(totalIva, 2);
+            BigDecimal Iva1 = lista3.get(i).getIva();
+            Total1Iva = Total1Iva.add(Iva1);
+//            totalIva = redondearDecimales(totalIva, 2);
         }
-        txtIva.setText(Double.valueOf(totalIva).toString());
+        txtIva.setText(Total1Iva.toString());
 
     }
 
     public void TotalDescuento() {
-        Double TotalDescuento = 0.00;
+        BigDecimal TotalDescuento = new BigDecimal("0.0000");
         for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
-            Double descuento = lista3.get(i).getDescuento();
-            TotalDescuento = TotalDescuento + descuento;
-            TotalDescuento = redondearDecimales(TotalDescuento, 2);
+            BigDecimal descuento = lista3.get(i).getDescuento();
+            TotalDescuento = TotalDescuento.add(descuento);
+//            TotalDescuento = redondearDecimales(TotalDescuento, 2);
         }
-        txtDescuento.setText(Double.valueOf(TotalDescuento).toString());
+        txtDescuento.setText(TotalDescuento.toString());
+    }
+
+    public void Total() {
+        BigDecimal Total_ = new BigDecimal("0.0000");
+        for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
+            BigDecimal total = lista3.get(i).getTotal();
+            Total_ = Total_.add(total);
+            
+        }
+        txtTotal.setText(Total_.toString());
     }
 
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {

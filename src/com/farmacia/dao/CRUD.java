@@ -40,6 +40,7 @@ import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ValidarIngresoProducto;
+import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -2830,55 +2831,59 @@ public class CRUD {
         return valor;
     }
 //
-//    public static void InsertarBDCompras(String id_cabecera, ArrayList<joinProductoDetallesFaltantes> lista) {
-//        String cad1 = "";
-//        String[] Filas = new String[11];
-//
-//        for (int i = 0; i < lista.size(); i++) {
-//            Filas[0] = "" + lista.get(i).getId_producto().toString();
-//            Filas[1] = lista.get(i).getMarca();
-//            Filas[2] = lista.get(i).getNombre_tipo();
-//            Filas[3] = lista.get(i).getNombre_producto();
-//            Filas[4] = lista.get(i).getEnvase();
-//            Filas[5] = lista.get(i).getMedida();
-//            Filas[6] = lista.get(i).getCantidad().toString();
-//            Filas[7] = lista.get(i).getPrecios().toString();
-//            int Cantidad = lista.get(i).getCantidad();
-//            Double Precio = lista.get(i).getPrecios();
-//            Double PorcDesc = lista.get(i).getPorcentaje_descuento();
-//            Double ValorDes = Cantidad * Precio * PorcDesc / 100;
-//            ValorDes = redondearDecimales(ValorDes, 2);
-//            Double iva = 0.12;
-//            Double iva1 = 0.00;
-////            Filas[8] = String.format("%5.2f", ValorDes);
-//            Filas[8] = "" + ValorDes;
-//            if (lista.get(i).getIva().equals("SI")) {
-//                iva1 = Cantidad * iva * Precio;
-//                iva1 = redondearDecimales(iva1, 2);
-////                Filas[9] = String.format("%5.2f", iva1);
-//                Filas[9] = "" + iva1;
-//
-//                Double importe = Cantidad * Precio + iva1 - ValorDes;
-//                importe = redondearDecimales(importe, 2);
-//                Filas[10] = "" + importe;
-////                Filas[10] = String.format("%5.2f", importe);
-//            }
-//            if (lista.get(i).getIva().equals("NO")) {
-//                Filas[9] = "" + 0;
-//                Double importe = Cantidad * Precio - ValorDes;
-//                importe = redondearDecimales(importe, 2);
-////                Filas[10] = String.format("%5.2f", importe);
-//                Filas[10] = "" + importe;
-//
-//            }
-//            cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`) VALUES ('" + lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "');";
-//
-//        }
-//        System.out.println(cad1);
-//        CRUD crud = new CRUD();
-//        crud.insertarDetallesEnRegistroCompras(cad1);
-//        cad1 = "";
-//    }
+    public static void InsertarBDCompras(String id_cabecera, ArrayList<joinProductoDetallesFaltantes> lista) {
+        String cad1 = "";
+        String[] Filas = new String[11];
+
+        for (int i = 0; i < lista.size(); i++) {
+            Filas[0] = "" + lista.get(i).getId_producto().toString();
+            Filas[1] = lista.get(i).getMarca();
+            Filas[2] = lista.get(i).getNombre_tipo();
+            Filas[3] = lista.get(i).getNombre_producto();
+            Filas[4] = lista.get(i).getEnvase();
+            Filas[5] = lista.get(i).getMedida();
+            Filas[6] = lista.get(i).getCantidad().toString();
+            Filas[7] = lista.get(i).getPrecios().toString();
+            BigDecimal Cantidad = BigDecimal.valueOf(Integer.valueOf(lista.get(i).getCantidad()));//BigDecimal.valueOf(Double.parseDouble(comisiontxt.getText()))
+            BigDecimal Precio = lista.get(i).getPrecios();
+            BigDecimal PorcDesc = lista.get(i).getPorcentaje_descuento();
+            BigDecimal ValorDes = Cantidad.multiply(Precio).multiply(PorcDesc).divide(new BigDecimal("100"));
+            ValorDes = ValorDes.setScale(2, BigDecimal.ROUND_HALF_UP);
+            BigDecimal iva = new BigDecimal("0.12");
+            BigDecimal iva1 = new BigDecimal("0.00");
+//            Filas[8] = String.format("%5.2f", ValorDes);
+            Filas[8] = "" + ValorDes;
+            
+            if (lista.get(i).getIva().equals("NO")) {
+                Filas[9] = "" + 0;
+                BigDecimal importe = Cantidad.multiply(Precio).subtract(ValorDes);//creo q falata sumar iva
+                importe = importe.setScale(2, BigDecimal.ROUND_HALF_UP);
+//                Filas[10] = String.format("%5.2f", importe);
+                Filas[10] = "" + importe;
+
+            }else{
+                
+                iva1=Cantidad.multiply(iva).multiply(Precio);// ojo cambiar el iva por el de base de datos
+                iva1 = iva1.setScale(2, BigDecimal.ROUND_HALF_UP);
+//                Filas[9] = String.format("%5.2f", iva1);
+                Filas[9] = "" + iva1;
+
+               // Double importe = Cantidad * Precio + iva1 - ValorDes;
+                BigDecimal importe = Cantidad.multiply(Precio).add(iva1).subtract(ValorDes);
+                importe = importe.setScale(2, BigDecimal.ROUND_HALF_UP);
+                Filas[10] = "" + importe;
+//                Filas[10] = String.format("%5.2f", importe);
+            
+            }
+            Filas[11]=""+lista.get(i).getBono(); //ojo con el bono esta en integer
+            cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`) VALUES ('" + lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "');";
+
+        }
+        System.out.println(cad1);
+        CRUD crud = new CRUD();
+        crud.insertarDetallesEnRegistroCompras(cad1);
+        cad1 = "";
+    }
 
    
 

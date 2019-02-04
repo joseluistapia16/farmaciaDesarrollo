@@ -13,6 +13,7 @@ import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -655,10 +656,10 @@ public class EditarProductoEnCompras extends javax.swing.JDialog {
     private void Guardar() {
 
         DetalleNotaPedido obj = new DetalleNotaPedido();
-        obj.setCantidad(Integer.parseInt(txtcantidad.getText()));
-        obj.setDescuento(Double.parseDouble(txtDescuento.getText()));
-        obj.setIva(Double.parseDouble(txtIva.getText()));
-        obj.setTotal(Double.parseDouble(txtTotal.getText()));
+        obj.setCantidad(Integer.parseInt(txtcantidad.getText()));//BigDecimal.valueOf(Double.parseDouble(comisiontxt.getText()))
+        obj.setDescuento(BigDecimal.valueOf(Double.parseDouble(txtDescuento.getText())));
+        obj.setIva(BigDecimal.valueOf(Double.parseDouble(txtIva.getText())));
+        obj.setTotal(BigDecimal.valueOf(Double.parseDouble(txtTotal.getText())));
         obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedido());
         crud.ActualizarNotaPedidos(obj);
     }
@@ -721,10 +722,10 @@ public class EditarProductoEnCompras extends javax.swing.JDialog {
         txtPrecio.setText(obj.getPrecio().toString());
         txtcantidad.setText("" + obj.getCantidad());
         System.out.println(obj.getDescuento()+" "+ obj.getCantidad()+" "+ obj.getPrecio());
-        Double descuento= obj.getDescuento()/obj.getCantidad()/obj.getPrecio()*100;
-        descuento = redondearDecimales(descuento, 2);
-        descuento= descuento/100*100;
-        txtporcentajeDescuento.setText(descuento.toString());
+//        Double descuento= obj.getDescuento()/obj.getCantidad()/obj.getPrecio()*100;
+//        descuento = redondearDecimales(descuento, 2);
+//        descuento= descuento/100*100;
+//        txtporcentajeDescuento.setText(descuento.toString());
         txtTotal.setText(obj.getTotal().toString());
 //        txtNombre1.setText(obj.getEntidad());
 ////       
