@@ -584,8 +584,9 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     private void BtnAddItenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddItenActionPerformed
         
-//        String nombre = TxtProdtotal.getText();
-//        BigDecimal g = new BigDecimal(nombre);
+        String nombre = TxtProdtotal.getText();
+        BigDecimal g = new BigDecimal(nombre);
+        
         
         RegDetalleVentas.setProducto(TxtProdNombre.getText());
         RegDetalleVentas.setDetalle(TxtProdDetalle.getText());
@@ -616,6 +617,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
             subtotal = result.toString();
         }
         TxtProdUnit.setText(subtotal);
+        
+        
     }//GEN-LAST:event_TxtProdCantidadKeyReleased
 
     private void TxtProdCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtProdCantidadKeyTyped
