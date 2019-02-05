@@ -776,7 +776,7 @@ public class NotePedidos extends javax.swing.JDialog {
             String cad = "";
             String cad1 = "";
             CabeceraNotaPedido cn = new CabeceraNotaPedido();
-            cn.setId_proveedor(Long.valueOf(txtCodigoProveedor.getText()));
+            cn.setId_proveedor(Long.parseLong(txtCodigoProveedor.getText()));
             cn.setId_usuario(Long.valueOf("2"));
             cn.setFecha_creacion(txtFecha.getText() + " " + txtHora.getText());
             cn.setPlazo(cbxPlazo.getSelectedItem().toString());

@@ -713,6 +713,7 @@ public class Tablas {
         }
 
     }
+//cargarJoinProductoIngresoNotas
 
     public static void cargarJoinProductoIngresoNotas(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
 
@@ -726,7 +727,6 @@ public class Tablas {
         String[] Filas = new String[12];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
-
         for (int i = 0; i < lista.size(); i++) {
             Integer Cant = lista.get(i).getCantidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
@@ -737,7 +737,8 @@ public class Tablas {
             BigDecimal CantidadTotal = Cantidad.add(Bono1);
             BigDecimal PrecioBono = Subtotal.divide(CantidadTotal);
             BigDecimal PorcentajeDesc = lista.get(i).getPorcentaje_descuento();
-            BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
+            BigDecimal cien = new BigDecimal("100");
+            BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(cien);
             Filas[0] = "" + lista.get(i).getId_producto().toString();
             Filas[1] = lista.get(i).getMarca();
             Filas[2] = lista.get(i).getNombre_tipo();
@@ -752,8 +753,8 @@ public class Tablas {
                 Filas[10] = "" + 0.00;
                 BigDecimal importe = Subtotal.subtract(ValorDes);
                 Filas[11] = "" + importe;
-            }
-            if (!"NO".equals(lista.get(i).getIva())) {
+            } else //            if (!"NO".equals(lista.get(i).getIva())) 
+            {
                 String ivaget = lista.get(i).getIva();
                 BigDecimal IVA = new BigDecimal(ivaget);
                 BigDecimal ValorIVA = IVA.multiply(Subtotal);
@@ -761,6 +762,7 @@ public class Tablas {
                 BigDecimal importe = Subtotal.add(ValorIVA).subtract(ValorDes);
                 Filas[11] = "" + importe;
             }
+
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -787,9 +789,88 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(11).setPreferredWidth(a[11]);
             Tabla.getColumnModel().getColumn(11).setCellRenderer(tcr);
+
         }
 
     }
+//    public static void cargarJoinProductoIngresoNotas(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
+//
+//        int[] a = {10, 30, 32, 70, 15, 30, 10, 10, 10, 20, 10, 5};
+//        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+//        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+//        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+//        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
+//        model = Tablas.VaciarTabla(Tabla);
+//        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "BONO", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
+//        String[] Filas = new String[12];
+//        model = new DefaultTableModel(null, Co);
+//        Tabla.setShowGrid(true);
+//
+//        for (int i = 0; i < lista.size(); i++) {
+//            Integer Cant = lista.get(i).getCantidad();
+//            BigDecimal Cantidad = new BigDecimal(Cant);
+//            BigDecimal Precio = lista.get(i).getPrecios();
+//            BigDecimal Subtotal = Cantidad.multiply(Precio);
+//            Integer Bono = lista.get(i).getBono();
+//            BigDecimal Bono1 = new BigDecimal(Bono);
+//            BigDecimal CantidadTotal = Cantidad.add(Bono1);
+//            BigDecimal PrecioBono = Subtotal.divide(CantidadTotal);
+//            BigDecimal PorcentajeDesc = lista.get(i).getPorcentaje_descuento();
+//            BigDecimal cien = new BigDecimal("100");
+//            BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(cien);
+//            Filas[0] = "" + lista.get(i).getId_producto().toString();
+//            Filas[1] = lista.get(i).getMarca();
+//            Filas[2] = lista.get(i).getNombre_tipo();
+//            Filas[3] = lista.get(i).getNombre_producto();
+//            Filas[4] = lista.get(i).getEnvase();
+//            Filas[5] = lista.get(i).getMedida();
+//            Filas[6] = "" + Bono;
+//            Filas[7] = "" + Cant;
+//            Filas[8] = "" + PrecioBono;
+//            Filas[9] = "" + ValorDes;
+//            if (lista.get(i).getIva().equals("NO")) {
+//                Filas[10] = "" + 0.00;
+//                BigDecimal importe = Subtotal.subtract(ValorDes);
+//                Filas[11] = "" + importe;
+//            }else
+////            if (!"NO".equals(lista.get(i).getIva())) 
+//            {
+//                String ivaget = lista.get(i).getIva();
+//                BigDecimal IVA = new BigDecimal(ivaget);
+//                BigDecimal ValorIVA = IVA.multiply(Subtotal);
+//                Filas[10] = "" + ValorIVA;
+//                BigDecimal importe = Subtotal.add(ValorIVA).subtract(ValorDes);
+//                Filas[11] = "" + importe;
+//            }
+//            model.addRow(Filas);
+//            Tabla.setModel(model);
+//            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+//            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+//            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+//            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+//            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+//            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+//            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
+//            Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
+//            Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(8).setPreferredWidth(a[8]);
+//            Tabla.getColumnModel().getColumn(8).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(9).setPreferredWidth(a[9]);
+//            Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
+//            Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(11).setPreferredWidth(a[11]);
+//            Tabla.getColumnModel().getColumn(11).setCellRenderer(tcr);
+//        }
+//
+//    }
 
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
