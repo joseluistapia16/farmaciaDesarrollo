@@ -15,21 +15,21 @@ public class ListarDetalleVentas {
     private String detalle;
     private int cantidad;
     private Double pvp;
+    private Double descuento;
     private String iva;
     private Double subtotal;
 
-   
-    public ListarDetalleVentas(String producto, String detalle, int cantidad, Double pvp, String iva, Double subtotal) {
+    public ListarDetalleVentas() {
+    }
+
+    public ListarDetalleVentas(String producto, String detalle, int cantidad, Double pvp, Double descuento, String iva, Double subtotal) {
         this.producto = producto;
         this.detalle = detalle;
         this.cantidad = cantidad;
         this.pvp = pvp;
+        this.descuento = descuento;
         this.iva = iva;
         this.subtotal = subtotal;
-    }
-
-    public ListarDetalleVentas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getProducto() {
@@ -62,6 +62,14 @@ public class ListarDetalleVentas {
 
     public void setPvp(Double pvp) {
         this.pvp = pvp;
+    }
+
+    public Double getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(Double descuento) {
+        this.descuento = descuento;
     }
 
     public String getIva() {

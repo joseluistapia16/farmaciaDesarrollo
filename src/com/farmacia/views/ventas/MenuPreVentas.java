@@ -35,19 +35,16 @@ import net.sf.jasperreports.view.JRViewer;
  */
 public class MenuPreVentas extends javax.swing.JDialog {
 
-    ListarDetalleVentas RegDetalleVentas = new ListarDetalleVentas();
     ArrayList<ListarDetalleVentas> ListarDetalle = new ArrayList<ListarDetalleVentas>();
 
-    
-    
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         TxtFecha.setText(FechaActual());
-        TxtProdUnit.setEditable(false); 
-        
+        TxtProdSubtotal.setEditable(false);
+
     }
 
     /**
@@ -83,15 +80,15 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         TxtProdCantidad = new javax.swing.JTextField();
-        TxtProdUnit = new javax.swing.JTextField();
-        TxtProddescuento = new javax.swing.JTextField();
+        TxtProdSubtotal = new javax.swing.JTextField();
         TxtProdiva = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         TxtPvp = new javax.swing.JTextField();
         TxtProdtotal = new javax.swing.JTextField();
         BtnAddIten = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        BtnModIten = new javax.swing.JButton();
+        BtnDeleIten = new javax.swing.JButton();
+        TxtProdDescuento = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         TxtNorden = new javax.swing.JTextField();
@@ -111,13 +108,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtHora = new javax.swing.JTextField();
         TxtFecha = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        BtnNumeroventa = new javax.swing.JButton();
-        BtnGenerarventa = new javax.swing.JButton();
-        BtnLimpiar = new javax.swing.JButton();
-        BtnGuardar = new javax.swing.JButton();
-        BtnModificar = new javax.swing.JButton();
-        BtnEliminar = new javax.swing.JButton();
-        btnReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -159,7 +149,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
         jLabel16.setText("Cantidad:");
 
-        jLabel17.setText("Precio Unitario:");
+        jLabel17.setText("SubTotal");
 
         jLabel18.setText("Precio Total:");
 
@@ -176,12 +166,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
         });
 
-        TxtProddescuento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtProddescuentoActionPerformed(evt);
-            }
-        });
-
         jLabel14.setText("PVP:");
 
         BtnAddIten.setText("Adicionar Item");
@@ -191,9 +175,9 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
         });
 
-        jButton11.setText("Modificar Item");
+        BtnModIten.setText("Modificar Item");
 
-        jButton12.setText("Eliminar Item");
+        BtnDeleIten.setText("Eliminar Item");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -205,9 +189,9 @@ public class MenuPreVentas extends javax.swing.JDialog {
                         .addGap(68, 68, 68)
                         .addComponent(BtnAddIten)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11)
+                        .addComponent(BtnModIten)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton12))
+                        .addComponent(BtnDeleIten))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -227,13 +211,14 @@ public class MenuPreVentas extends javax.swing.JDialog {
                                     .addComponent(jLabel18)
                                     .addComponent(jLabel14))
                                 .addGap(3, 3, 3)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(TxtProdiva)
-                                    .addComponent(TxtProdUnit)
-                                    .addComponent(TxtProddescuento)
-                                    .addComponent(TxtProdCantidad)
-                                    .addComponent(TxtProdtotal)
-                                    .addComponent(TxtPvp, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TxtProdDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(TxtProdiva)
+                                        .addComponent(TxtProdSubtotal)
+                                        .addComponent(TxtProdCantidad)
+                                        .addComponent(TxtProdtotal)
+                                        .addComponent(TxtPvp, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -263,11 +248,11 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(TxtProdUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtProdSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(TxtProddescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtProdDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
@@ -279,8 +264,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnAddIten)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12))
+                    .addComponent(BtnModIten)
+                    .addComponent(BtnDeleIten))
                 .addGap(41, 41, 41))
         );
 
@@ -462,77 +447,17 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        BtnNumeroventa.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        BtnNumeroventa.setText("Generar N° Venta");
-        BtnNumeroventa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnNumeroventaActionPerformed(evt);
-            }
-        });
-
-        BtnGenerarventa.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        BtnGenerarventa.setText("Generar Venta");
-
-        BtnLimpiar.setText("Limpiar");
-
-        BtnGuardar.setText("Guardar");
-        BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGuardarActionPerformed(evt);
-            }
-        });
-
-        BtnModificar.setText("Modificar");
-        BtnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnModificarActionPerformed(evt);
-            }
-        });
-
-        BtnEliminar.setText("Eliminar");
-
-        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        btnReporte.setText("IMPRIMIR");
-        btnReporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(BtnNumeroventa, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnGenerarventa, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BtnLimpiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BtnGuardar)
-                .addGap(12, 12, 12)
-                .addComponent(BtnModificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnEliminar))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnNumeroventa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnGenerarventa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnLimpiar)
-                    .addComponent(BtnGuardar)
-                    .addComponent(BtnModificar)
-                    .addComponent(BtnEliminar)
-                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(29, 29, 29)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -560,14 +485,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }
 
 
-    private void BtnNumeroventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNumeroventaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnNumeroventaActionPerformed
-
-    private void TxtProddescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtProddescuentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtProddescuentoActionPerformed
-
     private void BtnBuscarprodnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarprodnombreActionPerformed
 
         ConsultarProductoVentas cpv = new ConsultarProductoVentas(new javax.swing.JFrame(), true);
@@ -583,30 +500,40 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnBuscarcedulaActionPerformed
 
     private void BtnAddItenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddItenActionPerformed
-        
+
         String nombre = TxtProdtotal.getText();
-        BigDecimal mm = new BigDecimal(nombre);
-        
-        
+        BigDecimal g = new BigDecimal(nombre);
+
+        ListarDetalleVentas RegDetalleVentas = new ListarDetalleVentas();
         RegDetalleVentas.setProducto(TxtProdNombre.getText());
         RegDetalleVentas.setDetalle(TxtProdDetalle.getText());
         RegDetalleVentas.setCantidad(Integer.parseInt(TxtProdCantidad.getText()));
-        RegDetalleVentas.setPvp(Double.parseDouble(TxtProdUnit.getText()));
+        RegDetalleVentas.setDescuento(Double.parseDouble(TxtProdDescuento.getText()));
+        RegDetalleVentas.setPvp(Double.parseDouble(TxtProdSubtotal.getText()));
         RegDetalleVentas.setIva(TxtProdiva.getText());
         RegDetalleVentas.setSubtotal(Double.parseDouble(TxtProdtotal.getText()));
-        
-        
-        
-        
-       
+
+        ListarDetalle.add(RegDetalleVentas);
+
+//        for (int i=0; i<ListarDetalle.size(); i++){
+//            System.out.println(ListarDetalle.get(i).getProducto()+ ListarDetalle.get(i).getCantidad()+ ListarDetalle.get(i).getSubtotal()+"   " +ListarDetalle.get(i).getDescuento());
+//        }
         Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
-      
+
+        TxtProdNombre.setText("");
+        TxtProdDetalle.setText("");
+        TxtProdCantidad.setText("");
+        TxtPvp.setText("");
+        TxtProdSubtotal.setText("");
+        TxtProdDescuento.setText("");
+        TxtProdiva.setText("");
+        TxtProdtotal.setText("");
+
     }//GEN-LAST:event_BtnAddItenActionPerformed
 
     private void TxtProdCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtProdCantidadKeyReleased
         String subtotal = "0.00";
-        if (TxtProdCantidad.equals(" ")==false && TxtProdCantidad.getText().matches("[0-9]+[0-9]*")){
-            
+        if (TxtProdCantidad.equals(" ") == false && TxtProdCantidad.getText().matches("[0-9]+[0-9]*")) {
 
             Double pvp = Double.parseDouble(TxtPvp.getText().toString());
 
@@ -616,105 +543,17 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
             subtotal = result.toString();
         }
-        TxtProdUnit.setText(subtotal);
-        
-        
+        TxtProdSubtotal.setText(subtotal);
+
+
     }//GEN-LAST:event_TxtProdCantidadKeyReleased
 
     private void TxtProdCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtProdCantidadKeyTyped
         char car = evt.getKeyChar();
-        if (car < '0' || car > '9' ){
+        if (car < '0' || car > '9') {
             evt.consume();
         }
     }//GEN-LAST:event_TxtProdCantidadKeyTyped
-
-    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        ArrayList tablac = new ArrayList();
-        for (int i = 0; i < jTable2.getRowCount(); i++) {
-            ClaseReporte tabla1 = new ClaseReporte(TxtHora.getText(),
-                                                   TxtFecha.getText(),
-                                                   TxtTelf.getText(),
-                                                   TxtCedula.getText(),
-                                                   TxtNombre.getText(),
-                                                   TxtDirec.getText(),
-                                                   TxtCorreo.getText(),
-                                                   TxtCorreo1.getText(),
-                                                   String.valueOf(jTable2.getValueAt(i, 0)),
-                                                   String.valueOf(jTable2.getValueAt(i, 1)),
-                                                   String.valueOf(jTable2.getValueAt(i, 2)),
-                                                   String.valueOf(jTable2.getValueAt(i, 3)),
-                                                   TxtSubtotal.getText(),
-                                                   TxtDescuento.getText(),
-                                                   TxtIva.getText(),
-                                                   TxtTotal.getText());
-            tablac.add(tabla1);
-        }
-        try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("MenuPreVentas.jasper");
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
-            JDialog frame = new JDialog(this);
-            JRViewer viewer = new JRViewer(jprint);
-            frame.add(viewer);
-            frame.setSize(new Dimension(ancho/ 2, alto/ 2));
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-            viewer.setFitWidthZoomRatio();
-        } catch (JRException ex) {
-            Logger.getLogger(MenuPreVentas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }                                          
-
-    private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
-    }                                            
-
-    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
-
-    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-        ArrayList tablac = new ArrayList();
-        for (int i = 0; i < jTable2.getRowCount(); i++) {
-            ClaseReporte tabla1 = new ClaseReporte(TxtHora.getText(),
-                                                   TxtFecha.getText(),
-                                                   TxtTelf.getText(),
-                                                   TxtCedula.getText(),
-                                                   TxtNombre.getText(),
-                                                   TxtDirec.getText(),
-                                                   TxtCorreo.getText(),
-                                                   TxtCorreo1.getText(),
-                                                   String.valueOf(jTable2.getValueAt(i, 0)),
-                                                   String.valueOf(jTable2.getValueAt(i, 1)),
-                                                   String.valueOf(jTable2.getValueAt(i, 2)),
-                                                   String.valueOf(jTable2.getValueAt(i, 3)),
-                                                   TxtSubtotal.getText(),
-                                                   TxtDescuento.getText(),
-                                                   TxtIva.getText(),
-                                                   TxtTotal.getText());
-            tablac.add(tabla1);
-        }
-        try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("MenuPreVentas.jasper");
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
-            JDialog frame = new JDialog(this);
-            JRViewer viewer = new JRViewer(jprint);
-            frame.add(viewer);
-            frame.setSize(new Dimension(ancho/ 2, alto/ 2));
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-            viewer.setFitWidthZoomRatio();
-        } catch (JRException ex) {
-            Logger.getLogger(MenuPreVentas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnReporteActionPerformed
-
-    private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnModificarActionPerformed
-
-    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -777,12 +616,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private javax.swing.JButton BtnAddIten;
     private javax.swing.JButton BtnBuscarcedula;
     private javax.swing.JButton BtnBuscarprodnombre;
-    private javax.swing.JButton BtnEliminar;
-    private javax.swing.JButton BtnGenerarventa;
-    private javax.swing.JButton BtnGuardar;
-    private javax.swing.JButton BtnLimpiar;
-    private javax.swing.JButton BtnModificar;
-    private javax.swing.JButton BtnNumeroventa;
+    private javax.swing.JButton BtnDeleIten;
+    private javax.swing.JButton BtnModIten;
     private javax.swing.JTable TablaListarVentas;
     public static javax.swing.JTextField TxtCedula;
     public static javax.swing.JTextField TxtCorreo;
@@ -794,19 +629,16 @@ public class MenuPreVentas extends javax.swing.JDialog {
     public static javax.swing.JTextField TxtNombre;
     private javax.swing.JTextField TxtNorden;
     public static javax.swing.JTextField TxtProdCantidad;
+    private javax.swing.JTextField TxtProdDescuento;
     public static javax.swing.JTextField TxtProdDetalle;
     public static javax.swing.JTextField TxtProdNombre;
-    public static javax.swing.JTextField TxtProdUnit;
-    private javax.swing.JTextField TxtProddescuento;
+    public static javax.swing.JTextField TxtProdSubtotal;
     private javax.swing.JTextField TxtProdiva;
     private javax.swing.JTextField TxtProdtotal;
     public static javax.swing.JTextField TxtPvp;
     private javax.swing.JTextField TxtSubtotal;
     public static javax.swing.JTextField TxtTelefono;
     private javax.swing.JTextField TxtTotal;
-    private javax.swing.JButton btnReporte;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;

@@ -24,38 +24,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel1" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="BtnNumeroventa" min="-2" pref="140" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="BtnGenerarventa" min="-2" pref="140" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnReporte" min="-2" pref="120" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="BtnLimpiar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="BtnGuardar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="BtnModificar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="BtnEliminar" min="-2" max="-2" attributes="0"/>
-          </Group>
           <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BtnNumeroventa" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="BtnGenerarventa" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="BtnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnModificar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnReporte" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -217,9 +192,9 @@
                               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                               <Component id="BtnAddIten" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton11" min="-2" max="-2" attributes="0"/>
+                              <Component id="BtnModIten" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton12" min="-2" max="-2" attributes="0"/>
+                              <Component id="BtnDeleIten" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -242,13 +217,15 @@
                                           <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="TxtProdiva" max="32767" attributes="0"/>
-                                          <Component id="TxtProdUnit" max="32767" attributes="0"/>
-                                          <Component id="TxtProddescuento" max="32767" attributes="0"/>
-                                          <Component id="TxtProdCantidad" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="TxtProdtotal" max="32767" attributes="0"/>
-                                          <Component id="TxtPvp" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="TxtProdDescuento" min="-2" pref="97" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="TxtProdiva" max="32767" attributes="0"/>
+                                              <Component id="TxtProdSubtotal" max="32767" attributes="0"/>
+                                              <Component id="TxtProdCantidad" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="TxtProdtotal" max="32767" attributes="0"/>
+                                              <Component id="TxtPvp" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -290,12 +267,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtProdUnit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtProdSubtotal" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtProddescuento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtProdDescuento" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -310,8 +287,8 @@
                       <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="BtnAddIten" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BtnModIten" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BtnDeleIten" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   </Group>
@@ -354,7 +331,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel17">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Precio Unitario:"/>
+                <Property name="text" type="java.lang.String" value="SubTotal"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel18">
@@ -381,15 +358,10 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="TxtProdUnit">
+            <Component class="javax.swing.JTextField" name="TxtProdSubtotal">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TxtProddescuento">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtProddescuentoActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtProdiva">
             </Component>
@@ -413,15 +385,17 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAddItenActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton11">
+            <Component class="javax.swing.JButton" name="BtnModIten">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Modificar Item"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton12">
+            <Component class="javax.swing.JButton" name="BtnDeleIten">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar Item"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TxtProdDescuento">
             </Component>
           </SubComponents>
         </Container>
@@ -638,61 +612,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="BtnNumeroventa">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="13" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Generar N&#xb0; Venta"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnNumeroventaActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnGenerarventa">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="13" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Generar Venta"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnLimpiar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Limpiar"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnGuardar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Guardar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnGuardarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnModificar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnModificarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnEliminar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Eliminar"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnReporte">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="13" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporteActionPerformed"/>
-      </Events>
-    </Component>
   </SubComponents>
 </Form>
