@@ -585,7 +585,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private void BtnAddItenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddItenActionPerformed
         
         String nombre = TxtProdtotal.getText();
-        BigDecimal g = new BigDecimal(nombre);
+        BigDecimal mm = new BigDecimal(nombre);
         
         
         RegDetalleVentas.setProducto(TxtProdNombre.getText());
@@ -627,6 +627,50 @@ public class MenuPreVentas extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_TxtProdCantidadKeyTyped
+
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        ArrayList tablac = new ArrayList();
+        for (int i = 0; i < jTable2.getRowCount(); i++) {
+            ClaseReporte tabla1 = new ClaseReporte(TxtHora.getText(),
+                                                   TxtFecha.getText(),
+                                                   TxtTelf.getText(),
+                                                   TxtCedula.getText(),
+                                                   TxtNombre.getText(),
+                                                   TxtDirec.getText(),
+                                                   TxtCorreo.getText(),
+                                                   TxtCorreo1.getText(),
+                                                   String.valueOf(jTable2.getValueAt(i, 0)),
+                                                   String.valueOf(jTable2.getValueAt(i, 1)),
+                                                   String.valueOf(jTable2.getValueAt(i, 2)),
+                                                   String.valueOf(jTable2.getValueAt(i, 3)),
+                                                   TxtSubtotal.getText(),
+                                                   TxtDescuento.getText(),
+                                                   TxtIva.getText(),
+                                                   TxtTotal.getText());
+            tablac.add(tabla1);
+        }
+        try {
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("MenuPreVentas.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/ 2, alto/ 2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(MenuPreVentas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }                                          
+
+    private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+    }                                            
+
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+    }                                          
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         ArrayList tablac = new ArrayList();
