@@ -154,7 +154,7 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
             }
         });
 
-        btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnNuevo.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnNuevo.setText("NUEVO");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +162,7 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
             }
         });
 
-        btnSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnSalir.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,8 +170,8 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
             }
         });
 
-        btnReporte.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnReporte.setText("REPORTE");
+        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnReporte.setText("IMPRIMIR");
         btnReporte.setToolTipText("");
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

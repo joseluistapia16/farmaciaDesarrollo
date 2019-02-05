@@ -65,6 +65,9 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
             }
         ));
         TablaClienteVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaClienteVentasMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 TablaClienteVentasMousePressed(evt);
             }
@@ -201,7 +204,7 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
         }
         if (pos == 6) {
             lista = crud.ListarTodoClienteVentas(query, "buscar_correo");
-            
+
         }
 
         //lista = crud.ListarTodoJoinProductosVentas(query, "buscar_nombre");
@@ -216,6 +219,20 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
     private void TablaClienteVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClienteVentasMousePressed
 
     }//GEN-LAST:event_TablaClienteVentasMousePressed
+
+    private void TablaClienteVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClienteVentasMouseClicked
+        int seleccion = TablaClienteVentas.rowAtPoint(evt.getPoint());
+        String nombre;
+        String apellido;
+        MenuPreVentas.TxtCedula.setText(String.valueOf(TablaClienteVentas.getValueAt(seleccion, 1)));
+        nombre= (String.valueOf(TablaClienteVentas.getValueAt(seleccion, 2)));
+        apellido= (String.valueOf(TablaClienteVentas.getValueAt(seleccion, 3)));
+        MenuPreVentas.TxtNombre.setText(nombre +" "+ apellido);
+        MenuPreVentas.TxtDirec.setText(String.valueOf(TablaClienteVentas.getValueAt(seleccion, 4)));
+        MenuPreVentas.TxtTelefono.setText(String.valueOf(TablaClienteVentas.getValueAt(seleccion, 5)));
+        MenuPreVentas.TxtCorreo.setText(String.valueOf(TablaClienteVentas.getValueAt(seleccion, 6)));
+        dispose();
+    }//GEN-LAST:event_TablaClienteVentasMouseClicked
 
     /**
      * @param args the command line arguments

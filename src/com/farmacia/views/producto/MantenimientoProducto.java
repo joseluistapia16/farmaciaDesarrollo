@@ -139,7 +139,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         });
 
         btnReporte.setFont(new java.awt.Font("Cambria", 1, 11)); // NOI18N
-        btnReporte.setText("Reporte");
+        btnReporte.setText("IMPRIMIR");
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporteActionPerformed(evt);

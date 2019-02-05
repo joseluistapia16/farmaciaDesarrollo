@@ -205,7 +205,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void TablaProductoVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductoVentasMouseClicked
-        Double subtotal = 0.00;
+        
         int seleccion = TablaProductoVentas.rowAtPoint(evt.getPoint());
 
         MenuPreVentas.TxtProdNombre.setText(String.valueOf(TablaProductoVentas.getValueAt(seleccion, 1)));

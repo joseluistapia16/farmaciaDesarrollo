@@ -161,7 +161,7 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jButton2.setText("ACTUALIZAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +170,7 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
         });
 
         jButton4.setBackground(new java.awt.Color(204, 0, 0));
-        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jButton4.setForeground(new java.awt.Color(254, 254, 254));
         jButton4.setText("Salir");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +179,7 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jButton3.setText("INACTIVOS");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +187,7 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jButton1.setForeground(new java.awt.Color(70, 154, 66));
         jButton1.setText("NUEVO");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -196,8 +196,8 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        Reporte.setText("Imprimir");
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ReporteActionPerformed(evt);
@@ -244,7 +244,7 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
                         .addComponent(jButton2)
                         .addComponent(jButton4)
                         .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 34, Short.MAX_VALUE))
+                .addGap(0, 33, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 340));
