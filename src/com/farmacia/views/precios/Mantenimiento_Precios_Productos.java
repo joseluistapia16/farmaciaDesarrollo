@@ -165,7 +165,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
             }
         });
 
-        guardar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        guardar.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         guardar.setText("GUARDAR");
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,7 +173,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
             }
         });
 
-        cerrar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        cerrar.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         cerrar.setText("CERRAR");
         cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,8 +222,8 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jtbPrecios);
 
-        btnReporte.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        btnReporte.setText("Reporte");
+        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnReporte.setText("IMPRIMIR");
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporteActionPerformed(evt);
@@ -274,7 +274,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 

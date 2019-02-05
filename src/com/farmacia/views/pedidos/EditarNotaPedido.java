@@ -517,7 +517,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -549,7 +549,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("$");
 
-        btnEditar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnEditar.setText("GUARDAR");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -557,8 +557,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             }
         });
 
-        btnReporte.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        btnReporte.setText("Reporte");
+        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnReporte.setText("IMPRIMIR");
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporteActionPerformed(evt);

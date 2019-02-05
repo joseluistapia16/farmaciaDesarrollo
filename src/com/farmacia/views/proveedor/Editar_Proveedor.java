@@ -302,7 +302,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                                     .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(btnagregarTelf))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(4, 24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,7 +356,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Guardar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        Guardar.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         Guardar.setForeground(new java.awt.Color(71, 151, 69));
         Guardar.setText("Actualizar");
         Guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -365,7 +365,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jButton4.setText("Atras");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -374,7 +374,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         });
 
         btnInactivar.setBackground(new java.awt.Color(204, 0, 0));
-        btnInactivar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        btnInactivar.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnInactivar.setForeground(new java.awt.Color(255, 255, 255));
         btnInactivar.setText("Inactivar");
         btnInactivar.addActionListener(new java.awt.event.ActionListener() {
@@ -384,8 +384,8 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         });
 
         Reporte.setBackground(new java.awt.Color(254, 254, 254));
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        Reporte.setText("Reporte");
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ReporteActionPerformed(evt);
@@ -403,9 +403,9 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(btnInactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(48, 48, 48))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -420,10 +420,10 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Guardar)
+                    .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton4)
-                        .addComponent(btnInactivar))
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnInactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 21, Short.MAX_VALUE))
         );

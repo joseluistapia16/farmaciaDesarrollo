@@ -158,7 +158,7 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jButton2.setForeground(new java.awt.Color(78, 161, 76));
         jButton2.setText("ACTUALIZAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +167,7 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jButton1.setText("Atras");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,8 +175,8 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
             }
         });
 
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        Reporte.setText("Imprimir");
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ReporteActionPerformed(evt);
@@ -195,12 +195,12 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -214,7 +214,7 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
                     .addComponent(jButton2)
                     .addComponent(jButton1)
                     .addComponent(Reporte))
-                .addGap(0, 29, Short.MAX_VALUE))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 340));
