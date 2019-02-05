@@ -92,7 +92,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="guardar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="cerrar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="btnReporte" alignment="3" pref="30" max="32767" attributes="0"/>
+                      <Component id="btnReporte" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -111,7 +111,7 @@
         <Component class="javax.swing.JButton" name="guardar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="18" style="1"/>
+              <Font name="Ubuntu" size="13" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="GUARDAR"/>
           </Properties>
@@ -122,7 +122,7 @@
         <Component class="javax.swing.JButton" name="cerrar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="18" style="1"/>
+              <Font name="Ubuntu" size="13" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="CERRAR"/>
           </Properties>
@@ -221,9 +221,9 @@
         <Component class="javax.swing.JButton" name="btnReporte">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="18" style="1"/>
+              <Font name="Ubuntu" size="13" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Reporte"/>
+            <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporteActionPerformed"/>

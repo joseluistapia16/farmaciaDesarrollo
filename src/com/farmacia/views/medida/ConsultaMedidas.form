@@ -198,13 +198,13 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="nuevo_btn" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Reporte" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="eliminar_bt" min="-2" pref="120" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="nuevo_btn" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="Reporte" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="eliminar_bt" min="-2" pref="115" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -213,9 +213,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="nuevo_btn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="eliminar_bt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Reporte" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="nuevo_btn" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="eliminar_bt" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="Reporte" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   </Group>
@@ -226,7 +226,7 @@
             <Component class="javax.swing.JButton" name="eliminar_bt">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Cantarell" size="15" style="1"/>
+                  <Font name="Ubuntu" size="13" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
@@ -237,7 +237,7 @@
             <Component class="javax.swing.JButton" name="nuevo_btn">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Cantarell" size="15" style="1"/>
+                  <Font name="Ubuntu" size="13" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nuevo"/>
               </Properties>
@@ -248,9 +248,10 @@
             <Component class="javax.swing.JButton" name="Reporte">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="15" style="1"/>
+                  <Font name="Ubuntu" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Imprimir"/>
+                <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
+                <Property name="actionCommand" type="java.lang.String" value=""/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReporteActionPerformed"/>

@@ -28,6 +28,10 @@ public class ListarDetalleVentas {
         this.subtotal = subtotal;
     }
 
+    public ListarDetalleVentas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getProducto() {
         return producto;
     }

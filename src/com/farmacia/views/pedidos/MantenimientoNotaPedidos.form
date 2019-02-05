@@ -50,12 +50,12 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnSalir2" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSalir2" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnInactivos" min="-2" pref="120" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="Reporte" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                              <Component id="Reporte" min="-2" pref="120" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="filtrar" min="-2" max="-2" attributes="0"/>
@@ -81,16 +81,14 @@
                       <Component id="filtrar" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="tblProduc" pref="145" max="32767" attributes="0"/>
+                  <Component id="tblProduc" pref="144" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="Reporte" alignment="1" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnSalir2" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="btnInactivos" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnSalir2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="btnInactivos" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="Reporte" alignment="3" pref="31" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -113,6 +111,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSalir2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Ubuntu" size="13" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="SALIR"/>
           </Properties>
           <Events>
@@ -250,7 +251,7 @@
         <Component class="javax.swing.JButton" name="Reporte">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="15" style="1"/>
+              <Font name="Ubuntu" size="13" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
           </Properties>
@@ -261,7 +262,7 @@
         <Component class="javax.swing.JButton" name="btnInactivos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="15" style="1"/>
+              <Font name="Ubuntu" size="13" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="INACTIVOS"/>
           </Properties>

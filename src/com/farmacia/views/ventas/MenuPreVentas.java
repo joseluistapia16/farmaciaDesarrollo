@@ -7,6 +7,8 @@ package com.farmacia.views.ventas;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.entities1.ListarDetalleVentas;
+import com.farmacia.entities1.ClaseReporte;
+import java.awt.Dimension;
 import java.awt.Event;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,15 +18,28 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
  * @author alumno
  */
 public class MenuPreVentas extends javax.swing.JDialog {
+
     ListarDetalleVentas RegDetalleVentas = new ListarDetalleVentas();
     ArrayList<ListarDetalleVentas> ListarDetalle = new ArrayList<ListarDetalleVentas>();
 
+    
+    
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -32,7 +47,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         this.setResizable(false);
         TxtFecha.setText(FechaActual());
         TxtProdUnit.setEditable(false); 
-
+        
     }
 
     /**
@@ -98,11 +113,11 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         BtnNumeroventa = new javax.swing.JButton();
         BtnGenerarventa = new javax.swing.JButton();
-        BtnImprimir = new javax.swing.JButton();
         BtnLimpiar = new javax.swing.JButton();
         BtnGuardar = new javax.swing.JButton();
         BtnModificar = new javax.swing.JButton();
         BtnEliminar = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -276,7 +291,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel28)
-                .addGap(136, 1187, Short.MAX_VALUE))
+                .addGap(136, 1214, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,7 +430,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(667, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
@@ -447,6 +462,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        BtnNumeroventa.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         BtnNumeroventa.setText("Generar N° Venta");
         BtnNumeroventa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,17 +470,34 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
         });
 
+        BtnGenerarventa.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         BtnGenerarventa.setText("Generar Venta");
-
-        BtnImprimir.setText("Imprimir");
 
         BtnLimpiar.setText("Limpiar");
 
         BtnGuardar.setText("Guardar");
+        BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarActionPerformed(evt);
+            }
+        });
 
         BtnModificar.setText("Modificar");
+        BtnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnModificarActionPerformed(evt);
+            }
+        });
 
         BtnEliminar.setText("Eliminar");
+
+        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnReporte.setText("IMPRIMIR");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -472,16 +505,17 @@ public class MenuPreVentas extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(BtnNumeroventa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnGenerarventa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnImprimir)
+                .addContainerGap()
+                .addComponent(BtnNumeroventa, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BtnGenerarventa, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnLimpiar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BtnGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(BtnModificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnEliminar))
@@ -491,13 +525,13 @@ public class MenuPreVentas extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnNumeroventa)
-                    .addComponent(BtnGenerarventa)
-                    .addComponent(BtnImprimir)
+                    .addComponent(BtnNumeroventa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnGenerarventa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnLimpiar)
                     .addComponent(BtnGuardar)
                     .addComponent(BtnModificar)
-                    .addComponent(BtnEliminar))
+                    .addComponent(BtnEliminar)
+                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -591,6 +625,50 @@ public class MenuPreVentas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TxtProdCantidadKeyTyped
 
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+//        ArrayList tablac = new ArrayList();
+//        for (int i = 0; i < jTable2.getRowCount(); i++) {
+//            ClaseReporte tabla1 = new ClaseReporte(TxtHora.getText(),
+//                                                   TxtFecha.getText(),
+//                                                   TxtTelf.getText(),
+//                                                   TxtCedula.getText(),
+//                                                   TxtNombre.getText(),
+//                                                   TxtDirec.getText(),
+//                                                   TxtCorreo.getText(),
+//                                                   TxtCorreo1.getText(),
+//                                                   String.valueOf(jTable2.getValueAt(i, 0)),
+//                                                   String.valueOf(jTable2.getValueAt(i, 1)),
+//                                                   String.valueOf(jTable2.getValueAt(i, 2)),
+//                                                   String.valueOf(jTable2.getValueAt(i, 3)),
+//                                                   TxtSubtotal.getText(),
+//                                                   TxtDescuento.getText(),
+//                                                   TxtIva.getText(),
+//                                                   TxtTotal.getText());
+//            tablac.add(tabla1);
+//        }
+//        try {
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject("MenuPreVentas.jasper");
+//            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
+//            JDialog frame = new JDialog(this);
+//            JRViewer viewer = new JRViewer(jprint);
+//            frame.add(viewer);
+//            frame.setSize(new Dimension(ancho/ 2, alto/ 2));
+//            frame.setLocationRelativeTo(null);
+//            frame.setVisible(true);
+//            viewer.setFitWidthZoomRatio();
+//        } catch (JRException ex) {
+//            Logger.getLogger(MenuPreVentas.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_btnReporteActionPerformed
+
+    private void BtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnModificarActionPerformed
+
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnGuardarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -655,7 +733,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private javax.swing.JButton BtnEliminar;
     private javax.swing.JButton BtnGenerarventa;
     private javax.swing.JButton BtnGuardar;
-    private javax.swing.JButton BtnImprimir;
     private javax.swing.JButton BtnLimpiar;
     private javax.swing.JButton BtnModificar;
     private javax.swing.JButton BtnNumeroventa;
@@ -680,6 +757,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private javax.swing.JTextField TxtSubtotal;
     public static javax.swing.JTextField TxtTelefono;
     private javax.swing.JTextField TxtTotal;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JLabel jLabel1;

@@ -346,8 +346,8 @@ public class Editar_Lab extends javax.swing.JDialog {
             }
         });
 
-        Reporte.setFont(new java.awt.Font("Cambria", 1, 15)); // NOI18N
-        Reporte.setText("Reporte");
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ReporteActionPerformed(evt);

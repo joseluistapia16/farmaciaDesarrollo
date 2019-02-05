@@ -156,8 +156,8 @@ public class Consulta_Lab extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Cambria", 0, 15)); // NOI18N
         jLabel1.setText("Seleccione el campo que desea buscar");
 
-        btnReporte.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        btnReporte.setText("Reporte");
+        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnReporte.setText("IMPRIMIR");
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporteActionPerformed(evt);

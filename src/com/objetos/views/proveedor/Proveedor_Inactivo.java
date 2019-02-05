@@ -124,8 +124,8 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         Reporte.setBackground(new java.awt.Color(254, 254, 254));
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        Reporte.setText("Reporte");
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ReporteActionPerformed(evt);
@@ -365,7 +365,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
                 .addGap(15, 15, 15))
         );
 
-        Guardar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        Guardar.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         Guardar.setText("Actualizar");
         Guardar.setEnabled(false);
         Guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -374,7 +374,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jButton4.setText("Atras");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -383,7 +383,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         });
 
         Recuperar.setBackground(new java.awt.Color(70, 146, 67));
-        Recuperar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        Recuperar.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         Recuperar.setForeground(new java.awt.Color(255, 255, 255));
         Recuperar.setText("Activar");
         Recuperar.addActionListener(new java.awt.event.ActionListener() {
@@ -427,7 +427,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
                         .addComponent(jButton4)
                         .addComponent(Recuperar)
                         .addComponent(Reporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 690, 340));
