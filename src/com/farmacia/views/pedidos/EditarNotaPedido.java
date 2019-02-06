@@ -615,7 +615,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     public void Total() {
         Double total = 0.00;
 
@@ -627,10 +626,10 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Double total1 = Cantidad * Precio + iva - Desc;
             total = total + total1;
             total = redondearDecimales(total, 2);
-            System.out.println("Cantidad "+Cantidad);
-            System.out.println("Precio "+Precio);
-            System.out.println("descuento "+Desc);
-            System.out.println("iva  "+iva);
+            System.out.println("Cantidad " + Cantidad);
+            System.out.println("Precio " + Precio);
+            System.out.println("descuento " + Desc);
+            System.out.println("iva  " + iva);
 //            System.out.println("total "+to);
         }
         txtTotal.setText(Double.valueOf(total).toString());
@@ -707,12 +706,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
-
+                            System.out.println("bobo= "+np.objf.getBono());
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
 //                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
-                            Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
-
+                            //Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
                             crud.InsertarBDCompras(txtNumero.getText(), lista1);
                             actualizarTabla2();
                         }
@@ -724,10 +722,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
     public void actualizarTabla2() {
-        lista3.clear();
         String id = txtNumero.getText().toString();
-        lista3 = crud.listarDetalleNotaPedido(1, id);
-        Tablas.cargarJoinRegistroDetalleCompras(tbaListaFaltantes, lista3);
+        lista3.clear();
+        lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
+        Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+
         Total();
         TotalIVA();
         TotalDescuento();

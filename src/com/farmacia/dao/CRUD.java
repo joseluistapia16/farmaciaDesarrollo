@@ -2832,7 +2832,7 @@ public class CRUD {
 
     public static void InsertarBDCompras(String id_cabecera, ArrayList<joinProductoDetallesFaltantes> lista) {
         String cad1 = "";
-        String[] Filas = new String[11];
+        String[] Filas = new String[12];
 
         for (int i = 0; i < lista.size(); i++) {
             Filas[0] = "" + lista.get(i).getId_producto().toString();
@@ -2869,9 +2869,10 @@ public class CRUD {
                 importe = redondearDecimales(importe, 2);
 //                Filas[10] = String.format("%5.2f", importe);
                 Filas[10] = "" + importe;
-
+                
             }
-            cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`) VALUES ('" + lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "');";
+            Filas[11]=lista.get(i).getBono().toString();
+            cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono) VALUES ('" + lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "','"+Filas[11]+"');";
 
         }
         System.out.println(cad1);

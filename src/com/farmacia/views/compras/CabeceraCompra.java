@@ -213,7 +213,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
 
     private void tbaCabeceraPedidoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraPedidoMousePressed
         int i = 0;
-
+        
         if (evt.getClickCount() == 2) {
             i = tbaCabeceraPedido.getSelectedRow();
             lista = crud.listarCabeceraNotaPedidoEnCompras(3);
@@ -229,6 +229,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
                // Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
             }
         }
+        
     }//GEN-LAST:event_tbaCabeceraPedidoMousePressed
     public JoinListarNotaPedidosCabecera devuelveObjeto(String datos, ArrayList<JoinListarNotaPedidosCabecera> listarobj) {
         JoinListarNotaPedidosCabecera objeto1 = null;

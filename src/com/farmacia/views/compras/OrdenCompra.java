@@ -25,6 +25,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -682,6 +684,7 @@ public static String FechaActual() {
         for (int i = 0; i < listarobj.size(); i++) {
             if (datos.equals(listarobj.get(i).getId_precios().toString())) {
                 objeto1 = listarobj.get(i);
+                System.out.println("iva "+listarobj.get(i).getIva()+" "+listarobj.get(i).getPorcentaje_descuento());
                 break;
             }
         }
@@ -865,7 +868,9 @@ public static String FechaActual() {
                 }
             }
 
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            
+        Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
 
