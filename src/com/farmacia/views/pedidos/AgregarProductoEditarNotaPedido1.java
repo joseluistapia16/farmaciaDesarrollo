@@ -11,6 +11,7 @@ import com.farmacia.validaciones.Validacion;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 
 /**
@@ -377,7 +378,8 @@ public class AgregarProductoEditarNotaPedido1 extends javax.swing.JDialog {
             porc = "0.00";
 
         }
-        objf.setPorcentaje_descuento(Double.valueOf(porc));
+        BigDecimal b1 = new BigDecimal(porc);
+        objf.setPorcentaje_descuento(b1);
 
         // setVisible(false);
     }//GEN-LAST:event_btnAnadirActionPerformed

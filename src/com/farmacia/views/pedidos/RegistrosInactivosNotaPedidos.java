@@ -7,17 +7,11 @@ import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.RowFilter;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -34,6 +28,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
     ArrayList<JoinListarNotaPedidosCabecera> lista = crud.listarCabeceraNotaPedido(2);
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+
     public RegistrosInactivosNotaPedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
@@ -55,6 +50,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         Reporte = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -66,11 +62,11 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             }
         });
         txtfiltro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtfiltroKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfiltroKeyTyped(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtfiltroKeyReleased(evt);
             }
         });
 
@@ -81,6 +77,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             }
         });
 
+        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,11 +102,11 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             }
         });
         tblRegistrodeNotas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblRegistrodeNotasMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tblRegistrodeNotasMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblRegistrodeNotasMouseClicked(evt);
             }
         });
         tblProduc.setViewportView(tblRegistrodeNotas);
@@ -148,13 +145,16 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        Reporte.setText("Imprimir");
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ReporteActionPerformed(evt);
             }
         });
+
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jButton1.setText("ACTIVAR");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -164,33 +164,40 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(filtrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(tblProduc)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tblProduc)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(filtrar)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnSalir2)
+                        .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Reporte))
+                    .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -198,9 +205,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 49, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,6 +224,8 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
 
         if (r == JOptionPane.YES_OPTION) {
             setVisible(false);
+            MantenimientoNotaPedidos Mant = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
+            Mant.setVisible(true);
 
         } else {
 
@@ -280,16 +287,16 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         java.util.List lista = new ArrayList();
         for (int i = 0; i < tblRegistrodeNotas.getRowCount(); i++) {
-            ClaseReporte medida = new ClaseReporte (tblRegistrodeNotas.getValueAt(i, 0).toString(),tblRegistrodeNotas.getValueAt(i, 1).toString(),tblRegistrodeNotas.getValueAt(i,2).toString(),tblRegistrodeNotas.getValueAt(i,3).toString(),tblRegistrodeNotas.getValueAt(i,4).toString(),tblRegistrodeNotas.getValueAt(i,5).toString(),tblRegistrodeNotas.getValueAt(i,6).toString(),tblRegistrodeNotas.getValueAt(i,7).toString(),tblRegistrodeNotas.getValueAt(i,8).toString());
+            ClaseReporte medida = new ClaseReporte(tblRegistrodeNotas.getValueAt(i, 0).toString(), tblRegistrodeNotas.getValueAt(i, 1).toString(), tblRegistrodeNotas.getValueAt(i, 2).toString(), tblRegistrodeNotas.getValueAt(i, 3).toString(), tblRegistrodeNotas.getValueAt(i, 4).toString(), tblRegistrodeNotas.getValueAt(i, 5).toString(), tblRegistrodeNotas.getValueAt(i, 6).toString(), tblRegistrodeNotas.getValueAt(i, 7).toString(), tblRegistrodeNotas.getValueAt(i, 8).toString());
             lista.add(medida);
         }
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject("MantenimientoNotaPedidos.jasper");
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
@@ -356,6 +363,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
     private javax.swing.JButton Reporte;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JButton filtrar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

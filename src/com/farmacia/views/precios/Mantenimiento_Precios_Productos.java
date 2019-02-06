@@ -9,8 +9,10 @@ import com.farmacia.conponentes.Formulario;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Obcx;
 import com.farmacia.entities1.Precios;
+import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.TrayIcon;
@@ -22,8 +24,16 @@ import java.util.Calendar;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
@@ -41,6 +51,8 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
     Double dbe_compra = null, dbe_venta = null;
     ArrayList<Precios> listaPrecios = null;
     Precios objeto = null;
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     // ArrayList<Precios> listavalorIva = llamar.listarPreciosProductos("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,`porcentaje_descuento`,`valor_descuento` FROM `precios` WHERE `id_producto`= " + id_pro );
 
     public Mantenimiento_Precios_Productos(java.awt.Frame parent, boolean modal) {
@@ -140,6 +152,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         editarPrecioCompra = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbPrecios = new javax.swing.JTable();
+        btnReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -152,6 +165,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
             }
         });
 
+        guardar.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         guardar.setText("GUARDAR");
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +173,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
             }
         });
 
+        cerrar.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         cerrar.setText("CERRAR");
         cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +222,14 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jtbPrecios);
 
+        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnReporte.setText("IMPRIMIR");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -216,20 +239,23 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nomProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(agregarCompra)
                         .addGap(18, 18, 18)
-                        .addComponent(editarPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(guardar)
-                        .addGap(18, 18, 18)
-                        .addComponent(cerrar)
-                        .addGap(8, 8, 8)))
+                        .addComponent(editarPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(19, Short.MAX_VALUE))
             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,9 +272,10 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardar)
-                    .addComponent(cerrar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -387,6 +414,26 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         }catch(Exception e){
             Logger.getLogger(Mantenimiento_Precios_Productos.class.getName()).log(Level.SEVERE, null, e);}
     }//GEN-LAST:event_jtbPreciosMousePressed
+
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        ArrayList tablac = new ArrayList();
+        for(int i=0;i<jtbPrecios.getRowCount();i++){
+            ClaseReporte tabla1 = new ClaseReporte (nomProducto.getText(),jtbPrecios.getValueAt(i,0).toString(),jtbPrecios.getValueAt(i,1).toString(),jtbPrecios.getValueAt(i,2).toString(),jtbPrecios.getValueAt(i,3).toString(),jtbPrecios.getValueAt(i,4).toString());
+            tablac.add(tabla1);}
+        try{
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("Mantenimiento_Precios_Productos.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog (this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Mantenimiento_Precios_Productos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReporteActionPerformed
     private int getPosicionCompra(Double precio) {
         int pos = 0;
         if (precio != null) {
@@ -460,6 +507,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarCompra;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JButton cerrar;
     private javax.swing.JButton editarPrecioCompra;
     private javax.swing.JButton guardar;

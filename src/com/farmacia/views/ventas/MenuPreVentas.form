@@ -24,37 +24,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel1" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="BtnNumeroventa" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="BtnGenerarventa" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="BtnImprimir" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="BtnLimpiar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="BtnGuardar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="BtnModificar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="BtnEliminar" min="-2" max="-2" attributes="0"/>
-          </Group>
           <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="BtnNumeroventa" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnGenerarventa" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnImprimir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnModificar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="BtnEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -78,7 +54,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="136" pref="1187" max="32767" attributes="0"/>
+                  <EmptySpace min="136" pref="1214" max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
@@ -112,8 +88,8 @@
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jScrollPane2" min="-2" pref="235" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="174" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="TxtSubtotal" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -136,11 +112,10 @@
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="72" max="32767" attributes="0"/>
+                          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -155,7 +130,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable2">
+            <Component class="javax.swing.JTable" name="TablaListarVentas">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="4">
@@ -215,11 +190,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                              <Component id="jButton8" min="-2" max="-2" attributes="0"/>
+                              <Component id="BtnAddIten" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton11" min="-2" max="-2" attributes="0"/>
+                              <Component id="BtnModIten" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButton12" min="-2" max="-2" attributes="0"/>
+                              <Component id="BtnDeleIten" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -242,13 +217,15 @@
                                           <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="TxtProdiva" max="32767" attributes="0"/>
-                                          <Component id="TxtProdUnit" max="32767" attributes="0"/>
-                                          <Component id="TxtProddescuento" max="32767" attributes="0"/>
-                                          <Component id="TxtProdCantidad" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="TxtProdtotal" max="32767" attributes="0"/>
-                                          <Component id="TxtPvp" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="TxtProdDescuento" min="-2" pref="97" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="TxtProdiva" max="32767" attributes="0"/>
+                                              <Component id="TxtProdSubtotal" max="32767" attributes="0"/>
+                                              <Component id="TxtProdCantidad" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="TxtProdtotal" max="32767" attributes="0"/>
+                                              <Component id="TxtPvp" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -290,12 +267,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtProdUnit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtProdSubtotal" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtProddescuento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtProdDescuento" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -307,11 +284,11 @@
                           <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="TxtProdtotal" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="75" max="32767" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BtnAddIten" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BtnModIten" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="BtnDeleIten" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   </Group>
@@ -354,7 +331,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel17">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Precio Unitario:"/>
+                <Property name="text" type="java.lang.String" value="SubTotal"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel18">
@@ -381,15 +358,10 @@
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="TxtProdUnit">
+            <Component class="javax.swing.JTextField" name="TxtProdSubtotal">
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TxtProddescuento">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtProddescuentoActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtProdiva">
             </Component>
@@ -405,23 +377,25 @@
             </Component>
             <Component class="javax.swing.JTextField" name="TxtProdtotal">
             </Component>
-            <Component class="javax.swing.JButton" name="jButton8">
+            <Component class="javax.swing.JButton" name="BtnAddIten">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Adicionar Item"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton8ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAddItenActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton11">
+            <Component class="javax.swing.JButton" name="BtnModIten">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Modificar Item"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton12">
+            <Component class="javax.swing.JButton" name="BtnDeleIten">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar Item"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TxtProdDescuento">
             </Component>
           </SubComponents>
         </Container>
@@ -442,7 +416,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="667" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -456,7 +430,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="TxtTelf" min="-2" pref="169" max="-2" attributes="0"/>
+                  <Component id="TxtNorden" min="-2" pref="169" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="396" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -467,7 +441,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TxtTelf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="TxtNorden" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TxtHora" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TxtFecha" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -486,7 +460,7 @@
             <Property name="text" type="java.lang.String" value="Fecha:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="TxtTelf">
+        <Component class="javax.swing.JTextField" name="TxtNorden">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel21">
           <Properties>
@@ -507,37 +481,32 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="TxtCorreo" min="-2" pref="168" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="TxtCorreo1" min="-2" pref="160" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="TxtCedula" min="-2" pref="98" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="BtnBuscarcedula" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="TxtNombre" pref="171" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="TxtDirec" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="TxtTelefono" min="-2" pref="91" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="TxtCorreo" min="-2" pref="107" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="TxtCedula" min="-2" pref="98" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="BtnBuscarcedula" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="TxtNombre" pref="171" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="TxtDirec" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -558,13 +527,15 @@
                           <Component id="TxtDirec" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TxtCorreo1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="TxtTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -576,6 +547,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtCedula">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="BtnBuscarcedula">
               <Properties>
@@ -591,6 +565,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtNombre">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
@@ -598,20 +575,29 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtDirec">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Telefono:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="TxtCorreo">
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Correo:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="TxtCorreo1">
+            <Component class="javax.swing.JTextField" name="TxtTelefono">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JTextField" name="TxtCorreo">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -626,43 +612,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="BtnNumeroventa">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Generar N&#xb0; Venta"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnNumeroventaActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnGenerarventa">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Generar Venta"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnImprimir">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Imprimir"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnLimpiar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Limpiar"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnGuardar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Guardar"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnModificar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="BtnEliminar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Eliminar"/>
-      </Properties>
-    </Component>
   </SubComponents>
 </Form>

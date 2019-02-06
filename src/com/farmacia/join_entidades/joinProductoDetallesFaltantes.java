@@ -5,6 +5,8 @@
  */
 package com.farmacia.join_entidades;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author josel
@@ -24,17 +26,17 @@ public class joinProductoDetallesFaltantes {
     private Long id_envase;
     private String envase;
     private Long id_precios;
-    private Double precios;
+    private BigDecimal precios;
     private String iva;
     private Integer bono;
-    private Double importe;
-    private Double porcentaje_descuento;
-    private Double valor_descuento;
+    private BigDecimal importe;
+    private BigDecimal porcentaje_descuento;
+    private BigDecimal valor_descuento;
     
     public joinProductoDetallesFaltantes() {
     }
 
-    public joinProductoDetallesFaltantes(Long id_detalle_faltantes, Long id_tipo, String nombre_tipo, Long id_producto, String nombre_producto, Integer cantidad, String estado, Long id_marcas, String marca, Long id_medida, String medida, Long id_envase, String envase, Long id_precios, Double precios, String iva, Integer bono, Double importe, Double porcentaje_descuento, Double valor_descuento) {
+    public joinProductoDetallesFaltantes(Long id_detalle_faltantes, Long id_tipo, String nombre_tipo, Long id_producto, String nombre_producto, Integer cantidad, String estado, Long id_marcas, String marca, Long id_medida, String medida, Long id_envase, String envase, Long id_precios, BigDecimal precios, String iva, Integer bono, BigDecimal importe, BigDecimal porcentaje_descuento, BigDecimal valor_descuento) {
         this.id_detalle_faltantes = id_detalle_faltantes;
         this.id_tipo = id_tipo;
         this.nombre_tipo = nombre_tipo;
@@ -169,11 +171,11 @@ public class joinProductoDetallesFaltantes {
         this.id_precios = id_precios;
     }
 
-    public Double getPrecios() {
+    public BigDecimal getPrecios() {
         return precios;
     }
 
-    public void setPrecios(Double precios) {
+    public void setPrecios(BigDecimal precios) {
         this.precios = precios;
     }
 
@@ -193,27 +195,27 @@ public class joinProductoDetallesFaltantes {
         this.bono = bono;
     }
 
-    public Double getImporte() {
+    public BigDecimal getImporte() {
         return importe;
     }
 
-    public void setImporte(Double importe) {
+    public void setImporte(BigDecimal importe) {
         this.importe = importe;
     }
 
-    public Double getPorcentaje_descuento() {
+    public BigDecimal getPorcentaje_descuento() {
         return porcentaje_descuento;
     }
 
-    public void setPorcentaje_descuento(Double porcentaje_descuento) {
+    public void setPorcentaje_descuento(BigDecimal porcentaje_descuento) {
         this.porcentaje_descuento = porcentaje_descuento;
     }
 
-    public Double getValor_descuento() {
+    public BigDecimal getValor_descuento() {
         return valor_descuento;
     }
 
-    public void setValor_descuento(Double valor_descuento) {
+    public void setValor_descuento(BigDecimal valor_descuento) {
         this.valor_descuento = valor_descuento;
     }
 

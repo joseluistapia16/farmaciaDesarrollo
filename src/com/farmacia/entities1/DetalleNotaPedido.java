@@ -5,6 +5,8 @@
  */
 package com.farmacia.entities1;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Usuario
@@ -16,15 +18,15 @@ public class DetalleNotaPedido {
     private Long id_cabecera_nota_pedidos;
     private Integer cantidad;
     private Integer bono;
-    private Double precio;
-    private Double descuento;
-    private Double iva;
-    private Double total;
+    private BigDecimal precio;
+    private BigDecimal descuento;
+    private BigDecimal iva;
+    private BigDecimal total;
 
     public DetalleNotaPedido() {
     }
 
-    public DetalleNotaPedido(Long id_detalle_nota_pedidos, Long id_precio, Long id_cabecera_nota_pedidos, Integer cantidad, Integer bono, Double precio, Double descuento, Double iva, Double total) {
+    public DetalleNotaPedido(Long id_detalle_nota_pedidos, Long id_precio, Long id_cabecera_nota_pedidos, Integer cantidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total) {
         this.id_detalle_nota_pedidos = id_detalle_nota_pedidos;
         this.id_precio = id_precio;
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
@@ -34,7 +36,7 @@ public class DetalleNotaPedido {
         this.descuento = descuento;
         this.iva = iva;
         this.total = total;
-    }
+    }    
 
     public Long getId_detalle_nota_pedidos() {
         return id_detalle_nota_pedidos;
@@ -76,35 +78,35 @@ public class DetalleNotaPedido {
         this.bono = bono;
     }
 
-    public Double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 
-    public Double getDescuento() {
+    public BigDecimal getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(Double descuento) {
+    public void setDescuento(BigDecimal descuento) {
         this.descuento = descuento;
     }
 
-    public Double getIva() {
+    public BigDecimal getIva() {
         return iva;
     }
 
-    public void setIva(Double iva) {
+    public void setIva(BigDecimal iva) {
         this.iva = iva;
     }
 
-    public Double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
     

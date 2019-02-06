@@ -12,6 +12,7 @@ import com.farmacia.validaciones.Validacion;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 
 /**
@@ -671,7 +672,7 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
             porc = "0.00";
 
         }
-        objf.setPorcentaje_descuento(Double.valueOf(porc));
+        objf.setPorcentaje_descuento(BigDecimal.valueOf(Double.valueOf(porc)));
         if (!"".equals(txtBono.getText())) {
             bono = txtBono.getText();
         } else {
@@ -840,7 +841,7 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
             porc = "0.00";
 
         }
-        objf.setPorcentaje_descuento(Double.valueOf(porc));
+        objf.setPorcentaje_descuento(BigDecimal.valueOf(Double.valueOf(porc)));
         if (!"".equals(txtBono.getText())) {
             bono = txtBono.getText();
         } else {

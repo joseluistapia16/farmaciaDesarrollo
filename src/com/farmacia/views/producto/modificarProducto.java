@@ -110,10 +110,10 @@ public class modificarProducto extends javax.swing.JDialog {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnAgregar = new javax.swing.JButton();
+       
         jLabel12 = new javax.swing.JLabel();
         txtFechaActual = new javax.swing.JTextField();
-        btnSalir = new javax.swing.JButton();
+       
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -176,15 +176,14 @@ public class modificarProducto extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PRODUCTO");
 
-       
+     
 
         jLabel12.setText("Fecha :");
 
         txtFechaActual.setEditable(false);
         txtFechaActual.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        
-
+      
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setText("Nombre :");
@@ -376,9 +375,9 @@ public class modificarProducto extends javax.swing.JDialog {
                 .addGap(22, 22, 22))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(125, 125, 125)
-                .addComponent(btnAgregar)
+                
                 .addGap(37, 37, 37)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -396,8 +395,8 @@ public class modificarProducto extends javax.swing.JDialog {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar)
-                    .addComponent(btnSalir))
+                    
+                    )
                 .addContainerGap())
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -587,7 +586,7 @@ public class modificarProducto extends javax.swing.JDialog {
 
         Reporte.setBackground(new java.awt.Color(254, 254, 254));
         Reporte.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        Reporte.setText("Reporte");
+        Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ReporteActionPerformed(evt);
@@ -666,11 +665,10 @@ public class modificarProducto extends javax.swing.JDialog {
                         .addComponent(txtcantMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(editarPrecio)
-                        .addGap(63, 63, 63))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160))
+                        .addGap(63, 63, 63))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -718,9 +716,9 @@ public class modificarProducto extends javax.swing.JDialog {
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtcantMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(8, 8, 8)
+                .addGap(18, 18, 18)
                 .addComponent(Reporte)
-                .addContainerGap())
+                .addGap(5, 5, 5))
         );
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/guardar.jpg"))); // NOI18N
@@ -1166,7 +1164,7 @@ public class modificarProducto extends javax.swing.JDialog {
     private javax.swing.JButton btnAgreEnvase1;
     private javax.swing.JButton btnAgreMarca;
     private javax.swing.JButton btnAgreMarca1;
-    private javax.swing.JButton btnAgregar;
+   
     private javax.swing.JButton btnAgregarMedida;
     private javax.swing.JButton btnAgregarMedida1;
     private javax.swing.JButton btnAgregarTipo;
@@ -1174,7 +1172,7 @@ public class modificarProducto extends javax.swing.JDialog {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnSalir;
+    
     private javax.swing.JButton btneliminar;
     private javax.swing.JComboBox<String> cbxEnvase;
     private javax.swing.JComboBox<String> cbxEnvase1;
