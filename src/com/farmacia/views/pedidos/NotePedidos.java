@@ -17,6 +17,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
@@ -52,7 +54,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
         //FECHA DEL SISTEMA
         java.util.Date sistFecha = new java.util.Date();
-        SimpleDateFormat formato = new SimpleDateFormat("YYYY/MM/dd");
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
         txtFecha.setText(formato.format(sistFecha));
 
         //HORA DEL SISTEMA
@@ -107,6 +109,7 @@ public class NotePedidos extends javax.swing.JDialog {
                 TotalPro = TotalPro.add(Subtotal).subtract(ValorDes).add(ValorIVA);
             }
         }
+        TotalPro = TotalPro.setScale(2, BigDecimal.ROUND_HALF_UP);
         txtTotal.setText(TotalPro.toString());
     }
 
@@ -120,15 +123,18 @@ public class NotePedidos extends javax.swing.JDialog {
             BigDecimal Cantidad = new BigDecimal(Cant);
 //            System.out.println("CAntidad " + Cantidad);
 //            System.out.println("Precio " + Precio);
-            String ivaget = lista1.get(i).getIva();
-            BigDecimal IVA = new BigDecimal(ivaget);
+
             BigDecimal Subtotal = Cantidad.multiply(Precio);
 
             if (!"NO".equals(lista1.get(i).getIva())) {
+                String ivaget = lista1.get(i).getIva();
+                System.out.println("iva get " + ivaget);
+                BigDecimal IVA = new BigDecimal(ivaget);
                 ValorIva = Subtotal.multiply(IVA);
                 TotalIva = TotalIva.add(ValorIva);
             }
         }
+        TotalIva = TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP);
         txtIva.setText(TotalIva.toString());
     }
 
@@ -148,6 +154,7 @@ public class NotePedidos extends javax.swing.JDialog {
             TotalDesc = TotalDesc.add(ValorDesc);
 //            System.out.println("TotalDEsc " + TotalDesc);
         }
+        TotalDesc = TotalDesc.setScale(2, BigDecimal.ROUND_HALF_UP);
         txtDescuento.setText(TotalDesc.toString());
     }
 
@@ -799,8 +806,9 @@ public class NotePedidos extends javax.swing.JDialog {
             for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
                 cad1 = "INSERT INTO detalle_nota_pedidos"
                         + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
-                        + "VALUES(" + id_cab + "," + lista.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + tbaListaFaltantes.getValueAt(i, 8) + "," + tbaListaFaltantes.getValueAt(i, 9) + "," + tbaListaFaltantes.getValueAt(i, 11) + "," + tbaListaFaltantes.getValueAt(i, 10).toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
+                        + "VALUES(" + id_cab + "," + lista.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + tbaListaFaltantes.getValueAt(i, 8).toString() + "," + tbaListaFaltantes.getValueAt(i, 9).toString() + "," + tbaListaFaltantes.getValueAt(i, 11).toString() + "," + tbaListaFaltantes.getValueAt(i, 10).toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
                 queryL1.add(cad1);
+                System.out.println(cad1);
             }
             crud.InsertarDetallesNotaPedidos(queryL1);
             queryL1.clear();
@@ -846,6 +854,7 @@ public class NotePedidos extends javax.swing.JDialog {
                 }
             }
         } catch (Exception e) {
+            Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
 
     }//GEN-LAST:event_t_Nota_faltantesMousePressed

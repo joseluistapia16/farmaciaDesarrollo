@@ -32,6 +32,7 @@ import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -728,6 +729,7 @@ public class Tablas {
         String[] Filas = new String[12];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
+        BigDecimal PrecioBono=new BigDecimal("0.00");
         for (int i = 0; i < lista.size(); i++) {
             Integer Cant = lista.get(i).getCantidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
@@ -736,10 +738,13 @@ public class Tablas {
             Integer Bono = lista.get(i).getBono();
             BigDecimal Bono1 = new BigDecimal(Bono);
             BigDecimal CantidadTotal = Cantidad.add(Bono1);
-            BigDecimal PrecioBono = Subtotal.divide(CantidadTotal);
+            System.out.println("division "+Subtotal+" "+CantidadTotal);
+            PrecioBono = Subtotal.divide(CantidadTotal,7, RoundingMode.HALF_UP);
+            
             BigDecimal PorcentajeDesc = lista.get(i).getPorcentaje_descuento();
-            BigDecimal cien = new BigDecimal("100");
-            BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(cien);
+            //BigDecimal cien = new BigDecimal("100");
+            BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
+            ValorDes=ValorDes.setScale(2, BigDecimal.ROUND_HALF_UP);
             Filas[0] = "" + lista.get(i).getId_producto().toString();
             Filas[1] = lista.get(i).getMarca();
             Filas[2] = lista.get(i).getNombre_tipo();
@@ -753,6 +758,7 @@ public class Tablas {
             if (lista.get(i).getIva().equals("NO")) {
                 Filas[10] = "" + 0.00;
                 BigDecimal importe = Subtotal.subtract(ValorDes);
+                importe=importe.setScale(7, BigDecimal.ROUND_HALF_UP);
                 Filas[11] = "" + importe;
             } else //            if (!"NO".equals(lista.get(i).getIva())) 
             {
@@ -761,6 +767,7 @@ public class Tablas {
                 BigDecimal ValorIVA = IVA.multiply(Subtotal);
                 Filas[10] = "" + ValorIVA;
                 BigDecimal importe = Subtotal.add(ValorIVA).subtract(ValorDes);
+                importe=importe.setScale(7, BigDecimal.ROUND_HALF_UP);
                 Filas[11] = "" + importe;
             }
 
