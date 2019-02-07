@@ -2726,6 +2726,40 @@ public class CRUD {
         }
         return valor;
     }
+    public String ActualizarNotaPedidosCabecera(CabeceraNotaPedido cnp) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call ActualizarCabeceraNotaPedido(?,?,?,?,?,?,?)}");
+            pro.setString(1, cnp.getPlazo());
+            pro.setString(2, cnp.getForma_pago());
+            pro.setBigDecimal(3, cnp.getIva());
+            pro.setBigDecimal(4, cnp.getDescuento());
+            pro.setBigDecimal(5, cnp.getTotal());
+            pro.setLong(6, cnp.getId_cabecera_nota_pedidos());
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
 
     public String insertarProductoEditarNotaPedidos(DetalleNotaPedido dnp) {
         String valor = null;

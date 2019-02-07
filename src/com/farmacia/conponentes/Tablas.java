@@ -1181,10 +1181,10 @@ public class Tablas {
             Filas[6] = "" + lista.get(i).getCantidad();
             Filas[7] = "" + lista.get(i).getBono();
             Filas[8] = lista.get(i).getPrecio().toString();
-//            System.out.println("dg " + lista.get(i).getPrecio().toString());
-            Filas[9] = lista.get(i).getDescuento().toString();
-            Filas[10] = lista.get(i).getIva().toString();
-            Filas[11] = lista.get(i).getTotal().toString();
+           System.out.println("descr¿uento " + new BigDecimal(lista.get(i).getDescuento().toString()).toPlainString());
+            Filas[9] = removeScientificNotation(lista.get(i).getDescuento().toString());//new BigDecimal(value).toPlainString();
+            Filas[10] = removeScientificNotation(lista.get(i).getIva().toString());
+            Filas[11] = removeScientificNotation(lista.get(i).getTotal().toString());
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -1213,7 +1213,10 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(11).setCellRenderer(tcr);
         }
     }
-
+public static String removeScientificNotation(String value)
+{
+    return new BigDecimal(value).toPlainString();
+}
     public static void cargarJoinRegistroDetalleCompras(JTable Tabla, ArrayList<JoinListarDetalleNotaPedido> lista) {
 
         int[] a = {10, 10, 30, 32, 70, 15, 30, 10, 10, 20, 10, 5};
