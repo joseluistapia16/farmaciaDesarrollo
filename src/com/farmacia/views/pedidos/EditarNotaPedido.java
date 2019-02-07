@@ -2,6 +2,7 @@ package com.farmacia.views.pedidos;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
@@ -668,7 +669,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //        }
 //        txtTotal.setText(Double.valueOf(total).toString());
 //    }
-
     public void TotalIVA() {
         BigDecimal Total1Iva = new BigDecimal("0.0000");
 
@@ -677,7 +677,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Total1Iva = Total1Iva.add(Iva1);
 //            totalIva = redondearDecimales(totalIva, 2);
         }
-        txtIva.setText(Total1Iva.toString());
+        txtIva.setText(removeScientificNotation(Total1Iva.toString()));
 
     }
 
@@ -688,7 +688,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             TotalDescuento = TotalDescuento.add(descuento);
 //            TotalDescuento = redondearDecimales(TotalDescuento, 2);
         }
-        txtDescuento.setText(TotalDescuento.toString());
+        txtDescuento.setText(removeScientificNotation(TotalDescuento.toString()));
     }
 
     public void Total() {
@@ -696,9 +696,13 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
             BigDecimal total = lista3.get(i).getTotal();
             Total_ = Total_.add(total);
-            
+
         }
         txtTotal.setText(Total_.toString());
+    }
+
+    public static String removeScientificNotation(String value) {
+        return new BigDecimal(value).toPlainString();
     }
 
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
@@ -751,7 +755,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
-                            System.out.println("bobo= "+np.objf.getBono());
+                            System.out.println("bobo= " + np.objf.getBono());
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
 //                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
@@ -902,13 +906,23 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        String valor="";
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Actualizar?", "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
-
-            JOptionPane.showMessageDialog(null, "Actualizado");
+            CabeceraNotaPedido cn = new CabeceraNotaPedido();
+            cn.setPlazo(cbxPlazo.getSelectedItem().toString());
+            cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
+            cn.setIva(BigDecimal.valueOf(Double.parseDouble(txtIva.getText())));//BigDecimal.valueOf(Double.parseDouble(salariotxt.getText()))
+            cn.setDescuento(BigDecimal.valueOf(Double.parseDouble(txtDescuento.getText())));
+            cn.setTotal(BigDecimal.valueOf(Double.parseDouble(txtTotal.getText())));
+            cn.setId_cabecera_nota_pedidos(Long.valueOf(txtNumero.getText()));
+            valor = crud.ActualizarNotaPedidosCabecera(cn);
+            if (!"".equals(valor)){
+            JOptionPane.showMessageDialog(null, valor);
             setVisible(false);
-
+            }
+            
         } else {
 
         }
@@ -935,9 +949,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnReporteActionPerformed
 
-    private void txt_NumeroActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+   
 
     public static void main(String args[]) {
 
