@@ -125,7 +125,7 @@ public class OrdenCompra extends javax.swing.JDialog {
             Total1Iva = Total1Iva.add(Iva1);
 //            totalIva = redondearDecimales(totalIva, 2);
         }
-        txtIva.setText(Total1Iva.toString());
+        txtIva.setText(removeScientificNotation(Total1Iva.toString()));
 
     }
 
@@ -136,7 +136,7 @@ public class OrdenCompra extends javax.swing.JDialog {
             TotalDescuento = TotalDescuento.add(descuento);
 //            TotalDescuento = redondearDecimales(TotalDescuento, 2);
         }
-        txtDescuento.setText(TotalDescuento.toString());
+        txtDescuento.setText(removeScientificNotation(TotalDescuento.toString()));
     }
 
     public void Total() {
@@ -144,11 +144,13 @@ public class OrdenCompra extends javax.swing.JDialog {
         for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
             BigDecimal total = lista3.get(i).getTotal();
             Total_ = Total_.add(total);
-            
+
         }
         txtTotal.setText(Total_.toString());
     }
-
+     public static String removeScientificNotation(String value) {
+        return new BigDecimal(value).toPlainString();
+    }
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
         resultado = valorInicial;
@@ -733,6 +735,7 @@ public static String FechaActual() {
         ListaIngresoProductos();
     }//GEN-LAST:event_btnGuardarActionPerformed
     private void ListaIngresoProductos() {
+       try{
         FechaActual=hourdateFormat.format(date);
 //        ArrayList<String> queryL = new ArrayList<String>();
 //        ArrayList<String> queryL1 = new ArrayList<String>();
@@ -747,28 +750,45 @@ public static String FechaActual() {
         cc.setPlazo(cbxPlazo.getSelectedItem().toString());
         cc.setId_sucursal(Long.valueOf("2"));
         cc.setId_tipoPago(cbxFormaP.getSelectedItem().toString());
-        cc.setIva(Double.valueOf(txtIva.getText()));
-        cc.setDescuento(Double.valueOf(txtDescuento.getText()));
-        cc.setTotal(Double.valueOf(txtTotal.getText()));
+        cc.setIva(BigDecimal.valueOf(Double.parseDouble(txtIva.getText())));
+        cc.setDescuento(BigDecimal.valueOf(Double.parseDouble(txtDescuento.getText())));
+        cc.setTotal(BigDecimal.valueOf(Double.parseDouble(txtTotal.getText())));
         cc.setIdcabecerapedido(Long.valueOf(txt_Numero.getText()));
         id_cab=crud.insertarCabeceraCompras(cc);
 
         
-        for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
-            crud.insertarDetallesCompraRegistro("INSERT INTO `detalle_compra`(`id_cabecera_compra`,`id_precio`,`cantidad`,`precio`,`descuento`,`iva`,`total`)VALUES("+id_cab + "," +lista3.get(i).getId_precio()+","+ tbaListaComprasB.getValueAt(i, 7).toString() + "," + 
-            tbaListaComprasB.getValueAt(i, 8).toString() + "," + tbaListaComprasB.getValueAt(i, 9).toString()+"," + tbaListaComprasB.getValueAt(i, 10).toString()+"," + tbaListaComprasB.getValueAt(i, 11).toString()+")");
+//        for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
+//            crud.insertarDetallesCompraRegistro("INSERT INTO `detalle_compra`(`id_cabecera_compra`,`id_precio`,`cantidad`,`precio`,`descuento`,`iva`,`total`)VALUES("+id_cab + "," +lista3.get(i).getId_precio()+","+ tbaListaComprasB.getValueAt(i, 7).toString() + "," + 
+//            tbaListaComprasB.getValueAt(i, 8).toString() + "," + tbaListaComprasB.getValueAt(i, 9).toString()+"," + tbaListaComprasB.getValueAt(i, 10).toString()+"," + tbaListaComprasB.getValueAt(i, 11).toString()+")");
+//            id_precio = crud.buscarIDPrecioEnStock("SELECT `id_precio` FROM `stock` WHERE `id_precio`="+lista3.get(i).getId_precio());
+//            if("".equals(id_precio)){
+//               crud.insertarDetallesCompraRegistro("INSERT INTO `stock` (`cantidad`,`id_precio`)VALUES("+tbaListaComprasB.getValueAt(i, 7)+","+lista3.get(i).getId_precio()+");");
+//                //insertar si no existe
+//            }else{//actualizar o sumar si existe
+//               int cantidadx = crud.buscarCantidadEnStock("SELECT `cantidad` FROM `stock` WHERE `id_precio`="+lista3.get(i).getId_precio()+";");
+//               cantidadx= cantidadx+Integer.valueOf(tbaListaComprasB.getValueAt(i, 7).toString());
+//               crud.insertarDetallesCompraRegistro("UPDATE `stock` SET `cantidad` = "+cantidadx+" WHERE `id_precio` = "+lista3.get(i).getId_precio()+";");
+//            } 
+//              
+//        }
+        for (int i = 0; i < lista3.size(); i++) {
+            crud.insertarDetallesCompraRegistro("INSERT INTO `detalle_compra`(`id_cabecera_compra`,`id_precio`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono)VALUES("+id_cab + "," +lista3.get(i).getId_precio()+","+ lista3.get(i).getCantidad().toString() + "," + 
+            lista3.get(i).getPrecio().toString() + "," + lista3.get(i).getDescuento().toString()+"," + lista3.get(i).getIva().toString()+"," + lista3.get(i).getTotal().toString()+","+lista3.get(i).getBono().toString()+");");
             id_precio = crud.buscarIDPrecioEnStock("SELECT `id_precio` FROM `stock` WHERE `id_precio`="+lista3.get(i).getId_precio());
             if("".equals(id_precio)){
-               crud.insertarDetallesCompraRegistro("INSERT INTO `stock` (`cantidad`,`id_precio`)VALUES("+tbaListaComprasB.getValueAt(i, 7)+","+lista3.get(i).getId_precio()+");");
+               crud.insertarDetallesCompraRegistro("INSERT INTO `stock` (`cantidad`,`id_precio`)VALUES("+lista3.get(i).getCantidad().toString()+","+lista3.get(i).getId_precio()+");");
                 //insertar si no existe
             }else{//actualizar o sumar si existe
                int cantidadx = crud.buscarCantidadEnStock("SELECT `cantidad` FROM `stock` WHERE `id_precio`="+lista3.get(i).getId_precio()+";");
-               cantidadx= cantidadx+Integer.valueOf(tbaListaComprasB.getValueAt(i, 7).toString());
+               cantidadx= cantidadx+Integer.valueOf(lista3.get(i).getCantidad().toString());
                crud.insertarDetallesCompraRegistro("UPDATE `stock` SET `cantidad` = "+cantidadx+" WHERE `id_precio` = "+lista3.get(i).getId_precio()+";");
             } 
               
         }
-        
+        this.setVisible(false);
+    }catch(Exception ex){
+    Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
+    }
 //////////////////////////////////////////////////////////////////////////////////  
     }
     private void jLabel10MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseDragged

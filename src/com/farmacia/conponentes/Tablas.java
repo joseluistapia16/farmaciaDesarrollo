@@ -1238,10 +1238,10 @@ public static String removeScientificNotation(String value)
             Filas[5] = lista.get(i).getEnvase();
             Filas[6] = lista.get(i).getMedida();
             Filas[7] = "" + lista.get(i).getCantidad();
-            Filas[8] = lista.get(i).getPrecio().toString();
-            Filas[9] = lista.get(i).getDescuento().toString();
-            Filas[10] = lista.get(i).getIva().toString();
-            Filas[11] = lista.get(i).getTotal().toString();
+            Filas[8] = removeScientificNotation(lista.get(i).getPrecio().toString());
+            Filas[9] = removeScientificNotation(lista.get(i).getDescuento().toString());
+            Filas[10] =removeScientificNotation (lista.get(i).getIva().toString());
+            Filas[11] =removeScientificNotation(lista.get(i).getTotal().toString());
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);

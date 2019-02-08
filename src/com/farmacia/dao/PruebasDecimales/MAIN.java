@@ -140,4 +140,12 @@ public class MAIN {
 //        itemCost = itemPrice.multiply(itemQuantity);
 //        totalCost = totalCost + itemCost;
 //        return totalCost;
+//public String Formato(double valor, String deci) {
+//        DecimalFormatSymbols si = new DecimalFormatSymbols();
+//        si.setDecimalSeparator('.');
+//        DecimalFormat decf = new DecimalFormat("###.##", si);
+//        String gi = decf.format(valor);
+//        return gi;
+//
+//    }
 }

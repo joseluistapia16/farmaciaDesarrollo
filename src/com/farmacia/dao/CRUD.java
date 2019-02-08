@@ -88,9 +88,9 @@ public class CRUD {
             prodProAlm.setString(4, obj.getPlazo());
             prodProAlm.setLong(5, obj.getId_sucursal());
             prodProAlm.setString(6, obj.getId_tipoPago());
-            prodProAlm.setDouble(7, obj.getIva());
-            prodProAlm.setDouble(8, obj.getDescuento());
-            prodProAlm.setDouble(9, obj.getTotal());
+            prodProAlm.setBigDecimal(7, obj.getIva());
+            prodProAlm.setBigDecimal(8, obj.getDescuento());
+            prodProAlm.setBigDecimal(9, obj.getTotal());
             prodProAlm.setDouble(10, obj.getIdcabecerapedido());
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.executeUpdate();
@@ -122,7 +122,7 @@ public class CRUD {
             java.sql.Statement st = conect.createStatement();
             rs = st.executeQuery(query);
             rs.next();
-            id = rs.getString("id_cabecera");
+            id = rs.getString("id_precio");
             conect.close();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);

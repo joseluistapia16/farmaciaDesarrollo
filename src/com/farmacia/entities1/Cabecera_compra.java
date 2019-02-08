@@ -5,6 +5,8 @@
  */
 package com.farmacia.entities1;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author User
@@ -18,15 +20,15 @@ public class Cabecera_compra {
     String plazo;
     Long id_sucursal;
     String id_tipoPago;
-    Double iva;
-    Double descuento;
-    Double total;
+    BigDecimal iva;
+    BigDecimal descuento;
+    BigDecimal total;
     String estado;
     Long idcabecerapedido;
     public Cabecera_compra() {
     }
 
-    public Cabecera_compra(Long id_cabecera_compra, Long id_proveedor, Long id_usuario, String fecha_creacion, String plazo, Long id_sucursal, String id_tipoPago, Double iva, Double descuento, Double total, String estado, Long idcabecerapedido) {
+    public Cabecera_compra(Long id_cabecera_compra, Long id_proveedor, Long id_usuario, String fecha_creacion, String plazo, Long id_sucursal, String id_tipoPago, BigDecimal iva, BigDecimal descuento, BigDecimal total, String estado, Long idcabecerapedido) {
         this.id_cabecera_compra = id_cabecera_compra;
         this.id_proveedor = id_proveedor;
         this.id_usuario = id_usuario;
@@ -97,27 +99,27 @@ public class Cabecera_compra {
         this.id_tipoPago = id_tipoPago;
     }
 
-    public Double getIva() {
+    public BigDecimal getIva() {
         return iva;
     }
 
-    public void setIva(Double iva) {
+    public void setIva(BigDecimal iva) {
         this.iva = iva;
     }
 
-    public Double getDescuento() {
+    public BigDecimal getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(Double descuento) {
+    public void setDescuento(BigDecimal descuento) {
         this.descuento = descuento;
     }
 
-    public Double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
@@ -137,5 +139,5 @@ public class Cabecera_compra {
         this.idcabecerapedido = idcabecerapedido;
     }
 
-    
+   
 }
