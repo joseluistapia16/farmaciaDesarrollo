@@ -771,6 +771,7 @@ public static String FechaActual() {
 //            } 
 //              
 //        }
+
         for (int i = 0; i < lista3.size(); i++) {
             crud.insertarDetallesCompraRegistro("INSERT INTO `detalle_compra`(`id_cabecera_compra`,`id_precio`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono)VALUES("+id_cab + "," +lista3.get(i).getId_precio()+","+ lista3.get(i).getCantidad().toString() + "," + 
             lista3.get(i).getPrecio().toString() + "," + lista3.get(i).getDescuento().toString()+"," + lista3.get(i).getIva().toString()+"," + lista3.get(i).getTotal().toString()+","+lista3.get(i).getBono().toString()+");");
