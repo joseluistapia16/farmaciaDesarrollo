@@ -11,6 +11,7 @@ import com.farmacia.operaciones.ActualizarFaltantes;
 import com.farmacia.validaciones.ComponentesFaltantes;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ClaseReporte;
 //import com.objetos.componentes.Tablas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,16 +22,28 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import com.farmacia.filtros.filtrosProductos;
+import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
  * @author alumno
  */
 public class ListaDePedidos extends javax.swing.JDialog {
-
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     int x, y;
     CRUD crud = new CRUD();
     DefaultTableModel model;
@@ -89,6 +102,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
         tipofiltro = new javax.swing.JComboBox<>();
         filtro = new javax.swing.JTextField();
         filtrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -139,6 +153,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnAceptar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/guardar.jpg"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +189,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(tbaProductosA);
 
+        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         btnSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/action_exit_close_remove_13915.png"))); // NOI18N
         btnSalir2.setText("Regresar");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
@@ -242,6 +258,14 @@ public class ListaDePedidos extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButton1.setText("IMPRIMIR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -265,7 +289,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
                             .addComponent(jScrollPane1))))
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 160, Short.MAX_VALUE)
+                .addGap(0, 106, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,6 +299,8 @@ public class ListaDePedidos extends javax.swing.JDialog {
                         .addComponent(filtrar)
                         .addGap(108, 108, 108))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addComponent(btnSalir2)
@@ -302,7 +328,8 @@ public class ListaDePedidos extends javax.swing.JDialog {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalir2)
-                    .addComponent(btnAceptar))
+                    .addComponent(btnAceptar)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 37, Short.MAX_VALUE))
         );
 
@@ -471,6 +498,28 @@ public class ListaDePedidos extends javax.swing.JDialog {
 
     }//GEN-LAST:event_tbaListaFaltantesBMousePressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ArrayList tabla = new ArrayList();
+        for(int i=0;i<tbaListaFaltantesB.getRowCount();i++){
+        ClaseReporte tabla1 = new ClaseReporte(tbaListaFaltantesB.getValueAt(i,0).toString(),tbaListaFaltantesB.getValueAt(i,1).toString(),tbaListaFaltantesB.getValueAt(i,2).toString(),tbaListaFaltantesB.getValueAt(i,3).toString());
+        tabla.add(tabla1);
+        }        
+        try {
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("ListaDePedidos.jasper");
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tabla));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer (jprint);
+            frame.add(viewer);
+            frame.getSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(ListaDePedidos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public FaltantesCabeceraDetalles devuelveObjeto(String datos, ArrayList<FaltantesCabeceraDetalles> listarobj) {
         FaltantesCabeceraDetalles objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
@@ -578,6 +627,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
     private javax.swing.JButton btnSalir2;
     private javax.swing.JButton filtrar;
     private javax.swing.JTextField filtro;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;

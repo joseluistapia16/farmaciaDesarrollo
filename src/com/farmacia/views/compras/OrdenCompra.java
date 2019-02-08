@@ -946,9 +946,16 @@ public static String FechaActual() {
             tbaListaComprasB.getValueAt(i,3).toString(),
             tbaListaComprasB.getValueAt(i,4).toString(),
             tbaListaComprasB.getValueAt(i,5).toString(),
+            tbaListaComprasB.getValueAt(i,6).toString(),
+            tbaListaComprasB.getValueAt(i,7).toString(),
+            tbaListaComprasB.getValueAt(i,8).toString(),
+            tbaListaComprasB.getValueAt(i,9).toString(),
+            tbaListaComprasB.getValueAt(i,10).toString(),
+            tbaListaComprasB.getValueAt(i,11).toString(),
             txtDescuento.getText(),
             txtIva.getText(),
-            txtTotal.getText());
+            txtTotal.getText(),
+            txt_Numero.getText());
             tablac.add(tabla1);
         }
         try {
