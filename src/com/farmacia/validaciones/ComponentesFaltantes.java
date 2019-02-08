@@ -5,10 +5,9 @@
  */
 package com.farmacia.validaciones;
 
-import com.farmacia.dao.CRUD;
-import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
-import java.util.ArrayList;
 import javax.swing.JTable;
+
+
 
 /**
  *
@@ -16,8 +15,6 @@ import javax.swing.JTable;
  */
 public class ComponentesFaltantes {
 
-    CRUD crud = new CRUD();
-    ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
 
     public static String validarListaFaltantes(JTable tabla, String id_producto) {
         String o, msg = null;
@@ -32,12 +29,25 @@ public class ComponentesFaltantes {
 
         return msg;
     }
+//        public static String validarListaFaltantesNota(JTable tabla, String id_producto) {
+//        String o, msg = null;
+//        for (int i = 0; i < tabla.getRowCount(); i++) {
+//            o = (String) tabla.getValueAt(i, 0);
+//            if (o.equals(id_producto)) {
+//                msg = "El producto ya fue Seleccionado!";
+//                break;
+//            }
+//
+//        }
+//
+//        return msg;
+//    }
 
-    public static String validarListaFaltantesNota(JTable tabla, String id_producto) {
+    public static String validarListaFaltantesNota(JTable tabla, String id_precio) {
         String o, msg = null;
         for (int i = 0; i < tabla.getRowCount(); i++) {
             o = (String) tabla.getValueAt(i, 0);
-            if (o.equals(id_producto)) {
+            if (o.equals(id_precio)) {
                 msg = "El producto ya fue Seleccionado!";
                 break;
             }

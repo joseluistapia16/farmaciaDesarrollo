@@ -738,13 +738,13 @@ public class Tablas {
             Integer Bono = lista.get(i).getBono();
             BigDecimal Bono1 = new BigDecimal(Bono);
             BigDecimal CantidadTotal = Cantidad.add(Bono1);
-            System.out.println("division "+Subtotal+" "+CantidadTotal);
             PrecioBono = Subtotal.divide(CantidadTotal,7, RoundingMode.HALF_UP);
             
             BigDecimal PorcentajeDesc = lista.get(i).getPorcentaje_descuento();
             //BigDecimal cien = new BigDecimal("100");
             BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
-            ValorDes=ValorDes.setScale(2, BigDecimal.ROUND_HALF_UP);
+            
+//            ValorDes=ValorDes.setScale(2, BigDecimal.ROUND_HALF_UP);
             Filas[0] = "" + lista.get(i).getId_producto().toString();
             Filas[1] = lista.get(i).getMarca();
             Filas[2] = lista.get(i).getNombre_tipo();
@@ -760,7 +760,7 @@ public class Tablas {
                 BigDecimal importe = Subtotal.subtract(ValorDes);
                 importe=importe.setScale(7, BigDecimal.ROUND_HALF_UP);
                 Filas[11] = "" + importe;
-            } else //            if (!"NO".equals(lista.get(i).getIva())) 
+            } else
             {
                 String ivaget = lista.get(i).getIva();
                 BigDecimal IVA = new BigDecimal(ivaget);
