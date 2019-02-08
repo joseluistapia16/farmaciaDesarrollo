@@ -28,6 +28,7 @@ public class NotePedidos extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     filtrosProductos fil = new filtrosProductos();
     joinProductoDetallesFaltantes objeto = null;
+    joinProductoDetallesFaltantes objetoC = null;
     ListarJoinProveedorNotaPedido proveedorC = null;
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
@@ -38,13 +39,13 @@ public class NotePedidos extends javax.swing.JDialog {
 
         setUndecorated(true);
         initComponents();
-//        PanelSec.setEnabled(false);
-//        filtro.setEnabled(false);
-//        t_Nota_faltantes.setEnabled(false);
-//        tbaListaFaltantes.setEnabled(false);
-//        btnBuscar.setEnabled(false);
-//        btnGuardar.setEnabled(false);
-//        btnNuevo.setEnabled(false);
+        PanelSec.setEnabled(false);
+        filtro.setEnabled(false);
+        t_Nota_faltantes.setEnabled(false);
+        tbaListaFaltantes.setEnabled(false);
+        btnBuscar.setEnabled(false);
+        btnGuardar.setEnabled(false);
+        btnNuevo.setEnabled(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         TotalDescuento2();
@@ -826,20 +827,23 @@ public class NotePedidos extends javax.swing.JDialog {
         try {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
+                objetoC = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
                 objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
 //                objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
                 if (objeto != null) {
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
+                    msg = ComponentesFaltantes.validarListaFaltantesNota(tbaListaFaltantes, objeto.getId_precios().toString());
 //                    msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
-                    msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
 
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                         if (np.getObjf().getCantidad() > 0) {
+                            
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
-                            getPosicion2(objeto.getId_producto(), suma);
+                            getPosicion2(objetoC.getId_producto(), suma);
                             lista1.add(np.getObjf());
+                            System.out.println("objeto C "+ objetoC.getId_producto());
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                             Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
 
