@@ -55,7 +55,7 @@ public class OrdenCompra extends javax.swing.JDialog {
     ListarJoinProveedor proveedor = null;
     JoinListarDetalleNotaPedido detalle = null;
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
-  //  ArrayList<listarJoinProductosCompras> lista = crud.listarTodoJoinProductos(1);
+    //  ArrayList<listarJoinProductosCompras> lista = crud.listarTodoJoinProductos(1);
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
     ArrayList<joinProductoDetallesFaltantes> listaCompra = crud.listarFaltantesDetalles(1);
     int id_tipopago = 0;
@@ -90,7 +90,7 @@ public class OrdenCompra extends javax.swing.JDialog {
         Timer tiempo = new Timer(100, new OrdenCompra.horas());
         tiempo.start();
         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, listaCompra);
-       // Tablas.cargarJoinProductosMCompra(tbacargarProductosA, lista);
+        // Tablas.cargarJoinProductosMCompra(tbacargarProductosA, lista);
         String id_cab = txt_Numero.getText().toString();
         lista3 = crud.listarDetalleNotaPedido(1, id_cab);
         Tablas.cargarJoinRegistroDetalleCompras(tbaListaComprasB, lista3);
@@ -148,9 +148,11 @@ public class OrdenCompra extends javax.swing.JDialog {
         }
         txtTotal.setText(Total_.toString());
     }
-     public static String removeScientificNotation(String value) {
+
+    public static String removeScientificNotation(String value) {
         return new BigDecimal(value).toPlainString();
     }
+
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
         resultado = valorInicial;
@@ -706,13 +708,14 @@ public static String FechaActual() {
             }
         }
         return pro;
-    }   
-   public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
+    }
+
+    public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
         joinProductoDetallesFaltantes objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
             if (datos.equals(listarobj.get(i).getId_precios().toString())) {
                 objeto1 = listarobj.get(i);
-                System.out.println("iva "+listarobj.get(i).getIva()+" "+listarobj.get(i).getPorcentaje_descuento());
+                System.out.println("iva " + listarobj.get(i).getIva() + " " + listarobj.get(i).getPorcentaje_descuento());
                 break;
             }
         }
@@ -735,28 +738,29 @@ public static String FechaActual() {
         ListaIngresoProductos();
     }//GEN-LAST:event_btnGuardarActionPerformed
     private void ListaIngresoProductos() {
-       try{
-        FechaActual=hourdateFormat.format(date);
+        try {
+            FechaActual = hourdateFormat.format(date);
 //        ArrayList<String> queryL = new ArrayList<String>();
 //        ArrayList<String> queryL1 = new ArrayList<String>();
-        String cad = "";
-        String cad1 = "";
-        String id_cab = "";
-        String id_precio="";
-        Cabecera_compra cc = new Cabecera_compra();
-        cc.setId_proveedor(Long.valueOf(txtCodigoProveedor.getText()));
-        cc.setId_usuario(Long.valueOf("2"));
-        cc.setFecha_creacion(FechaActual);
-        cc.setPlazo(cbxPlazo.getSelectedItem().toString());
-        cc.setId_sucursal(Long.valueOf("2"));
-        cc.setId_tipoPago(cbxFormaP.getSelectedItem().toString());
-        cc.setIva(BigDecimal.valueOf(Double.parseDouble(txtIva.getText())));
-        cc.setDescuento(BigDecimal.valueOf(Double.parseDouble(txtDescuento.getText())));
-        cc.setTotal(BigDecimal.valueOf(Double.parseDouble(txtTotal.getText())));
-        cc.setIdcabecerapedido(Long.valueOf(txt_Numero.getText()));
-        id_cab=crud.insertarCabeceraCompras(cc);
+            String cad = "";
+            String cad1 = "";
+            String id_cab = "";
+            String id_precio = null;
+            Cabecera_compra cc = new Cabecera_compra();
+            cc.setId_proveedor(Long.valueOf(txtCodigoProveedor.getText()));
+            cc.setId_usuario(Long.valueOf("2"));
+            cc.setFecha_creacion(FechaActual);
+            cc.setPlazo(cbxPlazo.getSelectedItem().toString());
+            cc.setId_sucursal(Long.valueOf("2"));
+            cc.setId_tipoPago(cbxFormaP.getSelectedItem().toString());
+            cc.setIva(BigDecimal.valueOf(Double.parseDouble(txtIva.getText())));
+            cc.setDescuento(BigDecimal.valueOf(Double.parseDouble(txtDescuento.getText())));
+            cc.setTotal(BigDecimal.valueOf(Double.parseDouble(txtTotal.getText())));
+            cc.setIdcabecerapedido(Long.valueOf(txt_Numero.getText()));
+            id_cab = crud.insertarCabeceraCompras(cc);
 
-        
+            lista3.clear();
+            lista3 = crud.listarDetalleNotaPedido(1, txt_Numero.getText());
 //        for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
 //            crud.insertarDetallesCompraRegistro("INSERT INTO `detalle_compra`(`id_cabecera_compra`,`id_precio`,`cantidad`,`precio`,`descuento`,`iva`,`total`)VALUES("+id_cab + "," +lista3.get(i).getId_precio()+","+ tbaListaComprasB.getValueAt(i, 7).toString() + "," + 
 //            tbaListaComprasB.getValueAt(i, 8).toString() + "," + tbaListaComprasB.getValueAt(i, 9).toString()+"," + tbaListaComprasB.getValueAt(i, 10).toString()+"," + tbaListaComprasB.getValueAt(i, 11).toString()+")");
@@ -772,24 +776,24 @@ public static String FechaActual() {
 //              
 //        }
 
-        for (int i = 0; i < lista3.size(); i++) {
-            crud.insertarDetallesCompraRegistro("INSERT INTO `detalle_compra`(`id_cabecera_compra`,`id_precio`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono)VALUES("+id_cab + "," +lista3.get(i).getId_precio()+","+ lista3.get(i).getCantidad().toString() + "," + 
-            lista3.get(i).getPrecio().toString() + "," + lista3.get(i).getDescuento().toString()+"," + lista3.get(i).getIva().toString()+"," + lista3.get(i).getTotal().toString()+","+lista3.get(i).getBono().toString()+");");
-            id_precio = crud.buscarIDPrecioEnStock("SELECT `id_precio` FROM `stock` WHERE `id_precio`="+lista3.get(i).getId_precio());
-            if("".equals(id_precio)){
-               crud.insertarDetallesCompraRegistro("INSERT INTO `stock` (`cantidad`,`id_precio`)VALUES("+lista3.get(i).getCantidad().toString()+","+lista3.get(i).getId_precio()+");");
-                //insertar si no existe
-            }else{//actualizar o sumar si existe
-               int cantidadx = crud.buscarCantidadEnStock("SELECT `cantidad` FROM `stock` WHERE `id_precio`="+lista3.get(i).getId_precio()+";");
-               cantidadx= cantidadx+Integer.valueOf(lista3.get(i).getCantidad().toString());
-               crud.insertarDetallesCompraRegistro("UPDATE `stock` SET `cantidad` = "+cantidadx+" WHERE `id_precio` = "+lista3.get(i).getId_precio()+";");
-            } 
-              
+            for (int i = 0; i < lista3.size(); i++) {
+                crud.insertarDetallesCompraRegistro("INSERT INTO `detalle_compra`(`id_cabecera_compra`,`id_precio`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono)VALUES(" + id_cab + "," + lista3.get(i).getId_precio() + "," + lista3.get(i).getCantidad().toString() + ","
+                        + lista3.get(i).getPrecio().toString() + "," + lista3.get(i).getDescuento().toString() + "," + lista3.get(i).getIva().toString() + "," + lista3.get(i).getTotal().toString() + "," + lista3.get(i).getBono().toString() + ");");
+                id_precio = crud.buscarIDPrecioEnStock("SELECT `id_precio` FROM `stock` WHERE `id_precio`=" + lista3.get(i).getId_precio().toString());
+                if (null == id_precio) {
+                    crud.insertarDetallesCompraRegistro("INSERT INTO `stock` (`cantidad`,`id_precio`)VALUES(" + lista3.get(i).getCantidad().toString() + "," + lista3.get(i).getId_precio().toString() + ");");
+                    //insertar si no existe
+                } else {//actualizar o sumar si existe
+                    int cantidadx = crud.buscarCantidadEnStock("SELECT `cantidad` FROM `stock` WHERE `id_precio`=" + lista3.get(i).getId_precio() + ";");
+                    cantidadx = cantidadx + Integer.valueOf(lista3.get(i).getCantidad().toString());
+                    crud.insertarDetallesCompraRegistro("UPDATE `stock` SET `cantidad` = " + cantidadx + " WHERE `id_precio` = " + lista3.get(i).getId_precio() + ";");
+                }
+
+            }
+            this.setVisible(false);
+        } catch (Exception ex) {
+            Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setVisible(false);
-    }catch(Exception ex){
-    Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
-    }
 //////////////////////////////////////////////////////////////////////////////////  
     }
     private void jLabel10MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseDragged
@@ -871,7 +875,7 @@ public static String FechaActual() {
                     btnSalir2.setEnabled(false);
                 }
             } else {
-                EditarProductoEnCompras epc=new EditarProductoEnCompras(new javax.swing.JFrame(), true, detalle);
+                EditarProductoEnCompras epc = new EditarProductoEnCompras(new javax.swing.JFrame(), true, detalle);
                 epc.setVisible(true);
                 actualizarTabla2();
             }
@@ -903,8 +907,8 @@ public static String FechaActual() {
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
-                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, listaCompra );
-                            
+                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, listaCompra);
+
                             crud.InsertarBDCompras(txt_Numero.getText(), lista1);
                             actualizarTabla2();
                         }
@@ -916,8 +920,8 @@ public static String FechaActual() {
             }
 
         } catch (Exception ex) {
-            
-        Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
+
+            Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
 
@@ -927,28 +931,28 @@ public static String FechaActual() {
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         ArrayList tablac = new ArrayList();
-        for (int i = 0; i <tbaListaComprasB.getRowCount(); i++) {
+        for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
             ClaseReporte tabla1 = new ClaseReporte(txtNombre.getText(),
-            txtCodigoProveedor.getText(),
-            txtNombre.getText(),
-            txtRepresentante.getText(),
-            txtTelefono.getText(),
-            txtRuc.getText(),
-            txtCorreo.getText(),
-            txtDireccion.getText(),
-            txtTipo.getText(),
-            txtFechaCreacion.getText(),
-            cbxPlazo.getSelectedItem().toString(),
-            cbxFormaP.getSelectedItem().toString(),
-            tbaListaComprasB.getValueAt(i,0).toString(),
-            tbaListaComprasB.getValueAt(i,1).toString(),
-            tbaListaComprasB.getValueAt(i,2).toString(),
-            tbaListaComprasB.getValueAt(i,3).toString(),
-            tbaListaComprasB.getValueAt(i,4).toString(),
-            tbaListaComprasB.getValueAt(i,5).toString(),
-            txtDescuento.getText(),
-            txtIva.getText(),
-            txtTotal.getText());
+                    txtCodigoProveedor.getText(),
+                    txtNombre.getText(),
+                    txtRepresentante.getText(),
+                    txtTelefono.getText(),
+                    txtRuc.getText(),
+                    txtCorreo.getText(),
+                    txtDireccion.getText(),
+                    txtTipo.getText(),
+                    txtFechaCreacion.getText(),
+                    cbxPlazo.getSelectedItem().toString(),
+                    cbxFormaP.getSelectedItem().toString(),
+                    tbaListaComprasB.getValueAt(i, 0).toString(),
+                    tbaListaComprasB.getValueAt(i, 1).toString(),
+                    tbaListaComprasB.getValueAt(i, 2).toString(),
+                    tbaListaComprasB.getValueAt(i, 3).toString(),
+                    tbaListaComprasB.getValueAt(i, 4).toString(),
+                    tbaListaComprasB.getValueAt(i, 5).toString(),
+                    txtDescuento.getText(),
+                    txtIva.getText(),
+                    txtTotal.getText());
             tablac.add(tabla1);
         }
         try {
@@ -977,6 +981,7 @@ public static String FechaActual() {
         }
 
     }
+
     public int confirmarAccion() {
         String[] options = {"Eliminar", "Editar"};
         int seleccion = JOptionPane.showOptionDialog(null, "Desea Eliminar o Editar?", "EDITAR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);

@@ -32,11 +32,13 @@ public class joinProductoDetallesFaltantes {
     private BigDecimal importe;
     private BigDecimal porcentaje_descuento;
     private BigDecimal valor_descuento;
+    private BigDecimal PrecioBono;
+    private BigDecimal Precioiva;
     
     public joinProductoDetallesFaltantes() {
     }
 
-    public joinProductoDetallesFaltantes(Long id_detalle_faltantes, Long id_tipo, String nombre_tipo, Long id_producto, String nombre_producto, Integer cantidad, String estado, Long id_marcas, String marca, Long id_medida, String medida, Long id_envase, String envase, Long id_precios, BigDecimal precios, String iva, Integer bono, BigDecimal importe, BigDecimal porcentaje_descuento, BigDecimal valor_descuento) {
+    public joinProductoDetallesFaltantes(Long id_detalle_faltantes, Long id_tipo, String nombre_tipo, Long id_producto, String nombre_producto, Integer cantidad, String estado, Long id_marcas, String marca, Long id_medida, String medida, Long id_envase, String envase, Long id_precios, BigDecimal precios, String iva, Integer bono, BigDecimal importe, BigDecimal porcentaje_descuento, BigDecimal valor_descuento, BigDecimal PrecioBono, BigDecimal Precioiva) {
         this.id_detalle_faltantes = id_detalle_faltantes;
         this.id_tipo = id_tipo;
         this.nombre_tipo = nombre_tipo;
@@ -57,6 +59,8 @@ public class joinProductoDetallesFaltantes {
         this.importe = importe;
         this.porcentaje_descuento = porcentaje_descuento;
         this.valor_descuento = valor_descuento;
+        this.PrecioBono = PrecioBono;
+        this.Precioiva = Precioiva;
     }
 
     public Long getId_detalle_faltantes() {
@@ -219,4 +223,21 @@ public class joinProductoDetallesFaltantes {
         this.valor_descuento = valor_descuento;
     }
 
+    public BigDecimal getPrecioBono() {
+        return PrecioBono;
+    }
+
+    public void setPrecioBono(BigDecimal PrecioBono) {
+        this.PrecioBono = PrecioBono;
+    }
+
+    public BigDecimal getPrecioiva() {
+        return Precioiva;
+    }
+
+    public void setPrecioiva(BigDecimal Precioiva) {
+        this.Precioiva = Precioiva;
+    }
+
+    
 }

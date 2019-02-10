@@ -26,6 +26,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
     int x, y;
     CRUD crud = new CRUD();
+    BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     filtrosProductos fil = new filtrosProductos();
     joinProductoDetallesFaltantes objeto = null;
     ListarJoinProveedorNotaPedido proveedorC = null;
@@ -109,8 +110,9 @@ public class NotePedidos extends javax.swing.JDialog {
                 TotalPro = TotalPro.add(Subtotal).subtract(ValorDes).add(ValorIVA);
             }
         }
-        TotalPro = TotalPro.setScale(2, BigDecimal.ROUND_HALF_UP);
-        txtTotal.setText(TotalPro.toString());
+        VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalPro.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        System.out.println("total lala:" + VGtotal);
+        txtTotal.setText(TotalPro.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
     }
 
     public void TotalIVA2() {
@@ -134,8 +136,9 @@ public class NotePedidos extends javax.swing.JDialog {
                 TotalIva = TotalIva.add(ValorIva);
             }
         }
-        TotalIva = TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP);
-        txtIva.setText(TotalIva.toString());
+        VGiva = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalIva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        System.out.println("iva lala: " + VGiva);
+        txtIva.setText(TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
     }
 
     public void TotalDescuento2() {
@@ -154,10 +157,14 @@ public class NotePedidos extends javax.swing.JDialog {
             TotalDesc = TotalDesc.add(ValorDesc);
 //            System.out.println("TotalDEsc " + TotalDesc);
         }
-        TotalDesc = TotalDesc.setScale(2, BigDecimal.ROUND_HALF_UP);
-        txtDescuento.setText(TotalDesc.toString());
+        VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDesc.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        System.out.println("descuento lala: " + VGdescuento);
+        txtDescuento.setText(TotalDesc.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
     }
-
+   public static String removeScientificNotation(String value)
+{
+    return new BigDecimal(value).toPlainString();
+}
     public static String FechaActual() {
         Date fecha = new Date();
         SimpleDateFormat formatoFecha = new SimpleDateFormat("YYYY/MM/dd");
@@ -788,27 +795,32 @@ public class NotePedidos extends javax.swing.JDialog {
             cn.setFecha_creacion(txtFecha.getText() + " " + txtHora.getText());
             cn.setPlazo(cbxPlazo.getSelectedItem().toString());
             cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
-
-            String iva1 = txtIva.getText();
-            BigDecimal IVA = new BigDecimal(iva1);
-            cn.setIva(IVA);//
-            String descuento1 = txtDescuento.getText();
-            BigDecimal DESCUENTO = new BigDecimal(descuento1);
-            cn.setDescuento(DESCUENTO);//
-            String total1 = txtTotal.getText();
-            BigDecimal TOTAL = new BigDecimal(total1);
-            cn.setTotal(TOTAL);//
+//
+//            String iva1 = txtIva.getText();
+//            BigDecimal IVA = new BigDecimal(iva1);
+//            cn.setIva(IVA);//
+//            String descuento1 = txtDescuento.getText();
+//            BigDecimal DESCUENTO = new BigDecimal(descuento1);
+//            cn.setDescuento(DESCUENTO);//
+//            String total1 = txtTotal.getText();
+//            BigDecimal TOTAL = new BigDecimal(total1);
+//            cn.setTotal(TOTAL);//
+            cn.setIva(VGiva);
+            cn.setDescuento(VGdescuento);//
+            cn.setTotal(VGtotal);//
             id_cab = crud.insertarCabeceraNotaPedido(cn);
 
-            String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + txtTotal.getText();
+            String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
             id_cab = crud.buscarIDCabeceraNotaPedido(query);
-
+            Tablas t=new Tablas();
+            t.getlisDet();
             for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
                 cad1 = "INSERT INTO detalle_nota_pedidos"
                         + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
-                        + "VALUES(" + id_cab + "," + lista.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + tbaListaFaltantes.getValueAt(i, 8).toString() + "," + tbaListaFaltantes.getValueAt(i, 9).toString() + "," + tbaListaFaltantes.getValueAt(i, 11).toString() + "," + tbaListaFaltantes.getValueAt(i, 10).toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
-                queryL1.add(cad1);
+                        + "VALUES(" + id_cab + "," + lista1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + t.getlisDet().getPrecioBono().toString() + "," + t.getlisDet().getValor_descuento().toString() + "," + t.getlisDet().getImporte()+ "," + t.getlisDet().getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
                 System.out.println(cad1);
+                queryL1.add(cad1);
+               // System.out.println(cad1);
             }
             crud.InsertarDetallesNotaPedidos(queryL1);
             queryL1.clear();
@@ -826,8 +838,11 @@ public class NotePedidos extends javax.swing.JDialog {
         try {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
+
                 objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-//                objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
+                System.out.println("lista id precio hola " + objeto.getId_precios() + " " + objeto.getId_producto());
+
+//objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
                 if (objeto != null) {
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
@@ -836,6 +851,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                        System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios() + " " + np.getObjf().getId_producto());
                         if (np.getObjf().getCantidad() > 0) {
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion2(objeto.getId_producto(), suma);

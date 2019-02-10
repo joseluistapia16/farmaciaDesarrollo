@@ -716,9 +716,10 @@ public class Tablas {
 
     }
 //cargarJoinProductoIngresoNotas
-
+   
+   static joinProductoDetallesFaltantes  obj=new joinProductoDetallesFaltantes();
     public static void cargarJoinProductoIngresoNotas(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
-
+        
         int[] a = {10, 30, 32, 70, 15, 30, 10, 10, 10, 20, 10, 5};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
@@ -740,10 +741,11 @@ public class Tablas {
             BigDecimal CantidadTotal = Cantidad.add(Bono1);
             System.out.println("division "+Subtotal+" "+CantidadTotal);
             PrecioBono = Subtotal.divide(CantidadTotal,7, RoundingMode.HALF_UP);
-            
+            obj.setPrecioBono(PrecioBono);
             BigDecimal PorcentajeDesc = lista.get(i).getPorcentaje_descuento();
             //BigDecimal cien = new BigDecimal("100");
             BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
+            obj.setValor_descuento(ValorDes);
             ValorDes=ValorDes.setScale(2, BigDecimal.ROUND_HALF_UP);
             Filas[0] = "" + lista.get(i).getId_producto().toString();
             Filas[1] = lista.get(i).getMarca();
@@ -753,24 +755,28 @@ public class Tablas {
             Filas[5] = lista.get(i).getMedida();
             Filas[6] = "" + Bono;
             Filas[7] = "" + Cant;
-            Filas[8] = "" + PrecioBono;
-            Filas[9] = "" + ValorDes;
+            Filas[8] = "" + PrecioBono.setScale(2, BigDecimal.ROUND_HALF_UP);
+            Filas[9] = "" + ValorDes.setScale(2, BigDecimal.ROUND_HALF_UP);
             if (lista.get(i).getIva().equals("NO")) {
                 Filas[10] = "" + 0.00;
+                obj.setPrecioiva(new BigDecimal("0.00"));
                 BigDecimal importe = Subtotal.subtract(ValorDes);
-                importe=importe.setScale(7, BigDecimal.ROUND_HALF_UP);
+                obj.setImporte(importe);
+                importe=importe.setScale(2, BigDecimal.ROUND_HALF_UP);
                 Filas[11] = "" + importe;
             } else //            if (!"NO".equals(lista.get(i).getIva())) 
             {
                 String ivaget = lista.get(i).getIva();
                 BigDecimal IVA = new BigDecimal(ivaget);
                 BigDecimal ValorIVA = IVA.multiply(Subtotal);
-                Filas[10] = "" + ValorIVA;
+                obj.setPrecioiva(ValorIVA);
+                Filas[10] = "" + ValorIVA.setScale(2, BigDecimal.ROUND_HALF_UP);;
                 BigDecimal importe = Subtotal.add(ValorIVA).subtract(ValorDes);
-                importe=importe.setScale(7, BigDecimal.ROUND_HALF_UP);
+                 obj.setImporte(importe);
+                importe=importe.setScale(2, BigDecimal.ROUND_HALF_UP);
                 Filas[11] = "" + importe;
             }
-
+            
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -799,7 +805,11 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(11).setCellRenderer(tcr);
 
         }
-
+        
+        
+    }
+    public joinProductoDetallesFaltantes getlisDet() {
+        return obj;
     }
 //    public static void cargarJoinProductoIngresoNotas(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
 //
@@ -1180,11 +1190,11 @@ public class Tablas {
             Filas[5] = lista.get(i).getMedida();
             Filas[6] = "" + lista.get(i).getCantidad();
             Filas[7] = "" + lista.get(i).getBono();
-            Filas[8] = lista.get(i).getPrecio().toString();
+            Filas[8] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
            System.out.println("descr¿uento " + new BigDecimal(lista.get(i).getDescuento().toString()).toPlainString());
-            Filas[9] = removeScientificNotation(lista.get(i).getDescuento().toString());//new BigDecimal(value).toPlainString();
-            Filas[10] = removeScientificNotation(lista.get(i).getIva().toString());
-            Filas[11] = removeScientificNotation(lista.get(i).getTotal().toString());
+            Filas[9] = removeScientificNotation(lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString());//new BigDecimal(value).toPlainString();
+            Filas[10] = removeScientificNotation(lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            Filas[11] = removeScientificNotation(lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);

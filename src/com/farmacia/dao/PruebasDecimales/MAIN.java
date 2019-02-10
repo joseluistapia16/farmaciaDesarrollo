@@ -8,6 +8,9 @@ package com.farmacia.dao.PruebasDecimales;
 import com.farmacia.dao.CRUD;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 /*BigDecimal a = new BigDecimal("5");
 BigDecimal b = new BigDecimal("7");
@@ -53,77 +56,87 @@ public class MAIN {
 //        BigDecimal e=new BigDecimal(x);
 //        System.out.println("ed "+e);
 //        
-        
-        int in = 35;
-        BigDecimal cant = new BigDecimal(in);
-        BigDecimal precio = new BigDecimal("0.64");
-        BigDecimal iva = new BigDecimal("2.68");
-        BigDecimal descento = new BigDecimal("2.24");
-        BigDecimal bono = new BigDecimal("0");
-        BigDecimal total = new BigDecimal("0.0");
-        BigDecimal totalx = new BigDecimal("0.0");
-        BigDecimal ivax = new BigDecimal("0.12");
-        BigDecimal descx = new BigDecimal("0.10");
-       
-        
-        
-        total=precio.multiply(cant);
-        System.out.println("precio subtotal"+total);
-//        total = total.setScale(2, BigDecimal.ROUND_HALF_UP);
-//        System.out.println("precio redondeado "+total);
-        ivax = total.multiply(ivax);
-        System.out.println("el iva es "+ivax);
-        
-        descx= total.multiply(descx);
-        System.out.println("resta "+descx);
-        
-        total = total.add(ivax).subtract(descx);
-        System.out.println("total sin redondeo "+total);
-        total= total.setScale(2,BigDecimal.ROUND_HALF_UP);
-        System.out.println("total redondeado "+total);
-        
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        int in1 = 30;
-        BigDecimal cant1 = new BigDecimal(in);
-        BigDecimal precio1 = new BigDecimal("0.75");
-        BigDecimal iva1 = new BigDecimal("2.68");
-        BigDecimal descento1 = new BigDecimal("2.24");
-        BigDecimal bono1 = new BigDecimal("0");
-        BigDecimal total1 = new BigDecimal("0.0");
-        BigDecimal totalx1 = new BigDecimal("0.0");
-        BigDecimal ivax1 = new BigDecimal("0.12");
-        BigDecimal descx1 = new BigDecimal("0.10");
-       
-        
-        
-        total1=precio1.multiply(cant1);
-        System.out.println("precio subtotal"+total1);
-//        total = total.setScale(2, BigDecimal.ROUND_HALF_UP);
-//        System.out.println("precio redondeado "+total);
-        ivax1 = total1.multiply(ivax1);
-        System.out.println("el iva es "+ivax1);
-        
-        descx1= total1.multiply(descx1);
-        System.out.println("resta "+descx1);
-        
-        total1 = total1.add(ivax1).subtract(descx1);
-        System.out.println("total sin redondeo "+total1);
-        total1= total1.setScale(2,BigDecimal.ROUND_HALF_UP);
-        System.out.println("total redondeado "+total1);
+
+////        int in = 35;
+////        BigDecimal cant = new BigDecimal(in);
+////        BigDecimal precio = new BigDecimal("0.64");
+////        BigDecimal iva = new BigDecimal("2.68");
+////        BigDecimal descento = new BigDecimal("2.24");
+////        BigDecimal bono = new BigDecimal("0");
+////        BigDecimal total = new BigDecimal("0.0");
+////        BigDecimal totalx = new BigDecimal("0.0");
+////        BigDecimal ivax = new BigDecimal("0.12");
+////        BigDecimal descx = new BigDecimal("0.10");
+////       
+////        
+////        
+////        total=precio.multiply(cant);
+////        System.out.println("precio subtotal"+total);
+//////        total = total.setScale(2, BigDecimal.ROUND_HALF_UP);
+//////        System.out.println("precio redondeado "+total);
+////        ivax = total.multiply(ivax);
+////        System.out.println("el iva es "+ivax);
+////        
+////        descx= total.multiply(descx);
+////        System.out.println("resta "+descx);
+////        
+////        total = total.add(ivax).subtract(descx);
+////        System.out.println("total sin redondeo "+total);
+////        total= total.setScale(2,BigDecimal.ROUND_HALF_UP);
+////        System.out.println("total redondeado "+total);
+////        
+////        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+////        int in1 = 30;
+////        BigDecimal cant1 = new BigDecimal(in);
+////        BigDecimal precio1 = new BigDecimal("0.75");
+////        BigDecimal iva1 = new BigDecimal("2.68");
+////        BigDecimal descento1 = new BigDecimal("2.24");
+////        BigDecimal bono1 = new BigDecimal("0");
+////        BigDecimal total1 = new BigDecimal("0.0");
+////        BigDecimal totalx1 = new BigDecimal("0.0");
+////        BigDecimal ivax1 = new BigDecimal("0.12");
+////        BigDecimal descx1 = new BigDecimal("0.10");
+////       
+////        
+////        
+////        total1=precio1.multiply(cant1);
+////        System.out.println("precio subtotal"+total1);
+//////        total = total.setScale(2, BigDecimal.ROUND_HALF_UP);
+//////        System.out.println("precio redondeado "+total);
+////        ivax1 = total1.multiply(ivax1);
+////        System.out.println("el iva es "+ivax1);
+////        
+////        descx1= total1.multiply(descx1);
+////        System.out.println("resta "+descx1);
+////        
+////        total1 = total1.add(ivax1).subtract(descx1);
+////        System.out.println("total sin redondeo "+total1);
+////        total1= total1.setScale(2,BigDecimal.ROUND_HALF_UP);
+////        System.out.println("total redondeado "+total1);
 //        totalx= cant.multiply(precio).add(total);
 //        System.out.println("total total "+totalx);
 //        totalx= totalx.setScale(2,BigDecimal.ROUND_HALF_UP);
 //        System.out.println("total redondeado "+totalx);
-        
-        
 //        Prueba p = new Prueba();
 //        p.setCantidad(Integer.SIZE);
 //        p.setPrecio(e);
 //        p.setIva(e);
 //        p.setDecuento(e);
 //        p.setTotal(e);
+        BigDecimal num = new BigDecimal("203.03550");
+        num = BigDecimal.valueOf(Double.parseDouble(Formato(num, "3")));
+        System.out.println("decimal " + num);
+        BigDecimal num1 = new BigDecimal("203.03550");
+        num1 = num1.setScale(2, BigDecimal.ROUND_HALF_UP);
+        System.out.println("decimal xd: " + num1);
+        
+       String a="";
+       String b;
+       a="hola";
+        b=a;
+        System.out.println(a+" // "+b);
     }
-    
+
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
         resultado = valorInicial;
@@ -140,12 +153,13 @@ public class MAIN {
 //        itemCost = itemPrice.multiply(itemQuantity);
 //        totalCost = totalCost + itemCost;
 //        return totalCost;
-//public String Formato(double valor, String deci) {
-//        DecimalFormatSymbols si = new DecimalFormatSymbols();
-//        si.setDecimalSeparator('.');
-//        DecimalFormat decf = new DecimalFormat("###.##", si);
-//        String gi = decf.format(valor);
-//        return gi;
-//
-//    }
+
+    public static String Formato(BigDecimal valor, String deci) {
+        DecimalFormatSymbols si = new DecimalFormatSymbols();
+        si.setDecimalSeparator('.');
+        DecimalFormat decf = new DecimalFormat("###.##", si);
+        String gi = decf.format(valor);
+        return gi;
+
+    }
 }

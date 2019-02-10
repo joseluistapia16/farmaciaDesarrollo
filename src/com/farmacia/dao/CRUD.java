@@ -41,6 +41,7 @@ import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ValidarIngresoProducto;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -115,7 +116,7 @@ public class CRUD {
     }
 
     public String buscarIDPrecioEnStock(String query) {
-        String id = "";
+        String id = null;
         try {
             conect = con.conectar();
 
@@ -2882,29 +2883,31 @@ public class CRUD {
             BigDecimal Precio = lista.get(i).getPrecios();
             BigDecimal PorcDesc = lista.get(i).getPorcentaje_descuento();
             BigDecimal ValorDes = Cantidad.multiply(Precio).multiply(PorcDesc).divide(new BigDecimal("100"));
-            ValorDes = ValorDes.setScale(2, BigDecimal.ROUND_HALF_UP);
+             ValorDes = ValorDes.setScale(7, BigDecimal.ROUND_HALF_UP);
+            ValorDes = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(ValorDes.toString())));
+           
             BigDecimal iva = new BigDecimal("0.12");
             BigDecimal iva1 = new BigDecimal("0.00");
-//            Filas[8] = String.format("%5.2f", ValorDes);
+//          2, RoundingMode.HALF_UP
             Filas[8] = "" + ValorDes;
             
             if (lista.get(i).getIva().equals("NO")) {
-                Filas[9] = "" + 0;
-                BigDecimal importe = Cantidad.multiply(Precio).subtract(ValorDes);//creo q falata sumar iva
-                importe = importe.setScale(2, BigDecimal.ROUND_HALF_UP);
+                Filas[9] = "" + 0.00;
+                BigDecimal importe = Cantidad.multiply(Precio).add(iva1).subtract(ValorDes);//creo q falata sumar iva
+                importe = importe.setScale(7, BigDecimal.ROUND_HALF_UP);
 //                Filas[10] = String.format("%5.2f", importe);
                 Filas[10] = "" + importe;
 
             }else{
                 
                 iva1=Cantidad.multiply(iva).multiply(Precio);// ojo cambiar el iva por el de base de datos
-                iva1 = iva1.setScale(2, BigDecimal.ROUND_HALF_UP);
+               iva1 = iva1.setScale(7, BigDecimal.ROUND_HALF_UP);
 //                Filas[9] = String.format("%5.2f", iva1);
                 Filas[9] = "" + iva1;
 
                // Double importe = Cantidad * Precio + iva1 - ValorDes;
                 BigDecimal importe = Cantidad.multiply(Precio).add(iva1).subtract(ValorDes);
-                importe = importe.setScale(2, BigDecimal.ROUND_HALF_UP);
+               importe = importe.setScale(7, BigDecimal.ROUND_HALF_UP);
                 Filas[10] = "" + importe;
 //                Filas[10] = String.format("%5.2f", importe);
             
@@ -2927,7 +2930,10 @@ public class CRUD {
         cad1 = "";
     }
 
-   
+   public static String removeScientificNotation(String value)
+{
+    return new BigDecimal(value).toPlainString();
+}
 
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;

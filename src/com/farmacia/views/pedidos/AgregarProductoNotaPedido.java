@@ -380,6 +380,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         objf.setNombre_tipo(obj.getNombre_tipo());
         objf.setPrecios(obj.getPrecios());
         objf.setIva(obj.getIva());
+        objf.setId_precios(obj.getId_precios());
 
     }
     private void txtcantidadproKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadproKeyTyped

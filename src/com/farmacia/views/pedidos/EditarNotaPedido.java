@@ -33,6 +33,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     int x, y;
     CRUD crud = new CRUD();
     filtrosProductos fil = new filtrosProductos();
+    BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -677,7 +678,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Total1Iva = Total1Iva.add(Iva1);
 //            totalIva = redondearDecimales(totalIva, 2);
         }
-        txtIva.setText(removeScientificNotation(Total1Iva.toString()));
+        VGiva=BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total1Iva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtIva.setText(removeScientificNotation(Total1Iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
 
     }
 
@@ -688,7 +690,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             TotalDescuento = TotalDescuento.add(descuento);
 //            TotalDescuento = redondearDecimales(TotalDescuento, 2);
         }
-        txtDescuento.setText(removeScientificNotation(TotalDescuento.toString()));
+        VGdescuento=BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtDescuento.setText(removeScientificNotation(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
     }
 
     public void Total() {
@@ -698,7 +701,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Total_ = Total_.add(total);
 
         }
-        txtTotal.setText(Total_.toString());
+        VGtotal=BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtTotal.setText(Total_.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
     }
 
     public static String removeScientificNotation(String value) {
@@ -744,6 +748,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
                 objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
+                System.out.println("id precio x: "+lista.get(i).getId_precios()+" "+lista.get(i).getId_producto());
                 if (objeto != null) {
                     AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
@@ -751,6 +756,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                        System.out.println("id precio x iguales: "+np.getObjf().getId_precios()+" "+np.getObjf().getId_producto());
                         if (np.getObjf().getCantidad() > 0) {
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion(objeto.getId_producto(), suma);
@@ -768,6 +774,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 }
             }
         } catch (Exception e) {
+            Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
     public void actualizarTabla2() {
@@ -913,9 +920,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             CabeceraNotaPedido cn = new CabeceraNotaPedido();
             cn.setPlazo(cbxPlazo.getSelectedItem().toString());
             cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
-            cn.setIva(BigDecimal.valueOf(Double.parseDouble(txtIva.getText())));//BigDecimal.valueOf(Double.parseDouble(salariotxt.getText()))
-            cn.setDescuento(BigDecimal.valueOf(Double.parseDouble(txtDescuento.getText())));
-            cn.setTotal(BigDecimal.valueOf(Double.parseDouble(txtTotal.getText())));
+//            cn.setIva(BigDecimal.valueOf(Double.parseDouble(txtIva.getText())));//BigDecimal.valueOf(Double.parseDouble(salariotxt.getText()))
+//            cn.setDescuento(BigDecimal.valueOf(Double.parseDouble(txtDescuento.getText())));
+//            cn.setTotal(BigDecimal.valueOf(Double.parseDouble(txtTotal.getText())));
+            cn.setIva(VGiva);
+            cn.setDescuento(VGdescuento);
+            cn.setTotal(VGtotal);
             cn.setId_cabecera_nota_pedidos(Long.valueOf(txtNumero.getText()));
             valor = crud.ActualizarNotaPedidosCabecera(cn);
             if (!"".equals(valor)){
