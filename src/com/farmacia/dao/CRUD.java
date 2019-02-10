@@ -2871,6 +2871,7 @@ public class CRUD {
         String[] Filas = new String[12];
 
         for (int i = 0; i < lista.size(); i++) {
+            
             Filas[0] = "" + lista.get(i).getId_producto().toString();
             Filas[1] = lista.get(i).getMarca();
             Filas[2] = lista.get(i).getNombre_tipo();
@@ -2912,14 +2913,6 @@ public class CRUD {
 //                Filas[10] = String.format("%5.2f", importe);
             
             }
-//            if (lista.get(i).getIva().equals("NO")) {
-//                Filas[9] = "" + 0;
-//                Double importe = Cantidad * Precio - ValorDes;
-//                importe = redondearDecimales(importe, 2);
-////                Filas[10] = String.format("%5.2f", importe);
-//                Filas[10] = "" + importe;
-//                
-//            }
             Filas[11]=lista.get(i).getBono().toString();
             cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono) VALUES ('" + lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "','"+Filas[11]+"');";
 

@@ -49,7 +49,6 @@ public class Tablas {
 
 //<<<<<<< HEAD
     private boolean[] editable = {false, false, false, false, true, false};
-//=======
 //>>>>>>> origin/JoseLuis
     static DefaultTableModel model;
 
@@ -739,7 +738,6 @@ public class Tablas {
             Integer Bono = lista.get(i).getBono();
             BigDecimal Bono1 = new BigDecimal(Bono);
             BigDecimal CantidadTotal = Cantidad.add(Bono1);
-            System.out.println("division "+Subtotal+" "+CantidadTotal);
             PrecioBono = Subtotal.divide(CantidadTotal,7, RoundingMode.HALF_UP);
             obj.setPrecioBono(PrecioBono);
             BigDecimal PorcentajeDesc = lista.get(i).getPorcentaje_descuento();
@@ -764,7 +762,7 @@ public class Tablas {
                 obj.setImporte(importe);
                 importe=importe.setScale(2, BigDecimal.ROUND_HALF_UP);
                 Filas[11] = "" + importe;
-            } else //            if (!"NO".equals(lista.get(i).getIva())) 
+            } else
             {
                 String ivaget = lista.get(i).getIva();
                 BigDecimal IVA = new BigDecimal(ivaget);
