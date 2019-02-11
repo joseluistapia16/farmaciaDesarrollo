@@ -29,7 +29,6 @@ public class NotePedidos extends javax.swing.JDialog {
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     filtrosProductos fil = new filtrosProductos();
     joinProductoDetallesFaltantes objeto = null;
-    joinProductoDetallesFaltantes objetoC = null;
     ListarJoinProveedorNotaPedido proveedorC = null;
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
@@ -112,7 +111,6 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         }
         VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalPro.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        System.out.println("total lala:" + VGtotal);
         txtTotal.setText(TotalPro.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
     }
 
@@ -124,9 +122,6 @@ public class NotePedidos extends javax.swing.JDialog {
             BigDecimal Precio = lista1.get(i).getPrecios();
             Integer Cant = lista1.get(i).getCantidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
-//            System.out.println("CAntidad " + Cantidad);
-//            System.out.println("Precio " + Precio);
-
             BigDecimal Subtotal = Cantidad.multiply(Precio);
 
             if (!"NO".equals(lista1.get(i).getIva())) {
@@ -138,7 +133,6 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         }
         VGiva = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalIva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        System.out.println("iva lala: " + VGiva);
         txtIva.setText(TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
     }
 
@@ -146,20 +140,15 @@ public class NotePedidos extends javax.swing.JDialog {
         BigDecimal TotalDesc = new BigDecimal("0.00");
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
             BigDecimal Precio = lista1.get(i).getPrecios();
-//            System.out.println("precio " + Precio);
             BigDecimal PorcDesc = lista1.get(i).getPorcentaje_descuento();
-//            System.out.println("porcent " + PorcDesc);
             Integer Cant = lista1.get(i).getCantidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
             BigDecimal Subtotal = Cantidad.multiply(Precio);
-//            System.out.println("Subtotal " + Subtotal);
             BigDecimal ValorDesc = Subtotal.multiply(PorcDesc).divide(new BigDecimal("100"));
 
             TotalDesc = TotalDesc.add(ValorDesc);
-//            System.out.println("TotalDEsc " + TotalDesc);
         }
         VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDesc.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        System.out.println("descuento lala: " + VGdescuento);
         txtDescuento.setText(TotalDesc.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
     }
    public static String removeScientificNotation(String value)
@@ -819,9 +808,7 @@ public class NotePedidos extends javax.swing.JDialog {
                 cad1 = "INSERT INTO detalle_nota_pedidos"
                         + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
                         + "VALUES(" + id_cab + "," + lista1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + t.getlisDet().getPrecioBono().toString() + "," + t.getlisDet().getValor_descuento().toString() + "," + t.getlisDet().getImporte()+ "," + t.getlisDet().getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
-                System.out.println(cad1);
                 queryL1.add(cad1);
-               // System.out.println(cad1);
             }
             crud.InsertarDetallesNotaPedidos(queryL1);
             queryL1.clear();
@@ -839,10 +826,8 @@ public class NotePedidos extends javax.swing.JDialog {
         try {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
-
                 objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                System.out.println("lista id precio hola " + objeto.getId_precios() + " " + objeto.getId_producto());
-
+                System.out.println("lista id precio hola " + objeto.getId_precios() + " id Producto" + objeto.getId_producto());
 //objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
                 if (objeto != null) {
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
@@ -856,9 +841,8 @@ public class NotePedidos extends javax.swing.JDialog {
                         if (np.getObjf().getCantidad() > 0) {
                             
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
-                            getPosicion2(objetoC.getId_producto(), suma);
+                            getPosicion2(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
-                            System.out.println("objeto C "+ objetoC.getId_producto());
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                             Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
 
@@ -939,11 +923,9 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
-//        Double iva = 0.00;
+
         BigDecimal iva = new BigDecimal("0.00");
-//        Double descuento = 0.00;
         BigDecimal descuento = new BigDecimal("0.00");
-//        Double total = 0.00;
         BigDecimal total = new BigDecimal("0.00");
 
         try {
@@ -952,26 +934,21 @@ public class NotePedidos extends javax.swing.JDialog {
                 if (r == JOptionPane.YES_OPTION) {
                     int i = tbaListaFaltantes.getSelectedRow();
 
-                    objeto = devuelveObjeto2(tbaListaFaltantes.getValueAt(i, 0).toString(), lista);
+                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
 
                     int resta = (Integer.valueOf(objeto.getCantidad()) - Integer.parseInt((String) tbaListaFaltantes.getValueAt(i, 6)));
                     System.out.println("eliminar************");
                     getPosicion2(objeto.getId_producto(), resta);
-                    System.out.println("ddfdf" + objeto.getId_producto());
 
                     iva = (BigDecimal) tbaListaFaltantes.getValueAt(i, 9);
-                    System.out.println(" iva****" + iva);
                     descuento = (BigDecimal) tbaListaFaltantes.getValueAt(i, 8);
                     total = (BigDecimal) tbaListaFaltantes.getValueAt(i, 10);
 
                     String iva1 = txtIva.getText();
-                    System.out.println("iva " + iva1);
                     BigDecimal IVA = new BigDecimal(iva1);
                     String descuento1 = txtDescuento.getText();
-                    System.out.println("descuento" + descuento1);
                     BigDecimal DESCUENTO = new BigDecimal(descuento1);
                     String total1 = txtTotal.getText();
-                    System.out.println("total" + total1);
                     BigDecimal TOTAL = new BigDecimal(total1);
                     iva = IVA.subtract(iva);
 //                    iva = redondearDecimales(iva, 2);
@@ -1057,7 +1034,7 @@ public class NotePedidos extends javax.swing.JDialog {
     public joinProductoDetallesFaltantes devuelveObjeto2(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
         joinProductoDetallesFaltantes objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
+            if (datos.equals(listarobj.get(i).getId_precios().toString())) {
                 objeto1 = listarobj.get(i);
                 break;
             }

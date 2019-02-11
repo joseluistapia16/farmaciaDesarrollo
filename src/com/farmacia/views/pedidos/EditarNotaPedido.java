@@ -67,7 +67,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
         Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
 
-//        Total();
         TotalIVA();
         TotalDescuento();
         Total();
@@ -747,6 +746,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         try {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
+                
                 objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
                 System.out.println("id precio x: "+lista.get(i).getId_precios()+" "+lista.get(i).getId_producto());
                 if (objeto != null) {
