@@ -25,7 +25,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
     JoinListarDetalleNotaPedido objf = new JoinListarDetalleNotaPedido();
     JoinListarDetalleNotaPedido obj2 = null;
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
-
+    BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     CRUD crud = new CRUD();
 
     /**
@@ -462,36 +462,45 @@ public class EditarProductoNota extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcantidadActionPerformed
     public void Total() {
-        Double total = 0.00;
-        Double PorcentajeDescuento = 0.00;
-        Double Cantidad = Double.parseDouble(txtcantidad.getText());
-        Double Precio = Double.parseDouble(txtPrecio.getText());
-
+//        BigDecimal total = new BigDecimal("0.00");
+        BigDecimal PorcentajeDescuento = new BigDecimal("0.00");
+        Integer Cant = Integer.parseInt(txtcantidad.getText());
+        BigDecimal Cantidad = new BigDecimal(Cant);
+        BigDecimal Precio = new BigDecimal(txtPrecio.getText());
+        BigDecimal Subtotal = Cantidad.multiply(Precio);
+        BigDecimal Cien = new BigDecimal("100");
         if (txtporcentajeDescuento.getText().equals("")) {
-//        PorcentajeDescuento = Double.parseDouble(txtporcentajeDescuento.getText());
-            PorcentajeDescuento = 0.00;
-            Double ValorDescuento = Cantidad * Precio * PorcentajeDescuento / 100;
-            ValorDescuento = redondearDecimales(ValorDescuento, 2);
+//            PorcentajeDescuento = "0.00";
+            BigDecimal ValorDescuento = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
 
-            txtDescuento.setText(Double.valueOf(ValorDescuento).toString());
-            Double IVA = Double.parseDouble(txtIva.getText());
+            txtDescuento.setText(ValorDescuento.toString());
+            BigDecimal IVA = new BigDecimal(txtIva.getText());
 
-            total = Cantidad * Precio + IVA - ValorDescuento;
-            total = redondearDecimales(total, 2);
-            txtTotal.setText(Double.valueOf(total).toString());
-        } else {
-            PorcentajeDescuento = Double.parseDouble(txtporcentajeDescuento.getText());
-//            PorcentajeDescuento = 0.00;
-            Double ValorDescuento = Cantidad * Precio * PorcentajeDescuento / 100;
-            ValorDescuento = redondearDecimales(ValorDescuento, 2);
+            VGtotal = Subtotal.add(IVA).subtract(ValorDescuento);
 
-            txtDescuento.setText(Double.valueOf(ValorDescuento).toString());
-            Double IVA = Double.parseDouble(txtIva.getText());
+            VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(VGtotal.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+            txtTotal.setText(VGtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        } 
+        else {
+//            for (int i = 0; i < lista1.size(); i++) {   
+            
+            PorcentajeDescuento = new BigDecimal(txtporcentajeDescuento.getText());
+            System.out.println("Porcentaje Des"+PorcentajeDescuento);
 
-            total = Cantidad * Precio + IVA - ValorDescuento;
-            total = redondearDecimales(total, 2);
-            txtTotal.setText(Double.valueOf(total).toString());
-        }
+            BigDecimal ValorDescuento = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
+
+                System.out.println("das"+ValorDescuento);
+//           ValorDescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+            txtDescuento.setText(ValorDescuento.toString());
+            BigDecimal IVA = new BigDecimal(txtIva.getText());
+            
+            VGtotal = Subtotal.add(IVA).subtract(ValorDescuento);
+            
+            VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(VGtotal.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+            txtTotal.setText(VGtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            System.out.println("Total con Descuento"+VGtotal);
+            }
+//        }
     }
 
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
@@ -502,6 +511,10 @@ public class EditarProductoNota extends javax.swing.JDialog {
         resultado = Math.round(resultado);
         resultado = (resultado / Math.pow(10, numeroDecimales)) + parteEntera;
         return resultado;
+    }
+
+    public static String removeScientificNotation(String value) {
+        return new BigDecimal(value).toPlainString();
     }
     private void txtcantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadKeyTyped
         char c = evt.getKeyChar();
@@ -689,6 +702,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         txtPrecio.setText(obj.getPrecio().toString());
         txtcantidad.setText("" + obj.getCantidad());
         txtBono.setText("" + obj.getBono());
+        txtDescuento.setText(obj.getDescuento().toString());
 
 //        txtNombre1.setText(obj.getEntidad());
 ////       
@@ -703,6 +717,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         objf.setPrecio(obj.getPrecio());
         objf.setCantidad(obj.getCantidad());
         objf.setBono(obj.getBono());
+        objf.setDescuento(obj.getDescuento());
 //        objf.setEntidad(obj.getEntidad());
 
     }
