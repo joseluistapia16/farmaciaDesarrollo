@@ -856,9 +856,9 @@ public class NotePedidos extends javax.swing.JDialog {
                         if (np.getObjf().getCantidad() > 0) {
                             
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
-                            getPosicion2(objetoC.getId_producto(), suma);
+                            getPosicion2(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
-                            System.out.println("objeto C "+ objetoC.getId_producto());
+                            
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                             Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
 
