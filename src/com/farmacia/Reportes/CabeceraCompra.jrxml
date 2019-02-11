@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eef98107-54aa-473e-a5d9-7af6f92b3a9b">
-	<property name="ireport.zoom" value="1.7715610000000115"/>
-	<property name="ireport.x" value="50"/>
+	<property name="ireport.zoom" value="0.9090909090909145"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<field name="valor1" class="java.lang.String"/>
 	<field name="valor2" class="java.lang.String"/>
@@ -18,9 +18,9 @@
 	<title>
 		<band height="56" splitType="Stretch">
 			<staticText>
-				<reportElement x="126" y="15" width="554" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
-				<textElement textAlignment="Center">
-					<font size="26" isBold="true" isItalic="true"/>
+				<reportElement x="128" y="15" width="554" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[CABECERA DE COMPRA]]></text>
 			</staticText>
@@ -219,6 +219,14 @@
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="42" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="22" width="117" height="20" uuid="70d86511-5865-4e43-af5f-6ba2b4e540d9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
 	</summary>
 </jasperReport>
