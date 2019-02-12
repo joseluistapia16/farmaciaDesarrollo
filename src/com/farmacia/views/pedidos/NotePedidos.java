@@ -151,10 +151,11 @@ public class NotePedidos extends javax.swing.JDialog {
         VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDesc.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
         txtDescuento.setText(TotalDesc.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
     }
-   public static String removeScientificNotation(String value)
-{
-    return new BigDecimal(value).toPlainString();
-}
+
+    public static String removeScientificNotation(String value) {
+        return new BigDecimal(value).toPlainString();
+    }
+
     public static String FechaActual() {
         Date fecha = new Date();
         SimpleDateFormat formatoFecha = new SimpleDateFormat("YYYY/MM/dd");
@@ -802,12 +803,12 @@ public class NotePedidos extends javax.swing.JDialog {
 
             String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
             id_cab = crud.buscarIDCabeceraNotaPedido(query);
-            Tablas t=new Tablas();
+            Tablas t = new Tablas();
             t.getlisDet();
             for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
                 cad1 = "INSERT INTO detalle_nota_pedidos"
                         + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
-                        + "VALUES(" + id_cab + "," + lista1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + t.getlisDet().getPrecioBono().toString() + "," + t.getlisDet().getValor_descuento().toString() + "," + t.getlisDet().getImporte()+ "," + t.getlisDet().getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
+                        + "VALUES(" + id_cab + "," + lista1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + t.getlisDet().getPrecioBono().toString() + "," + t.getlisDet().getValor_descuento().toString() + "," + t.getlisDet().getImporte() + "," + t.getlisDet().getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
                 queryL1.add(cad1);
             }
             crud.InsertarDetallesNotaPedidos(queryL1);
@@ -827,19 +828,19 @@ public class NotePedidos extends javax.swing.JDialog {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
                 objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                System.out.println("lista id precio hola " + objeto.getId_precios() + " id Producto" + objeto.getId_producto());
+//                System.out.println("id precio" + objeto.getId_precios() + " id Producto" + objeto.getId_producto());
 //objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
                 if (objeto != null) {
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
-                    msg = ComponentesFaltantes.validarListaFaltantesNota(tbaListaFaltantes, objeto.getId_precios().toString());
-//                    msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
+//                    msg = ComponentesFaltantes.validarListaFaltantesNota(tbaListaFaltantes, objeto.getId_precios().toString());
+                    msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, objeto.getId_precios().toString());
 
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                         System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios() + " " + np.getObjf().getId_producto());
                         if (np.getObjf().getCantidad() > 0) {
-                            
+
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion2(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
@@ -1031,18 +1032,17 @@ public class NotePedidos extends javax.swing.JDialog {
 
     }
 
-    public joinProductoDetallesFaltantes devuelveObjeto2(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
-        joinProductoDetallesFaltantes objeto1 = null;
-        for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_precios().toString())) {
-                objeto1 = listarobj.get(i);
-                break;
-            }
-        }
-        return objeto1;
-
-    }
-
+//    public joinProductoDetallesFaltantes devuelveObjeto2(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
+//        joinProductoDetallesFaltantes objeto1 = null;
+//        for (int i = 0; i < listarobj.size(); i++) {
+//            if (datos.equals(listarobj.get(i).getId_precios().toString())) {
+//                objeto1 = listarobj.get(i);
+//                break;
+//            }
+//        }
+//        return objeto1;
+//
+//    }
     private void Reiniciar() {
         txtCodigoProveedor.setText("");
         txtCorreo1.setText("");
