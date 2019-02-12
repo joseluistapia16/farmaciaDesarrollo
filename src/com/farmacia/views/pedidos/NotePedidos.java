@@ -13,6 +13,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,6 +34,8 @@ public class NotePedidos extends javax.swing.JDialog {
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
+   
+    joinProductoDetallesFaltantes objx = null;
 
     public NotePedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -151,10 +154,11 @@ public class NotePedidos extends javax.swing.JDialog {
         VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDesc.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
         txtDescuento.setText(TotalDesc.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
     }
-   public static String removeScientificNotation(String value)
-{
-    return new BigDecimal(value).toPlainString();
-}
+
+    public static String removeScientificNotation(String value) {
+        return new BigDecimal(value).toPlainString();
+    }
+
     public static String FechaActual() {
         Date fecha = new Date();
         SimpleDateFormat formatoFecha = new SimpleDateFormat("YYYY/MM/dd");
@@ -802,13 +806,14 @@ public class NotePedidos extends javax.swing.JDialog {
 
             String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
             id_cab = crud.buscarIDCabeceraNotaPedido(query);
-            Tablas t=new Tablas();
-            t.getlisDet();
+
             for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+
                 cad1 = "INSERT INTO detalle_nota_pedidos"
                         + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
-                        + "VALUES(" + id_cab + "," + lista1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + t.getlisDet().getPrecioBono().toString() + "," + t.getlisDet().getValor_descuento().toString() + "," + t.getlisDet().getImporte()+ "," + t.getlisDet().getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
+                        + "VALUES(" + id_cab + "," + lista1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + lista1.get(i).getPrecioBono().toString() + "," + lista1.get(i).getValor_descuento().toString() + "," + lista1.get(i).getImporte() + "," + lista1.get(i).getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
                 queryL1.add(cad1);
+                System.out.println(cad1);
             }
             crud.InsertarDetallesNotaPedidos(queryL1);
             queryL1.clear();
@@ -834,34 +839,87 @@ public class NotePedidos extends javax.swing.JDialog {
                     np.setVisible(true);
                     msg = ComponentesFaltantes.validarListaFaltantesNota(tbaListaFaltantes, objeto.getId_precios().toString());
 //                    msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
-
-                    if (msg == null) {
-                        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                        System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios() + " " + np.getObjf().getId_producto());
-                        if (np.getObjf().getCantidad() > 0) {
-                            
-                            int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
-                            getPosicion2(objeto.getId_producto(), suma);
-                            lista1.add(np.getObjf());
-                            
+                    if (np.getObjf() != null) {
+                        if (msg == null) {
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                            Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
+                            System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios() + " " + np.getObjf().getId_producto());
+                            if (np.getObjf().getCantidad() > 0) {
 
-                            TotalDescuento2();
-                            TotalPro();
-                            TotalIVA2();
+                                int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
+                                getPosicion2(objeto.getId_producto(), suma);
+                              //////
+                                
+                                objx=calcularValores(np.getObjf());
+                             ///////   
+                                lista1.add(objx);
+                                for (joinProductoDetallesFaltantes p : lista1) {
+                                    System.out.println("lista1 " + p.getImporte() + " " + p.getValor_descuento());
+                                }
+                                
+                                
+                                Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                                Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
+                                
+                                for (joinProductoDetallesFaltantes p : lista1) {
+                                    System.out.println("dd " + p.getImporte() + " " + p.getValor_descuento());
+                                }
+                                TotalDescuento2();
+                                TotalPro();
+                                TotalIVA2();
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(this, msg);
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(this, msg);
+
                     }
 
                 }
+
             }
         } catch (Exception e) {
             Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
-
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
+
+    public joinProductoDetallesFaltantes calcularValores(joinProductoDetallesFaltantes lista) {
+        joinProductoDetallesFaltantes objd = lista;
+        
+        BigDecimal PrecioBono = new BigDecimal("0.00");
+       // for (int i = 0; i < lista.; i++) {
+            
+            BigDecimal Cantidad = BigDecimal.valueOf(lista.getCantidad());
+            BigDecimal Precio = lista.getPrecios();
+            BigDecimal Subtotal = Cantidad.multiply(Precio);
+            BigDecimal Bono1 = BigDecimal.valueOf(lista.getBono())/*new BigDecimal(Bono)*/;
+            BigDecimal CantidadTotal = Cantidad.add(Bono1);
+            PrecioBono = Subtotal.divide(CantidadTotal, 7, RoundingMode.HALF_UP);
+            objd.setPrecioBono(PrecioBono);
+            BigDecimal PorcentajeDesc = lista.getPorcentaje_descuento();
+            //BigDecimal cien = new BigDecimal("100");
+            BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
+            objd.setValor_descuento(ValorDes);
+                               
+            if (lista.getIva().equals("NO")) {
+                
+                objd.setPrecioiva(new BigDecimal("0.00"));
+                BigDecimal importe = Subtotal.subtract(ValorDes);
+                objd.setImporte(importe);
+                
+            } else {
+                String ivaget = lista.getIva();
+                BigDecimal IVA = new BigDecimal(ivaget);
+                BigDecimal ValorIVA = IVA.multiply(Subtotal);
+                objd.setPrecioiva(ValorIVA);
+                
+                BigDecimal importe = Subtotal.add(ValorIVA).subtract(ValorDes);
+                objd.setImporte(importe);
+                
+            }
+        //}
+        return objd;
+        
+    }
 
     private void getPosicion(Long id, int valor) {
         for (int i = 0; i < lista.size(); i++) {

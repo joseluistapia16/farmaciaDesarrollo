@@ -697,12 +697,12 @@ public class EditarProductoNota extends javax.swing.JDialog {
         marca.setText(obj.getMarca());
         txtEnvase3.setText(obj.getEnvase());
         txtTipo.setText(obj.getTipo());
-        txtIva.setText(obj.getIva().toString());
-        txtDescuento.setText(obj.getDescuento().toString());
-        txtPrecio.setText(obj.getPrecio().toString());
+        txtIva.setText(removeScientificNotation(obj.getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
+        txtDescuento.setText(removeScientificNotation(obj.getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
+        txtPrecio.setText(removeScientificNotation(obj.getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
         txtcantidad.setText("" + obj.getCantidad());
         txtBono.setText("" + obj.getBono());
-        txtDescuento.setText(obj.getDescuento().toString());
+        txtDescuento.setText(removeScientificNotation(obj.getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
 
 //        txtNombre1.setText(obj.getEntidad());
 ////       

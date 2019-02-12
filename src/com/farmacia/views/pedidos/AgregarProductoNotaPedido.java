@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
     int x, y;
-    joinProductoDetallesFaltantes objf = new joinProductoDetallesFaltantes();
+    joinProductoDetallesFaltantes objf = null;
     Validacion v = new Validacion();
 
     public AgregarProductoNotaPedido(java.awt.Frame parent, boolean modal) {
@@ -372,15 +372,16 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         txtPrecio.setText(String.valueOf(obj.getPrecios()));
         txtIva.setText(obj.getIva());
         //
-        objf.setId_producto(obj.getId_producto());
-        objf.setNombre_producto(obj.getNombre_producto());
-        objf.setMedida(obj.getMedida());
-        objf.setMarca(obj.getMarca());
-        objf.setEnvase(obj.getEnvase());
-        objf.setNombre_tipo(obj.getNombre_tipo());
-        objf.setPrecios(obj.getPrecios());
-        objf.setIva(obj.getIva());
-        objf.setId_precios(obj.getId_precios());
+        objf = obj;
+//        objf.setId_producto(obj.getId_producto());
+//        objf.setNombre_producto(obj.getNombre_producto());
+//        objf.setMedida(obj.getMedida());
+//        objf.setMarca(obj.getMarca());
+//        objf.setEnvase(obj.getEnvase());
+//        objf.setNombre_tipo(obj.getNombre_tipo());
+//        objf.setPrecios(obj.getPrecios());
+//        objf.setIva(obj.getIva());
+//        objf.setId_precios(obj.getId_precios());
 
     }
     private void txtcantidadproKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadproKeyTyped
@@ -395,7 +396,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         String cant;
         String porc = null;
         String bono;
-
+       // objf = new joinProductoDetallesFaltantes();
         if (txtcantidadpro.getText() == null || "".equals(txtcantidadpro.getText())) {
             JOptionPane.showMessageDialog(null, "Ingrese Cantidad");
         } else {
