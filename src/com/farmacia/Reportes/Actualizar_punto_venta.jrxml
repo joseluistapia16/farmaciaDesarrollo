@@ -16,7 +16,7 @@
 			<staticText>
 				<reportElement x="70" y="13" width="431" height="32" uuid="542e0d02-855d-428f-a4e0-335851f39fdb"/>
 				<textElement textAlignment="Center">
-					<font size="24" isBold="true"/>
+					<font size="22" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Punto de Venta]]></text>
 			</staticText>
@@ -29,74 +29,74 @@
 		<band height="12" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="185" splitType="Stretch">
+		<band height="140" splitType="Stretch">
 			<textField>
 				<reportElement x="231" y="8" width="270" height="21" uuid="4e3ef779-87f9-4cf9-98dc-25b55304232f"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor1}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="70" y="8" width="161" height="21" uuid="825f5b56-2bf7-409f-ac01-50bcda2aa407"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Codigo:]]></text>
+				<text><![CDATA[CODIGO:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="231" y="28" width="270" height="21" uuid="14468088-3558-437e-893a-08c822edac25"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor2}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="70" y="28" width="161" height="21" uuid="88a191f3-79b1-42de-bf79-34d27d24fee4"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nombre:]]></text>
+				<text><![CDATA[NOMBRE:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="231" y="48" width="270" height="21" uuid="79d8cb07-a141-449f-a040-568b140c91fb"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor3}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="70" y="48" width="161" height="21" uuid="0ce0d501-7cb8-406d-b691-7d9bafed7858"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Localidad:]]></text>
+				<text><![CDATA[LOCALIDAD:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="70" y="68" width="161" height="21" uuid="f584bb17-a35d-443f-8497-16247eb644fd"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Direccion:]]></text>
+				<text><![CDATA[DIRECCION:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="70" y="88" width="161" height="21" uuid="34b172c5-a554-4cce-b775-e605f15f0198"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Observacion:]]></text>
+				<text><![CDATA[OBSERVACION:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="231" y="68" width="270" height="21" uuid="05b37199-cc0d-4417-8c99-a4c9c9de3eb0"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor4}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="231" y="88" width="270" height="21" uuid="1820a314-9e27-415e-aaa0-04d1f9895a6d"/>
 				<textElement>
-					<font size="16" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor5}]]></textFieldExpression>
 			</textField>
@@ -106,12 +106,12 @@
 		<band height="19" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="31" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch">
 			<textField pattern="MM/dd/yyyy">
-				<reportElement x="8" y="10" width="131" height="20" uuid="0332e80e-b0bd-4fea-9d24-4e835483f35a"/>
+				<reportElement x="0" y="22" width="157" height="20" uuid="0332e80e-b0bd-4fea-9d24-4e835483f35a"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
