@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f48d56dc-2bbb-4b4a-98c5-646658ccc995">
-	<property name="ireport.zoom" value="1.464100000000004"/>
-	<property name="ireport.x" value="122"/>
+	<property name="ireport.zoom" value="1.1000000000000036"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<field name="valor1" class="java.lang.String"/>
 	<field name="valor2" class="java.lang.String"/>
@@ -29,18 +29,18 @@
 	<columnHeader>
 		<band height="27" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="276" y="5" width="90" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="dd0ae0f8-b7b3-4fb1-9a67-c36a7beb8cf1"/>
+				<reportElement mode="Opaque" x="276" y="4" width="90" height="21" forecolor="#FFFFFF" backcolor="#66B463" uuid="dd0ae0f8-b7b3-4fb1-9a67-c36a7beb8cf1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Medida]]></text>
+				<text><![CDATA[MEDIDA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="367" y="5" width="90" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="63c5194a-84fb-4d9b-9a93-67328d0a4a36"/>
+				<reportElement mode="Opaque" x="367" y="4" width="90" height="21" forecolor="#FFFFFF" backcolor="#66B463" uuid="63c5194a-84fb-4d9b-9a93-67328d0a4a36"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Envase]]></text>
+				<text><![CDATA[ENVASE]]></text>
 			</staticText>
 			<line>
 				<reportElement x="552" y="3" width="1" height="23" uuid="3a7e08bb-eb97-4a31-8479-22bbcefa48df"/>
@@ -55,7 +55,7 @@
 				<reportElement x="184" y="4" width="1" height="21" uuid="78a12a0c-82a2-4360-9e5c-15a55d182993"/>
 			</line>
 			<line>
-				<reportElement x="93" y="4" width="1" height="21" uuid="85b361e4-96ac-4925-b35d-289cc3f2dffa"/>
+				<reportElement x="83" y="4" width="1" height="21" uuid="85b361e4-96ac-4925-b35d-289cc3f2dffa"/>
 			</line>
 			<line>
 				<reportElement x="2" y="3" width="1" height="23" uuid="4b5080cb-2b98-42c1-a295-c6fb98384af5"/>
@@ -67,32 +67,32 @@
 				<reportElement x="3" y="25" width="549" height="1" uuid="37b76d06-5a7c-4639-9c03-9f2ed7794342"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="3" y="5" width="90" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="eb622d31-6cc8-44bf-95cd-276a08e729c1"/>
+				<reportElement mode="Opaque" x="458" y="4" width="94" height="21" forecolor="#FFFFFF" backcolor="#66B463" uuid="418fee93-ad38-4a30-aed4-68083b16012a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Codigo]]></text>
+				<text><![CDATA[MARCA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="94" y="5" width="90" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="7b13d387-f18e-4011-b6db-552cf1bb2513"/>
+				<reportElement mode="Opaque" x="3" y="4" width="80" height="21" forecolor="#FFFFFF" backcolor="#66B463" uuid="eb622d31-6cc8-44bf-95cd-276a08e729c1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Producto]]></text>
+				<text><![CDATA[CODIGO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="185" y="5" width="90" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="cd8bf839-fdab-42d7-b514-d3a11adf72df"/>
+				<reportElement mode="Opaque" x="84" y="4" width="100" height="21" forecolor="#FFFFFF" backcolor="#66B463" uuid="7b13d387-f18e-4011-b6db-552cf1bb2513"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tipo]]></text>
+				<text><![CDATA[PRODUCTO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="458" y="5" width="94" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="418fee93-ad38-4a30-aed4-68083b16012a"/>
+				<reportElement mode="Opaque" x="185" y="4" width="90" height="21" forecolor="#FFFFFF" backcolor="#66B463" uuid="cd8bf839-fdab-42d7-b514-d3a11adf72df"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Marca]]></text>
+				<text><![CDATA[TIPO]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -120,40 +120,40 @@
 				<reportElement x="184" y="2" width="1" height="21" uuid="53f5550d-a74d-4e2d-9887-10eb0faab9de"/>
 			</line>
 			<line>
-				<reportElement x="93" y="2" width="1" height="21" uuid="bfce673e-4714-4e69-a048-01975ef16fdb"/>
+				<reportElement x="83" y="2" width="1" height="21" uuid="bfce673e-4714-4e69-a048-01975ef16fdb"/>
 			</line>
 			<textField>
-				<reportElement x="3" y="3" width="90" height="20" uuid="24082216-0232-40fe-9bb4-bd3d6373a00d"/>
+				<reportElement x="1" y="3" width="82" height="20" uuid="24082216-0232-40fe-9bb4-bd3d6373a00d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="94" y="3" width="90" height="20" uuid="1aa29ee6-cbe8-461c-a7ec-05d420172927"/>
+				<reportElement x="84" y="3" width="100" height="20" uuid="1aa29ee6-cbe8-461c-a7ec-05d420172927"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor2}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="185" y="3" width="90" height="20" uuid="63e22a01-3669-4a19-a427-e6e0d0bde410"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor3}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="367" y="3" width="90" height="20" uuid="9cc28532-8139-41fd-abeb-b56174268926"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor5}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="276" y="3" width="90" height="20" uuid="93cb1003-64c7-48c4-8fa9-4b32b0bd144a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor4}]]></textFieldExpression>
 			</textField>
@@ -166,7 +166,7 @@
 			<textField>
 				<reportElement x="458" y="3" width="94" height="20" uuid="2923ad7f-6e2f-481f-b699-cb4f98884aea"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="9" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor6}]]></textFieldExpression>
 			</textField>
