@@ -832,18 +832,21 @@ public class NotePedidos extends javax.swing.JDialog {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
                 objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                System.out.println("lista id precio hola " + objeto.getId_precios() + " id Producto" + objeto.getId_producto());
+//                System.out.println("id precio" + objeto.getId_precios() + " id Producto" + objeto.getId_producto());
 //objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
                 if (objeto != null) {
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
-                    msg = ComponentesFaltantes.validarListaFaltantesNota(tbaListaFaltantes, objeto.getId_precios().toString());
-//                    msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
-                    if (np.getObjf() != null) {
-                        if (msg == null) {
-                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                            System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios() + " " + np.getObjf().getId_producto());
-                            if (np.getObjf().getCantidad() > 0) {
+//                    msg = ComponentesFaltantes.validarListaFaltantesNota(tbaListaFaltantes, objeto.getId_precios().toString());
+                    msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, objeto.getId_precios().toString());
+
+                    if (msg == null) {
+                        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                        System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios() + " " + np.getObjf().getId_producto());
+                        if (np.getObjf().getCantidad() > 0) {
+//                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+//                            System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios() + " " + np.getObjf().getId_producto());
+                           // if (np.getObjf().getCantidad() > 0) {
 
                                 int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                                 getPosicion2(objeto.getId_producto(), suma);
@@ -859,14 +862,11 @@ public class NotePedidos extends javax.swing.JDialog {
                                 
                                 Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                                 Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
-                                
-                                for (joinProductoDetallesFaltantes p : lista1) {
-                                    System.out.println("dd " + p.getImporte() + " " + p.getValor_descuento());
-                                }
+                            
                                 TotalDescuento2();
                                 TotalPro();
                                 TotalIVA2();
-                            }
+                          //  }
 
                         } else {
                             JOptionPane.showMessageDialog(this, msg);
@@ -1090,18 +1090,17 @@ public class NotePedidos extends javax.swing.JDialog {
 
     }
 
-    public joinProductoDetallesFaltantes devuelveObjeto2(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
-        joinProductoDetallesFaltantes objeto1 = null;
-        for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_precios().toString())) {
-                objeto1 = listarobj.get(i);
-                break;
-            }
-        }
-        return objeto1;
-
-    }
-
+//    public joinProductoDetallesFaltantes devuelveObjeto2(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
+//        joinProductoDetallesFaltantes objeto1 = null;
+//        for (int i = 0; i < listarobj.size(); i++) {
+//            if (datos.equals(listarobj.get(i).getId_precios().toString())) {
+//                objeto1 = listarobj.get(i);
+//                break;
+//            }
+//        }
+//        return objeto1;
+//
+//    }
     private void Reiniciar() {
         txtCodigoProveedor.setText("");
         txtCorreo1.setText("");
