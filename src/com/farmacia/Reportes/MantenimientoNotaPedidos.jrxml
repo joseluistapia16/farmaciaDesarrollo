@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eef98107-54aa-473e-a5d9-7af6f92b3a9b">
-	<property name="ireport.zoom" value="0.9090909090909137"/>
+	<property name="ireport.zoom" value="0.9090909090909147"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<field name="valor1" class="java.lang.String"/>
@@ -133,7 +133,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="23" splitType="Stretch">
+		<band height="21" splitType="Stretch">
 			<textField>
 				<reportElement x="3" y="2" width="80" height="17" uuid="f25ad221-145a-493a-95d7-242452b6f730"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -156,16 +156,16 @@
 				<textFieldExpression><![CDATA[$F{valor2}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="83" y="0" width="1" height="19" uuid="535d75d3-db7d-44d6-b023-6e4a6842213d"/>
+				<reportElement x="83" y="2" width="1" height="17" uuid="535d75d3-db7d-44d6-b023-6e4a6842213d"/>
 			</line>
 			<line>
-				<reportElement x="169" y="0" width="1" height="19" uuid="337d1f46-fae2-4e04-b835-514278c67920"/>
+				<reportElement x="169" y="2" width="1" height="17" uuid="337d1f46-fae2-4e04-b835-514278c67920"/>
 			</line>
 			<line>
 				<reportElement x="2" y="2" width="1" height="17" uuid="57d41faa-9328-4aa7-9349-3018914b6c9a"/>
 			</line>
 			<line>
-				<reportElement x="394" y="0" width="1" height="19" uuid="13d23517-9869-4743-a904-2bbf05b2c054"/>
+				<reportElement x="394" y="2" width="1" height="17" uuid="13d23517-9869-4743-a904-2bbf05b2c054"/>
 			</line>
 			<line>
 				<reportElement x="2" y="19" width="798" height="1" uuid="927fcb44-d45b-4d7c-ad60-81c0c8f96f78"/>
@@ -178,7 +178,7 @@
 				<textFieldExpression><![CDATA[$F{valor4}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="283" y="0" width="1" height="19" uuid="c1d555b5-bfcf-4e75-829e-3eb823b5f5dc"/>
+				<reportElement x="283" y="2" width="1" height="17" uuid="c1d555b5-bfcf-4e75-829e-3eb823b5f5dc"/>
 			</line>
 			<textField>
 				<reportElement x="395" y="2" width="95" height="17" uuid="37e95c7a-14a3-479d-9c10-d21285cbc220"/>
@@ -188,19 +188,19 @@
 				<textFieldExpression><![CDATA[$F{valor5}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="490" y="0" width="1" height="19" uuid="0ad12e3f-3b80-41b8-a0bf-ccd9653fc0ac"/>
+				<reportElement x="490" y="2" width="1" height="17" uuid="0ad12e3f-3b80-41b8-a0bf-ccd9653fc0ac"/>
 			</line>
 			<line>
-				<reportElement x="576" y="0" width="1" height="19" uuid="46956c7d-9147-4cac-ab08-bf6c6d314267"/>
+				<reportElement x="576" y="2" width="1" height="17" uuid="46956c7d-9147-4cac-ab08-bf6c6d314267"/>
 			</line>
 			<line>
-				<reportElement x="652" y="0" width="1" height="19" uuid="b2a56dca-cd05-4a81-b7d6-7833b80c09a7"/>
+				<reportElement x="652" y="2" width="1" height="17" uuid="b2a56dca-cd05-4a81-b7d6-7833b80c09a7"/>
 			</line>
 			<line>
-				<reportElement x="723" y="0" width="1" height="19" uuid="2e4a85be-0c26-4e15-a6cd-68838b0cdf03"/>
+				<reportElement x="723" y="2" width="1" height="17" uuid="2e4a85be-0c26-4e15-a6cd-68838b0cdf03"/>
 			</line>
 			<line>
-				<reportElement x="799" y="0" width="1" height="19" uuid="6739e582-2f52-429a-8176-080af9270316"/>
+				<reportElement x="799" y="2" width="1" height="17" uuid="6739e582-2f52-429a-8176-080af9270316"/>
 			</line>
 			<textField>
 				<reportElement x="491" y="2" width="85" height="17" uuid="61e757ad-42b0-4c7c-afd6-a6b998169c36"/>
@@ -230,6 +230,9 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor9}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="2" y="1" width="798" height="1" uuid="18c1587c-3c1a-46d6-854b-3269bcd08d07"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>

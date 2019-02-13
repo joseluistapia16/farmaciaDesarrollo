@@ -15,11 +15,11 @@
 			<frame>
 				<reportElement x="0" y="0" width="555" height="56" uuid="a76665ae-e587-4c6b-a25e-e006f523fbbe"/>
 				<staticText>
-					<reportElement x="136" y="15" width="309" height="29" uuid="a5f389e5-4e7e-4833-ac06-5458651b08b2"/>
+					<reportElement x="129" y="15" width="309" height="29" uuid="a5f389e5-4e7e-4833-ac06-5458651b08b2"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="22" isBold="true" isItalic="true"/>
 					</textElement>
-					<text><![CDATA[PROVEEDORES]]></text>
+					<text><![CDATA[PROVEEDORES INACTIVOS]]></text>
 				</staticText>
 			</frame>
 		</band>
