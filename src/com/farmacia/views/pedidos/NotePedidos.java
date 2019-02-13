@@ -884,10 +884,9 @@ public class NotePedidos extends javax.swing.JDialog {
 
     public joinProductoDetallesFaltantes calcularValores(joinProductoDetallesFaltantes lista) {
         joinProductoDetallesFaltantes objd = lista;
-        
         BigDecimal PrecioBono = new BigDecimal("0.00");
-       // for (int i = 0; i < lista.; i++) {
-            
+        
+                  
             BigDecimal Cantidad = BigDecimal.valueOf(lista.getCantidad());
             BigDecimal Precio = lista.getPrecios();
             BigDecimal Subtotal = Cantidad.multiply(Precio);
@@ -896,29 +895,21 @@ public class NotePedidos extends javax.swing.JDialog {
             PrecioBono = Subtotal.divide(CantidadTotal, 7, RoundingMode.HALF_UP);
             objd.setPrecioBono(PrecioBono);
             BigDecimal PorcentajeDesc = lista.getPorcentaje_descuento();
-            //BigDecimal cien = new BigDecimal("100");
             BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
             objd.setValor_descuento(ValorDes);
-                               
             if (lista.getIva().equals("NO")) {
-                
                 objd.setPrecioiva(new BigDecimal("0.00"));
                 BigDecimal importe = Subtotal.subtract(ValorDes);
                 objd.setImporte(importe);
-                
             } else {
                 String ivaget = lista.getIva();
                 BigDecimal IVA = new BigDecimal(ivaget);
                 BigDecimal ValorIVA = IVA.multiply(Subtotal);
                 objd.setPrecioiva(ValorIVA);
-                
                 BigDecimal importe = Subtotal.add(ValorIVA).subtract(ValorDes);
-                objd.setImporte(importe);
-                
+                objd.setImporte(importe);   
             }
-        //}
         return objd;
-        
     }
 
     private void getPosicion(Long id, int valor) {
