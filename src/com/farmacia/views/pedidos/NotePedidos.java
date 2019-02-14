@@ -832,17 +832,23 @@ public class NotePedidos extends javax.swing.JDialog {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
                 objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
+                
                 if (objeto != null) {
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
+                    System.out.println("id precio"+lista.get(i).getId_precios());
 //                    msg = ComponentesFaltantes.validarListaFaltantesNota(tbaListaFaltantes, objeto.getId_precios().toString());
                     msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, objeto.getId_precios().toString());
 
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                        System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios() + " " + np.getObjf().getId_producto());
+                        System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios());
                         if (np.getObjf().getCantidad() > 0) {
-                                int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
+//                                int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
+                                Integer suma = Integer.parseInt(t_Nota_faltantes.getValueAt(i, 6).toString())+np.getObjf().getCantidad();
+                                System.out.println("csntidad existente "+lista.get(i).getCantidad());
+                                System.out.println("csntidad ingresada "+np.getObjf().getCantidad());
+                                System.out.println("Suma "+suma);
                                 getPosicion(objeto.getId_precios(), suma);
                               //////
                                 
