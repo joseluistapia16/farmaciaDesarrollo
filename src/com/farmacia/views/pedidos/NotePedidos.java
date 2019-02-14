@@ -972,6 +972,7 @@ public class NotePedidos extends javax.swing.JDialog {
             if (evt.getClickCount() == 2) {
                 int r = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este producto de la lista?", "", JOptionPane.YES_NO_OPTION);
                 if (r == JOptionPane.YES_OPTION) {
+                    
                     int i = tbaListaFaltantes.getSelectedRow();
                     objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
                     int resta = (Integer.valueOf(objeto.getCantidad()) - Integer.parseInt((String) tbaListaFaltantes.getValueAt(i, 6)));
