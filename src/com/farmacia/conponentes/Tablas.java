@@ -730,46 +730,52 @@ public class Tablas {
         Tabla.setShowGrid(true);
         BigDecimal PrecioBono = new BigDecimal("0.00");
         for (int i = 0; i < lista.size(); i++) {
-            Integer Cant = lista.get(i).getCantidad();
-            BigDecimal Cantidad = new BigDecimal(Cant);
-            BigDecimal Precio = lista.get(i).getPrecios();
-            BigDecimal Subtotal = Cantidad.multiply(Precio);
-            Integer Bono = lista.get(i).getBono();
-            BigDecimal Bono1 = new BigDecimal(Bono);
-            BigDecimal CantidadTotal = Cantidad.add(Bono1);
-            PrecioBono = Subtotal.divide(CantidadTotal, 7, RoundingMode.HALF_UP);
-            BigDecimal PorcentajeDesc = lista.get(i).getPorcentaje_descuento();
-            //BigDecimal cien = new BigDecimal("100");
-            BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
-            ValorDes = ValorDes.setScale(2, BigDecimal.ROUND_HALF_UP);
+//            Integer Cant = lista.get(i).getCantidad();
+//            BigDecimal Cantidad = new BigDecimal(Cant);
+//            BigDecimal Precio = lista.get(i).getPrecios();
+//            BigDecimal Subtotal = Cantidad.multiply(Precio);
+//            Integer Bono = lista.get(i).getBono();
+//            BigDecimal Bono1 = new BigDecimal(Bono);
+//            BigDecimal CantidadTotal = Cantidad.add(Bono1);
+//            PrecioBono = Subtotal.divide(CantidadTotal, 7, RoundingMode.HALF_UP);
+//            BigDecimal PorcentajeDesc = lista.get(i).getPorcentaje_descuento();
+//            //BigDecimal cien = new BigDecimal("100");
+//            BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
+//            ValorDes = ValorDes.setScale(2, BigDecimal.ROUND_HALF_UP);
             Filas[0] = "" + lista.get(i).getId_producto().toString();
             Filas[1] = lista.get(i).getMarca();
             Filas[2] = lista.get(i).getNombre_tipo();
             Filas[3] = lista.get(i).getNombre_producto();
             Filas[4] = lista.get(i).getEnvase();
             Filas[5] = lista.get(i).getMedida();
-            Filas[6] = "" + Bono;
-            Filas[7] = "" + Cant;
-            Filas[8] = "" + PrecioBono.setScale(2, BigDecimal.ROUND_HALF_UP);
-            Filas[9] = "" + ValorDes.setScale(2, BigDecimal.ROUND_HALF_UP);
-            if (lista.get(i).getIva().equals("NO")) {
-                Filas[10] = "" + 0.00;
+//            Filas[6] = "" + Bono;
+            Filas[6] = lista.get(i).getBono().toString();
+//            Filas[7] = "" + Cant;
+            Filas[7] = lista.get(i).getCantidad().toString();
+//            Filas[8] = "" + PrecioBono.setScale(2, BigDecimal.ROUND_HALF_UP);
+            Filas[8] = lista.get(i).getPrecioBono().toString();
+//            Filas[9] = "" + ValorDes.setScale(2, BigDecimal.ROUND_HALF_UP);
+            Filas[9] = lista.get(i).getValor_descuento().toString();
+//            if (lista.get(i).getIva().equals("NO")) {
+//                Filas[10] = "" + 0.00;
+                Filas[10] = lista.get(i).getPrecioiva().toString();
              
-                BigDecimal importe = Subtotal.subtract(ValorDes);
-       
-                importe = importe.setScale(2, BigDecimal.ROUND_HALF_UP);
-                Filas[11] = "" + importe;
-            } else {
-                String ivaget = lista.get(i).getIva();
-                BigDecimal IVA = new BigDecimal(ivaget);
-                BigDecimal ValorIVA = IVA.multiply(Subtotal);
-
-                Filas[10] = "" + ValorIVA.setScale(2, BigDecimal.ROUND_HALF_UP);;
-                BigDecimal importe = Subtotal.add(ValorIVA).subtract(ValorDes);
-         
-                importe = importe.setScale(2, BigDecimal.ROUND_HALF_UP);
-                Filas[11] = "" + importe;
-            }
+//                BigDecimal importe = Subtotal.subtract(ValorDes);
+//       
+//                importe = importe.setScale(2, BigDecimal.ROUND_HALF_UP);
+//                Filas[11] = "" + importe;
+                Filas[11] = lista.get(i).getImporte().toString();
+//            } else {
+//                String ivaget = lista.get(i).getIva();
+//                BigDecimal IVA = new BigDecimal(ivaget);
+//                BigDecimal ValorIVA = IVA.multiply(Subtotal);
+//
+//                Filas[10] = "" + ValorIVA.setScale(2, BigDecimal.ROUND_HALF_UP);;
+//                BigDecimal importe = Subtotal.add(ValorIVA).subtract(ValorDes);
+//         
+//                importe = importe.setScale(2, BigDecimal.ROUND_HALF_UP);
+//                Filas[11] = "" + importe;
+//            }
 
             model.addRow(Filas);
             Tabla.setModel(model);
