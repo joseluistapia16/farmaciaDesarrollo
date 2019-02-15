@@ -55,7 +55,6 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         cbFiltro = new javax.swing.JComboBox<>();
@@ -68,8 +67,6 @@ public class Mostrar_punto_venta extends javax.swing.JDialog {
         btnNuevo = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnReporte = new javax.swing.JButton();
-
-        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -383,7 +380,6 @@ public ListarPuntoVenta devuelveObjeto(String datos, ArrayList<ListarPuntoVenta>
     private javax.swing.JButton btnReporte;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cbFiltro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;

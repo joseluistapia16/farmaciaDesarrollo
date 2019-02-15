@@ -47,10 +47,9 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
         btnSalir2 = new javax.swing.JButton();
         tblProduc = new javax.swing.JScrollPane();
         tblRegistrodeNotas = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         Reporte = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,6 +69,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             }
         });
 
+        filtrar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         filtrar.setText("Buscar");
         filtrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,40 +111,6 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
         });
         tblProduc.setViewportView(tblRegistrodeNotas);
 
-        jPanel1.setBackground(new java.awt.Color(0, 189, 189));
-        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jPanel1MouseDragged(evt);
-            }
-        });
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel1MousePressed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
-        jLabel7.setForeground(java.awt.Color.white);
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("REGISTROS INACTIVOS DE NOTAS DE PEDIDOS");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(174, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(163, 163, 163))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
         Reporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +122,23 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
         jButton1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jButton1.setText("ACTIVAR");
 
+        jLabel7.setBackground(new java.awt.Color(2, 184, 184));
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel7.setForeground(java.awt.Color.white);
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("REGISTROS INACTIVOS DE NOTAS DE PEDIDOS");
+        jLabel7.setOpaque(true);
+        jLabel7.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel7MouseDragged(evt);
+            }
+        });
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel7MousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -164,15 +147,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tblProduc)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(filtrar)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(tblProduc)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,18 +156,24 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
                         .addGap(55, 55, 55)
                         .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60))))
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                    .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,16 +255,6 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tblRegistrodeNotasMousePressed
 
-    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
-        x = evt.getX();
-        y = evt.getY();
-    }//GEN-LAST:event_jPanel1MousePressed
-
-    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
-        Point point = MouseInfo.getPointerInfo().getLocation();
-        setLocation(point.x - x, point.y - y);
-    }//GEN-LAST:event_jPanel1MouseDragged
-
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         java.util.List lista = new ArrayList();
         for (int i = 0; i < tblRegistrodeNotas.getRowCount(); i++) {
@@ -291,7 +262,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             lista.add(medida);
         }
         try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("MantenimientoNotaPedidos.jasper");
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("RegistrosInactivosNotaPedidos.jasper");
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
@@ -304,6 +275,16 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             Logger.getLogger(RegistrosInactivosNotaPedidos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ReporteActionPerformed
+
+    private void jLabel7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_jLabel7MouseDragged
+
+    private void jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jLabel7MousePressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -365,7 +346,6 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
     private javax.swing.JButton filtrar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane tblProduc;
     private javax.swing.JTable tblRegistrodeNotas;
