@@ -34,8 +34,8 @@ public class NotePedidos extends javax.swing.JDialog {
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
-   
-    joinProductoDetallesFaltantes objx = null;
+
+    joinProductoDetallesFaltantes objx = new joinProductoDetallesFaltantes();
 
     public NotePedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -64,7 +64,7 @@ public class NotePedidos extends javax.swing.JDialog {
         //HORA DEL SISTEMA
         Timer tiempo = new Timer(100, new NotePedidos.horas());
         tiempo.start();
-
+        System.out.println("d" + lista.get(0).getCantidad());
     }
 
     class horas implements ActionListener {
@@ -827,15 +827,18 @@ public class NotePedidos extends javax.swing.JDialog {
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
         int i = 0;
         String msg = null;
+        Integer cantidatabla=0;
         try {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
                 objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                
+                cantidatabla=objeto.getCantidad();
+                //System.out.println("id precio" + objeto.getId_precios() + " id Producto" + objeto.getId_producto());
+//objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
                 if (objeto != null) {
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
-                    System.out.println("id precio"+lista.get(i).getId_precios());
+                    System.out.println("CANTIDAD QUE DEVUELVE " + np.getObjf().getCantidad());
 //                    msg = ComponentesFaltantes.validarListaFaltantesNota(tbaListaFaltantes, objeto.getId_precios().toString());
                     msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, objeto.getId_precios().toString());
 
@@ -843,26 +846,33 @@ public class NotePedidos extends javax.swing.JDialog {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                         System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios());
                         if (np.getObjf().getCantidad() > 0) {
-//                                int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
-                                Integer suma = Integer.parseInt(t_Nota_faltantes.getValueAt(i, 6).toString())+np.getObjf().getCantidad();
-                                System.out.println("csntidad existente "+lista.get(i).getCantidad());
-                                System.out.println("csntidad ingresada "+np.getObjf().getCantidad());
-                                System.out.println("Suma "+suma);
-                                getPosicion(objeto.getId_precios(), suma);
-                              //////
-                                
-                                objx=calcularValores(np.getObjf());
-                             ///////   
-                                lista1.add(objx);
-                                for (joinProductoDetallesFaltantes p : lista1) {
-                                    System.out.println("lista1 " + p.getImporte() + " " + p.getValor_descuento());
-                                }                                
-                                Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                                Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
-                            
-                                TotalDescuento2();
-                                TotalPro();
-                                TotalIVA2();
+//                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+//                            System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios() + " " + np.getObjf().getId_producto());
+                            // if (np.getObjf().getCantidad() > 0) {
+                            System.out.println("cantidad valor 1 " + np.getObjf().getCantidad());
+                            //int suma = Integer.parseInt(Integer.valueOf( t_Nota_faltantes.getValueAt(i, 6))) + np.getObjf().getCantidad();
+                            System.out.println("obj cant "+objeto.getCantidad());
+                            int sumax = cantidatabla + np.getObjf().getCantidad();
+                            System.out.println("suma: " + sumax);
+                            getPosicion2(objeto.getId_producto(), sumax);
+
+                            System.out.println("cantidad valor 2 " + np.getObjf().getCantidad());
+
+                            objx = calcularValores(np.getObjf());
+                            ///////   
+                            lista1.add(objx);
+                            for (joinProductoDetallesFaltantes p : lista1) {
+                                System.out.println("lista1 lAL" + p.getImporte() + " " + p.getValor_descuento());
+                            }
+
+                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                            Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
+
+                            TotalDescuento2();
+                            TotalPro();
+                            TotalIVA2();
+                            //  }
+
                         } else {
                             JOptionPane.showMessageDialog(this, msg);
                         }
@@ -878,32 +888,33 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
 
     public joinProductoDetallesFaltantes calcularValores(joinProductoDetallesFaltantes lista) {
-        joinProductoDetallesFaltantes objd = lista;
+        joinProductoDetallesFaltantes objd = new joinProductoDetallesFaltantes();
+        objd = lista;
         BigDecimal PrecioBono = new BigDecimal("0.00");
-        
-                  
-            BigDecimal Cantidad = BigDecimal.valueOf(lista.getCantidad());
-            BigDecimal Precio = lista.getPrecios();
-            BigDecimal Subtotal = Cantidad.multiply(Precio);
-            BigDecimal Bono1 = BigDecimal.valueOf(lista.getBono())/*new BigDecimal(Bono)*/;
-            BigDecimal CantidadTotal = Cantidad.add(Bono1);
-            PrecioBono = Subtotal.divide(CantidadTotal, 7, RoundingMode.HALF_UP);
-            objd.setPrecioBono(PrecioBono);
-            BigDecimal PorcentajeDesc = lista.getPorcentaje_descuento();
-            BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
-            objd.setValor_descuento(ValorDes);
-            if (lista.getIva().equals("NO")) {
-                objd.setPrecioiva(new BigDecimal("0.00"));
-                BigDecimal importe = Subtotal.subtract(ValorDes);
-                objd.setImporte(importe);
-            } else {
-                String ivaget = lista.getIva();
-                BigDecimal IVA = new BigDecimal(ivaget);
-                BigDecimal ValorIVA = IVA.multiply(Subtotal);
-                objd.setPrecioiva(ValorIVA);
-                BigDecimal importe = Subtotal.add(ValorIVA).subtract(ValorDes);
-                objd.setImporte(importe);   
-            }
+
+        System.out.println("Valor Cantidad: " + objd.getCantidad());
+        BigDecimal Cantidad = BigDecimal.valueOf(lista.getCantidad());
+        BigDecimal Precio = lista.getPrecios();
+        BigDecimal Subtotal = Cantidad.multiply(Precio);
+        BigDecimal Bono1 = BigDecimal.valueOf(lista.getBono())/*new BigDecimal(Bono)*/;
+        BigDecimal CantidadTotal = Cantidad.add(Bono1);
+        PrecioBono = Subtotal.divide(CantidadTotal, 7, RoundingMode.HALF_UP);
+        objd.setPrecioBono(PrecioBono);
+        BigDecimal PorcentajeDesc = lista.getPorcentaje_descuento();
+        BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
+        objd.setValor_descuento(ValorDes);
+        if (lista.getIva().equals("NO")) {
+            objd.setPrecioiva(new BigDecimal("0.00"));
+            BigDecimal importe = Subtotal.subtract(ValorDes);
+            objd.setImporte(importe);
+        } else {
+            String ivaget = lista.getIva();
+            BigDecimal IVA = new BigDecimal(ivaget);
+            BigDecimal ValorIVA = IVA.multiply(Subtotal);
+            objd.setPrecioiva(ValorIVA);
+            BigDecimal importe = Subtotal.add(ValorIVA).subtract(ValorDes);
+            objd.setImporte(importe);
+        }
         return objd;
     }
 
@@ -1065,10 +1076,12 @@ public class NotePedidos extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel7MousePressed
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
+        System.out.println("cantx: " + listarobj.get(0).getCantidad());
         joinProductoDetallesFaltantes objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
             if (datos.equals(listarobj.get(i).getId_precios().toString())) {
                 objeto1 = listarobj.get(i);
+                System.out.println("cant: " + objeto1.getCantidad());
                 break;
             }
         }
