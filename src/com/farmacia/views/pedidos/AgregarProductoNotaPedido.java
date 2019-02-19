@@ -363,6 +363,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcantidadproActionPerformed
     private void llenarFormulario(joinProductoDetallesFaltantes obj) {
+        objf=new joinProductoDetallesFaltantes();
         codigo.setText(obj.getId_producto().toString());
         producto.setText(obj.getNombre_producto());
         Medida.setText(obj.getMedida());
@@ -372,16 +373,16 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         txtPrecio.setText(String.valueOf(obj.getPrecios()));
         txtIva.setText(obj.getIva());
         //
-        objf = obj;
-//        objf.setId_producto(obj.getId_producto());
-//        objf.setNombre_producto(obj.getNombre_producto());
-//        objf.setMedida(obj.getMedida());
-//        objf.setMarca(obj.getMarca());
-//        objf.setEnvase(obj.getEnvase());
-//        objf.setNombre_tipo(obj.getNombre_tipo());
-//        objf.setPrecios(obj.getPrecios());
-//        objf.setIva(obj.getIva());
-//        objf.setId_precios(obj.getId_precios());
+//        objf = obj;
+        objf.setId_producto(obj.getId_producto());
+        objf.setNombre_producto(obj.getNombre_producto());
+        objf.setMedida(obj.getMedida());
+        objf.setMarca(obj.getMarca());
+        objf.setEnvase(obj.getEnvase());
+        objf.setNombre_tipo(obj.getNombre_tipo());
+        objf.setPrecios(obj.getPrecios());
+        objf.setIva(obj.getIva());
+        objf.setId_precios(obj.getId_precios());
 
     }
     private void txtcantidadproKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadproKeyTyped

@@ -482,7 +482,6 @@ public class ListaDePedidos extends javax.swing.JDialog {
         try {
             if (evt.getClickCount() == 2) {
                 int r = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este producto de la lista?", "", JOptionPane.YES_NO_OPTION);
-
                 if (r == JOptionPane.YES_OPTION) {
                     int i = tbaListaFaltantesB.getSelectedRow();
                     lista1.remove(i);
