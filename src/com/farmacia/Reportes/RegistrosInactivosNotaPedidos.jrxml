@@ -22,7 +22,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="24" isBold="true" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[Notas De Pedido]]></text>
+				<text><![CDATA[NOTAS DE PEDIDOS INACTIVOS]]></text>
 			</staticText>
 		</band>
 	</title>

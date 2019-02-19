@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f48d56dc-2bbb-4b4a-98c5-646658ccc995">
-	<property name="ireport.zoom" value="1.4641000000000033"/>
+	<property name="ireport.zoom" value="3.4522712143931114"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="187"/>
 	<field name="RUC" class="java.lang.String"/>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="imagen" class="java.lang.String"/>
@@ -28,35 +28,35 @@
 	<columnHeader>
 		<band height="27" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="4" y="5" width="103" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="eb622d31-6cc8-44bf-95cd-276a08e729c1"/>
+				<reportElement mode="Opaque" x="3" y="4" width="104" height="21" forecolor="#FFFFFF" backcolor="#66B463" uuid="eb622d31-6cc8-44bf-95cd-276a08e729c1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RUC]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="108" y="5" width="117" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="7b13d387-f18e-4011-b6db-552cf1bb2513"/>
+				<reportElement mode="Opaque" x="108" y="4" width="117" height="21" forecolor="#FFFFFF" backcolor="#66B463" uuid="7b13d387-f18e-4011-b6db-552cf1bb2513"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOMBRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="226" y="5" width="115" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="cd8bf839-fdab-42d7-b514-d3a11adf72df"/>
+				<reportElement mode="Opaque" x="226" y="4" width="115" height="21" forecolor="#FFFFFF" backcolor="#66B463" uuid="cd8bf839-fdab-42d7-b514-d3a11adf72df"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DIRECCION]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="342" y="5" width="115" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="dd0ae0f8-b7b3-4fb1-9a67-c36a7beb8cf1"/>
+				<reportElement mode="Opaque" x="342" y="4" width="115" height="21" forecolor="#FFFFFF" backcolor="#66B463" uuid="dd0ae0f8-b7b3-4fb1-9a67-c36a7beb8cf1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TELEFONO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="458" y="5" width="94" height="19" forecolor="#FFFFFF" backcolor="#66B463" uuid="63c5194a-84fb-4d9b-9a93-67328d0a4a36"/>
+				<reportElement mode="Opaque" x="458" y="4" width="94" height="21" forecolor="#FFFFFF" backcolor="#66B463" uuid="63c5194a-84fb-4d9b-9a93-67328d0a4a36"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="9" isBold="true"/>
 				</textElement>

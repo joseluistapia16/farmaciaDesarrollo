@@ -532,7 +532,7 @@ public class Editar_Cliente extends javax.swing.JDialog {
         Clientes cliente1 = new Clientes (cedula.getText(),nombre.getText(),apellido.getText(),direccion.getText(),fecha_reg.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString());
         cliente.add(cliente1);
         try{
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("ClienteA.jasper");
+            JasperReport reporte = (JasperReport) JRLoader.loadObject("Cliente.jasper");
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(cliente));
             JDialog frame = new JDialog (this);
             JRViewer viewer = new JRViewer(jprint);

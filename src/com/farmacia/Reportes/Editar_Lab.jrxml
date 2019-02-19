@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d5ea5dd-64e9-4be5-8170-31f086dc7197">
 	<property name="ireport.zoom" value="1.3310000000000026"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="0"/>
 	<field name="valor1" class="java.lang.String"/>
 	<field name="valor2" class="java.lang.String"/>
 	<field name="valor3" class="java.lang.String"/>
@@ -16,7 +16,7 @@
 	<title>
 		<band height="42" splitType="Stretch">
 			<textField>
-				<reportElement x="100" y="7" width="298" height="27" uuid="27aed587-173b-4a84-903f-34ac02ffa619"/>
+				<reportElement x="135" y="0" width="298" height="27" uuid="27aed587-173b-4a84-903f-34ac02ffa619"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>

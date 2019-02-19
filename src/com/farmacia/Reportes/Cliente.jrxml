@@ -25,7 +25,7 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="9" splitType="Stretch"/>
+		<band height="14" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="12" splitType="Stretch"/>
