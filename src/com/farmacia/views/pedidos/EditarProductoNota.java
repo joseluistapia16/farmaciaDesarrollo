@@ -671,7 +671,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
         if (r == JOptionPane.YES_OPTION) {
             Guardar();
-            JOptionPane.showMessageDialog(null, "Actualizado");
+            //JOptionPane.showMessageDialog(null, "Actualizado");
             setVisible(false);
 
         } else {
@@ -681,7 +681,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
     private void Guardar() {
         int Cantidad = Integer.parseInt(txtcantidad.getText());
         int Bono = Integer.parseInt(txtBono.getText());
-        int CantidadTotal = Cantidad + Bono;
+        int CantidadTotal = Cantidad;
         DetalleNotaPedido obj = new DetalleNotaPedido();
         obj.setCantidad(CantidadTotal);
         obj.setBono(Integer.parseInt(txtBono.getText()));
@@ -695,7 +695,8 @@ public class EditarProductoNota extends javax.swing.JDialog {
         BigDecimal TOTAL = new BigDecimal(total);
         obj.setTotal(TOTAL);
         obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedido());
-        crud.ActualizarNotaPedidos(obj);
+        String valor=crud.ActualizarNotaPedidos(obj);
+        JOptionPane.showMessageDialog(this, valor);
     }
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar?", "", JOptionPane.YES_NO_OPTION);

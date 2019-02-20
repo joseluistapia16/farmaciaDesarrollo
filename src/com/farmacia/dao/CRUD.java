@@ -2705,7 +2705,7 @@ public class CRUD {
             pro.setBigDecimal(3, dnp.getDescuento());
             pro.setBigDecimal(4, dnp.getIva());
             pro.setBigDecimal(5, dnp.getTotal());
-            pro.setDouble(6, dnp.getBono());
+            pro.setInt(6, dnp.getBono());
             pro.registerOutParameter("valor", Types.VARCHAR);
             pro.executeUpdate();
             //pro.execute();

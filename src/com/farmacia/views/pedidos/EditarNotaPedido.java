@@ -31,12 +31,12 @@ import net.sf.jasperreports.view.JRViewer;
 public class EditarNotaPedido extends javax.swing.JDialog {
 
     int x, y;
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     CRUD crud = new CRUD();
     filtrosProductos fil = new filtrosProductos();
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
-    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     joinProductoDetallesFaltantes objeto = null;
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
@@ -54,12 +54,17 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }
 
     public EditarNotaPedido(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1) {
+//        super(parent, modal);
+//
+//        setUndecorated(true);
+//        setLocationRelativeTo(null);
+//        initComponents();        
+//        this.setResizable(false);
         super(parent, modal);
-
         setUndecorated(true);
-        setLocationRelativeTo(null);
-        initComponents();        
-        this.setResizable(false);
+        initComponents();
+        this.setLocationRelativeTo(null);
+        setLayout(null);
         llenarFormulario(obj1);
         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
         codigocabecera = txtNumero.getText().toString();
