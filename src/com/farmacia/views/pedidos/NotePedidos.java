@@ -827,12 +827,12 @@ public class NotePedidos extends javax.swing.JDialog {
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
         int i = 0;
         String msg = null;
-        Integer cantidatabla=0;
+        Integer cantidatabla = 0;
         try {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
                 objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                cantidatabla=objeto.getCantidad();
+                cantidatabla = objeto.getCantidad();
                 //System.out.println("id precio" + objeto.getId_precios() + " id Producto" + objeto.getId_producto());
 //objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
                 if (objeto != null) {
@@ -844,35 +844,29 @@ public class NotePedidos extends javax.swing.JDialog {
 
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                        System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios());
-                        if (np.getObjf().getCantidad() > 0) {
-//                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-//                            System.out.println("tiene que eser el mismo id anteriro: " + np.getObjf().getId_precios() + " " + np.getObjf().getId_producto());
-                            // if (np.getObjf().getCantidad() > 0) {
-                            System.out.println("cantidad valor 1 " + np.getObjf().getCantidad());
-                            //int suma = Integer.parseInt(Integer.valueOf( t_Nota_faltantes.getValueAt(i, 6))) + np.getObjf().getCantidad();
-                            System.out.println("obj cant "+objeto.getCantidad());
-                            int sumax = cantidatabla + np.getObjf().getCantidad();
-                            System.out.println("suma: " + sumax);
-                            getPosicion2(objeto.getId_producto(), sumax);
 
-                            System.out.println("cantidad valor 2 " + np.getObjf().getCantidad());
+                        if (np.getObjf().getCantidad() > 0) {
+//                                int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
+                            Integer suma = Integer.parseInt(t_Nota_faltantes.getValueAt(i, 6).toString()) + np.getObjf().getCantidad();
+//                                System.out.println("csntidad existente "+lista.get(i).getCantidad());
+//                                System.out.println("lista "+Integer.parseInt(t_Nota_faltantes.getValueAt(i, 6).toString()));
+//                                System.out.println("cantidad ingresada "+np.getObjf().getCantidad());
+                            System.out.println("Suma " + suma);
+                            getPosicion(objeto.getId_precios(), suma);
+                            //////
 
                             objx = calcularValores(np.getObjf());
                             ///////   
                             lista1.add(objx);
                             for (joinProductoDetallesFaltantes p : lista1) {
-                                System.out.println("lista1 lAL" + p.getImporte() + " " + p.getValor_descuento());
+                                System.out.println("lista1 " + p.getImporte() + " " + p.getValor_descuento());
                             }
-
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                             Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
 
                             TotalDescuento2();
                             TotalPro();
                             TotalIVA2();
-                            //  }
-
                         } else {
                             JOptionPane.showMessageDialog(this, msg);
                         }
@@ -931,6 +925,7 @@ public class NotePedidos extends javax.swing.JDialog {
         for (int i = 0; i < lista.size(); i++) {
             if (id == lista.get(i).getId_producto()) {
                 lista.get(i).setCantidad(valor);
+                System.out.println(" get posicioon id Prod" + lista.get(i).getId_producto());
             }
         }
 
@@ -983,17 +978,30 @@ public class NotePedidos extends javax.swing.JDialog {
         BigDecimal iva = new BigDecimal("0.00");
         BigDecimal descuento = new BigDecimal("0.00");
         BigDecimal total = new BigDecimal("0.00");
+        Integer Resta = 0;
 
         try {
             if (evt.getClickCount() == 2) {
                 int r = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este producto de la lista?", "", JOptionPane.YES_NO_OPTION);
-                if (r == JOptionPane.YES_OPTION) {
-                    
-                    int i = tbaListaFaltantes.getSelectedRow();
-                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                    int resta = (Integer.valueOf(objeto.getCantidad()) - Integer.parseInt((String) tbaListaFaltantes.getValueAt(i, 6)));
-                    getPosicion2(objeto.getId_producto(), resta);
 
+                if (r == JOptionPane.YES_OPTION) {
+
+                    int i = tbaListaFaltantes.getSelectedRow();
+
+                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
+                    System.out.println("objetoP" + objeto.getCantidad());
+                    System.out.println("lista1" + lista1.get(i).getCantidad());
+                    Resta = Integer.valueOf(objeto.getCantidad()) - lista1.get(i).getCantidad();
+                    System.out.println("Resta " + Resta);
+                    lista1.remove(i);
+                    Tablas.cargarJoinProductoDetallesFaltantes(tbaListaFaltantes, lista1);
+                   
+//                    getPosicion2(objeto.getId_producto(), Resta);
+//                    Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+//                    TotalPro();
+//                    TotalIVA2();
+//                    TotalDescuento2();
+///////////////////////////
                     iva = (BigDecimal) tbaListaFaltantes.getValueAt(i, 9);
                     descuento = (BigDecimal) tbaListaFaltantes.getValueAt(i, 8);
                     total = (BigDecimal) tbaListaFaltantes.getValueAt(i, 10);
@@ -1005,19 +1013,15 @@ public class NotePedidos extends javax.swing.JDialog {
                     String total1 = txtTotal.getText();
                     BigDecimal TOTAL = new BigDecimal(total1);
                     iva = IVA.subtract(iva);
-//                    iva = redondearDecimales(iva, 2);
                     descuento = DESCUENTO.subtract(descuento);
-//                    descuento = redondearDecimales(descuento, 2);
                     total = TOTAL.subtract(total);
-//                    total = redondearDecimales(total, 2);
 
                     txtIva.setText(iva.toString());
                     txtDescuento.setText(descuento.toString());
                     txtTotal.setText(total.toString());
 
-                    lista1.remove(i);
-
-                    Tablas.cargarJoinProductoDetallesFaltantes(tbaListaFaltantes, lista1);
+//                    lista1.remove(i);
+//                    Tablas.cargarJoinProductoDetallesFaltantes(tbaListaFaltantes, lista1);
                     Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
                     Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                     TotalPro();
@@ -1088,6 +1092,7 @@ public class NotePedidos extends javax.swing.JDialog {
         return objeto1;
 
     }
+
     private void Reiniciar() {
         txtCodigoProveedor.setText("");
         txtCorreo1.setText("");
