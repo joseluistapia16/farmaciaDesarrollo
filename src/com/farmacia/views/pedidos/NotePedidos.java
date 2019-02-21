@@ -495,13 +495,13 @@ public class NotePedidos extends javax.swing.JDialog {
             PanelSecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelSecLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(tblProduc, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(tblProduc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
         );
         PanelSecLayout.setVerticalGroup(
             PanelSecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -810,7 +810,6 @@ public class NotePedidos extends javax.swing.JDialog {
             }
             crud.InsertarDetallesNotaPedidos(queryL1);
             queryL1.clear();
-
             JOptionPane.showMessageDialog(null, " Guardado con Exito ");
             btnNuevo.setEnabled(true);
         } else {
@@ -826,7 +825,7 @@ public class NotePedidos extends javax.swing.JDialog {
             try {
                 if (evt.getClickCount() == 2) {
                     i = t_Nota_faltantes.getSelectedRow();
-                    objeto = devuelveObjeto("" + lista.get(i).getId_precios(), lista);
+                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
                     
                     cantidatabla = objeto.getCantidad();
                     if (objeto != null) {

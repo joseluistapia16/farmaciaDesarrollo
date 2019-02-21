@@ -372,7 +372,6 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         txtTipo.setText(obj.getNombre_tipo());
         txtPrecio.setText(String.valueOf(obj.getPrecios()));
         txtIva.setText(obj.getIva());
-        //
 //        objf = obj;
         objf.setId_producto(obj.getId_producto());
         objf.setNombre_producto(obj.getNombre_producto());
