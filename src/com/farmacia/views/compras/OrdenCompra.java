@@ -154,6 +154,7 @@ public class OrdenCompra extends javax.swing.JDialog {
         }
         VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
         txtTotal.setText(Total_.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+    
     }
 
     public static String removeScientificNotation(String value) {
