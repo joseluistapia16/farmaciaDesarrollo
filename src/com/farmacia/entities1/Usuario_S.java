@@ -30,31 +30,17 @@ public class Usuario_S {
     private String ip_publico;
     private String usuario_equipo;
     private String dir_ip_completa;
+    private String convencional;
+    private String genero;
+    private String direccion;
+    private String observacion;
+    
     
 
     public Usuario_S() {
     }
 
-    public Usuario_S(Long id_punto_venta, Long id_rol, String cedula, String nombre, String apellido, String telefono, String correo, String password, String ruta_imagen, Date fecha_registro, Long id_usuario_registro, String estado, String ip_equipo, String ip_publico, String usuario_equipo, String dir_ip_completa) {
-        this.id_punto_venta = id_punto_venta;
-        this.id_rol = id_rol;
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.password = password;
-        this.ruta_imagen = ruta_imagen;
-        this.fecha_registro = fecha_registro;
-        this.id_usuario_registro = id_usuario_registro;
-        this.estado = estado;
-        this.ip_equipo = ip_equipo;
-        this.ip_publico = ip_publico;
-        this.usuario_equipo = usuario_equipo;
-        this.dir_ip_completa = dir_ip_completa;
-    }
-
-    public Usuario_S(Long id_usuario, Long id_punto_venta, Long id_rol, String cedula, String nombre, String apellido, String telefono, String correo, String password, String ruta_imagen, Date fecha_registro, Long id_usuario_registro, String estado, String ip_equipo, String ip_publico, String usuario_equipo, String dir_ip_completa) {
+    public Usuario_S(Long id_usuario, Long id_punto_venta, Long id_rol, String cedula, String nombre, String apellido, String telefono, String correo, String password, String ruta_imagen, Date fecha_registro, Long id_usuario_registro, String estado, String ip_equipo, String ip_publico, String usuario_equipo, String dir_ip_completa, String convencional, String genero, String direccion, String observacion) {
         this.id_usuario = id_usuario;
         this.id_punto_venta = id_punto_venta;
         this.id_rol = id_rol;
@@ -72,6 +58,10 @@ public class Usuario_S {
         this.ip_publico = ip_publico;
         this.usuario_equipo = usuario_equipo;
         this.dir_ip_completa = dir_ip_completa;
+        this.convencional = convencional;
+        this.genero = genero;
+        this.direccion = direccion;
+        this.observacion = observacion;
     }
 
     public Long getId_usuario() {
@@ -210,6 +200,36 @@ public class Usuario_S {
         this.dir_ip_completa = dir_ip_completa;
     }
 
-   
+    public String getConvencional() {
+        return convencional;
+    }
+
+    public void setConvencional(String convencional) {
+        this.convencional = convencional;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
 
 }

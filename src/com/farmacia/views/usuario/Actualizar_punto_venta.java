@@ -292,22 +292,22 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void BotonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalir1ActionPerformed
-        ArrayList punto = new ArrayList();
-        ClaseReporte punto1= new ClaseReporte (txtId.getText(),txtNombre.getText(),cbLocalidad.getSelectedItem().toString(),txtDireccion.getText(),txtObservacion.getText());
-        punto.add(punto1);
-        try{
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("Actualizar_punto_venta.jasper");
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(punto));
-            JDialog frame = new JDialog (this);
-            JRViewer viewer = new JRViewer(jprint);
-            frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-            viewer.setFitWidthZoomRatio();
-        } catch (JRException ex) {
-            Logger.getLogger(Actualizar_punto_venta.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        ArrayList punto = new ArrayList();
+//        ClaseReporte punto1= new ClaseReporte (txtId.getText(),txtNombre.getText(),cbLocalidad.getSelectedItem().toString(),txtDireccion.getText(),txtObservacion.getText());
+//        punto.add(punto1);
+//        try{
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject("Actualizar_punto_venta.jasper");
+//            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(punto));
+//            JDialog frame = new JDialog (this);
+//            JRViewer viewer = new JRViewer(jprint);
+//            frame.add(viewer);
+//            frame.setSize(new Dimension(ancho/2,alto/2));
+//            frame.setLocationRelativeTo(null);
+//            frame.setVisible(true);
+//            viewer.setFitWidthZoomRatio();
+//        } catch (JRException ex) {
+//            Logger.getLogger(Actualizar_punto_venta.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_BotonSalir1ActionPerformed
 
     /**

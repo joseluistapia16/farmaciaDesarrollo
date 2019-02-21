@@ -7,11 +7,13 @@ package com.farmacia.conponentes;
 
 import static com.farmacia.conponentes.Tablas.model;
 import com.farmacia.entities1.EnvaseProducto;
+import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Precios;
+import com.farmacia.entities1.Rol_U;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.entities1.fc_localidad_guayas;
 import com.farmacia.fecha.Fecha;
@@ -193,6 +195,48 @@ public class Formulario {
             arreglo[(i + 1)] = lista.get(i).getLocalidad();
         }
         return arreglo;
+
+    }
+    
+    private static Object[] arregloGenero(ArrayList<Genero> lista) {
+        Object[] arreglo = new Object[lista.size() + 1];
+        arreglo[0] = "Elija una opcion...";
+        for (int i = 0; i < lista.size(); i++) {
+            arreglo[(i + 1)] = lista.get(i).getGenero();
+        }
+        return arreglo;
+
+    }
+    
+    public static DefaultComboBoxModel listarComboGenero(ArrayList<Genero> lista) {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        Object[] arreglo = arregloGenero(lista);
+        System.out.println(lista.size() + " tam " + arreglo.length);
+        for (int i = 0; i < arreglo.length; i++) {
+            model.addElement(arreglo[i]);
+        }
+        return model;
+
+    }
+    
+    private static Object[] arregloRol(ArrayList<Rol_U> lista) {
+        Object[] arreglo = new Object[lista.size() + 1];
+        arreglo[0] = "Elija una opcion...";
+        for (int i = 0; i < lista.size(); i++) {
+            arreglo[(i + 1)] = lista.get(i).getCargo();
+        }
+        return arreglo;
+
+    }
+    
+    public static DefaultComboBoxModel listarComboRol(ArrayList<Rol_U> lista) {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        Object[] arreglo = arregloRol(lista);
+        System.out.println(lista.size() + " tam " + arreglo.length);
+        for (int i = 0; i < arreglo.length; i++) {
+            model.addElement(arreglo[i]);
+        }
+        return model;
 
     }
     

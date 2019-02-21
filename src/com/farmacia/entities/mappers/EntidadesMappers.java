@@ -7,7 +7,6 @@ package com.farmacia.entities.mappers;
 
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinProveedor;
-import com.farmacia.join_entidades.ListarNotas;
 
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
@@ -15,6 +14,7 @@ import com.farmacia.entities1.Clientes;
 import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.Correo_Cliente;
 import com.farmacia.entities1.EnvaseProducto;
+import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.ListarPuntoVenta;
@@ -22,8 +22,10 @@ import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
 import com.farmacia.entities1.MarcaProducto;
+import com.farmacia.entities1.Nombre_local;
 import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.Precios;
+import com.farmacia.entities1.Rol_U;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.Telefono_Cliente;
 import com.farmacia.entities1.TipoProducto;
@@ -613,6 +615,31 @@ public class EntidadesMappers {
         return obj;
     }
     
+    public static Genero getGeneroFromResultSet(ResultSet rs) {
+        Genero obj = new Genero();
+        try {
+//            obj.setId_genero(rs.getLong("Id_genero"));
+            obj.setGenero(rs.getString("genero"));
+            
+         
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
+    public static Rol_U getRolFromResultSet(ResultSet rs) {
+        Rol_U obj = new Rol_U();
+        try {
+            obj.setCargo(rs.getString("cargo"));
+            
+         
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
     public static ListarPuntoVenta getPuntoVentaFromResultSet(ResultSet rs) {
         ListarPuntoVenta obj = new ListarPuntoVenta();
         try {
@@ -628,6 +655,21 @@ public class EntidadesMappers {
         }
         return obj;
     }
+    
+    public static Nombre_local getListarLocalFromResultSet(ResultSet rs) {
+        Nombre_local obj = new Nombre_local();
+        try {
+            obj.setNombre(rs.getString("nombre"));
+            obj.setTelefono_pv(rs.getString("telefono_pv"));
+            obj.setDireccion(rs.getString("direccion"));
+            obj.setFecha_creacion(rs.getDate("fecha_creacion"));
+            obj.setFecha_actualizacion(rs.getDate("fecha_actualizacion"));
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
     public static Listar_usuario getUsuarioFromResultSet(ResultSet rs) {
         Listar_usuario obj = new Listar_usuario();
         try {
@@ -642,8 +684,8 @@ public class EntidadesMappers {
             obj.setCorreo(rs.getString("correo"));
             obj.setCargo(rs.getString("cargo"));
             obj.setGenero(rs.getString("genero"));
-            obj.setDiscapacidad(rs.getString("discapacidad"));
-            obj.setPorcentaje(rs.getString("porcentaje"));
+//            obj.setDiscapacidad(rs.getString("discapacidad"));
+//            obj.setPorcentaje(rs.getString("porcentaje"));
             obj.setEstado(rs.getString("estado"));
             obj.setObservacion(rs.getString("observacion"));
             

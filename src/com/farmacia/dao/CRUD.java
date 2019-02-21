@@ -17,6 +17,7 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.entities1.EnvaseProducto;
+import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.ListarPuntoVenta;
@@ -24,11 +25,13 @@ import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
 import com.farmacia.entities1.MarcaProducto;
+import com.farmacia.entities1.Nombre_local;
 import com.farmacia.entities1.Obcx;
 import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Punto_venta;
 import com.farmacia.entities1.Rol;
+import com.farmacia.entities1.Rol_U;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.entities1.Usuario;
@@ -2279,6 +2282,67 @@ public class CRUD {
             }
         }
         return valor;
+    }//usuario
+    
+    public String CrearLocal(Nombre_local pv) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call fc_crear_local(?,?,?,?)}");
+            pro.setString(1, pv.getNombre());
+            pro.setString(2, pv.getDireccion());
+            pro.setString(3, pv.getTelefono_pv());
+            pro.registerOutParameter("salida", Types.VARCHAR);
+            pro.executeUpdate();
+            valor = pro.getString("salida");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
+    public ArrayList<Nombre_local> listar_local() {
+        ArrayList<Nombre_local> valor = new ArrayList<Nombre_local>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call fc_mostrar_local()}");
+            rs = pro.executeQuery();
+            while (rs.next()) {
+                Nombre_local obj = EntidadesMappers.getListarLocalFromResultSet(rs);
+                valor.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
     }
 
     public String actualizarPunto_venta(Punto_venta pv) {
@@ -2349,28 +2413,26 @@ public class CRUD {
         return valor;
     }
 
-    public String Nuevo_usuario(Punto_venta pv, Usuario_S us, Rol r) {
+    public String Nuevo_usuario(Usuario_S us) {
         String valor = null;
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call nuevo_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-            pro.setString(1, pv.getNombre());
-            pro.setString(2, r.getNombre());
-            pro.setString(3, us.getCedula());
-            pro.setString(4, us.getNombre());
-            pro.setString(5, us.getApellido());
-            pro.setString(6, us.getTelefono());
-            pro.setString(7, us.getCorreo());
-            pro.setString(8, us.getPassword());
-            pro.setString(9, us.getPassword());
-            pro.setString(10, us.getRuta_imagen());
-            pro.setLong(11, us.getId_usuario_registro());
-            pro.setString(12, us.getIp_equipo());
-            pro.setString(13, us.getIp_publico());
-            pro.setString(14, us.getUsuario_equipo());
-            pro.setString(15, us.getDir_ip_completa());
+                    "{ call fc_registrar_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            pro.setString(1, us.getCedula());
+            pro.setString(2, us.getNombre());
+            pro.setString(3, us.getApellido());
+            pro.setString(4, us.getTelefono());
+            pro.setString(5, us.getConvencional());
+            pro.setString(6, us.getCorreo());
+            pro.setString(7, us.getDireccion());
+            pro.setString(8, us.getIp_equipo());
+            pro.setString(9, us.getUsuario_equipo());
+            pro.setString(10, us.getDir_ip_completa());
+            pro.setString(11, us.getRuta_imagen());
+            pro.setString(12, us.getObservacion());
+            pro.setString(13, us.getGenero());
             pro.registerOutParameter("salida", Types.VARCHAR);
             pro.executeUpdate();
             //pro.execute();
@@ -2391,7 +2453,7 @@ public class CRUD {
             }
         }
         return valor;
-    }
+    }//usuario
 
     public String bitacoraSeguridad(Bitacora_seguridad bs) {
 
@@ -2488,6 +2550,70 @@ public class CRUD {
         }
         return lista;
     }
+    
+    public ArrayList<Genero> listarGenero() {
+        ArrayList<Genero> lista = new ArrayList<Genero>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call fc_combo_genero() }");
+            //   prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                Genero obj = EntidadesMappers.getGeneroFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+
+    public ArrayList<Rol_U> listarRol() {
+        ArrayList<Rol_U> lista = new ArrayList<Rol_U>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call fc_combo_rol() }");
+            //   prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                Rol_U obj = EntidadesMappers.getRolFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
 
     public ArrayList<ListarPuntoVenta> filtroBusquedaPV(String query) {
         ArrayList<ListarPuntoVenta> lista = new ArrayList<ListarPuntoVenta>();
@@ -2565,7 +2691,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call mostrar_usuario()}");
+                    "{ call fc_mostrar_usuario}");
             rs = pro.executeQuery();
             while (rs.next()) {
                 Listar_usuario obj = EntidadesMappers.getUsuarioFromResultSet(rs);

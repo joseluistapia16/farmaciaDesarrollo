@@ -22,6 +22,7 @@ import com.farmacia.entities1.ListarPuntoVenta;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
+import com.farmacia.entities1.Nombre_local;
 import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.TipoProducto;
@@ -1017,6 +1018,40 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
         }
     }
+    
+    public static void cargarLocal(JTable Tabla, ArrayList<Nombre_local> lista) {
+
+        int[] a = {30, 50, 50, 70, 70};
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.LEFT);
+        tcr1.setHorizontalAlignment(SwingConstants.CENTER);
+        model = VaciarTabla(Tabla);
+        String[] Co = {"NOMBRE", "TELÉFONO", "DIRECCIÓN", "FECHA DE CREACIÓN", "FECHA DE ACTUALIZACIÓN"};
+        String[] Filas = new String[5];
+        model = new DefaultTableModel(null, Co);
+        Tabla.setShowGrid(true);
+        for (int i = 0; i < lista.size(); i++) {
+            
+            Filas[0] = lista.get(i).getNombre();
+            Filas[1] = lista.get(i).getTelefono_pv();
+            Filas[2] = lista.get(i).getDireccion();
+            Filas[3] = lista.get(i).getFecha_creacion().toString();
+            Filas[4] = lista.get(i).getFecha_actualizacion().toString();
+            model.addRow(Filas);
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        }
+    }
 
     public static void listarProveedorNotaPedido(ArrayList<ListarJoinProveedorNotaPedido> lista, JTable Tabla) {
         int[] a = {10, 30, 32, 52};
@@ -1050,15 +1085,15 @@ public class Tablas {
 
     public static void cargarJoinUsuario(JTable Tabla, ArrayList<Listar_usuario> lista) {
 
-        int[] a = {10, 50, 40, 52, 52, 80, 30, 30, 52, 30, 30, 40, 30, 10, 80};
+        int[] a = {10, 50, 40, 52, 52, 80, 30, 30, 52, 30, 30, 10, 80};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.LEFT);
         tcr1.setHorizontalAlignment(SwingConstants.CENTER);
         model = VaciarTabla(Tabla);
         String[] Co = {"Codigo", "Fecha de registro", "Cedula", "Apellidos", "Nombres", "Direccion", "celular", "Convencional",
-            "Correo", "Cargo", "Genero", "Discapacidad", "Porcentaje", "estado", "Observacion"};
-        String[] Filas = new String[15];
+            "Correo", "Cargo", "Genero", "estado", "Observacion"};
+        String[] Filas = new String[13];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
@@ -1073,10 +1108,8 @@ public class Tablas {
             Filas[8] = lista.get(i).getCorreo();
             Filas[9] = lista.get(i).getCargo();
             Filas[10] = lista.get(i).getGenero();
-            Filas[11] = lista.get(i).getDiscapacidad();
-            Filas[12] = lista.get(i).getPorcentaje();
-            Filas[13] = lista.get(i).getEstado();
-            Filas[14] = lista.get(i).getObservacion();
+            Filas[11] = lista.get(i).getEstado();
+            Filas[12] = lista.get(i).getObservacion();
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -1105,14 +1138,10 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(11).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(12).setPreferredWidth(a[12]);
             Tabla.getColumnModel().getColumn(12).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(13).setPreferredWidth(a[13]);
-            Tabla.getColumnModel().getColumn(13).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(14).setPreferredWidth(a[14]);
-            Tabla.getColumnModel().getColumn(14).setCellRenderer(tcr);
         }
     }
 
-    public void visualizar(JTable tabla, Long id) {//1
+    public void visualizar(JTable tabla, Long id) {
 
         tabla.setDefaultRenderer(Object.class, new Render());
         DefaultTableModel dt = new DefaultTableModel(new String[]{"CODIGO PRECIO", "CODIGO PRODUCTO", "PRECIO COMPRA", "PRECIO VENTA", "ESTADO",}, 0) {
