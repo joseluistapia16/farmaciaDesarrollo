@@ -42,6 +42,7 @@ public class Registrar_usuario extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         cbGenero.setModel(Formulario.listarComboGenero(lista1));
         cbRol.setModel(Formulario.listarComboRol(lista2));
+        txtId.setEnabled(false);
     }
 
     /**
@@ -82,9 +83,14 @@ public class Registrar_usuario extends javax.swing.JDialog {
         txtCorreo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         cbRol = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -111,24 +117,32 @@ public class Registrar_usuario extends javax.swing.JDialog {
                 BotonImagenActionPerformed(evt);
             }
         });
+        BotonImagen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BotonImagenKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(BotonImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonSinImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BotonSinImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BotonImagen)
                 .addGap(30, 30, 30)
@@ -140,7 +154,7 @@ public class Registrar_usuario extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Bitstream Vera Serif", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CREAR USUARIO");
+        jLabel1.setText("ACTUALIZAR USUARIO");
         jLabel1.setToolTipText("");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -149,7 +163,7 @@ public class Registrar_usuario extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -165,34 +179,34 @@ public class Registrar_usuario extends javax.swing.JDialog {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nombres");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 60, 25));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 60, 25));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Apellidos");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 50, 20));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 50, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("Cedula");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 50, 20));
+        jLabel4.setText("Cédula");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 50, 20));
 
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 159, -1));
+        jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 159, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel12.setText("Direccion");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 170, -1, 20));
+        jLabel12.setText("Dirección");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, -1, 20));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel13.setText("Observacion");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel15.setText("Genero");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, 20));
+        jLabel15.setText("Género");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, 20));
 
         txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -204,7 +218,7 @@ public class Registrar_usuario extends javax.swing.JDialog {
                 txtNombreKeyTyped(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 160, -1));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 160, -1));
 
         txtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -216,19 +230,19 @@ public class Registrar_usuario extends javax.swing.JDialog {
                 txtApellidoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 160, -1));
+        jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 160, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Celular");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 60, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 60, 20));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel14.setText("Convencional");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("Correo");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 50, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 50, -1));
 
         txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -240,15 +254,16 @@ public class Registrar_usuario extends javax.swing.JDialog {
                 txtDireccionKeyTyped(evt);
             }
         });
-        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 150, -1));
+        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 160, -1));
 
+        cbGenero.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbGenero.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cbGeneroFocusLost(evt);
             }
         });
-        jPanel1.add(cbGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 160, -1));
+        jPanel1.add(cbGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 160, -1));
 
         txtObservacion.setColumns(20);
         txtObservacion.setRows(5);
@@ -267,35 +282,49 @@ public class Registrar_usuario extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(txtObservacion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 460, 80));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 460, 70));
 
         txtCell.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCellKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCell, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 150, -1));
+        jPanel1.add(txtCell, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 160, -1));
 
         txtConven.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtConvenKeyTyped(evt);
             }
         });
-        jPanel1.add(txtConven, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 150, -1));
+        jPanel1.add(txtConven, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 160, -1));
 
         txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCorreoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 150, -1));
+        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 160, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel7.setText("Rol");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
 
+        cbRol.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(cbRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 160, -1));
+        jPanel1.add(cbRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 160, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setText("Código");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 70, -1));
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 160, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel9.setText("Estado");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setText("Datos personales");
@@ -311,12 +340,15 @@ public class Registrar_usuario extends javax.swing.JDialog {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/guardar.jpg"))); // NOI18N
-        jButton1.setText("REGISTRAR");
+        jButton1.setText("ACTUALIZAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/Activar.png"))); // NOI18N
+        jButton2.setText("HABILITAR");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -326,19 +358,19 @@ public class Registrar_usuario extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addGap(244, 244, 244)
-                            .addComponent(jButton1)
-                            .addGap(159, 159, 159)
-                            .addComponent(jButton3)
-                            .addGap(210, 210, 210))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(jButton2)
+                        .addGap(94, 94, 94)
+                        .addComponent(jButton1)
+                        .addGap(125, 125, 125)
+                        .addComponent(jButton3))
+                    .addComponent(jLabel11))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,14 +379,15 @@ public class Registrar_usuario extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -486,20 +519,11 @@ public class Registrar_usuario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtObservacionKeyPressed
 
-//    public void Habilitar(boolean valor) {
-//
-//        txtNombre.setEnabled(valor);
-//        txtApellido.setEnabled(valor);
-//        txtTelefono.setEnabled(valor);
-//        correo.setEnabled(valor);
-//        contraseña.setEnabled(valor);
-//        con_contraseña.setEnabled(valor);
-//        //punto_venta.setEnabled(valor);
-//        rol.setEnabled(valor);
-//        //BotonRegistrar.setEnabled(valor);
-//        BotonImagen.setEnabled(valor);
-//        BotonSinImagen.setEnabled(valor);
-//    }
+    private void BotonImagenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BotonImagenKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Guardar();
+        }
+    }//GEN-LAST:event_BotonImagenKeyPressed
 
     public void VaciarImagen() {
         // String fil = "\\G:\\sin-imagen.png";
@@ -534,12 +558,15 @@ public class Registrar_usuario extends javax.swing.JDialog {
     }
 
     public void Guardar() {
-        if (txtCedula.getText().length() < 2 || txtNombre.getText().length() < 2 || txtApellido.getText().length() < 2
-                || txtCell.getText().length() < 2 || txtCorreo.getText().length() < 2
-                /*|| punto_venta.getText().length() < 2*/) {
-            //     msge= "Datos incorrectos\n"+ msge ;
-            JOptionPane.showMessageDialog(null, "Datos incorrectos, revise todos los campos");
-        } else {
+        if (txtCedula.getText() == null ) {
+            JOptionPane.showMessageDialog(null, "Revise el campo cédula");
+        }else if (txtNombre.getText().length() < 3 || txtApellido.getText().length() < 3 ) {
+            JOptionPane.showMessageDialog(null, "Ingrese un nombre o paellido válido ");
+        }else if (txtCell.getText().length() < 9) {
+            JOptionPane.showMessageDialog(null, "Ingrese un número de contacto válido ");
+        }else if (txtCell.getText().length() < 11) {
+            JOptionPane.showMessageDialog(null, "Ingrese un nombre o apellido válido ");
+        }else {
             Usuario_S obj = new Usuario_S();
             obj.setCedula(txtCedula.getText());
             obj.setNombre(txtNombre.getText());
@@ -547,6 +574,7 @@ public class Registrar_usuario extends javax.swing.JDialog {
             obj.setTelefono(txtCell.getText());
             obj.setRuta_imagen(imagen);
             obj.setGenero(cbGenero.getSelectedItem().toString());
+            obj.setCargo(cbGenero.getSelectedItem().toString());
             obj.setConvencional(txtConven.getText());
             obj.setCorreo(txtCorreo.getText());
             obj.setDireccion(txtDireccion.getText());
@@ -555,13 +583,9 @@ public class Registrar_usuario extends javax.swing.JDialog {
 //            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
             obj.setDir_ip_completa(Operaciones.getIpLocalCompleta());
             obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
+            try {
             String a =  crud.Nuevo_usuario(obj);
             JOptionPane.showMessageDialog(this, a);
-            try {
-                //cr.Nuevo_usuario("Seguridad", objp, obj);
-                JOptionPane.showMessageDialog(this, "Usuario guardado ");
-                setVisible(false);
-
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e);
             }
@@ -619,7 +643,9 @@ public class Registrar_usuario extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbGenero;
     private javax.swing.JComboBox<String> cbRol;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -632,6 +658,8 @@ public class Registrar_usuario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -644,6 +672,7 @@ public class Registrar_usuario extends javax.swing.JDialog {
     private javax.swing.JTextField txtConven;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextArea txtObservacion;
     // End of variables declaration//GEN-END:variables

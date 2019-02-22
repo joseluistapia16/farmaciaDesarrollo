@@ -2450,7 +2450,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call fc_registrar_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                    "{ call fc_registrar_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             pro.setString(1, us.getCedula());
             pro.setString(2, us.getNombre());
             pro.setString(3, us.getApellido());
@@ -2464,6 +2464,7 @@ public class CRUD {
             pro.setString(11, us.getRuta_imagen());
             pro.setString(12, us.getObservacion());
             pro.setString(13, us.getGenero());
+            pro.setString(14, us.getCargo());
             pro.registerOutParameter("salida", Types.VARCHAR);
             pro.executeUpdate();
             //pro.execute();
