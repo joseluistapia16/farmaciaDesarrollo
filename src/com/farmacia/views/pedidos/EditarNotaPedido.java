@@ -808,7 +808,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 i = t_Nota_faltantes.getSelectedRow();
                 
                 objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
-                System.out.println("id precio x: "+lista.get(i).getId_precios()+" "+lista.get(i).getId_producto());
                 if (objeto != null) {
                     AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
@@ -816,12 +815,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                        System.out.println("id precio x iguales: "+np.getObjf().getId_precios()+" "+np.getObjf().getId_producto());
+                        
                         if (np.getObjf().getCantidad() > 0) {
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
-                            System.out.println("bobo= " + np.objf.getBono());
+                            
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
 //                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);

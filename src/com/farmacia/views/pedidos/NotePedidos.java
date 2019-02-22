@@ -6,8 +6,11 @@ import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
+import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ComponentesFaltantes;
+import com.farmacia.views.compras.ListaDePedidos;
+import com.farmacia.views.producto.Products;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -34,6 +37,7 @@ public class NotePedidos extends javax.swing.JDialog {
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
+     ArrayList<listarJoinProductosCompras> listapro=crud.listarTodoJoinProductos(1);
 
     joinProductoDetallesFaltantes objx = new joinProductoDetallesFaltantes();
 
@@ -205,6 +209,8 @@ public class NotePedidos extends javax.swing.JDialog {
         btnBuscar = new javax.swing.JButton();
         tblProduc = new javax.swing.JScrollPane();
         t_Nota_faltantes = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbaListaFaltantes = new javax.swing.JTable();
         btnGuardar = new javax.swing.JButton();
@@ -401,11 +407,10 @@ public class NotePedidos extends javax.swing.JDialog {
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtHora, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(cbxPlazo, javax.swing.GroupLayout.Alignment.TRAILING, 0, 115, Short.MAX_VALUE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtHora, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cbxPlazo, javax.swing.GroupLayout.Alignment.TRAILING, 0, 209, Short.MAX_VALUE))
                 .addGap(12, 12, 12))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -413,7 +418,7 @@ public class NotePedidos extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbxFormaP, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxFormaP, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -489,6 +494,20 @@ public class NotePedidos extends javax.swing.JDialog {
         });
         tblProduc.setViewportView(t_Nota_faltantes);
 
+        jButton2.setText("Faltantes");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Productos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelSecLayout = new javax.swing.GroupLayout(PanelSec);
         PanelSec.setLayout(PanelSecLayout);
         PanelSecLayout.setHorizontalGroup(
@@ -500,7 +519,11 @@ public class NotePedidos extends javax.swing.JDialog {
                 .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(70, 70, 70))
             .addComponent(tblProduc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
         );
         PanelSecLayout.setVerticalGroup(
@@ -510,7 +533,9 @@ public class NotePedidos extends javax.swing.JDialog {
                 .addGroup(PanelSecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tblProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -548,8 +573,7 @@ public class NotePedidos extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel4Layout.setVerticalGroup(
@@ -836,8 +860,9 @@ public class NotePedidos extends javax.swing.JDialog {
                         if (msg == null) {
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                             if (np.getObjf().getCantidad() > 0) {
-                                Integer suma = Integer.parseInt(t_Nota_faltantes.getValueAt(i, 6).toString()) + np.getObjf().getCantidad();
-                               getPosicion(objeto.getId_precios(), suma);
+                                //////
+                                Integer Resta = Integer.parseInt(t_Nota_faltantes.getValueAt(i, 6).toString()) - np.getObjf().getCantidad();
+                               getPosicion(objeto.getId_precios(), Resta);
                                 //////
                                 objx = calcularValores(np.getObjf());
                                 ///////   
@@ -871,7 +896,6 @@ public class NotePedidos extends javax.swing.JDialog {
         objd = lista;
         BigDecimal PrecioBono = new BigDecimal("0.00");
 
-        System.out.println("Valor Cantidad: " + objd.getCantidad());
         BigDecimal Cantidad = BigDecimal.valueOf(lista.getCantidad());
         BigDecimal Precio = lista.getPrecios();
         BigDecimal Subtotal = Cantidad.multiply(Precio);
@@ -910,7 +934,6 @@ public class NotePedidos extends javax.swing.JDialog {
         for (int i = 0; i < lista.size(); i++) {
             if (id == lista.get(i).getId_producto()) {
                 lista.get(i).setCantidad(valor);
-                System.out.println(" get posicioon id Prod" + lista.get(i).getId_producto());
             }
         }
 
@@ -1061,9 +1084,23 @@ public class NotePedidos extends javax.swing.JDialog {
         y = evt.getY();
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel7MousePressed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       Products Prod = new Products(new javax.swing.JFrame(), true);
+       Prod.setVisible(true);
+       listapro.clear();
+       listapro = crud.listarTodoJoinProductos(1);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       ListaDePedidos Lp= new ListaDePedidos(new javax.swing.JFrame(), true);
+       Lp.setVisible(true);
+       ////
+      lista.clear();
+      crud.listarFaltantesDetalles(1);
+    }//GEN-LAST:event_jButton2ActionPerformed
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
      
-        System.out.println("cantx: " + listarobj.get(0).getCantidad());
         joinProductoDetallesFaltantes objeto1 = null;
        
         for (int i = 0; i < listarobj.size(); i++) {
@@ -1122,6 +1159,8 @@ public class NotePedidos extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbxPlazo;
     private javax.swing.JTextField filtro;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     public static javax.swing.JLabel jLabel11;

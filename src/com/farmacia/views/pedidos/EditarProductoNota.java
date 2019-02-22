@@ -682,6 +682,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         int Cantidad = Integer.parseInt(txtcantidad.getText());
         int Bono = Integer.parseInt(txtBono.getText());
         int CantidadTotal = Cantidad;
+        
         DetalleNotaPedido obj = new DetalleNotaPedido();
         obj.setCantidad(CantidadTotal);
         obj.setBono(Integer.parseInt(txtBono.getText()));
@@ -695,6 +696,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         BigDecimal TOTAL = new BigDecimal(total);
         obj.setTotal(TOTAL);
         obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedido());
+        
         String valor=crud.ActualizarNotaPedidos(obj);
         JOptionPane.showMessageDialog(this, valor);
     }
