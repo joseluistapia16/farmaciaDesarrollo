@@ -13,6 +13,7 @@ import com.farmacia.entities1.Rol_U;
 import com.farmacia.entities1.Usuario_S;
 import com.farmacia.operaciones.Operaciones;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -173,6 +174,12 @@ public class Registrar_usuario extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Cedula");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 50, 20));
+
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 159, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -192,11 +199,21 @@ public class Registrar_usuario extends javax.swing.JDialog {
                 txtNombreFocusLost(evt);
             }
         });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 160, -1));
 
         txtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtApellidoFocusLost(evt);
+            }
+        });
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
             }
         });
         jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 160, -1));
@@ -218,6 +235,11 @@ public class Registrar_usuario extends javax.swing.JDialog {
                 txtDireccionFocusLost(evt);
             }
         });
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, 150, -1));
 
         cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -235,11 +257,37 @@ public class Registrar_usuario extends javax.swing.JDialog {
                 txtObservacionFocusLost(evt);
             }
         });
+        txtObservacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtObservacionKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtObservacionKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtObservacion);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 460, 80));
+
+        txtCell.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCellKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCell, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 150, -1));
+
+        txtConven.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtConvenKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtConven, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 150, -1));
+
+        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorreoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 150, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -366,6 +414,77 @@ public class Registrar_usuario extends javax.swing.JDialog {
     private void txtObservacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtObservacionFocusLost
         txtObservacion.setText(txtObservacion.getText().toUpperCase());
     }//GEN-LAST:event_txtObservacionFocusLost
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || Character.isSpaceChar(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void txtCellKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCellKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || Character.isSpaceChar(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCellKeyTyped
+
+    private void txtConvenKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtConvenKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || Character.isSpaceChar(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtConvenKeyTyped
+
+    private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
+        char c = evt.getKeyChar();
+        char mas = '+', por='*', div='/', dp=':', pc=';', c2=',', p1='{', p2='}';
+        char lla1='[',el='^', lla2=']',el2='¿', co='?', co2='¡',c3='!', d='"',e='#';
+        char col='$', a='!',b='=',e2='%',f='&',g='=',h='º',i='ª',j='(',k=')',l='<',m='>';
+        char n='ç',o='´',p='`',q='¨',r='Ñ',s='·',t='ñ';
+        if (Character.isWhitespace(c) || c == mas || c == por || c ==  div || c == dp 
+                || c == pc || c == c2 || c == p1 || c == p2 || c == lla1 || c == lla2 
+                || c == el || c == el2 || c == co || c == co2 || c == c3 || c == d || c == e 
+                || c ==  col || c == a || c == b || c == e2 || c == f || c == g || c == h 
+                || c == i || c == j || c == k || c == l || c == m || c == n || c == o || c == p 
+                || c ==  q || c == r || c == s || c == t) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCorreoKeyTyped
+
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccionKeyTyped
+
+    private void txtObservacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtObservacionKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtObservacionKeyTyped
+
+    private void txtObservacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtObservacionKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Guardar();
+        }
+    }//GEN-LAST:event_txtObservacionKeyPressed
 
 //    public void Habilitar(boolean valor) {
 //

@@ -115,8 +115,9 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         );
 
         cbFiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "CEDULA", "APELLIDO", "FECHA" }));
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "CEDULA", "APELLIDO", "FECHA", "ACTIVO", "INACTIVO" }));
 
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/buscar1.jpg"))); // NOI18N
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +125,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             }
         });
 
+        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/base-de-datos.png"))); // NOI18N
         btnListar.setText("LISTAR");
         btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +134,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         });
 
         jButton2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/agregarCliente.png"))); // NOI18N
         jButton2.setText("NUEVO");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +143,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/eliminar1.png"))); // NOI18N
         jButton3.setText("SALIR");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,7 +166,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,18 +174,18 @@ public class Mostrar_usuario extends javax.swing.JDialog {
                         .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(btnBuscar)
-                        .addGap(580, 580, 580)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnListar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
+                .addGap(57, 57, 57)
                 .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83)
+                .addGap(93, 93, 93)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(325, 325, 325))
         );
@@ -199,10 +203,10 @@ public class Mostrar_usuario extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -245,10 +249,18 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         if (pos == 3) {
             query = fil.comboUsuarioFecha() + f + "%'";
         }
+        
+        if (pos == 4) {
+            query = fil.comboUsuarioActivo();
+        }
+        if (pos == 4) {
+            query = fil.comboUsuarioInactivo();
+        }
         listar = crud.filtroBusquedaUsuario(query);
         // System.err.println(query);
         Tablas.cargarJoinUsuario(jtUsuario, listar);
         query = "";
+        txtFiltro.setText("");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
