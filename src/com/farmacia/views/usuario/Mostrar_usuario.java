@@ -218,6 +218,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         } else {
     }
         
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
