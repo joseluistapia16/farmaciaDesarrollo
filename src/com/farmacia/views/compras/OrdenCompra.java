@@ -15,7 +15,9 @@ import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
+import com.farmacia.views.pedidos.EditarNotaPedido;
 import com.farmacia.views.producto.MantenimientoProducto;
+import com.farmacia.views.producto.Products;
 import com.farmacia.views.proveedor.Consulta_Proveedor_Compra;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
@@ -43,7 +45,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
 public class OrdenCompra extends javax.swing.JDialog {
-
+    
     int x, y;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -55,7 +57,7 @@ public class OrdenCompra extends javax.swing.JDialog {
     ListarJoinProveedor proveedor = null;
     JoinListarDetalleNotaPedido detalle = null;
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
-    //  ArrayList<listarJoinProductosCompras> lista = crud.listarTodoJoinProductos(1);
+    ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
     ArrayList<joinProductoDetallesFaltantes> listaCompra = crud.listarFaltantesDetalles(1);
     int id_tipopago = 0;
@@ -63,6 +65,7 @@ public class OrdenCompra extends javax.swing.JDialog {
     Date date = new Date();
     DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
     String FechaActual;
+    BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
 
     public OrdenCompra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -97,6 +100,7 @@ public class OrdenCompra extends javax.swing.JDialog {
         Total();
         TotalIVA();
         TotalDescuento();
+        t_Nota_faltantes.setEnabled(false);
     }
 
     /**
@@ -125,7 +129,8 @@ public class OrdenCompra extends javax.swing.JDialog {
             Total1Iva = Total1Iva.add(Iva1);
 //            totalIva = redondearDecimales(totalIva, 2);
         }
-        txtIva.setText(removeScientificNotation(Total1Iva.toString()));
+        VGiva = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total1Iva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtIva.setText(removeScientificNotation(Total1Iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
 
     }
 
@@ -136,7 +141,8 @@ public class OrdenCompra extends javax.swing.JDialog {
             TotalDescuento = TotalDescuento.add(descuento);
 //            TotalDescuento = redondearDecimales(TotalDescuento, 2);
         }
-        txtDescuento.setText(removeScientificNotation(TotalDescuento.toString()));
+        VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtDescuento.setText(removeScientificNotation(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
     }
 
     public void Total() {
@@ -146,7 +152,9 @@ public class OrdenCompra extends javax.swing.JDialog {
             Total_ = Total_.add(total);
 
         }
-        txtTotal.setText(Total_.toString());
+        VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtTotal.setText(Total_.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+    
     }
 
     public static String removeScientificNotation(String value) {
@@ -198,9 +206,6 @@ public class OrdenCompra extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         txt_Numero = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        btnBuscar = new javax.swing.JButton();
-        tipofiltro = new javax.swing.JComboBox<>();
-        filtro = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -213,10 +218,11 @@ public class OrdenCompra extends javax.swing.JDialog {
         tblProduc = new javax.swing.JScrollPane();
         t_Nota_faltantes = new javax.swing.JTable();
         btnReporte = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnProducto.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        btnProducto.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         btnProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/producto.png"))); // NOI18N
         btnProducto.setText("PRODUCTO");
         btnProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -306,7 +312,7 @@ public class OrdenCompra extends javax.swing.JDialog {
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCodigoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -469,27 +475,6 @@ public class OrdenCompra extends javax.swing.JDialog {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("#");
 
-        btnBuscar.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        btnBuscar.setText("BUSCAR");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-
-        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
-
-        filtro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtroActionPerformed(evt);
-            }
-        });
-        filtro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                filtroKeyReleased(evt);
-            }
-        });
-
         jLabel19.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("$");
@@ -559,6 +544,14 @@ public class OrdenCompra extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton1.setText("AGREGAR DETALLES");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -582,7 +575,7 @@ public class OrdenCompra extends javax.swing.JDialog {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 6, Short.MAX_VALUE))))
+                                .addGap(0, 4, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -609,12 +602,8 @@ public class OrdenCompra extends javax.swing.JDialog {
                         .addGap(63, 63, 63)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -633,11 +622,8 @@ public class OrdenCompra extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(tblProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -680,11 +666,11 @@ public static String FechaActual() {
         return formatoFecha.format(fecha);
     }
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
-//           Products Prod = new Products(new javax.swing.JFrame(), true);
-//          Prod.setVisible(true);
-//        lista.clear();
-//        lista = crud.listarTodoJoinProductos(1);
-//        Tablas.cargarJoinProductosMCompra(tbacargarProductosA, lista);
+        Products Prod = new Products(new javax.swing.JFrame(), true);
+        Prod.setVisible(true);
+        listapro.clear();
+        listapro = crud.listarTodoJoinProductos(1);
+        // Tablas.cargarJoinProductosMCompra(tbacargarProductosA, listapro);
     }//GEN-LAST:event_btnProductoActionPerformed
 
 
@@ -828,49 +814,6 @@ public static String FechaActual() {
 
     }//GEN-LAST:event_txtRepresentanteKeyReleased
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-//        String f = filtro.getText().toUpperCase();
-//        String query = "";
-//        int pos = tipofiltro.getSelectedIndex();
-//        if ("".equals(f)) {
-//            query = fil.comboProductoTodoNotaPedido();
-//        }
-//        if (pos == 0) {
-//            if ("".equals(f)) {
-//                Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-//            } else {
-//                query = fil.comboProductoCodigoNotaPedido() + f;
-//            }
-//        }
-//        if (pos == 1) {
-//            query = fil.comboProductoNombreNotaPedido() + f + "%'";
-//        }
-//        if (pos == 2) {
-//            query = fil.comboProductoTipoNotaPedido() + f + "%'";
-//        }
-//        if (pos == 3) {
-//            query = fil.comboProductoMedidaNotaPedido() + f + "%'";
-//        }
-//        if (pos == 4) {
-//            query = fil.comboProductoEnvaseNotaPedido() + f + "%'";
-//        }
-//        if (pos == 5) {
-//            query = fil.comboProductoMarcaNotaPedido() + f + "%'";
-//        }
-//        listar = crud.filtroBusquedaProductoNotaPedido(query);
-//
-//        Tablas.cargarFiltroProductosNota(t_Nota_faltantes, listar);
-//        query = "";
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
-
-    }//GEN-LAST:event_filtroActionPerformed
-
-    private void filtroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filtroKeyReleased
-
-    }//GEN-LAST:event_filtroKeyReleased
-
     private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTotalActionPerformed
@@ -949,33 +892,33 @@ public static String FechaActual() {
         ArrayList tablac = new ArrayList();
         for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
             ClaseReporte tabla1 = new ClaseReporte(txtNombre.getText(),
-            txtCodigoProveedor.getText(),
-            txtNombre.getText(),
-            txtRepresentante.getText(),
-            txtTelefono.getText(),
-            txtRuc.getText(),
-            txtCorreo.getText(),
-            txtDireccion.getText(),
-            txtTipo.getText(),
-            txtFechaCreacion.getText(),
-            cbxPlazo.getSelectedItem().toString(),
-            cbxFormaP.getSelectedItem().toString(),
-            tbaListaComprasB.getValueAt(i,0).toString(),
-            tbaListaComprasB.getValueAt(i,1).toString(),
-            tbaListaComprasB.getValueAt(i,2).toString(),
-            tbaListaComprasB.getValueAt(i,3).toString(),
-            tbaListaComprasB.getValueAt(i,4).toString(),
-            tbaListaComprasB.getValueAt(i,5).toString(),
-            tbaListaComprasB.getValueAt(i,6).toString(),
-            tbaListaComprasB.getValueAt(i,7).toString(),
-            tbaListaComprasB.getValueAt(i,8).toString(),
-            tbaListaComprasB.getValueAt(i,9).toString(),
-            tbaListaComprasB.getValueAt(i,10).toString(),
-            tbaListaComprasB.getValueAt(i,11).toString(),
-            txtDescuento.getText(),
-            txtIva.getText(),
-            txtTotal.getText(),
-            txt_Numero.getText());
+                    txtCodigoProveedor.getText(),
+                    txtNombre.getText(),
+                    txtRepresentante.getText(),
+                    txtTelefono.getText(),
+                    txtRuc.getText(),
+                    txtCorreo.getText(),
+                    txtDireccion.getText(),
+                    txtTipo.getText(),
+                    txtFechaCreacion.getText(),
+                    cbxPlazo.getSelectedItem().toString(),
+                    cbxFormaP.getSelectedItem().toString(),
+                    tbaListaComprasB.getValueAt(i, 0).toString(),
+                    tbaListaComprasB.getValueAt(i, 1).toString(),
+                    tbaListaComprasB.getValueAt(i, 2).toString(),
+                    tbaListaComprasB.getValueAt(i, 3).toString(),
+                    tbaListaComprasB.getValueAt(i, 4).toString(),
+                    tbaListaComprasB.getValueAt(i, 5).toString(),
+                    tbaListaComprasB.getValueAt(i, 6).toString(),
+                    tbaListaComprasB.getValueAt(i, 7).toString(),
+                    tbaListaComprasB.getValueAt(i, 8).toString(),
+                    tbaListaComprasB.getValueAt(i, 9).toString(),
+                    tbaListaComprasB.getValueAt(i, 10).toString(),
+                    tbaListaComprasB.getValueAt(i, 11).toString(),
+                    txtDescuento.getText(),
+                    txtIva.getText(),
+                    txtTotal.getText(),
+                    txt_Numero.getText());
             tablac.add(tabla1);
         }
         try {
@@ -996,6 +939,12 @@ public static String FechaActual() {
     private void txtRucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRucActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        EditarNotaPedido NP = new EditarNotaPedido(new javax.swing.JFrame(),true, objCabecera);
+        NP.setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
     private void getPosicion(Long id, int valor) {
         for (int i = 0; i < listaCompra.size(); i++) {
             if (id == listaCompra.get(i).getId_producto()) {
@@ -1078,14 +1027,13 @@ public static String FechaActual() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnProducto;
     private javax.swing.JButton btnReporte;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JComboBox<String> cbxFormaP;
     private javax.swing.JComboBox<String> cbxPlazo;
-    private javax.swing.JTextField filtro;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1112,7 +1060,6 @@ public static String FechaActual() {
     private javax.swing.JTable t_Nota_faltantes;
     private javax.swing.JTable tbaListaComprasB;
     private javax.swing.JScrollPane tblProduc;
-    private javax.swing.JComboBox<String> tipofiltro;
     public static javax.swing.JLabel txtCodigoProveedor;
     public static javax.swing.JTextField txtCorreo;
     public static javax.swing.JTextField txtDescuento;

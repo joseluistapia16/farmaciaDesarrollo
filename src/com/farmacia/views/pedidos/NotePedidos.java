@@ -310,7 +310,7 @@ public class NotePedidos extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -480,11 +480,11 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         });
         t_Nota_faltantes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                t_Nota_faltantesMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 t_Nota_faltantesMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                t_Nota_faltantesMouseClicked(evt);
             }
         });
         tblProduc.setViewportView(t_Nota_faltantes);
@@ -495,13 +495,13 @@ public class NotePedidos extends javax.swing.JDialog {
             PanelSecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelSecLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(tblProduc, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(tblProduc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
         );
         PanelSecLayout.setVerticalGroup(
             PanelSecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -689,7 +689,7 @@ public class NotePedidos extends javax.swing.JDialog {
                             .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(28, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -725,29 +725,33 @@ public class NotePedidos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedorActionPerformed
-        Consulta_proveedor_Nota Prov = new Consulta_proveedor_Nota(new javax.swing.JFrame(), true);
-        Prov.setVisible(true);
+        try {
+            Consulta_proveedor_Nota Prov = new Consulta_proveedor_Nota(new javax.swing.JFrame(), true);
+            Prov.setVisible(true);
 
-        proveedorC = Prov.getProveedor();
-        if (proveedorC != null) {
-            PanelSec.setEnabled(true);
-            filtro.setEnabled(true);
-            t_Nota_faltantes.setEnabled(true);
-            tbaListaFaltantes.setEnabled(true);
-            btnBuscar.setEnabled(true);
-            btnGuardar.setEnabled(true);
-            //
-            txtCodigoProveedor.setText(proveedorC.getId_proveedor().toString());
-            txtRuc1.setText(proveedorC.getCedula_ruc());
-            txtNombre1.setText(proveedorC.getEntidad());
-            txtCorreo1.setText(proveedorC.getMail());
-            txtRepresentante.setText(proveedorC.getRepresentante());
-            txtTipo1.setText(proveedorC.getClase());
-            txtTelefono1.setText(proveedorC.getTelefono());
-            txtDireccion1.setText(proveedorC.getDireccion());
+            proveedorC = Prov.getProveedor();
+            if (proveedorC != null) {
+                PanelSec.setEnabled(true);
+                filtro.setEnabled(true);
+                t_Nota_faltantes.setEnabled(true);
+                tbaListaFaltantes.setEnabled(true);
+                btnBuscar.setEnabled(true);
+                btnGuardar.setEnabled(true);
+                //
+                txtCodigoProveedor.setText(proveedorC.getId_proveedor().toString());
+                txtRuc1.setText(proveedorC.getCedula_ruc());
+                txtNombre1.setText(proveedorC.getEntidad());
+                txtCorreo1.setText(proveedorC.getMail());
+                txtRepresentante.setText(proveedorC.getRepresentante());
+                txtTipo1.setText(proveedorC.getClase());
+                txtTelefono1.setText(proveedorC.getTelefono());
+                txtDireccion1.setText(proveedorC.getDireccion());
 
-        } else {
-            JOptionPane.showMessageDialog(null, " Elija un Proveedor  ");
+            } else {
+                JOptionPane.showMessageDialog(null, " Elija un Proveedor  ");
+            }
+        } catch (Exception e) {
+            Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
 
     }//GEN-LAST:event_btnProveedorActionPerformed
@@ -788,16 +792,6 @@ public class NotePedidos extends javax.swing.JDialog {
             cn.setFecha_creacion(txtFecha.getText() + " " + txtHora.getText());
             cn.setPlazo(cbxPlazo.getSelectedItem().toString());
             cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
-//
-//            String iva1 = txtIva.getText();
-//            BigDecimal IVA = new BigDecimal(iva1);
-//            cn.setIva(IVA);//
-//            String descuento1 = txtDescuento.getText();
-//            BigDecimal DESCUENTO = new BigDecimal(descuento1);
-//            cn.setDescuento(DESCUENTO);//
-//            String total1 = txtTotal.getText();
-//            BigDecimal TOTAL = new BigDecimal(total1);
-//            cn.setTotal(TOTAL);//
             cn.setIva(VGiva);
             cn.setDescuento(VGdescuento);//
             cn.setTotal(VGtotal);//
@@ -812,11 +806,10 @@ public class NotePedidos extends javax.swing.JDialog {
                         + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
                         + "VALUES(" + id_cab + "," + lista1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + lista1.get(i).getPrecioBono().toString() + "," + lista1.get(i).getValor_descuento().toString() + "," + lista1.get(i).getImporte() + "," + lista1.get(i).getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
                 queryL1.add(cad1);
-                System.out.println(cad1);
+//                System.out.println(cad1);
             }
             crud.InsertarDetallesNotaPedidos(queryL1);
             queryL1.clear();
-
             JOptionPane.showMessageDialog(null, " Guardado con Exito ");
             btnNuevo.setEnabled(true);
         } else {
@@ -825,60 +818,52 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
-        int i = 0;
-        String msg = null;
-        Integer cantidatabla = 0;
-        try {
-            if (evt.getClickCount() == 2) {
-                i = t_Nota_faltantes.getSelectedRow();
-                objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                cantidatabla = objeto.getCantidad();
-                //System.out.println("id precio" + objeto.getId_precios() + " id Producto" + objeto.getId_producto());
-//objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
-                if (objeto != null) {
-                    AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
-                    np.setVisible(true);
-                    System.out.println("CANTIDAD QUE DEVUELVE " + np.getObjf().getCantidad());
-//                    msg = ComponentesFaltantes.validarListaFaltantesNota(tbaListaFaltantes, objeto.getId_precios().toString());
-                    msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, objeto.getId_precios().toString());
 
-                    if (msg == null) {
-                        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+            int i = 0;
+            String msg = null;
+            Integer cantidatabla = 0;
+            try {
+                if (evt.getClickCount() == 2) {
+                    i = t_Nota_faltantes.getSelectedRow();
+                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
+                    
+                    cantidatabla = objeto.getCantidad();
+                    if (objeto != null) {
+                        AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
+                        np.setVisible(true);
+                        msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, objeto.getId_precios().toString());
 
-                        if (np.getObjf().getCantidad() > 0) {
-//                                int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
-                            Integer suma = Integer.parseInt(t_Nota_faltantes.getValueAt(i, 6).toString()) + np.getObjf().getCantidad();
-//                                System.out.println("csntidad existente "+lista.get(i).getCantidad());
-//                                System.out.println("lista "+Integer.parseInt(t_Nota_faltantes.getValueAt(i, 6).toString()));
-//                                System.out.println("cantidad ingresada "+np.getObjf().getCantidad());
-                            System.out.println("Suma " + suma);
-                            getPosicion(objeto.getId_precios(), suma);
-                            //////
-
-                            objx = calcularValores(np.getObjf());
-                            ///////   
-                            lista1.add(objx);
-                            for (joinProductoDetallesFaltantes p : lista1) {
-                                System.out.println("lista1 " + p.getImporte() + " " + p.getValor_descuento());
-                            }
+                        if (msg == null) {
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                            Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
+                            if (np.getObjf().getCantidad() > 0) {
+                                Integer suma = Integer.parseInt(t_Nota_faltantes.getValueAt(i, 6).toString()) + np.getObjf().getCantidad();
+                               getPosicion(objeto.getId_precios(), suma);
+                                //////
+                                objx = calcularValores(np.getObjf());
+                                ///////   
+                                lista1.add(objx);
+                                for (joinProductoDetallesFaltantes p : lista1) {
+                                  
+                                }
+                                Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                                Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
 
-                            TotalDescuento2();
-                            TotalPro();
-                            TotalIVA2();
-                        } else {
-                            JOptionPane.showMessageDialog(this, msg);
+                                TotalDescuento2();
+                                TotalPro();
+                                TotalIVA2();
+                            } else {
+                                JOptionPane.showMessageDialog(this, msg);
+                            }
+
                         }
 
                     }
 
                 }
-
+            } catch (Exception e) {
+                Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
             }
-        } catch (Exception e) {
-            Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
-        }
+        
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
 
     public joinProductoDetallesFaltantes calcularValores(joinProductoDetallesFaltantes lista) {
@@ -994,13 +979,10 @@ public class NotePedidos extends javax.swing.JDialog {
                     Resta = Integer.valueOf(objeto.getCantidad()) - lista1.get(i).getCantidad();
                     System.out.println("Resta " + Resta);
                     lista1.remove(i);
-                    Tablas.cargarJoinProductoDetallesFaltantes(tbaListaFaltantes, lista1);
-                   
-//                    getPosicion2(objeto.getId_producto(), Resta);
-//                    Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-//                    TotalPro();
-//                    TotalIVA2();
-//                    TotalDescuento2();
+                    Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
+                    TotalPro();
+                    TotalIVA2();
+                    TotalDescuento2();
 ///////////////////////////
                     iva = (BigDecimal) tbaListaFaltantes.getValueAt(i, 9);
                     descuento = (BigDecimal) tbaListaFaltantes.getValueAt(i, 8);
@@ -1080,8 +1062,10 @@ public class NotePedidos extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel7MousePressed
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
+     
         System.out.println("cantx: " + listarobj.get(0).getCantidad());
         joinProductoDetallesFaltantes objeto1 = null;
+       
         for (int i = 0; i < listarobj.size(); i++) {
             if (datos.equals(listarobj.get(i).getId_precios().toString())) {
                 objeto1 = listarobj.get(i);
@@ -1089,8 +1073,9 @@ public class NotePedidos extends javax.swing.JDialog {
                 break;
             }
         }
+        
+        
         return objeto1;
-
     }
 
     private void Reiniciar() {
