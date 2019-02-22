@@ -1091,8 +1091,8 @@ public class Tablas {
         tcr.setHorizontalAlignment(SwingConstants.LEFT);
         tcr1.setHorizontalAlignment(SwingConstants.CENTER);
         model = VaciarTabla(Tabla);
-        String[] Co = {"Codigo", "Fecha de registro", "Cedula", "Apellidos", "Nombres", "Direccion", "celular", "Convencional",
-            "Correo", "Cargo", "Genero", "estado", "Observacion"};
+        String[] Co = {"CÓDIGO", "FECHA DE REGISTRO", "CÉDULA", "APELLIDOS", "NOMBRES", "DIRECCIÓN", "CELULAR", "CONVENCIONAL",
+            "CORREO", "CARGO", "GÉNERO", "ESTADO", "OBSERVACIÓN"};
         String[] Filas = new String[13];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
