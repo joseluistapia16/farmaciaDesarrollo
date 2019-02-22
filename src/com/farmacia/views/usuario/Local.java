@@ -8,6 +8,7 @@ package com.farmacia.views.usuario;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.Nombre_local;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -28,6 +29,7 @@ public class Local extends javax.swing.JDialog {
         initComponents();
         Tablas.cargarLocal(jtLocal, listar);
         botonGuardarValidar();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -52,11 +54,11 @@ public class Local extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtLocal = new javax.swing.JTable();
         btnGuardar = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnHabilitar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -96,11 +98,21 @@ public class Local extends javax.swing.JDialog {
                 txtNombreFocusLost(evt);
             }
         });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         txtTelefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtTelefonoFocusLost(evt);
+            }
+        });
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
             }
         });
 
@@ -111,6 +123,14 @@ public class Local extends javax.swing.JDialog {
         txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtDireccionFocusLost(evt);
+            }
+        });
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyTyped(evt);
             }
         });
 
@@ -171,6 +191,7 @@ public class Local extends javax.swing.JDialog {
         );
 
         btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/guardar1.jpg"))); // NOI18N
         btnGuardar.setText("GUARDAR");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,10 +199,8 @@ public class Local extends javax.swing.JDialog {
             }
         });
 
-        btnActualizar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnActualizar.setText("ACTUALIZAR");
-
         btnSalir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/eliminar1.png"))); // NOI18N
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +208,7 @@ public class Local extends javax.swing.JDialog {
             }
         });
 
+        btnHabilitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/Activar.png"))); // NOI18N
         btnHabilitar.setText("HABILTAR");
         btnHabilitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,15 +227,13 @@ public class Local extends javax.swing.JDialog {
                         .addGap(24, 24, 24)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
+                        .addGap(76, 76, 76)
                         .addComponent(btnHabilitar)
-                        .addGap(65, 65, 65)
+                        .addGap(95, 95, 95)
                         .addComponent(btnGuardar)
-                        .addGap(72, 72, 72)
-                        .addComponent(btnActualizar)
-                        .addGap(62, 62, 62)
+                        .addGap(95, 95, 95)
                         .addComponent(btnSalir)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,10 +244,9 @@ public class Local extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
-                    .addComponent(btnActualizar)
                     .addComponent(btnSalir)
                     .addComponent(btnHabilitar))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -252,7 +269,6 @@ public class Local extends javax.swing.JDialog {
             txtDireccion.setEnabled(false);
             txtNombre.setEnabled(false);
             txtTelefono.setEnabled(false);
-            btnActualizar.setEnabled(false);
         }
     }
     
@@ -260,7 +276,7 @@ public class Local extends javax.swing.JDialog {
             txtDireccion.setEnabled(valor);
             txtNombre.setEnabled(valor);
             txtTelefono.setEnabled(valor);
-            btnActualizar.setEnabled(valor);
+            btnGuardar.setEnabled(valor);
     }
     
     public void guardar(){
@@ -288,16 +304,24 @@ public class Local extends javax.swing.JDialog {
             try {
                 String a =  crud.CrearLocal(nl);
                 JOptionPane.showMessageDialog(this, a);
-                setVisible(false);
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e);
             }
+            
+            txtDireccion.setText("");
+            txtNombre.setText("");
+            txtTelefono.setText("");
         }
     }
     
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        guardar();
+//        guardar();
+        if (jtLocal != null) {
+            Actualizar();
+        }else{
+            guardar();
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -325,6 +349,85 @@ public class Local extends javax.swing.JDialog {
         habilitar(true);
     }//GEN-LAST:event_btnHabilitarActionPerformed
 
+    public void Actualizar(){
+        String dir = txtDireccion.getText();
+        String nomb = txtNombre.getText();
+        String tel = txtTelefono.getText();
+        
+        if (tel.length() < 6 ) {
+            JOptionPane.showMessageDialog(this, "Ingrese un número válido");
+        }else if (tel.length() > 12) {
+            JOptionPane.showMessageDialog(this, "Ha sobrepasado la cantidad de números válido");
+        }else if (nomb.length() < 3) {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre válido");
+        }
+        else if (dir.length() < 5) {
+            JOptionPane.showMessageDialog(this, "Ingrese una dirección válida");
+        }else if((tel == null || dir == null) || nomb == null){
+            JOptionPane.showMessageDialog(this, "Por favor revise los campos");
+        } else {
+            Nombre_local nl = new Nombre_local();
+            nl.setNombre(nomb);
+            nl.setDireccion(dir);
+            nl.setTelefono_pv(tel);
+            
+            try {
+                String a =  crud.ActualizarLocal(nl);
+                JOptionPane.showMessageDialog(this, a);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+            ArrayList<Nombre_local> listar = crud.listar_local();
+            Tablas.cargarLocal(jtLocal, listar);
+            
+            txtDireccion.setEnabled(false);
+            txtNombre.setEnabled(false);
+            txtTelefono.setEnabled(false);
+            
+            txtDireccion.setText("");
+            txtNombre.setText("");
+            txtTelefono.setText("");
+        }
+    }
+    
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || Character.isSpaceChar(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDireccionKeyTyped
+
+    private void txtDireccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyPressed
+        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (jtLocal != null) {
+            txtDireccion.setText(txtDireccion.getText().toUpperCase());
+            Actualizar();
+        }else{
+            guardar();
+        }
+        }
+    }//GEN-LAST:event_txtDireccionKeyPressed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -368,7 +471,6 @@ public class Local extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnHabilitar;
     private javax.swing.JButton btnSalir;

@@ -2315,6 +2315,37 @@ public class CRUD {
         return valor;
     }
     
+    public String ActualizarLocal(Nombre_local pv) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call fc_actualizar_local(?,?,?,?)}");
+            pro.setString(1, pv.getNombre());
+            pro.setString(2, pv.getDireccion());
+            pro.setString(3, pv.getTelefono_pv());
+            pro.registerOutParameter("salida", Types.VARCHAR);
+            pro.executeUpdate();
+            valor = pro.getString("salida");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
     public ArrayList<Nombre_local> listar_local() {
         ArrayList<Nombre_local> valor = new ArrayList<Nombre_local>();
         try {
