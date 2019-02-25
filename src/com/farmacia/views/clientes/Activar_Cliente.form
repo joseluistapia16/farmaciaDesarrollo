@@ -50,9 +50,9 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel2" pref="149" max="32767" attributes="0"/>
+                              <Component id="jLabel2" max="32767" attributes="0"/>
                               <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                           </Group>
@@ -62,11 +62,11 @@
                               <Component id="fecha_reg" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
                               <Component id="nombre" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel5" max="32767" attributes="0"/>
-                              <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -81,7 +81,7 @@
                                       <Component id="BotonAgregarT" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="apellido" min="-2" pref="157" max="-2" attributes="0"/>
+                              <Component id="apellido" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -91,25 +91,25 @@
                           <Component id="direccion" min="-2" pref="248" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="165" pref="33" max="32767" attributes="0"/>
+                  <EmptySpace min="165" pref="17" max="32767" attributes="0"/>
               </Group>
               <Component id="jLabel9" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="BotonActivar" min="-2" pref="121" max="-2" attributes="0"/>
+                  <Component id="BotonActivar" min="-2" pref="110" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                  <Component id="reporte" min="-2" pref="121" max="-2" attributes="0"/>
+                  <Component id="reporte" min="-2" pref="110" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                  <Component id="BotonSalir" min="-2" pref="121" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                  <Component id="BotonSalir" min="-2" pref="110" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jLabel9" min="-2" pref="55" max="-2" attributes="0"/>
-                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <Component id="jLabel9" min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -154,13 +154,13 @@
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="direccion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="BotonActivar" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="BotonSalir" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="reporte" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="BotonActivar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="BotonSalir" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="reporte" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -169,9 +169,9 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="16" style="1"/>
+              <Font name="Cambria" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nombre:"/>
+            <Property name="text" type="java.lang.String" value="NOMBRE:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="BotonAgregarC">
@@ -188,17 +188,17 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="16" style="1"/>
+              <Font name="Cambria" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Apellido: "/>
+            <Property name="text" type="java.lang.String" value="APELLIDO:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="16" style="1"/>
+              <Font name="Cambria" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cedula :"/>
+            <Property name="text" type="java.lang.String" value="CEDULA:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="cedula">
@@ -216,12 +216,12 @@
         <Component class="javax.swing.JButton" name="BotonSalir">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="15" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/com/farmacia/icono/salir1.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Salir"/>
+            <Property name="text" type="java.lang.String" value="REGRESAR"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonSalirActionPerformed"/>
@@ -230,12 +230,12 @@
         <Component class="javax.swing.JButton" name="BotonActivar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="15" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/com/farmacia/icono/Activar.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Activar"/>
+            <Property name="text" type="java.lang.String" value="ACTIVAR"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonActivarActionPerformed"/>
@@ -264,25 +264,25 @@
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="16" style="1"/>
+              <Font name="Cambria" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Telefono :"/>
+            <Property name="text" type="java.lang.String" value="TELEFONO:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="16" style="1"/>
+              <Font name="Cambria" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Correo :"/>
+            <Property name="text" type="java.lang.String" value="CORREO:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="16" style="1"/>
+              <Font name="Cambria" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Direccion :"/>
+            <Property name="text" type="java.lang.String" value="DIRECCION:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="fecha_reg">
@@ -354,9 +354,9 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="16" style="1"/>
+              <Font name="Cambria" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Fecha Registro :"/>
+            <Property name="text" type="java.lang.String" value="FECHA DE INGRESO:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="BotonAgregarT">
@@ -373,7 +373,7 @@
         <Component class="javax.swing.JButton" name="reporte">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="15" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
           </Properties>
