@@ -247,8 +247,9 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
                     String id_cab = "";
                     CabeceraNotaPedido cn = new CabeceraNotaPedido();
                     cn.setId_cabecera_nota_pedidos(objeto.getId_cabecera_nota_pedidos());
-                    id_cab = crud.ActualizarEstadoNotaPedido(cn);
+                    id_cab = crud.ActivarEstadoNotaPedido(cn);
                     System.out.println("Aqui TRabajaR");
+                    
                     Tablas.CargarJoinListadoCabeceraNotaPedidos(tblRegistrodeNotas, lista);
                     RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
                     this.setVisible(false);
@@ -257,6 +258,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
                 } else {
 
                 }
+                
             }
         }
     }//GEN-LAST:event_tblRegistrodeNotasMousePressed

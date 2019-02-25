@@ -49,7 +49,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     String codigocabecera = "";
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
     JoinListarDetalleNotaPedido objetop = null;
-    
 
     public EditarNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -490,6 +489,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         });
 
         jButton3.setText("Desactivar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -784,13 +788,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             setVisible(false);
             MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
             Man.setVisible(true);
-           for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-//            if(){
-//            
-//            }
-        } 
 
-        } 
+        }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 //    public void Recorrer() {
 //        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
@@ -1026,6 +1025,21 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         ListaDePedidos Lp = new ListaDePedidos(new javax.swing.JFrame(), true);
         Lp.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        String id_cab = "";
+    
+        CabeceraNotaPedido cn = new CabeceraNotaPedido();
+
+        cn.setId_cabecera_nota_pedidos(Long.valueOf(txtNumero.getText()));
+        id_cab = crud.DesactivarEstadoNotaPedido(cn);
+        setVisible(false);
+        RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
+     
+        RIN.setVisible(true);
+       
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
 
