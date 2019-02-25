@@ -470,8 +470,8 @@ public class Activar_Cliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel9MousePressed
 
     private void jLabel9MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseDragged
-        Point point = MouseInfo.getPointerInfo().getLocation();
-        setLocation(point.x - x, point.y - y);
+            Point point = MouseInfo.getPointerInfo().getLocation();
+            setLocation(point.x - x, point.y - y);
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel9MouseDragged
 
