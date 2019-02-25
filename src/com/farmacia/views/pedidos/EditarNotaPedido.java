@@ -154,6 +154,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         tbaListaFaltantes = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         btnSalir2 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
@@ -405,11 +406,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             }
         ));
         t_Nota_faltantes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                t_Nota_faltantesMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 t_Nota_faltantesMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                t_Nota_faltantesMouseClicked(evt);
             }
         });
         tblProduc.setViewportView(t_Nota_faltantes);
@@ -488,6 +489,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             }
         });
 
+        jButton3.setText("Desactivar");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -505,6 +508,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3)
+                                .addGap(33, 33, 33)
                                 .addComponent(jButton2)
                                 .addContainerGap())))))
         );
@@ -518,7 +523,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                            .addComponent(jButton2)
+                            .addComponent(jButton3))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PanelSec, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1048,6 +1054,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     private javax.swing.JTextField filtro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     public static javax.swing.JLabel jLabel11;
