@@ -180,7 +180,7 @@ public class FrmLogin extends javax.swing.JFrame {
         usuario.setPassword(password);
         if ("farmacia".equals(usuario.getUsername()) && "1234".equals(usuario.getPassword())) {
             //Archivos.setEscribirFichero(usuario);
-            FrmPrincipal frmp = new FrmPrincipal(usuario);
+            FrmPrincipal frmp = new FrmPrincipal();
 
 //                if(usuario.getId()==2){
 //                    frmp.btnProducto.setEnabled(false);

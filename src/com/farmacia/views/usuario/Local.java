@@ -366,6 +366,9 @@ public class Local extends javax.swing.JDialog {
         }else if((tel == null || dir == null) || nomb == null){
             JOptionPane.showMessageDialog(this, "Por favor revise los campos");
         } else {
+            int r = JOptionPane.showConfirmDialog(null, "¿Está seguro de actualizar?", "", JOptionPane.YES_NO_OPTION);
+
+        if (r == JOptionPane.YES_OPTION) {
             Nombre_local nl = new Nombre_local();
             nl.setNombre(nomb);
             nl.setDireccion(dir);
@@ -389,6 +392,7 @@ public class Local extends javax.swing.JDialog {
             txtNombre.setText("");
             txtTelefono.setText("");
         }
+        }   
     }
     
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
