@@ -642,7 +642,8 @@ public class Tablas {
             Filas[2] = lista.get(i).getEntidad();
             Filas[3] = lista.get(i).getRepresentante();
             Filas[4] = lista.get(i).getTelefono();
-            Filas[5] = lista.get(i).getFecha_creacion();
+            Filas[5] = lista.get(i).getFecha_creacion().toString();
+            System.out.println("fecha "+lista.get(i).getFecha_creacion().toString());
             Filas[6] = "" + lista.get(i).getIva().toString();
             Filas[7] = "" + lista.get(i).getDescuento().toString();
             Filas[8] = "" + lista.get(i).getTotal().toString();
@@ -1215,7 +1216,6 @@ public class Tablas {
             Filas[6] = "" + lista.get(i).getCantidad();
             Filas[7] = "" + lista.get(i).getBono();
             Filas[8] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            System.out.println("descr¿uento " + new BigDecimal(lista.get(i).getDescuento().toString()).toPlainString());
             Filas[9] = removeScientificNotation(lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString());//new BigDecimal(value).toPlainString();
             Filas[10] = removeScientificNotation(lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
             Filas[11] = removeScientificNotation(lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
