@@ -13,6 +13,7 @@ import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ComponentesFaltantes;
 import com.farmacia.views.compras.ListaDePedidos;
 import static com.farmacia.views.pedidos.EditarProductoNota.redondearDecimales;
+import com.farmacia.views.producto.MantenimientoProducto;
 import com.farmacia.views.producto.Products;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
@@ -44,14 +45,15 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     JoinListarNotaPedidosCabecera objf = new JoinListarNotaPedidosCabecera();
-    ArrayList<listarJoinProductosCompras> listapro=crud.listarTodoJoinProductos(1);
+    ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
     String codigocabecera = "";
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
     JoinListarDetalleNotaPedido objetop = null;
+    
 
     public EditarNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        
+
         setUndecorated(true);
         initComponents();
 
@@ -710,25 +712,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//    public void Total() {
-//        Double total = 0.00;
-//
-//        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-//            int Cantidad = lista3.get(i).getCantidad();
-//            Double Precio = lista3.get(i).getPrecio();
-//            Double Desc = lista3.get(i).getDescuento();
-//            Double iva = lista3.get(i).getIva();
-//            Double total1 = Cantidad * Precio + iva - Desc;
-//            total = total + total1;
-//            total = redondearDecimales(total, 2);
-//            System.out.println("Cantidad " + Cantidad);
-//            System.out.println("Precio " + Precio);
-//            System.out.println("descuento " + Desc);
-//            System.out.println("iva  " + iva);
-////            System.out.println("total "+to);
-//        }
-//        txtTotal.setText(Double.valueOf(total).toString());
-//    }
     public void TotalIVA() {
         BigDecimal Total1Iva = new BigDecimal("0.0000");
 
@@ -737,7 +720,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Total1Iva = Total1Iva.add(Iva1);
 //            totalIva = redondearDecimales(totalIva, 2);
         }
-        VGiva=BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total1Iva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        VGiva = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total1Iva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
         txtIva.setText(removeScientificNotation(Total1Iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
 
     }
@@ -749,7 +732,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             TotalDescuento = TotalDescuento.add(descuento);
 //            TotalDescuento = redondearDecimales(TotalDescuento, 2);
         }
-        VGdescuento=BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
         txtDescuento.setText(removeScientificNotation(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
     }
 
@@ -760,7 +743,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Total_ = Total_.add(total);
 
         }
-        VGtotal=BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
         txtTotal.setText(Total_.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
     }
 
@@ -795,18 +778,27 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             setVisible(false);
             MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
             Man.setVisible(true);
-        } else {
+           for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+//            if(){
+//            
+//            }
+        } 
 
-        }
+        } 
     }//GEN-LAST:event_btnSalir2ActionPerformed
-
+//    public void Recorrer() {
+//        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+//            System.out.println("lista3 "+lista3.size());
+//        }
+// 
+//    }
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
         int i = 0;
         String msg = null;
         try {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
-                
+
                 objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
                 if (objeto != null) {
                     AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objeto);
@@ -815,12 +807,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                        
+
                         if (np.getObjf().getCantidad() > 0) {
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
-                            
+
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
 //                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
@@ -940,7 +932,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_jPanel5MouseDragged
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        String valor="";
+        String valor = "";
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Actualizar?", "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
@@ -955,11 +947,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             cn.setTotal(VGtotal);
             cn.setId_cabecera_nota_pedidos(Long.valueOf(txtNumero.getText()));
             valor = crud.ActualizarNotaPedidosCabecera(cn);
-            if (!"".equals(valor)){
-            JOptionPane.showMessageDialog(null, valor);
-            setVisible(false);
+            if (!"".equals(valor)) {
+                JOptionPane.showMessageDialog(null, valor);
+                setVisible(false);
             }
-            
+
         } else {
 
         }
@@ -1018,18 +1010,16 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_tbaListaFaltantesMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Products Prod = new Products(new javax.swing.JFrame(), true);
-       Prod.setVisible(true);
-       listapro.clear();
-       listapro = crud.listarTodoJoinProductos(1);
+        MantenimientoProducto Prod = new MantenimientoProducto(new javax.swing.JFrame(), true);
+        Prod.setVisible(true);
+        listapro.clear();
+        listapro = crud.listarTodoJoinProductos(1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       ListaDePedidos Lp= new ListaDePedidos(new javax.swing.JFrame(), true);
-       Lp.setVisible(true);
+        ListaDePedidos Lp = new ListaDePedidos(new javax.swing.JFrame(), true);
+        Lp.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-   
 
     public static void main(String args[]) {
 
