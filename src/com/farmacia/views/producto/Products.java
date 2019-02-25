@@ -19,6 +19,7 @@ import com.farmacia.views.compras.AgregarMarca;
 import com.farmacia.views.compras.AgregarMedida;
 import com.farmacia.views.compras.AgregarTipo;
 import com.farmacia.views.precios.Ingreso_de_Precios;
+import com.farmacia.views.precios.Mantenimiento_Precios_Productos;
 
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -548,7 +549,9 @@ public class Products extends javax.swing.JDialog {
     }//GEN-LAST:event_cbxIvaActionPerformed
 
     private void ingresoDePrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresoDePrecioActionPerformed
-        Ingreso_de_Precios p = new Ingreso_de_Precios(new javax.swing.JFrame(), true,Long.valueOf(valorIDProd),nombre1.getText());
+//        Ingreso_de_Precios p = new Ingreso_de_Precios(new javax.swing.JFrame(), true,Long.valueOf(valorIDProd),nombre1.getText());
+//        p.setVisible(true);
+        Mantenimiento_Precios_Productos p =new Mantenimiento_Precios_Productos(new javax.swing.JFrame(), true,Long.valueOf(valorIDProd), nombre1.getText());
         p.setVisible(true);
     }//GEN-LAST:event_ingresoDePrecioActionPerformed
 

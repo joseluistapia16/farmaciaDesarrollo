@@ -493,13 +493,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
-
-        if (r == JOptionPane.YES_OPTION) {
-            setVisible(false);
-
-        } else {
-    }
+        setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
@@ -669,6 +663,9 @@ public class actualizar_usuario extends javax.swing.JDialog {
         }else if (txtPass.getText() != txtConPass.getText()) {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
         }else {
+            int r = JOptionPane.showConfirmDialog(null, "¿Está seguro de actualizar", "", JOptionPane.YES_NO_OPTION);
+
+        if (r == JOptionPane.YES_OPTION) {
             Usuario_S obj = new Usuario_S();
             obj.setCedula(txtCedula.getText());
             obj.setNombre(txtNombre.getText());
@@ -693,6 +690,8 @@ public class actualizar_usuario extends javax.swing.JDialog {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e);
             }
+        }
+            
         }
     }
 

@@ -209,6 +209,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
 
     private void tbacargarProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbacargarProductosMousePressed
         int i = 0;
+        
         try {
             if (evt.getClickCount() == 2) {
                 i = tbacargarProductos.getSelectedRow();
