@@ -8,6 +8,7 @@ package com.farmacia.validaciones;
 import com.farmacia.entities1.Clientes;
 import com.farmacia.entities1.Correo_Cliente;
 import com.farmacia.entities1.Laboratorio;
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.Telefono_Cliente;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -144,6 +145,35 @@ public class Validacion {
     }
 
     public static boolean buscarCedula(ArrayList<Clientes> lista, String cedula) {
+        boolean valor = false;
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getCedula().equals(cedula)) {
+                valor = true;
+                break;
+            } else {
+                valor = false;
+            }
+        }
+        return valor;
+    }
+    
+    public static boolean validarCedulaU(ArrayList<Listar_usuario> lista, String cedula) {
+        boolean valor = false;
+        if (cedula.length() < 10) {
+            valor = false;
+        } else {
+            boolean valor1 = buscarCedulaU(lista, cedula);
+            if (valor1 == true) {
+                JOptionPane.showMessageDialog(null, "Cedula ya existente");
+                valor = false;
+            } else {
+                valor = true;
+            }
+        }
+        return valor;
+    }
+
+    public static boolean buscarCedulaU(ArrayList<Listar_usuario> lista, String cedula) {
         boolean valor = false;
         for (int i = 0; i < lista.size(); i++) {
             if (lista.get(i).getCedula().equals(cedula)) {

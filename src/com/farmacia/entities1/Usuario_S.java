@@ -35,12 +35,13 @@ public class Usuario_S {
     private String direccion;
     private String observacion;
     private String cargo;
+    private Long id_sesion;
     
 
     public Usuario_S() {
     }
 
-    public Usuario_S(Long id_usuario, Long id_punto_venta, Long id_rol, String cedula, String nombre, String apellido, String telefono, String correo, String password, String ruta_imagen, Date fecha_registro, Long id_usuario_registro, String estado, String ip_equipo, String ip_publico, String usuario_equipo, String dir_ip_completa, String convencional, String genero, String direccion, String observacion, String cargo) {
+    public Usuario_S(Long id_usuario, Long id_punto_venta, Long id_rol, String cedula, String nombre, String apellido, String telefono, String correo, String password, String ruta_imagen, Date fecha_registro, Long id_usuario_registro, String estado, String ip_equipo, String ip_publico, String usuario_equipo, String dir_ip_completa, String convencional, String genero, String direccion, String observacion, String cargo, Long id_sesion) {
         this.id_usuario = id_usuario;
         this.id_punto_venta = id_punto_venta;
         this.id_rol = id_rol;
@@ -63,6 +64,7 @@ public class Usuario_S {
         this.direccion = direccion;
         this.observacion = observacion;
         this.cargo = cargo;
+        this.id_sesion = id_sesion;
     }
 
     public Long getId_usuario() {
@@ -240,5 +242,14 @@ public class Usuario_S {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
+    public Long getId_sesion() {
+        return id_sesion;
+    }
+
+    public void setId_sesion(Long id_sesion) {
+        this.id_sesion = id_sesion;
+    }
+
     
 }

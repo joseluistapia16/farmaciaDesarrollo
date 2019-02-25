@@ -29,6 +29,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
 
     CRUD crud = new CRUD();
     ArrayList<Listar_usuario> listar = crud.get_listar_usuario();
+    Listar_usuario objeto = null;
     Filtros_modulo_seguridad fil = new Filtros_modulo_seguridad();
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -95,6 +96,14 @@ public class Mostrar_usuario extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtUsuarioMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jtUsuarioMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtUsuario);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -202,16 +211,27 @@ public class Mostrar_usuario extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public Listar_usuario devuelveObjeto(String datos, ArrayList<Listar_usuario> listarobj) {
+        Listar_usuario objeto1 = null;
+        for (int i = 0; i < listarobj.size(); i++) {
+            if (datos.equals(listarobj.get(i).getId_sesion().toString())) {
+                objeto1 = listarobj.get(i);
+                break;
+            }
+        }
+        return objeto1;
+    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //System.exit(0);
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
@@ -313,6 +333,31 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             Logger.getLogger(Mostrar_usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnReporteActionPerformed
+
+    private void jtUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtUsuarioMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtUsuarioMouseClicked
+
+    private void jtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtUsuarioMousePressed
+        int i = 0;
+        try {
+            if (evt.getClickCount() == 2) {
+                i = jtUsuario.getSelectedRow();
+                objeto = devuelveObjeto(jtUsuario.getValueAt(i, 0).toString(), listar);
+                if (objeto != null) {
+                    System.out.println("holaaaaa");
+                    actualizar_usuario acc = new actualizar_usuario(new javax.swing.JFrame(), true, objeto);
+                    acc.setVisible(true);
+                    listar.clear();
+                    listar = crud.get_listar_usuario();
+                    Tablas.cargarJoinUsuario(jtUsuario, listar);
+                }
+
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Mostrar_usuario.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_jtUsuarioMousePressed
 
     /**
      * @param args the command line arguments

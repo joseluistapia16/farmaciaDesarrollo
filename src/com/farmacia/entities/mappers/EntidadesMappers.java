@@ -14,6 +14,7 @@ import com.farmacia.entities1.Clientes;
 import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.Correo_Cliente;
 import com.farmacia.entities1.EnvaseProducto;
+import com.farmacia.entities1.Estado_usuario;
 import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
@@ -618,7 +619,7 @@ public class EntidadesMappers {
     public static Genero getGeneroFromResultSet(ResultSet rs) {
         Genero obj = new Genero();
         try {
-//            obj.setId_genero(rs.getLong("Id_genero"));
+            obj.setId_genero(rs.getLong("Id_genero"));
             obj.setGenero(rs.getString("genero"));
             
          
@@ -631,6 +632,7 @@ public class EntidadesMappers {
     public static Rol_U getRolFromResultSet(ResultSet rs) {
         Rol_U obj = new Rol_U();
         try {
+            obj.setId_rol(rs.getLong("id_rol"));
             obj.setCargo(rs.getString("cargo"));
             
          
@@ -640,6 +642,19 @@ public class EntidadesMappers {
         return obj;
     }
     
+            public static Estado_usuario getEstadoUsuarioFromResultSet(ResultSet rs) {
+        Estado_usuario obj = new Estado_usuario();
+        try {
+            obj.setId_estado(rs.getLong("id_estado"));
+            obj.setEstado(rs.getString("estado"));
+            
+         
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+            
     public static ListarPuntoVenta getPuntoVentaFromResultSet(ResultSet rs) {
         ListarPuntoVenta obj = new ListarPuntoVenta();
         try {
@@ -688,7 +703,10 @@ public class EntidadesMappers {
 //            obj.setPorcentaje(rs.getString("porcentaje"));
             obj.setEstado(rs.getString("estado"));
             obj.setObservacion(rs.getString("observacion"));
-            
+            obj.setId_estado(rs.getLong("id_estado"));
+            obj.setId_genero(rs.getLong("id_genero"));
+            obj.setId_rol(rs.getLong("id_rol"));
+            obj.setRuta_imagen(rs.getString("ruta_imagen"));
          
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);

@@ -18,7 +18,7 @@ public class Listar_usuario {
     private String convencional;
     private String correo;
     private String password;
-    private String id_rol;
+    private Long id_rol;
     private String ruta_imagen;
     private Long id_usuario_registro;
     private String cargo;
@@ -27,12 +27,14 @@ public class Listar_usuario {
     private String porcentaje;
     private String observacion;
     private String estado;
+    private Long id_genero;
+    private Long id_estado;
     
 
     public Listar_usuario() {
     }
 
-    public Listar_usuario(Long id_sesion, Date fecha_registro, String cedula, String apellidos, String nombres, String direccion, String telefono, String convencional, String correo, String password, String id_rol, String ruta_imagen, Long id_usuario_registro, String cargo, String genero, String discapacidad, String porcentaje, String observacion, String estado) {
+    public Listar_usuario(Long id_sesion, Date fecha_registro, String cedula, String apellidos, String nombres, String direccion, String telefono, String convencional, String correo, String password, Long id_rol, String ruta_imagen, Long id_usuario_registro, String cargo, String genero, String discapacidad, String porcentaje, String observacion, String estado, Long id_genero, Long id_estado) {
         this.id_sesion = id_sesion;
         this.fecha_registro = fecha_registro;
         this.cedula = cedula;
@@ -52,6 +54,8 @@ public class Listar_usuario {
         this.porcentaje = porcentaje;
         this.observacion = observacion;
         this.estado = estado;
+        this.id_genero = id_genero;
+        this.id_estado = id_estado;
     }
 
     public Long getId_sesion() {
@@ -134,11 +138,11 @@ public class Listar_usuario {
         this.password = password;
     }
 
-    public String getId_rol() {
+    public Long getId_rol() {
         return id_rol;
     }
 
-    public void setId_rol(String id_rol) {
+    public void setId_rol(Long id_rol) {
         this.id_rol = id_rol;
     }
 
@@ -206,5 +210,20 @@ public class Listar_usuario {
         this.estado = estado;
     }
 
-    
+    public Long getId_genero() {
+        return id_genero;
+    }
+
+    public void setId_genero(Long id_genero) {
+        this.id_genero = id_genero;
+    }
+
+    public Long getId_estado() {
+        return id_estado;
+    }
+
+    public void setId_estado(Long id_estado) {
+        this.id_estado = id_estado;
+    }
+
 }

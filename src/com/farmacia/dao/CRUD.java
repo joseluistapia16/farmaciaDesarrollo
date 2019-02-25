@@ -17,6 +17,7 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.entities1.EnvaseProducto;
+import com.farmacia.entities1.Estado_usuario;
 import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
@@ -637,6 +638,37 @@ public class CRUD {
 //                lista.add(obj);
 //            }
 
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
+    public String getCombosAcUsuarios(Long op, Long id) {
+        //ArrayList<Productos> lista = new ArrayList<Productos>();
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call fc_combos_ac_usuarios(?,?,?) }");
+            prodProAlm.setLong(1, op);
+            prodProAlm.setLong(2, id);
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
             conect.commit();
         } catch (Exception e) {
             try {
@@ -2487,6 +2519,51 @@ public class CRUD {
         return valor;
     }//usuario
 
+    public String Actualizar_usuario(Usuario_S us) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call fc_actualizar_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            pro.setString(1, us.getCedula());
+            pro.setString(2, us.getNombre());
+            pro.setString(3, us.getApellido());
+            pro.setString(4, us.getTelefono());
+            pro.setString(5, us.getConvencional());
+            pro.setString(6, us.getCorreo());
+            pro.setString(7, us.getDireccion());
+            pro.setString(8, us.getIp_equipo());
+            pro.setString(9, us.getUsuario_equipo());
+            pro.setString(10, us.getDir_ip_completa());
+            pro.setString(11, us.getRuta_imagen());
+            pro.setString(12, us.getObservacion());
+            pro.setString(13, us.getGenero());
+            pro.setString(14, us.getCargo());
+            pro.setString(15, us.getPassword());
+            pro.setLong(16, us.getId_sesion());
+            pro.registerOutParameter("salida", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getString("salida");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
     public String bitacoraSeguridad(Bitacora_seguridad bs) {
 
         try {
@@ -2627,6 +2704,38 @@ public class CRUD {
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
                 Rol_U obj = EntidadesMappers.getRolFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+    
+    public ArrayList<Estado_usuario> listarEstado() {
+        ArrayList<Estado_usuario> lista = new ArrayList<Estado_usuario>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call fc_esatdo_usuario() }");
+            //   prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                Estado_usuario obj = EntidadesMappers.getEstadoUsuarioFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();
