@@ -2,6 +2,7 @@ package com.farmacia.views.pedidos;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import java.awt.Dimension;
@@ -48,7 +49,6 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
         tblProduc = new javax.swing.JScrollPane();
         tblRegistrodeNotas = new javax.swing.JTable();
         Reporte = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -119,9 +119,6 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        jButton1.setText("ACTIVAR");
-
         jLabel7.setBackground(new java.awt.Color(2, 184, 184));
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel7.setForeground(java.awt.Color.white);
@@ -152,8 +149,6 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
                         .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60))))
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
@@ -177,8 +172,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -242,19 +236,42 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
     }
     private void tblRegistrodeNotasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegistrodeNotasMousePressed
         int i = 0;
-
         if (evt.getClickCount() == 2) {
             i = tblRegistrodeNotas.getSelectedRow();
             objeto = devuelveObjeto(tblRegistrodeNotas.getValueAt(i, 0).toString(), lista);
-
             if (objeto != null) {
-                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true, objeto);
-                Man.setVisible(true);
+                System.out.println(" posicion " + objeto.getId_cabecera_nota_pedidos());
+                int r = JOptionPane.showConfirmDialog(null, "¿Desea Activar este Pedido?", "", JOptionPane.YES_NO_OPTION);
+                if (r == JOptionPane.YES_OPTION) {
 
+                    String id_cab = "";
+                    CabeceraNotaPedido cn = new CabeceraNotaPedido();
+                    cn.setId_cabecera_nota_pedidos(objeto.getId_cabecera_nota_pedidos());
+                    id_cab = crud.ActualizarEstadoNotaPedido(cn);
+                    System.out.println("Aqui TRabajaR");
+                    Tablas.CargarJoinListadoCabeceraNotaPedidos(tblRegistrodeNotas, lista);
+                    RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
+                    this.setVisible(false);
+                    RIN.setVisible(true);
+
+                } else {
+
+                }
             }
         }
     }//GEN-LAST:event_tblRegistrodeNotasMousePressed
-
+//int i = 0;
+//
+//        if (evt.getClickCount() == 2) {
+//            i = tblRegistrodeNotas.getSelectedRow();
+//            objeto = devuelveObjeto(tblRegistrodeNotas.getValueAt(i, 0).toString(), lista);
+//
+//            if (objeto != null) {
+//                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true, objeto);
+//                Man.setVisible(true);
+//
+//            }
+//        }
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         java.util.List lista = new ArrayList();
         for (int i = 0; i < tblRegistrodeNotas.getRowCount(); i++) {
@@ -344,7 +361,6 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
     private javax.swing.JButton Reporte;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JButton filtrar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane tblProduc;

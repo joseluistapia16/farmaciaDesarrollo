@@ -3358,4 +3358,34 @@ public class CRUD {
         }
         return valor;
     }
+    ////////////////////
+        public String ActualizarEstadoNotaPedido(CabeceraNotaPedido cab) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call ActualizarEstadoNotaPedido(?,?)}");
+            pro.setLong(1, cab.getId_cabecera_nota_pedidos());
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+      
+    }
 }
