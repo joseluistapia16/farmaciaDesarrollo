@@ -16,6 +16,7 @@ import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.DetalleNotaPedido;
+import com.farmacia.entities1.Detalle_compra;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Estado_usuario;
 import com.farmacia.entities1.Genero;
@@ -3416,5 +3417,46 @@ public class CRUD {
         }
         return valor;
       
+    }
+        public String insertarDetalleProductoCompra(Detalle_compra obj) {
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call insertarDetalleCompras(?,?,?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_cabecera_compra());
+            prodProAlm.setLong(2, obj.getId_precio());
+            prodProAlm.setLong(3, obj.getCantidad());
+            prodProAlm.setBigDecimal(4, obj.getPrecio());
+            prodProAlm.setBigDecimal(5, obj.getDescuento());
+            prodProAlm.setBigDecimal(6, obj.getIva());
+            prodProAlm.setBigDecimal(7, obj.getTotal());
+            prodProAlm.setLong(8, obj.getBono());
+//            prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+//            valor = prodProAlm.getString("valor1");
+            //  rs = prodProAlm.getResultSet();
+//            while (rs.next()) {
+//                MarcaProducto obj = EntidadesMappers.getMarcaProductoFromResultSet(rs);
+//                lista.add(obj);
+//            }
+
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
     }
 }

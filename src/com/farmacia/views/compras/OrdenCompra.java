@@ -13,6 +13,7 @@ import com.farmacia.dao.CRUD;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.entities1.Detalle_compra;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.views.pedidos.EditarNotaPedido;
@@ -746,21 +747,34 @@ public static String FechaActual() {
 //            } 
 //              
 //        }
-
-            for (int i = 0; i < lista3.size(); i++) {
-                crud.insertarDetallesCompraRegistro("INSERT INTO `detalle_compra`(`id_cabecera_compra`,`id_precio`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono)VALUES(" + id_cab + "," + lista3.get(i).getId_precio() + "," + lista3.get(i).getCantidad().toString() + ","
-                        + lista3.get(i).getPrecio().toString() + "," + lista3.get(i).getDescuento().toString() + "," + lista3.get(i).getIva().toString() + "," + lista3.get(i).getTotal().toString() + "," + lista3.get(i).getBono().toString() + ");");
-                id_precio = crud.buscarIDPrecioEnStock("SELECT `id_precio` FROM `stock` WHERE `id_precio`=" + lista3.get(i).getId_precio().toString());
-                if (null == id_precio) {
-                    crud.insertarDetallesCompraRegistro("INSERT INTO `stock` (`cantidad`,`id_precio`)VALUES(" + lista3.get(i).getCantidad().toString() + "," + lista3.get(i).getId_precio().toString() + ");");
-                    //insertar si no existe
-                } else {//actualizar o sumar si existe
-                    int cantidadx = crud.buscarCantidadEnStock("SELECT `cantidad` FROM `stock` WHERE `id_precio`=" + lista3.get(i).getId_precio() + ";");
-                    cantidadx = cantidadx + Integer.valueOf(lista3.get(i).getCantidad().toString());
-                    crud.insertarDetallesCompraRegistro("UPDATE `stock` SET `cantidad` = " + cantidadx + " WHERE `id_precio` = " + lista3.get(i).getId_precio() + ";");
-                }
-
-            }
+                //INTENTO 2 DE REGISTRAR DETALLES COMPRAS
+//            for (int i = 0; i < lista3.size(); i++) {
+//                crud.insertarDetallesCompraRegistro("INSERT INTO `detalle_compra`(`id_cabecera_compra`,`id_precio`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono)VALUES(" + id_cab + "," + lista3.get(i).getId_precio() + "," + lista3.get(i).getCantidad().toString() + ","
+//                        + lista3.get(i).getPrecio().toString() + "," + lista3.get(i).getDescuento().toString() + "," + lista3.get(i).getIva().toString() + "," + lista3.get(i).getTotal().toString() + "," + lista3.get(i).getBono().toString() + ");");
+//                id_precio = crud.buscarIDPrecioEnStock("SELECT `id_precio` FROM `stock` WHERE `id_precio`=" + lista3.get(i).getId_precio().toString());
+//                if (null == id_precio) {
+//                    crud.insertarDetallesCompraRegistro("INSERT INTO `stock` (`cantidad`,`id_precio`)VALUES(" + lista3.get(i).getCantidad().toString() + "," + lista3.get(i).getId_precio().toString() + ");");
+//                    //insertar si no existe
+//                } else {//actualizar o sumar si existe
+//                    int cantidadx = crud.buscarCantidadEnStock("SELECT `cantidad` FROM `stock` WHERE `id_precio`=" + lista3.get(i).getId_precio() + ";");
+//                    cantidadx = cantidadx + Integer.valueOf(lista3.get(i).getCantidad().toString());
+//                    crud.insertarDetallesCompraRegistro("UPDATE `stock` SET `cantidad` = " + cantidadx + " WHERE `id_precio` = " + lista3.get(i).getId_precio() + ";");
+//                }
+//
+//            }
+            //INTENTO 3 DE RESGISTRAR DETALLE COMPRA!
+              for (int i = 0; i < lista3.size(); i++) {
+                  Detalle_compra obj = new Detalle_compra();
+                  obj.setId_cabecera_compra(Long.valueOf(id_cab));
+                  obj.setId_precio(lista3.get(i).getId_precio());
+                  obj.setCantidad(lista3.get(i).getCantidad());
+                  obj.setPrecio(lista3.get(i).getPrecio());
+                  obj.setDescuento(lista3.get(i).getDescuento());
+                  obj.setIva(lista3.get(i).getIva());
+                  obj.setTotal(lista3.get(i).getTotal());
+                  obj.setBono(lista3.get(i).getBono());
+                  crud.insertarDetalleProductoCompra(obj);
+              }
             this.setVisible(false);
         } catch (Exception ex) {
             Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
