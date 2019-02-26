@@ -12,6 +12,7 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ComponentesFaltantes;
 import com.farmacia.views.compras.ListaDePedidos;
+import com.farmacia.views.compras.OrdenCompra;
 import static com.farmacia.views.pedidos.EditarProductoNota.redondearDecimales;
 import com.farmacia.views.producto.Products;
 import java.awt.Dimension;
@@ -33,7 +34,7 @@ import net.sf.jasperreports.view.JRViewer;
 
 public class EditarNotaPedido extends javax.swing.JDialog {
 
-    int x, y;
+    int x, y, variableCerrar;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     CRUD crud = new CRUD();
@@ -57,7 +58,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
     }
 
-    public EditarNotaPedido(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1) {
+    public EditarNotaPedido(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1,int vari) {
 //        super(parent, modal);
 //
 //        setUndecorated(true);
@@ -79,9 +80,10 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         TotalIVA();
         TotalDescuento();
         Total();
-
+        
+        variableCerrar=vari;
     }
-
+    
     private void llenarFormulario(JoinListarNotaPedidosCabecera obj) {
         txtCodigoProveedor.setText(obj.getId_proveedor().toString());
         txtNombre1.setText(obj.getEntidad());
@@ -792,9 +794,14 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
+            if(variableCerrar==1){
+            this.setVisible(false);
+            }
+            if(variableCerrar!=1){
             setVisible(false);
             MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
             Man.setVisible(true);
+            }
         } else {
 
         }

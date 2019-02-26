@@ -257,7 +257,7 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
 
             if (objeto != null) {
                 
-                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true, objeto);
+                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true, objeto,2);
                 this.setVisible(false);
                 Man.setVisible(true);
 
