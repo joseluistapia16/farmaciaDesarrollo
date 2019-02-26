@@ -240,7 +240,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             i = tblRegistrodeNotas.getSelectedRow();
             objeto = devuelveObjeto(tblRegistrodeNotas.getValueAt(i, 0).toString(), lista);
             if (objeto != null) {
-                System.out.println(" posicion " + objeto.getId_cabecera_nota_pedidos());
+                
                 int r = JOptionPane.showConfirmDialog(null, "¿Desea Activar este Pedido?", "", JOptionPane.YES_NO_OPTION);
                 if (r == JOptionPane.YES_OPTION) {
 
@@ -248,7 +248,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
                     CabeceraNotaPedido cn = new CabeceraNotaPedido();
                     cn.setId_cabecera_nota_pedidos(objeto.getId_cabecera_nota_pedidos());
                     id_cab = crud.ActivarEstadoNotaPedido(cn);
-                    System.out.println("Aqui TRabajaR");
+                    
                     
                     Tablas.CargarJoinListadoCabeceraNotaPedidos(tblRegistrodeNotas, lista);
                     RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
