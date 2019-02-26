@@ -14,6 +14,7 @@ import com.farmacia.validaciones.ComponentesFaltantes;
 import com.farmacia.views.compras.ListaDePedidos;
 import com.farmacia.views.compras.OrdenCompra;
 import static com.farmacia.views.pedidos.EditarProductoNota.redondearDecimales;
+import com.farmacia.views.producto.MantenimientoProducto;
 import com.farmacia.views.producto.Products;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
@@ -45,14 +46,14 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     JoinListarNotaPedidosCabecera objf = new JoinListarNotaPedidosCabecera();
-    ArrayList<listarJoinProductosCompras> listapro=crud.listarTodoJoinProductos(1);
+    ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
     String codigocabecera = "";
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
     JoinListarDetalleNotaPedido objetop = null;
 
     public EditarNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        
+
         setUndecorated(true);
         initComponents();
 
@@ -154,6 +155,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         tbaListaFaltantes = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         btnSalir2 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
@@ -405,11 +407,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             }
         ));
         t_Nota_faltantes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                t_Nota_faltantesMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 t_Nota_faltantesMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                t_Nota_faltantesMouseClicked(evt);
             }
         });
         tblProduc.setViewportView(t_Nota_faltantes);
@@ -488,6 +490,13 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             }
         });
 
+        jButton3.setText("Desactivar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -505,6 +514,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3)
+                                .addGap(33, 33, 33)
                                 .addComponent(jButton2)
                                 .addContainerGap())))))
         );
@@ -518,7 +529,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
-                            .addComponent(jButton2))))
+                            .addComponent(jButton2)
+                            .addComponent(jButton3))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(PanelSec, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -712,25 +724,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//    public void Total() {
-//        Double total = 0.00;
-//
-//        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-//            int Cantidad = lista3.get(i).getCantidad();
-//            Double Precio = lista3.get(i).getPrecio();
-//            Double Desc = lista3.get(i).getDescuento();
-//            Double iva = lista3.get(i).getIva();
-//            Double total1 = Cantidad * Precio + iva - Desc;
-//            total = total + total1;
-//            total = redondearDecimales(total, 2);
-//            System.out.println("Cantidad " + Cantidad);
-//            System.out.println("Precio " + Precio);
-//            System.out.println("descuento " + Desc);
-//            System.out.println("iva  " + iva);
-////            System.out.println("total "+to);
-//        }
-//        txtTotal.setText(Double.valueOf(total).toString());
-//    }
     public void TotalIVA() {
         BigDecimal Total1Iva = new BigDecimal("0.0000");
 
@@ -739,7 +732,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Total1Iva = Total1Iva.add(Iva1);
 //            totalIva = redondearDecimales(totalIva, 2);
         }
-        VGiva=BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total1Iva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        VGiva = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total1Iva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
         txtIva.setText(removeScientificNotation(Total1Iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
 
     }
@@ -751,7 +744,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             TotalDescuento = TotalDescuento.add(descuento);
 //            TotalDescuento = redondearDecimales(TotalDescuento, 2);
         }
-        VGdescuento=BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
         txtDescuento.setText(removeScientificNotation(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
     }
 
@@ -762,7 +755,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Total_ = Total_.add(total);
 
         }
-        VGtotal=BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
         txtTotal.setText(Total_.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
     }
 
@@ -806,14 +799,19 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
-
+//    public void Recorrer() {
+//        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+//            System.out.println("lista3 "+lista3.size());
+//        }
+// 
+//    }
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
         int i = 0;
         String msg = null;
         try {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
-                
+
                 objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
                 if (objeto != null) {
                     AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objeto);
@@ -822,12 +820,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-                        
+
                         if (np.getObjf().getCantidad() > 0) {
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
-                            
+
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
 //                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
@@ -947,7 +945,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_jPanel5MouseDragged
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        String valor="";
+        String valor = "";
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Actualizar?", "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
@@ -962,11 +960,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             cn.setTotal(VGtotal);
             cn.setId_cabecera_nota_pedidos(Long.valueOf(txtNumero.getText()));
             valor = crud.ActualizarNotaPedidosCabecera(cn);
-            if (!"".equals(valor)){
-            JOptionPane.showMessageDialog(null, valor);
-            setVisible(false);
+            if (!"".equals(valor)) {
+                JOptionPane.showMessageDialog(null, valor);
+                setVisible(false);
             }
-            
+
         } else {
 
         }
@@ -1025,18 +1023,31 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_tbaListaFaltantesMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Products Prod = new Products(new javax.swing.JFrame(), true);
-       Prod.setVisible(true);
-       listapro.clear();
-       listapro = crud.listarTodoJoinProductos(1);
+        MantenimientoProducto Prod = new MantenimientoProducto(new javax.swing.JFrame(), true);
+        Prod.setVisible(true);
+        listapro.clear();
+        listapro = crud.listarTodoJoinProductos(1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       ListaDePedidos Lp= new ListaDePedidos(new javax.swing.JFrame(), true);
-       Lp.setVisible(true);
+        ListaDePedidos Lp = new ListaDePedidos(new javax.swing.JFrame(), true);
+        Lp.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-   
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        String id_cab = "";
+    
+        CabeceraNotaPedido cn = new CabeceraNotaPedido();
+
+        cn.setId_cabecera_nota_pedidos(Long.valueOf(txtNumero.getText()));
+        id_cab = crud.DesactivarEstadoNotaPedido(cn);
+        setVisible(false);
+        RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
+     
+        RIN.setVisible(true);
+       
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
 
@@ -1065,6 +1076,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     private javax.swing.JTextField filtro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     public static javax.swing.JLabel jLabel11;

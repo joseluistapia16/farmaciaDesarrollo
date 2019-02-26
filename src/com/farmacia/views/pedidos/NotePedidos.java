@@ -10,6 +10,7 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ComponentesFaltantes;
 import com.farmacia.views.compras.ListaDePedidos;
+import com.farmacia.views.producto.MantenimientoProducto;
 import com.farmacia.views.producto.Products;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -68,7 +69,7 @@ public class NotePedidos extends javax.swing.JDialog {
         //HORA DEL SISTEMA
         Timer tiempo = new Timer(100, new NotePedidos.horas());
         tiempo.start();
-        System.out.println("d" + lista.get(0).getCantidad());
+    
     }
 
     class horas implements ActionListener {
@@ -551,7 +552,7 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, true, false, true, true, true, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1086,7 +1087,7 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       Products Prod = new Products(new javax.swing.JFrame(), true);
+        MantenimientoProducto Prod = new MantenimientoProducto(new javax.swing.JFrame(), true);
        Prod.setVisible(true);
        listapro.clear();
        listapro = crud.listarTodoJoinProductos(1);
@@ -1097,7 +1098,8 @@ public class NotePedidos extends javax.swing.JDialog {
        Lp.setVisible(true);
        ////
       lista.clear();
-      crud.listarFaltantesDetalles(1);
+      lista = crud.listarFaltantesDetalles(1);
+      Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
     }//GEN-LAST:event_jButton2ActionPerformed
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
      
