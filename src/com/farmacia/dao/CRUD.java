@@ -120,7 +120,7 @@ public class CRUD {
     }
 
     public String buscarIDPrecioEnStock(String query) {
-        String id = null;
+        String id = "";
         try {
             conect = con.conectar();
 
@@ -157,6 +157,25 @@ public class CRUD {
 
     }
 
+    public int buscarCantidadEnFaltantes(String query) {
+        int id = 0;
+        try {
+            conect = con.conectar();
+
+            java.sql.Statement st = conect.createStatement();
+            rs = st.executeQuery(query);
+            rs.next();
+            id = rs.getInt("cantidad");
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+
+    }
+
     //cambie a uno por uno
     public void insertarDetallesCompra(ArrayList<String> queryL) {
         try {
@@ -175,6 +194,21 @@ public class CRUD {
     }
 
     public void insertarDetallesCompraRegistro(String queryL) {
+        try {
+            conect = con.conectar();
+//            for (int i = 0; i < queryL.size(); i++) {
+            java.sql.Statement st = conect.createStatement();
+            st.executeUpdate(queryL);
+            //}
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    public void UpdateCantidadFaltantes(String queryL) {
         try {
             conect = con.conectar();
 //            for (int i = 0; i < queryL.size(); i++) {
@@ -472,6 +506,7 @@ public class CRUD {
         }
         return lista;
     }
+
     public ArrayList<Iva> listarTodoIvaProducto() {
         ArrayList<Iva> lista = new ArrayList<Iva>();
 
@@ -655,7 +690,7 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public String getCombosAcUsuarios(Long op, Long id) {
         //ArrayList<Productos> lista = new ArrayList<Productos>();
         String valor = "";
@@ -2315,7 +2350,7 @@ public class CRUD {
         }
         return valor;
     }//usuario
-    
+
     public String CrearLocal(Nombre_local pv) {
         String valor = null;
         try {
@@ -2346,7 +2381,7 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public String ActualizarLocal(Nombre_local pv) {
         String valor = null;
         try {
@@ -2377,7 +2412,7 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public ArrayList<Nombre_local> listar_local() {
         ArrayList<Nombre_local> valor = new ArrayList<Nombre_local>();
         try {
@@ -2563,7 +2598,7 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public String bitacoraSeguridad(Bitacora_seguridad bs) {
 
         try {
@@ -2659,7 +2694,7 @@ public class CRUD {
         }
         return lista;
     }
-    
+
     public ArrayList<Genero> listarGenero() {
         ArrayList<Genero> lista = new ArrayList<Genero>();
         try {
@@ -2723,7 +2758,7 @@ public class CRUD {
         }
         return lista;
     }
-    
+
     public ArrayList<Estado_usuario> listarEstado() {
         ArrayList<Estado_usuario> lista = new ArrayList<Estado_usuario>();
         try {
@@ -2994,6 +3029,7 @@ public class CRUD {
         }
         return valor;
     }
+
     public String ActualizarNotaPedidosCabecera(CabeceraNotaPedido cnp) {
         String valor = null;
         try {
@@ -3133,12 +3169,13 @@ public class CRUD {
         return valor;
     }
 //
+
     public static void InsertarBDCompras(String id_cabecera, ArrayList<joinProductoDetallesFaltantes> lista) {
         String cad1 = "";
         String[] Filas = new String[12];
 
         for (int i = 0; i < lista.size(); i++) {
-            
+
             Filas[0] = "" + lista.get(i).getId_producto().toString();
             Filas[1] = lista.get(i).getMarca();
             Filas[2] = lista.get(i).getNombre_tipo();
@@ -3151,14 +3188,14 @@ public class CRUD {
             BigDecimal Precio = lista.get(i).getPrecios();
             BigDecimal PorcDesc = lista.get(i).getPorcentaje_descuento();
             BigDecimal ValorDes = Cantidad.multiply(Precio).multiply(PorcDesc).divide(new BigDecimal("100"));
-             ValorDes = ValorDes.setScale(7, BigDecimal.ROUND_HALF_UP);
+            ValorDes = ValorDes.setScale(7, BigDecimal.ROUND_HALF_UP);
             ValorDes = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(ValorDes.toString())));
-           
+
             BigDecimal iva = new BigDecimal("0.12");
             BigDecimal iva1 = new BigDecimal("0.00");
 //          2, RoundingMode.HALF_UP
             Filas[8] = "" + ValorDes;
-            
+
             if (lista.get(i).getIva().equals("NO")) {
                 Filas[9] = "" + 0.00;
                 BigDecimal importe = Cantidad.multiply(Precio).add(iva1).subtract(ValorDes);//creo q falata sumar iva
@@ -3166,22 +3203,22 @@ public class CRUD {
 //                Filas[10] = String.format("%5.2f", importe);
                 Filas[10] = "" + importe;
 
-            }else{
-                
-                iva1=Cantidad.multiply(iva).multiply(Precio);// ojo cambiar el iva por el de base de datos
-               iva1 = iva1.setScale(7, BigDecimal.ROUND_HALF_UP);
+            } else {
+
+                iva1 = Cantidad.multiply(iva).multiply(Precio);// ojo cambiar el iva por el de base de datos
+                iva1 = iva1.setScale(7, BigDecimal.ROUND_HALF_UP);
 //                Filas[9] = String.format("%5.2f", iva1);
                 Filas[9] = "" + iva1;
 
-               // Double importe = Cantidad * Precio + iva1 - ValorDes;
+                // Double importe = Cantidad * Precio + iva1 - ValorDes;
                 BigDecimal importe = Cantidad.multiply(Precio).add(iva1).subtract(ValorDes);
-               importe = importe.setScale(7, BigDecimal.ROUND_HALF_UP);
+                importe = importe.setScale(7, BigDecimal.ROUND_HALF_UP);
                 Filas[10] = "" + importe;
 //                Filas[10] = String.format("%5.2f", importe);
-            
+
             }
-            Filas[11]=lista.get(i).getBono().toString();
-            cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono) VALUES ('" + lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "','"+Filas[11]+"');";
+            Filas[11] = lista.get(i).getBono().toString();
+            cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono) VALUES ('" + lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "','" + Filas[11] + "');";
 
         }
         System.out.println(cad1);
@@ -3190,10 +3227,9 @@ public class CRUD {
         cad1 = "";
     }
 
-   public static String removeScientificNotation(String value)
-{
-    return new BigDecimal(value).toPlainString();
-}
+    public static String removeScientificNotation(String value) {
+        return new BigDecimal(value).toPlainString();
+    }
 
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
@@ -3358,8 +3394,9 @@ public class CRUD {
         }
         return valor;
     }
+
     ////////////////////
-        public String ActivarEstadoNotaPedido(CabeceraNotaPedido cab) {
+    public String ActivarEstadoNotaPedido(CabeceraNotaPedido cab) {
         String valor = null;
         try {
             conect = con.conectar();
@@ -3386,9 +3423,10 @@ public class CRUD {
             }
         }
         return valor;
-      
+
     }
-        public String DesactivarEstadoNotaPedido(CabeceraNotaPedido cab) {
+
+    public String DesactivarEstadoNotaPedido(CabeceraNotaPedido cab) {
         String valor = null;
         try {
             conect = con.conectar();
@@ -3415,6 +3453,6 @@ public class CRUD {
             }
         }
         return valor;
-      
+
     }
 }

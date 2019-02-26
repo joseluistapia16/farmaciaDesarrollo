@@ -45,7 +45,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
 public class OrdenCompra extends javax.swing.JDialog {
-    
+
     int x, y;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -92,7 +92,7 @@ public class OrdenCompra extends javax.swing.JDialog {
         //HORA DEL SISTEMA
         Timer tiempo = new Timer(100, new OrdenCompra.horas());
         tiempo.start();
-       // Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, listaCompra);
+        // Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, listaCompra);
         // Tablas.cargarJoinProductosMCompra(tbacargarProductosA, lista);
         String id_cab = txt_Numero.getText().toString();
         lista3 = crud.listarDetalleNotaPedido(1, id_cab);
@@ -100,7 +100,7 @@ public class OrdenCompra extends javax.swing.JDialog {
         Total();
         TotalIVA();
         TotalDescuento();
-       // t_Nota_faltantes.setEnabled(false);
+        // t_Nota_faltantes.setEnabled(false);
     }
 
     /**
@@ -154,7 +154,7 @@ public class OrdenCompra extends javax.swing.JDialog {
         }
         VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
         txtTotal.setText(Total_.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-    
+
     }
 
     public static String removeScientificNotation(String value) {
@@ -758,10 +758,19 @@ public static String FechaActual() {
                     int cantidadx = crud.buscarCantidadEnStock("SELECT `cantidad` FROM `stock` WHERE `id_precio`=" + lista3.get(i).getId_precio() + ";");
                     cantidadx = cantidadx + Integer.valueOf(lista3.get(i).getCantidad().toString());
                     crud.insertarDetallesCompraRegistro("UPDATE `stock` SET `cantidad` = " + cantidadx + " WHERE `id_precio` = " + lista3.get(i).getId_precio() + ";");
-                }
 
+                }
+                
+                Integer CantidadComp = crud.buscarCantidadEnFaltantes("SELECT `cantidad` FROM `detalle_faltantes` WHERE `id_producto`=" + lista3.get(i).getId_producto() + ";");
+//                System.out.println("Cantidad existente"+CantidadComp);
+//                System.out.println("Cantidad "+Integer.valueOf(lista3.get(i).getCantidad().toString()));
+                CantidadComp = CantidadComp - Integer.valueOf(lista3.get(i).getCantidad().toString());
+//                System.out.println("Cantidad Restada de Faltantes"+CantidadComp);
+                crud.UpdateCantidadFaltantes("UPDATE `detalle_faltantes` SET `cantidad` = " + CantidadComp + " WHERE `id_producto` = "+lista3.get(i).getId_producto()+";");
+                
             }
-            this.setVisible(false);
+            
+//            this.setVisible(false);
         } catch (Exception ex) {
             Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -867,14 +876,15 @@ public static String FechaActual() {
     }//GEN-LAST:event_txtRucActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        EditarNotaPedido NP = new EditarNotaPedido(new javax.swing.JFrame(),true, objCabecera,1);
+        EditarNotaPedido NP = new EditarNotaPedido(new javax.swing.JFrame(), true, objCabecera, 1);
         NP.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
-    public int getvariablecerrar(){
-        int variablex=1;
+    public int getvariablecerrar() {
+        int variablex = 1;
         return variablex;
     }
+
     private void getPosicion(Long id, int valor) {
         for (int i = 0; i < listaCompra.size(); i++) {
             if (id == listaCompra.get(i).getId_producto()) {
