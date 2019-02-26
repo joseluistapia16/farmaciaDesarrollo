@@ -643,7 +643,6 @@ public class Tablas {
             Filas[3] = lista.get(i).getRepresentante();
             Filas[4] = lista.get(i).getTelefono();
             Filas[5] = lista.get(i).getFecha_creacion().toString();
-            System.out.println("fecha "+lista.get(i).getFecha_creacion().toString());
             Filas[6] = "" + lista.get(i).getIva().toString();
             Filas[7] = "" + lista.get(i).getDescuento().toString();
             Filas[8] = "" + lista.get(i).getTotal().toString();
