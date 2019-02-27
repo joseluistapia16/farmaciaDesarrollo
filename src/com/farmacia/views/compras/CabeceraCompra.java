@@ -66,7 +66,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
         Reporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -98,6 +98,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
             }
         });
 
+        tbaCabeceraPedido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         tbaCabeceraPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -128,7 +129,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
             tbaCabeceraPedido.getColumnModel().getColumn(1).setPreferredWidth(50);
         }
 
-        btnSalir2.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        btnSalir2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +137,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
             }
         });
 
-        Reporte.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        Reporte.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,7 +187,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel2);
+        getContentPane().add(jPanel2, new java.awt.GridBagConstraints());
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
