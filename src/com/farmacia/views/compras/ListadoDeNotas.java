@@ -33,7 +33,7 @@ public class ListadoDeNotas extends javax.swing.JDialog {
         btnSalir2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -72,8 +72,7 @@ public class ListadoDeNotas extends javax.swing.JDialog {
         });
         tblProduc.setViewportView(tblRegistrodeNotas);
 
-        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        btnSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/objetos/icon/action_exit_close_remove_13915.png"))); // NOI18N
+        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +107,7 @@ public class ListadoDeNotas extends javax.swing.JDialog {
                 .addGap(20, 20, 20))
         );
 
-        getContentPane().add(jPanel1);
+        getContentPane().add(jPanel1, new java.awt.GridBagConstraints());
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
