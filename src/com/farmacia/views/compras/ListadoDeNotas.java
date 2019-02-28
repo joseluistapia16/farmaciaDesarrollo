@@ -16,6 +16,7 @@ public class ListadoDeNotas extends javax.swing.JDialog {
 
     public ListadoDeNotas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
 //        Tablas.CargarJoinRegistrosdeNota(tblRegistrodeNotas, lista);
