@@ -26,6 +26,7 @@ import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.Nombre_local;
 import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.Precios;
+import com.farmacia.entities1.Productos_Stock;
 import com.farmacia.entities1.Rol_U;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.Telefono_Cliente;
@@ -773,6 +774,25 @@ public class EntidadesMappers {
 
         } catch (Exception ex) {
             
+        }
+        return obj;
+    }
+    public static Productos_Stock getStockProductosFromResultSet(ResultSet rs) {
+        Productos_Stock obj = new Productos_Stock();
+        try {
+            obj.setId_producto(rs.getLong("ID_PRODUCTOS"));
+            obj.setNombre_Producto(rs.getString("NOMBRE"));
+            obj.setDescripcion(rs.getString("DESCRIPCION"));
+            obj.setId_precio(rs.getLong("ID_PRECIO"));
+            obj.setId_stock(rs.getLong("ID_STOCK"));
+            obj.setTipo(rs.getString("TIPO"));
+            obj.setMedida(rs.getString("MEDIDA"));
+            obj.setEnvase(rs.getString("ENVASE"));
+            obj.setMarca(rs.getString("MARCA"));
+             obj.setCantidad(rs.getLong("CANTIDAD"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }

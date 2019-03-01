@@ -20,6 +20,7 @@ import com.farmacia.views.pedidos.NotePedidos;
 import com.farmacia.views.producto.MantenimientoProducto;
 import com.farmacia.views.producto.Products;
 import com.farmacia.views.proveedor.Consulta_Proveedor;
+import com.farmacia.views.stock.Stock_Productos;
 import com.farmacia.views.usuario.Local;
 import com.farmacia.views.usuario.Mostrar_usuario;
 import com.farmacia.views.ventas.MenuPreVentas;
@@ -101,6 +102,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mnuAyuda = new javax.swing.JMenu();
         mnuAcerca = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem13 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -399,6 +402,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuAyuda);
 
+        jMenu1.setText("Stock");
+
+        jMenuItem13.setText("Productos en Stock");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem13);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -554,6 +569,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Lp.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        Stock_Productos sp = new Stock_Productos(this, rootPaneCheckingEnabled);
+        sp.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -595,6 +615,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnProveedores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -604,6 +625,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
