@@ -231,23 +231,21 @@ public class ComprasEfectuadas extends javax.swing.JDialog {
             objeto = devuelveObjeto(tblRegistrodeNotas.getValueAt(i, 0).toString(), lista);
 
             if (objeto != null) {
-                
-//                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true, objeto,2);
-//                this.setVisible(false);
-//                Man.setVisible(true);
+                VistaCompraEfectuada Vce = new VistaCompraEfectuada(new javax.swing.JFrame(), true, objeto, 2);
+                Vce.setVisible(true);
 
             }
         }
     }//GEN-LAST:event_tblRegistrodeNotasMousePressed
 
     private void jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MousePressed
-    x = evt.getX();
-    y = evt.getY();
+        x = evt.getX();
+        y = evt.getY();
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void jLabel7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseDragged
-    Point point = MouseInfo.getPointerInfo().getLocation();
-    setLocation(point.x - x, point.y - y);
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel7MouseDragged
 
     public static void main(String args[]) {
