@@ -299,12 +299,21 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("NOMBRE:");
 
+        txtDireccion1.setEditable(false);
+
+        txtCorreo1.setEditable(false);
+
+        txtRuc1.setEditable(false);
+
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("RUC :");
+
+        txtNombre1.setEditable(false);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("REPRESENTANTE:");
 
+        txtRepresentante.setEditable(false);
         txtRepresentante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtRepresentanteKeyReleased(evt);
@@ -314,6 +323,8 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("TIPO:");
 
+        txtTipo1.setEditable(false);
+
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("CODIGO:");
 
@@ -321,6 +332,8 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("TELEFONO:");
+
+        txtTelefono1.setEditable(false);
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -754,23 +767,6 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
 
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
 
-        int i = 0;
-
-        if (evt.getClickCount() == 2) {
-            i = tbaListaFaltantes.getSelectedRow();
-            objetop = devuelveObjeto(lista3.get(i).getId_precio().toString(), lista3);
-
-            if (objetop != null) {
-                EditarProductoNota Man = new EditarProductoNota(new javax.swing.JFrame(), true, objetop);
-                Man.setVisible(true);
-                lista3.clear();
-                lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
-                Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
-                Total();
-                TotalIVA();
-                TotalDescuento();
-            }
-        }
     }//GEN-LAST:event_tbaListaFaltantesMousePressed
 
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
