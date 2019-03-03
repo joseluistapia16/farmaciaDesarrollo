@@ -220,6 +220,7 @@ public class ComprasEfectuadas extends javax.swing.JDialog {
                 break;
             }
         }
+        
         return objeto1;
 
     }
