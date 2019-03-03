@@ -251,7 +251,7 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel7.setForeground(java.awt.Color.white);
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("REGISTROS DE NOTAS DE PEDIDOS");
+        jLabel7.setText("DETALLE COMPRAS EFECTUADAS");
         jLabel7.setOpaque(true);
         jLabel7.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
