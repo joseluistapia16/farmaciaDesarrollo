@@ -60,7 +60,7 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
 
     }
 
-    public VistaCompraEfectuada(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1,int vari) {
+    public VistaCompraEfectuada(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1, int vari) {
 //        super(parent, modal);
 //
 //        setUndecorated(true);
@@ -82,10 +82,10 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         TotalIVA();
         TotalDescuento();
         Total();
-        
-        variableCerrar=vari;
+
+        variableCerrar = vari;
     }
-    
+
     private void llenarFormulario(JoinListarNotaPedidosCabecera obj) {
         txtCodigoProveedor.setText(obj.getId_proveedor().toString());
         txtNombre1.setText(obj.getEntidad());
@@ -682,20 +682,18 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
-            if(variableCerrar==1){
-            this.setVisible(false);
+            if (variableCerrar == 1) {
+                this.setVisible(false);
             }
-            if(variableCerrar!=1){
-            setVisible(false);
-            MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
-            Man.setVisible(true);
+            if (variableCerrar != 1) {
+                setVisible(false);
             }
         } else {
 
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
-   public void actualizarTabla2() {
+    public void actualizarTabla2() {
         String id = txtNumero.getText().toString();
         lista3.clear();
         lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
@@ -725,7 +723,9 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         }
         return objeto1;
 
-    }    public JoinListarDetalleNotaPedido devuelveObjeto(String datos, ArrayList<JoinListarDetalleNotaPedido> listarobj) {
+    }
+
+    public JoinListarDetalleNotaPedido devuelveObjeto(String datos, ArrayList<JoinListarDetalleNotaPedido> listarobj) {
         JoinListarDetalleNotaPedido objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
             if (datos.equals(listarobj.get(i).getId_precio().toString())) {
@@ -770,8 +770,8 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
     }//GEN-LAST:event_tbaListaFaltantesMousePressed
 
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
-        x=evt.getX();
-        y=evt.getY();
+        x = evt.getX();
+        y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
