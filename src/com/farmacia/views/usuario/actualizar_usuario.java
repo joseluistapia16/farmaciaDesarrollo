@@ -63,6 +63,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
 //        cbRol.setModel(Formulario.listarComboRol(lista2));
 //        cbEstado.setModel(Formulario.listarComboEstado(lista3));
         txtId.setEnabled(false);
+        bloqueo(false);
     }
     
     public void combos(Listar_usuario obj){
@@ -95,6 +96,26 @@ public class actualizar_usuario extends javax.swing.JDialog {
         txtConven.setText(obj1.getConvencional());
         getPicture2(obj1.getRuta_imagen());
     }
+    
+    public void bloqueo(boolean opc){
+        txtApellido.setEnabled(opc);
+        txtCedula.setEnabled(opc);
+        txtCell.setEnabled(opc);
+        txtConPass.setEnabled(opc);
+        txtConven.setEnabled(opc);
+        txtCorreo.setEnabled(opc);
+        txtDireccion.setEnabled(opc);
+        txtNombre.setEnabled(opc);
+        txtObservacion.setEnabled(opc);
+        txtPass.setEnabled(opc);
+        cbEstado.setEnabled(opc);
+        cbGenero.setEnabled(opc);
+        cbRol.setEnabled(opc);
+        lbImagen.setEnabled(opc);
+        btnGuardar.setEnabled(opc);
+        btnImagen.setEnabled(opc);
+        btnLimpiarImg.setEnabled(opc);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,8 +129,8 @@ public class actualizar_usuario extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         lbImagen = new javax.swing.JLabel();
-        BotonSinImagen = new javax.swing.JButton();
-        BotonImagen = new javax.swing.JButton();
+        btnLimpiarImg = new javax.swing.JButton();
+        btnImagen = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -143,9 +164,9 @@ public class actualizar_usuario extends javax.swing.JDialog {
         txtPass = new javax.swing.JTextField();
         txtConPass = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        tbnHabilitar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnHabilitar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -155,26 +176,26 @@ public class actualizar_usuario extends javax.swing.JDialog {
 
         lbImagen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        BotonSinImagen.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        BotonSinImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/salir1.png"))); // NOI18N
-        BotonSinImagen.setText("LIMPIAR");
-        BotonSinImagen.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiarImg.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnLimpiarImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/salir1.png"))); // NOI18N
+        btnLimpiarImg.setText("LIMPIAR");
+        btnLimpiarImg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSinImagenActionPerformed(evt);
+                btnLimpiarImgActionPerformed(evt);
             }
         });
 
-        BotonImagen.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        BotonImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/agregarCliente.png"))); // NOI18N
-        BotonImagen.setText("IMAGEN");
-        BotonImagen.addActionListener(new java.awt.event.ActionListener() {
+        btnImagen.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/agregarCliente.png"))); // NOI18N
+        btnImagen.setText("IMAGEN");
+        btnImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonImagenActionPerformed(evt);
+                btnImagenActionPerformed(evt);
             }
         });
-        BotonImagen.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnImagen.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                BotonImagenKeyPressed(evt);
+                btnImagenKeyPressed(evt);
             }
         });
 
@@ -185,8 +206,8 @@ public class actualizar_usuario extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BotonImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonSinImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiarImg, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
@@ -199,9 +220,9 @@ public class actualizar_usuario extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lbImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(BotonImagen)
+                .addComponent(btnImagen)
                 .addGap(30, 30, 30)
-                .addComponent(BotonSinImagen)
+                .addComponent(btnLimpiarImg)
                 .addContainerGap())
         );
 
@@ -394,30 +415,30 @@ public class actualizar_usuario extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel11.setText("Datos personales");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/eliminar1.png"))); // NOI18N
-        jButton3.setText("SALIR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/eliminar1.png"))); // NOI18N
+        btnSalir.setText("SALIR");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/guardar.jpg"))); // NOI18N
-        jButton1.setText("ACTUALIZAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/guardar.jpg"))); // NOI18N
+        btnGuardar.setText("ACTUALIZAR");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
-        tbnHabilitar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tbnHabilitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/Activar.png"))); // NOI18N
-        tbnHabilitar.setText("HABILITAR");
-        tbnHabilitar.addActionListener(new java.awt.event.ActionListener() {
+        btnHabilitar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnHabilitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/Activar.png"))); // NOI18N
+        btnHabilitar.setText("HABILITAR");
+        btnHabilitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbnHabilitarActionPerformed(evt);
+                btnHabilitarActionPerformed(evt);
             }
         });
 
@@ -437,11 +458,11 @@ public class actualizar_usuario extends javax.swing.JDialog {
                 .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tbnHabilitar)
+                .addComponent(btnHabilitar)
                 .addGap(79, 79, 79)
-                .addComponent(jButton1)
+                .addComponent(btnGuardar)
                 .addGap(97, 97, 97)
-                .addComponent(jButton3)
+                .addComponent(btnSalir)
                 .addGap(172, 172, 172))
         );
         jPanel2Layout.setVerticalGroup(
@@ -458,9 +479,9 @@ public class actualizar_usuario extends javax.swing.JDialog {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tbnHabilitar))
+                    .addComponent(btnGuardar)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHabilitar))
                 .addGap(26, 26, 26))
         );
 
@@ -478,23 +499,23 @@ public class actualizar_usuario extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BotonSinImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSinImagenActionPerformed
+    private void btnLimpiarImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarImgActionPerformed
         VaciarImagen();
-    }//GEN-LAST:event_BotonSinImagenActionPerformed
+    }//GEN-LAST:event_btnLimpiarImgActionPerformed
 
-    private void BotonImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonImagenActionPerformed
+    private void btnImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenActionPerformed
         String pass = "";
         getPicture(pass);
-    }//GEN-LAST:event_BotonImagenActionPerformed
+    }//GEN-LAST:event_btnImagenActionPerformed
     
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         Guardar();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
         txtNombre.setText(txtNombre.getText().toUpperCase());
@@ -587,15 +608,15 @@ public class actualizar_usuario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtObservacionKeyPressed
 
-    private void BotonImagenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BotonImagenKeyPressed
+    private void btnImagenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnImagenKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Guardar();
         }
-    }//GEN-LAST:event_BotonImagenKeyPressed
+    }//GEN-LAST:event_btnImagenKeyPressed
 
-    private void tbnHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnHabilitarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbnHabilitarActionPerformed
+    private void btnHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilitarActionPerformed
+        bloqueo(true);
+    }//GEN-LAST:event_btnHabilitarActionPerformed
 
     public void VaciarImagen() {
         // String fil = "\\G:\\sin-imagen.png";
@@ -649,9 +670,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
         }else if (txtCell.getText().length() < 9) {
             JOptionPane.showMessageDialog(null, "Ingrese un número de contacto válido ");
         }else if (txtCell.getText().length() > 12) {
-            JOptionPane.showMessageDialog(null, "Exede la cantidad de numeros válidos permitidos ");
-        }else if (txtConven.getText().length() < 11) {
-            JOptionPane.showMessageDialog(null, "Exede la cantidad de numeros válidos permitidos");
+            JOptionPane.showMessageDialog(null, "Exede la cantidad de números para un celular");
         }else if (txtCorreo.getText().length() < 5) {
             JOptionPane.showMessageDialog(null, "Ingrese un correo válido ");
         }else if (txtDireccion.getText().length() < 4) {
@@ -660,20 +679,55 @@ public class actualizar_usuario extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Ingrese una observación válida ");
         }else if (txtPass.getText().length() < 6) {
             JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 6 caracteres");
-        }else if (txtPass.getText() != txtConPass.getText()) {
+        }else if (!txtPass.getText().equals(txtConPass.getText())) {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+        }else if (cbEstado.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un estado válido");
+        }else if (cbGenero.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un género válido");
+        }else if (cbRol.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un rol válido");
         }else {
             int r = JOptionPane.showConfirmDialog(null, "¿Está seguro de actualizar", "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
+            
             Usuario_S obj = new Usuario_S();
+            
+            obj.setApellido(obj1.getApellidos());
+            obj.setCargo(obj1.getCargo());
+            obj.setCedula(obj1.getCedula());
+            obj.setConvencional(obj1.getConvencional());
+            obj.setCorreo(obj1.getCorreo());
+            obj.setDireccion(obj1.getDireccion());
+            obj.setEstado(obj1.getEstado());
+            obj.setFecha_registro(obj1.getFecha_registro());
+            obj.setGenero(obj1.getGenero());
+            obj.setId_sesion(obj1.getId_sesion());
+            obj.setNombre(obj1.getNombres());
+            obj.setTelefono(obj1.getTelefono());
+            obj.setIp_equipo(Operaciones.getIpDispositivo());
+//            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
+            obj.setDir_ip_completa(Operaciones.getIpLocalCompleta());
+            obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
+            obj.setObservacion(obj.getObservacion());
+            
+            try {
+                crud.Respaldo_usuario(obj);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
+            
+//            System.out.println("apellido prueba:"+obj1.getApellidos());
+            
+            
             obj.setCedula(txtCedula.getText());
             obj.setNombre(txtNombre.getText());
             obj.setApellido(txtApellido.getText());
             obj.setTelefono(txtCell.getText());
             obj.setRuta_imagen(imagen);
             obj.setGenero(cbGenero.getSelectedItem().toString());
-            obj.setCargo(cbGenero.getSelectedItem().toString());
+            obj.setCargo(cbRol.getSelectedItem().toString());
             obj.setConvencional(txtConven.getText());
             obj.setCorreo(txtCorreo.getText());
             obj.setDireccion(txtDireccion.getText());
@@ -683,6 +737,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
             obj.setDir_ip_completa(Operaciones.getIpLocalCompleta());
             obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
             obj.setPassword(txtPass.getText());
+            obj.setEstado(cbEstado.getSelectedItem().toString());
             obj.setId_sesion(Long.valueOf(txtId.getText()));
             try {
             String a =  crud.Actualizar_usuario(obj);
@@ -690,6 +745,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e);
             }
+            setVisible(false);
         }
             
         }
@@ -745,13 +801,14 @@ public class actualizar_usuario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonImagen;
-    private javax.swing.JButton BotonSinImagen;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnHabilitar;
+    private javax.swing.JButton btnImagen;
+    private javax.swing.JButton btnLimpiarImg;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cbEstado;
     private javax.swing.JComboBox<String> cbGenero;
     private javax.swing.JComboBox<String> cbRol;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -774,7 +831,6 @@ public class actualizar_usuario extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbImagen;
-    private javax.swing.JButton tbnHabilitar;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCell;
