@@ -1,4 +1,4 @@
-package com.farmacia.views.compras;
+package com.farmacia.views.devoluciones;
 
 import com.farmacia.views.pedidos.*;
 import com.farmacia.conponentes.Tablas;

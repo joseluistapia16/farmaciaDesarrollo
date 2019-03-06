@@ -1,4 +1,4 @@
-package com.farmacia.views.compras;
+package com.farmacia.views.devoluciones;
 
 import com.farmacia.views.pedidos.*;
 import com.farmacia.conponentes.Tablas;
@@ -725,12 +725,17 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
 
     }
 
-    public JoinListarDetalleNotaPedido devuelveObjeto(String datos, ArrayList<JoinListarDetalleNotaPedido> listarobj) {
+    public JoinListarDetalleNotaPedido devuelveObjeto(String codPro, String total, String iva, ArrayList<JoinListarDetalleNotaPedido> listarobj) {
         JoinListarDetalleNotaPedido objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_precio().toString())) {
-                objeto1 = listarobj.get(i);
-                break;
+            if (codPro.equals(listarobj.get(i).getId_producto().toString())) {
+                if (total.equals(listarobj.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString())) {
+                    if (iva.equals(listarobj.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString())) {
+                        objeto1 = listarobj.get(i);
+                        break;
+                    }
+                }
+
             }
         }
         return objeto1;
@@ -766,7 +771,40 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
-
+        try {
+            int i = 0;
+            if (evt.getClickCount() == 2) {
+                i = tbaListaFaltantes.getSelectedRow();
+                // lista = crud.listarCabeceraNotaPedidoEnCompras(3);
+                objetop = devuelveObjeto(tbaListaFaltantes.getValueAt(i, 0).toString(), tbaListaFaltantes.getValueAt(i, 11).toString(), tbaListaFaltantes.getValueAt(i, 10).toString(), lista3);
+                if (objetop != null) {
+                    int seleccion = JOptionPane.showOptionDialog(null, "Seleccione una opcion",
+                            "Selector de opciones", JOptionPane.YES_NO_CANCEL_OPTION,
+                            JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+                            new Object[]{"opcion 1", "opcion 2", "opcion 3"}, "opcion 1");
+                    System.out.println(seleccion);
+                    switch (seleccion) {
+                        case 0:
+                            System.out.println("0");
+                            break;
+                        case 1:
+                            System.out.println("1");
+                            break;
+                        case 2:
+                            System.out.println("2");
+                            break;
+                        case -1:
+                            System.out.println("lala");
+                            break;
+                        default:
+                            System.out.println("error");
+                            break;
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(VistaCompraEfectuada.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tbaListaFaltantesMousePressed
 
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
