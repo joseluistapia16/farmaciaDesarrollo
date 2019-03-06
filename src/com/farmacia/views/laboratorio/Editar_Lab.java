@@ -19,6 +19,8 @@ import com.farmacia.validaciones.Validacion;
 import java.awt.Dimension;
 //import static com.objetos.views.Consulta_Lab.listar;
 import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -41,7 +43,7 @@ import net.sf.jasperreports.view.JRViewer;
  * @author alumno
  */
 public class Editar_Lab extends javax.swing.JDialog {
-
+    int x,y;
     private String rutaimagen = "";
     private Date fecha1 = null;
     ArrayList<Laboratorio> lista = null;
@@ -243,7 +245,7 @@ public class Editar_Lab extends javax.swing.JDialog {
 
         BotonSinImagen.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         BotonSinImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/sinimagen1.jpeg"))); // NOI18N
-        BotonSinImagen.setText("BORRAR");
+        BotonSinImagen.setText("VACIAR IMAGEN");
         BotonSinImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonSinImagenActionPerformed(evt);
@@ -282,8 +284,8 @@ public class Editar_Lab extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(BotonSinImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(BotonSinImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BotonImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -331,6 +333,16 @@ public class Editar_Lab extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LABORATORIO");
         jLabel1.setOpaque(true);
+        jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel1MouseDragged(evt);
+            }
+        });
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel1MousePressed(evt);
+            }
+        });
 
         BotonGuardar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         BotonGuardar.setForeground(new java.awt.Color(0, 102, 0));
@@ -388,7 +400,7 @@ public class Editar_Lab extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -531,6 +543,16 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
             Logger.getLogger(Editar_Lab.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ReporteActionPerformed
+
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jLabel1MousePressed
+
+    private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_jLabel1MouseDragged
 
     public void Eliminar() {
 

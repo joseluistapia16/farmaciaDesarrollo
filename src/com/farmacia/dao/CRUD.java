@@ -31,6 +31,7 @@ import com.farmacia.entities1.Nombre_local;
 import com.farmacia.entities1.Obcx;
 import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.Precios;
+import com.farmacia.entities1.Productos_Stock;
 import com.farmacia.entities1.Punto_venta;
 import com.farmacia.entities1.Rol;
 import com.farmacia.entities1.Rol_U;
@@ -3539,5 +3540,39 @@ public class CRUD {
             }
         }
         return valor;
+    }
+    public ArrayList<Productos_Stock> listarStockProducto(int op) {
+        ArrayList<Productos_Stock> lista = new ArrayList<Productos_Stock>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{call listarProductosStock(?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+       
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                Productos_Stock obj = EntidadesMappers.getStockProductosFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+
     }
 }

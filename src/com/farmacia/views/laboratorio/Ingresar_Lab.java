@@ -16,6 +16,8 @@ import com.farmacia.entities1.Laboratorio;
 import com.farmacia.fecha.Fecha;
 import com.farmacia.validaciones.Validacion;
 import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -28,7 +30,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author alumno
  */
 public class Ingresar_Lab extends javax.swing.JDialog {
-
+    int x,y;
     private String rutaimagen = "", msge = "";
     private Date fecha1 = null;
     ArrayList<Laboratorio> lista = null;
@@ -60,6 +62,7 @@ public class Ingresar_Lab extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -87,10 +90,11 @@ public class Ingresar_Lab extends javax.swing.JDialog {
         jButton5.setText("Salir");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 102), 1, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 2, true));
 
         fecha.setEditable(false);
         fecha.addActionListener(new java.awt.event.ActionListener() {
@@ -102,19 +106,19 @@ public class Ingresar_Lab extends javax.swing.JDialog {
         imagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(1, 1, 1), 2));
 
         jLabel2.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel2.setForeground(new java.awt.Color(1, 1, 1));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("RUC");
+        jLabel2.setText("RUC:");
 
         jLabel3.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel3.setForeground(new java.awt.Color(1, 1, 1));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Nombre");
+        jLabel3.setText("Nombre:");
 
         jLabel4.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel4.setForeground(new java.awt.Color(1, 1, 1));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Direccion");
+        jLabel4.setText("Direccion:");
 
         BotonFecha.setFont(new java.awt.Font("Bitstream Charter", 1, 18)); // NOI18N
         BotonFecha.setText("...");
@@ -125,13 +129,13 @@ public class Ingresar_Lab extends javax.swing.JDialog {
         });
 
         jLabel5.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel5.setForeground(new java.awt.Color(1, 1, 1));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Telefono");
+        jLabel5.setText("Telefono:");
 
         jLabel7.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel7.setText("Fecha");
+        jLabel7.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel7.setText("Fecha:");
 
         ruc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -155,8 +159,8 @@ public class Ingresar_Lab extends javax.swing.JDialog {
         });
 
         jLabel6.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel6.setText("E-mail");
+        jLabel6.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel6.setText("E-mail:");
 
         telefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,18 +189,18 @@ public class Ingresar_Lab extends javax.swing.JDialog {
             }
         });
 
-        BotonImagen.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        BotonImagen.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         BotonImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/imagen1.jpg"))); // NOI18N
-        BotonImagen.setText("Imagen");
+        BotonImagen.setText("AGREGAR IMAGEN");
         BotonImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonImagenActionPerformed(evt);
             }
         });
 
-        BotonSinImagen.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        BotonSinImagen.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         BotonSinImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/sinimagen1.jpeg"))); // NOI18N
-        BotonSinImagen.setText("Sin Imagen");
+        BotonSinImagen.setText("VACIAR IMAGEN");
         BotonSinImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonSinImagenActionPerformed(evt);
@@ -210,16 +214,13 @@ public class Ingresar_Lab extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,8 +239,8 @@ public class Ingresar_Lab extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BotonImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BotonSinImagen))
+                            .addComponent(BotonImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BotonSinImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(66, 66, 66))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -250,9 +251,9 @@ public class Ingresar_Lab extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotonImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BotonImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotonSinImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(BotonSinImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -288,6 +289,16 @@ public class Ingresar_Lab extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("NUEVO LABORATORIO");
         jLabel1.setOpaque(true);
+        jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel1MouseDragged(evt);
+            }
+        });
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel1MousePressed(evt);
+            }
+        });
 
         BotonGuardar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         BotonGuardar.setForeground(new java.awt.Color(0, 102, 0));
@@ -314,16 +325,15 @@ public class Ingresar_Lab extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(BotonGuardar)
-                        .addGap(47, 47, 47)
-                        .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 323, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(28, 28, 28))
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
+                .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(170, 170, 170))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,25 +341,19 @@ public class Ingresar_Lab extends javax.swing.JDialog {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43))
+                    .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(jPanel2, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -458,6 +462,16 @@ direccion.setText(direccion.getText().toUpperCase());
         // TODO add your handling code here:
     }//GEN-LAST:event_correoActionPerformed
 
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jLabel1MousePressed
+
+    private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_jLabel1MouseDragged
+
     public void Habilitar(boolean valor) {
 
         nombre.setEnabled(valor);
@@ -478,7 +492,7 @@ direccion.setText(direccion.getText().toUpperCase());
         ImageIcon icon = new ImageIcon(fil);
         Image img = icon.getImage();
         System.out.println(fil + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
-        Image newimg = img.getScaledInstance(259, 221, java.awt.Image.SCALE_SMOOTH);
+        Image newimg = img.getScaledInstance(223, 172, java.awt.Image.SCALE_SMOOTH);
         ImageIcon newIcono = new ImageIcon(newimg);
         imagen.setIcon(newIcono);
         rutaimagen = fil;
@@ -494,7 +508,7 @@ direccion.setText(direccion.getText().toUpperCase());
             imagen.setIcon(new ImageIcon(fil));
             ImageIcon icon = new ImageIcon(fil);
             Image img = icon.getImage();
-            Image newimg = img.getScaledInstance(259, 221, java.awt.Image.SCALE_SMOOTH);
+            Image newimg = img.getScaledInstance(223, 172, java.awt.Image.SCALE_SMOOTH);
             ImageIcon newIcono = new ImageIcon(newimg);
             imagen.setIcon(newIcono);
             rutaimagen = dig.getSelectedFile().getPath();

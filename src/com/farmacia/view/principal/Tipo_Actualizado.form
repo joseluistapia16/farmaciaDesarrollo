@@ -45,7 +45,7 @@
                   <Component id="eliminar_bt" min="-2" pref="85" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="salir_btn" min="-2" pref="91" max="-2" attributes="0"/>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
@@ -90,7 +90,7 @@
               <Color blue="fe" green="fe" red="fe" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="ACTUALIZAR TIPO DE PRODUCTO"/>
+            <Property name="text" type="java.lang.String" value="TIPO DE PRODUCTO"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
