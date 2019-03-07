@@ -4,7 +4,9 @@ import com.farmacia.views.pedidos.*;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.CabeceraNotaPedido;
+import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.entities1.Detalle_compra;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
@@ -784,17 +786,25 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
                     int seleccion = JOptionPane.showOptionDialog(null, "Seleccione una opcion",
                             "Selector de opciones", JOptionPane.YES_NO_CANCEL_OPTION,
                             JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
-                            new Object[]{"opcion 1", "opcion 2", "opcion 3"}, "opcion 1");
+                            new Object[]{"Devolver", "Modificar"}, "opcion 1");
                     System.out.println(seleccion);
                     switch (seleccion) {
-                        case 0:
-                            System.out.println("0");
+                        case 0://eliminar
+
                             break;
-                        case 1:
-                            System.out.println("1");
-                            break;
-                        case 2:
-                            System.out.println("2");
+                        case 1://modificar
+                            EditarProductoCompra1 Man = new EditarProductoCompra1(new javax.swing.JFrame(), true, objetop);
+                            Man.setVisible(true);
+                            actualizarTabla2();
+                            if("2".equals(Man.getop())){
+                            Cabecera_compra cn = new Cabecera_compra();
+                            cn.setIva(VGiva);
+                            cn.setDescuento(VGdescuento);
+                            cn.setTotal(VGtotal);
+                            cn.setId_cabecera_compra(Long.valueOf(Man.getIdcomp()));
+                            cn.setIdcabecerapedido(Long.valueOf(txtNumero.getText()));
+                            crud.edicionCompra(cn);
+                            }else{}
                             break;
                         case -1:
                             System.out.println("lala");

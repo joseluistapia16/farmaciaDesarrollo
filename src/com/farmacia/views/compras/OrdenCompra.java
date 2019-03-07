@@ -757,9 +757,9 @@ public static String FechaActual() {
             cc.setPlazo(cbxPlazo.getSelectedItem().toString());
             cc.setId_sucursal(Long.valueOf("2"));
             cc.setId_tipoPago(cbxFormaP.getSelectedItem().toString());
-            cc.setIva(BigDecimal.valueOf(Double.parseDouble(txtIva.getText())));
-            cc.setDescuento(BigDecimal.valueOf(Double.parseDouble(txtDescuento.getText())));
-            cc.setTotal(BigDecimal.valueOf(Double.parseDouble(txtTotal.getText())));
+            cc.setIva(VGiva);
+            cc.setDescuento(VGdescuento);
+            cc.setTotal(VGtotal);
             cc.setIdcabecerapedido(Long.valueOf(txt_Numero.getText()));
             id_cab = crud.insertarCabeceraCompras(cc);
 
@@ -862,7 +862,7 @@ public static String FechaActual() {
                     btnSalir2.setEnabled(false);
                 }
             } else {
-                EditarProductoEnCompras epc = new EditarProductoEnCompras(new javax.swing.JFrame(), true, detalle);
+                EditarProductoEnCompras1 epc = new EditarProductoEnCompras1(new javax.swing.JFrame(), true, detalle);
                 epc.setVisible(true);
                 actualizarTabla2();
             }
