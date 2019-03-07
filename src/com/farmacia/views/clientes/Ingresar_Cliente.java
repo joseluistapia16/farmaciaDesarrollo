@@ -291,7 +291,7 @@ public class Ingresar_Cliente extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(113, 113, 113)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)

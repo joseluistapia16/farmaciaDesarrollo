@@ -99,7 +99,9 @@ public class CabeceraCompra extends javax.swing.JDialog {
             }
         });
 
+        btnSalir2.setBackground(new java.awt.Color(153, 0, 0));
         btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        btnSalir2.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,9 +180,9 @@ public class CabeceraCompra extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 198, Short.MAX_VALUE)
                         .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(165, 165, 165)
+                        .addGap(171, 171, 171)
                         .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(206, 206, 206))))
+                        .addGap(200, 200, 200))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(274, 274, 274)
                 .addComponent(jLabel2)
