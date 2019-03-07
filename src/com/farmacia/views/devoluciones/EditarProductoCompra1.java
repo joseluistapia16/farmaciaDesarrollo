@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.farmacia.views.pedidos;
+package com.farmacia.views.devoluciones;
 
+import com.farmacia.views.compras.*;
+import com.farmacia.views.pedidos.*;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
@@ -31,7 +33,7 @@ import java.awt.Dimension;
  *
  * @author Usuario
  */
-public class EditarProductoNota extends javax.swing.JDialog {
+public class EditarProductoCompra1 extends javax.swing.JDialog {
 
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -41,16 +43,16 @@ public class EditarProductoNota extends javax.swing.JDialog {
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     CRUD crud = new CRUD();
-
+    String idComp="", op="";
     /**
      * Creates new form EditarProductoNota
      */
-    public EditarProductoNota(java.awt.Frame parent, boolean modal) {
+    public EditarProductoCompra1(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    public EditarProductoNota(java.awt.Frame parent, boolean modal, JoinListarDetalleNotaPedido obj1) {
+    public EditarProductoCompra1(java.awt.Frame parent, boolean modal, JoinListarDetalleNotaPedido obj1) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
@@ -59,6 +61,8 @@ public class EditarProductoNota extends javax.swing.JDialog {
         obj2 = obj1;
         btnEditar.setEnabled(false);
         ValorDescuento();
+        idComp=buscarID();
+        System.out.println("id com"+obj2.getId_cabecera_nota_pedido());
     }
 
     /**
@@ -691,6 +695,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Actualizar?", "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
+           // String id = buscarID();
             Guardar();
             //JOptionPane.showMessageDialog(null, "Actualizado");
             setVisible(false);
@@ -699,21 +704,43 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_btnEditarActionPerformed
+    public String buscarID(){
+        String id="";
+        id=crud.buscarIDDetallesCompras(obj2);
+        System.out.println("id cabe"+id);
+        return id;
+    }
+    public String getIdcomp(){
+        return idComp;
+    }
+    public String getop(){
+        return op;
+    }
     private void Guardar() {
         int Cantidad = Integer.parseInt(txtcantidad.getText());
         int Bono = Integer.parseInt(txtBono.getText());
         int CantidadTotal = Cantidad;
-
-           DetalleNotaPedido obj = new DetalleNotaPedido();
+        //String idComp =crud.buscarIDCabeceraCompras(obj2);
+        
+        DetalleNotaPedido obj = new DetalleNotaPedido();
         obj.setCantidad(CantidadTotal);
         obj.setBono(Integer.parseInt(txtBono.getText()));
         obj.setDescuento(VGdescuento);
         obj.setIva(BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(obj2.getIva().setScale(7, BigDecimal.ROUND_HALF_UP).toString()))));
         obj.setTotal(VGtotal);
         obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedido());
-
-        String valor = crud.ActualizarNotaPedidos(obj);
+        obj.setIdCompra(Integer.valueOf(idComp));
+        obj.setId_precio(obj2.getId_precio());
+        obj.setCantAnt(obj2.getCantidad());
+        String valor = crud.ActualizarTodoCompras(obj);
+        if("Detalles Actualizado".equals(valor)){
         JOptionPane.showMessageDialog(this, valor);
+        op="2";
+        }else{
+        op="1";
+        }
+        
+        
     }
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar?", "", JOptionPane.YES_NO_OPTION);
@@ -752,8 +779,11 @@ public class EditarProductoNota extends javax.swing.JDialog {
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
         } catch (JRException ex) {
-            Logger.getLogger(EditarProductoNota.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditarProductoCompra1.class.getName()).log(Level.SEVERE, null, ex);
         }
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        // TODO add your handling code here:
         // TODO add your handling code here:
     }//GEN-LAST:event_ReporteActionPerformed
 
@@ -785,6 +815,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         marca.setText(obj.getMarca());
         txtEnvase3.setText(obj.getEnvase());
         txtTipo.setText(obj.getTipo());
+        VGiva=BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(obj.getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString())));
         txtIva.setText(removeScientificNotation(obj.getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
         txtDescuento.setText(removeScientificNotation(obj.getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
         txtPrecio.setText(removeScientificNotation(obj.getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
@@ -832,20 +863,23 @@ public class EditarProductoNota extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditarProductoNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarProductoCompra1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditarProductoNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarProductoCompra1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditarProductoNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarProductoCompra1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditarProductoNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarProductoCompra1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EditarProductoNota dialog = new EditarProductoNota(new javax.swing.JFrame(), true);
+                EditarProductoCompra1 dialog = new EditarProductoCompra1(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

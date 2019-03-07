@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.farmacia.views.pedidos;
+package com.farmacia.views.compras;
 
+import com.farmacia.views.pedidos.*;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
@@ -31,7 +32,7 @@ import java.awt.Dimension;
  *
  * @author Usuario
  */
-public class EditarProductoNota extends javax.swing.JDialog {
+public class EditarProductoEnCompras1 extends javax.swing.JDialog {
 
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -45,12 +46,12 @@ public class EditarProductoNota extends javax.swing.JDialog {
     /**
      * Creates new form EditarProductoNota
      */
-    public EditarProductoNota(java.awt.Frame parent, boolean modal) {
+    public EditarProductoEnCompras1(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    public EditarProductoNota(java.awt.Frame parent, boolean modal, JoinListarDetalleNotaPedido obj1) {
+    public EditarProductoEnCompras1(java.awt.Frame parent, boolean modal, JoinListarDetalleNotaPedido obj1) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
@@ -704,7 +705,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         int Bono = Integer.parseInt(txtBono.getText());
         int CantidadTotal = Cantidad;
 
-           DetalleNotaPedido obj = new DetalleNotaPedido();
+        DetalleNotaPedido obj = new DetalleNotaPedido();
         obj.setCantidad(CantidadTotal);
         obj.setBono(Integer.parseInt(txtBono.getText()));
         obj.setDescuento(VGdescuento);
@@ -752,8 +753,9 @@ public class EditarProductoNota extends javax.swing.JDialog {
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
         } catch (JRException ex) {
-            Logger.getLogger(EditarProductoNota.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditarProductoEnCompras1.class.getName()).log(Level.SEVERE, null, ex);
         }
+        // TODO add your handling code here:
         // TODO add your handling code here:
     }//GEN-LAST:event_ReporteActionPerformed
 
@@ -832,20 +834,21 @@ public class EditarProductoNota extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditarProductoNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarProductoEnCompras1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditarProductoNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarProductoEnCompras1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditarProductoNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarProductoEnCompras1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditarProductoNota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarProductoEnCompras1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EditarProductoNota dialog = new EditarProductoNota(new javax.swing.JFrame(), true);
+                EditarProductoEnCompras1 dialog = new EditarProductoEnCompras1(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

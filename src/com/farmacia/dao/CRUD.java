@@ -210,6 +210,7 @@ public class CRUD {
         }
 
     }
+
     public void UpdateCantidadFaltantes(String queryL) {
         try {
             conect = con.conectar();
@@ -3003,7 +3004,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call ActualizarDetalleNotaPedido(?,?,?,?,?,?,?)}");
+                    "{ call ActualizarDetalleNotaPedido(?,?,?,?,?,?,?)}");//ll
             pro.setLong(1, dnp.getId_detalle_nota_pedidos());
             pro.setInt(2, dnp.getCantidad());
             pro.setBigDecimal(3, dnp.getDescuento());
@@ -3457,7 +3458,8 @@ public class CRUD {
         return valor;
 
     }
-        public String insertarDetalleProductoCompra(Detalle_compra obj) {
+
+    public String insertarDetalleProductoCompra(Detalle_compra obj) {
         String valor = "";
         try {
             conect = con.conectar();
@@ -3498,6 +3500,7 @@ public class CRUD {
         }
         return valor;
     }
+
     public ArrayList<Productos_Stock> listarStockProducto(int op) {
         ArrayList<Productos_Stock> lista = new ArrayList<Productos_Stock>();
 
@@ -3507,7 +3510,7 @@ public class CRUD {
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
                     "{call listarProductosStock(?)}");
             prcProcedimientoAlmacenado.setInt(1, op);
-       
+
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
@@ -3531,5 +3534,113 @@ public class CRUD {
         }
         return lista;
 
+    }
+
+    public String edicionCompra(Cabecera_compra cc) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call edicionCompra(?,?,?,?,?,?)}");
+            pro.setBigDecimal(1, cc.getIva());
+            pro.setBigDecimal(2, cc.getDescuento());
+            pro.setBigDecimal(3, cc.getTotal());
+            pro.setLong(4, cc.getIdcabecerapedido());
+            pro.setLong(5, cc.getId_cabecera_compra());
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+
+    public String buscarIDDetallesCompras(JoinListarDetalleNotaPedido obj) {
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call buscarIDDetalleCompras(?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_cabecera_nota_pedido());
+            prodProAlm.setBigDecimal(2, obj.getDescuento());
+            prodProAlm.setBigDecimal(3, obj.getIva());
+            prodProAlm.setBigDecimal(4, obj.getTotal());
+            prodProAlm.setLong(5, obj.getBono());
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
+
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+
+    public String ActualizarTodoCompras(DetalleNotaPedido dnp) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call ActualizarDetalleCompras(?,?,?,?,?,?,?,?,?,?)}");//ll
+            pro.setLong(1, dnp.getId_detalle_nota_pedidos());
+            pro.setInt(2, dnp.getCantidad());
+            pro.setBigDecimal(3, dnp.getDescuento());
+            pro.setBigDecimal(4, dnp.getIva());
+            pro.setBigDecimal(5, dnp.getTotal());
+            pro.setInt(6, dnp.getBono());
+            pro.setInt(7,dnp.getIdCompra());
+            pro.setLong(8, dnp.getId_precio());
+            pro.setLong(9, dnp.getCantAnt());
+            
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return valor;
+        
     }
 }
