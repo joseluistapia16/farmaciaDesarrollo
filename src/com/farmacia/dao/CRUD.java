@@ -2563,7 +2563,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call fc_actualizar_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                    "{ call fc_actualizar_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             pro.setString(1, us.getCedula());
             pro.setString(2, us.getNombre());
             pro.setString(3, us.getApellido());
@@ -2580,10 +2580,53 @@ public class CRUD {
             pro.setString(14, us.getCargo());
             pro.setString(15, us.getPassword());
             pro.setLong(16, us.getId_sesion());
+            pro.setString(17, us.getEstado());
             pro.registerOutParameter("salida", Types.VARCHAR);
             pro.executeUpdate();
             //pro.execute();
             valor = pro.getString("salida");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
+    public String Respaldo_usuario(Usuario_S us) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call fc_respaldo_usuario(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            pro.setString(1, us.getCedula());
+            pro.setString(2, us.getNombre());
+            pro.setString(3, us.getApellido());
+            pro.setString(4, us.getTelefono());
+            pro.setString(5, us.getConvencional());
+            pro.setString(6, us.getCorreo());
+            pro.setString(7, us.getDireccion());
+            pro.setString(8, us.getIp_equipo());
+            pro.setString(9, us.getUsuario_equipo());
+            pro.setString(10, us.getDir_ip_completa());
+            pro.setString(11, us.getObservacion());
+            pro.setString(12, us.getGenero());
+            pro.setString(13, us.getCargo());
+            pro.setString(14, us.getEstado());
+            pro.setLong(15, us.getId_sesion());
+            pro.setString(16, us.getFecha_registro().toString());
+            pro.executeUpdate();
             conect.commit();
         } catch (Exception e) {
             try {

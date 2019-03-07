@@ -577,6 +577,10 @@ public class Registrar_usuario extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Ingrese una dirección válida ");
         }else if (txtObservacion.getText().length() < 4) {
             JOptionPane.showMessageDialog(null, "Ingrese una observación válida ");
+        }else if (cbGenero.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un género válido");
+        }else if (cbRol.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un rol válido");
         }else {
             Usuario_S obj = new Usuario_S();
             obj.setCedula(txtCedula.getText());
