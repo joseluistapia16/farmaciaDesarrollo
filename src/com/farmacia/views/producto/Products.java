@@ -14,6 +14,7 @@ import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.fecha.Fecha;
+import com.farmacia.validaciones.Validacion;
 import com.farmacia.views.compras.AgregarEnvase;
 import com.farmacia.views.compras.AgregarMarca;
 import com.farmacia.views.compras.AgregarMedida;
@@ -23,6 +24,7 @@ import com.farmacia.views.precios.Mantenimiento_Precios_Productos;
 
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,6 +35,7 @@ import javax.swing.JOptionPane;
  * @author guest-qzjm76
  */
 public class Products extends javax.swing.JDialog {
+
     int x, y;
     CRUD crud = new CRUD();
     ArrayList<TipoProducto> lista = crud.listarTodoTipoProductos1();
@@ -41,7 +44,7 @@ public class Products extends javax.swing.JDialog {
     ArrayList<MarcaProducto> listama = crud.listarTodoMarcaProductos();
     ArrayList<Iva> listaIva = crud.listarTodoIvaProducto();
     Long id_tipo, id_medida, id_envase, id_marca;
-    String error = "",IVA="",valorIDProd="";
+    String error = "", IVA = "", valorIDProd = "";
 
     public Products(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -56,10 +59,13 @@ public class Products extends javax.swing.JDialog {
         cbxIva.setModel(Formulario.listarComboIva(listaIva));
         txtFechaActual.setText(FechaActual());
         Habilitar(false);
+
     }
+
     public void Habilitar(boolean valor) {
         ingresoDePrecio.setEnabled(valor);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -187,6 +193,14 @@ public class Products extends javax.swing.JDialog {
         txtPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesoActionPerformed(evt);
+            }
+        });
+        txtPeso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPesoKeyTyped(evt);
             }
         });
 
@@ -432,45 +446,51 @@ public class Products extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-       String valor="";
-        if (!"".equals(seleccionId())) {
-            JOptionPane.showMessageDialog(this, error);
-
+        String valor = "";
+        if (cbxIva.getSelectedIndex() == 0) {
+           
+            JOptionPane.showMessageDialog(this, "Elija Iva");
+            getToolkit().beep();
         } else {
+            if (!"".equals(seleccionId())) {
+                JOptionPane.showMessageDialog(this, error);
 
-            Productos p = new Productos();
-            p.setNombre(nombre1.getText());
-            p.setDescripcion(txtDescripcion.getText());
-            p.setFecha_registro(Fecha.FechaSql());
-            p.setPeso(Double.parseDouble(txtPeso.getText()));
-            p.setId_tipo(id_tipo);
-            p.setId_medidas(id_medida);
-            p.setId_envase(id_envase);
-            p.setId_marcas(id_marca);
-            p.setId_usuario(Long.valueOf(id_usuario.getText()));
-            p.setIva(IVA);
-            p.setCantidad_minima(Long.valueOf(txtcantMinima.getText()));
-            valor = crud.insertarProductoNuevo(p);
-            JOptionPane.showMessageDialog(this, valor);
-            
-            Productos p2 = new Productos();
-            p2.setNombre(nombre1.getText());
-            p2.setDescripcion(txtDescripcion.getText());
-            p2.setFecha_registro(Fecha.FechaSql());
-            p2.setPeso(Double.parseDouble(txtPeso.getText()));
-            p2.setId_tipo(id_tipo);
-            p2.setId_medidas(id_medida);
-            p2.setId_envase(id_envase);
-            p2.setId_marcas(id_marca);
-            p2.setId_usuario(Long.valueOf(id_usuario.getText()));
-            p2.setIva(IVA);
-            p2.setCantidad_minima(Long.valueOf(txtcantMinima.getText()));
-            valorIDProd = crud.BuscarIDProductoNuevo(p2);
-            if(valorIDProd!=null){
-            Habilitar(true);
-            btnAgregar.setEnabled(false);
+            } else {
+
+                Productos p = new Productos();
+                p.setNombre(nombre1.getText());
+                p.setDescripcion(txtDescripcion.getText());
+                p.setFecha_registro(Fecha.FechaSql());
+                p.setPeso(Double.parseDouble(txtPeso.getText()));
+                p.setId_tipo(id_tipo);
+                p.setId_medidas(id_medida);
+                p.setId_envase(id_envase);
+                p.setId_marcas(id_marca);
+                p.setId_usuario(Long.valueOf(id_usuario.getText()));
+                p.setIva(IVA);
+                p.setCantidad_minima(Long.valueOf(txtcantMinima.getText()));
+                valor = crud.insertarProductoNuevo(p);
+                JOptionPane.showMessageDialog(this, valor);
+
+                Productos p2 = new Productos();
+                p2.setNombre(nombre1.getText());
+                p2.setDescripcion(txtDescripcion.getText());
+                p2.setFecha_registro(Fecha.FechaSql());
+                p2.setPeso(Double.parseDouble(txtPeso.getText()));
+                p2.setId_tipo(id_tipo);
+                p2.setId_medidas(id_medida);
+                p2.setId_envase(id_envase);
+                p2.setId_marcas(id_marca);
+                p2.setId_usuario(Long.valueOf(id_usuario.getText()));
+                p2.setIva(IVA);
+                p2.setCantidad_minima(Long.valueOf(txtcantMinima.getText()));
+                valorIDProd = crud.BuscarIDProductoNuevo(p2);
+                if (valorIDProd != null) {
+                    Habilitar(true);
+                    btnAgregar.setEnabled(false);
+                }
+                //setVisible(false);
             }
-            //setVisible(false);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -544,14 +564,14 @@ public class Products extends javax.swing.JDialog {
     }//GEN-LAST:event_id_usuarioActionPerformed
 
     private void cbxIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxIvaActionPerformed
-        IVA=cbxIva.getSelectedItem().toString();
-        System.out.println("iba: "+IVA);
+        IVA = cbxIva.getSelectedItem().toString();
+        System.out.println("iba: " + IVA);
     }//GEN-LAST:event_cbxIvaActionPerformed
 
     private void ingresoDePrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresoDePrecioActionPerformed
 //        Ingreso_de_Precios p = new Ingreso_de_Precios(new javax.swing.JFrame(), true,Long.valueOf(valorIDProd),nombre1.getText());
 //        p.setVisible(true);
-        Mantenimiento_Precios_Productos p =new Mantenimiento_Precios_Productos(new javax.swing.JFrame(), true,Long.valueOf(valorIDProd), nombre1.getText());
+        Mantenimiento_Precios_Productos p = new Mantenimiento_Precios_Productos(new javax.swing.JFrame(), true, Long.valueOf(valorIDProd), nombre1.getText());
         p.setVisible(true);
     }//GEN-LAST:event_ingresoDePrecioActionPerformed
 
@@ -567,13 +587,40 @@ public class Products extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel14MousePressed
 
+    private void txtPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoKeyTyped
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && txtPeso.getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPesoKeyTyped
+
+    private void txtPesoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoKeyReleased
+//        String[] v = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."};
+//        String cad = txtPeso.getText();
+//        for (int i = 0; i < cad.length(); i++) {
+//            if(){}
+//        }
+    }//GEN-LAST:event_txtPesoKeyReleased
+//    public void keyTyped(KeyEvent e) {
+//        char caracter = e.getKeyChar();
+//        String P = "..";
+//        if (txtPeso.getText() == "") {
+//            if (((caracter < '0') || (caracter > '9')) && (caracter != KeyEvent.VK_BACK_SPACE)
+//                    && (caracter != '.')) {
+//                e.consume();
+//            }
+//        }
+//    }
+
     private String seleccionId() {
         error = "";
-      
+
         if (nombre1.getText().length() < 5) {
             error = error + "\nNombre invalido!";
         }
-          if (txtDescripcion.getText().length() < 5) {
+        if (txtDescripcion.getText().length() < 5) {
             error = error + "\nDescripcion invalida!";
         }
         if (txtPeso.getText() == null || "".equals(txtPeso.getText())) {

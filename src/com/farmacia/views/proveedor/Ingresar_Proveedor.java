@@ -497,7 +497,15 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
 //        }
 //    }
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+       if(cbx1.getSelectedIndex()==0 || cbx2.getSelectedIndex()==0){
+          
+           JOptionPane.showMessageDialog(this, "escoja correo y telefono");
+       
+           
+       }else{
+       
         if (listat.size() >=1 && listac.size() >= 1) {
+            
             ListarJoinProveedor p =new ListarJoinProveedor();
             p.setId_proveedor_clase(Long.valueOf("1"));
             p.setCedula_ruc(cedula.getText());
@@ -508,7 +516,9 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             p.setTelefono(cbx1.getSelectedItem().toString());
             p.setMail(cbx2.getSelectedItem().toString());
             p.setDireccionImagen(rutaimagen);
+            
             String pro = crud.insertarNuevoProveedor(p);
+            
             if (pro != null) {
                 
                 crud.insertarTelefono(listat,cedula.getText());
@@ -527,7 +537,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
 
             JOptionPane.showMessageDialog(null, "Debe completar todo el formulario");
         }
-
+       }
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaActionPerformed
@@ -633,7 +643,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
     }//GEN-LAST:event_contactoFocusLost
 
     private void dirFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_dirFocusLost
-        // TODO add your handling code here:
+        dir.setText(dir.getText().toUpperCase());
     }//GEN-LAST:event_dirFocusLost
 
     private void dirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dirActionPerformed
