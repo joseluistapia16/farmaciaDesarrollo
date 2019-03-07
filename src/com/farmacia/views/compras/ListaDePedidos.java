@@ -42,6 +42,7 @@ import net.sf.jasperreports.view.JRViewer;
  * @author alumno
  */
 public class ListaDePedidos extends javax.swing.JDialog {
+
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     int x, y;
@@ -507,11 +508,21 @@ public class ListaDePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_jPanel1MouseDragged
 
     private void tbaListaFaltantesBMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesBMousePressed
+//        Integer Resta = 0;
         try {
             if (evt.getClickCount() == 2) {
                 int r = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este producto de la lista?", "", JOptionPane.YES_NO_OPTION);
                 if (r == JOptionPane.YES_OPTION) {
                     int i = tbaListaFaltantesB.getSelectedRow();
+
+                    objeto = devuelveObjeto(lista.get(i).getId_productos().toString(), lista);
+
+//                    int Resta = Integer.parseInt(tbaListaFaltantesB.getValueAt(i, 4).toString()) -  objeto.getCantidad());
+//                    System.out.println("cant 1 "+tbaListaFaltantesB.getValueAt(i, 4).toString());
+//                    System.out.println("cant 2 "+tbaProductosA.getValueAt(i, 4).toString());
+//                    getPosicion(objeto.getId_productos(), Resta);
+//
+//                    System.out.println("Resta "+Resta);
                     lista1.remove(i);
                     Tablas.cargarFaltantes(tbaListaFaltantesB, lista1);
                 } else {
@@ -527,23 +538,23 @@ public class ListaDePedidos extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ArrayList tabla = new ArrayList();
-        for(int i=0;i<tbaListaFaltantesB.getRowCount();i++){
-        ClaseReporte tabla1 = new ClaseReporte(tbaListaFaltantesB.getValueAt(i,0).toString(),tbaListaFaltantesB.getValueAt(i,1).toString(),tbaListaFaltantesB.getValueAt(i,2).toString(),tbaListaFaltantesB.getValueAt(i,3).toString());
-        tabla.add(tabla1);
-        }        
+        for (int i = 0; i < tbaListaFaltantesB.getRowCount(); i++) {
+            ClaseReporte tabla1 = new ClaseReporte(tbaListaFaltantesB.getValueAt(i, 0).toString(), tbaListaFaltantesB.getValueAt(i, 1).toString(), tbaListaFaltantesB.getValueAt(i, 2).toString(), tbaListaFaltantesB.getValueAt(i, 3).toString());
+            tabla.add(tabla1);
+        }
         try {
             JasperReport reporte = (JasperReport) JRLoader.loadObject("ListaDePedidos.jasper");
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tabla));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
             JDialog frame = new JDialog(this);
-            JRViewer viewer = new JRViewer (jprint);
+            JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.getSize(new Dimension(ancho/2,alto/2));
+            frame.getSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             viewer.setFitWidthZoomRatio();
         } catch (JRException ex) {
             Logger.getLogger(ListaDePedidos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

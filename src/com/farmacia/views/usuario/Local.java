@@ -110,6 +110,11 @@ public class Local extends javax.swing.JDialog {
                 txtTelefonoFocusLost(evt);
             }
         });
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoActionPerformed(evt);
+            }
+        });
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
@@ -430,6 +435,10 @@ public class Local extends javax.swing.JDialog {
         }
         }
     }//GEN-LAST:event_txtDireccionKeyPressed
+
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoActionPerformed
 
     
     /**
