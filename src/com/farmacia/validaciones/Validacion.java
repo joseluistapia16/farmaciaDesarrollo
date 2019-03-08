@@ -156,7 +156,7 @@ public class Validacion {
         }
         return valor;
     }
-    
+
     public static boolean validarCedulaU(ArrayList<Listar_usuario> lista, String cedula) {
         boolean valor = false;
         if (cedula.length() < 10) {
@@ -212,14 +212,24 @@ public class Validacion {
         return valor;
     }
 
-//    public void limitarCaracteres(JTextField campo) {
-//        campo.addKeyListener(new KeyAdapter() {
-//            public void KeyTyped(KeyEvent e) {
-//                char c = e.getKeyChar();
-//                
-//                if (campo > 100) {
-//                    JOptionPane.showMessageDialog(null,"INGRESE UN VALOR CORRECTO");
-//                    e.consume();
+//    public static void ValidarIngresoPeso(final JTextField a) {
+//        a.addKeyListener(new KeyAdapter() {
+//
+//            public void KeyTyped(KeyEvent evt) {
+//                int k = (int) evt.getKeyChar();
+//                if (k >= 46 && k <= 57) {
+//                    if (k == 46) {
+//                        String dato = a.getText();
+//                        int tamaño = dato.length();
+//                        for (int i = 0; i <= tamaño; i++) {
+//                            if (dato.contains(".")) {
+//                                evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+//                            }
+//                        }
+//                    } else {
+//                        evt.setKeyChar((char) KeyEvent.VK_CLEAR);
+//                        evt.consume();
+//                    }
 //                }
 //            }
 //        });

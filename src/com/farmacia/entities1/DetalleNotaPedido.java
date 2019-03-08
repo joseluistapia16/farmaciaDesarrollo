@@ -22,11 +22,14 @@ public class DetalleNotaPedido {
     private BigDecimal descuento;
     private BigDecimal iva;
     private BigDecimal total;
+    private Integer cantAnt;
+    private Integer idCompra;
+    
 
     public DetalleNotaPedido() {
     }
 
-    public DetalleNotaPedido(Long id_detalle_nota_pedidos, Long id_precio, Long id_cabecera_nota_pedidos, Integer cantidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total) {
+    public DetalleNotaPedido(Long id_detalle_nota_pedidos, Long id_precio, Long id_cabecera_nota_pedidos, Integer cantidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total, Integer cantAnt, Integer idCompra) {
         this.id_detalle_nota_pedidos = id_detalle_nota_pedidos;
         this.id_precio = id_precio;
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
@@ -36,7 +39,9 @@ public class DetalleNotaPedido {
         this.descuento = descuento;
         this.iva = iva;
         this.total = total;
-    }    
+        this.cantAnt = cantAnt;
+        this.idCompra = idCompra;
+    }
 
     public Long getId_detalle_nota_pedidos() {
         return id_detalle_nota_pedidos;
@@ -109,5 +114,22 @@ public class DetalleNotaPedido {
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
+
+    public Integer getCantAnt() {
+        return cantAnt;
+    }
+
+    public void setCantAnt(Integer cantAnt) {
+        this.cantAnt = cantAnt;
+    }
+
+    public Integer getIdCompra() {
+        return idCompra;
+    }
+
+    public void setIdCompra(Integer idCompra) {
+        this.idCompra = idCompra;
+    }
+
     
 }

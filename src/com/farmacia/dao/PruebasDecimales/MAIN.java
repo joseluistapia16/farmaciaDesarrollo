@@ -123,18 +123,28 @@ public class MAIN {
 //        p.setIva(e);
 //        p.setDecuento(e);
 //        p.setTotal(e);
-        BigDecimal num = new BigDecimal("203.03550");
-        num = BigDecimal.valueOf(Double.parseDouble(Formato(num, "3")));
-        System.out.println("decimal " + num);
-        BigDecimal num1 = new BigDecimal("203.03550");
-        num1 = num1.setScale(2, BigDecimal.ROUND_HALF_UP);
-        System.out.println("decimal xd: " + num1);
-        
-       String a="";
-       String b;
-       a="hola";
-        b=a;
-        System.out.println(a+" // "+b);
+////        BigDecimal num = new BigDecimal("203.03550");
+////        num = BigDecimal.valueOf(Double.parseDouble(Formato(num, "3")));
+////        System.out.println("decimal " + num);
+////        BigDecimal num1 = new BigDecimal("203.03550");
+////        num1 = num1.setScale(2, BigDecimal.ROUND_HALF_UP);
+////        System.out.println("decimal xd: " + num1);
+////        
+////       String a="";
+////       String b;
+////       a="hola";
+////        b=a;
+////        System.out.println(a+" // "+b);
+        int b = 2, i = 0;
+
+        b = b - 1;
+        if (b == b++) {
+            System.out.println("crece");
+        }else{
+            System.out.println("decrece");
+
+        }
+
     }
 
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
