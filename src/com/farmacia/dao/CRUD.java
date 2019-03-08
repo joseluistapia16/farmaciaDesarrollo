@@ -10,6 +10,7 @@ import com.farmacia.entities.mappers.EntidadesMappers;
 import com.farmacia.entities1.Bitacora_seguridad;
 import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.entities1.Cabecera_compra;
+import com.farmacia.entities1.Cabecera_ventas;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
@@ -17,6 +18,7 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.entities1.Detalle_compra;
+import com.farmacia.entities1.Detalle_ventas;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Estado_usuario;
 import com.farmacia.entities1.Genero;
@@ -210,6 +212,7 @@ public class CRUD {
         }
 
     }
+
     public void UpdateCantidadFaltantes(String queryL) {
         try {
             conect = con.conectar();
@@ -2934,7 +2937,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
-                    "{call listarProductosVentas(?,?)}");
+                    "{call ListarProductosVentas(?,?)}");
             prcProcedimientoAlmacenado.setString(1, op1);
             prcProcedimientoAlmacenado.setString(2, op2);
             prcProcedimientoAlmacenado.execute();
@@ -3457,7 +3460,8 @@ public class CRUD {
         return valor;
 
     }
-        public String insertarDetalleProductoCompra(Detalle_compra obj) {
+
+    public String insertarDetalleProductoCompra(Detalle_compra obj) {
         String valor = "";
         try {
             conect = con.conectar();
@@ -3498,6 +3502,7 @@ public class CRUD {
         }
         return valor;
     }
+
     public ArrayList<Productos_Stock> listarStockProducto(int op) {
         ArrayList<Productos_Stock> lista = new ArrayList<Productos_Stock>();
 
@@ -3507,7 +3512,7 @@ public class CRUD {
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
                     "{call listarProductosStock(?)}");
             prcProcedimientoAlmacenado.setInt(1, op);
-       
+
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
@@ -3532,4 +3537,100 @@ public class CRUD {
         return lista;
 
     }
+
+    public int obtenerNumeroOrdenes(String query) {
+        int id = 0;
+        try {
+            conect = con.conectar();
+
+            java.sql.Statement st = conect.createStatement();
+            rs = st.executeQuery(query);
+            rs.next();
+            id = rs.getInt("cantidad");
+            conect.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+
+    public String InsertarCabeceraVentas(Cabecera_ventas obj) {
+
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call InsertarCabeceraVentas(?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+            prodProAlm.setString(1, obj.getMun_venta());
+            prodProAlm.setLong(2, obj.getId_cliente());
+            prodProAlm.setLong(3, obj.getId_usuario());
+            prodProAlm.setLong(4, obj.getId_sucursal());
+            prodProAlm.setString(5, obj.getForma_de_pago());
+            prodProAlm.setString(6, obj.getTipo_de_venta());
+            prodProAlm.setBigDecimal(7, obj.getSubtotal_con_iva());
+            prodProAlm.setBigDecimal(8, obj.getSubtotal_sin_iva());
+            prodProAlm.setBigDecimal(9, obj.getIva_venta());
+            prodProAlm.setBigDecimal(10, obj.getDescuento_venta());
+            prodProAlm.setBigDecimal(11, obj.getTotal_venta());
+            prodProAlm.setString(12, obj.getEstado());
+
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+
+    ////////// insertar detalle ventas
+    public String InsertarDetalleVentas(Detalle_ventas obj) {
+
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call InsertarDetalleVentas(?,?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_cabecera_venta());
+            prodProAlm.setLong(2, obj.getId_control());
+            prodProAlm.setBigDecimal(3, obj.getPrecio());
+            prodProAlm.setLong(4, obj.getCantidad());
+            prodProAlm.setBigDecimal(5, obj.getIva());
+            prodProAlm.setBigDecimal(6, obj.getDescuento());
+
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+
 }
