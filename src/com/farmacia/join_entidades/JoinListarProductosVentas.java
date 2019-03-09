@@ -5,33 +5,41 @@
  */
 package com.farmacia.join_entidades;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author JorgeMV
  */
 public class JoinListarProductosVentas {
-      
-      private Long id_producto;      
-      private String producto_nombre;
-      private String producto_descripcion;
-      private Long id_tipo;
-      private String tipo_nombre;
-      private Long id_medida;
-      private String medida_nombre;
-      private Long id_envase;
-      private String envase_nombre;
-      private Long id_marca;
-      private String marca_nombre;
-      private Long id_stock;
-      private Double stock;
-      private Long id_precio;
-      private Double precio_venta;
-      private Long id_descuento;
-      private Double descuento_venta;
-      private String iva;
-      private String estado;
 
-    public JoinListarProductosVentas(Long id_producto, String producto_nombre, String producto_descripcion, Long id_tipo, String tipo_nombre, Long id_medida, String medida_nombre, Long id_envase, String envase_nombre, Long id_marca, String marca_nombre, Long id_stock, Double stock, Long id_precio, Double precio_venta, Long id_descuento, Double descuento_venta, String iva, String estado) {
+    private Long id_control;
+    private Long id_producto;
+    private String producto_nombre;
+    private String producto_descripcion;
+    private Long id_tipo;
+    private String tipo_nombre;
+    private Long id_medida;
+    private String medida_nombre;
+    private Long id_envase;
+    private String envase_nombre;
+    private Long id_marca;
+    private String marca_nombre;
+    private Long id_stock;
+    private Long stock;
+    private Long id_precio;
+    private BigDecimal precio_venta;
+    private Long id_descuento;
+    private BigDecimal descuento_venta;
+    private String iva;
+    private String estado;
+    
+    public JoinListarProductosVentas(){
+        
+    }
+
+    public JoinListarProductosVentas(Long id_control, Long id_producto, String producto_nombre, String producto_descripcion, Long id_tipo, String tipo_nombre, Long id_medida, String medida_nombre, Long id_envase, String envase_nombre, Long id_marca, String marca_nombre, Long id_stock, Long stock, Long id_precio, BigDecimal precio_venta, Long id_descuento, BigDecimal descuento_venta, String iva, String estado) {
+        this.id_control = id_control;
         this.id_producto = id_producto;
         this.producto_nombre = producto_nombre;
         this.producto_descripcion = producto_descripcion;
@@ -53,7 +61,13 @@ public class JoinListarProductosVentas {
         this.estado = estado;
     }
 
-    public JoinListarProductosVentas() {}
+    public Long getId_control() {
+        return id_control;
+    }
+
+    public void setId_control(Long id_control) {
+        this.id_control = id_control;
+    }
 
     public Long getId_producto() {
         return id_producto;
@@ -151,11 +165,11 @@ public class JoinListarProductosVentas {
         this.id_stock = id_stock;
     }
 
-    public Double getStock() {
+    public Long getStock() {
         return stock;
     }
 
-    public void setStock(Double stock) {
+    public void setStock(Long stock) {
         this.stock = stock;
     }
 
@@ -167,11 +181,11 @@ public class JoinListarProductosVentas {
         this.id_precio = id_precio;
     }
 
-    public Double getPrecio_venta() {
+    public BigDecimal getPrecio_venta() {
         return precio_venta;
     }
 
-    public void setPrecio_venta(Double precio_venta) {
+    public void setPrecio_venta(BigDecimal precio_venta) {
         this.precio_venta = precio_venta;
     }
 
@@ -183,11 +197,11 @@ public class JoinListarProductosVentas {
         this.id_descuento = id_descuento;
     }
 
-    public Double getDescuento_venta() {
+    public BigDecimal getDescuento_venta() {
         return descuento_venta;
     }
 
-    public void setDescuento_venta(Double descuento_venta) {
+    public void setDescuento_venta(BigDecimal descuento_venta) {
         this.descuento_venta = descuento_venta;
     }
 
@@ -207,6 +221,8 @@ public class JoinListarProductosVentas {
         this.estado = estado;
     }
 
-
     
+
+
+
 }

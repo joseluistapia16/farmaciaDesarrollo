@@ -18,17 +18,16 @@ import javax.swing.table.DefaultTableModel;
 public class ConsultarProductoVentas extends javax.swing.JDialog {
 
     CRUD crud = new CRUD();
-    ArrayList<JoinListarProductosVentas> lista = null;
-    //crud.ListarTodoJoinProductosVentas("%A%","buscar_nombre");
+    ArrayList<JoinListarProductosVentas> listaProducto = null;
     DefaultTableModel model;
-    JoinListarProductosVentas objeto = null;
+    JoinListarProductosVentas objeto = new JoinListarProductosVentas();
 
     public ConsultarProductoVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        //Tablas.cargarJoinProductosVentas(TablaProductoVentas, listar);
+
     }
 
     /**
@@ -65,8 +64,8 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             }
         ));
         TablaProductoVentas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaProductoVentasMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaProductoVentasMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(TablaProductoVentas);
@@ -171,51 +170,72 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
         int pos = CbxFiltro.getSelectedIndex();
         if (pos == 0) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_codigo");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_codigo");
 
         }
         if (pos == 1) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_nombre");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_nombre");
 
         }
         if (pos == 2) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_tipo");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_tipo");
 
         }
         if (pos == 3) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_medida");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_medida");
 
         }
         if (pos == 4) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_envase");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_envase");
 
         }
         if (pos == 5) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_marca");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_marca");
 
         }
         if (pos == 6) {
-            lista = crud.ListarTodoJoinProductosVentas(query, "buscar_codigo");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_codigo");
 
         }
 
-        //lista = crud.ListarTodoJoinProductosVentas(query, "buscar_nombre");
-        Tablas.cargarJoinProductosVentas(TablaProductoVentas, lista);
+        Tablas.cargarJoinProductosVentas(TablaProductoVentas, listaProducto);
         query = "";
+
+
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
-    private void TablaProductoVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductoVentasMouseClicked
-        
-        int seleccion = TablaProductoVentas.rowAtPoint(evt.getPoint());
+    private void TablaProductoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductoVentasMousePressed
 
-        MenuPreVentas.TxtProdNombre.setText(String.valueOf(TablaProductoVentas.getValueAt(seleccion, 1)));
-        MenuPreVentas.TxtProdDetalle.setText(String.valueOf(TablaProductoVentas.getValueAt(seleccion, 2)));
-        MenuPreVentas.TxtPvp.setText(String.valueOf(TablaProductoVentas.getValueAt(seleccion, 9)));
-        dispose();
+        int i = 0;
 
+        if (evt.getClickCount() == 2) {
+            i = TablaProductoVentas.getSelectedRow();
+            objeto = devuelveObjeto(TablaProductoVentas.getValueAt(i, 1).toString(), listaProducto);
 
+            if (objeto != null) {
 
-    }//GEN-LAST:event_TablaProductoVentasMouseClicked
+                this.setVisible(false);
+
+            }
+        }
+        System.out.println(" select " + objeto.getProducto_nombre());
+    }//GEN-LAST:event_TablaProductoVentasMousePressed
+
+    public JoinListarProductosVentas getProducto() {
+        return objeto;
+    }
+
+    public JoinListarProductosVentas devuelveObjeto(String datos, ArrayList<JoinListarProductosVentas> listarobj) {
+        JoinListarProductosVentas objeto1 = null;
+        for (int i = 0; i < listarobj.size(); i++) {
+            System.out.println("id " + datos);
+            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
+                objeto1 = listarobj.get(i);
+                break;
+            }
+        }
+        return objeto1;
+    }
 
     /**
      * @param args the command line arguments

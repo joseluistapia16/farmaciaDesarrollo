@@ -19,16 +19,16 @@ import javax.swing.table.DefaultTableModel;
 public class ConsultarClienteVentas extends javax.swing.JDialog {
 
     CRUD crud = new CRUD();
-    ArrayList<Persona> lista = null;
+    ArrayList<Persona> listaCliente = null;
     DefaultTableModel model;
-    Persona objeto = null;
+    Persona objeto = new Persona();
 
     public ConsultarClienteVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        //Tablas.cargarJoinProductosVentas(TablaProductoVentas, listar);
+
     }
 
     /**
@@ -179,36 +179,36 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
 
         int pos = CbxFiltro.getSelectedIndex();
         if (pos == 0) {
-            lista = crud.ListarTodoClienteVentas(query, "buscar_codigo");
+            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_codigo");
 
         }
         if (pos == 1) {
-            lista = crud.ListarTodoClienteVentas(query, "buscar_cedula");
+            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_cedula");
 
         }
         if (pos == 2) {
-            lista = crud.ListarTodoClienteVentas(query, "buscar_nombre");
+            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_nombre");
 
         }
         if (pos == 3) {
-            lista = crud.ListarTodoClienteVentas(query, "buscar_apellido");
+            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_apellido");
 
         }
         if (pos == 4) {
-            lista = crud.ListarTodoClienteVentas(query, "buscar_direccion");
+            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_direccion");
 
         }
         if (pos == 5) {
-            lista = crud.ListarTodoClienteVentas(query, "buscar_telefono");
+            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_telefono");
 
         }
         if (pos == 6) {
-            lista = crud.ListarTodoClienteVentas(query, "buscar_correo");
+            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_correo");
 
         }
 
         //lista = crud.ListarTodoJoinProductosVentas(query, "buscar_nombre");
-        Tablas.cargarClienteVentas(TablaClienteVentas, lista);
+        Tablas.cargarClienteVentas(TablaClienteVentas, listaCliente);
         query = "";
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
@@ -218,20 +218,39 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
 
     private void TablaClienteVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClienteVentasMousePressed
 
+        int i = 0;
+
+        if (evt.getClickCount() == 2) {
+            i = TablaClienteVentas.getSelectedRow();
+            objeto = devuelveObjeto(TablaClienteVentas.getValueAt(i, 0).toString(), listaCliente);
+
+            if (objeto != null) {
+
+                this.setVisible(false);
+
+            }
+        }
     }//GEN-LAST:event_TablaClienteVentasMousePressed
 
+    public Persona getCliente() {
+        return objeto;
+    }
+
+    public Persona devuelveObjeto(String datos, ArrayList<Persona> listarobj) {
+        Persona objeto1 = null;
+        for (int i = 0; i < listarobj.size(); i++) {
+            System.out.println("id " + datos);
+            if (datos.equals(listarobj.get(i).getId_Clientes().toString())) {
+                objeto1 = listarobj.get(i);
+                break;
+            }
+        }
+        return objeto1;
+    }
+
+
     private void TablaClienteVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClienteVentasMouseClicked
-        int seleccion = TablaClienteVentas.rowAtPoint(evt.getPoint());
-        String nombre;
-        String apellido;
-        MenuPreVentas.TxtCedula.setText(String.valueOf(TablaClienteVentas.getValueAt(seleccion, 1)));
-        nombre= (String.valueOf(TablaClienteVentas.getValueAt(seleccion, 2)));
-        apellido= (String.valueOf(TablaClienteVentas.getValueAt(seleccion, 3)));
-        MenuPreVentas.TxtNombre.setText(nombre +" "+ apellido);
-        MenuPreVentas.TxtDirec.setText(String.valueOf(TablaClienteVentas.getValueAt(seleccion, 4)));
-        MenuPreVentas.TxtTelefono.setText(String.valueOf(TablaClienteVentas.getValueAt(seleccion, 5)));
-        MenuPreVentas.TxtCorreo.setText(String.valueOf(TablaClienteVentas.getValueAt(seleccion, 6)));
-        dispose();
+
     }//GEN-LAST:event_TablaClienteVentasMouseClicked
 
     /**

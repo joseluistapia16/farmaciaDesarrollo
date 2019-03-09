@@ -719,7 +719,7 @@ public class EntidadesMappers {
         JoinListarProductosVentas obj = new JoinListarProductosVentas();
        
         try {
-    
+            obj.setId_control(rs.getLong("Control"));
             obj.setId_producto(rs.getLong("Codigo"));
             obj.setProducto_nombre(rs.getString("Nombre del producto"));
             obj.setProducto_descripcion(rs.getString("Descripcion"));
@@ -732,10 +732,10 @@ public class EntidadesMappers {
             //obj.setId_marca(rs.getLong("ID_MARCAS"));
             obj.setMarca_nombre(rs.getString("Marca"));
             //obj.setId_stock(rs.getLong("ID_PRODUCTO"));
-            obj.setStock(rs.getDouble("Stock"));
+            obj.setStock(rs.getLong("Stock"));
             obj.setIva(rs.getString("Iva"));
             //obj.setId_precio(rs.getLong("ID_PRECIO"));
-            obj.setPrecio_venta(rs.getDouble("Precio de venta"));
+            obj.setPrecio_venta(rs.getBigDecimal("Precio de venta"));
             
 
         } catch (SQLException ex) {
