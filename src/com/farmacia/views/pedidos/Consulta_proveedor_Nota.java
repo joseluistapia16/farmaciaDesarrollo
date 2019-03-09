@@ -58,10 +58,9 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         btnSalir2.setBackground(new java.awt.Color(206, 19, 36));
-        btnSalir2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSalir2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnSalir2.setForeground(new java.awt.Color(254, 254, 254));
         btnSalir2.setText("SALIR");
-        btnSalir2.setOpaque(true);
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalir2ActionPerformed(evt);
@@ -126,7 +125,7 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
         );
 
-        Reporte.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Reporte.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +162,7 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(115, 115, 115)
+                .addGap(112, 112, 112)
                 .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(172, 172, 172))
         );

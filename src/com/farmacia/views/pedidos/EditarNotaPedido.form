@@ -125,9 +125,9 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tipofiltro" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="filtro" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="btnBuscar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="tipofiltro" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="filtro" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="btnBuscar" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
@@ -183,7 +183,7 @@
         <Component class="javax.swing.JButton" name="btnSalir2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="13" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SALIR"/>
           </Properties>
@@ -281,7 +281,7 @@
         <Component class="javax.swing.JButton" name="btnEditar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="13" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="GUARDAR"/>
           </Properties>
@@ -292,7 +292,7 @@
         <Component class="javax.swing.JButton" name="btnReporte">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="13" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
           </Properties>
@@ -332,7 +332,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNumero" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -521,21 +521,25 @@
                                           <Component id="jLabel2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtRepresentante" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                          <Component id="jLabel11" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                               <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                               <Component id="txtDireccion1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                           </Group>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="txtRepresentante" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                              <Component id="jLabel11" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtTelefono1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                               <Component id="jLabel12" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                               <Component id="txtTipo1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="txtTelefono1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                              <Component id="jLabel4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
