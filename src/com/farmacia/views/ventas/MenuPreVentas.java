@@ -45,6 +45,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtFecha.setText(FechaActual());
         TxtProdSubtotal.setEditable(false);
 
+        
     }
 
     /**
