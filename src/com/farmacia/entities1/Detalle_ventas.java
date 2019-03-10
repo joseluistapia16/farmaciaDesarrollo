@@ -5,6 +5,8 @@
  */
 package com.farmacia.entities1;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author alumno
@@ -13,17 +15,31 @@ public class Detalle_ventas {
 
     private Long id_detalle_venta;
     private Long id_cabecera_venta;
+    private Long id_control;
+    private Long id_producto;
+    private String nombre_producto;
     private int cantidad;
-    private Long id_precio;
+    private BigDecimal precio;
+    private BigDecimal subtotal;
+    private BigDecimal iva;
+    private BigDecimal descuento;
+    private BigDecimal total;
 
     public Detalle_ventas() {
     }
 
-    public Detalle_ventas(Long id_detalle_venta, Long id_cabecera_venta, int cantidad, Long id_precio) {
+    public Detalle_ventas(Long id_detalle_venta, Long id_cabecera_venta, Long id_control, Long id_producto, String nombre_producto, int cantidad, BigDecimal precio, BigDecimal subtotal, BigDecimal iva, BigDecimal descuento, BigDecimal total) {
         this.id_detalle_venta = id_detalle_venta;
         this.id_cabecera_venta = id_cabecera_venta;
+        this.id_control = id_control;
+        this.id_producto = id_producto;
+        this.nombre_producto = nombre_producto;
         this.cantidad = cantidad;
-        this.id_precio = id_precio;
+        this.precio = precio;
+        this.subtotal = subtotal;
+        this.iva = iva;
+        this.descuento = descuento;
+        this.total = total;
     }
 
     public Long getId_detalle_venta() {
@@ -42,6 +58,30 @@ public class Detalle_ventas {
         this.id_cabecera_venta = id_cabecera_venta;
     }
 
+    public Long getId_control() {
+        return id_control;
+    }
+
+    public void setId_control(Long id_control) {
+        this.id_control = id_control;
+    }
+
+    public Long getId_producto() {
+        return id_producto;
+    }
+
+    public void setId_producto(Long id_producto) {
+        this.id_producto = id_producto;
+    }
+
+    public String getNombre_producto() {
+        return nombre_producto;
+    }
+
+    public void setNombre_producto(String nombre_producto) {
+        this.nombre_producto = nombre_producto;
+    }
+
     public int getCantidad() {
         return cantidad;
     }
@@ -50,12 +90,47 @@ public class Detalle_ventas {
         this.cantidad = cantidad;
     }
 
-    public Long getId_precio() {
-        return id_precio;
+    public BigDecimal getPrecio() {
+        return precio;
     }
 
-    public void setId_precio(Long id_precio) {
-        this.id_precio = id_precio;
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
     }
 
+    public BigDecimal getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(BigDecimal subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public BigDecimal getIva() {
+        return iva;
+    }
+
+    public void setIva(BigDecimal iva) {
+        this.iva = iva;
+    }
+
+    public BigDecimal getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(BigDecimal descuento) {
+        this.descuento = descuento;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    
+
+    
 }

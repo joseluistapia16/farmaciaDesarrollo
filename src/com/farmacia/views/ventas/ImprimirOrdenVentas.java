@@ -45,7 +45,7 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
 
         obj = objeto;
 
-        System.out.println("numero orden" + obj.getMun_venta()); 
+        System.out.println("numero orden" + obj.getMun_venta());
         System.out.println("id cabecera" + obj.getId_cabecera_venta());
         llenarFormulario();
 
