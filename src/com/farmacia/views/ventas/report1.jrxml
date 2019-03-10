@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="df2ff16f-8f21-496a-a485-ed1c7710c804">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="d6a1a001-36f4-48e1-80e8-420067d7a3e4">
+		<parameter name="_id_cabecera_detalle" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT `detalle_venta`.`cantidad` AS 'Cantidad', `productos`.`nombre` AS 'Detalle', 
+TRUNCATE (detalle_venta.`precio`,2 )AS 'P.Unitario', TRUNCATE ((`detalle_venta`.`cantidad` * `detalle_venta`.`precio`),2)AS 'P.total' 
+FROM detalle_venta INNER JOIN `precios`
+ON
+`detalle_venta`.`id_control` = `precios`.`id_precio` INNER JOIN `productos`
+ON
+`productos`.`id_productos` = `precios`.`id_producto`
+
+WHERE `detalle_venta`.`id_cabecera_venta` = $P{_id_cabecera_detalle}]]>
+		</queryString>
+		<field name="Cantidad" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="Detalle" class="java.lang.String"/>
+		<field name="P.Unitario" class="java.math.BigDecimal"/>
+		<field name="P.total" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="_id_cabecera" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT `cabecera_venta`.`num_venta`,`sucursal`.`nombre` AS Empresa,`sucursal`.`ruc`,`sucursal`.`direccion`, 
+CONCAT (`clientes`.`Nombre`," ",`clientes`.`Apellido`)AS 'Nombre_completos',
+`clientes`.`Cedula`, 
+cabecera_venta.`fecha_creacion` AS 'Fecha',
+`cabecera_venta`.`tipo_pago`,
+TRUNCATE (`cabecera_venta`.`subtotal_con_iva`,2) AS 'Subtotal_con_iva',
+TRUNCATE (cabecera_venta.`subtotal_sin_iva`,2)AS 'Subtotal_sin_iva',
+TRUNCATE ((`cabecera_venta`.`subtotal_con_iva` + cabecera_venta.`subtotal_sin_iva`),2)  AS 'Subtotal' , 
+TRUNCATE (cabecera_venta.`iva_total`,2) AS 'Iva',
+TRUNCATE (cabecera_venta.`descuento_total`,2) AS 'Descuento',
+TRUNCATE (cabecera_venta.`total`,2)AS 'Total'
+FROM `cabecera_venta` INNER JOIN `clientes` 
+ON
+cabecera_venta.`id_cliente` = `clientes`.`id_Clientes` INNER JOIN `sucursal`
+ON
+cabecera_venta.`id_sucursal` = `sucursal`.`id_sucursal`
+WHERE `cabecera_venta`.`id` = $P{_id_cabecera}]]>
+	</queryString>
+	<field name="num_venta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Empresa" class="java.lang.String"/>
+	<field name="ruc" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Nombre_completos" class="java.lang.String"/>
+	<field name="Cedula" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Fecha" class="java.sql.Timestamp"/>
+	<field name="tipo_pago" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Subtotal_con_iva" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Subtotal_sin_iva" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Subtotal" class="java.math.BigDecimal"/>
+	<field name="Iva" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Descuento" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="Nombre_completos_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{Nombre_completos}]]></variableExpression>
+	</variable>
+	<variable name="Nombre_completos_2" class="java.lang.Integer" resetType="Page" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{Nombre_completos}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="48" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="156" splitType="Stretch">
+			<textField>
+				<reportElement x="288" y="0" width="88" height="20" uuid="2dca7929-ab5a-4b5f-8180-55fbc96c71a8"/>
+				<textFieldExpression><![CDATA[$F{num_venta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="200" y="0" width="88" height="20" uuid="75a5761b-1c3e-4803-94e4-aa53d8c97976"/>
+				<text><![CDATA[Numero de Orden:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="51" width="178" height="20" uuid="abb88c5d-ad7a-4ee3-a908-9aef218c4a33"/>
+				<textFieldExpression><![CDATA[$F{Nombre_completos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="51" width="43" height="20" uuid="ef932774-4be5-4ee9-8f00-7db97f3230c7"/>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="122" width="100" height="20" uuid="c9395e9e-4eaf-40d9-a251-612370472194"/>
+				<text><![CDATA[Detalle de la Orden]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="100" y="71" width="100" height="20" uuid="844498e5-09f4-4203-abe6-24ea1d028d12"/>
+				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="71" width="100" height="20" uuid="bcb2e55c-bf9d-40a1-aa73-58a340842dc5"/>
+				<text><![CDATA[fecha de la orden:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="c796d12c-1935-4dd7-918c-7e551f1dbef6"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="0" width="181" height="20" uuid="d7bf8623-904c-4be7-aa48-3e2a921bb35e"/>
+				<text><![CDATA[Detalle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="0" width="100" height="20" uuid="f7cfce2e-cb32-4757-a3cd-685c1e5dee8d"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[P.total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="0" width="100" height="20" uuid="584291e3-1f88-4009-9168-9f6403990329"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[P.Unitario]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="155">
+			<componentElement>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="25" uuid="94487ea0-6313-479a-8c9d-6ecbf7965f4b"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1" uuid="cb5b67e5-2b69-4b96-b47b-661970e5d1bc">
+						<datasetParameter name="_id_cabecera_detalle">
+							<datasetParameterExpression><![CDATA[$P{_id_cabecera}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="25" width="555">
+						<textField>
+							<reportElement x="0" y="0" width="100" height="20" uuid="c6a2d46c-9c1f-47d6-a055-ec76e34c5271"/>
+							<textElement textAlignment="Center"/>
+							<textFieldExpression><![CDATA[$F{Cantidad}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="107" y="2" width="181" height="20" uuid="0733578f-db7f-4291-b993-336a143e1eb3"/>
+							<textFieldExpression><![CDATA[$F{Detalle}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="319" y="2" width="100" height="20" uuid="44fce273-50be-45ba-ae14-317b6aad1c8f"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression><![CDATA[$F{P.Unitario}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="442" y="2" width="100" height="20" uuid="504b6fd4-9939-4b46-b8be-5c3188afea6c"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression><![CDATA[$F{P.total}]]></textFieldExpression>
+						</textField>
+						<line>
+							<reportElement x="0" y="22" width="555" height="1" uuid="2a871f5e-0c3b-4cb6-b771-23de24a88287"/>
+						</line>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Immediate"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="152" splitType="Stretch">
+			<textField>
+				<reportElement x="474" y="5" width="71" height="20" uuid="6256794f-bf15-44a2-803f-3e6e047fd0ea"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{Subtotal_con_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="25" width="71" height="20" uuid="4b4e21e8-30ec-44ef-8e57-89cce732a450"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{Subtotal_sin_iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="45" width="71" height="20" uuid="97d97d2c-7055-4e3e-b490-ca0353bb46d6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{Subtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="65" width="71" height="20" uuid="376bf8af-0d1d-4b31-ad0f-86fc0539c87f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{Iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="85" width="71" height="20" uuid="107d50d2-1650-4a40-ac8f-ca4752202c20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{Descuento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="105" width="71" height="20" uuid="94a9e133-bac3-423e-8158-a1628355b4af"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="361" y="5" width="113" height="20" uuid="4099028d-30b9-4e35-8f57-e33054a78e0e"/>
+				<text><![CDATA[subtotal con impuesto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="25" width="113" height="20" uuid="8bdf63e0-a7ef-4349-8b0b-e2be9ff20b13"/>
+				<text><![CDATA[subtotal sin impuesto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="45" width="113" height="20" uuid="12d21c38-8e29-4893-984a-7eb309829590"/>
+				<text><![CDATA[subtotal:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="65" width="113" height="20" uuid="4b3d9b87-83d4-4061-83e3-eef727128046"/>
+				<text><![CDATA[total impuesto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="85" width="113" height="20" uuid="18afffa3-4c39-4d57-ade8-bd314139b414"/>
+				<text><![CDATA[total descuento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="105" width="113" height="20" uuid="1046887f-34dd-4f07-bda6-91bba0cdd165"/>
+				<text><![CDATA[total a pagar:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="36" splitType="Stretch"/>
+	</summary>
+</jasperReport>

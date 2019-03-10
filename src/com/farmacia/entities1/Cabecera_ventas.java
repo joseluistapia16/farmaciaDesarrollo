@@ -23,10 +23,11 @@ public class Cabecera_ventas {
     private Double iva_venta;
     private Double utilidad;
     private String estado;
-
-    public Cabecera_ventas (){}
+    private String mun_venta;
     
-    public Cabecera_ventas(Long id_cabecera_venta, Long id_cliente, Long id_usuario, Date fecha_venta, String forma_de_pago, Double total_venta, Double descuento_venta, Double iva_venta, Double utilidad, String estado) {
+    public Cabecera_ventas (){}
+
+    public Cabecera_ventas(Long id_cabecera_venta, Long id_cliente, Long id_usuario, Date fecha_venta, String forma_de_pago, Double total_venta, Double descuento_venta, Double iva_venta, Double utilidad, String estado, String mun_venta) {
         this.id_cabecera_venta = id_cabecera_venta;
         this.id_cliente = id_cliente;
         this.id_usuario = id_usuario;
@@ -37,6 +38,7 @@ public class Cabecera_ventas {
         this.iva_venta = iva_venta;
         this.utilidad = utilidad;
         this.estado = estado;
+        this.mun_venta = mun_venta;
     }
 
     public Long getId_cabecera_venta() {
@@ -118,8 +120,15 @@ public class Cabecera_ventas {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
-    
-    
+
+    public String getMun_venta() {
+        return mun_venta;
+    }
+
+    public void setMun_venta(String mun_venta) {
+        this.mun_venta = mun_venta;
+    }
+
+   
     
 }
