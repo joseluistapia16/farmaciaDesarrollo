@@ -229,10 +229,18 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem14">
               <Properties>
-                <Property name="text" type="java.lang.String" value="devolucion compra"/>
+                <Property name="text" type="java.lang.String" value="Compras Efectuadas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem14ActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem15">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Compras Devueltas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem15ActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -271,7 +279,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="pnlBanner" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="229" max="32767" attributes="0"/>
+              <EmptySpace pref="231" max="32767" attributes="0"/>
               <Component id="pnlPie" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>

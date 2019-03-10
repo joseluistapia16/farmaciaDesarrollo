@@ -3684,6 +3684,127 @@ public class CRUD {
         }
         
         return valor;
+    }
+    public String buscarIDCabeceraCompras(Cabecera_compra obj) {
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call buscarIDCabeceraCompras(?,?,?,?) }");
+            prodProAlm.setBigDecimal(1, obj.getDescuento());
+            prodProAlm.setBigDecimal(2, obj.getIva());
+            prodProAlm.setBigDecimal(3, obj.getTotal());
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
+
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    //devolverProductosComprados
+     public String devolverProductosComprados(Detalle_compra dnp) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call devolverProductosComprados(?,?,?)}");//ll
+       
+            pro.setInt(1, dnp.getCantidad());
+            pro.setLong(2, dnp.getId_precio());          
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
+        return valor;
+    }
+     public String cambiarEstadoDevolucion(int id_nota,int id_compra) {
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call cambiarEstadoDevolucion(?,?) }");
+            prodProAlm.setInt(1, id_nota);
+            prodProAlm.setInt(2, id_compra);
+            prodProAlm.executeUpdate();
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+     public ArrayList<JoinListarNotaPedidosCabecera> listarCabeceraComprasDevueltas(int op) {
+        ArrayList<JoinListarNotaPedidosCabecera> lista = new ArrayList<JoinListarNotaPedidosCabecera>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call ListarRegistroDeNotas(?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                JoinListarNotaPedidosCabecera obj = EntidadesMappers.getListadoCabeceraNotaPedidosFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
     }
 }
