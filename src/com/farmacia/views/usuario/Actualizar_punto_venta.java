@@ -57,7 +57,7 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
         Habilitar(false);
         txtId.setText(objeto.getId_punto_venta().toString());
         txtNombre.setText(objeto.getNombre());
-     //   jTextField1.setText(objeto.getDireccion());
+        txtDireccion.setText(objeto.getDireccion());
         txtObservacion.setText(objeto.getObservacion());
         listarCombos();
     }
@@ -140,13 +140,18 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
         jLabel4.setText("OBSERVACION:");
 
         txtObservacion.setColumns(20);
+        txtObservacion.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         txtObservacion.setRows(5);
         jScrollPane1.setViewportView(txtObservacion);
 
         txtDireccion.setColumns(20);
+        txtDireccion.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         txtDireccion.setRows(5);
         jScrollPane2.setViewportView(txtDireccion);
 
+        txtNombre.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+
+        cbLocalidad.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         cbLocalidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbLocalidadActionPerformed(evt);
@@ -156,6 +161,8 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("CODIGO:");
 
+        txtId.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -163,10 +170,6 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -177,12 +180,18 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
                             .addComponent(txtNombre)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                            .addComponent(cbLocalidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(41, 41, 41)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                    .addComponent(cbLocalidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -289,7 +298,7 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
             obj.setId_punto_venta(Long.parseLong(txtId.getText()));
             obj.setId_localidad(cbLocalidad.getSelectedItem().toString());
             obj.setNombre(txtNombre.getText());
-       //     obj.setDireccion(jTextField1.getText());
+            obj.setDireccion(txtDireccion.getText());
             obj.setDir_ip(Operaciones.getIpLocalCompleta());
             //obj.setId_localidad(Long.valueOf(cbLocalidad.getSelectedItem().toString()));
             obj.setObservacion(txtObservacion.getText());
@@ -297,7 +306,7 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
           JOptionPane.showMessageDialog(this, a);
           if(/*obj.getLocalidad!="Elija una opcion..."*/ /*obj.getId_localidad().toString()!="Elija una opcion..."*/
                   !"Elija una opcion...".equals(obj.getId_localidad())){
-    //       jTextField1.setText("");
+            txtDireccion.setText("");
            txtNombre.setText(""); 
            cbLocalidad.setSelectedItem("Elija una opcion...");
           }

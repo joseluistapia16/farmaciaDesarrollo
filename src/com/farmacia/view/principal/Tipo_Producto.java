@@ -83,6 +83,7 @@ public class Tipo_Producto extends javax.swing.JDialog {
         salir_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -103,14 +104,14 @@ public class Tipo_Producto extends javax.swing.JDialog {
             }
         });
 
-        busqueda_tf.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        busqueda_tf.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         busqueda_tf.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 busqueda_tfKeyReleased(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
         jLabel1.setText("BUSQUEDA:");
 
@@ -149,7 +150,7 @@ public class Tipo_Producto extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
         );
 
-        actualizar_bt.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        actualizar_bt.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         actualizar_bt.setText("ACTUALIZAR");
         actualizar_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +158,7 @@ public class Tipo_Producto extends javax.swing.JDialog {
             }
         });
 
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +166,7 @@ public class Tipo_Producto extends javax.swing.JDialog {
             }
         });
 
-        nuevo_btn.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        nuevo_btn.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         nuevo_btn.setForeground(new java.awt.Color(66, 114, 74));
         nuevo_btn.setText("NUEVO");
         nuevo_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -175,7 +176,7 @@ public class Tipo_Producto extends javax.swing.JDialog {
         });
 
         salir_btn.setBackground(new java.awt.Color(235, 4, 4));
-        salir_btn.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        salir_btn.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         salir_btn.setForeground(new java.awt.Color(254, 254, 254));
         salir_btn.setText("SALIR");
         salir_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +205,7 @@ public class Tipo_Producto extends javax.swing.JDialog {
                 .addContainerGap())
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(75, 75, 75)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(busqueda_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)

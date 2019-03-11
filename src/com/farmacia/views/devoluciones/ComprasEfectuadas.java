@@ -58,20 +58,22 @@ public class ComprasEfectuadas extends javax.swing.JDialog {
         tblRegistrodeNotas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
+        txtfiltro.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         txtfiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtfiltroActionPerformed(evt);
             }
         });
         txtfiltro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtfiltroKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfiltroKeyTyped(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtfiltroKeyReleased(evt);
             }
         });
 
@@ -84,7 +86,7 @@ public class ComprasEfectuadas extends javax.swing.JDialog {
         });
 
         btnSalir2.setBackground(new java.awt.Color(204, 0, 0));
-        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         btnSalir2.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
@@ -112,12 +114,13 @@ public class ComprasEfectuadas extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
+        tblRegistrodeNotas.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         tblRegistrodeNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "N#", "CODIGO", "PROVEEDOR", "REPRESENTANTE", "TELEFONO", "FECHA CREACION", "IVA", "DESCUENTO", "TOTAL"
+                "         N#", "  CODIGO", "      PROVEEDOR", "REPRESENTANTE", "TELEFONO", "FECHA CREACION", "     IVA", "DESCUENTO", "   TOTAL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -138,23 +141,26 @@ public class ComprasEfectuadas extends javax.swing.JDialog {
         });
         tblProduc.setViewportView(tblRegistrodeNotas);
         if (tblRegistrodeNotas.getColumnModel().getColumnCount() > 0) {
-            tblRegistrodeNotas.getColumnModel().getColumn(0).setPreferredWidth(45);
+            tblRegistrodeNotas.getColumnModel().getColumn(0).setPreferredWidth(30);
+            tblRegistrodeNotas.getColumnModel().getColumn(1).setPreferredWidth(35);
+            tblRegistrodeNotas.getColumnModel().getColumn(2).setPreferredWidth(80);
+            tblRegistrodeNotas.getColumnModel().getColumn(3).setPreferredWidth(80);
             tblRegistrodeNotas.getColumnModel().getColumn(4).setPreferredWidth(40);
-            tblRegistrodeNotas.getColumnModel().getColumn(5).setPreferredWidth(60);
-            tblRegistrodeNotas.getColumnModel().getColumn(6).setPreferredWidth(25);
-            tblRegistrodeNotas.getColumnModel().getColumn(7).setPreferredWidth(40);
-            tblRegistrodeNotas.getColumnModel().getColumn(8).setPreferredWidth(40);
+            tblRegistrodeNotas.getColumnModel().getColumn(5).setPreferredWidth(85);
+            tblRegistrodeNotas.getColumnModel().getColumn(6).setPreferredWidth(15);
+            tblRegistrodeNotas.getColumnModel().getColumn(7).setPreferredWidth(55);
+            tblRegistrodeNotas.getColumnModel().getColumn(8).setPreferredWidth(25);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 856, Short.MAX_VALUE)
+            .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+            .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -175,7 +181,7 @@ public class ComprasEfectuadas extends javax.swing.JDialog {
                 .addGap(0, 10, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66))
         );
         jPanel2Layout.setVerticalGroup(
@@ -184,8 +190,8 @@ public class ComprasEfectuadas extends javax.swing.JDialog {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
