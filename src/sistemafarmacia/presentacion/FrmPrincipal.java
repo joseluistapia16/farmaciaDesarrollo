@@ -14,6 +14,7 @@ import com.farmacia.entities1.Usuario;
 import com.farmacia.views.compras.CabeceraCompra;
 import com.farmacia.views.compras.ListaDePedidos;
 import com.farmacia.views.devoluciones.ComprasEfectuadas;
+import com.farmacia.views.devoluciones1.ComprasDevueltas;
 import com.farmacia.views.iva.Mostrar_iva;
 import com.farmacia.views.pedidos.MantenimientoNotaPedidos;
 import com.farmacia.views.pedidos.NotePedidos;
@@ -108,6 +109,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
 
         jMenu5.setText("jMenu5");
 
@@ -422,13 +424,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenu7.setText("Devoluciones");
 
-        jMenuItem14.setText("devolucion compra");
+        jMenuItem14.setText("Compras Efectuadas");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem14ActionPerformed(evt);
             }
         });
         jMenu7.add(jMenuItem14);
+
+        jMenuItem15.setText("Compras Devueltas");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem15);
 
         jMenuBar1.add(jMenu7);
 
@@ -445,7 +455,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                 .addComponent(pnlPie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -597,6 +607,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
        ce.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        ComprasDevueltas cd =new ComprasDevueltas(this, rootPaneCheckingEnabled);
+        cd.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -652,6 +667,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

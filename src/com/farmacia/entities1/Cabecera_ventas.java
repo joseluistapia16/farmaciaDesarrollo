@@ -34,10 +34,14 @@ public class Cabecera_ventas {
     private BigDecimal utilidad;
     private String estado;
 
+    
+ 
+
     public Cabecera_ventas() {
     }
 
     public Cabecera_ventas(Long id_cabecera_venta, String mun_venta, String forma_de_pago, Long id_cliente, Long id_usuario, Long id_sucursal, Date fecha_venta, String tipo_de_venta, BigDecimal subtotal_con_iva, BigDecimal subtotal_sin_iva, BigDecimal subtotal_no_obj_iva, BigDecimal subtotal_exento_iva, BigDecimal subtotal_venta, BigDecimal ice_venta, BigDecimal descuento_venta, BigDecimal iva_venta, BigDecimal total_venta, BigDecimal utilidad, String estado) {
+
         this.id_cabecera_venta = id_cabecera_venta;
         this.mun_venta = mun_venta;
         this.forma_de_pago = forma_de_pago;
@@ -57,6 +61,7 @@ public class Cabecera_ventas {
         this.total_venta = total_venta;
         this.utilidad = utilidad;
         this.estado = estado;
+        this.mun_venta = mun_venta;
     }
 
     public Long getId_cabecera_venta() {
@@ -210,6 +215,9 @@ public class Cabecera_ventas {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+
+   
 
     
 }

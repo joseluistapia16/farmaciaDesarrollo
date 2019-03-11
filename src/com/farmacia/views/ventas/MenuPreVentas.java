@@ -50,6 +50,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         TxtDescuentoPorcentaje.setEnabled(false);
 
+        
     }
 
     public MenuPreVentas() {
