@@ -57,7 +57,7 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
         Habilitar(false);
         txtId.setText(objeto.getId_punto_venta().toString());
         txtNombre.setText(objeto.getNombre());
-        jTextField1.setText(objeto.getDireccion());
+     //   jTextField1.setText(objeto.getDireccion());
         txtObservacion.setText(objeto.getObservacion());
         listarCombos();
     }
@@ -281,7 +281,7 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     public void actualizarPv() {
-        if (txtNombre.getText().length() < 4 /*|| ip.getText().length() < 2*/ || jTextField1.getText().length() < 4
+       if (txtNombre.getText().length() < 4 /*|| ip.getText().length() < 2*/ || txtDireccion.getText().length() < 4
                 /*|| localidad.getText().length() < 2*/) {
             JOptionPane.showMessageDialog(null, "LLene todos los campos");
         } else {
@@ -289,7 +289,7 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
             obj.setId_punto_venta(Long.parseLong(txtId.getText()));
             obj.setId_localidad(cbLocalidad.getSelectedItem().toString());
             obj.setNombre(txtNombre.getText());
-            obj.setDireccion(jTextField1.getText());
+       //     obj.setDireccion(jTextField1.getText());
             obj.setDir_ip(Operaciones.getIpLocalCompleta());
             //obj.setId_localidad(Long.valueOf(cbLocalidad.getSelectedItem().toString()));
             obj.setObservacion(txtObservacion.getText());
@@ -297,7 +297,7 @@ public class Actualizar_punto_venta extends javax.swing.JDialog {
           JOptionPane.showMessageDialog(this, a);
           if(/*obj.getLocalidad!="Elija una opcion..."*/ /*obj.getId_localidad().toString()!="Elija una opcion..."*/
                   !"Elija una opcion...".equals(obj.getId_localidad())){
-           jTextField1.setText("");
+    //       jTextField1.setText("");
            txtNombre.setText(""); 
            cbLocalidad.setSelectedItem("Elija una opcion...");
           }
