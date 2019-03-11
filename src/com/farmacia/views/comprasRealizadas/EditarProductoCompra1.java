@@ -44,6 +44,7 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     CRUD crud = new CRUD();
     String idComp="", op="";
+    
     /**
      * Creates new form EditarProductoNota
      */
