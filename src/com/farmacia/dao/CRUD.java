@@ -3903,5 +3903,41 @@ public class CRUD {
         }
         return valor;
     }
+     public String EliminarDetalleDevolucion(DetalleNotaPedido det) {
+        String dato = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call EliminarDetalleDevolucion(?,?,?,?,?,?,?,?)}");
+            pro.setLong(1, det.getId_detalle_nota_pedidos());
+            pro.setLong(2, det.getId_precio());
+            pro.setLong(3, det.getCantidad());
+            pro.setBigDecimal(4, det.getDescuento());
+            pro.setBigDecimal(5, det.getIva());
+            pro.setBigDecimal(6, det.getTotal());
+            pro.setLong(7, det.getBono());
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            dato = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return dato;
+
+    }
 
 }
