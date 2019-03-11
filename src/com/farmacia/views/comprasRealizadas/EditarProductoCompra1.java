@@ -44,6 +44,7 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     CRUD crud = new CRUD();
     String idComp="", op="";
+    
     /**
      * Creates new form EditarProductoNota
      */
@@ -109,7 +110,6 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
         jLabel17 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         txtporcentajeDescuento = new javax.swing.JTextField();
-        btnEliminar = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         txtBono = new javax.swing.JTextField();
         Reporte = new javax.swing.JButton();
@@ -285,14 +285,6 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
             }
         });
 
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnEliminar.setText("ELIMINAR");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
         jLabel20.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel20.setText("Bono:");
 
@@ -388,14 +380,6 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
                             .addComponent(jButton1)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,15 +388,23 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(64, 64, 64)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEnvase3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(producto, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Medida, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(64, 64, 64)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtEnvase3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(producto, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Medida, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(61, 61, 61)
+                                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -481,10 +473,9 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                     .addComponent(Reporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -742,20 +733,6 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
         
         
     }
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int r = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar?", "", JOptionPane.YES_NO_OPTION);
-
-        if (r == JOptionPane.YES_OPTION) {
-            EliminarDetalleNotaPedido();
-
-            JOptionPane.showMessageDialog(null, "Eliminado");
-            setVisible(false);
-
-        } else {
-
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
     private void txtBonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBonoActionPerformed
@@ -895,7 +872,6 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
     private javax.swing.JTextField Medida;
     private javax.swing.JButton Reporte;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JTextField codigo;
     private javax.swing.JButton jButton1;
