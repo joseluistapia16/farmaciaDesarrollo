@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.farmacia.views.devoluciones;
+package com.farmacia.views.comprasRealizadas;
 
 import com.farmacia.views.compras.*;
 import com.farmacia.views.pedidos.*;
