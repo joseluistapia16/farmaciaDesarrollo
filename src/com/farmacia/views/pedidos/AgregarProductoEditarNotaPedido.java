@@ -302,7 +302,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
                     .addComponent(Medida, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtcantidadpro, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)

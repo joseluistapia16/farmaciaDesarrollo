@@ -118,7 +118,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel3MouseDragged(evt);
@@ -323,7 +323,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
             }
         });
 
-        jLabel7.setBackground(new java.awt.Color(2, 184, 184));
+        jLabel7.setBackground(new java.awt.Color(0, 153, 153));
         jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -361,7 +361,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
                     .addComponent(jLabel20)
                     .addComponent(jLabel18)
                     .addComponent(jLabel19))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtEnvase3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)

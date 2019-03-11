@@ -46,14 +46,15 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
         txtfiltro = new javax.swing.JTextField();
         filtrar = new javax.swing.JButton();
         btnSalir2 = new javax.swing.JButton();
-        tblProduc = new javax.swing.JScrollPane();
-        tblRegistrodeNotas = new javax.swing.JTable();
         Reporte = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        tblProduc = new javax.swing.JScrollPane();
+        tblRegistrodeNotas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         txtfiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,23 +62,23 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             }
         });
         txtfiltro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtfiltroKeyTyped(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtfiltroKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtfiltroKeyTyped(evt);
+            }
         });
 
-        filtrar.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        filtrar.setText("Buscar");
+        filtrar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        filtrar.setText("BUSCAR");
         filtrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filtrarActionPerformed(evt);
             }
         });
 
-        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,33 +86,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             }
         });
 
-        tblRegistrodeNotas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "N#", "CODIGO", "PROVEEDOR", "REPRESENTANTE", "TELEFONO", "FECHA CREACION", "IVA", "DESCUENTO", "TOTAL"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, true, true, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblRegistrodeNotas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblRegistrodeNotasMousePressed(evt);
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblRegistrodeNotasMouseClicked(evt);
-            }
-        });
-        tblProduc.setViewportView(tblRegistrodeNotas);
-
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,7 +94,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             }
         });
 
-        jLabel7.setBackground(new java.awt.Color(2, 184, 184));
+        jLabel7.setBackground(new java.awt.Color(0, 153, 153));
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel7.setForeground(java.awt.Color.white);
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -136,43 +111,94 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        tblRegistrodeNotas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "     N#", "   CODIGO", "          PROVEEDOR", "       REPRESENTANTE", "     TELEFONO", "  FECHA CREACION", "       IVA", "DESCUENTO", "     TOTAL"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, true, true, true, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblRegistrodeNotas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblRegistrodeNotasMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblRegistrodeNotasMousePressed(evt);
+            }
+        });
+        tblProduc.setViewportView(tblRegistrodeNotas);
+        if (tblRegistrodeNotas.getColumnModel().getColumnCount() > 0) {
+            tblRegistrodeNotas.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tblRegistrodeNotas.getColumnModel().getColumn(1).setPreferredWidth(40);
+            tblRegistrodeNotas.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblRegistrodeNotas.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tblRegistrodeNotas.getColumnModel().getColumn(4).setPreferredWidth(60);
+            tblRegistrodeNotas.getColumnModel().getColumn(5).setPreferredWidth(80);
+            tblRegistrodeNotas.getColumnModel().getColumn(6).setPreferredWidth(40);
+            tblRegistrodeNotas.getColumnModel().getColumn(7).setPreferredWidth(40);
+            tblRegistrodeNotas.getColumnModel().getColumn(8).setPreferredWidth(40);
+        }
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tblProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(tblProduc)
-                        .addContainerGap())
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60))))
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 983, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(111, 111, 111)
+                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(278, 278, 278))))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(284, 284, 284)
+                .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -364,6 +390,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
     private javax.swing.JButton btnSalir2;
     private javax.swing.JButton filtrar;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane tblProduc;
     private javax.swing.JTable tblRegistrodeNotas;

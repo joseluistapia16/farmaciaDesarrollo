@@ -50,46 +50,47 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnSalir2" min="-2" pref="120" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="432" max="-2" attributes="0"/>
-                                  <Component id="btnInactivos" min="-2" pref="120" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                                  <Component id="Reporte" min="-2" pref="120" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="tblProduc" min="-2" pref="940" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="filtrar" min="-2" pref="83" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="txtfiltro" min="-2" pref="373" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="btnInactivos" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                          <Component id="Reporte" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                          <Component id="btnSalir2" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="282" max="-2" attributes="0"/>
+                  <Component id="filtrar" min="-2" pref="80" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="txtfiltro" min="-2" pref="200" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jLabel7" min="-2" pref="50" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jLabel7" min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtfiltro" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="filtrar" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="tblProduc" min="-2" pref="154" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnSalir2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="btnInactivos" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="Reporte" alignment="3" pref="31" max="32767" attributes="0"/>
-                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnSalir2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="btnInactivos" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="Reporte" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -105,9 +106,9 @@
         <Component class="javax.swing.JButton" name="filtrar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="12" style="1"/>
+              <Font name="Tahoma" size="10" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Buscar"/>
+            <Property name="text" type="java.lang.String" value="BUSCAR"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="filtrarActionPerformed"/>
@@ -116,7 +117,7 @@
         <Component class="javax.swing.JButton" name="btnSalir2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="13" style="1"/>
+              <Font name="Ubuntu" size="10" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SALIR"/>
           </Properties>
@@ -124,92 +125,10 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalir2ActionPerformed"/>
           </Events>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="tblProduc">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTable" name="tblRegistrodeNotas">
-              <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="9" rowCount="0">
-                    <Column editable="true" title="N#" type="java.lang.Object"/>
-                    <Column editable="true" title="CODIGO" type="java.lang.Object"/>
-                    <Column editable="true" title="PROVEEDOR" type="java.lang.Object"/>
-                    <Column editable="true" title="REPRESENTANTE" type="java.lang.Object"/>
-                    <Column editable="true" title="TELEFONO" type="java.lang.Object"/>
-                    <Column editable="true" title="FECHA CREACION" type="java.lang.Object"/>
-                    <Column editable="true" title="IVA" type="java.lang.Object"/>
-                    <Column editable="false" title="DESCUENTO" type="java.lang.Object"/>
-                    <Column editable="false" title="TOTAL" type="java.lang.Object"/>
-                  </Table>
-                </Property>
-                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                  <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                  </TableColumnModel>
-                </Property>
-                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblRegistrodeNotasMouseClicked"/>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblRegistrodeNotasMousePressed"/>
-              </Events>
-            </Component>
-          </SubComponents>
-        </Container>
         <Component class="javax.swing.JButton" name="Reporte">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="13" style="1"/>
+              <Font name="Ubuntu" size="10" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
           </Properties>
@@ -220,7 +139,7 @@
         <Component class="javax.swing.JButton" name="btnInactivos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="13" style="1"/>
+              <Font name="Ubuntu" size="10" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="INACTIVOS"/>
           </Properties>
@@ -231,7 +150,7 @@
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="b8" green="b8" red="2" type="rgb"/>
+              <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="24" style="1"/>
@@ -248,6 +167,115 @@
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel7MousePressed"/>
           </Events>
         </Component>
+        <Container class="javax.swing.JPanel" name="jPanel1">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder thickness="2"/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="tblProduc" min="-2" pref="830" max="-2" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="tblProduc" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="tblProduc">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTable" name="tblRegistrodeNotas">
+                  <Properties>
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="9" rowCount="0">
+                        <Column editable="true" title="        N#" type="java.lang.Object"/>
+                        <Column editable="true" title="  CODIGO" type="java.lang.Object"/>
+                        <Column editable="true" title="     PROVEEDOR" type="java.lang.Object"/>
+                        <Column editable="true" title="      REPRESENTANTE      " type="java.lang.Object"/>
+                        <Column editable="true" title="       TELEFONO" type="java.lang.Object"/>
+                        <Column editable="true" title="FECHA CREACION" type="java.lang.Object"/>
+                        <Column editable="false" title="       IVA" type="java.lang.Object"/>
+                        <Column editable="false" title="  DESCUENTO" type="java.lang.Object"/>
+                        <Column editable="false" title="      TOTAL" type="java.lang.Object"/>
+                      </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="35" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="35" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="40" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="45" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="45" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+                    </Property>
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblRegistrodeNotasMouseClicked"/>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblRegistrodeNotasMousePressed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>

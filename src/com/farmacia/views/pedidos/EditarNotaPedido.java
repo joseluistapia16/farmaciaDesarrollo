@@ -251,7 +251,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             }
         });
 
-        jPanel3.setBackground(new java.awt.Color(2, 184, 184));
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
         jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel3MouseDragged(evt);
@@ -694,11 +694,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 .addComponent(btnBuscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(234, 234, 234)
+                .addGap(204, 204, 204)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(66, 66, 66)
                 .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(65, 65, 65)
                 .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

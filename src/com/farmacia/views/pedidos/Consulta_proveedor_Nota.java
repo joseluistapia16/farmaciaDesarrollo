@@ -96,7 +96,7 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
                 {null, null, null, null}
             },
             new String [] {
-                "    CEDULA/RUC ", "          NOMBRE  ", "      CONTACTO", "FECHA REGISTRO "
+                "           CEDULA/RUC ", "               NOMBRE  ", "            CONTACTO", "       FECHA REGISTRO "
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -122,7 +122,7 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
         );
 
         Reporte.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -176,7 +176,7 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
