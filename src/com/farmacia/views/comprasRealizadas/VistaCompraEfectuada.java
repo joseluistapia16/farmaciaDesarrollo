@@ -1,12 +1,12 @@
-package com.farmacia.views.devoluciones1;
+package com.farmacia.views.comprasRealizadas;
 
-import com.farmacia.views.devoluciones.*;
 import com.farmacia.views.pedidos.*;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.entities1.Detalle_compra;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
@@ -37,7 +37,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
-public class VistaCompraDevueltas extends javax.swing.JDialog {
+public class VistaCompraEfectuada extends javax.swing.JDialog {
 
     int x, y, variableCerrar;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -57,7 +57,7 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
     JoinListarNotaPedidosCabecera buscador = null;
     int idComprasCab;
 
-    public VistaCompraDevueltas(java.awt.Frame parent, boolean modal) {
+    public VistaCompraEfectuada(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
 
         setUndecorated(true);
@@ -65,7 +65,7 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
 
     }
 
-    public VistaCompraDevueltas(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1, int vari) {
+    public VistaCompraEfectuada(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1, int vari) {
 //        super(parent, modal);
 //
 //        setUndecorated(true);
@@ -179,6 +179,7 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbaListaFaltantes = new javax.swing.JTable();
+        btnDevolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -551,6 +552,16 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        btnDevolver.setBackground(new java.awt.Color(51, 51, 255));
+        btnDevolver.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        btnDevolver.setForeground(new java.awt.Color(255, 255, 255));
+        btnDevolver.setText("DEVOLVER TODO");
+        btnDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDevolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -567,6 +578,8 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
@@ -626,7 +639,8 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(202, 202, 202))
         );
 
@@ -638,7 +652,7 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 514, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
         );
 
         pack();
@@ -805,7 +819,25 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
                     System.out.println(seleccion);
                     switch (seleccion) {
                         case 0://eliminar
-
+                            String valor = "";
+                            int seleccion1 = JOptionPane.showOptionDialog(null, "Esta Seguro de Elimnar el Item Seleccionado ",
+                                    "Selector de opciones", JOptionPane.YES_NO_CANCEL_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+                                    new Object[]{"SI", "NO"}, "NO");
+                            if (seleccion1 == 0) {
+                                valor = EliminarDetalleDevolucion(objetop);
+                                if ("EXITO".equals(valor)) {
+                                    JOptionPane.showMessageDialog(rootPane, valor);
+                                    actualizarTabla2();
+                                    Cabecera_compra cn = new Cabecera_compra();
+                                    cn.setIva(VGiva);
+                                    cn.setDescuento(VGdescuento);
+                                    cn.setTotal(VGtotal);
+                                    cn.setId_cabecera_compra(Long.valueOf(idComprasCab));
+                                    cn.setIdcabecerapedido(Long.valueOf(txtNumero.getText()));
+                                    crud.edicionCompra(cn);
+                                }
+                            }
                             break;
                         case 1://modificar
                             EditarProductoCompra1 Man = new EditarProductoCompra1(new javax.swing.JFrame(), true, objetop);
@@ -832,10 +864,24 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(VistaCompraDevueltas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VistaCompraEfectuada.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tbaListaFaltantesMousePressed
-
+    private String EliminarDetalleDevolucion(JoinListarDetalleNotaPedido dt) {
+        String valor = "";
+        DetalleNotaPedido obj = new DetalleNotaPedido();
+        obj.setId_detalle_nota_pedidos(dt.getId_detalle_nota_pedido());
+        obj.setId_precio(dt.getId_precio());
+        obj.setCantidad(dt.getCantidad());
+        obj.setDescuento(dt.getDescuento());
+        obj.setIva(dt.getIva());
+        obj.setTotal(dt.getTotal());
+        obj.setBono(dt.getBono());
+        valor = crud.EliminarDetalleDevolucion(obj);
+//        Habilitar(false);
+//        JOptionPane.showMessageDialog(null, "Detalle Eliminado");
+        return valor;
+    }
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
         x = evt.getX();
         y = evt.getY();
@@ -850,11 +896,45 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaCreacionActionPerformed
 
+    private void btnDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevolverActionPerformed
+        int seleccion = JOptionPane.showOptionDialog(null, "Desea Devolver Todo?",
+                "Elija La Opcion", JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+                new Object[]{"SI", "NO"}, "NO");
+        switch (seleccion) {
+            case 0://SI
+                String valor = "";
+                crud.cambiarEstadoDevolucion(Integer.valueOf(txtNumero.getText()), idComprasCab);
+                for (int i = 0; i < lista3.size(); i++) {
+
+                    Detalle_compra obj = new Detalle_compra();
+                    obj.setId_cabecera_compra(Long.valueOf(txtNumero.getText()));
+                    obj.setId_precio(lista3.get(i).getId_precio());
+                    obj.setCantidad(lista3.get(i).getCantidad());
+                    valor = crud.devolverProductosComprados(obj);
+                    if ("¡DEVOLUCION EXITOSA!".equals(valor)) {
+                        JOptionPane.showMessageDialog(rootPane, valor);
+                        this.setVisible(false);
+                    }
+                }
+                break;
+            case 1://NO
+
+                break;
+            case -1:
+                System.out.println("lala");
+                break;
+            default:
+                System.out.println("error");
+                break;
+        }
+    }//GEN-LAST:event_btnDevolverActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VistaCompraDevueltas dialog = new VistaCompraDevueltas(new javax.swing.JFrame(), true);
+                VistaCompraEfectuada dialog = new VistaCompraEfectuada(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -867,6 +947,7 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDevolver;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JComboBox<String> cbxFormaP;
     private javax.swing.JComboBox<String> cbxPlazo;
