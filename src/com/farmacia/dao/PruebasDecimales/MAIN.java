@@ -135,15 +135,8 @@ public class MAIN {
 ////       a="hola";
 ////        b=a;
 ////        System.out.println(a+" // "+b);
-        int b = 2, i = 0;
-
-        b = b - 1;
-        if (b == b++) {
-            System.out.println("crece");
-        }else{
-            System.out.println("decrece");
-
-        }
+   
+        System.out.println(""+ formatoNumero("65767676.5676"));
 
     }
 
@@ -171,5 +164,16 @@ public class MAIN {
         String gi = decf.format(valor);
         return gi;
 
+    }
+    public static String formatoNumero(String valor) {   ////////////////   1
+        DecimalFormat formato = new DecimalFormat("#,###.00");      
+        String valorFormateado = formato.format(Double.parseDouble(valor));
+        return valorFormateado;
+    }
+
+    public static double formatoNumeroDouble(double valor) {   ////////////////   1
+        BigDecimal big = new BigDecimal(valor);
+        big = big.setScale(2, RoundingMode.HALF_UP);
+        return Double.parseDouble(big.toString());
     }
 }
