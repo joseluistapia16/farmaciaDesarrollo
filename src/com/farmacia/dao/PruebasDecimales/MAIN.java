@@ -165,6 +165,7 @@ public class MAIN {
         return gi;
 
     }
+    ////////////////////////////////////////////-------------------------------------------
     public static String formatoNumero(String valor) {   ////////////////   1
         DecimalFormat formato = new DecimalFormat("#,###.00");      
         String valorFormateado = formato.format(Double.parseDouble(valor));

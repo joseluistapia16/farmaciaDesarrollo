@@ -20,6 +20,7 @@ import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,7 +60,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
     }
 
-    public EditarNotaPedido(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1,int vari) {
+    public EditarNotaPedido(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1, int vari) {
 //        super(parent, modal);
 //
 //        setUndecorated(true);
@@ -81,10 +82,10 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         TotalIVA();
         TotalDescuento();
         Total();
-        
-        variableCerrar=vari;
+
+        variableCerrar = vari;
     }
-    
+
     private void llenarFormulario(JoinListarNotaPedidosCabecera obj) {
         txtCodigoProveedor.setText(obj.getId_proveedor().toString());
         txtNombre1.setText(obj.getEntidad());
@@ -790,6 +791,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         txtDescuento.setText(removeScientificNotation(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
     }
 
+    public static String formatoNumero(String valor) {   ////////////////   1
+        DecimalFormat formato = new DecimalFormat("#,###.00");
+        String valorFormateado = formato.format(Double.parseDouble(valor));
+        return valorFormateado;
+    }
+
     public void Total() {
         BigDecimal Total_ = new BigDecimal("0.0000");
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
@@ -798,7 +805,13 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
         }
         VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        txtTotal.setText(Total_.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+//        txtTotal.setText(Total_.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        String T = Total_.toString();
+        if (T.substring(0, 1).equals("0")) {
+            txtTotal.setText("0" + formatoNumero(Total_.toString()));
+        } else {
+            txtTotal.setText(formatoNumero(Total_.toString()));
+        }
     }
 
     public static String removeScientificNotation(String value) {
@@ -829,24 +842,19 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
-            if(variableCerrar==1){
-            this.setVisible(false);
+            if (variableCerrar == 1) {
+                this.setVisible(false);
             }
-            if(variableCerrar!=1){
-            setVisible(false);
-            MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
-            Man.setVisible(true);
+            if (variableCerrar != 1) {
+                setVisible(false);
+                MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
+                Man.setVisible(true);
             }
         } else {
 
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
-//    public void Recorrer() {
-//        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-//            System.out.println("lista3 "+lista3.size());
-//        }
-// 
-//    }
+
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
         int i = 0;
         String msg = null;
@@ -874,6 +882,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                             //Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
                             crud.InsertarBDCompras(txtNumero.getText(), lista1);
                             actualizarTabla2();
+                            btnSalir2.setEnabled(false);
                         }
 
                     }
@@ -1010,6 +1019,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         } else {
 
         }
+        btnSalir2.setEnabled(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
@@ -1079,21 +1089,21 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         String id_cab = "";
-    
+
         CabeceraNotaPedido cn = new CabeceraNotaPedido();
 
         cn.setId_cabecera_nota_pedidos(Long.valueOf(txtNumero.getText()));
         id_cab = crud.DesactivarEstadoNotaPedido(cn);
         setVisible(false);
         RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
-     
+
         RIN.setVisible(true);
-       
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
-        x=evt.getX();
-        y=evt.getY();
+        x = evt.getX();
+        y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
