@@ -721,6 +721,8 @@ public class Tablas {
 //cargarJoinProductoIngresoNotas
 
     public static String formatoNumero(String valor) {   ////////////////   1
+
+//        DecimalFormat formato = new DecimalFormat("###,###.##");
         DecimalFormat formato = new DecimalFormat("#,###.00");
         String valorFormateado = formato.format(Double.parseDouble(valor));
         return valorFormateado;
@@ -749,11 +751,19 @@ public class Tablas {
             Filas[5] = lista.get(i).getMedida();
             Filas[6] = lista.get(i).getBono().toString();
             Filas[7] = lista.get(i).getCantidad().toString();
+
             Filas[8] = lista.get(i).getPrecioBono().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
             Filas[9] = lista.get(i).getValor_descuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
             Filas[10] = lista.get(i).getPrecioiva().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[11] = lista.get(i).getImporte().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-//            }
+
+            String T = lista.get(i).getImporte().toString();
+
+            if (T.charAt(0) == '0') {
+
+                Filas[11] = "0" + formatoNumero(lista.get(i).getImporte().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            } else {
+                Filas[11] = formatoNumero(lista.get(i).getImporte().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            }
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
