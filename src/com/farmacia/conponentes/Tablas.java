@@ -37,6 +37,7 @@ import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -722,9 +723,15 @@ public class Tablas {
 
     public static String formatoNumero(String valor) {   ////////////////   1
 
-//        DecimalFormat formato = new DecimalFormat("###,###.##");
         DecimalFormat formato = new DecimalFormat("#,###.00");
         String valorFormateado = formato.format(Double.parseDouble(valor));
+
+        if (valorFormateado.charAt(0) == ',') {
+            String h = "0" + valorFormateado;
+            valorFormateado = h;
+            System.out.println("H" + h);
+        }
+
         return valorFormateado;
     }
 
@@ -752,18 +759,11 @@ public class Tablas {
             Filas[6] = lista.get(i).getBono().toString();
             Filas[7] = lista.get(i).getCantidad().toString();
 
-            Filas[8] = lista.get(i).getPrecioBono().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[9] = lista.get(i).getValor_descuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[10] = lista.get(i).getPrecioiva().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+            Filas[8] = formatoNumero(lista.get(i).getPrecioBono().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            Filas[9] = formatoNumero(lista.get(i).getValor_descuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            Filas[10] = formatoNumero(lista.get(i).getPrecioiva().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            Filas[11] = formatoNumero(lista.get(i).getImporte().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 
-            String T = lista.get(i).getImporte().toString();
-
-            if (T.charAt(0) == '0') {
-
-                Filas[11] = "0" + formatoNumero(lista.get(i).getImporte().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            } else {
-                Filas[11] = formatoNumero(lista.get(i).getImporte().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            }
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);

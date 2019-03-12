@@ -95,8 +95,15 @@ public class NotePedidos extends javax.swing.JDialog {
 //        return resultado;
 //    }
     public static String formatoNumero(String valor) {   ////////////////   1
+
         DecimalFormat formato = new DecimalFormat("#,###.00");
         String valorFormateado = formato.format(Double.parseDouble(valor));
+
+        if (valorFormateado.charAt(0) == ',') {
+            String h = "0" + valorFormateado;
+            valorFormateado = h;
+        }
+
         return valorFormateado;
     }
 
@@ -121,12 +128,7 @@ public class NotePedidos extends javax.swing.JDialog {
         }
         VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalPro.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
 //        txtTotal.setText(TotalPro.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        String T = TotalPro.toString();
-        if (T.substring(0, 1).equals("0")) {
-            txtTotal.setText("0" + formatoNumero(TotalPro.toString()));
-        } else {
             txtTotal.setText(formatoNumero(TotalPro.toString()));
-        }
     }
 
     public void TotalIVA2() {
@@ -148,8 +150,8 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         }
         VGiva = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalIva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        txtIva.setText(TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-//        txtIva.setText(formatoNumero(TotalIva.toString()));
+//        txtIva.setText(TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        txtIva.setText(formatoNumero(TotalIva.toString()));
     }
 
     public void TotalDescuento2() {
@@ -165,8 +167,8 @@ public class NotePedidos extends javax.swing.JDialog {
             TotalDesc = TotalDesc.add(ValorDesc);
         }
         VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDesc.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        txtDescuento.setText(TotalDesc.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-//        txtDescuento.setText(formatoNumero(TotalDesc.toString()));
+//        txtDescuento.setText(TotalDesc.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        txtDescuento.setText(formatoNumero(TotalDesc.toString()));
     }
 
     public static String removeScientificNotation(String value) {
