@@ -332,7 +332,8 @@ public class Consulta_Clientes extends javax.swing.JDialog {
         Clientes tabla1 = new Clientes (tabla.getValueAt(i,0).toString(),tabla.getValueAt(i,1).toString(),tabla.getValueAt(i,2).toString(),tabla.getValueAt(i,3).toString(),tabla.getValueAt(i,4).toString());
         tablac.add(tabla1);}
         try{
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("TablaCliente.jasper");
+            String dir = System.getProperty("user.dir") + "/src/Reportes/" +"TablaCliente.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog (this);
             JRViewer viewer = new JRViewer(jprint);
