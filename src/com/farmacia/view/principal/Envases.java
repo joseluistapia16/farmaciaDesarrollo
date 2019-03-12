@@ -76,6 +76,7 @@ public class Envases extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -115,7 +116,7 @@ public class Envases extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        nuevo_btn.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        nuevo_btn.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         nuevo_btn.setForeground(new java.awt.Color(31, 115, 36));
         nuevo_btn.setText("NUEVO");
         nuevo_btn.setFocusable(false);
@@ -127,7 +128,7 @@ public class Envases extends javax.swing.JDialog {
             }
         });
 
-        actualizar_bt.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        actualizar_bt.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         actualizar_bt.setText("ACTUALIZAR");
         actualizar_bt.setFocusable(false);
         actualizar_bt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -139,7 +140,7 @@ public class Envases extends javax.swing.JDialog {
         });
 
         salir_btn.setBackground(new java.awt.Color(235, 4, 4));
-        salir_btn.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        salir_btn.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         salir_btn.setForeground(new java.awt.Color(254, 254, 254));
         salir_btn.setText("SALIR");
         salir_btn.setFocusable(false);
@@ -151,11 +152,11 @@ public class Envases extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
         jLabel1.setText("BUSQUEDA:");
 
-        busqueda_tf.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        busqueda_tf.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         busqueda_tf.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 busqueda_tfKeyReleased(evt);
@@ -191,19 +192,19 @@ public class Envases extends javax.swing.JDialog {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
+                        .addGap(0, 50, Short.MAX_VALUE)
+                        .addComponent(nuevo_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(busqueda_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
-                .addComponent(nuevo_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(actualizar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(salir_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                        .addComponent(actualizar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(salir_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60))))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(busqueda_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,8 +212,8 @@ public class Envases extends javax.swing.JDialog {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(busqueda_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(busqueda_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

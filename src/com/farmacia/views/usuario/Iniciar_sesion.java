@@ -10,9 +10,11 @@ import com.farmacia.entities1.Bitacora_seguridad;
 import com.farmacia.entities1.Session;
 import com.farmacia.entities1.Usuario_S;
 import com.farmacia.operaciones.Operaciones;
+import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,6 +34,9 @@ public class Iniciar_sesion extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        ImageIcon iconoAdmin = new ImageIcon(getClass().getResource("/img/login.png")); //imagen original
+        ImageIcon icoLogin = new ImageIcon(iconoAdmin.getImage().getScaledInstance(jLabel5.getWidth(), jLabel5.getHeight(), Image.SCALE_DEFAULT)); //imagen redimencionada en funcion del tamaño del label
+        jLabel5.setIcon(icoLogin);
     }
 
     /**
@@ -117,7 +122,6 @@ public class Iniciar_sesion extends javax.swing.JDialog {
         jLabel2.setText("USUARIO:");
 
         usuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        usuario.setForeground(new java.awt.Color(255, 255, 255));
         usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +134,6 @@ public class Iniciar_sesion extends javax.swing.JDialog {
         jLabel3.setText("CONTRASEÑA:");
 
         contrasena.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        contrasena.setForeground(new java.awt.Color(255, 255, 255));
         contrasena.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         contrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,6 +144,11 @@ public class Iniciar_sesion extends javax.swing.JDialog {
         btnRegistrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(204, 204, 0));
         btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         btnIniciar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnIniciar.setForeground(new java.awt.Color(0, 153, 0));
@@ -272,6 +280,12 @@ public class Iniciar_sesion extends javax.swing.JDialog {
         setLocation(point.x-x,point.y-y);
     }//GEN-LAST:event_jLabel1MouseDragged
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        Registrar_usuario j=new Registrar_usuario(new javax.swing.JFrame(), true);
+        j.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
     private void Iniciar() {
 
         if (usuario.getText().length() < 2 || contrasena.getText().length() < 2) {
@@ -281,9 +295,10 @@ public class Iniciar_sesion extends javax.swing.JDialog {
             Usuario_S obj = new Usuario_S();
             obj.setCorreo(usuario.getText());
             obj.setPassword(contrasena.getText());
-//            obj.setIp_equipo(Operaciones.getIpDispositivo());
+            obj.setIp_equipo(Operaciones.getIpDispositivo());
 //            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
-//            obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
+            obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
+            
             bs.setUser(usuario.getText());
             bs.setPassword(contrasena.getText());
             bs.setIp_equipo(Operaciones.getIpDispositivo());

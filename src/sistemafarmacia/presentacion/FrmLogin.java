@@ -1,16 +1,21 @@
 package sistemafarmacia.presentacion;
 
+import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.Bitacora_seguridad;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import com.farmacia.entities1.Usuario;
+import com.farmacia.entities1.Usuario_S;
+import com.farmacia.operaciones.Operaciones;
 import sistemafarmacia.VariablesFunciones;
 
 public class FrmLogin extends javax.swing.JFrame {
 
     private static final String TITLE = "Login";
     VariablesFunciones variables = new VariablesFunciones();
+    CRUD cr = new CRUD();
 
     public FrmLogin() {
         initComponents();
@@ -169,7 +174,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         String username = txtUsuario.getText();
         String password = txpContrasenia.getText();
@@ -178,8 +183,24 @@ public class FrmLogin extends javax.swing.JFrame {
         usuario.setPassword(password);
         usuario.setUsername(username);
         usuario.setPassword(password);
-        if ("farmacia".equals(usuario.getUsername()) && "1234".equals(usuario.getPassword())) {
-            //Archivos.setEscribirFichero(usuario);
+        Bitacora_seguridad bs = new Bitacora_seguridad();
+            Usuario_S obj = new Usuario_S();
+            obj.setCorreo(txtUsuario.getText());
+            obj.setPassword(txpContrasenia.getText());
+            obj.setIp_equipo(Operaciones.getIpDispositivo());
+//            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
+            obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
+
+            bs.setUser(txtUsuario.getText());
+            bs.setPassword(txpContrasenia.getText());
+            bs.setIp_equipo(Operaciones.getIpDispositivo());
+            bs.setUsuario_equipo(Operaciones.getNombreDispositivo());
+            bs.setDir_ip_completa(Operaciones.getIpLocalCompleta());
+            String salida = cr.Iniciar_sesion(obj);
+            cr.bitacoraSeguridad(bs);
+        
+         if ("farmacia".equals(usuario.getUsername()) && "1234".equals(usuario.getPassword())) {
+
             FrmPrincipal frmp = new FrmPrincipal();
 
 //                if(usuario.getId()==2){
@@ -188,7 +209,20 @@ public class FrmLogin extends javax.swing.JFrame {
 //                }
             frmp.setVisible(true);
             this.dispose();
-        } else {
+            
+        }
+        else if("Bienvenido".equals(salida)){
+            FrmPrincipal frmp = new FrmPrincipal();
+
+//                if(usuario.getId()==2){
+//                    frmp.btnProducto.setEnabled(false);
+//                    frmp.mnuAdministracion.setEnabled(false);
+//                }
+            frmp.setVisible(true);
+            this.dispose();
+            }
+        
+       else {
             JOptionPane.showMessageDialog(this, "Datos Incorrectos");
         }
 

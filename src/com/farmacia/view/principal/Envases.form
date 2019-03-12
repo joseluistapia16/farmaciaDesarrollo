@@ -3,6 +3,7 @@
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="undecorated" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -54,22 +55,22 @@
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
+                          <Component id="nuevo_btn" min="-2" pref="85" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="busqueda_tf" min="-2" pref="160" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                          <Component id="actualizar_bt" min="-2" pref="85" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="salir_btn" min="-2" pref="85" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="62" max="32767" attributes="0"/>
-                  <Component id="nuevo_btn" min="-2" pref="85" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="actualizar_bt" min="-2" pref="85" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="salir_btn" min="-2" pref="85" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="busqueda_tf" min="-2" pref="160" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -79,8 +80,8 @@
                   <Component id="jLabel2" min="-2" pref="45" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel1" alignment="3" max="32767" attributes="0"/>
-                      <Component id="busqueda_tf" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="busqueda_tf" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
@@ -175,7 +176,7 @@
         <Component class="javax.swing.JButton" name="nuevo_btn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="11" style="1"/>
+              <Font name="Ubuntu" size="10" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="24" green="73" red="1f" type="rgb"/>
@@ -192,7 +193,7 @@
         <Component class="javax.swing.JButton" name="actualizar_bt">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="11" style="1"/>
+              <Font name="Ubuntu" size="10" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="ACTUALIZAR"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -209,7 +210,7 @@
               <Color blue="4" green="4" red="eb" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="11" style="1"/>
+              <Font name="Ubuntu" size="10" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fe" green="fe" red="fe" type="rgb"/>
@@ -226,7 +227,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="15" style="1"/>
+              <Font name="Ubuntu" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="1" green="1" red="1" type="rgb"/>
@@ -237,7 +238,7 @@
         <Component class="javax.swing.JTextField" name="busqueda_tf">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="12" style="1"/>
+              <Font name="Ubuntu" size="10" style="1"/>
             </Property>
           </Properties>
           <Events>

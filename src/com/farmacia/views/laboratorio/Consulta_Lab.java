@@ -120,6 +120,11 @@ public class Consulta_Lab extends javax.swing.JDialog {
 
         tipofiltro.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RUC", "Nombre", "Direccion", "Telefono" }));
+        tipofiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipofiltroActionPerformed(evt);
+            }
+        });
 
         BotonBuscar.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         BotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/buscar1.jpg"))); // NOI18N
@@ -361,6 +366,10 @@ public class Consulta_Lab extends javax.swing.JDialog {
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel2MouseDragged
+
+    private void tipofiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipofiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipofiltroActionPerformed
 
 //    public void Eliminar(String datos) {
 //

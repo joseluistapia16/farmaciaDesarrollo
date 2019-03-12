@@ -48,6 +48,7 @@ public class Tipo_Nuevo extends javax.swing.JDialog {
         guardar_bt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -68,6 +69,7 @@ public class Tipo_Nuevo extends javax.swing.JDialog {
             }
         });
 
+        insertar_tf.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         insertar_tf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 insertar_tfFocusLost(evt);
@@ -79,12 +81,12 @@ public class Tipo_Nuevo extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
         jLabel1.setText(" TIPO:");
 
         salir_btn.setBackground(new java.awt.Color(235, 4, 4));
-        salir_btn.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        salir_btn.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         salir_btn.setForeground(new java.awt.Color(254, 254, 254));
         salir_btn.setText("CANCELAR");
         salir_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +95,7 @@ public class Tipo_Nuevo extends javax.swing.JDialog {
             }
         });
 
-        guardar_bt.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        guardar_bt.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         guardar_bt.setForeground(new java.awt.Color(71, 118, 83));
         guardar_bt.setText("GUARDAR");
         guardar_bt.addActionListener(new java.awt.event.ActionListener() {
@@ -106,20 +108,20 @@ public class Tipo_Nuevo extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(insertar_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(guardar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(salir_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(salir_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(insertar_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +135,7 @@ public class Tipo_Nuevo extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(salir_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

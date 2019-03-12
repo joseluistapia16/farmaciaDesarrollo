@@ -52,11 +52,12 @@ public class AgregarTipo extends javax.swing.JDialog {
         btnaceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel2.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(254, 254, 254));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("TIPO DE PRODUCTO");
@@ -75,7 +76,7 @@ public class AgregarTipo extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel1.setText("NUEVO TIPO:");
 
-        txtnuevoTipo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        txtnuevoTipo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         txtnuevoTipo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtnuevoTipoFocusLost(evt);
@@ -88,7 +89,7 @@ public class AgregarTipo extends javax.swing.JDialog {
         });
 
         btnCancelar.setBackground(new java.awt.Color(153, 0, 0));
-        btnCancelar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelar.setText("CANCELAR");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +98,7 @@ public class AgregarTipo extends javax.swing.JDialog {
             }
         });
 
-        btnaceptar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        btnaceptar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         btnaceptar.setForeground(new java.awt.Color(0, 102, 0));
         btnaceptar.setText("LISTO");
         btnaceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -118,10 +119,10 @@ public class AgregarTipo extends javax.swing.JDialog {
                 .addComponent(txtnuevoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(btnaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(btnaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -130,13 +131,13 @@ public class AgregarTipo extends javax.swing.JDialog {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtnuevoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnuevoTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 17, Short.MAX_VALUE))
+                    .addComponent(btnaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

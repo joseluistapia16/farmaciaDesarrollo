@@ -52,6 +52,7 @@ public final class Envases_Actualizado extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -73,7 +74,7 @@ public final class Envases_Actualizado extends javax.swing.JDialog {
         });
 
         salir_btn.setBackground(new java.awt.Color(235, 4, 4));
-        salir_btn.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        salir_btn.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         salir_btn.setForeground(new java.awt.Color(254, 254, 254));
         salir_btn.setText("CANCELAR");
         salir_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +83,7 @@ public final class Envases_Actualizado extends javax.swing.JDialog {
             }
         });
 
-        eliminar_bt.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        eliminar_bt.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         eliminar_bt.setText("ELIMINAR");
         eliminar_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +91,7 @@ public final class Envases_Actualizado extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         jButton1.setForeground(new java.awt.Color(53, 142, 61));
         jButton1.setText("GUARDAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +100,7 @@ public final class Envases_Actualizado extends javax.swing.JDialog {
             }
         });
 
-        actualizar_tf.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        actualizar_tf.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         actualizar_tf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 actualizar_tfFocusLost(evt);
@@ -143,11 +144,11 @@ public final class Envases_Actualizado extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(actualizar_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eliminar_bt, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(salir_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                    .addComponent(eliminar_bt, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(salir_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
         );
 
@@ -159,7 +160,7 @@ public final class Envases_Actualizado extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

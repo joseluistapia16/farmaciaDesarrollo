@@ -2489,15 +2489,15 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call iniciar_sesion(?,?,?) }");
+                    "{ call iniciar_sesion(?,?,?,?,?) }");
             pro.setString(1, us.getCorreo());
             pro.setString(2, us.getPassword());
-//            pro.setString(3, us.getIp_equipo());
+            pro.setString(3, us.getIp_equipo());
 //            pro.setString(4, us.getIp_publico());
-//            pro.setString(5, us.getUsuario_equipo());
+            pro.setString(4, us.getUsuario_equipo());
             pro.registerOutParameter("salida", Types.VARCHAR);
-            pro.executeUpdate();
-            //pro.execute();
+//            pro.executeUpdate();
+            pro.execute();
             valor = pro.getString("salida");
             conect.commit();
         } catch (Exception e) {
