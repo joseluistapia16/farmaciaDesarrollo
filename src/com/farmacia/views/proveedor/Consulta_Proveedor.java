@@ -327,7 +327,8 @@ public class Consulta_Proveedor extends javax.swing.JDialog {
             lista.add(proveedor);
         }
         try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("Consulta_Proveedor.jasper");
+             String dir = System.getProperty("user.dir") + "/Reportes/" +"Consulta_Proveedor.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
