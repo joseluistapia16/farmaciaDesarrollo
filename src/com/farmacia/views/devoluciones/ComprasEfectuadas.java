@@ -264,8 +264,8 @@ public class ComprasEfectuadas extends javax.swing.JDialog {
             objeto = devuelveObjeto(tblRegistrodeNotas.getValueAt(i, 0).toString(), lista);
 
             if (objeto != null) {
-                VistaCompraEfectuada Vce = new VistaCompraEfectuada(new javax.swing.JFrame(), true, objeto, 2);
-                Vce.setVisible(true);
+//                VistaCompraEfectuada Vce = new VistaCompraEfectuada(new javax.swing.JFrame(), true, objeto, 2);
+//                Vce.setVisible(true);
                 lista.clear();
                 lista = crud.listarCabeceraNotaPedido(4);
                 Tablas.CargarJoinListadoCabeceraNotaPedidos(tblRegistrodeNotas, lista);
