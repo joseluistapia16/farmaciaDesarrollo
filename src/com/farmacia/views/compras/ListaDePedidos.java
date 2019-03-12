@@ -41,6 +41,7 @@ import net.sf.jasperreports.view.JRViewer;
  *
  * @author alumno
  */
+
 public class ListaDePedidos extends javax.swing.JDialog {
 
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
