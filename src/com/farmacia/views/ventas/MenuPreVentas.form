@@ -170,9 +170,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtSubtotalconIva">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel23">
           <Properties>
@@ -180,9 +177,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtDescuento">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel24">
           <Properties>
@@ -298,9 +292,6 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JTextField" name="TxtProdNombre">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="BtnBuscarprodnombre">
               <Properties>
@@ -345,14 +336,8 @@
                 <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtProdCantidadKeyReleased"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtProdCantidadKeyTyped"/>
               </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtProdSubtotal">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtProdIva">
             </Component>
@@ -362,9 +347,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtProdPrecio">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtProdtotal">
             </Component>
@@ -403,14 +385,8 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtSubtotalsinIva">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtSubtotal">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -544,9 +520,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtCedula">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="BtnBuscarcedula">
               <Properties>
@@ -562,9 +535,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtNombre">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
@@ -572,9 +542,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtDirec">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
@@ -587,9 +554,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtTelefono">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtCorreo">
               <AuxValues>

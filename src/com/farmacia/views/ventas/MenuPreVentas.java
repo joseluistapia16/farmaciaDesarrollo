@@ -11,6 +11,7 @@ import com.farmacia.entities1.Cabecera_ventas;
 import com.farmacia.entities1.Detalle_ventas;
 import com.farmacia.entities1.Calcular_totales;
 import com.farmacia.entities1.Persona;
+import com.farmacia.entities1.StockVentas;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import java.awt.Dimension;
 import java.awt.Event;
@@ -37,6 +38,7 @@ import javax.swing.JOptionPane;
 public class MenuPreVentas extends javax.swing.JDialog {
 
     ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
+    ArrayList<StockVentas> listaStockVentas = null;
     CRUD crud = new CRUD();
     JoinListarProductosVentas objProd = new JoinListarProductosVentas();
     Persona objCliente = new Persona();
@@ -50,7 +52,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         TxtDescuentoPorcentaje.setEnabled(false);
 
-        
     }
 
     public MenuPreVentas() {
@@ -558,7 +559,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
             cv.setMun_venta(String.format("%06d", can));
             cv.setId_cliente(objCliente.getId_Clientes());
             cv.setId_usuario(Long.parseLong("36"));
-            
+
             cv.setId_sucursal(Long.parseLong("2"));
             cv.setForma_de_pago(CbxFormaPago.getSelectedItem().toString());
             cv.setTipo_de_venta(CbxTipoVenta.getSelectedItem().toString());
@@ -593,6 +594,19 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 dv.setId_cabecera_venta(Long.parseLong(id_det));
 
             }
+            listaStockVentas = crud.listarStockVentas(Long.parseLong(id_cab));
+
+            for (int i = 0; i < listaStockVentas.size(); i++) {
+                System.out.println("id control " + listaStockVentas.get(i).getId_control());
+                System.out.println("cantidad " + listaStockVentas.get(i).getCantidad());
+            
+                crud.ActulizarStockVentas(listaStockVentas.get(i));
+                
+ 
+            
+            }
+    
+            
             ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
             ov.setVisible(true);
 
@@ -626,7 +640,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         ListarDetalle.add(RegDetalleVentas);
 
         for (int i = 0; i < ListarDetalle.size(); i++) {
-           System.out.println(ListarDetalle.get(i).getNombre_producto());
+            System.out.println(ListarDetalle.get(i).getNombre_producto());
         }
         Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
 //
@@ -958,24 +972,24 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> CbxFormaPago;
     private javax.swing.JComboBox<String> CbxTipoVenta;
     private javax.swing.JTable TablaListarVentas;
-    public static javax.swing.JTextField TxtCedula;
+    private javax.swing.JTextField TxtCedula;
     public static javax.swing.JTextField TxtCorreo;
-    public static javax.swing.JTextField TxtDescuento;
+    private javax.swing.JTextField TxtDescuento;
     private javax.swing.JTextField TxtDescuentoPorcentaje;
-    public static javax.swing.JTextField TxtDirec;
+    private javax.swing.JTextField TxtDirec;
     private javax.swing.JTextField TxtIva;
-    public static javax.swing.JTextField TxtNombre;
-    public static javax.swing.JTextField TxtProdCantidad;
+    private javax.swing.JTextField TxtNombre;
+    private javax.swing.JTextField TxtProdCantidad;
     private javax.swing.JTextField TxtProdDescuento;
     private javax.swing.JTextField TxtProdIva;
-    public static javax.swing.JTextField TxtProdNombre;
-    public static javax.swing.JTextField TxtProdPrecio;
-    public static javax.swing.JTextField TxtProdSubtotal;
+    private javax.swing.JTextField TxtProdNombre;
+    private javax.swing.JTextField TxtProdPrecio;
+    private javax.swing.JTextField TxtProdSubtotal;
     private javax.swing.JTextField TxtProdtotal;
-    public static javax.swing.JTextField TxtSubtotal;
-    public static javax.swing.JTextField TxtSubtotalconIva;
-    public static javax.swing.JTextField TxtSubtotalsinIva;
-    public static javax.swing.JTextField TxtTelefono;
+    private javax.swing.JTextField TxtSubtotal;
+    private javax.swing.JTextField TxtSubtotalconIva;
+    private javax.swing.JTextField TxtSubtotalsinIva;
+    private javax.swing.JTextField TxtTelefono;
     private javax.swing.JTextField TxtTotal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;

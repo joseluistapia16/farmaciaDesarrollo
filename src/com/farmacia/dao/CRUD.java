@@ -37,6 +37,7 @@ import com.farmacia.entities1.Productos_Stock;
 import com.farmacia.entities1.Punto_venta;
 import com.farmacia.entities1.Rol;
 import com.farmacia.entities1.Rol_U;
+import com.farmacia.entities1.StockVentas;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.entities1.Usuario;
@@ -3937,6 +3938,70 @@ public class CRUD {
             }
         }
         return dato;
+
+    }
+    
+    
+    public ArrayList<StockVentas> listarStockVentas(Long id_cab) {
+        ArrayList<StockVentas> lista = new ArrayList<StockVentas>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call BuscarStockVentas(?)}");
+            prcProcedimientoAlmacenado.setLong(1, id_cab);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                StockVentas obj = EntidadesMappers.getStockVentasFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+    
+    public void ActulizarStockVentas(StockVentas det) {
+       
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call ActualizarStockVentas(?,?)}");
+            pro.setLong(1, det.getId_control());
+            pro.setInt(2, det.getCantidad());
+
+            pro.executeUpdate();
+
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
     }
 

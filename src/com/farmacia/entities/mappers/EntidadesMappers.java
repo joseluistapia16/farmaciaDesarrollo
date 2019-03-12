@@ -28,6 +28,7 @@ import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Productos_Stock;
 import com.farmacia.entities1.Rol_U;
+import com.farmacia.entities1.StockVentas;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.Telefono_Cliente;
 import com.farmacia.entities1.TipoProducto;
@@ -790,6 +791,19 @@ public class EntidadesMappers {
             obj.setEnvase(rs.getString("ENVASE"));
             obj.setMarca(rs.getString("MARCA"));
              obj.setCantidad(rs.getLong("CANTIDAD"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
+       public static StockVentas getStockVentasFromResultSet(ResultSet rs) {
+        StockVentas obj = new StockVentas();
+        try {
+            obj.setId_control(rs.getLong("id_control"));
+            obj.setCantidad(rs.getInt("cantidad"));
+
 
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
