@@ -279,7 +279,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="pnlBanner" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="231" max="32767" attributes="0"/>
+              <EmptySpace pref="228" max="32767" attributes="0"/>
               <Component id="pnlPie" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
