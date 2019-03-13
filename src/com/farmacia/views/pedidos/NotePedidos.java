@@ -1,5 +1,6 @@
 package com.farmacia.views.pedidos;
 
+import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.CabeceraNotaPedido;
@@ -29,7 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class NotePedidos extends javax.swing.JDialog {
-
+//jomu2763
     int x, y;
     CRUD crud = new CRUD();
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
@@ -85,28 +86,6 @@ public class NotePedidos extends javax.swing.JDialog {
         }
     }
 
-//    public static double redondearDecimales(double valorInicial, int numeroDecimales) {
-//        double parteEntera, resultado;
-//        resultado = valorInicial;
-//        parteEntera = Math.floor(resultado);
-//        resultado = (resultado - parteEntera) * Math.pow(10, numeroDecimales);
-//        resultado = Math.round(resultado);
-//        resultado = (resultado / Math.pow(10, numeroDecimales)) + parteEntera;
-//        return resultado;
-//    }
-    public static String formatoNumero(String valor) {   ////////////////   1
-
-        DecimalFormat formato = new DecimalFormat("#,###.00");
-        String valorFormateado = formato.format(Double.parseDouble(valor));
-
-        if (valorFormateado.charAt(0) == ',') {
-            String h = "0" + valorFormateado;
-            valorFormateado = h;
-        }
-
-        return valorFormateado;
-    }
-
     public void TotalPro() {
         BigDecimal TotalPro = new BigDecimal("0.00");
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
@@ -126,9 +105,8 @@ public class NotePedidos extends javax.swing.JDialog {
                 TotalPro = TotalPro.add(Subtotal).subtract(ValorDes).add(ValorIVA);
             }
         }
-        VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalPro.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-//        txtTotal.setText(TotalPro.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            txtTotal.setText(formatoNumero(TotalPro.toString()));
+        VGtotal = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(TotalPro.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtTotal.setText(Formato_Numeros.formatoNumero(TotalPro.toString()));
     }
 
     public void TotalIVA2() {
@@ -149,9 +127,8 @@ public class NotePedidos extends javax.swing.JDialog {
                 TotalIva = TotalIva.add(ValorIva);
             }
         }
-        VGiva = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalIva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-//        txtIva.setText(TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        txtIva.setText(formatoNumero(TotalIva.toString()));
+        VGiva = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(TotalIva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtIva.setText(Formato_Numeros.formatoNumero(TotalIva.toString()));
     }
 
     public void TotalDescuento2() {
@@ -166,13 +143,8 @@ public class NotePedidos extends javax.swing.JDialog {
 
             TotalDesc = TotalDesc.add(ValorDesc);
         }
-        VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDesc.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-//        txtDescuento.setText(TotalDesc.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        txtDescuento.setText(formatoNumero(TotalDesc.toString()));
-    }
-
-    public static String removeScientificNotation(String value) {
-        return new BigDecimal(value).toPlainString();
+        VGdescuento = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(TotalDesc.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtDescuento.setText(Formato_Numeros.formatoNumero(TotalDesc.toString()));
     }
 
     public static String FechaActual() {
@@ -551,11 +523,11 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         });
         t_Nota_faltantes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                t_Nota_faltantesMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 t_Nota_faltantesMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                t_Nota_faltantesMouseClicked(evt);
             }
         });
         tblProduc.setViewportView(t_Nota_faltantes);
@@ -726,8 +698,8 @@ public class NotePedidos extends javax.swing.JDialog {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel5Layout.createSequentialGroup()
-                                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
+                                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -844,12 +816,13 @@ public class NotePedidos extends javax.swing.JDialog {
             setVisible(false);
 
         } else {
-
+            
+            
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (!"0.00".equals(txtTotal.getText())) {
+        if (!"0,00".equals(txtTotal.getText())) {
 
             ArrayList<String> queryL = new ArrayList<String>();
             ArrayList<String> queryL1 = new ArrayList<String>();
@@ -866,23 +839,26 @@ public class NotePedidos extends javax.swing.JDialog {
             cn.setDescuento(VGdescuento);//
             cn.setTotal(VGtotal);//
             id_cab = crud.insertarCabeceraNotaPedido(cn);
-
             String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
             id_cab = crud.buscarIDCabeceraNotaPedido(query);
 
             for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-
+                /////////////////////////////
+                
                 cad1 = "INSERT INTO detalle_nota_pedidos"
                         + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
                         + "VALUES(" + id_cab + "," + lista1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + lista1.get(i).getPrecioBono().toString() + "," + lista1.get(i).getValor_descuento().toString() + "," + lista1.get(i).getImporte() + "," + lista1.get(i).getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
                 queryL1.add(cad1);
-//                System.out.println(cad1);
+                //////////////////////////////////
             }
             crud.InsertarDetallesNotaPedidos(queryL1);
             queryL1.clear();
             JOptionPane.showMessageDialog(null, " Guardado con Exito ");
             btnNuevo.setEnabled(true);
         } else {
+            
+            
+            
             JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed

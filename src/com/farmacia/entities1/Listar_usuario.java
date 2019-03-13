@@ -9,7 +9,7 @@ import java.sql.Date;
  */
 public class Listar_usuario {
     private Long id_sesion;
-    private Date fecha_registro;
+    private String fecha_registro;
     private String cedula;
     private String apellidos;
     private String nombres;
@@ -34,7 +34,7 @@ public class Listar_usuario {
     public Listar_usuario() {
     }
 
-    public Listar_usuario(Long id_sesion, Date fecha_registro, String cedula, String apellidos, String nombres, String direccion, String telefono, String convencional, String correo, String password, Long id_rol, String ruta_imagen, Long id_usuario_registro, String cargo, String genero, String discapacidad, String porcentaje, String observacion, String estado, Long id_genero, Long id_estado) {
+    public Listar_usuario(Long id_sesion, String fecha_registro, String cedula, String apellidos, String nombres, String direccion, String telefono, String convencional, String correo, String password, Long id_rol, String ruta_imagen, Long id_usuario_registro, String cargo, String genero, String discapacidad, String porcentaje, String observacion, String estado, Long id_genero, Long id_estado) {
         this.id_sesion = id_sesion;
         this.fecha_registro = fecha_registro;
         this.cedula = cedula;
@@ -66,11 +66,11 @@ public class Listar_usuario {
         this.id_sesion = id_sesion;
     }
 
-    public Date getFecha_registro() {
+    public String getFecha_registro() {
         return fecha_registro;
     }
 
-    public void setFecha_registro(Date fecha_registro) {
+    public void setFecha_registro(String fecha_registro) {
         this.fecha_registro = fecha_registro;
     }
 

@@ -7,6 +7,7 @@ import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Listar_usuario;
 import java.awt.Dimension;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +29,8 @@ import net.sf.jasperreports.view.JRViewer;
 public class Mostrar_usuario extends javax.swing.JDialog {
 
     CRUD crud = new CRUD();
-    ArrayList<Listar_usuario> listar = crud.get_listar_usuario();
+    ArrayList<Listar_usuario> listar = null;
+    ArrayList<Listar_usuario> listar2 = null;
     Listar_usuario objeto = null;
     Filtros_modulo_seguridad fil = new Filtros_modulo_seguridad();
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -37,7 +39,9 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        listar = crud.get_listar_usuario();
         Tablas.cargarJoinUsuario(jtUsuario, listar);
+//        txtFiltro.setEnabled(false);
     }
 
     
@@ -124,7 +128,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         );
 
         cbFiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "CEDULA", "APELLIDO", "FECHA", "ACTIVO", "INACTIVO" }));
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE...", "CODIGO", "CEDULA", "APELLIDO", "FECHA", "ACTIVO", "INACTIVO" }));
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/buscar1.jpg"))); // NOI18N
         btnBuscar.setText("BUSCAR");
@@ -245,42 +249,107 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    public void filtroUsuario(){
         String f = txtFiltro.getText().toUpperCase();
-        String query = "";
         int pos = cbFiltro.getSelectedIndex();
-        if ("".equals(f)) {
-            query = fil.comboTodoUsuario();
-        }
-        if (pos == 0) {
-            if ("".equals(f)) {
-                Tablas.cargarJoinUsuario(jtUsuario, listar);
-            } else {
-                query = fil.comboUsuarioId() + f;
-                System.out.println(query);
-            }
+        Listar_usuario lu = new Listar_usuario();
+        
+        
+            if (f=="" && pos == 0) {
+            listar = crud.get_listar_usuario();
+            Tablas.cargarJoinUsuario(jtUsuario, listar);
         }
         if (pos == 1) {
-            query = fil.comboUsuarioCedula() + f + "%'";
+            lu.setId_sesion(Long.valueOf(f));
+            listar2 = crud.filtroCodigoUs(lu);
+            Tablas.cargarJoinUsuario(jtUsuario, listar2);
+            if (jtUsuario.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "el usuario no existe");
+            }
         }
         if (pos == 2) {
-            query = fil.comboUsuarioApellido() + f + "%'";
+            lu.setCedula(f);
+            listar2 = crud.filtroCedulaUs(lu);
+            Tablas.cargarJoinUsuario(jtUsuario, listar2);
+            if (jtUsuario.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "el usuario no existe");
+            }
         }
         if (pos == 3) {
-            query = fil.comboUsuarioFecha() + f + "%'";
+            lu.setApellidos(f);
+            listar2 = crud.filtroApellidoUs(lu);
+            Tablas.cargarJoinUsuario(jtUsuario, listar2);
+            if (jtUsuario.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "el usuario no existe");
+            }
         }
-        
         if (pos == 4) {
-            query = fil.comboUsuarioActivo();
+            lu.setFecha_registro(f);
+            listar2 = crud.filtroFechaUs(lu);
+            Tablas.cargarJoinUsuario(jtUsuario, listar2);
+            if (jtUsuario.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "Asegurese de escribir correctamente "
+                        + "el formato de fecha: AAAA-MM-DD o el usuario no existe");
+            }
         }
-        if (pos == 4) {
-            query = fil.comboUsuarioInactivo();
+        if (pos == 5) {
+            lu.setId_estado(Long.valueOf("1"));
+            listar2 = crud.filtroEstadoUs(lu);
+            Tablas.cargarJoinUsuario(jtUsuario, listar2);
+            if (jtUsuario.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "No hay usuarios activos");
+                txtFiltro.setText("");
+            }
         }
-        listar = crud.filtroBusquedaUsuario(query);
-        // System.err.println(query);
-        Tablas.cargarJoinUsuario(jtUsuario, listar);
-        query = "";
-        txtFiltro.setText("");
+        if (pos == 6) {
+            lu.setId_estado(Long.valueOf("2"));
+            listar2 = crud.filtroEstadoUs(lu);
+            Tablas.cargarJoinUsuario(jtUsuario, listar2);
+            if (jtUsuario.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this, "No hay usuarios inactivos");
+                txtFiltro.setText("");
+            }
+        }
+    }
+    
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+filtroUsuario();
+//        String f = txtFiltro.getText().toUpperCase();
+//        String query = "";
+//        int pos = cbFiltro.getSelectedIndex();
+//        if ("".equals(f)) {
+//            query = fil.comboTodoUsuario();
+//        }
+//        if (pos == 0) {
+//            if ("".equals(f)) {
+//                query = fil.comboTodoUsuario();
+////                Tablas.cargarJoinUsuario(jtUsuario, listar);
+//            } else {
+//                query = fil.comboUsuarioId() + f;
+//                System.out.println(query);
+//            }
+//        }
+//        if (pos == 1) {
+//            query = fil.comboUsuarioCedula() + f + "%'";
+//        }
+//        if (pos == 2) {
+//            query = fil.comboUsuarioApellido() + f + "%'";
+//        }
+//        if (pos == 3) {
+//            query = fil.comboUsuarioFecha() + f + "%'";
+//        }
+//        
+//        if (pos == 4) {
+//            query = fil.comboUsuarioActivo();
+//        }
+//        if (pos == 4) {
+//            query = fil.comboUsuarioInactivo();
+//        }
+//        listar = crud.filtroBusquedaUsuario(query);
+//        // System.err.println(query);
+//        Tablas.cargarJoinUsuario(jtUsuario, listar);
+//        query = "";
+//        txtFiltro.setText("");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed

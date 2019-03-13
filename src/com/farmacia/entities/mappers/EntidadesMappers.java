@@ -691,7 +691,7 @@ public class EntidadesMappers {
         Listar_usuario obj = new Listar_usuario();
         try {
             obj.setId_sesion(rs.getLong("id_sesion"));
-            obj.setFecha_registro(rs.getDate("fecha_registro"));
+            obj.setFecha_registro(rs.getString("fecha_registro"));
             obj.setCedula(rs.getString("cedula"));
             obj.setApellidos(rs.getString("apellidos"));
             obj.setNombres(rs.getString("nombres"));
@@ -786,6 +786,8 @@ public class EntidadesMappers {
             obj.setDescripcion(rs.getString("DESCRIPCION"));
             obj.setId_precio(rs.getLong("ID_PRECIO"));
             obj.setId_stock(rs.getLong("ID_STOCK"));
+            obj.setPrecio_compra(rs.getDouble("PRECIO_COMPRA"));
+            obj.setPrecio_venta(rs.getDouble("PRECIO_VENTA"));
             obj.setTipo(rs.getString("TIPO"));
             obj.setMedida(rs.getString("MEDIDA"));
             obj.setEnvase(rs.getString("ENVASE"));
