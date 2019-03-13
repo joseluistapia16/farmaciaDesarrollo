@@ -950,52 +950,52 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDevolverActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-        ArrayList tablac = new ArrayList();
-        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-            ClaseReporte tabla1 = new ClaseReporte(txtNombre.getText(),
-                txtCodigoProveedor.getText(),
-                txtNombre.getText(),
-                txtRepresentante.getText(),
-                txtTelefono.getText(),
-                txtRuc.getText(),
-                txtCorreo.getText(),
-                txtDireccion.getText(),
-                txtTipo.getText(),
-                txtFechaCreacion.getText(),
-                cbxPlazo.getSelectedItem().toString(),
-                cbxFormaP.getSelectedItem().toString(),
-                tbaListaFaltantes.getValueAt(i, 0).toString(),
-                tbaListaFaltantes.getValueAt(i, 1).toString(),
-                tbaListaFaltantes.getValueAt(i, 2).toString(),
-                tbaListaFaltantes.getValueAt(i, 3).toString(),
-                tbaListaFaltantes.getValueAt(i, 4).toString(),
-                tbaListaFaltantes.getValueAt(i, 5).toString(),
-                tbaListaFaltantes.getValueAt(i, 6).toString(),
-                tbaListaFaltantes.getValueAt(i, 7).toString(),
-                tbaListaFaltantes.getValueAt(i, 8).toString(),
-                tbaListaFaltantes.getValueAt(i, 9).toString(),
-                tbaListaFaltantes.getValueAt(i, 10).toString(),
-                tbaListaFaltantes.getValueAt(i, 11).toString(),
-                txtDescuento.getText(),
-                txtIva.getText(),
-                txtTotal.getText(),
-                txt_Numero.getText());
-            tablac.add(tabla1);
-        }
-        try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"OrdenCompra.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
-            JDialog frame = new JDialog(this);
-            JRViewer viewer = new JRViewer(jprint);
-            frame.add(viewer);
-            frame.setSize(new Dimension(ancho / 2, alto / 2));
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-            viewer.setFitWidthZoomRatio();
-        } catch (JRException ex) {
-            Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        ArrayList tablac = new ArrayList();
+//        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+//            ClaseReporte tabla1 = new ClaseReporte(txtNombre.getText(),
+//                txtCodigoProveedor.getText(),
+//                txtNombre.getText(),
+//                txtRepresentante.getText(),
+//                txtTelefono.getText(),
+//                txtRuc.getText(),
+//                txtCorreo.getText(),
+//                txtDireccion.getText(),
+//                txtTipo.getText(),
+//                txtFechaCreacion.getText(),
+//                cbxPlazo.getSelectedItem().toString(),
+//                cbxFormaP.getSelectedItem().toString(),
+//                tbaListaFaltantes.getValueAt(i, 0).toString(),
+//                tbaListaFaltantes.getValueAt(i, 1).toString(),
+//                tbaListaFaltantes.getValueAt(i, 2).toString(),
+//                tbaListaFaltantes.getValueAt(i, 3).toString(),
+//                tbaListaFaltantes.getValueAt(i, 4).toString(),
+//                tbaListaFaltantes.getValueAt(i, 5).toString(),
+//                tbaListaFaltantes.getValueAt(i, 6).toString(),
+//                tbaListaFaltantes.getValueAt(i, 7).toString(),
+//                tbaListaFaltantes.getValueAt(i, 8).toString(),
+//                tbaListaFaltantes.getValueAt(i, 9).toString(),
+//                tbaListaFaltantes.getValueAt(i, 10).toString(),
+//                tbaListaFaltantes.getValueAt(i, 11).toString(),
+//                txtDescuento.getText(),
+//                txtIva.getText(),
+//                txtTotal.getText(),
+//                txt_Numero.getText());
+//            tablac.add(tabla1);
+//        }
+//        try {
+//            String dir = System.getProperty("user.dir") + "/Reportes/" +"OrdenCompra.jasper";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
+//            JDialog frame = new JDialog(this);
+//            JRViewer viewer = new JRViewer(jprint);
+//            frame.add(viewer);
+//            frame.setSize(new Dimension(ancho / 2, alto / 2));
+//            frame.setLocationRelativeTo(null);
+//            frame.setVisible(true);
+//            viewer.setFitWidthZoomRatio();
+//        } catch (JRException ex) {
+//            Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btnReporteActionPerformed
 
     public static void main(String args[]) {
