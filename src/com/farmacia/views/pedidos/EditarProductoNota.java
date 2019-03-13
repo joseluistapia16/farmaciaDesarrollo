@@ -510,7 +510,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
             txtDescuento.setText(ValorDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
             
             //BigDecimal IVA = new BigDecimal(txtIva.getText());
-            BigDecimal IVA = VGiva;
+            BigDecimal IVA = obj2.getIva();
 
             VGtotal = Subtotal.add(IVA).subtract(ValorDescuento);
 
@@ -529,7 +529,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
 //           ValorDescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
             txtDescuento.setText(ValorDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
            // BigDecimal IVA = new BigDecimal(txtIva.getText());
-            BigDecimal IVA = VGiva;
+            BigDecimal IVA = obj2.getIva();
 
             VGtotal = Subtotal.add(IVA).subtract(ValorDescuento);
 
