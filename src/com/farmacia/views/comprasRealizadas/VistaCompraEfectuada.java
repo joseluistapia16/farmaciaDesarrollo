@@ -1,5 +1,6 @@
 package com.farmacia.views.comprasRealizadas;
 
+import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.views.pedidos.*;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
@@ -763,8 +764,8 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         JoinListarDetalleNotaPedido objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
             if (codPro.equals(listarobj.get(i).getId_producto().toString())) {
-                if (total.equals(listarobj.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString())) {
-                    if (iva.equals(listarobj.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString())) {
+                if (total.equals(Formato_Numeros.formatoNumero(listarobj.get(i).getTotal().toString()))) {
+                    if (iva.equals(Formato_Numeros.formatoNumero(listarobj.get(i).getIva().toString()))) {
                         objeto1 = listarobj.get(i);
                         break;
                     }
