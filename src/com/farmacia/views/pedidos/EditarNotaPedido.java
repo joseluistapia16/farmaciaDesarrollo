@@ -1,5 +1,6 @@
 package com.farmacia.views.pedidos;
 
+import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.CabeceraNotaPedido;
@@ -20,6 +21,7 @@ import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +36,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
 public class EditarNotaPedido extends javax.swing.JDialog {
-
+    
     int x, y, variableCerrar;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -50,22 +52,16 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     String codigocabecera = "";
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
     JoinListarDetalleNotaPedido objetop = null;
-
+    
     public EditarNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-
+        
         setUndecorated(true);
         initComponents();
-
+        
     }
-
-    public EditarNotaPedido(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1,int vari) {
-//        super(parent, modal);
-//
-//        setUndecorated(true);
-//        setLocationRelativeTo(null);
-//        initComponents();        
-//        this.setResizable(false);
+    
+    public EditarNotaPedido(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1, int vari) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
@@ -74,15 +70,15 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         llenarFormulario(obj1);
         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
         codigocabecera = txtNumero.getText().toString();
-
+        
         lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
         Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
-
+        
         TotalIVA();
         TotalDescuento();
         Total();
         
-        variableCerrar=vari;
+        variableCerrar = vari;
     }
     
     private void llenarFormulario(JoinListarNotaPedidosCabecera obj) {
@@ -111,9 +107,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         objf.setRepresentante(obj.getRepresentante());
         objf.setPlazo(obj.getPlazo());
         objf.setForma_pago(obj.getForma_pago());
-
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -768,43 +764,35 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
     public void TotalIVA() {
         BigDecimal Total1Iva = new BigDecimal("0.0000");
-
+        
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
             BigDecimal Iva1 = lista3.get(i).getIva();
             Total1Iva = Total1Iva.add(Iva1);
-//            totalIva = redondearDecimales(totalIva, 2);
         }
-        VGiva = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total1Iva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        txtIva.setText(removeScientificNotation(Total1Iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
-
+        VGiva = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(Total1Iva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtIva.setText(Formato_Numeros.formatoNumero(Total1Iva.toString()));
     }
-
+    
     public void TotalDescuento() {
         BigDecimal TotalDescuento = new BigDecimal("0.0000");
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
             BigDecimal descuento = lista3.get(i).getDescuento();
             TotalDescuento = TotalDescuento.add(descuento);
-//            TotalDescuento = redondearDecimales(TotalDescuento, 2);
         }
-        VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        txtDescuento.setText(removeScientificNotation(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
+        VGdescuento = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(TotalDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtDescuento.setText(Formato_Numeros.formatoNumero(TotalDescuento.toString()));
     }
-
+    
     public void Total() {
         BigDecimal Total_ = new BigDecimal("0.0000");
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
             BigDecimal total = lista3.get(i).getTotal();
             Total_ = Total_.add(total);
-
+            
         }
-        VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        txtTotal.setText(Total_.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-    }
-
-    public static String removeScientificNotation(String value) {
-        return new BigDecimal(value).toPlainString();
-    }
-
+        VGtotal = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtTotal.setText(Formato_Numeros.formatoNumero(Total_.toString()));
+    }  
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
         resultado = valorInicial;
@@ -815,45 +803,40 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         return resultado;
     }
     private void txtRepresentanteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepresentanteKeyReleased
-
+        
 
     }//GEN-LAST:event_txtRepresentanteKeyReleased
 
     private void t_Nota_faltantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMouseClicked
-
+        
 
     }//GEN-LAST:event_t_Nota_faltantesMouseClicked
-
+    
 
     private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
-
+        
         if (r == JOptionPane.YES_OPTION) {
-            if(variableCerrar==1){
-            this.setVisible(false);
+            if (variableCerrar == 1) {
+                this.setVisible(false);
             }
-            if(variableCerrar!=1){
-            setVisible(false);
-            MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
-            Man.setVisible(true);
+            if (variableCerrar != 1) {
+                setVisible(false);
+                MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
+                Man.setVisible(true);
             }
         } else {
-
+            
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
-//    public void Recorrer() {
-//        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-//            System.out.println("lista3 "+lista3.size());
-//        }
-// 
-//    }
+
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
         int i = 0;
         String msg = null;
         try {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
-
+                
                 objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
                 if (objeto != null) {
                     AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objeto);
@@ -862,20 +845,21 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-
+                        
                         if (np.getObjf().getCantidad() > 0) {
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
-
+                            
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
 //                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
                             //Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
                             crud.InsertarBDCompras(txtNumero.getText(), lista1);
                             actualizarTabla2();
+                            btnSalir2.setEnabled(false);
                         }
-
+                        
                     }
                 }
             }
@@ -888,21 +872,21 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         lista3.clear();
         lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
         Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
-
+        
         Total();
         TotalIVA();
         TotalDescuento();
     }
-
+    
     private void getPosicion(Long id, int valor) {
         for (int i = 0; i < lista.size(); i++) {
             if (id == lista.get(i).getId_producto()) {
                 lista.get(i).setCantidad(valor);
             }
         }
-
+        
     }
-
+    
     public joinProductoDetallesFaltantes devuelveObjeto2(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
         joinProductoDetallesFaltantes objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
@@ -912,7 +896,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             }
         }
         return objeto1;
-
+        
     }
     private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
 
@@ -952,7 +936,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             query = fil.comboProductoMarcaNotaPedido() + f + "%'";
         }
         listar = crud.filtroBusquedaProductoNotaPedido(query);
-
+        
         Tablas.cargarFiltroProductosNota(t_Nota_faltantes, listar);
         query = "";
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -965,7 +949,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             }
         }
         return objeto1;
-
+        
     }
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         x = evt.getX();
@@ -989,27 +973,26 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         String valor = "";
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Actualizar?", "", JOptionPane.YES_NO_OPTION);
-
+        
         if (r == JOptionPane.YES_OPTION) {
             CabeceraNotaPedido cn = new CabeceraNotaPedido();
             cn.setPlazo(cbxPlazo.getSelectedItem().toString());
             cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
-//            cn.setIva(BigDecimal.valueOf(Double.parseDouble(txtIva.getText())));//BigDecimal.valueOf(Double.parseDouble(salariotxt.getText()))
-//            cn.setDescuento(BigDecimal.valueOf(Double.parseDouble(txtDescuento.getText())));
-//            cn.setTotal(BigDecimal.valueOf(Double.parseDouble(txtTotal.getText())));
             cn.setIva(VGiva);
             cn.setDescuento(VGdescuento);
             cn.setTotal(VGtotal);
             cn.setId_cabecera_nota_pedidos(Long.valueOf(txtNumero.getText()));
             valor = crud.ActualizarNotaPedidosCabecera(cn);
+             btnSalir2.setEnabled(true);
             if (!"".equals(valor)) {
                 JOptionPane.showMessageDialog(null, valor);
                 setVisible(false);
             }
-
+            
         } else {
-
+            
         }
+//        btnSalir2.setEnabled(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
@@ -1044,13 +1027,13 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
-
+        
         int i = 0;
-
+        
         if (evt.getClickCount() == 2) {
             i = tbaListaFaltantes.getSelectedRow();
             objetop = devuelveObjeto(lista3.get(i).getId_precio().toString(), lista3);
-
+            
             if (objetop != null) {
                 EditarProductoNota Man = new EditarProductoNota(new javax.swing.JFrame(), true, objetop);
                 Man.setVisible(true);
@@ -1077,23 +1060,23 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
+        
         String id_cab = "";
-    
+        
         CabeceraNotaPedido cn = new CabeceraNotaPedido();
-
+        
         cn.setId_cabecera_nota_pedidos(Long.valueOf(txtNumero.getText()));
         id_cab = crud.DesactivarEstadoNotaPedido(cn);
         setVisible(false);
         RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
-     
+        
         RIN.setVisible(true);
-       
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
-        x=evt.getX();
-        y=evt.getY();
+        x = evt.getX();
+        y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
@@ -1104,9 +1087,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     private void txtFechaCreacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaCreacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaCreacionActionPerformed
-
+    
     public static void main(String args[]) {
-
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 EditarNotaPedido dialog = new EditarNotaPedido(new javax.swing.JFrame(), true);

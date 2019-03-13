@@ -57,20 +57,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
     public MenuPreVentas() {
     }
 
-//    public MenuPreVentas(java.awt.Frame parent, boolean modal, JoinProductos obj1) {
-//        super(parent, modal);
-//        initComponents();
-//        this.setLocationRelativeTo(null);
-//        llenarFormulario();
-    //  ListarDetalle = new ArrayList<Detalle_ventas>();
-//        this.setLocationRelativeTo(null);
-//        this.setResizable(false);
-//        TxtFecha.setText(FechaActual());
-//    }
-//    public  void llenarFormulario() {
-//        TxtProdNombre.setText(obj.getNombre());
-//        TxtProdPrecio.setText(obj.getPrecio_Vent_A().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -512,22 +498,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-//    class horas implements ActionListener {
-//
-//        public void actionPerformed(ActionEvent e) {
-//            java.util.Date sistHora = new java.util.Date();
-//            String pmAm = "HH:mm:ss";
-//            SimpleDateFormat format = new SimpleDateFormat(pmAm);
-//            Calendar hoy = Calendar.getInstance();
-//            TxtHora.setText(String.format(format.format(sistHora), hoy));
-//
-//        }
-//    }
-//    public static String FechaActual() {
-//        Date fecha = new Date();
-//        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-YYYY");
-//        return formatoFecha.format(fecha);
-//    }
 
     private void BtnBuscarcedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarcedulaActionPerformed
 
@@ -599,14 +569,11 @@ public class MenuPreVentas extends javax.swing.JDialog {
             for (int i = 0; i < listaStockVentas.size(); i++) {
                 System.out.println("id control " + listaStockVentas.get(i).getId_control());
                 System.out.println("cantidad " + listaStockVentas.get(i).getCantidad());
-            
+
                 crud.ActulizarStockVentas(listaStockVentas.get(i));
-                
- 
-            
+
             }
-    
-            
+
             ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
             ov.setVisible(true);
 
@@ -625,7 +592,13 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     private void BtnAddItenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddItenActionPerformed
 
-        Detalle_ventas RegDetalleVentas = new Detalle_ventas();
+        if (objProd.getStock() < Long.valueOf(TxtProdCantidad.getText()) ){
+            String msg = "Stock disponible: " + objProd.getStock();
+                
+                JOptionPane.showMessageDialog(rootPane , msg);
+        }
+        else{
+            Detalle_ventas RegDetalleVentas = new Detalle_ventas();
 
         RegDetalleVentas.setId_control(objProd.getId_control());
         RegDetalleVentas.setId_producto(objProd.getId_producto());
@@ -656,6 +629,9 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtDescuentoPorcentaje.setEnabled(false);
 
         CalcularDetalle();
+            
+        }
+        
 
     }//GEN-LAST:event_BtnAddItenActionPerformed
 
@@ -674,37 +650,50 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
         if (TxtProdCantidad.equals(" ") == false && TxtProdCantidad.getText().matches("[0-9]+[0-9]*")) {
 
-            String cant = TxtProdCantidad.getText();
-            BigDecimal cantidad = new BigDecimal(cant);
+            if (objProd.getStock() < Long.valueOf(TxtProdCantidad.getText()) ) {
+                
+                String msg = "Stock disponible: " + objProd.getStock();
+                
+                JOptionPane.showMessageDialog(rootPane , msg);
+                
 
-            String pre = TxtProdPrecio.getText();
-            BigDecimal precio = new BigDecimal(pre);
 
-            BigDecimal subtotal = cantidad.multiply(precio);
+                
+            } else {
+                
+               String cant = TxtProdCantidad.getText();
+                BigDecimal cantidad = new BigDecimal(cant);
 
-            TxtProdSubtotal.setText(subtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                String pre = TxtProdPrecio.getText();
+                BigDecimal precio = new BigDecimal(pre);
 
-            if (objProd.getIva().equals("0.12")) {
+                BigDecimal subtotal = cantidad.multiply(precio);
 
-                BigDecimal iva_val = new BigDecimal(iva_valor);
-                iva = iva_val.multiply(subtotal);
+                TxtProdSubtotal.setText(subtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 
-                TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                if (objProd.getIva().equals("0.12")) {
+
+                    BigDecimal iva_val = new BigDecimal(iva_valor);
+                    iva = iva_val.multiply(subtotal);
+
+                    TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                }
+
+                if (objProd.getIva().equals("NO")) {
+
+                    iva = BigDecimal.valueOf(00.00);
+
+                    TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                }
+                BigDecimal total = subtotal.add(iva);
+
+                TxtProdtotal.setText(total.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+
+                TxtDescuentoPorcentaje.setEnabled(true);
+                TxtDescuentoPorcentaje.setText("0");
+                TxtProdDescuento.setText("0.00");
+
             }
-
-            if (objProd.getIva().equals("NO")) {
-
-                iva = BigDecimal.valueOf(00.00);
-
-                TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            }
-            BigDecimal total = subtotal.add(iva);
-
-            TxtProdtotal.setText(total.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-
-            TxtDescuentoPorcentaje.setEnabled(true);
-            TxtDescuentoPorcentaje.setText("0");
-            TxtProdDescuento.setText("0.00");
 
         }
 
