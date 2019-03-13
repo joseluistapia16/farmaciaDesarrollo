@@ -14,6 +14,8 @@ public class Productos_Stock {
     String nombre_Producto;
     String descripcion;
     Long id_precio;
+    Double precio_compra;
+    Double precio_venta;
     Long id_stock;
     String tipo;
     String medida;
@@ -24,11 +26,13 @@ public class Productos_Stock {
     public Productos_Stock() {
     }
 
-    public Productos_Stock(Long id_producto, String nombre_Producto, String descripcion, Long id_precio, Long id_stock, String tipo, String medida, String envase, String marca, Long cantidad) {
+    public Productos_Stock(Long id_producto, String nombre_Producto, String descripcion, Long id_precio, Double precio_compra, Double precio_venta, Long id_stock, String tipo, String medida, String envase, String marca, Long cantidad) {
         this.id_producto = id_producto;
         this.nombre_Producto = nombre_Producto;
         this.descripcion = descripcion;
         this.id_precio = id_precio;
+        this.precio_compra = precio_compra;
+        this.precio_venta = precio_venta;
         this.id_stock = id_stock;
         this.tipo = tipo;
         this.medida = medida;
@@ -67,6 +71,22 @@ public class Productos_Stock {
 
     public void setId_precio(Long id_precio) {
         this.id_precio = id_precio;
+    }
+
+    public Double getPrecio_compra() {
+        return precio_compra;
+    }
+
+    public void setPrecio_compra(Double precio_compra) {
+        this.precio_compra = precio_compra;
+    }
+
+    public Double getPrecio_venta() {
+        return precio_venta;
+    }
+
+    public void setPrecio_venta(Double precio_venta) {
+        this.precio_venta = precio_venta;
     }
 
     public Long getId_stock() {
@@ -116,5 +136,7 @@ public class Productos_Stock {
     public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
     }
+
+    
     
 }
