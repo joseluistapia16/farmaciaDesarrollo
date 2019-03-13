@@ -41,6 +41,7 @@ public class NotePedidos extends javax.swing.JDialog {
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
+
     joinProductoDetallesFaltantes objx = new joinProductoDetallesFaltantes();
 
     public NotePedidos(java.awt.Frame parent, boolean modal) {
