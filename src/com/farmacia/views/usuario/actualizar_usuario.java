@@ -44,6 +44,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
     private String rutaimagen = "";
     public String fil;
 
+    
     /**
      * Creates new form Registrar
      */

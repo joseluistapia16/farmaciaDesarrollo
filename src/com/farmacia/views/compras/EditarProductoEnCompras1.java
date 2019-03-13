@@ -760,7 +760,8 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         ClaseReporte producto2 = new ClaseReporte(codigo.getText(), Medida.getText(), producto.getText(), marca.getText(), txtEnvase3.getText(), txtTipo.getText(), txtcantidad.getText(), txtPrecio.getText(), txtporcentajeDescuento.getText(), txtDescuento.getText(), txtIva.getText(), txtTotal.getText());
         producto1.add(producto2);
         try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("modificarProducto.jasper");
+            String dir = System.getProperty("user.dir") + "/Reportes/" +"modificarProducto.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(producto1));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
