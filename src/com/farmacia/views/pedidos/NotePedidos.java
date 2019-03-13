@@ -848,13 +848,13 @@ public class NotePedidos extends javax.swing.JDialog {
                         + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
                         + "VALUES(" + id_cab + "," + lista1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + lista1.get(i).getPrecioBono().toString() + "," + lista1.get(i).getValor_descuento().toString() + "," + lista1.get(i).getImporte() + "," + lista1.get(i).getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
                 queryL1.add(cad1);
-//                System.out.println(cad1);
             }
             crud.InsertarDetallesNotaPedidos(queryL1);
             queryL1.clear();
             JOptionPane.showMessageDialog(null, " Guardado con Exito ");
             btnNuevo.setEnabled(true);
         } else {
+            
             JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
