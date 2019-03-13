@@ -30,7 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class NotePedidos extends javax.swing.JDialog {
-
+//jomu2763
     int x, y;
     CRUD crud = new CRUD();
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
@@ -41,7 +41,6 @@ public class NotePedidos extends javax.swing.JDialog {
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
-
     joinProductoDetallesFaltantes objx = new joinProductoDetallesFaltantes();
 
     public NotePedidos(java.awt.Frame parent, boolean modal) {
@@ -816,7 +815,8 @@ public class NotePedidos extends javax.swing.JDialog {
             setVisible(false);
 
         } else {
-
+            
+            
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
