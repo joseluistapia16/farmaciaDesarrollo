@@ -1,5 +1,6 @@
 package com.farmacia.views.devoluciones;
 
+import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.views.comprasRealizadas.EditarProductoCompra1;
 import com.farmacia.views.pedidos.*;
 import com.farmacia.conponentes.Tablas;
@@ -638,7 +639,7 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 514, Short.MAX_VALUE)
         );
 
         pack();
@@ -749,8 +750,8 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
         JoinListarDetalleNotaPedido objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
             if (codPro.equals(listarobj.get(i).getId_producto().toString())) {
-                if (total.equals(listarobj.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString())) {
-                    if (iva.equals(listarobj.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString())) {
+                if (total.equals(Formato_Numeros.formatoNumero(listarobj.get(i).getTotal().toString()))) {
+                    if (iva.equals(Formato_Numeros.formatoNumero(listarobj.get(i).getIva().toString()))) {
                         objeto1 = listarobj.get(i);
                         break;
                     }
@@ -830,6 +831,7 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
                             break;
                     }
                 }
+                System.out.println("vacuo");
             }
         } catch (Exception ex) {
             Logger.getLogger(VistaCompraDevueltas.class.getName()).log(Level.SEVERE, null, ex);
