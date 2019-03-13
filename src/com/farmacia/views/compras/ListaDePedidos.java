@@ -554,7 +554,8 @@ public class ListaDePedidos extends javax.swing.JDialog {
             tabla.add(tabla1);
         }
         try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("ListaDePedidos.jasper");
+            String dir = System.getProperty("user.dir") + "/Reportes/" +"ListaDePedidos.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
