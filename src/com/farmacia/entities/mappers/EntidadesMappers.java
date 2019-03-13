@@ -691,7 +691,7 @@ public class EntidadesMappers {
         Listar_usuario obj = new Listar_usuario();
         try {
             obj.setId_sesion(rs.getLong("id_sesion"));
-            obj.setFecha_registro(rs.getDate("fecha_registro"));
+            obj.setFecha_registro(rs.getString("fecha_registro"));
             obj.setCedula(rs.getString("cedula"));
             obj.setApellidos(rs.getString("apellidos"));
             obj.setNombres(rs.getString("nombres"));

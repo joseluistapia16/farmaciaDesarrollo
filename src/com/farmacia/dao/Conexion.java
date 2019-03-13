@@ -18,6 +18,7 @@ public class Conexion {
 
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/moduloprueba", "root", "itsgg");
 
+            
             System.out.println("Conectado");
 
         } catch (SQLException ex) {

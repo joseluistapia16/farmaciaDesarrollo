@@ -47,7 +47,7 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
 
         System.out.println("numero orden" + obj.getMun_venta());
         System.out.println("id cabecera" + obj.getId_cabecera_venta());
-        llenarFormulario();
+//        llenarFormulario();
 
     }
 
@@ -116,45 +116,45 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        try {
-            Conexion con = new Conexion();
+//        try {
+//            Conexion con = new Conexion();
+//
+//            Connection conn = con.conectar();
 
-            Connection conn = con.conectar();
-
-            JasperReport reporte;
-            String path = "src\\com\\farmacia\\views\\ventas\\report1.jasper";
-            Map parametro = new HashMap();
-            parametro.put("_id_cabecera", Integer.parseInt(String.valueOf(obj.getId_cabecera_venta())));
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
-            JasperViewer view = new JasperViewer(jprint, false);
-//            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
-            view = new JasperViewer(jprint, false);
-            JDialog dialog = new JDialog(this);//the owner
-            dialog.setContentPane(view.getContentPane());
-            dialog.setSize(view.getSize());
-            dialog.setTitle("Orden de Venta ");
-//            dialog.setIconImage(Toolkit.getDefaultToolkit().getImage(
-//                    getClass().getResource("URL IMG")));
-            dialog.setVisible(true);
+//            JasperReport reporte;
+//            String path = "src\\com\\farmacia\\views\\ventas\\report1.jasper";
+//            Map parametro = new HashMap();
+//            parametro.put("_id_cabecera", Integer.parseInt(String.valueOf(obj.getId_cabecera_venta())));
+//            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+//            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
+//            JasperViewer view = new JasperViewer(jprint, false);
+////            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//
+//            view = new JasperViewer(jprint, false);
+//            JDialog dialog = new JDialog(this);//the owner
+//            dialog.setContentPane(view.getContentPane());
+//            dialog.setSize(view.getSize());
+//            dialog.setTitle("Orden de Venta ");
+////            dialog.setIconImage(Toolkit.getDefaultToolkit().getImage(
+////                    getClass().getResource("URL IMG")));
+//            dialog.setVisible(true);
 
 //            view.setTitle("My Reports");
 //            setModal(false);
 //            view.setVisible(true);
 //            setModal(true);
 //Integer.parseInt(String.valueOf(obj.getId_cabecera_venta())
-        } catch (ClassNotFoundException | JRException ex) {
-            Logger.getLogger(ImprimirOrdenVentas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        } catch (ClassNotFoundException | JRException ex) {
+//            Logger.getLogger(ImprimirOrdenVentas.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void llenarFormulario() {
-        TxtNumeroOrden.setText(obj.getMun_venta());
-
-    }
+//    private void llenarFormulario() {
+//        TxtNumeroOrden.setText(obj.getMun_venta());
+//
+//    }
 
 
     private void TxtNumeroOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNumeroOrdenActionPerformed
