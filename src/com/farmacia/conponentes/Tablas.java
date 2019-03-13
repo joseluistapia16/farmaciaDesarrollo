@@ -695,7 +695,7 @@ public class Tablas {
             Filas[4] = lista.get(i).getTelefono();
             Filas[5] = lista.get(i).getFecha_creacion();
             Filas[6] = "" + lista.get(i).getPlazo();
-            Filas[7] = "" + lista.get(i).getTotal().toString();
+            Filas[7] = Formato_Numeros.formatoNumero("" + lista.get(i).getTotal().toString());
 
             model.addRow(Filas);
             Tabla.setModel(model);
@@ -946,7 +946,7 @@ public class Tablas {
             Filas[4] = lista.get(i).getEnvase();
             Filas[5] = lista.get(i).getMedida();
             Filas[6] = lista.get(i).getCantidad().toString();
-            Filas[7] = lista.get(i).getPrecios().toString();
+            Filas[7] = Formato_Numeros.formatoNumero(lista.get(i).getPrecios().toString());
 
             model.addRow(Filas);
             Tabla.setModel(model);
