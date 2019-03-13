@@ -857,6 +857,8 @@ public class NotePedidos extends javax.swing.JDialog {
             btnNuevo.setEnabled(true);
         } else {
             
+            
+            
             JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
