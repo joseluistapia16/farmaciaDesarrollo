@@ -1087,15 +1087,15 @@ public class Tablas {
 
     public static void cargarJoinUsuario(JTable Tabla, ArrayList<Listar_usuario> lista) {
 
-        int[] a = {10, 50, 40, 52, 52, 80, 30, 30, 52, 30, 30, 10, 80};
+        int[] a = {10, 50, 40, 52, 52, 80, 30, 52, 30, 30,30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.LEFT);
         tcr1.setHorizontalAlignment(SwingConstants.CENTER);
         model = VaciarTabla(Tabla);
-        String[] Co = {"CÓDIGO", "FECHA DE REGISTRO", "CÉDULA", "APELLIDOS", "NOMBRES", "DIRECCIÓN", "CELULAR", "CONVENCIONAL",
-            "CORREO", "CARGO", "GÉNERO", "ESTADO", "OBSERVACIÓN"};
-        String[] Filas = new String[13];
+        String[] Co = {"CÓDIGO", "FECHA DE REGISTRO", "CÉDULA", "APELLIDOS", "NOMBRES", "DIRECCIÓN", "CELULAR", /*"CONVENCIONAL",*/
+            "CORREO", "CARGO", "GÉNERO", "ESTADO" /*"OBSERVACIÓN"*/};
+        String[] Filas = new String[11];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
@@ -1106,12 +1106,10 @@ public class Tablas {
             Filas[4] = lista.get(i).getNombres();
             Filas[5] = lista.get(i).getDireccion();
             Filas[6] = lista.get(i).getTelefono();
-            Filas[7] = lista.get(i).getConvencional();
-            Filas[8] = lista.get(i).getCorreo();
-            Filas[9] = lista.get(i).getCargo();
-            Filas[10] = lista.get(i).getGenero();
-            Filas[11] = lista.get(i).getEstado();
-            Filas[12] = lista.get(i).getObservacion();
+            Filas[7] = lista.get(i).getCorreo();
+            Filas[8] = lista.get(i).getCargo();
+            Filas[9] = lista.get(i).getGenero();
+            Filas[10] = lista.get(i).getEstado();
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -1134,12 +1132,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(8).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(9).setPreferredWidth(a[9]);
             Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
+            Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[9]);
             Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(11).setPreferredWidth(a[11]);
-            Tabla.getColumnModel().getColumn(11).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(12).setPreferredWidth(a[12]);
-            Tabla.getColumnModel().getColumn(12).setCellRenderer(tcr);
         }
     }
 
