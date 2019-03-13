@@ -1,5 +1,6 @@
 package com.farmacia.views.pedidos;
 
+import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.CabeceraNotaPedido;
@@ -85,28 +86,6 @@ public class NotePedidos extends javax.swing.JDialog {
         }
     }
 
-//    public static double redondearDecimales(double valorInicial, int numeroDecimales) {
-//        double parteEntera, resultado;
-//        resultado = valorInicial;
-//        parteEntera = Math.floor(resultado);
-//        resultado = (resultado - parteEntera) * Math.pow(10, numeroDecimales);
-//        resultado = Math.round(resultado);
-//        resultado = (resultado / Math.pow(10, numeroDecimales)) + parteEntera;
-//        return resultado;
-//    }
-    public static String formatoNumero(String valor) {   ////////////////   1
-
-        DecimalFormat formato = new DecimalFormat("#,###.00");
-        String valorFormateado = formato.format(Double.parseDouble(valor));
-
-        if (valorFormateado.charAt(0) == ',') {
-            String h = "0" + valorFormateado;
-            valorFormateado = h;
-        }
-
-        return valorFormateado;
-    }
-
     public void TotalPro() {
         BigDecimal TotalPro = new BigDecimal("0.00");
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
@@ -126,9 +105,8 @@ public class NotePedidos extends javax.swing.JDialog {
                 TotalPro = TotalPro.add(Subtotal).subtract(ValorDes).add(ValorIVA);
             }
         }
-        VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalPro.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-//        txtTotal.setText(TotalPro.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            txtTotal.setText(formatoNumero(TotalPro.toString()));
+        VGtotal = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(TotalPro.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtTotal.setText(Formato_Numeros.formatoNumero(TotalPro.toString()));
     }
 
     public void TotalIVA2() {
@@ -149,9 +127,8 @@ public class NotePedidos extends javax.swing.JDialog {
                 TotalIva = TotalIva.add(ValorIva);
             }
         }
-        VGiva = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalIva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-//        txtIva.setText(TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        txtIva.setText(formatoNumero(TotalIva.toString()));
+        VGiva = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(TotalIva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtIva.setText(Formato_Numeros.formatoNumero(TotalIva.toString()));
     }
 
     public void TotalDescuento2() {
@@ -166,13 +143,8 @@ public class NotePedidos extends javax.swing.JDialog {
 
             TotalDesc = TotalDesc.add(ValorDesc);
         }
-        VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDesc.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-//        txtDescuento.setText(TotalDesc.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        txtDescuento.setText(formatoNumero(TotalDesc.toString()));
-    }
-
-    public static String removeScientificNotation(String value) {
-        return new BigDecimal(value).toPlainString();
+        VGdescuento = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(TotalDesc.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtDescuento.setText(Formato_Numeros.formatoNumero(TotalDesc.toString()));
     }
 
     public static String FechaActual() {
@@ -849,7 +821,7 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (!"0.00".equals(txtTotal.getText())) {
+        if (!"0,00".equals(txtTotal.getText())) {
 
             ArrayList<String> queryL = new ArrayList<String>();
             ArrayList<String> queryL1 = new ArrayList<String>();
