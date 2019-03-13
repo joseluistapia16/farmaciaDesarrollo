@@ -844,6 +844,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
             for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
 
+                //////////////////////////////
                 cad1 = "INSERT INTO detalle_nota_pedidos"
                         + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
                         + "VALUES(" + id_cab + "," + lista1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + lista1.get(i).getPrecioBono().toString() + "," + lista1.get(i).getValor_descuento().toString() + "," + lista1.get(i).getImporte() + "," + lista1.get(i).getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
