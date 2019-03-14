@@ -10,7 +10,6 @@ package com.farmacia.conponentes;
 import com.farmacia.dao.Consultas;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinProveedor;
-import com.farmacia.join_entidades.ListarNotas;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.entities1.Clientes;
