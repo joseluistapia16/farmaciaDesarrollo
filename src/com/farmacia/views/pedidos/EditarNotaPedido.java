@@ -846,7 +846,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                         
-                        if (np.getObjf().getCantidad() > 0) {
+                        if (np.getObjf().getCantidad() > 0 || np.getObjf().getCantidad()!=null) {
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
