@@ -839,22 +839,25 @@ public class NotePedidos extends javax.swing.JDialog {
             cn.setDescuento(VGdescuento);//
             cn.setTotal(VGtotal);//
             id_cab = crud.insertarCabeceraNotaPedido(cn);
-
             String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
             id_cab = crud.buscarIDCabeceraNotaPedido(query);
 
             for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-
+                /////////////////////////////
+                
                 cad1 = "INSERT INTO detalle_nota_pedidos"
                         + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
                         + "VALUES(" + id_cab + "," + lista1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + lista1.get(i).getPrecioBono().toString() + "," + lista1.get(i).getValor_descuento().toString() + "," + lista1.get(i).getImporte() + "," + lista1.get(i).getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
                 queryL1.add(cad1);
+                //////////////////////////////////
             }
             crud.InsertarDetallesNotaPedidos(queryL1);
             queryL1.clear();
             JOptionPane.showMessageDialog(null, " Guardado con Exito ");
             btnNuevo.setEnabled(true);
         } else {
+            
+            
             
             JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
         }
