@@ -243,7 +243,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
 
         Date fecha1 = Chooser1.getDate();
         dc.setFecha1(fecha1.toString());
-        System.out.println("HHHHHHHH" + Chooser1.getDateFormatString());
+        System.out.println("HHHHHHHH " + Chooser1.getDateFormatString());
         dc.setFecha2(choosercal2.getDateFormatString());
 
         lista = crud.RangoFechaCompra(1, dc);
