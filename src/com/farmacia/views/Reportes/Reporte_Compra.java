@@ -6,8 +6,11 @@
 package com.farmacia.views.Reportes;
 
 import com.farmacia.conponentes.Tablas;
+import com.farmacia.dao.CRUD;
+import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +19,11 @@ import javax.swing.JOptionPane;
  */
 public class Reporte_Compra extends javax.swing.JDialog {
 
+    CRUD crud = new CRUD();
     int x, y;
     String buscar = "";
+
+    ArrayList<JoinListarNotaPedidosCabecera> lista = null;
 
     /**
      * Creates new form Reporte_Compra
@@ -26,6 +32,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        lista = crud.listarCabeceraNotaPedidoEnCompras(3);
     }
 
     /**
