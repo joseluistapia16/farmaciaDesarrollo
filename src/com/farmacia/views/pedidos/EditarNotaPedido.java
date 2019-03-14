@@ -1001,7 +1001,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, valor);
                 setVisible(false);
             }
-
         } else {
 
         }
