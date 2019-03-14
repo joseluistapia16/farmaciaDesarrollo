@@ -129,6 +129,7 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         cn.setIva(VGiva);
         cn.setDescuento(VGdescuento);
         cn.setTotal(VGtotal);
+                System.out.println("iva: "+VGiva+"\nDESC: "+VGdescuento+"\ntotal: "+VGtotal);
         cab = Integer.parseInt(crud.buscarIDCabeceraCompras(cn));
         return cab;
     }

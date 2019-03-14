@@ -3614,7 +3614,38 @@ public class CRUD {
         }
         return valor;
     }
-
+    public String edicionCabeceraNotaPedido(Cabecera_compra cc) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call edicionCabeceraNota(?,?,?,?,?)}");
+            pro.setBigDecimal(1, cc.getIva());
+            pro.setBigDecimal(2, cc.getDescuento());
+            pro.setBigDecimal(3, cc.getTotal());
+            pro.setLong(4, cc.getIdcabecerapedido());
+            
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
     public String buscarIDDetallesCompras(JoinListarDetalleNotaPedido obj) {
         String valor = "";
         try {

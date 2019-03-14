@@ -139,11 +139,11 @@ public class CabeceraCompra extends javax.swing.JDialog {
             }
         });
         tbaCabeceraPedido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tbaCabeceraPedidoMousePressed(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbaCabeceraPedidoMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbaCabeceraPedidoMousePressed(evt);
             }
         });
         tblProduc.setViewportView(tbaCabeceraPedido);
