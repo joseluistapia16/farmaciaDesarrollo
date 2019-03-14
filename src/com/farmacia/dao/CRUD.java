@@ -53,6 +53,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -67,6 +68,7 @@ public class CRUD {
     Connection conect = null;
     java.sql.Statement st = null;
     ResultSet rs = null;
+    PreparedStatement ps;
     Conexion con = new Conexion();
 
     String query;
@@ -3614,7 +3616,38 @@ public class CRUD {
         }
         return valor;
     }
-
+    public String edicionCabeceraNotaPedido(Cabecera_compra cc) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call edicionCabeceraNota(?,?,?,?,?)}");
+            pro.setBigDecimal(1, cc.getIva());
+            pro.setBigDecimal(2, cc.getDescuento());
+            pro.setBigDecimal(3, cc.getTotal());
+            pro.setLong(4, cc.getIdcabecerapedido());
+            
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
     public String buscarIDDetallesCompras(JoinListarDetalleNotaPedido obj) {
         String valor = "";
         try {
@@ -3648,7 +3681,42 @@ public class CRUD {
         }
         return valor;
     }
+    //
+    public String EliminarDetalleDevolucion(JoinListarDetalleNotaPedido obj) {
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call EliminarDetalleDevolucion(?,?,?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_detalle_nota_pedido());
+            prodProAlm.setLong(2, obj.getId_precio());
+            prodProAlm.setLong(3, obj.getCantidad());
+            prodProAlm.setBigDecimal(4, obj.getDescuento());
+            prodProAlm.setBigDecimal(5, obj.getIva());
+            prodProAlm.setBigDecimal(6, obj.getTotal());
+            prodProAlm.setLong(7, obj.getBono());
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
 
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
     public String ActualizarTodoCompras(DetalleNotaPedido dnp) {
         String valor = null;
         try {
@@ -4156,5 +4224,49 @@ public class CRUD {
             }
         }
         return valor;
+    }
+    public String RucLocal(Nombre_local pv) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call fc_ruc_local(?,?)}");
+            pro.setString(1, pv.getRuc_local());
+            pro.registerOutParameter("salida", Types.VARCHAR);
+            pro.executeUpdate();
+            valor = pro.getString("salida");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    public String ruc_local (){
+        String ruc = "";
+        try {
+            conect = con.conectar();
+            ps = conect.prepareStatement("SELECT `fc_punto_venta`.`ruc_local` FROM `fc_punto_venta`;");
+            rs = ps.executeQuery();
+            rs.next();
+            ruc = rs.getString("ruc_local");
+            conect.close();
+        } catch (SQLException e) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, e);
+        } catch (ClassNotFoundException ex) { 
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ruc;
     }
 }

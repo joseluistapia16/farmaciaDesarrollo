@@ -806,7 +806,25 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
                     System.out.println(seleccion);
                     switch (seleccion) {
                         case 0://eliminar
-
+                            String valor = "";
+                            int seleccion1 = JOptionPane.showOptionDialog(null, "Esta Seguro De Eliminar El Item Seleccionado",
+                                    "Selector de opciones", JOptionPane.YES_NO_CANCEL_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+                                    new Object[]{"SI", "NO"}, "NO");
+                            if (seleccion1 == 0) {
+                                valor = crud.EliminarDetalleDevolucion(objetop);
+                                if ("EXITO".equals(valor)) {
+                                    JOptionPane.showMessageDialog(rootPane, valor);
+                                    actualizarTabla2();
+                                    Cabecera_compra cn = new Cabecera_compra();
+                                    cn.setIva(VGiva);
+                                    cn.setDescuento(VGdescuento);
+                                    cn.setTotal(VGtotal);
+                                    cn.setId_cabecera_compra(Long.valueOf(idComprasCab));
+                                    cn.setIdcabecerapedido(Long.valueOf(txtNumero.getText()));
+                                    crud.edicionCompra(cn);
+                                }
+                            }
                             break;
                         case 1://modificar
                             EditarProductoCompra1 Man = new EditarProductoCompra1(new javax.swing.JFrame(), true, objetop);

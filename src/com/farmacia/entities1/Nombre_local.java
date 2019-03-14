@@ -18,8 +18,19 @@ public class Nombre_local {
     private String telefono_pv;
     private Date fecha_creacion;
     private Date fecha_actualizacion;
+    private String ruc_local;
 
     public Nombre_local() {
+    }
+
+    public Nombre_local(Long id_punto_venta, String nombre, String direccion, String telefono_pv, Date fecha_creacion, Date fecha_actualizacion, String ruc_local) {
+        this.id_punto_venta = id_punto_venta;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono_pv = telefono_pv;
+        this.fecha_creacion = fecha_creacion;
+        this.fecha_actualizacion = fecha_actualizacion;
+        this.ruc_local = ruc_local;
     }
 
     public Long getId_punto_venta() {
@@ -70,13 +81,12 @@ public class Nombre_local {
         this.fecha_actualizacion = fecha_actualizacion;
     }
 
-    public Nombre_local(Long id_punto_venta, String nombre, String direccion, String telefono_pv, Date fecha_creacion, Date fecha_actualizacion) {
-        this.id_punto_venta = id_punto_venta;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono_pv = telefono_pv;
-        this.fecha_creacion = fecha_creacion;
-        this.fecha_actualizacion = fecha_actualizacion;
+    public String getRuc_local() {
+        return ruc_local;
+    }
+
+    public void setRuc_local(String ruc_local) {
+        this.ruc_local = ruc_local;
     }
 
 }
