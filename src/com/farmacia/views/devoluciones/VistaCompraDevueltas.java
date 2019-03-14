@@ -807,7 +807,7 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
                     switch (seleccion) {
                         case 0://eliminar
                             String valor = "";
-                            int seleccion1 = JOptionPane.showOptionDialog(null, "Seleccione una opcion",
+                            int seleccion1 = JOptionPane.showOptionDialog(null, "Esta Seguro De Eliminar El Item Seleccionado",
                                     "Selector de opciones", JOptionPane.YES_NO_CANCEL_OPTION,
                                     JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
                                     new Object[]{"SI", "NO"}, "NO");
