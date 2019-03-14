@@ -665,7 +665,6 @@ public class EntidadesMappers {
             obj.setLocalidad(rs.getString("localidad"));
             obj.setDireccion(rs.getString("direccion"));
             obj.setObservacion(rs.getString("observacion"));
-            
          
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
@@ -681,6 +680,7 @@ public class EntidadesMappers {
             obj.setDireccion(rs.getString("direccion"));
             obj.setFecha_creacion(rs.getDate("fecha_creacion"));
             obj.setFecha_actualizacion(rs.getDate("fecha_actualizacion"));
+//            obj.setRuc_local(rs.getString("ruc_local"));
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
