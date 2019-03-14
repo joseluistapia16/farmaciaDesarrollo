@@ -5,6 +5,7 @@
  */
 package com.farmacia.views.compras;
 
+import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
@@ -131,8 +132,8 @@ public class OrdenCompra extends javax.swing.JDialog {
 //            totalIva = redondearDecimales(totalIva, 2);
         }
         VGiva = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total1Iva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        txtIva.setText(removeScientificNotation(Total1Iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
-
+//        txtIva.setText(removeScientificNotation(Total1Iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
+        txtIva.setText(Formato_Numeros.formatoNumero(Total1Iva.toString()));
     }
 
     public void TotalDescuento() {
@@ -143,7 +144,8 @@ public class OrdenCompra extends javax.swing.JDialog {
 //            TotalDescuento = redondearDecimales(TotalDescuento, 2);
         }
         VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        txtDescuento.setText(removeScientificNotation(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
+//        txtDescuento.setText(removeScientificNotation(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
+        txtDescuento.setText(Formato_Numeros.formatoNumero(TotalDescuento.toString()));
     }
 
     public void Total() {
@@ -154,8 +156,8 @@ public class OrdenCompra extends javax.swing.JDialog {
 
         }
         VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        txtTotal.setText(Total_.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-
+//        txtTotal.setText(Total_.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        txtTotal.setText(Formato_Numeros.formatoNumero(Total_.toString()));
     }
 
     public static String removeScientificNotation(String value) {
@@ -795,18 +797,15 @@ public static String FechaActual() {
 //        }
 
             ///// cris!!
-                
 //                Integer CantidadComp = crud.buscarCantidadEnFaltantes("SELECT `cantidad` FROM `detalle_faltantes` WHERE `id_producto`=" + lista3.get(i).getId_producto() + ";");
 ////                System.out.println("Cantidad existente"+CantidadComp);
 ////                System.out.println("Cantidad "+Integer.valueOf(lista3.get(i).getCantidad().toString()));
 //                CantidadComp = CantidadComp - Integer.valueOf(lista3.get(i).getCantidad().toString());
 ////                System.out.println("Cantidad Restada de Faltantes"+CantidadComp);
 //                crud.UpdateCantidadFaltantes("UPDATE `detalle_faltantes` SET `cantidad` = " + CantidadComp + " WHERE `id_producto` = "+lista3.get(i).getId_producto()+";");
-                
             ///// cris
-            
 //            this.setVisible(false);
-                //INTENTO 2 DE REGISTRAR DETALLES COMPRAS
+            //INTENTO 2 DE REGISTRAR DETALLES COMPRAS
 //            for (int i = 0; i < lista3.size(); i++) {
 //                crud.insertarDetallesCompraRegistro("INSERT INTO `detalle_compra`(`id_cabecera_compra`,`id_precio`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono)VALUES(" + id_cab + "," + lista3.get(i).getId_precio() + "," + lista3.get(i).getCantidad().toString() + ","
 //                        + lista3.get(i).getPrecio().toString() + "," + lista3.get(i).getDescuento().toString() + "," + lista3.get(i).getIva().toString() + "," + lista3.get(i).getTotal().toString() + "," + lista3.get(i).getBono().toString() + ");");
@@ -822,18 +821,18 @@ public static String FechaActual() {
 //
 //            }
             //INTENTO 3 DE RESGISTRAR DETALLE COMPRA!
-              for (int i = 0; i < lista3.size(); i++) {
-                  Detalle_compra obj = new Detalle_compra();
-                  obj.setId_cabecera_compra(Long.valueOf(id_cab));
-                  obj.setId_precio(lista3.get(i).getId_precio());
-                  obj.setCantidad(lista3.get(i).getCantidad());
-                  obj.setPrecio(lista3.get(i).getPrecio());
-                  obj.setDescuento(lista3.get(i).getDescuento());
-                  obj.setIva(lista3.get(i).getIva());
-                  obj.setTotal(lista3.get(i).getTotal());
-                  obj.setBono(lista3.get(i).getBono());
-                  crud.insertarDetalleProductoCompra(obj);
-              }
+            for (int i = 0; i < lista3.size(); i++) {
+                Detalle_compra obj = new Detalle_compra();
+                obj.setId_cabecera_compra(Long.valueOf(id_cab));
+                obj.setId_precio(lista3.get(i).getId_precio());
+                obj.setCantidad(lista3.get(i).getCantidad());
+                obj.setPrecio(lista3.get(i).getPrecio());
+                obj.setDescuento(lista3.get(i).getDescuento());
+                obj.setIva(lista3.get(i).getIva());
+                obj.setTotal(lista3.get(i).getTotal());
+                obj.setBono(lista3.get(i).getBono());
+                crud.insertarDetalleProductoCompra(obj);
+            }
             this.setVisible(false);
         } catch (Exception ex) {
             Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);
@@ -921,7 +920,7 @@ public static String FechaActual() {
             tablac.add(tabla1);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"OrdenCompra.jasper";
+            String dir = System.getProperty("user.dir") + "/Reportes/" + "OrdenCompra.jasper";
             JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog(this);

@@ -676,13 +676,13 @@ public class Tablas {
 
     public static void CargarJoinListaCabeceraPedido(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
 
-        int[] a = {5, 5, 52, 90, 150, 110, 15, 50};
+        int[] a = {20, 20, 52, 90, 150, 110, 15, 50};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"N° ORDEN", "CODIGO", "PROVEEDOR", "REPRESENTANTE", "TELEFONO", "FECHA DE CREACION", "PLAZO", "TOTAL"};
+        String[] Co = {"N°", "CODIGO", "PROVEEDOR", "REPRESENTANTE", "TELEFONO", "FECHA DE CREACION", "PLAZO", "TOTAL"};
         String[] Filas = new String[9];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
