@@ -41,7 +41,7 @@
 				<textElement textAlignment="Right">
 					<font size="22" isBold="true" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[DETALLE DE COMPRAS EFECTUADAS #]]></text>
+				<text><![CDATA[DETALLE DE COMPRAS DEVUELTAS #]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="571" y="3" width="184" height="33" uuid="0db9d5eb-3d2e-4639-9692-45ea592e97b1"/>
