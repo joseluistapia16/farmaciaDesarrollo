@@ -3681,7 +3681,42 @@ public class CRUD {
         }
         return valor;
     }
+    //
+    public String EliminarDetalleDevolucion(JoinListarDetalleNotaPedido obj) {
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call EliminarDetalleDevolucion(?,?,?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_detalle_nota_pedido());
+            prodProAlm.setLong(2, obj.getId_precio());
+            prodProAlm.setLong(3, obj.getCantidad());
+            prodProAlm.setBigDecimal(4, obj.getDescuento());
+            prodProAlm.setBigDecimal(5, obj.getIva());
+            prodProAlm.setBigDecimal(6, obj.getTotal());
+            prodProAlm.setLong(7, obj.getBono());
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
 
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
     public String ActualizarTodoCompras(DetalleNotaPedido dnp) {
         String valor = null;
         try {
