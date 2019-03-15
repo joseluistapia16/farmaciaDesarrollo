@@ -41,6 +41,7 @@ import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -736,7 +737,8 @@ public class EntidadesMappers {
             obj.setStock(rs.getLong("Stock"));
             obj.setIva(rs.getString("Iva"));
             //obj.setId_precio(rs.getLong("ID_PRECIO"));
-            obj.setPrecio_venta(rs.getBigDecimal("Precio de venta"));
+            obj.setPrecio_venta(rs.getBigDecimal("Precio de Venta"));
+            obj.setPrecio_compra(rs.getBigDecimal("Precio de Compra"));
             
 
         } catch (SQLException ex) {

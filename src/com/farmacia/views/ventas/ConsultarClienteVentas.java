@@ -93,7 +93,7 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        CbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "CEDULA", "NOMBRE", "APELLIDO", "DIRECCION", "TELEFONO", "CORREO", " " }));
+        CbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "CODIGO", "CEDULA", "NOMBRE", "APELLIDO", "DIRECCION", "TELEFONO", "CORREO", "" }));
         CbxFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CbxFiltroActionPerformed(evt);
@@ -179,33 +179,39 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
 
         int pos = CbxFiltro.getSelectedIndex();
         if (pos == 0) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_codigo");
+            listaCliente = crud.ListarTodoClienteVentas(query, "todo");
 
         }
         if (pos == 1) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_cedula");
+            listaCliente = crud.ListarTodoClienteVentas(query, "codigo");
 
         }
         if (pos == 2) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_nombre");
+            listaCliente = crud.ListarTodoClienteVentas(query, "cedula");
 
         }
         if (pos == 3) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_apellido");
+            listaCliente = crud.ListarTodoClienteVentas(query, "nombre");
 
         }
         if (pos == 4) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_direccion");
+            listaCliente = crud.ListarTodoClienteVentas(query, "apellido");
 
         }
         if (pos == 5) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_telefono");
+            listaCliente = crud.ListarTodoClienteVentas(query, "direccion");
 
         }
         if (pos == 6) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "buscar_correo");
+            listaCliente = crud.ListarTodoClienteVentas(query, "telefono");
 
         }
+        if (pos == 7) {
+            listaCliente = crud.ListarTodoClienteVentas(query, "correo");
+
+        }
+        
+        TxtFiltro.setText("");
 
         //lista = crud.ListarTodoJoinProductosVentas(query, "buscar_nombre");
         Tablas.cargarClienteVentas(TablaClienteVentas, listaCliente);

@@ -89,7 +89,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        CbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
+        CbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
 
         TxtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,33 +170,38 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
         int pos = CbxFiltro.getSelectedIndex();
         if (pos == 0) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_codigo");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "todo");
 
         }
+        
         if (pos == 1) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_nombre");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "codigo");
 
         }
         if (pos == 2) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_tipo");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "nombre");
 
         }
         if (pos == 3) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_medida");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "tipo");
 
         }
         if (pos == 4) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_envase");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "medida");
 
         }
         if (pos == 5) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_marca");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "envase");
 
         }
         if (pos == 6) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "buscar_codigo");
+            listaProducto = crud.ListarTodoJoinProductosVentas(query, "marca");
 
         }
+        
+        TxtFiltro.setText("");
+        
+
 
         Tablas.cargarJoinProductosVentas(TablaProductoVentas, listaProducto);
         query = "";
@@ -210,7 +215,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
         if (evt.getClickCount() == 2) {
             i = TablaProductoVentas.getSelectedRow();
-            objeto = devuelveObjeto(TablaProductoVentas.getValueAt(i, 1).toString(), listaProducto);
+            objeto = devuelveObjeto(TablaProductoVentas.getValueAt(i, 0).toString(), listaProducto);
 
             if (objeto != null) {
 

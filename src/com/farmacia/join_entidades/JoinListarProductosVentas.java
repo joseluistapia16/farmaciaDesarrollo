@@ -32,13 +32,17 @@ public class JoinListarProductosVentas {
     private Long id_descuento;
     private BigDecimal descuento_venta;
     private String iva;
+    private BigDecimal precio_compra;
+    private BigDecimal descuento_compra;
     private String estado;
+    
+    
     
     public JoinListarProductosVentas(){
         
     }
 
-    public JoinListarProductosVentas(Long id_control, Long id_producto, String producto_nombre, String producto_descripcion, Long id_tipo, String tipo_nombre, Long id_medida, String medida_nombre, Long id_envase, String envase_nombre, Long id_marca, String marca_nombre, Long id_stock, Long stock, Long id_precio, BigDecimal precio_venta, Long id_descuento, BigDecimal descuento_venta, String iva, String estado) {
+    public JoinListarProductosVentas(Long id_control, Long id_producto, String producto_nombre, String producto_descripcion, Long id_tipo, String tipo_nombre, Long id_medida, String medida_nombre, Long id_envase, String envase_nombre, Long id_marca, String marca_nombre, Long id_stock, Long stock, Long id_precio, BigDecimal precio_venta, Long id_descuento, BigDecimal descuento_venta, String iva, BigDecimal precio_compra, BigDecimal descuento_compra, String estado) {
         this.id_control = id_control;
         this.id_producto = id_producto;
         this.producto_nombre = producto_nombre;
@@ -58,6 +62,8 @@ public class JoinListarProductosVentas {
         this.id_descuento = id_descuento;
         this.descuento_venta = descuento_venta;
         this.iva = iva;
+        this.precio_compra = precio_compra;
+        this.descuento_compra = descuento_compra;
         this.estado = estado;
     }
 
@@ -213,6 +219,22 @@ public class JoinListarProductosVentas {
         this.iva = iva;
     }
 
+    public BigDecimal getPrecio_compra() {
+        return precio_compra;
+    }
+
+    public void setPrecio_compra(BigDecimal precio_compra) {
+        this.precio_compra = precio_compra;
+    }
+
+    public BigDecimal getDescuento_compra() {
+        return descuento_compra;
+    }
+
+    public void setDescuento_compra(BigDecimal descuento_compra) {
+        this.descuento_compra = descuento_compra;
+    }
+
     public String getEstado() {
         return estado;
     }
@@ -220,6 +242,8 @@ public class JoinListarProductosVentas {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+   
 
     
 

@@ -2605,7 +2605,7 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public String Respaldo_usuario(Usuario_S us) {
         String valor = null;
         try {
@@ -3662,10 +3662,10 @@ public class CRUD {
             pro.setBigDecimal(4, dnp.getIva());
             pro.setBigDecimal(5, dnp.getTotal());
             pro.setInt(6, dnp.getBono());
-            pro.setInt(7,dnp.getIdCompra());
+            pro.setInt(7, dnp.getIdCompra());
             pro.setLong(8, dnp.getId_precio());
             pro.setLong(9, dnp.getCantAnt());
-            
+
             pro.registerOutParameter("valor", Types.VARCHAR);
             pro.executeUpdate();
             //pro.execute();
@@ -3685,9 +3685,10 @@ public class CRUD {
                 Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         return valor;
     }
+
     public String buscarIDCabeceraCompras(Cabecera_compra obj) {
         String valor = "";
         try {
@@ -3719,17 +3720,18 @@ public class CRUD {
         }
         return valor;
     }
+
     //devolverProductosComprados
-     public String devolverProductosComprados(Detalle_compra dnp) {
+    public String devolverProductosComprados(Detalle_compra dnp) {
         String valor = null;
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
                     "{ call devolverProductosComprados(?,?,?)}");//ll
-       
+
             pro.setInt(1, dnp.getCantidad());
-            pro.setLong(2, dnp.getId_precio());          
+            pro.setLong(2, dnp.getId_precio());
             pro.registerOutParameter("valor", Types.VARCHAR);
             pro.executeUpdate();
             //pro.execute();
@@ -3749,10 +3751,11 @@ public class CRUD {
                 Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         return valor;
     }
-     public String cambiarEstadoDevolucion(int id_nota,int id_compra) {
+
+    public String cambiarEstadoDevolucion(int id_nota, int id_compra) {
         String valor = "";
         try {
             conect = con.conectar();
@@ -3779,7 +3782,8 @@ public class CRUD {
         }
         return valor;
     }
-     public ArrayList<JoinListarNotaPedidosCabecera> listarCabeceraComprasDevueltas(int op) {
+
+    public ArrayList<JoinListarNotaPedidosCabecera> listarCabeceraComprasDevueltas(int op) {
         ArrayList<JoinListarNotaPedidosCabecera> lista = new ArrayList<JoinListarNotaPedidosCabecera>();
         try {
             conect = con.conectar();
@@ -3810,6 +3814,7 @@ public class CRUD {
         }
         return lista;
     }
+
     public int obtenerNumeroOrdenes(String query) {
         int id = 0;
         try {
@@ -3833,7 +3838,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call InsertarCabeceraVentas(?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+                    "{ call InsertarCabeceraVentas(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setString(1, obj.getMun_venta());
             prodProAlm.setLong(2, obj.getId_cliente());
             prodProAlm.setLong(3, obj.getId_usuario());
@@ -3845,7 +3850,8 @@ public class CRUD {
             prodProAlm.setBigDecimal(9, obj.getIva_venta());
             prodProAlm.setBigDecimal(10, obj.getDescuento_venta());
             prodProAlm.setBigDecimal(11, obj.getTotal_venta());
-            prodProAlm.setString(12, obj.getEstado());
+            prodProAlm.setBigDecimal(12, obj.getUtilidad());
+            prodProAlm.setString(13, obj.getEstado());
 
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.executeUpdate();
@@ -3904,7 +3910,8 @@ public class CRUD {
         }
         return valor;
     }
-     public String EliminarDetalleDevolucion(DetalleNotaPedido det) {
+
+    public String EliminarDetalleDevolucion(DetalleNotaPedido det) {
         String dato = null;
         try {
             conect = con.conectar();
@@ -3940,8 +3947,7 @@ public class CRUD {
         return dato;
 
     }
-    
-    
+
     public ArrayList<StockVentas> listarStockVentas(Long id_cab) {
         ArrayList<StockVentas> lista = new ArrayList<StockVentas>();
 
@@ -3974,9 +3980,9 @@ public class CRUD {
         }
         return lista;
     }
-    
+
     public void ActulizarStockVentas(StockVentas det) {
-       
+
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
@@ -4003,6 +4009,22 @@ public class CRUD {
             }
         }
 
+    }
+
+    public Double obtenerIvaVentas(String query) {
+        double iva = 0.00;
+        try {
+            conect = con.conectar();
+
+            java.sql.Statement st = conect.createStatement();
+            rs = st.executeQuery(query);
+            rs.next();
+            iva = rs.getDouble("iva");
+            conect.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return iva;
     }
 
 }

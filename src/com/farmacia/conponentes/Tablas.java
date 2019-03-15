@@ -1283,28 +1283,28 @@ public class Tablas {
 
     public static void cargarJoinProductosVentas(JTable Tabla, ArrayList<JoinListarProductosVentas> lista) {
 
-        int[] a = {10, 10, 30, 52, 30, 30, 30, 30, 30, 30, 30};
+        int[] a = {10, 30, 52, 30, 30, 30, 30, 30, 30, 30, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CONTROL", "CODIGO", "PRODUCTO", "DESCRIPCION", "TIPO", "MEDIDA", "ENVASE", "MARCA", "STOCK", "IVA", "PRECIO VENTA"};
+        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION", "TIPO", "MEDIDA", "ENVASE", "MARCA", "STOCK", "IVA", "PRECIO VENTA", "PRECIO COMPRA"};
         String[] Filas = new String[11];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
-            Filas[0] = lista.get(i).getId_control().toString();
-            Filas[1] = lista.get(i).getId_producto().toString();
-            Filas[2] = lista.get(i).getProducto_nombre();
-            Filas[3] = lista.get(i).getProducto_descripcion();
-            Filas[4] = lista.get(i).getTipo_nombre();
-            Filas[5] = lista.get(i).getMedida_nombre();
-            Filas[6] = lista.get(i).getEnvase_nombre();
-            Filas[7] = lista.get(i).getMarca_nombre();
-            Filas[8] = lista.get(i).getStock().toString();
-            Filas[9] = lista.get(i).getIva();
-            Filas[10] = lista.get(i).getPrecio_venta().toString();
+            Filas[0] = lista.get(i).getId_producto().toString();
+            Filas[1] = lista.get(i).getProducto_nombre();
+            Filas[2] = lista.get(i).getProducto_descripcion();
+            Filas[3] = lista.get(i).getTipo_nombre();
+            Filas[4] = lista.get(i).getMedida_nombre();
+            Filas[5] = lista.get(i).getEnvase_nombre();
+            Filas[6] = lista.get(i).getMarca_nombre();
+            Filas[7] = lista.get(i).getStock().toString();
+            Filas[8] = lista.get(i).getIva();
+            Filas[9] = lista.get(i).getPrecio_venta().toString();
+            Filas[10] = lista.get(i).getPrecio_compra().toString();
 
             model.addRow(Filas);
             Tabla.setModel(model);

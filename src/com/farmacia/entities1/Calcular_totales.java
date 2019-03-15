@@ -19,18 +19,19 @@ public class Calcular_totales {
     private BigDecimal Iva;
     private BigDecimal Descuento;
     private BigDecimal Total;
+    private BigDecimal Utilidad;
+    
 
-    public Calcular_totales(BigDecimal SubtotalConIva, BigDecimal SubtotalSinIva, BigDecimal Subtotal, BigDecimal Iva, BigDecimal Descuento, BigDecimal Total) {
+    public Calcular_totales() {}
+
+    public Calcular_totales(BigDecimal SubtotalConIva, BigDecimal SubtotalSinIva, BigDecimal Subtotal, BigDecimal Iva, BigDecimal Descuento, BigDecimal Total, BigDecimal Utilidad) {
         this.SubtotalConIva = SubtotalConIva;
         this.SubtotalSinIva = SubtotalSinIva;
         this.Subtotal = Subtotal;
         this.Iva = Iva;
         this.Descuento = Descuento;
         this.Total = Total;
-    }
-
-    public Calcular_totales() {
-        
+        this.Utilidad = Utilidad;
     }
 
     public BigDecimal getSubtotalConIva() {
@@ -80,6 +81,18 @@ public class Calcular_totales {
     public void setTotal(BigDecimal Total) {
         this.Total = Total;
     }
+
+    public BigDecimal getUtilidad() {
+        return Utilidad;
+    }
+
+    public void setUtilidad(BigDecimal Utilidad) {
+        this.Utilidad = Utilidad;
+    }
+    
+    
+
+
     
     
     
