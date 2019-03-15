@@ -313,7 +313,8 @@ public class ConsultaMarcas extends javax.swing.JDialog {
             lista.add(medida);
         }
         try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("ConsultaMarcas.jasper");
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"ConsultaMarcas.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

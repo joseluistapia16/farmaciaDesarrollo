@@ -438,7 +438,8 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
             ClaseReporte tabla1 = new ClaseReporte (nomProducto.getText(),jtbPrecios.getValueAt(i,0).toString(),jtbPrecios.getValueAt(i,1).toString(),jtbPrecios.getValueAt(i,2).toString(),jtbPrecios.getValueAt(i,3).toString(),jtbPrecios.getValueAt(i,4).toString());
             tablac.add(tabla1);}
         try{
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("Mantenimiento_Precios_Productos.jasper");
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"Mantenimiento_Precios_Productos.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog (this);
             JRViewer viewer = new JRViewer(jprint);

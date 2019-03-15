@@ -529,7 +529,8 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
         ClaseReporte lab = new ClaseReporte(ruc.getText(),nombre.getText(),direccion.getText(),telefono.getText(),fecha.getText(),rutaimagen,correo.getText());
         Laboratorio.add(lab);
         try{
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("Editar_Lab.jasper");
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"Editar_Lab.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(Laboratorio));
             JDialog frame = new JDialog (this);
             JRViewer viewer = new JRViewer(jprint);

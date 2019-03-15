@@ -343,7 +343,8 @@ public class Consulta_Lab extends javax.swing.JDialog {
             Laboratorio tabla1 = new Laboratorio (Tabla.getValueAt(i,0).toString(),Tabla.getValueAt(i,1).toString(),Tabla.getValueAt(i,2).toString(),Tabla.getValueAt(i,3).toString(),Tabla.getValueAt(i,4).toString());
             tablac.add(tabla1);}
         try{
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("Consulta_Lab.jasper");
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"Consulta_Lab.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog (this);
             JRViewer viewer = new JRViewer(jprint);

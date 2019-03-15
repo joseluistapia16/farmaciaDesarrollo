@@ -1014,7 +1014,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             tablac.add(tabla1);
         }
         try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("EditarNotaPedido.jasper");
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"EditarNotaPedido.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

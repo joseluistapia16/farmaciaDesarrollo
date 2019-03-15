@@ -307,7 +307,8 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             lista.add(medida);
         }
         try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("RegistrosInactivosNotaPedidos.jasper");
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"RegistrosInactivosNotaPedidos.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

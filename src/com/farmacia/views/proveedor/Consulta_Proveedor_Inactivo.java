@@ -282,7 +282,8 @@ public class Consulta_Proveedor_Inactivo extends javax.swing.JDialog {
         }
 
         try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("Consulta_Proveedor_Inactivo.jasper");
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"Consulta_Proveedor_Inactivo.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

@@ -63,6 +63,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         btnReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -381,14 +382,11 @@ filtroUsuario();
                     String.valueOf(jtUsuario.getValueAt(i,7)),
                     jtUsuario.getValueAt(i,8).toString(),
                     jtUsuario.getValueAt(i,9).toString(),
-                    jtUsuario.getValueAt(i,10).toString(),
-                    jtUsuario.getValueAt(i,11).toString(),
-                    jtUsuario.getValueAt(i,12).toString(),
-                    jtUsuario.getValueAt(i,13).toString(),
-                    jtUsuario.getValueAt(i,14).toString());
+                    jtUsuario.getValueAt(i,10).toString());                   
             tablac.add(tabla1);}
         try{
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("Mostrar_usuario.jasper");
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"Mostrar_usuario.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog (this);
             JRViewer viewer = new JRViewer(jprint);

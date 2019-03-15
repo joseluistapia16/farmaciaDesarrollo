@@ -743,7 +743,8 @@ public class modificarProducto extends javax.swing.JDialog {
         ClaseReporte producto2 = new ClaseReporte(id_usuario.getText(),txtFechaActual1.getText(),codigo.getText(),cbxIva.getSelectedItem().toString(),producto.getText(),txtDescripcion1.getText(),txtPeso1.getText(),cbxMedida1.getSelectedItem().toString(),cbxTipos1.getSelectedItem().toString(),cbxEnvase1.getSelectedItem().toString(),cbxMarca1.getSelectedItem().toString(),txtcantMinima.getText());
         producto1.add(producto2);
         try {
-            JasperReport reporte =  (JasperReport) JRLoader.loadObject("modificarProducto.jasper");            
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"modificarProducto.jasper";
+            JasperReport reporte =  (JasperReport) JRLoader.loadObject(dir);            
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(producto1));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
