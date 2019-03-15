@@ -4305,7 +4305,7 @@ public class CRUD {
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
-                JoinListarNotaPedidosCabecera obj = EntidadesMappers.getListadoCabeceraNotaPedidoEnComprasFromResultSet(rs);
+                JoinListarNotaPedidosCabecera obj = EntidadesMappers.getListadoCabeceraNotaPedidoEnComprasRangoFechaFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();
