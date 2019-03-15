@@ -183,11 +183,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
         });
 
-        TxtDescuentoPorcentaje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtDescuentoPorcentajeActionPerformed(evt);
-            }
-        });
         TxtDescuentoPorcentaje.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtDescuentoPorcentajeKeyReleased(evt);
@@ -422,18 +417,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
         );
 
         CbxFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "contado", "credito" }));
-        CbxFormaPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CbxFormaPagoActionPerformed(evt);
-            }
-        });
 
         CbxTipoVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Factura", "Nota de venta" }));
-        CbxTipoVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CbxTipoVentaActionPerformed(evt);
-            }
-        });
 
         BtnGenerarVenta.setText("generar venta");
         BtnGenerarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -816,14 +801,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     }//GEN-LAST:event_BtnBuscarprodnombreActionPerformed
 
-    private void CbxFormaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxFormaPagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CbxFormaPagoActionPerformed
-
-    private void CbxTipoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxTipoVentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CbxTipoVentaActionPerformed
-
     private void TablaListarVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaListarVentasMousePressed
 
         try {
@@ -845,10 +822,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_TablaListarVentasMousePressed
-
-    private void TxtDescuentoPorcentajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtDescuentoPorcentajeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtDescuentoPorcentajeActionPerformed
 
     private void TxtDescuentoPorcentajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtDescuentoPorcentajeKeyTyped
 

@@ -28,6 +28,9 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
+        listaProducto = crud.ListarTodoJoinProductosVentas("", "todo");
+        Tablas.cargarJoinProductosVentas(TablaProductoVentas, listaProducto);
+
     }
 
     /**
@@ -111,9 +114,9 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(188, 188, 188)
                 .addComponent(CbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
                 .addComponent(BtnBuscar)
                 .addContainerGap(171, Short.MAX_VALUE))
         );
@@ -122,9 +125,9 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnBuscar))
+                    .addComponent(BtnBuscar)
+                    .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -173,7 +176,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             listaProducto = crud.ListarTodoJoinProductosVentas(query, "todo");
 
         }
-        
+
         if (pos == 1) {
             listaProducto = crud.ListarTodoJoinProductosVentas(query, "codigo");
 
@@ -198,10 +201,8 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             listaProducto = crud.ListarTodoJoinProductosVentas(query, "marca");
 
         }
-        
-        TxtFiltro.setText("");
-        
 
+        TxtFiltro.setText("");
 
         Tablas.cargarJoinProductosVentas(TablaProductoVentas, listaProducto);
         query = "";

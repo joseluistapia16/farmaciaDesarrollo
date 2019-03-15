@@ -1393,11 +1393,11 @@ public class Tablas {
             Filas[0] = "" + lista.get(i).getId_producto();
             Filas[1] = lista.get(i).getNombre_producto();
             Filas[2] = "" + lista.get(i).getCantidad();
-            Filas[3] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[4] = lista.get(i).getSubtotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[5] = lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[6] = lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[7] = lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+            Filas[3] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[4] = lista.get(i).getSubtotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[5] = lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[6] = lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[7] = lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
             model.addRow(Filas);
 
             Tabla.setModel(model);
