@@ -22,12 +22,16 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
     ArrayList<Persona> listaCliente = null;
     DefaultTableModel model;
     Persona objeto = new Persona();
+    
 
     public ConsultarClienteVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        listaCliente = crud.ListarTodoClienteVentas("", "todo");
+        Tablas.cargarClienteVentas(TablaClienteVentas, listaCliente);
+   
 
     }
 
@@ -65,9 +69,6 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
             }
         ));
         TablaClienteVentas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaClienteVentasMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 TablaClienteVentasMousePressed(evt);
             }
@@ -97,12 +98,6 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
         CbxFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CbxFiltroActionPerformed(evt);
-            }
-        });
-
-        TxtFiltro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtFiltroActionPerformed(evt);
             }
         });
 
@@ -169,12 +164,9 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TxtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFiltroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtFiltroActionPerformed
-
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-        String query = "";
+        String query = "";  
+        
         query = TxtFiltro.getText() + "%";
 
         int pos = CbxFiltro.getSelectedIndex();
@@ -254,10 +246,6 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
         return objeto1;
     }
 
-
-    private void TablaClienteVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClienteVentasMouseClicked
-
-    }//GEN-LAST:event_TablaClienteVentasMouseClicked
 
     /**
      * @param args the command line arguments

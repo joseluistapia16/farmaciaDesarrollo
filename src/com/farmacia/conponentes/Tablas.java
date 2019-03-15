@@ -676,13 +676,13 @@ public class Tablas {
 
     public static void CargarJoinListaCabeceraPedido(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
 
-        int[] a = {5, 5, 52, 90, 150, 110, 15, 50};
+        int[] a = {20, 50, 80, 90, 150, 110, 50, 50};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"N° ORDEN", "CODIGO", "PROVEEDOR", "REPRESENTANTE", "TELEFONO", "FECHA DE CREACION", "PLAZO", "TOTAL"};
+        String[] Co = {"N° ", "CODIGO", "PROVEEDOR", "REPRESENTANTE", "TELEFONO", "FECHA DE CREACION", "PLAZO", "TOTAL"};
         String[] Filas = new String[9];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -1393,11 +1393,11 @@ public class Tablas {
             Filas[0] = "" + lista.get(i).getId_producto();
             Filas[1] = lista.get(i).getNombre_producto();
             Filas[2] = "" + lista.get(i).getCantidad();
-            Filas[3] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[4] = lista.get(i).getSubtotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[5] = lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[6] = lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            Filas[7] = lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+            Filas[3] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[4] = lista.get(i).getSubtotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[5] = lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[6] = lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[7] = lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
             model.addRow(Filas);
 
             Tabla.setModel(model);
