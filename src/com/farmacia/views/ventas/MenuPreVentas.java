@@ -659,33 +659,36 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
                 BigDecimal subtotal = cantidad.multiply(precio);
 
-                TxtProdSubtotal.setText(subtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                TxtProdSubtotal.setText(subtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
 
                 if (objProd.getIva().equals("0.12")) {
 
                     BigDecimal iva_val = new BigDecimal(iva_valor);
                     iva = iva_val.multiply(subtotal);
 
-                    TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                    TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
                 }
 
                 if (objProd.getIva().equals("NO")) {
 
                     iva = BigDecimal.valueOf(00.00);
 
-                    TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                    TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
                 }
                 BigDecimal total = subtotal.add(iva);
 
-                TxtProdtotal.setText(total.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                TxtProdtotal.setText(total.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
 
                 objeto1.setSubtotal(subtotal);
+                objeto1.setDescuento(BigDecimal.valueOf(0.00));
                 objeto1.setIva(iva);
                 objeto1.setTotal(total);
 
                 TxtDescuentoPorcentaje.setEnabled(true);
                 TxtDescuentoPorcentaje.setText("0");
                 TxtProdDescuento.setText("0.00");
+                
+                System.out.println(" descuento  0" );
 
             }
 
@@ -714,7 +717,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
         BigDecimal Utilidad = new BigDecimal("0.00");
 
-        BigDecimal Iva = new BigDecimal(ivaVentas.toString());
+        BigDecimal Iva = new BigDecimal(ivaVentas);
 
         for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
 
@@ -730,6 +733,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
             BigDecimal SubtotalCompra = Cantidad.multiply(PrecioCompra);
             System.out.println("Subtotal compra " + SubtotalCompra);
             BigDecimal Descuento = ListarDetalle.get(i).getDescuento();
+            System.out.println("descuento venta " + Descuento);
             TotalDescuento = TotalDescuento.add(Descuento);
 
             TxtSubtotalconIva.setText("0.00");
@@ -757,7 +761,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
             }
 
-            Total = Total.add(Subtotal.subtract(Descuento).add(Subtotal.multiply(Iva)));
+            Total = Total.add(Subtotal.add(Subtotal.multiply(Iva)).subtract(Descuento));
             TotalCompra = TotalCompra.add(SubtotalCompra.add(SubtotalCompra.multiply(Iva)));
 
             System.out.println("total venta " + Total);
@@ -778,12 +782,12 @@ public class MenuPreVentas extends javax.swing.JDialog {
         ct.setDescuento(TotalDescuento);
         ct.setTotal(Total);
         ct.setUtilidad(Utilidad);
-        TxtSubtotalconIva.setText(TotalSubConIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        TxtSubtotalsinIva.setText(TotalSubSinIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        TxtSubtotal.setText(TotalSubTotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        TxtIva.setText(TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        TxtDescuento.setText(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        TxtTotal.setText(Total.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        TxtSubtotalconIva.setText(TotalSubConIva.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+        TxtSubtotalsinIva.setText(TotalSubSinIva.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+        TxtSubtotal.setText(TotalSubTotal.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+        TxtIva.setText(TotalIva.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+        TxtDescuento.setText(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+        TxtTotal.setText(Total.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
 
     }
 
@@ -806,7 +810,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         if (objProd != null) {
 
             TxtProdNombre.setText(objProd.getProducto_nombre());
-            TxtProdPrecio.setText(objProd.getPrecio_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            TxtProdPrecio.setText(objProd.getPrecio_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
         }
 
 
@@ -877,32 +881,36 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
             BigDecimal subtotal = cantidad.multiply(precio);
 
-            TxtProdSubtotal.setText(subtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            TxtProdSubtotal.setText(subtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
 
             if (objProd.getIva().equals("0.12")) {
 
                 BigDecimal iva_val = new BigDecimal(iva_valor);
                 iva = iva_val.multiply(subtotal);
+                
+          
 
-                TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
             }
 
             if (objProd.getIva().equals("NO")) {
 
                 iva = BigDecimal.valueOf(00.00);
 
-                TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+                TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
             }
             BigDecimal total = subtotal.add(iva);
 
             BigDecimal TotalnenosDescuento = (total.subtract(porcentaje));
 
-            TxtProdtotal.setText(TotalnenosDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            TxtProdtotal.setText(TotalnenosDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
 
             objeto1.setSubtotal(subtotal);
             objeto1.setDescuento(porcentaje);
             objeto1.setIva(iva);
             objeto1.setTotal(TotalnenosDescuento);
+            System.out.println("descuento " + porcentaje);
+            System.out.println("total menos descuento " + TotalnenosDescuento);
 
         }
 
