@@ -57,7 +57,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
         tblProduc = new javax.swing.JScrollPane();
         tbaCabeceraPedido = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        BtnBuscar = new javax.swing.JButton();
         Chooser1 = new com.toedter.calendar.JDateChooser();
         chooser2 = new com.toedter.calendar.JDateChooser();
         buscar1 = new javax.swing.JTextField();
@@ -130,10 +130,10 @@ public class Reporte_Compra extends javax.swing.JDialog {
 
         jLabel1.setText("entre");
 
-        jButton3.setText("Buscar:");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BtnBuscar.setText("Buscar:");
+        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BtnBuscarActionPerformed(evt);
             }
         });
 
@@ -170,12 +170,12 @@ public class Reporte_Compra extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(BtnBuscar)
                         .addGap(20, 20, 20)
                         .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                         .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
@@ -198,7 +198,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton3))
+                                .addComponent(BtnBuscar))
                             .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
@@ -230,11 +230,11 @@ public class Reporte_Compra extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void TotalPro() {
-        Double total1=0.0;
+        Double total1 = 0.0;
         BigDecimal Suma = new BigDecimal("0.00");
         for (int i = 0; i < tbaCabeceraPedido.getRowCount(); i++) {
-            total1 = total1 +  Double.parseDouble(""+lista.get(i).getTotal()); 
-            
+            total1 = total1 + Double.parseDouble("" + lista.get(i).getTotal());
+
 //            System.out.println(" Valorggg "+""+lista.get(i).getTotal());
 //            System.out.println(" Valor "+total1);
 //            System.out.println("TOTAL "+Suma);
@@ -294,21 +294,25 @@ public class Reporte_Compra extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
+
         JoinListarNotaPedidosCabecera dc = new JoinListarNotaPedidosCabecera();
-//
-        System.out.println("Fecha 1 " + F.getFecha(Chooser1));
-        System.out.println("Fecha 2 " + F.getFecha(chooser2));
-
-        dc.setFecha1(F.getFecha(Chooser1)+" 00:00:00");
-        dc.setFecha2(F.getFecha(chooser2)+" 23:59:59");
-        System.out.println("F "+dc.getFecha1());
-        System.out.println("Fa "+dc.getFecha2());
-
-        lista = crud.RangoFechaCompra(1,dc);
+        dc.setFecha1(F.getFecha(Chooser1));
+        dc.setFecha2(F.getFecha(chooser2));
+        if (dc.getFecha2() == null) {
+            lista = crud.RangoFechaCompra(2, dc);
+            Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
+            TotalPro();
+        }if(dc.getFecha1() != null && dc.getFecha2() != null){
+        lista = crud.RangoFechaCompra(1, dc);
         Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
         TotalPro();
-    }//GEN-LAST:event_jButton3ActionPerformed
+        }if(dc.getFecha1()==null){
+               lista = crud.RangoFechaCompra(3, dc);
+        Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
+        TotalPro();
+        }
+    }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void buscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscar1KeyReleased
         buscar = buscar1.getText();
@@ -317,7 +321,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         lista = crud.listarCabeceraNotaPedidoEnCompras(4);
-        Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);        
+        Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -363,13 +367,13 @@ public class Reporte_Compra extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnBuscar;
     private com.toedter.calendar.JDateChooser Chooser1;
     private javax.swing.JTextField Txt_Total;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JTextField buscar1;
     private com.toedter.calendar.JDateChooser chooser2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
