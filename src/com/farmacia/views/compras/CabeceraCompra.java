@@ -35,16 +35,17 @@ public class CabeceraCompra extends javax.swing.JDialog {
     int x, y;
     JoinListarNotaPedidosCabecera objeto = null;
     ArrayList<JoinListarNotaPedidosCabecera> lista = null;
-    String buscar="";
+    String buscar = "";
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+
     public CabeceraCompra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         lista = crud.listarCabeceraNotaPedidoEnCompras(3);
         Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
-        
+
     }
 
     /**
@@ -139,11 +140,11 @@ public class CabeceraCompra extends javax.swing.JDialog {
             }
         });
         tbaCabeceraPedido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tbaCabeceraPedidoMousePressed(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbaCabeceraPedidoMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbaCabeceraPedidoMousePressed(evt);
             }
         });
         tblProduc.setViewportView(tbaCabeceraPedido);
@@ -236,23 +237,22 @@ public class CabeceraCompra extends javax.swing.JDialog {
 
     private void tbaCabeceraPedidoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraPedidoMousePressed
         int i = 0;
-        
+
         if (evt.getClickCount() == 2) {
             i = tbaCabeceraPedido.getSelectedRow();
             lista = crud.listarCabeceraNotaPedidoEnCompras(3);
             objeto = devuelveObjeto(tbaCabeceraPedido.getValueAt(i, 0).toString(), lista);
-            
+
             if (objeto != null) {
-                OrdenCompra Man = new OrdenCompra(new javax.swing.JFrame(), true,objeto);
+                OrdenCompra Man = new OrdenCompra(new javax.swing.JFrame(), true, objeto);
                 this.setVisible(false);
                 Man.setVisible(true);
-                
+
                 //lista.clear();
-                
-               // Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
+                // Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
             }
         }
-        
+
     }//GEN-LAST:event_tbaCabeceraPedidoMousePressed
     public JoinListarNotaPedidosCabecera devuelveObjeto(String datos, ArrayList<JoinListarNotaPedidosCabecera> listarobj) {
         JoinListarNotaPedidosCabecera objeto1 = null;
@@ -277,11 +277,12 @@ public class CabeceraCompra extends javax.swing.JDialog {
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         java.util.List lista = new ArrayList();
         for (int i = 0; i < tbaCabeceraPedido.getRowCount(); i++) {
-            ClaseReporte cabecera = new ClaseReporte(tbaCabeceraPedido.getValueAt(i, 0).toString(),tbaCabeceraPedido.getValueAt(i, 1).toString(),tbaCabeceraPedido.getValueAt(i, 2).toString(),tbaCabeceraPedido.getValueAt(i, 3).toString(),tbaCabeceraPedido.getValueAt(i, 4).toString(),tbaCabeceraPedido.getValueAt(i, 5).toString(),tbaCabeceraPedido.getValueAt(i, 6).toString(),tbaCabeceraPedido.getValueAt(i, 7).toString());
+            ClaseReporte cabecera = new ClaseReporte(tbaCabeceraPedido.getValueAt(i, 0).toString(), tbaCabeceraPedido.getValueAt(i, 1).toString(), tbaCabeceraPedido.getValueAt(i, 2).toString(), tbaCabeceraPedido.getValueAt(i, 3).toString(), tbaCabeceraPedido.getValueAt(i, 4).toString(), tbaCabeceraPedido.getValueAt(i, 5).toString(), tbaCabeceraPedido.getValueAt(i, 6).toString(), tbaCabeceraPedido.getValueAt(i, 7).toString());
             lista.add(cabecera);
         }
         try {
-            JasperReport reporte = (JasperReport) JRLoader.loadObject("CabeceraCompra.jasper");
+            String dir = System.getProperty("user.dir") + "/Reportes/" + "CabeceraCompra.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

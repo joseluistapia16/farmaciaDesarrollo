@@ -1,8 +1,10 @@
 package com.farmacia.views.pedidos;
 
+import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.CabeceraNotaPedido;
+import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
@@ -61,12 +63,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }
 
     public EditarNotaPedido(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1, int vari) {
-//        super(parent, modal);
-//
-//        setUndecorated(true);
-//        setLocationRelativeTo(null);
-//        initComponents();        
-//        this.setResizable(false);
         super(parent, modal);
         setUndecorated(true);
         initComponents();
@@ -773,11 +769,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
             BigDecimal Iva1 = lista3.get(i).getIva();
             Total1Iva = Total1Iva.add(Iva1);
-//            totalIva = redondearDecimales(totalIva, 2);
         }
-        VGiva = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total1Iva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        txtIva.setText(removeScientificNotation(Total1Iva.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
-
+        VGiva = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(Total1Iva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtIva.setText(Formato_Numeros.formatoNumero(Total1Iva.toString()));
     }
 
     public void TotalDescuento() {
@@ -785,16 +779,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
             BigDecimal descuento = lista3.get(i).getDescuento();
             TotalDescuento = TotalDescuento.add(descuento);
-//            TotalDescuento = redondearDecimales(TotalDescuento, 2);
         }
-        VGdescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(TotalDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-        txtDescuento.setText(removeScientificNotation(TotalDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
-    }
-
-    public static String formatoNumero(String valor) {   ////////////////   1
-        DecimalFormat formato = new DecimalFormat("#,###.00");
-        String valorFormateado = formato.format(Double.parseDouble(valor));
-        return valorFormateado;
+        VGdescuento = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(TotalDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtDescuento.setText(Formato_Numeros.formatoNumero(TotalDescuento.toString()));
     }
 
     public void Total() {
@@ -804,18 +791,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Total_ = Total_.add(total);
 
         }
-        VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
-//        txtTotal.setText(Total_.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        String T = Total_.toString();
-        if (T.substring(0, 1).equals("0")) {
-            txtTotal.setText("0" + formatoNumero(Total_.toString()));
-        } else {
-            txtTotal.setText(formatoNumero(Total_.toString()));
-        }
-    }
-
-    public static String removeScientificNotation(String value) {
-        return new BigDecimal(value).toPlainString();
+        VGtotal = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(Total_.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtTotal.setText(Formato_Numeros.formatoNumero(Total_.toString()));
     }
 
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
@@ -871,7 +848,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
-                        if (np.getObjf().getCantidad() > 0) {
+                        if (np.getObjf().getCantidad() > 0 || np.getObjf().getCantidad() != null) {
                             int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             getPosicion(objeto.getId_producto(), suma);
                             lista1.add(np.getObjf());
@@ -882,6 +859,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                             //Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
                             crud.InsertarBDCompras(txtNumero.getText(), lista1);
                             actualizarTabla2();
+                            actualizarCabecera();
                             btnSalir2.setEnabled(false);
                         }
 
@@ -901,6 +879,16 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         Total();
         TotalIVA();
         TotalDescuento();
+    }
+
+    public void actualizarCabecera() {
+        Cabecera_compra cn = new Cabecera_compra();
+        cn.setIva(VGiva);
+        cn.setDescuento(VGdescuento);
+        cn.setTotal(VGtotal);
+       // cn.setId_cabecera_compra(Long.valueOf(idComprasCab));
+        cn.setIdcabecerapedido(Long.valueOf(txtNumero.getText()));
+        crud.edicionCabeceraNotaPedido(cn);
     }
 
     private void getPosicion(Long id, int valor) {
@@ -1003,23 +991,20 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             CabeceraNotaPedido cn = new CabeceraNotaPedido();
             cn.setPlazo(cbxPlazo.getSelectedItem().toString());
             cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
-//            cn.setIva(BigDecimal.valueOf(Double.parseDouble(txtIva.getText())));//BigDecimal.valueOf(Double.parseDouble(salariotxt.getText()))
-//            cn.setDescuento(BigDecimal.valueOf(Double.parseDouble(txtDescuento.getText())));
-//            cn.setTotal(BigDecimal.valueOf(Double.parseDouble(txtTotal.getText())));
             cn.setIva(VGiva);
             cn.setDescuento(VGdescuento);
             cn.setTotal(VGtotal);
             cn.setId_cabecera_nota_pedidos(Long.valueOf(txtNumero.getText()));
             valor = crud.ActualizarNotaPedidosCabecera(cn);
+            btnSalir2.setEnabled(true);
             if (!"".equals(valor)) {
                 JOptionPane.showMessageDialog(null, valor);
                 setVisible(false);
             }
-
         } else {
 
         }
-        btnSalir2.setEnabled(true);
+//        btnSalir2.setEnabled(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed

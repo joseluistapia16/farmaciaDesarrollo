@@ -15,6 +15,7 @@ import com.farmacia.entities1.Usuario_S;
 import com.farmacia.operaciones.Operaciones;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -43,6 +44,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
     private String rutaimagen = "";
     public String fil;
 
+    
     /**
      * Creates new form Registrar
      */
@@ -701,7 +703,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
             obj.setCorreo(obj1.getCorreo());
             obj.setDireccion(obj1.getDireccion());
             obj.setEstado(obj1.getEstado());
-            obj.setFecha_registro(obj1.getFecha_registro());
+            obj.setFecha_registro(Date.valueOf(obj1.getFecha_registro()));
             obj.setGenero(obj1.getGenero());
             obj.setId_sesion(obj1.getId_sesion());
             obj.setNombre(obj1.getNombres());
