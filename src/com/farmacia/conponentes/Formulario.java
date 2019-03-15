@@ -18,6 +18,8 @@ import com.farmacia.entities1.Rol_U;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.entities1.fc_localidad_guayas;
 import com.farmacia.fecha.Fecha;
+import com.toedter.calendar.JDateChooser;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
@@ -31,6 +33,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Formulario {
 
+    SimpleDateFormat Formato = new SimpleDateFormat("yyyy-MM-dd");
+
+    public String getFecha(JDateChooser jd) {
+        if (jd.getDate() != null) {
+            return Formato.format(jd.getDate());
+        } else {
+            return null;
+        }
+    }
     public static DefaultComboBoxModel listarComboTipoPro(ArrayList<TipoProducto> lista) {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         Object[] arreglo = arreglo1(lista);
