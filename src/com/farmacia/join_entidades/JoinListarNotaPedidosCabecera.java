@@ -20,6 +20,8 @@ public class JoinListarNotaPedidosCabecera {
     private String Plazo;
     private String forma_pago;
     private String fecha_creacion;
+    private String fecha2;
+    private String fecha1;
     private BigDecimal iva;
     private BigDecimal descuento;
     private BigDecimal total;
@@ -27,7 +29,7 @@ public class JoinListarNotaPedidosCabecera {
     public JoinListarNotaPedidosCabecera() {
     }
 
-    public JoinListarNotaPedidosCabecera(Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String telefono, Long id_proveedor_clase, String clase, String direccion, String cedula_ruc, String correo, String Plazo, String forma_pago, String fecha_creacion, BigDecimal iva, BigDecimal descuento, BigDecimal total) {
+    public JoinListarNotaPedidosCabecera(Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String telefono, Long id_proveedor_clase, String clase, String direccion, String cedula_ruc, String correo, String Plazo, String forma_pago, String fecha_creacion, String fecha2, String fecha1, BigDecimal iva, BigDecimal descuento, BigDecimal total) {
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
         this.id_proveedor = id_proveedor;
         this.entidad = entidad;
@@ -41,6 +43,8 @@ public class JoinListarNotaPedidosCabecera {
         this.Plazo = Plazo;
         this.forma_pago = forma_pago;
         this.fecha_creacion = fecha_creacion;
+        this.fecha2 = fecha2;
+        this.fecha1 = fecha1;
         this.iva = iva;
         this.descuento = descuento;
         this.total = total;
@@ -150,6 +154,22 @@ public class JoinListarNotaPedidosCabecera {
         this.fecha_creacion = fecha_creacion;
     }
 
+    public String getFecha2() {
+        return fecha2;
+    }
+
+    public void setFecha2(String fecha2) {
+        this.fecha2 = fecha2;
+    }
+
+    public String getFecha1() {
+        return fecha1;
+    }
+
+    public void setFecha1(String fecha1) {
+        this.fecha1 = fecha1;
+    }
+
     public BigDecimal getIva() {
         return iva;
     }
@@ -173,5 +193,6 @@ public class JoinListarNotaPedidosCabecera {
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
+
 
 }
