@@ -59,7 +59,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         BtnBuscar = new javax.swing.JButton();
         Chooser1 = new com.toedter.calendar.JDateChooser();
-        chooser2 = new com.toedter.calendar.JDateChooser();
+        Chooser2 = new com.toedter.calendar.JDateChooser();
         buscar1 = new javax.swing.JTextField();
         Txt_Total = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -137,6 +137,10 @@ public class Reporte_Compra extends javax.swing.JDialog {
             }
         });
 
+        Chooser1.setDateFormatString("yyyy/MM/dd");
+
+        Chooser2.setDateFormatString("yyyy/MM/dd");
+
         buscar1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         buscar1.setPreferredSize(new java.awt.Dimension(6, 28));
         buscar1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -180,7 +184,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,7 +204,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
                                 .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(BtnBuscar))
                             .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(8, 8, 8))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -297,21 +301,31 @@ public class Reporte_Compra extends javax.swing.JDialog {
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
 
         JoinListarNotaPedidosCabecera dc = new JoinListarNotaPedidosCabecera();
-        dc.setFecha1(F.getFecha(Chooser1));
-        dc.setFecha2(F.getFecha(chooser2));
-        if (dc.getFecha2() == null) {
-            lista = crud.RangoFechaCompra(2, dc);
+        String F1 = F.getFecha(Chooser1);
+        String F2 = F.getFecha(Chooser2);
+        dc.setFecha1(F1);
+        dc.setFecha2(F2);
+
+        if (F1 == null) {
+            JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
+        }
+        if (F1 != null && F2 == null) {
+
+            dc.setFecha1(F1);
+            dc.setFecha2((F1) + " 23:59:59");
+            lista = crud.RangoFechaCompra(1, dc);
             Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
             TotalPro();
-        }if(dc.getFecha1() != null && dc.getFecha2() != null){
-        lista = crud.RangoFechaCompra(1, dc);
-        Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
-        TotalPro();
-        }if(dc.getFecha1()==null){
-               lista = crud.RangoFechaCompra(3, dc);
-        Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
-        TotalPro();
         }
+        if (F1 != null && F2 != null) {
+
+            dc.setFecha1(F.getFecha(Chooser1));
+            dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
+            lista = crud.RangoFechaCompra(1, dc);
+            Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
+            TotalPro();
+        }
+        TotalPro();
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void buscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscar1KeyReleased
@@ -369,10 +383,10 @@ public class Reporte_Compra extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
     private com.toedter.calendar.JDateChooser Chooser1;
+    private com.toedter.calendar.JDateChooser Chooser2;
     private javax.swing.JTextField Txt_Total;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JTextField buscar1;
-    private com.toedter.calendar.JDateChooser chooser2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

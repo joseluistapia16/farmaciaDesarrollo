@@ -11,6 +11,8 @@ import java.awt.Toolkit;
 import sistemafarmacia.Fondo;
 import sistemafarmacia.VariablesFunciones;
 import com.farmacia.entities1.Usuario;
+import com.farmacia.views.Reportes.Reporte_Compra;
+import com.farmacia.views.Reportes.Reporte_Venta;
 import com.farmacia.views.compras.CabeceraCompra;
 import com.farmacia.views.compras.ListaDePedidos;
 import com.farmacia.views.comprasRealizadas.ComprasEfectuadas;
@@ -36,7 +38,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //    public static Usuario getUsuarioSession() {
 //        return usuarioSession;
 //    }
-
     public FrmPrincipal(/*Usuario usuario*/) {
         initComponents();
 
@@ -110,6 +111,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
 
         jMenu5.setText("jMenu5");
 
@@ -442,6 +447,27 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu7);
 
+        jMenu8.setText("Reportes");
+        jMenu8.add(jSeparator3);
+
+        jMenuItem16.setText("Compra");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem16);
+
+        jMenuItem17.setText("Venta");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem17);
+
+        jMenuBar1.add(jMenu8);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -470,8 +496,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
 ////        DlgProducto producto= new DlgProducto(this, rootPaneCheckingEnabled);
 ////        producto.setVisible(rootPaneCheckingEnabled);
-            Products pr = new Products(new javax.swing.JFrame(), true);
-            pr.setVisible(true);
+        Products pr = new Products(new javax.swing.JFrame(), true);
+        pr.setVisible(true);
     }//GEN-LAST:event_btnProductoActionPerformed
 
     private void mnuLaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLaboratorioActionPerformed
@@ -485,7 +511,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void mnuRegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarVentaActionPerformed
 //        DlgGenerarVenta generarVenta= new DlgGenerarVenta(this, rootPaneCheckingEnabled);
 //        generarVenta.setVisible(rootPaneCheckingEnabled);
-        MenuPreVentas mp=new MenuPreVentas(new javax.swing.JFrame(), true);
+        MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true);
         mp.setVisible(true);
     }//GEN-LAST:event_mnuRegistrarVentaActionPerformed
 
@@ -541,8 +567,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        Products p1 = new Products(new javax.swing.JFrame(), true);
 //        p1.setVisible(true);
-          MantenimientoProducto p1 = new MantenimientoProducto(new javax.swing.JFrame(), true);
-          p1.setVisible(true);
+        MantenimientoProducto p1 = new MantenimientoProducto(new javax.swing.JFrame(), true);
+        p1.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
@@ -556,19 +582,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuRegistrarVenta1ActionPerformed
 
     private void mnuCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCliente1ActionPerformed
-       Consulta_Proveedor pro = new Consulta_Proveedor(new javax.swing.JFrame(), true);
-       pro.setVisible(true);
-       
+        Consulta_Proveedor pro = new Consulta_Proveedor(new javax.swing.JFrame(), true);
+        pro.setVisible(true);
+
     }//GEN-LAST:event_mnuCliente1ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-       CabeceraCompra CB=new CabeceraCompra(new javax.swing.JFrame(), true);
-       CB.setVisible(true);
+        CabeceraCompra CB = new CabeceraCompra(new javax.swing.JFrame(), true);
+        CB.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-      MantenimientoNotaPedidos mp=new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
-      mp.setVisible(true);
+        MantenimientoNotaPedidos mp = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
+        mp.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
@@ -592,7 +618,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmEmpleadosActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-       
+
         ListaDePedidos Lp = new ListaDePedidos(new javax.swing.JFrame(), true);
         Lp.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
@@ -603,14 +629,24 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-       ComprasEfectuadas ce = new ComprasEfectuadas(this, rootPaneCheckingEnabled);
-       ce.setVisible(rootPaneCheckingEnabled);
+        ComprasEfectuadas ce = new ComprasEfectuadas(this, rootPaneCheckingEnabled);
+        ce.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        ComprasDevueltas cd =new ComprasDevueltas(this, rootPaneCheckingEnabled);
+        ComprasDevueltas cd = new ComprasDevueltas(this, rootPaneCheckingEnabled);
         cd.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        Reporte_Compra Rc = new Reporte_Compra(this, rootPaneCheckingEnabled);
+        Rc.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        Reporte_Venta Rv = new Reporte_Venta(this, rootPaneCheckingEnabled);
+        Rv.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -660,6 +696,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -668,6 +705,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -677,6 +716,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JMenuItem jmEmpleados;
     private javax.swing.JMenu jmLocal;
     private javax.swing.JLabel lblNombreUsuario;

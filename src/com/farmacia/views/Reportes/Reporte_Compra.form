@@ -67,7 +67,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="chooser2" min="-2" pref="136" max="-2" attributes="0"/>
+                          <Component id="Chooser2" min="-2" pref="136" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -93,7 +93,7 @@
                                   <Component id="BtnBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="Chooser1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="chooser2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="Chooser2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -220,8 +220,14 @@
           </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="Chooser1">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="yyyy/MM/dd"/>
+          </Properties>
         </Component>
-        <Component class="com.toedter.calendar.JDateChooser" name="chooser2">
+        <Component class="com.toedter.calendar.JDateChooser" name="Chooser2">
+          <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="yyyy/MM/dd"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="buscar1">
           <Properties>
