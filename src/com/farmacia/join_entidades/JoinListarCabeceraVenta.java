@@ -34,11 +34,13 @@ public class JoinListarCabeceraVenta {
     private String sucursal_representante;
     private String sucursal_direccion;
     private Long sucursal_id_proveedor;
+    private String fecha2;
+    private String fecha1;
 
     public JoinListarCabeceraVenta() {
     }
 
-    public JoinListarCabeceraVenta(Long id_cabecera_venta, String mun_venta, Long id_cliente, String forma_de_pago, String nombre, String apellido, String correo, String direccion, String cedula, String fecha_creacion, String telefono, String fecha_registro, String estado, Long id_usuario, Long id_sucursal, String tipo_pago, String tipo_venta, BigDecimal subtotal_con_iva, BigDecimal subtotal_sin_iva, BigDecimal iva_total, BigDecimal descuento_total, BigDecimal total, BigDecimal utilidad, String ruc, String sucursal_nombre, String sucursal_representante, String sucursal_direccion, Long sucursal_id_proveedor) {
+    public JoinListarCabeceraVenta(Long id_cabecera_venta, String mun_venta, Long id_cliente, String forma_de_pago, String nombre, String apellido, String correo, String direccion, String cedula, String fecha_creacion, String telefono, String fecha_registro, String estado, Long id_usuario, Long id_sucursal, String tipo_pago, String tipo_venta, BigDecimal subtotal_con_iva, BigDecimal subtotal_sin_iva, BigDecimal iva_total, BigDecimal descuento_total, BigDecimal total, BigDecimal utilidad, String ruc, String sucursal_nombre, String sucursal_representante, String sucursal_direccion, Long sucursal_id_proveedor, String fecha2, String fecha1) {
         this.id_cabecera_venta = id_cabecera_venta;
         this.mun_venta = mun_venta;
         this.id_cliente = id_cliente;
@@ -67,6 +69,8 @@ public class JoinListarCabeceraVenta {
         this.sucursal_representante = sucursal_representante;
         this.sucursal_direccion = sucursal_direccion;
         this.sucursal_id_proveedor = sucursal_id_proveedor;
+        this.fecha2 = fecha2;
+        this.fecha1 = fecha1;
     }
 
     public Long getId_cabecera_venta() {
@@ -292,5 +296,22 @@ public class JoinListarCabeceraVenta {
     public void setSucursal_id_proveedor(Long sucursal_id_proveedor) {
         this.sucursal_id_proveedor = sucursal_id_proveedor;
     }
+
+    public String getFecha2() {
+        return fecha2;
+    }
+
+    public void setFecha2(String fecha2) {
+        this.fecha2 = fecha2;
+    }
+
+    public String getFecha1() {
+        return fecha1;
+    }
+
+    public void setFecha1(String fecha1) {
+        this.fecha1 = fecha1;
+    }
+
 
 }

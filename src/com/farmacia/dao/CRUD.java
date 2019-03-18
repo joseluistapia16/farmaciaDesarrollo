@@ -4326,6 +4326,40 @@ public class CRUD {
         }
         return lista;
     }  
+  ///////////////////RANGO FECHA Venta
+  public ArrayList<JoinListarCabeceraVenta> RangoFechaVenta(int op,JoinListarCabeceraVenta cab) {
+        ArrayList<JoinListarCabeceraVenta> lista = new ArrayList<JoinListarCabeceraVenta>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call FiltroRangoFechaVenta(?,?,?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.setString(2,cab.getFecha1());
+            prcProcedimientoAlmacenado.setString(3,cab.getFecha2());
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                JoinListarCabeceraVenta obj = EntidadesMappers.getListadoCabeceraVentaFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }  
   public ArrayList<JoinListarCabeceraVenta> ListarCabeceraVentas(int op) {
         ArrayList<JoinListarCabeceraVenta> lista = new ArrayList<JoinListarCabeceraVenta>();
         try {
