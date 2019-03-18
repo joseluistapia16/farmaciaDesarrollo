@@ -1612,15 +1612,15 @@ public class Tablas {
     }
 
     public static void ListarStockProductos(ArrayList<Productos_Stock> lista, JTable Tabla) {
-        int[] a = {90, 150,160, 100,100,90,100,100,100};
+        int[] a = {90, 150,160, 100,100,90,100,100,100,100};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "PRODUCTO","DESCRIPCION","PRECIO COMPRA","PRECIO VENTA", "STOCK"};
+        String[] Co = {"CODIGO", "PRODUCTO","DESCRIPCION","PRECIO COMPRA","PRECIO VENTA", "STOCK","TOTAL"};
         //   Date[] Ca = {Date.valueOf("Fecha")};
-        String[] Filas = new String[6];
+        String[] Filas = new String[7];
         //  Date[] Fila = new Date [1];
         model = new DefaultTableModel(null, Co);
         //  laboratorio = new DefaultTableModel(null, Ca);
@@ -1632,6 +1632,8 @@ public class Tablas {
             Filas[3] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio_compra().toString());
             Filas[4] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio_venta().toString());
             Filas[5] = lista.get(i).getCantidad().toString();
+            Double ao =  lista.get(i).getCantidad()*(lista.get(i).getPrecio_compra());
+            Filas[6] = Formato_Numeros.formatoNumero(ao.toString());
 
             model.addRow(Filas);
             //     laboratorio.addRow(Fila);
@@ -1648,6 +1650,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
             Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[5]);
+            Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
 
         }
 

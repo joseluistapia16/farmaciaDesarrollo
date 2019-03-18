@@ -1056,6 +1056,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 Total();
                 TotalIVA();
                 TotalDescuento();
+                this.btnSalir2.setEnabled(false);
             }
         }
     }//GEN-LAST:event_tbaListaFaltantesMousePressed

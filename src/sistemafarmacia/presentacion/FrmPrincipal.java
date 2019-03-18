@@ -103,9 +103,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
-        mnuAyuda = new javax.swing.JMenu();
-        mnuAcerca = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
@@ -115,6 +112,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
+        mnuAyuda = new javax.swing.JMenu();
+        mnuAcerca = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenu5.setText("jMenu5");
 
@@ -395,26 +395,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        mnuAyuda.setText("Ayuda");
-
-        mnuAcerca.setText("Acerca de ...");
-        mnuAcerca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuAcercaActionPerformed(evt);
-            }
-        });
-        mnuAyuda.add(mnuAcerca);
-
-        jMenuItem6.setText("Salir");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        mnuAyuda.add(jMenuItem6);
-
-        jMenuBar1.add(mnuAyuda);
-
         jMenu1.setText("Stock");
 
         jMenuItem13.setText("Productos en Stock");
@@ -467,6 +447,26 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu8.add(jMenuItem17);
 
         jMenuBar1.add(jMenu8);
+
+        mnuAyuda.setText("Ayuda");
+
+        mnuAcerca.setText("Acerca de ...");
+        mnuAcerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAcercaActionPerformed(evt);
+            }
+        });
+        mnuAyuda.add(mnuAcerca);
+
+        jMenuItem6.setText("Salir");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        mnuAyuda.add(jMenuItem6);
+
+        jMenuBar1.add(mnuAyuda);
 
         setJMenuBar(jMenuBar1);
 

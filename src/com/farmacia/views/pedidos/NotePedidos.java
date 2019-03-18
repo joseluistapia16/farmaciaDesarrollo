@@ -854,6 +854,7 @@ public class NotePedidos extends javax.swing.JDialog {
             crud.InsertarDetallesNotaPedidos(queryL1);
             queryL1.clear();
             JOptionPane.showMessageDialog(null, " Guardado con Exito ");
+            btnGuardar.setEnabled(false);
             btnNuevo.setEnabled(true);
         } else {
             
@@ -864,7 +865,7 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
-
+        
         int i = 0;
         String msg = null;
         Integer cantidatabla = 0;
@@ -908,7 +909,8 @@ public class NotePedidos extends javax.swing.JDialog {
 
             }
         } catch (Exception e) {
-            Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
+            //Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
+           // JOptionPane.showMessageDialog(this,"elija un proveedor");
         }
 
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
