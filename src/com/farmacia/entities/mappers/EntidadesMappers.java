@@ -807,7 +807,7 @@ public class EntidadesMappers {
         StockVentas obj = new StockVentas();
         try {
             obj.setId_control(rs.getLong("id_control"));
-            obj.setCantidad(rs.getInt("cantidad"));
+            obj.setCantidad(rs.getLong("cantidad"));
 
 
         } catch (SQLException ex) {

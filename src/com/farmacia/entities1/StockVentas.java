@@ -11,34 +11,35 @@ package com.farmacia.entities1;
  */
 public class StockVentas {
     
-    long id_control;
-    int cantidad;
+    Long id_control;
+    Long cantidad;
 
    
 
     public StockVentas() {}
 
-    public StockVentas(long id_control, int cantidad) {
+    public StockVentas(Long id_control, Long cantidad) {
         this.id_control = id_control;
         this.cantidad = cantidad;
     }
 
-    public long getId_control() {
+    public Long getId_control() {
         return id_control;
     }
 
-    public void setId_control(long id_control) {
+    public void setId_control(Long id_control) {
         this.id_control = id_control;
     }
 
-    public int getCantidad() {
+    public Long getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
     }
-    
+
+
     
 
     
