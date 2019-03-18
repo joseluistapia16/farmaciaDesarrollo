@@ -85,6 +85,7 @@ public class Editar_Lab extends javax.swing.JDialog {
     }
 
     private void llenarDatos(Laboratorio obj) {
+        
         ruc.setText(obj.getRUC());
         nombre.setText(obj.getNombre());
         direccion.setText(obj.getDireccion());
