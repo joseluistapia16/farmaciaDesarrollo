@@ -30,7 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class NotePedidos extends javax.swing.JDialog {
-//jomu2763
+
     int x, y;
     CRUD crud = new CRUD();
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;

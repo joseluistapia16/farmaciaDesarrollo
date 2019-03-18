@@ -6,7 +6,9 @@
 package com.farmacia.views.Reportes;
 
 import com.farmacia.conponentes.Formulario;
+import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.join_entidades.JoinListarCabeceraVenta;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -23,13 +25,19 @@ public class Reporte_Venta extends javax.swing.JDialog {
     int x, y;
     String buscar = "";
     Formulario F = new Formulario();
+    ArrayList<JoinListarCabeceraVenta> lista = null;
 
     /**
      * Creates new form Reporte_Venta
      */
     public Reporte_Venta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        setUndecorated(true);
         initComponents();
+        setLocationRelativeTo(null);       
+        lista = crud.ListarCabeceraVentas(1);
+        Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+        
     }
 
     /**
@@ -46,7 +54,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
         btnSalir2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         tblProduc = new javax.swing.JScrollPane();
-        tbaCabeceraPedido = new javax.swing.JTable();
+        tbaCabeceraVenta = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         BtnBuscar = new javax.swing.JButton();
         Chooser1 = new com.toedter.calendar.JDateChooser();
@@ -64,7 +72,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Venta");
+        jLabel7.setText("Ventas");
         jLabel7.setOpaque(true);
         jLabel7.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -87,9 +95,9 @@ public class Reporte_Venta extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        tbaCabeceraPedido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        tbaCabeceraPedido.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        tbaCabeceraPedido.setModel(new javax.swing.table.DefaultTableModel(
+        tbaCabeceraVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        tbaCabeceraVenta.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        tbaCabeceraVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -97,15 +105,15 @@ public class Reporte_Venta extends javax.swing.JDialog {
 
             }
         ));
-        tbaCabeceraPedido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tbaCabeceraPedidoMousePressed(evt);
-            }
+        tbaCabeceraVenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbaCabeceraPedidoMouseClicked(evt);
+                tbaCabeceraVentaMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbaCabeceraVentaMousePressed(evt);
             }
         });
-        tblProduc.setViewportView(tbaCabeceraPedido);
+        tblProduc.setViewportView(tbaCabeceraVenta);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -144,6 +152,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
 
         jLabel2.setText("TOTAL");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/flechas-de-progreso.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -168,8 +177,8 @@ public class Reporte_Venta extends javax.swing.JDialog {
                         .addGap(20, 20, 20)
                         .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 274, Short.MAX_VALUE)
                         .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
@@ -188,18 +197,14 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(BtnBuscar))
-                            .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(8, 8, 8))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnBuscar))
+                    .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -255,18 +260,18 @@ public class Reporte_Venta extends javax.swing.JDialog {
         return objeto1;
 
     }
-    private void tbaCabeceraPedidoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraPedidoMousePressed
+    private void tbaCabeceraVentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraVentaMousePressed
 
-        
-    }//GEN-LAST:event_tbaCabeceraPedidoMousePressed
 
-    private void tbaCabeceraPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraPedidoMouseClicked
+    }//GEN-LAST:event_tbaCabeceraVentaMousePressed
 
-    }//GEN-LAST:event_tbaCabeceraPedidoMouseClicked
+    private void tbaCabeceraVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraVentaMouseClicked
+
+    }//GEN-LAST:event_tbaCabeceraVentaMouseClicked
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
 
-  
+
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void buscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscar1KeyReleased
@@ -274,7 +279,6 @@ public class Reporte_Venta extends javax.swing.JDialog {
     }//GEN-LAST:event_buscar1KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -334,7 +338,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTable tbaCabeceraPedido;
+    private javax.swing.JTable tbaCabeceraVenta;
     private javax.swing.JScrollPane tblProduc;
     // End of variables declaration//GEN-END:variables
 }

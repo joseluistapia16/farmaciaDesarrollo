@@ -34,10 +34,11 @@ public class Reporte_Compra extends javax.swing.JDialog {
      */
     public Reporte_Compra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
         lista = crud.listarCabeceraNotaPedidoEnCompras(4);
-        Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
+        Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraCompra, lista);
         TotalPro();
     }
 
@@ -55,7 +56,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
         btnSalir2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         tblProduc = new javax.swing.JScrollPane();
-        tbaCabeceraPedido = new javax.swing.JTable();
+        tbaCabeceraCompra = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         BtnBuscar = new javax.swing.JButton();
         Chooser1 = new com.toedter.calendar.JDateChooser();
@@ -97,9 +98,9 @@ public class Reporte_Compra extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        tbaCabeceraPedido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        tbaCabeceraPedido.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        tbaCabeceraPedido.setModel(new javax.swing.table.DefaultTableModel(
+        tbaCabeceraCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        tbaCabeceraCompra.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        tbaCabeceraCompra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -107,15 +108,15 @@ public class Reporte_Compra extends javax.swing.JDialog {
 
             }
         ));
-        tbaCabeceraPedido.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tbaCabeceraPedidoMousePressed(evt);
-            }
+        tbaCabeceraCompra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbaCabeceraPedidoMouseClicked(evt);
+                tbaCabeceraCompraMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbaCabeceraCompraMousePressed(evt);
             }
         });
-        tblProduc.setViewportView(tbaCabeceraPedido);
+        tblProduc.setViewportView(tbaCabeceraCompra);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -154,6 +155,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
 
         jLabel2.setText("TOTAL");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/flechas-de-progreso.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -198,18 +200,14 @@ public class Reporte_Compra extends javax.swing.JDialog {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(BtnBuscar))
-                            .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(8, 8, 8))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnBuscar))
+                    .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -236,7 +234,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
     public void TotalPro() {
         Double total1 = 0.0;
         BigDecimal Suma = new BigDecimal("0.00");
-        for (int i = 0; i < tbaCabeceraPedido.getRowCount(); i++) {
+        for (int i = 0; i < tbaCabeceraCompra.getRowCount(); i++) {
             total1 = total1 + Double.parseDouble("" + lista.get(i).getTotal());
 
 //            System.out.println(" Valorggg "+""+lista.get(i).getTotal());
@@ -265,13 +263,13 @@ public class Reporte_Compra extends javax.swing.JDialog {
         return objeto1;
 
     }
-    private void tbaCabeceraPedidoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraPedidoMousePressed
+    private void tbaCabeceraCompraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraCompraMousePressed
         int i = 0;
 
         if (evt.getClickCount() == 2) {
-            i = tbaCabeceraPedido.getSelectedRow();
+            i = tbaCabeceraCompra.getSelectedRow();
             lista = crud.listarCabeceraNotaPedidoEnCompras(4);
-            objeto = devuelveObjeto(tbaCabeceraPedido.getValueAt(i, 0).toString(), lista);
+            objeto = devuelveObjeto(tbaCabeceraCompra.getValueAt(i, 0).toString(), lista);
 
             if (objeto != null) {
                 Reporte_DetalleCompra Man = new Reporte_DetalleCompra(new javax.swing.JFrame(), true, objeto);
@@ -281,11 +279,11 @@ public class Reporte_Compra extends javax.swing.JDialog {
             }
         }
 
-    }//GEN-LAST:event_tbaCabeceraPedidoMousePressed
+    }//GEN-LAST:event_tbaCabeceraCompraMousePressed
 
-    private void tbaCabeceraPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraPedidoMouseClicked
+    private void tbaCabeceraCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraCompraMouseClicked
 
-    }//GEN-LAST:event_tbaCabeceraPedidoMouseClicked
+    }//GEN-LAST:event_tbaCabeceraCompraMouseClicked
 
     private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
@@ -314,7 +312,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
             dc.setFecha1(F1);
             dc.setFecha2((F1) + " 23:59:59");
             lista = crud.RangoFechaCompra(1, dc);
-            Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
+            Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraCompra, lista);
             TotalPro();
         }
         if (F1 != null && F2 != null) {
@@ -322,7 +320,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
             dc.setFecha1(F.getFecha(Chooser1));
             dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
             lista = crud.RangoFechaCompra(1, dc);
-            Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
+            Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraCompra, lista);
             TotalPro();
         }
         TotalPro();
@@ -330,12 +328,12 @@ public class Reporte_Compra extends javax.swing.JDialog {
 
     private void buscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscar1KeyReleased
         buscar = buscar1.getText();
-        Tablas.filtro(buscar, tbaCabeceraPedido);
+        Tablas.filtro(buscar, tbaCabeceraCompra);
     }//GEN-LAST:event_buscar1KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         lista = crud.listarCabeceraNotaPedidoEnCompras(4);
-        Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
+        Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraCompra, lista);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -393,7 +391,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTable tbaCabeceraPedido;
+    private javax.swing.JTable tbaCabeceraCompra;
     private javax.swing.JScrollPane tblProduc;
     // End of variables declaration//GEN-END:variables
 }

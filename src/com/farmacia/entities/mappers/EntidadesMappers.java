@@ -33,6 +33,7 @@ import com.farmacia.entities1.Telefono;
 import com.farmacia.entities1.Telefono_Cliente;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.entities1.fc_localidad_guayas;
+import com.farmacia.join_entidades.JoinListarCabeceraVenta;
 //<<<<<<< HEAD
 //=======
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
@@ -840,4 +841,41 @@ public class EntidadesMappers {
         }
         return obj;
     }
+       //////////////Venta
+       public static JoinListarCabeceraVenta getListadoCabeceraVentaFromResultSet(ResultSet rs) {
+        JoinListarCabeceraVenta obj = new JoinListarCabeceraVenta();
+        try {
+            obj.setId_cabecera_venta(rs.getLong("ID"));
+            obj.setMun_venta(rs.getString("NUM_VENTA"));
+            obj.setId_cliente(rs.getLong("ID_CLIENTE"));
+            obj.setNombre(rs.getString("NOMBRE"));
+            obj.setApellido(rs.getString("APELLIDO"));
+            obj.setCorreo(rs.getString("STR_CORREO"));
+            obj.setDireccion(rs.getString("DIRECCION"));
+            obj.setCedula(rs.getString("CEDULA"));
+            obj.setFecha_creacion(rs.getString("FECHA_CREACION"));
+            obj.setTelefono(rs.getString("STR_TELEFONO"));
+            obj.setFecha_registro(rs.getString("FECHA_REG"));
+            obj.setEstado(rs.getString("ESTADO"));
+            obj.setId_usuario(rs.getLong("ID_USUARIO"));
+            obj.setId_sucursal(rs.getLong("ID_SUCURSAL"));
+            obj.setTipo_pago(rs.getString("TIPO_PAGO"));
+            obj.setTipo_venta(rs.getString("TIPO_VENTA"));
+            obj.setSubtotal_con_iva(rs.getBigDecimal("SUBTOTAL_CON_IVA"));
+            obj.setSubtotal_sin_iva(rs.getBigDecimal("SUBTOTAL_SIN_IVA"));   
+            obj.setIva_total(rs.getBigDecimal("IVA_TOTAL"));
+            obj.setDescuento_total(rs.getBigDecimal("DESCUENTO_TOTAL"));
+            obj.setTotal(rs.getBigDecimal("TOTAL"));
+            obj.setUtilidad(rs.getBigDecimal("UTILIDAD"));
+            obj.setRuc(rs.getString("RUC"));
+            obj.setSucursal_nombre(rs.getString("SUCURSAL"));
+            obj.setSucursal_representante(rs.getString("SUCURSAL_REPRESENTANTE"));
+            obj.setSucursal_direccion(rs.getString("SUCURSAL_DIRECCION"));
+            obj.setSucursal_id_proveedor(rs.getLong("SUCURSAL_PROVEEDOR"));
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+       
 }

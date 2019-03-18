@@ -43,6 +43,7 @@ import com.farmacia.entities1.TipoProducto;
 import com.farmacia.entities1.Usuario;
 import com.farmacia.entities1.Usuario_S;
 import com.farmacia.entities1.fc_localidad_guayas;
+import com.farmacia.join_entidades.JoinListarCabeceraVenta;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
@@ -4325,4 +4326,35 @@ public class CRUD {
         }
         return lista;
     }  
+  public ArrayList<JoinListarCabeceraVenta> ListarCabeceraVentas(int op) {
+        ArrayList<JoinListarCabeceraVenta> lista = new ArrayList<JoinListarCabeceraVenta>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call ListarRegistroVenta(?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                JoinListarCabeceraVenta obj = EntidadesMappers.getListadoCabeceraVentaFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
 }
