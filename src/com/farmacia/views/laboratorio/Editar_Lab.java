@@ -38,6 +38,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
+
 /**
  *
  * @author alumno
@@ -85,6 +86,7 @@ public class Editar_Lab extends javax.swing.JDialog {
     }
 
     private void llenarDatos(Laboratorio obj) {
+        
         ruc.setText(obj.getRUC());
         nombre.setText(obj.getNombre());
         direccion.setText(obj.getDireccion());
