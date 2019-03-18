@@ -677,7 +677,7 @@ public class Tablas {
 
     public static void CargarJoinListaCabeceraPedido(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
 
-        int[] a = {20, 50, 80, 90, 150, 110, 50, 50};
+        int[] a = {50, 80, 100, 190, 180, 180, 100, 100};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1658,7 +1658,7 @@ public class Tablas {
     }
     public static void CargarJoinListaCabeceraVenta(JTable Tabla, ArrayList<JoinListarCabeceraVenta> lista) {
 
-        int[] a = {50, 80, 120, 120, 150, 110, 50, 50,50, 50, 80, 90, 80, 80, 50};
+        int[] a = {50, 80, 120, 120, 150, 110, 100, 100,180, 180, 180, 100, 100, 100, 100};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);

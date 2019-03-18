@@ -106,12 +106,13 @@ public class Reporte_Venta extends javax.swing.JDialog {
 
             }
         ));
+        tbaCabeceraVenta.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tbaCabeceraVenta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbaCabeceraVentaMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbaCabeceraVentaMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbaCabeceraVentaMouseClicked(evt);
             }
         });
         tblProduc.setViewportView(tbaCabeceraVenta);
@@ -179,7 +180,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
                         .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 274, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 273, Short.MAX_VALUE)
                         .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
