@@ -43,7 +43,8 @@ import net.sf.jasperreports.view.JRViewer;
  * @author alumno
  */
 public class Editar_Lab extends javax.swing.JDialog {
-    int x,y;
+
+    int x, y;
     private String rutaimagen = "";
     private Date fecha1 = null;
     ArrayList<Laboratorio> lista = null;
@@ -75,9 +76,12 @@ public class Editar_Lab extends javax.swing.JDialog {
         posi = poss;
         obj2 = obj;
         llenarDatos(obj);
-        Image img= new ImageIcon("img.cliente.png").getImage();
-        ImageIcon img2=new ImageIcon(img.getScaledInstance(258,227, Image.SCALE_SMOOTH));
-        imagen.setIcon(img2);
+        if ("".equals(obj.getImagen())) {
+            Image img = new ImageIcon("img.cliente.png").getImage();
+            ImageIcon img2 = new ImageIcon(img.getScaledInstance(258, 227, Image.SCALE_SMOOTH));
+            imagen.setIcon(img2);
+        }
+
     }
 
     private void llenarDatos(Laboratorio obj) {
@@ -87,13 +91,13 @@ public class Editar_Lab extends javax.swing.JDialog {
         telefono.setText(obj.getTelefono());
         fecha1 = obj.getFecha();
         fecha.setText(Fecha.getStringFecha(fecha1));
-       // llenarImagen(obj.getImagen());
+        // llenarImagen(obj.getImagen());
         correo.setText(obj.getCorreo());
-        getPicture2(obj.getImagen());     
+        getPicture2(obj.getImagen());
         System.out.println(obj.getImagen());
     }
 
-   /* public void llenarImagen(String fil) {
+    /* public void llenarImagen(String fil) {
         imagen.setIcon(new ImageIcon(fil));
         ImageIcon icon = new ImageIcon(fil);
         Image img = icon.getImage();
@@ -103,7 +107,6 @@ public class Editar_Lab extends javax.swing.JDialog {
         imagen.setIcon(newIcono);
         rutaimagen = fil;
     }*/
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -521,21 +524,21 @@ public class Editar_Lab extends javax.swing.JDialog {
 nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocusLost
 
     private void direccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_direccionFocusLost
-       direccion.setText(direccion.getText().toUpperCase());
+        direccion.setText(direccion.getText().toUpperCase());
     }//GEN-LAST:event_direccionFocusLost
 
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         ArrayList Laboratorio = new ArrayList();
-        ClaseReporte lab = new ClaseReporte(ruc.getText(),nombre.getText(),direccion.getText(),telefono.getText(),fecha.getText(),rutaimagen,correo.getText());
+        ClaseReporte lab = new ClaseReporte(ruc.getText(), nombre.getText(), direccion.getText(), telefono.getText(), fecha.getText(), rutaimagen, correo.getText());
         Laboratorio.add(lab);
-        try{
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"Editar_Lab.jasper";
+        try {
+            String dir = System.getProperty("user.dir") + "/Reportes/" + "Editar_Lab.jasper";
             JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(Laboratorio));
-            JDialog frame = new JDialog (this);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(Laboratorio));
+            JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
@@ -575,20 +578,21 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
         BotonSinImagen.setEnabled(valor);
         BotonEliminar.setEnabled(valor);
     }
+
     public void VaciarImagen() {
         // String fil = "\\G:\\sin-imagen.png";
         //   String  fil= "\\home\\ineval\\Escritorio\\P-FARMACIA\\sin-imagen.png"; //Windows
-         fot = "logologin.png";
+        fot = "logologin.png";
         imagen.setIcon(new ImageIcon(fot));
         ImageIcon icon = new ImageIcon(fot);
         Image img = icon.getImage();
         System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
-        Image newimg = img.getScaledInstance(223,172, java.awt.Image.SCALE_SMOOTH);
+        Image newimg = img.getScaledInstance(223, 172, java.awt.Image.SCALE_SMOOTH);
         ImageIcon newIcono = new ImageIcon(newimg);
         imagen.setIcon(newIcono);
         rutaimagen = fot;
     }
-    
+
     private void getPicture1(String path) {
         JFileChooser dig = new JFileChooser(path);
         dig.setFileFilter(new FileNameExtensionFilter("Archivos de imagen",
@@ -600,46 +604,46 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
             imagen.setIcon(new ImageIcon(fot));
             ImageIcon icon = new ImageIcon(fot);
             Image img = icon.getImage();
-            Image newimg = img.getScaledInstance(223,172, java.awt.Image.SCALE_SMOOTH);
+            Image newimg = img.getScaledInstance(223, 172, java.awt.Image.SCALE_SMOOTH);
             ImageIcon newIcono = new ImageIcon(newimg);
-            imagen.setIcon(newIcono);            
+            imagen.setIcon(newIcono);
             System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
-            System.out.println("ruta= "+rutaimagen +"\n"+
-                                "ruta2 "+fot);
+            System.out.println("ruta= " + rutaimagen + "\n"
+                    + "ruta2 " + fot);
         }
     }
 
-        private void getPicture2(String path) {
+    private void getPicture2(String path) {
         //JFileChooser dig = new JFileChooser(path);
         //dig.setFileFilter(new FileNameExtensionFilter("Archivos de imagen",
-              //  "tif", "jpg", "jpeg", "png", "gif"));
+        //  "tif", "jpg", "jpeg", "png", "gif"));
         //int opcion = dig.showOpenDialog(this);
         //if (opcion == JFileChooser.APPROVE_OPTION) {
-            //fot = dig.getSelectedFile().getPath();
-            //rutaimagen = dig.getSelectedFile().getPath();
-            rutaimagen = path;
-            imagen.setIcon(new ImageIcon(path));
-            ImageIcon icon = new ImageIcon(path);
-            Image img = icon.getImage();
-            Image newimg = img.getScaledInstance(223,172, java.awt.Image.SCALE_SMOOTH);
-            ImageIcon newIcono = new ImageIcon(newimg);
-            imagen.setIcon(newIcono);            
-            System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
-            System.out.println("ruta= "+rutaimagen +"\n"+
-                                "ruta2 "+fot);
-        }
-    
-    public void vaciarimagen(){
+        //fot = dig.getSelectedFile().getPath();
+        //rutaimagen = dig.getSelectedFile().getPath();
+        rutaimagen = path;
+        imagen.setIcon(new ImageIcon(path));
+        ImageIcon icon = new ImageIcon(path);
+        Image img = icon.getImage();
+        Image newimg = img.getScaledInstance(223, 172, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon newIcono = new ImageIcon(newimg);
+        imagen.setIcon(newIcono);
+        System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+        System.out.println("ruta= " + rutaimagen + "\n"
+                + "ruta2 " + fot);
+    }
+
+    public void vaciarimagen() {
         fot = "src/com/farmacia/imagenes/logologin.png";
         imagen.setIcon(new ImageIcon(fot));
         ImageIcon icon = new ImageIcon(fot);
         Image img = icon.getImage();
         System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
-        Image newimg = img.getScaledInstance(223,172, java.awt.Image.SCALE_SMOOTH);
+        Image newimg = img.getScaledInstance(223, 172, java.awt.Image.SCALE_SMOOTH);
         ImageIcon newIcono = new ImageIcon(newimg);
         imagen.setIcon(newIcono);
         rutaimagen = fot;
-    }          
+    }
 
     public void Guardar() {
         if (ruc.getText().length() < 2 || nombre.getText().length() < 2 || corr != true
@@ -655,6 +659,7 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
             obj.setTelefono(telefono.getText());
             obj.setFecha(fecha1);
             obj.setImagen(rutaimagen);
+            System.out.println("imagen: " + rutaimagen);
             obj.setCorreo(correo.getText());
             String cadena = "";
             lista = cc.ListarLab();
