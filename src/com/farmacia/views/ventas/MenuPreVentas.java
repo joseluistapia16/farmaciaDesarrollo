@@ -13,21 +13,8 @@ import com.farmacia.entities1.Calcular_totales;
 import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.StockVentas;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
-import java.awt.Dimension;
-import java.awt.Event;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class MenuPreVentas extends javax.swing.JDialog {

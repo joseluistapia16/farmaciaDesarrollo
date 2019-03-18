@@ -4058,7 +4058,7 @@ public class CRUD {
             CallableStatement pro = conect.prepareCall(
                     "{ call ActualizarStockVentas(?,?)}");
             pro.setLong(1, det.getId_control());
-            pro.setInt(2, det.getCantidad());
+            pro.setLong(2, det.getCantidad());
 
             pro.executeUpdate();
 
