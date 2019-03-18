@@ -154,7 +154,6 @@ public class Reporte_Venta extends javax.swing.JDialog {
 
         jLabel2.setText("TOTAL");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/flechas-de-progreso.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
