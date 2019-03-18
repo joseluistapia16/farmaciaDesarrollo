@@ -135,8 +135,16 @@ public class MAIN {
 ////       a="hola";
 ////        b=a;
 ////        System.out.println(a+" // "+b);
-   
-        System.out.println(""+ formatoNumero("65767676.5676"));
+        // System.out.println(""+ formatoNumero("65767676.5676"));
+        String Cadena = new String("3,45689");
+        // String Cadena2 = null;
+
+        for (int a = 0; a < Cadena.length(); a++) {
+
+        }
+        String cadenaDeTexto = "Diego lava la loza.";
+        String resultado = cadenaDeTexto.replace('o', 'a');
+        System.out.println(resultado);
 
     }
 
@@ -165,9 +173,10 @@ public class MAIN {
         return gi;
 
     }
+
     ////////////////////////////////////////////-------------------------------------------
     public static String formatoNumero(String valor) {   ////////////////   1
-        DecimalFormat formato = new DecimalFormat("#,###.00");      
+        DecimalFormat formato = new DecimalFormat("#,###.00");
         String valorFormateado = formato.format(Double.parseDouble(valor));
         return valorFormateado;
     }
