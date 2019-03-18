@@ -26,6 +26,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
     String buscar = "";
     Formulario F = new Formulario();
     ArrayList<JoinListarCabeceraVenta> lista = null;
+    JoinListarCabeceraVenta objeto=null;
 
     /**
      * Creates new form Reporte_Venta
@@ -249,10 +250,10 @@ public class Reporte_Venta extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
-    public JoinListarNotaPedidosCabecera devuelveObjeto(String datos, ArrayList<JoinListarNotaPedidosCabecera> listarobj) {
-        JoinListarNotaPedidosCabecera objeto1 = null;
+    public JoinListarCabeceraVenta devuelveObjeto(String datos, ArrayList<JoinListarCabeceraVenta> listarobj) {
+        JoinListarCabeceraVenta objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_cabecera_nota_pedidos().toString())) {
+            if (datos.equals(listarobj.get(i).getId_cabecera_venta().toString())) {
                 objeto1 = listarobj.get(i);
                 break;
             }
@@ -261,7 +262,18 @@ public class Reporte_Venta extends javax.swing.JDialog {
 
     }
     private void tbaCabeceraVentaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraVentaMousePressed
+        int i = 0;
 
+        if (evt.getClickCount() == 2) {
+            i = tbaCabeceraVenta.getSelectedRow();
+            lista = crud.ListarCabeceraVentas(1);
+            objeto = devuelveObjeto(tbaCabeceraVenta.getValueAt(i, 0).toString(), lista);
+
+            if (objeto != null) {
+                Reporte_DetalleVenta Rdv = new Reporte_DetalleVenta(new javax.swing.JFrame(), true, objeto);
+                Rdv.setVisible(true);
+            }
+        }
 
     }//GEN-LAST:event_tbaCabeceraVentaMousePressed
 
