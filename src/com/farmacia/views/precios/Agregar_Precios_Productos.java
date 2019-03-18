@@ -253,24 +253,12 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuevo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nuevo1KeyTyped
-//        char car = evt.getKeyChar();
-//        //System.out.println(car);
-//        if (nuevo1.getText().length() ==1 /*|| nuevo1.getText().length() == 12*/) {
-//             //evt.consume();
-//           Habilitar(true);
-//            //System.out.println(cedula.getText().length());
-//        } else {
-//            Habilitar(false);
-//            // System.out.println("hhhh:  "+cedula.getText().length());
-//        }
-//        if (nuevo1.getText().length() > 5) {
-//            evt.consume();
-//            Habilitar(true);
-//        }
-//        if (car < '0' || car > '9' && car=='.') {
-//            evt.consume();
-//        }
-
+        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && nuevo1.getText().contains(".")) {
+            evt.consume();
+        }
     }//GEN-LAST:event_nuevo1KeyTyped
     public void Habilitar(boolean lock) {
         BotonGuardar.setEnabled(lock);
@@ -388,23 +376,12 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     }//GEN-LAST:event_nuevo2ActionPerformed
 
     private void nuevo2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nuevo2KeyTyped
-        //        char car = evt.getKeyChar();
-        //        //System.out.println(car);
-        //        if (nuevo1.getText().length() ==1 /*|| nuevo1.getText().length() == 12*/) {
-        //             //evt.consume();
-        //           Habilitar(true);
-        //            //System.out.println(cedula.getText().length());
-        //        } else {
-        //            Habilitar(false);
-        //            // System.out.println("hhhh:  "+cedula.getText().length());
-        //        }
-        //        if (nuevo1.getText().length() > 5) {
-        //            evt.consume();
-        //            Habilitar(true);
-        //        }
-        //        if (car < '0' || car > '9' && car=='.') {
-        //            evt.consume();
-        //        }
+          if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
+            evt.consume();
+        }
+        if (evt.getKeyChar() == '.' && nuevo2.getText().contains(".")) {
+            evt.consume();
+        }
     }//GEN-LAST:event_nuevo2KeyTyped
 
     /**
