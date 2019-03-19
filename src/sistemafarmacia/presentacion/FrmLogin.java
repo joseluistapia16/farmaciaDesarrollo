@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import com.farmacia.operaciones.Operaciones;
 import com.farmacia.views.usuario.Mostrar_usuario;
+import com.farmacia.views.usuario.Registrar_usuario;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,11 +57,13 @@ public class FrmLogin extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         txtContrasenia = new javax.swing.JPasswordField();
         btnAceptar = new javax.swing.JButton();
+        btnCrearUs = new javax.swing.JButton();
         lblPresentacion = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         lblBanner.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBanner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -101,22 +105,41 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Contraseña:");
 
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
             }
         });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
+
+        txtContrasenia.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        txtContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContraseniaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContraseniaKeyTyped(evt);
+            }
+        });
 
         btnAceptar.setText("Ingresar");
         btnAceptar.setActionCommand("Aceptar");
-        btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnAceptarMousePressed(evt);
-            }
-        });
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarActionPerformed(evt);
+            }
+        });
+
+        btnCrearUs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/agregarCliente.png"))); // NOI18N
+        btnCrearUs.setText("Usuario");
+        btnCrearUs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearUsActionPerformed(evt);
             }
         });
 
@@ -128,7 +151,9 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(11, 11, 11)
+                        .addComponent(btnCrearUs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -155,7 +180,9 @@ public class FrmLogin extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 29, Short.MAX_VALUE)
-                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrearUs, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -202,21 +229,17 @@ public class FrmLogin extends javax.swing.JFrame {
             obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
             try {
             String a =  cr.Iniciar_sesion(obj);
-            JOptionPane.showMessageDialog(this, a);
-                if (!"Usuario no existe".equals(a)) {
+            //JOptionPane.showMessageDialog(this, a);
                 objeto = devuelveObjeto(txtUsuario.getText(), listar);
                 if (objeto != null) {
-                    System.out.println("holaaaaa");
+                    //System.out.println("holaaaaa");
                     FrmPrincipal acc = new FrmPrincipal(objeto);
                     acc.setVisible(true);
                     dispose();
                     listar.clear();
                     listar = cr.get_listar_usuario();
-                }
-                    //FrmPrincipal frm = new FrmPrincipal();
-                    //frm.setVisible(true);
-                    //dispose();
                 }else{
+                    JOptionPane.showMessageDialog(this, "Usuario no existe!!!");
                     txtUsuario.setText("");
                     txtContrasenia.setText("");
                 }
@@ -228,8 +251,7 @@ public class FrmLogin extends javax.swing.JFrame {
     }
     
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-    iniciarSesion();
-    
+    iniciarSesion();    
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     public Listar_usuario devuelveObjeto(String datos, ArrayList<Listar_usuario> listarobj) {
@@ -251,24 +273,42 @@ public class FrmLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void btnAceptarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMousePressed
-//        int i = 0;
-//        try {
-//            if (evt.getClickCount() == 1) {
-//                objeto = devuelveObjeto(txtUsuario.getText(), listar);
-//                if (objeto != null) {
-//                    System.out.println("holaaaaa");
-//                    FrmPrincipal acc = new FrmPrincipal(objeto);
-//                    acc.setVisible(true);
-//                    listar.clear();
-//                    listar = cr.get_listar_usuario();
-//                }
-//
-//            }
-//        } catch (Exception e) {
-//            Logger.getLogger(Mostrar_usuario.class.getName()).log(Level.SEVERE, null, e);
-//        }
-    }//GEN-LAST:event_btnAceptarMousePressed
+    private void txtContraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            iniciarSesion();
+        }
+    }//GEN-LAST:event_txtContraseniaKeyPressed
+
+    private void btnCrearUsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsActionPerformed
+        Registrar_usuario ru = new Registrar_usuario(new javax.swing.JFrame(), true);
+        ru.setVisible(true);
+    }//GEN-LAST:event_btnCrearUsActionPerformed
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        char c = evt.getKeyChar();
+        char mas = '+', por='*', div='/', dp=':', pc=';', c2=',', p1='{', p2='}';
+        char lla1='[',el='^', lla2=']',el2='¿', co='?', co2='¡',c3='!', d='"',e='#';
+        char col='$', a='!',b='=',e2='%',f='&',g='=',h='º',i='ª',j='(',k=')',l='<',m='>';
+        char n='ç',o='´',p='`',q='¨',r='Ñ',s='·',t='ñ';
+        if (Character.isWhitespace(c) || c == mas || c == por || c ==  div || c == dp 
+                || c == pc || c == c2 || c == p1 || c == p2 || c == lla1 || c == lla2 
+                || c == el || c == el2 || c == co || c == co2 || c == c3 || c == d || c == e 
+                || c ==  col || c == a || c == b || c == e2 || c == f || c == g || c == h 
+                || c == i || c == j || c == k || c == l || c == m || c == n || c == o || c == p 
+                || c ==  q || c == r || c == s || c == t) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtUsuarioKeyTyped
+
+    private void txtContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyTyped
+        char c = evt.getKeyChar();
+        if (c == ' ') {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Espacio no es un caracter válido");
+        }
+    }//GEN-LAST:event_txtContraseniaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -307,6 +347,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnCrearUs;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

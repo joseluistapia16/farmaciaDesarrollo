@@ -77,7 +77,7 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         TablaClienteVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,6 +90,7 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaClienteVentas.setRowHeight(24);
         TablaClienteVentas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 TablaClienteVentasMousePressed(evt);
@@ -342,7 +343,7 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> CbxFiltro;
     private javax.swing.JTable TablaClienteVentas;
     private javax.swing.JTextField TxtFiltro;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

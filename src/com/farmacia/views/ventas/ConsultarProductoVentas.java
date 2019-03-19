@@ -103,7 +103,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
 
         TablaProductoVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,6 +116,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaProductoVentas.setRowHeight(24);
         TablaProductoVentas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 TablaProductoVentasMousePressed(evt);
@@ -331,13 +332,18 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
+    private javax.swing.JButton BtnBuscar1;
     private javax.swing.JComboBox<String> CbxFiltro;
+    private javax.swing.JComboBox<String> CbxFiltro1;
     private javax.swing.JTable TablaProductoVentas;
     private javax.swing.JTextField TxtFiltro;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField TxtFiltro1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
