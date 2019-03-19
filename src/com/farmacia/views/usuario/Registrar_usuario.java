@@ -580,7 +580,7 @@ public class Registrar_usuario extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Ingrese un número de contacto válido ");
         }else if (txtCell.getText().length() > 12) {
             JOptionPane.showMessageDialog(null, "Exede la cantidad de numeros válidos permitidos ");
-        }else if (txtConven.getText().length() < 11) {
+        }else if (txtConven.getText().length() > 12) {
             JOptionPane.showMessageDialog(null, "Exede la cantidad de numeros válidos permitidos");
         }else if (txtCorreo.getText().length() < 5) {
             JOptionPane.showMessageDialog(null, "Ingrese un correo válido ");
