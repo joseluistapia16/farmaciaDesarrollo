@@ -107,9 +107,9 @@ public class EntidadesMappers {
             obj.setMedida(rs.getString("MEDIDA"));
             obj.setId_envase(rs.getLong("ID_ENVASE"));
             obj.setEnvase(rs.getString("ENVASE"));
-            obj.setEstado(rs.getString("ESTADO"));
-            obj.setId_precios(rs.getLong("ID_PRECIO"));
-            obj.setPrecios(rs.getBigDecimal("PRECIO"));
+//            obj.setEstado(rs.getString("ESTADO"));
+//            obj.setId_precios(rs.getLong("ID_PRECIO"));
+//            obj.setPrecios(rs.getBigDecimal("PRECIO"));
             obj.setIva(rs.getString("IVA"));
 
         } catch (SQLException ex) {

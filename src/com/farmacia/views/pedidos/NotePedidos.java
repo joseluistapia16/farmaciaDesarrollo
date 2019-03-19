@@ -872,20 +872,22 @@ public class NotePedidos extends javax.swing.JDialog {
         try {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
-                objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
+//                objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
+                objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
 
                 cantidatabla = objeto.getCantidad();
                 if (objeto != null) {
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
-                    msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, objeto.getId_precios().toString());
+//                    msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, objeto.getId_precios().toString());
+                    msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, objeto.getId_producto().toString());
 
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                         if (np.getObjf().getCantidad() > 0) {
                             //////
                             Integer Resta = Integer.parseInt(t_Nota_faltantes.getValueAt(i, 6).toString()) - np.getObjf().getCantidad();
-                            getPosicion(objeto.getId_precios(), Resta);
+                            getPosicion(objeto.getId_producto(), Resta);
                             //////
                             objx = calcularValores(np.getObjf());
                             ///////   
@@ -947,7 +949,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
     private void getPosicion(Long id, int valor) {
         for (int i = 0; i < lista.size(); i++) {
-            if (id == lista.get(i).getId_precios()) {
+            if (id == lista.get(i).getId_producto()) {
                 lista.get(i).setCantidad(valor);
             }
         }
@@ -1129,9 +1131,8 @@ public class NotePedidos extends javax.swing.JDialog {
         joinProductoDetallesFaltantes objeto1 = null;
 
         for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_precios().toString())) {
+            if (datos.equals(listarobj.get(i).getId_producto())) {
                 objeto1 = listarobj.get(i);
-                System.out.println("cant: " + objeto1.getCantidad());
                 break;
             }
         }
