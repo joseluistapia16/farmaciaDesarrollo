@@ -264,6 +264,9 @@
             </Container>
             <Component class="javax.swing.JButton" name="btnRuc">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Ubuntu" size="10" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="RUC"/>
               </Properties>
               <Events>
@@ -320,6 +323,10 @@
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jPanel4MouseDragged"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel4MousePressed"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
