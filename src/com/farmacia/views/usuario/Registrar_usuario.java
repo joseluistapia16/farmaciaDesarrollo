@@ -7,10 +7,8 @@ package com.farmacia.views.usuario;
 
 import com.farmacia.conponentes.Formulario;
 import com.farmacia.dao.CRUD;
-import com.farmacia.entities1.Estado_usuario;
 import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Listar_usuario;
-import com.farmacia.entities1.Punto_venta;
 import com.farmacia.entities1.Rol_U;
 import com.farmacia.entities1.Usuario_S;
 import com.farmacia.operaciones.Operaciones;
@@ -600,7 +598,7 @@ public class Registrar_usuario extends javax.swing.JDialog {
             obj.setTelefono(txtCell.getText());
             obj.setRuta_imagen(imagen);
             obj.setGenero(cbGenero.getSelectedItem().toString());
-            obj.setCargo(cbGenero.getSelectedItem().toString());
+            obj.setCargo(cbRol.getSelectedItem().toString());
             obj.setConvencional(txtConven.getText());
             obj.setCorreo(txtCorreo.getText());
             obj.setDireccion(txtDireccion.getText());
