@@ -260,6 +260,7 @@ public class AgregarFaltantes extends javax.swing.JDialog {
     }
     private void llenarFormulario2(Faltantes obj2) {
         codigo.setText(obj2.getId_producto().toString());
+        numeroLista.setText(obj2.getId_detalle_faltantes().toString());
         producto.setText(obj2.getNombre());
         marca.setText(obj2.getMarcas());
         descripcion.setText(obj2.getDescripcion());
