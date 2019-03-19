@@ -29,6 +29,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
+
     }
 
     public void Descuento() {
@@ -41,6 +42,9 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         llenarFormulario(obj1);
+        txtBono.setEnabled(false);
+        txtporcentajeDescuento.setEnabled(false);
+        txtcantidadpro.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -248,6 +252,11 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         });
 
         jButton1.setText("Elija Precio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -378,7 +387,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcantidadproActionPerformed
     private void llenarFormulario(joinProductoDetallesFaltantes obj) {
-        objf=new joinProductoDetallesFaltantes();
+        objf = new joinProductoDetallesFaltantes();
         codigo.setText(obj.getId_producto().toString());
         producto.setText(obj.getNombre_producto());
         Medida.setText(obj.getMedida());
@@ -411,7 +420,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         String cant;
         String porc = null;
         String bono;
-       // objf = new joinProductoDetallesFaltantes();
+        // objf = new joinProductoDetallesFaltantes();
         if (txtcantidadpro.getText() == null || "".equals(txtcantidadpro.getText())) {
             JOptionPane.showMessageDialog(null, "Ingrese Cantidad");
         } else {
@@ -533,9 +542,17 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void jLabel7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseDragged
-         Point point = MouseInfo.getPointerInfo().getLocation();
+        Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel7MouseDragged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PrecioNotaPedido Pnp = new PrecioNotaPedido(new javax.swing.JFrame(), true);
+        Pnp.setVisible(true);
+//        txtBono.setEnabled(true);
+//        txtporcentajeDescuento.setEnabled(true);
+//        txtcantidadpro.setEnabled(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
