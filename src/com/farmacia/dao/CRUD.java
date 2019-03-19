@@ -4402,6 +4402,7 @@ public class CRUD {
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
                     "{ call ListarPrecioNotaPedido(?,?) }");
             prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.setString(2, id);
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
