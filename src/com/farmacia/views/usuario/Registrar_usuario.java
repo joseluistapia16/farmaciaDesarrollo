@@ -579,9 +579,9 @@ public class Registrar_usuario extends javax.swing.JDialog {
         }else if (txtCell.getText().length() < 9) {
             JOptionPane.showMessageDialog(null, "Ingrese un número de contacto válido ");
         }else if (txtCell.getText().length() > 12) {
-            JOptionPane.showMessageDialog(null, "Exede la cantidad de numeros válidos permitidos ");
+            JOptionPane.showMessageDialog(null, "Exede la cantidad de numeros válidos permitidos para celular");
         }else if (txtConven.getText().length() > 12) {
-            JOptionPane.showMessageDialog(null, "Exede la cantidad de numeros válidos permitidos");
+            JOptionPane.showMessageDialog(null, "Exede la cantidad de numeros válidos permitidos para convencional");
         }else if (txtCorreo.getText().length() < 5) {
             JOptionPane.showMessageDialog(null, "Ingrese un correo válido ");
         }else if (txtDireccion.getText().length() < 4) {
