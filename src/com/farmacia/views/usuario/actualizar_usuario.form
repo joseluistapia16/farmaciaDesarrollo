@@ -63,7 +63,9 @@
                   <Component id="btnHabilitar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                   <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
               </Group>
@@ -88,6 +90,7 @@
                       <Component id="btnGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnSalir" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="btnHabilitar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
@@ -657,6 +660,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHabilitarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -8,6 +8,7 @@ package com.farmacia.views.Reportes;
 import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.ListarJoinProveedor;
@@ -23,17 +24,29 @@ import static com.farmacia.views.compras.OrdenCompra.txtRuc;
 import static com.farmacia.views.compras.OrdenCompra.txtTelefono;
 import static com.farmacia.views.compras.OrdenCompra.txtTipo;
 import static com.farmacia.views.compras.OrdenCompra.txtTotal;
+import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
  * @author ineval
  */
 public class Reporte_DetalleCompra extends javax.swing.JDialog {
-
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     int x, y;
     CRUD crud = new CRUD();
     JoinListarNotaPedidosCabecera objCabecera = null;
@@ -163,6 +176,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         jLabel19 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnSalir2 = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -266,7 +280,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCodigoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -386,7 +400,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -460,6 +474,14 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
             }
         });
 
+        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnReporte.setText("IMPRIMIR");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -476,7 +498,9 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(162, 162, 162)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -533,7 +557,9 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                             .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25))))
         );
 
@@ -545,7 +571,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -606,6 +632,55 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        ArrayList tablac = new ArrayList();
+        for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
+            ClaseReporte tabla1 = new ClaseReporte(txtNombre.getText(),
+                    txtCodigoProveedor.getText(),
+                    txtNombre.getText(),
+                    txtRepresentante.getText(),
+                    txtTelefono.getText(),
+                    txtRuc.getText(),
+                    txtCorreo.getText(),
+                    txtDireccion.getText(),
+                    txtTipo.getText(),
+                    txtFechaCreacion.getText(),
+                    cbxPlazo.getSelectedItem().toString(),
+                    cbxFormaP.getSelectedItem().toString(),
+                    tbaListaComprasB.getValueAt(i, 0).toString(),
+                    tbaListaComprasB.getValueAt(i, 1).toString(),
+                    tbaListaComprasB.getValueAt(i, 2).toString(),
+                    tbaListaComprasB.getValueAt(i, 3).toString(),
+                    tbaListaComprasB.getValueAt(i, 4).toString(),
+                    tbaListaComprasB.getValueAt(i, 5).toString(),
+                    tbaListaComprasB.getValueAt(i, 6).toString(),
+                    tbaListaComprasB.getValueAt(i, 7).toString(),
+                    tbaListaComprasB.getValueAt(i, 8).toString(),
+                    tbaListaComprasB.getValueAt(i, 9).toString(),
+                    tbaListaComprasB.getValueAt(i, 10).toString(),
+                    tbaListaComprasB.getValueAt(i, 11).toString(),
+                    txtDescuento.getText(),
+                    txtIva.getText(),
+                    txtTotal.getText(),
+                    txt_Numero.getText());
+            tablac.add(tabla1);
+        }
+        try {
+            String dir = System.getProperty("user.dir") + "/Reportes/" +"OrdenCompra.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Reporte_DetalleCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReporteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -650,6 +725,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReporte;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JComboBox<String> cbxFormaP;
     private javax.swing.JComboBox<String> cbxPlazo;
