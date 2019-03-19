@@ -1114,8 +1114,7 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(8).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(9).setPreferredWidth(a[9]);
             Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[9]);
-            Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
+           
         }
     }
 
