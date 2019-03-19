@@ -55,6 +55,12 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
         CbxFiltro = new javax.swing.JComboBox<>();
         TxtFiltro = new javax.swing.JTextField();
         BtnBuscar = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        CbxFiltro1 = new javax.swing.JComboBox<>();
+        TxtFiltro1 = new javax.swing.JTextField();
+        BtnBuscar1 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -77,7 +83,7 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         TablaClienteVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,7 +96,6 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        TablaClienteVentas.setRowHeight(24);
         TablaClienteVentas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 TablaClienteVentasMousePressed(evt);
@@ -179,6 +184,50 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        CbxFiltro1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        CbxFiltro1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "CODIGO", "CEDULA", "NOMBRE", "APELLIDO", "DIRECCION", "TELEFONO", "CORREO", "" }));
+        CbxFiltro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CbxFiltroActionPerformed(evt);
+            }
+        });
+        jPanel4.add(CbxFiltro1);
+
+        TxtFiltro1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel4.add(TxtFiltro1);
+
+        BtnBuscar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BtnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/buscar1.jpg"))); // NOI18N
+        BtnBuscar1.setText("Buscar");
+        BtnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel4.add(BtnBuscar1);
+
+        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+        jLabel2.setText("CLIENTES");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
                 .addContainerGap())
         );
 
@@ -340,13 +389,19 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBuscar;
+    private javax.swing.JButton BtnBuscar1;
     private javax.swing.JComboBox<String> CbxFiltro;
+    private javax.swing.JComboBox<String> CbxFiltro1;
     private javax.swing.JTable TablaClienteVentas;
     private javax.swing.JTextField TxtFiltro;
+    private javax.swing.JTextField TxtFiltro1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
