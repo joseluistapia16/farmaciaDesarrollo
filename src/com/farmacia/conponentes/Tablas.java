@@ -15,6 +15,7 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.entities1.Clientes;
 import com.farmacia.entities1.Detalle_ventas;
 import com.farmacia.entities1.EnvaseProducto;
+import com.farmacia.entities1.Faltantes;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.ListarDetalleVentas;
@@ -1715,5 +1716,80 @@ public class Tablas {
 
         }
 
+    }
+    public static void cargarJoinFaltantes_cantidad(JTable Tabla, ArrayList<Faltantes> lista) {
+
+        int[] a = {10, 30, 32, 52, 15, 30};
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
+        model = Tablas.VaciarTabla(Tabla);
+        String[] Co = {"CODIGO", "NOMBRE", "CANTIDAD FALTANTES", "CANTIDAD_MINIMA", "ESTADO"};
+        String[] Filas = new String[5];
+        model = new DefaultTableModel(null, Co);
+        Tabla.setShowGrid(true);
+        for (int i = 0; i < lista.size(); i++) {
+            Filas[0] = "" + lista.get(i).getId_producto().toString();
+            Filas[1] = lista.get(i).getNombre();
+            Filas[2] = lista.get(i).getCantidad_faltantes().toString();
+            Filas[3] = lista.get(i).getCantidad_minima().toString();
+            Filas[4] = lista.get(i).getEstado();
+//            Filas[5] = lista.get(i).getTotal().toString();
+
+            model.addRow(Filas);
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+//            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        }
+
+    }
+
+    public static void cargarFaltantesB(JTable Tabla, ArrayList<Faltantes> lista) {
+//        for (int i = 0; i < lista.size(); i++) {
+//            System.out.println("tabla: " + lista.get(i).getTotal().toString());
+//        }
+
+        int[] a = {10, 30, 32, 52, 15, 30};
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
+        model = Tablas.VaciarTabla(Tabla);
+        String[] Co = {"CODIGO", "MARCA", "PRODUCTO", "DESCRIPCION", "CANTIDAD"};
+        String[] Filas = new String[5];
+        model = new DefaultTableModel(null, Co);
+        Tabla.setShowGrid(true);
+        for (int i = 0; i < lista.size(); i++) {
+            Filas[0] = "" + lista.get(i).getId_producto().toString();
+            Filas[1] = lista.get(i).getMarcas();
+            Filas[2] = lista.get(i).getNombre();
+            Filas[3] = lista.get(i).getDescripcion();
+            Filas[4] = lista.get(i).getTotal().toString();
+
+            model.addRow(Filas);
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+
+        }
     }
 }

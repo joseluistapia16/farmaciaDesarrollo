@@ -15,6 +15,7 @@ import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.Correo_Cliente;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Estado_usuario;
+import com.farmacia.entities1.Faltantes;
 import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
@@ -878,4 +879,22 @@ public class EntidadesMappers {
         return obj;
     }
        
+       public static Faltantes getJoinFaltantesCantidadFromResultSet(ResultSet rs) {
+        Faltantes obj = new Faltantes();
+        try {
+            obj.setId_detalle_faltantes(rs.getLong("ID_DETALLE_FALTANTES"));
+            obj.setId_producto(rs.getLong("id_producto"));
+            obj.setNombre(rs.getString("NOMBRE"));
+            obj.setCantidad_faltantes(rs.getInt("CANTIDAD_FALTANTES"));
+            obj.setCantidad_minima(rs.getInt("CAN_MINIMA"));
+            obj.setEstado(rs.getString("ESTADO"));
+            obj.setMarcas(rs.getString("MARCAS"));
+            obj.setDescripcion(rs.getString("DESCRIPCION"));
+//            obj.setTotal(rs.getInt("TOTAL"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
 }

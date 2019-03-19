@@ -21,6 +21,7 @@ import com.farmacia.entities1.Detalle_compra;
 import com.farmacia.entities1.Detalle_ventas;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Estado_usuario;
+import com.farmacia.entities1.Faltantes;
 import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
@@ -1084,39 +1085,38 @@ public class CRUD {
         return valor;
     }
 
-    public ArrayList<FaltantesCabeceraDetalles> listarJoinProductosFaltantes(int op) {//piguiFaltantes
-        ArrayList<FaltantesCabeceraDetalles> lista = new ArrayList<FaltantesCabeceraDetalles>();
-
-        try {
-            conect = con.conectar();
-            conect.setAutoCommit(false);
-            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
-                    "{ call listarJoinProductosFaltantes(?) }");
-            prcProcedimientoAlmacenado.setInt(1, op);
-            prcProcedimientoAlmacenado.execute();
-            rs = prcProcedimientoAlmacenado.getResultSet();
-            while (rs.next()) {
-                FaltantesCabeceraDetalles obj = EntidadesMappers.getJoinProductosFromResultSet(rs);
-                lista.add(obj);
-            }
-            conect.commit();
-        } catch (Exception e) {
-            try {
-                conect.rollback();
-                e.printStackTrace();
-            } catch (SQLException ex) {
-                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } finally {
-            try {
-                conect.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return lista;
-    }
-
+//    public ArrayList<FaltantesCabeceraDetalles> listarJoinProductosFaltantes(int op) {//piguiFaltantes
+//        ArrayList<FaltantesCabeceraDetalles> lista = new ArrayList<FaltantesCabeceraDetalles>();
+//
+//        try {
+//            conect = con.conectar();
+//            conect.setAutoCommit(false);
+//            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+//                    "{ call listarJoinProductosFaltantes(?) }");
+//            prcProcedimientoAlmacenado.setInt(1, op);
+//            prcProcedimientoAlmacenado.execute();
+//            rs = prcProcedimientoAlmacenado.getResultSet();
+//            while (rs.next()) {
+//                FaltantesCabeceraDetalles obj = EntidadesMappers.getJoinProductosFromResultSet(rs);
+//                lista.add(obj);
+//            }
+//            conect.commit();
+//        } catch (Exception e) {
+//            try {
+//                conect.rollback();
+//                e.printStackTrace();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } finally {
+//            try {
+//                conect.close();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//        return lista;
+//    }
     public ArrayList<FaltantesCabeceraDetalles> filtroBusqueda(String query) {//piguiFaltantes
         ArrayList<FaltantesCabeceraDetalles> lista = new ArrayList<FaltantesCabeceraDetalles>();
 
@@ -3618,6 +3618,7 @@ public class CRUD {
         }
         return valor;
     }
+
     public String edicionCabeceraNotaPedido(Cabecera_compra cc) {
         String valor = null;
         try {
@@ -3629,7 +3630,7 @@ public class CRUD {
             pro.setBigDecimal(2, cc.getDescuento());
             pro.setBigDecimal(3, cc.getTotal());
             pro.setLong(4, cc.getIdcabecerapedido());
-            
+
             pro.registerOutParameter("valor", Types.VARCHAR);
             pro.executeUpdate();
             valor = pro.getString("valor");
@@ -3650,6 +3651,7 @@ public class CRUD {
         }
         return valor;
     }
+
     public String buscarIDDetallesCompras(JoinListarDetalleNotaPedido obj) {
         String valor = "";
         try {
@@ -3683,6 +3685,7 @@ public class CRUD {
         }
         return valor;
     }
+
     //
     public String EliminarDetalleDevolucion(JoinListarDetalleNotaPedido obj) {
         String valor = "";
@@ -3719,6 +3722,7 @@ public class CRUD {
         }
         return valor;
     }
+
     public String ActualizarTodoCompras(DetalleNotaPedido dnp) {
         String valor = null;
         try {
@@ -4080,16 +4084,17 @@ public class CRUD {
         }
 
     }
+
     public ArrayList<Listar_usuario> filtroApellidoUs(Listar_usuario lu) {
-       ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
+        ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
                     "{ call fc_filtro_apellido_usuario(?)}");
             pro.setString(1, lu.getApellidos());
-              rs = pro.executeQuery();
-              while (rs.next()) {
+            rs = pro.executeQuery();
+            while (rs.next()) {
                 Listar_usuario obj = EntidadesMappers.getUsuarioFromResultSet(rs);
                 valor.add(obj);
             }
@@ -4110,17 +4115,17 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public ArrayList<Listar_usuario> filtroCodigoUs(Listar_usuario lu) {
-       ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
+        ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
                     "{ call fc_filtro_cod_usuario(?)}");
             pro.setLong(1, lu.getId_sesion());
-              rs = pro.executeQuery();
-              while (rs.next()) {
+            rs = pro.executeQuery();
+            while (rs.next()) {
                 Listar_usuario obj = EntidadesMappers.getUsuarioFromResultSet(rs);
                 valor.add(obj);
             }
@@ -4141,16 +4146,17 @@ public class CRUD {
         }
         return valor;
     }
+
     public ArrayList<Listar_usuario> filtroCedulaUs(Listar_usuario lu) {
-       ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
+        ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
                     "{ call fc_filtro_cedula_usuario(?)}");
             pro.setString(1, lu.getCedula());
-              rs = pro.executeQuery();
-              while (rs.next()) {
+            rs = pro.executeQuery();
+            while (rs.next()) {
                 Listar_usuario obj = EntidadesMappers.getUsuarioFromResultSet(rs);
                 valor.add(obj);
             }
@@ -4173,15 +4179,15 @@ public class CRUD {
     }
 
     public ArrayList<Listar_usuario> filtroFechaUs(Listar_usuario lu) {
-       ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
+        ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
                     "{ call fc_filtro_fecha_usuario(?)}");
             pro.setString(1, lu.getFecha_registro());
-              rs = pro.executeQuery();
-              while (rs.next()) {
+            rs = pro.executeQuery();
+            while (rs.next()) {
                 Listar_usuario obj = EntidadesMappers.getUsuarioFromResultSet(rs);
                 valor.add(obj);
             }
@@ -4202,17 +4208,17 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public ArrayList<Listar_usuario> filtroEstadoUs(Listar_usuario lu) {
-       ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
+        ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
                     "{ call fc_filtro_estado_usuario(?)}");
             pro.setLong(1, lu.getId_estado());
-              rs = pro.executeQuery();
-              while (rs.next()) {
+            rs = pro.executeQuery();
+            while (rs.next()) {
                 Listar_usuario obj = EntidadesMappers.getUsuarioFromResultSet(rs);
                 valor.add(obj);
             }
@@ -4233,6 +4239,7 @@ public class CRUD {
         }
         return valor;
     }
+
     public String RucLocal(Nombre_local pv) {
         String valor = null;
         try {
@@ -4261,7 +4268,8 @@ public class CRUD {
         }
         return valor;
     }
-    public String ruc_local (){
+
+    public String ruc_local() {
         String ruc = "";
         try {
             conect = con.conectar();
@@ -4272,13 +4280,12 @@ public class CRUD {
             conect.close();
         } catch (SQLException e) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, e);
-        } catch (ClassNotFoundException ex) { 
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ruc;
     }
-    
-    
+
     public Double obtenerIvaVentas(String query) {
         Double iva = 0.00;
         try {
@@ -4294,7 +4301,8 @@ public class CRUD {
         }
         return iva;
     }
-  public ArrayList<JoinListarNotaPedidosCabecera> RangoFechaCompra(int op,JoinListarNotaPedidosCabecera cab) {
+
+    public ArrayList<JoinListarNotaPedidosCabecera> RangoFechaCompra(int op, JoinListarNotaPedidosCabecera cab) {
         ArrayList<JoinListarNotaPedidosCabecera> lista = new ArrayList<JoinListarNotaPedidosCabecera>();
         try {
             conect = con.conectar();
@@ -4302,8 +4310,8 @@ public class CRUD {
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
                     "{ call FiltroRangoFecha(?,?,?)}");
             prcProcedimientoAlmacenado.setInt(1, op);
-            prcProcedimientoAlmacenado.setString(2,cab.getFecha1());
-            prcProcedimientoAlmacenado.setString(3,cab.getFecha2());
+            prcProcedimientoAlmacenado.setString(2, cab.getFecha1());
+            prcProcedimientoAlmacenado.setString(3, cab.getFecha2());
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
@@ -4326,9 +4334,10 @@ public class CRUD {
             }
         }
         return lista;
-    }  
-  ///////////////////RANGO FECHA Venta
-  public ArrayList<JoinListarCabeceraVenta> RangoFechaVenta(int op,JoinListarCabeceraVenta cab) {
+    }
+    ///////////////////RANGO FECHA Venta
+
+    public ArrayList<JoinListarCabeceraVenta> RangoFechaVenta(int op, JoinListarCabeceraVenta cab) {
         ArrayList<JoinListarCabeceraVenta> lista = new ArrayList<JoinListarCabeceraVenta>();
         try {
             conect = con.conectar();
@@ -4336,8 +4345,8 @@ public class CRUD {
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
                     "{ call FiltroRangoFechaVenta(?,?,?)}");
             prcProcedimientoAlmacenado.setInt(1, op);
-            prcProcedimientoAlmacenado.setString(2,cab.getFecha1());
-            prcProcedimientoAlmacenado.setString(3,cab.getFecha2());
+            prcProcedimientoAlmacenado.setString(2, cab.getFecha1());
+            prcProcedimientoAlmacenado.setString(3, cab.getFecha2());
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
@@ -4360,8 +4369,9 @@ public class CRUD {
             }
         }
         return lista;
-    }  
-  public ArrayList<JoinListarCabeceraVenta> ListarCabeceraVentas(int op) {
+    }
+
+    public ArrayList<JoinListarCabeceraVenta> ListarCabeceraVentas(int op) {
         ArrayList<JoinListarCabeceraVenta> lista = new ArrayList<JoinListarCabeceraVenta>();
         try {
             conect = con.conectar();
@@ -4373,6 +4383,39 @@ public class CRUD {
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
                 JoinListarCabeceraVenta obj = EntidadesMappers.getListadoCabeceraVentaFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+
+    public ArrayList<Faltantes> listarJoinProductosFaltantes(int op) {//piguiFaltantes
+        ArrayList<Faltantes> lista = new ArrayList<Faltantes>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call faltantes_cantidad() }");
+//            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                Faltantes obj = EntidadesMappers.getJoinFaltantesCantidadFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();
