@@ -1131,7 +1131,7 @@ public class NotePedidos extends javax.swing.JDialog {
         joinProductoDetallesFaltantes objeto1 = null;
 
         for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_producto())) {
+            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
                 objeto1 = listarobj.get(i);
                 break;
             }

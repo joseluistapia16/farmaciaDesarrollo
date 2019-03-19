@@ -48,6 +48,7 @@ import com.farmacia.join_entidades.JoinListarCabeceraVenta;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
+import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ValidarIngresoProducto;
@@ -4435,4 +4436,69 @@ public class CRUD {
         }
         return lista;
     }
+  public ArrayList<ListarJoinPrecioNotaPedido> listarPrecioNota(int op, String id) {
+        ArrayList<ListarJoinPrecioNotaPedido> lista = new ArrayList<ListarJoinPrecioNotaPedido>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call ListarPrecioNotaPedido(?,?) }");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.setString(2, id);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                ListarJoinPrecioNotaPedido obj = EntidadesMappers.getJoinListarPrecioNotaFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+//   public ArrayList<ListarJoinPrecioNotaPedido> listarPrecioNota1(int op) {
+//        ArrayList<ListarJoinPrecioNotaPedido> lista = new ArrayList<ListarJoinPrecioNotaPedido>();
+//
+//        try {
+//            conect = con.conectar();
+//            conect.setAutoCommit(false);
+//            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+//                    "{ call ListarPrecioNotaPedido(?) }");
+//            prcProcedimientoAlmacenado.setInt(1, op);
+//            prcProcedimientoAlmacenado.execute();
+//            rs = prcProcedimientoAlmacenado.getResultSet();
+//            while (rs.next()) {
+//                ListarJoinPrecioNotaPedido obj = EntidadesMappers.getJoinListarPrecioNotaFromResultSet(rs);
+//                lista.add(obj);
+//            }
+//            conect.commit();
+//        } catch (Exception e) {
+//            try {
+//                conect.rollback();
+//                e.printStackTrace();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } finally {
+//            try {
+//                conect.close();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//        return lista;
+//    }
 }
