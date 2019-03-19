@@ -927,14 +927,14 @@ public class Tablas {
     ////////////////////////////
     public static void cargarJoinProductoDetallesFaltantes(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
 
-        int[] a = {10, 30, 32, 52, 15, 15, 15, 10};
+        int[] a = {10, 30, 32, 52, 15, 15, 15};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD", "PRECIO"};
-        String[] Filas = new String[8];
+        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD"};
+        String[] Filas = new String[7];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
@@ -946,7 +946,7 @@ public class Tablas {
             Filas[4] = lista.get(i).getEnvase();
             Filas[5] = lista.get(i).getMedida();
             Filas[6] = lista.get(i).getCantidad().toString();
-            Filas[7] = Formato_Numeros.formatoNumero(lista.get(i).getPrecios().toString());
+//            Filas[7] = Formato_Numeros.formatoNumero(lista.get(i).getPrecios().toString());
 
             model.addRow(Filas);
             Tabla.setModel(model);
@@ -964,8 +964,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
             Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
-            Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
+//            Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
 
         }
 
