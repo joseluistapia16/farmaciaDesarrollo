@@ -7,27 +7,40 @@ package com.farmacia.views.usuario;
 
 import com.farmacia.conponentes.Formulario;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Estado_usuario;
 import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.Rol_U;
 import com.farmacia.entities1.Usuario_S;
 import com.farmacia.operaciones.Operaciones;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
  * @author alumno
  */
 public class actualizar_usuario extends javax.swing.JDialog {
-
+     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     CRUD crud = new CRUD();
     String imagen = "";
     ArrayList<Usuario_S> lista = null;
@@ -169,6 +182,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
         btnSalir = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnHabilitar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -444,6 +458,13 @@ public class actualizar_usuario extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("IMPRIMIR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -463,7 +484,9 @@ public class actualizar_usuario extends javax.swing.JDialog {
                 .addComponent(btnHabilitar)
                 .addGap(79, 79, 79)
                 .addComponent(btnGuardar)
-                .addGap(97, 97, 97)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(btnSalir)
                 .addGap(172, 172, 172))
         );
@@ -483,7 +506,8 @@ public class actualizar_usuario extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHabilitar))
+                    .addComponent(btnHabilitar)
+                    .addComponent(jButton1))
                 .addGap(26, 26, 26))
         );
 
@@ -619,6 +643,26 @@ public class actualizar_usuario extends javax.swing.JDialog {
     private void btnHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHabilitarActionPerformed
         bloqueo(true);
     }//GEN-LAST:event_btnHabilitarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    ArrayList dato = new ArrayList();
+    ClaseReporte datos = new ClaseReporte(txtId.getText(),cbEstado.getSelectedItem().toString(),txtCedula.getText(),txtNombre.getText(),txtApellido.getText(),cbGenero.getSelectedItem().toString(),cbRol.getSelectedItem().toString(),txtObservacion.getText(),txtCell.getText(),txtConven.getText(),txtCorreo.getText(),txtDireccion.getText(),txtPass.getText(),txtConPass.getText(),lbImagen.toString());
+    dato.add(datos);   
+    try {
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"actualizar_usuario";
+            JasperReport reporte = (JasperReport)JRLoader.loadObject(dir);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(dato));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(actualizar_usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void VaciarImagen() {
         // String fil = "\\G:\\sin-imagen.png";
@@ -811,6 +855,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbEstado;
     private javax.swing.JComboBox<String> cbGenero;
     private javax.swing.JComboBox<String> cbRol;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

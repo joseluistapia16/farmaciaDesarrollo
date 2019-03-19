@@ -9,19 +9,32 @@ import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Formulario;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
+import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 
 /**
  *
  * @author ineval
  */
 public class Reporte_Compra extends javax.swing.JDialog {
-
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     CRUD crud = new CRUD();
     int x, y;
     String buscar = "";
@@ -65,6 +78,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
         Txt_Total = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        btnimprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -163,13 +177,22 @@ public class Reporte_Compra extends javax.swing.JDialog {
             }
         });
 
+        btnimprimir.setText("IMPRIMIR");
+        btnimprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnimprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(289, 289, 289)
+                .addGap(186, 186, 186)
+                .addComponent(btnimprimir)
+                .addGap(30, 30, 30)
                 .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -215,7 +238,9 @@ public class Reporte_Compra extends javax.swing.JDialog {
                     .addComponent(Txt_Total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnimprimir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -333,6 +358,30 @@ public class Reporte_Compra extends javax.swing.JDialog {
         Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraCompra, lista);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnimprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimirActionPerformed
+        ArrayList tabla = new ArrayList();
+        for(int i=0;i<tbaCabeceraCompra.getRowCount();i++){
+            ClaseReporte componentes = new ClaseReporte(tbaCabeceraCompra.getValueAt(i,0).toString(),tbaCabeceraCompra.getValueAt(i,1).toString(),tbaCabeceraCompra.getValueAt(i,2).toString(),tbaCabeceraCompra.getValueAt(i,3).toString(),tbaCabeceraCompra.getValueAt(i,4).toString(),tbaCabeceraCompra.getValueAt(i,5).toString(),tbaCabeceraCompra.getValueAt(i,6).toString(),tbaCabeceraCompra.getValueAt(i,7).toString());
+        tabla.add(componentes);
+        }
+        
+        try {
+        String dir = System.getProperty("user.dir")+"/Reportes/"+"Reporte_Compra";
+        JasperReport reporte = (JasperReport)JRLoader.loadObject(dir);
+        JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tabla));
+        JDialog frame = new JDialog();
+        JRViewer viewer = new JRViewer(jprint);
+        frame.add(viewer);
+        frame.setSize(new Dimension(ancho/2,alto/2));
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Reporte_Compra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnimprimirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -381,6 +430,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser Chooser2;
     private javax.swing.JTextField Txt_Total;
     private javax.swing.JButton btnSalir2;
+    private javax.swing.JButton btnimprimir;
     private javax.swing.JTextField buscar1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
