@@ -557,48 +557,72 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     private void BtnAddItenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddItenActionPerformed
 
-        if (objProd.getStock() < Long.valueOf(TxtProdCantidad.getText())) {
-            String msg = "Stock disponible: " + objProd.getStock();
-
-            JOptionPane.showMessageDialog(rootPane, msg);
+        if (TxtProdNombre.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "ELIJA UN PRODUCTO");
         } else {
-            Detalle_ventas RegDetalleVentas = new Detalle_ventas();
+            if (objProd.getStock() < Long.valueOf(TxtProdCantidad.getText())) {
+                String msg = "Stock disponible: " + objProd.getStock();
 
-            RegDetalleVentas.setId_control(objProd.getId_control());
-            RegDetalleVentas.setId_producto(objProd.getId_producto());
-            RegDetalleVentas.setNombre_producto(objProd.getProducto_nombre());
-            RegDetalleVentas.setCantidad(Integer.parseInt(TxtProdCantidad.getText()));
-            RegDetalleVentas.setPrecio(objProd.getPrecio_venta());
-            RegDetalleVentas.setPrecio_compra(objProd.getPrecio_compra());
-            RegDetalleVentas.setSubtotal(objeto1.getSubtotal());
-            RegDetalleVentas.setDescuento(objeto1.getDescuento());
-            RegDetalleVentas.setIva(objeto1.getIva());
-            RegDetalleVentas.setTotal(objeto1.getTotal());
-
-            ListarDetalle.add(RegDetalleVentas);
-
-            for (int i = 0; i < ListarDetalle.size(); i++) {
-                System.out.println(ListarDetalle.get(i).getNombre_producto());
+                JOptionPane.showMessageDialog(rootPane, msg);
             }
-            Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
 
-            TxtProdNombre.setText("");
-            TxtProdPrecio.setText("");
-            TxtProdCantidad.setText("");
-            TxtProdPrecio.setText("");
-            TxtProdSubtotal.setText("");
-            TxtProdDescuento.setText("");
-            TxtProdIva.setText("");
-            TxtProdtotal.setText("");
-            TxtDescuentoPorcentaje.setText("");
-            TxtDescuentoPorcentaje.setEnabled(false);
+            System.out.println(" se repite  " + verificarObjeto(objProd.getId_producto().toString()));
+            if (verificarObjeto(objProd.getId_producto().toString()).equals("si")) {
 
-            CalcularDetalle();
+                JOptionPane.showMessageDialog(rootPane, "SE REPITE EL ITEM");
+            } else {
+                Detalle_ventas RegDetalleVentas = new Detalle_ventas();
 
+                RegDetalleVentas.setId_control(objProd.getId_control());
+                RegDetalleVentas.setId_producto(objProd.getId_producto());
+                RegDetalleVentas.setNombre_producto(objProd.getProducto_nombre());
+                RegDetalleVentas.setCantidad(Integer.parseInt(TxtProdCantidad.getText()));
+                RegDetalleVentas.setPrecio(objProd.getPrecio_venta());
+                RegDetalleVentas.setPrecio_compra(objProd.getPrecio_compra());
+                RegDetalleVentas.setSubtotal(objeto1.getSubtotal());
+                RegDetalleVentas.setDescuento(objeto1.getDescuento());
+                RegDetalleVentas.setIva(objeto1.getIva());
+                RegDetalleVentas.setTotal(objeto1.getTotal());
+
+                ListarDetalle.add(RegDetalleVentas);
+
+                for (int i = 0; i < ListarDetalle.size(); i++) {
+                    System.out.println(ListarDetalle.get(i).getNombre_producto());
+                }
+                Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
+
+                TxtProdNombre.setText("");
+                TxtProdPrecio.setText("");
+                TxtProdCantidad.setText("");
+                TxtProdPrecio.setText("");
+                TxtProdSubtotal.setText("");
+                TxtProdDescuento.setText("");
+                TxtProdIva.setText("");
+                TxtProdtotal.setText("");
+                TxtDescuentoPorcentaje.setText("");
+                TxtDescuentoPorcentaje.setEnabled(false);
+
+                CalcularDetalle();
+
+            }
         }
-
-
     }//GEN-LAST:event_BtnAddItenActionPerformed
+
+    public String verificarObjeto(String datos) {
+
+        String objeto1 = "no";
+
+        for (int i = 0; i < ListarDetalle.size(); i++) {
+
+            if (datos.equals(ListarDetalle.get(i).getId_producto().toString())) {
+                objeto1 = "si";
+            } else {
+                objeto1 = "no";
+            }
+        }
+        return objeto1;
+    }
+
 
     private void TxtProdCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtProdCantidadKeyTyped
         char car = evt.getKeyChar();
@@ -659,8 +683,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 TxtDescuentoPorcentaje.setEnabled(true);
                 TxtDescuentoPorcentaje.setText("0");
                 TxtProdDescuento.setText("0.00");
-                
-                System.out.println(" descuento  0" );
+
+                System.out.println(" descuento  0");
 
             }
 
@@ -847,8 +871,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
                 BigDecimal iva_val = new BigDecimal(iva_valor);
                 iva = iva_val.multiply(subtotal);
-                
-          
 
                 TxtProdIva.setText(iva.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
             }
@@ -891,16 +913,24 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPreVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPreVentas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPreVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPreVentas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPreVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPreVentas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPreVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPreVentas.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         /* Create and display the dialog */
