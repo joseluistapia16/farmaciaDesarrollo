@@ -425,6 +425,12 @@ public class actualizar_usuario extends javax.swing.JDialog {
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel16.setText("Confirmar");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
+
+        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPassKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 150, -1));
         jPanel1.add(txtConPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 150, -1));
 
@@ -663,6 +669,15 @@ public class actualizar_usuario extends javax.swing.JDialog {
             Logger.getLogger(actualizar_usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtPassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyTyped
+        char c = evt.getKeyChar();
+        if (c == ' ') {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Espacio no es un caracter válido");
+        }
+    }//GEN-LAST:event_txtPassKeyTyped
 
     public void VaciarImagen() {
         // String fil = "\\G:\\sin-imagen.png";

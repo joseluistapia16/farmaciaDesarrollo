@@ -188,6 +188,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUsuarioActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtUsuarioKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtContrasenia">
@@ -198,6 +199,7 @@
           </Properties>
           <Events>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtContraseniaKeyPressed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtContraseniaKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnAceptar">
