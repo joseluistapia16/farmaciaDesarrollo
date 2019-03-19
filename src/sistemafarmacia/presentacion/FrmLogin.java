@@ -111,11 +111,19 @@ public class FrmLogin extends javax.swing.JFrame {
                 txtUsuarioActionPerformed(evt);
             }
         });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
 
         txtContrasenia.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         txtContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtContraseniaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtContraseniaKeyTyped(evt);
             }
         });
 
@@ -221,21 +229,17 @@ public class FrmLogin extends javax.swing.JFrame {
             obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
             try {
             String a =  cr.Iniciar_sesion(obj);
-            JOptionPane.showMessageDialog(this, a);
-                if (!"Usuario no existe".equals(a)) {
+            //JOptionPane.showMessageDialog(this, a);
                 objeto = devuelveObjeto(txtUsuario.getText(), listar);
                 if (objeto != null) {
-                    System.out.println("holaaaaa");
+                    //System.out.println("holaaaaa");
                     FrmPrincipal acc = new FrmPrincipal(objeto);
                     acc.setVisible(true);
                     dispose();
                     listar.clear();
                     listar = cr.get_listar_usuario();
-                }
-                    //FrmPrincipal frm = new FrmPrincipal();
-                    //frm.setVisible(true);
-                    //dispose();
                 }else{
+                    JOptionPane.showMessageDialog(this, "Usuario no existe!!!");
                     txtUsuario.setText("");
                     txtContrasenia.setText("");
                 }
@@ -279,6 +283,32 @@ public class FrmLogin extends javax.swing.JFrame {
         Registrar_usuario ru = new Registrar_usuario(new javax.swing.JFrame(), true);
         ru.setVisible(true);
     }//GEN-LAST:event_btnCrearUsActionPerformed
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        char c = evt.getKeyChar();
+        char mas = '+', por='*', div='/', dp=':', pc=';', c2=',', p1='{', p2='}';
+        char lla1='[',el='^', lla2=']',el2='¿', co='?', co2='¡',c3='!', d='"',e='#';
+        char col='$', a='!',b='=',e2='%',f='&',g='=',h='º',i='ª',j='(',k=')',l='<',m='>';
+        char n='ç',o='´',p='`',q='¨',r='Ñ',s='·',t='ñ';
+        if (Character.isWhitespace(c) || c == mas || c == por || c ==  div || c == dp 
+                || c == pc || c == c2 || c == p1 || c == p2 || c == lla1 || c == lla2 
+                || c == el || c == el2 || c == co || c == co2 || c == c3 || c == d || c == e 
+                || c ==  col || c == a || c == b || c == e2 || c == f || c == g || c == h 
+                || c == i || c == j || c == k || c == l || c == m || c == n || c == o || c == p 
+                || c ==  q || c == r || c == s || c == t) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtUsuarioKeyTyped
+
+    private void txtContraseniaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyTyped
+        char c = evt.getKeyChar();
+        if (c == ' ') {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Espacio no es un caracter válido");
+        }
+    }//GEN-LAST:event_txtContraseniaKeyTyped
 
     /**
      * @param args the command line arguments

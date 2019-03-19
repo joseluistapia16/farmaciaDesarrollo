@@ -7,10 +7,8 @@ package com.farmacia.views.usuario;
 
 import com.farmacia.conponentes.Formulario;
 import com.farmacia.dao.CRUD;
-import com.farmacia.entities1.Estado_usuario;
 import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Listar_usuario;
-import com.farmacia.entities1.Punto_venta;
 import com.farmacia.entities1.Rol_U;
 import com.farmacia.entities1.Usuario_S;
 import com.farmacia.operaciones.Operaciones;
@@ -131,21 +129,25 @@ public class Registrar_usuario extends javax.swing.JDialog {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(0, 21, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(lbImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnImagen)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(btnLimpiar)
                 .addContainerGap())
         );
@@ -346,17 +348,15 @@ public class Registrar_usuario extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addGap(244, 244, 244)
-                            .addComponent(btnGuardar)
-                            .addGap(159, 159, 159)
-                            .addComponent(btnSalir)
-                            .addGap(210, 210, 210))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnGuardar)
+                                .addGap(159, 159, 159)
+                                .addComponent(btnSalir)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -577,9 +577,9 @@ public class Registrar_usuario extends javax.swing.JDialog {
         }else if (txtCell.getText().length() < 9) {
             JOptionPane.showMessageDialog(null, "Ingrese un número de contacto válido ");
         }else if (txtCell.getText().length() > 12) {
-            JOptionPane.showMessageDialog(null, "Exede la cantidad de numeros válidos permitidos ");
-        }else if (txtConven.getText().length() < 11) {
-            JOptionPane.showMessageDialog(null, "Exede la cantidad de numeros válidos permitidos");
+            JOptionPane.showMessageDialog(null, "Exede la cantidad de numeros válidos permitidos para celular");
+        }else if (txtConven.getText().length() > 12) {
+            JOptionPane.showMessageDialog(null, "Exede la cantidad de numeros válidos permitidos para convencional");
         }else if (txtCorreo.getText().length() < 5) {
             JOptionPane.showMessageDialog(null, "Ingrese un correo válido ");
         }else if (txtDireccion.getText().length() < 4) {
@@ -598,7 +598,7 @@ public class Registrar_usuario extends javax.swing.JDialog {
             obj.setTelefono(txtCell.getText());
             obj.setRuta_imagen(imagen);
             obj.setGenero(cbGenero.getSelectedItem().toString());
-            obj.setCargo(cbGenero.getSelectedItem().toString());
+            obj.setCargo(cbRol.getSelectedItem().toString());
             obj.setConvencional(txtConven.getText());
             obj.setCorreo(txtCorreo.getText());
             obj.setDireccion(txtDireccion.getText());
@@ -613,6 +613,17 @@ public class Registrar_usuario extends javax.swing.JDialog {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e);
             }
+            txtApellido.setText("");
+            txtCedula.setText("");
+            txtCell.setText("");
+            txtConven.setText("");
+            txtCorreo.setText("");
+            txtDireccion.setText("");
+            txtNombre.setText("");
+            txtObservacion.setText("");
+            cbGenero.setSelectedIndex(0);
+            cbRol.setSelectedIndex(0);
+            VaciarImagen();
         }
     }
 

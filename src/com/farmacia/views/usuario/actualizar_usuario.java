@@ -176,8 +176,8 @@ public class actualizar_usuario extends javax.swing.JDialog {
         txtId = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        txtPass = new javax.swing.JTextField();
-        txtConPass = new javax.swing.JTextField();
+        txtPass = new javax.swing.JPasswordField();
+        txtConPass = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -881,13 +881,13 @@ public class actualizar_usuario extends javax.swing.JDialog {
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCell;
-    private javax.swing.JTextField txtConPass;
+    private javax.swing.JPasswordField txtConPass;
     private javax.swing.JTextField txtConven;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextArea txtObservacion;
-    private javax.swing.JTextField txtPass;
+    private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
 }

@@ -1071,15 +1071,15 @@ public class Tablas {
 
     public static void cargarJoinUsuario(JTable Tabla, ArrayList<Listar_usuario> lista) {
 
-        int[] a = {10, 50, 40, 52, 52, 80, 30, 52, 30, 30,30};
+        int[] a = {10, 50, 40, 52, 52, 80, 30, 52, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.LEFT);
         tcr1.setHorizontalAlignment(SwingConstants.CENTER);
         model = VaciarTabla(Tabla);
         String[] Co = {"CÓDIGO", "FECHA DE REGISTRO", "CÉDULA", "APELLIDOS", "NOMBRES", "DIRECCIÓN", "CELULAR", /*"CONVENCIONAL",*/
-            "CORREO", "CARGO", "GÉNERO", "ESTADO" /*"OBSERVACIÓN"*/};
-        String[] Filas = new String[11];
+            "CORREO", "CARGO"/*"OBSERVACIÓN"*/};
+        String[] Filas = new String[9];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
@@ -1092,8 +1092,6 @@ public class Tablas {
             Filas[6] = lista.get(i).getTelefono();
             Filas[7] = lista.get(i).getCorreo();
             Filas[8] = lista.get(i).getCargo();
-            Filas[9] = lista.get(i).getGenero();
-            Filas[10] = lista.get(i).getEstado();
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -1114,10 +1112,6 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(8).setPreferredWidth(a[8]);
             Tabla.getColumnModel().getColumn(8).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(9).setPreferredWidth(a[9]);
-            Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[9]);
-            Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
         }
     }
 
