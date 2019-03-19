@@ -176,8 +176,8 @@ public class actualizar_usuario extends javax.swing.JDialog {
         txtId = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        txtPass = new javax.swing.JTextField();
-        txtConPass = new javax.swing.JTextField();
+        txtPass = new javax.swing.JPasswordField();
+        txtConPass = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -425,12 +425,6 @@ public class actualizar_usuario extends javax.swing.JDialog {
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel16.setText("Confirmar");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, -1, -1));
-
-        txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPassKeyTyped(evt);
-            }
-        });
         jPanel1.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 150, -1));
         jPanel1.add(txtConPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 150, -1));
 
@@ -670,15 +664,6 @@ public class actualizar_usuario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txtPassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyTyped
-        char c = evt.getKeyChar();
-        if (c == ' ') {
-            getToolkit().beep();
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Espacio no es un caracter válido");
-        }
-    }//GEN-LAST:event_txtPassKeyTyped
-
     public void VaciarImagen() {
         // String fil = "\\G:\\sin-imagen.png";
         String fil = "//home//ineval//Escritorio//P-FARMACIA UBUNTU//sin-imagen.png";
@@ -896,13 +881,13 @@ public class actualizar_usuario extends javax.swing.JDialog {
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCell;
-    private javax.swing.JTextField txtConPass;
+    private javax.swing.JPasswordField txtConPass;
     private javax.swing.JTextField txtConven;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextArea txtObservacion;
-    private javax.swing.JTextField txtPass;
+    private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
 }

@@ -613,6 +613,17 @@ public class Registrar_usuario extends javax.swing.JDialog {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e);
             }
+            txtApellido.setText("");
+            txtCedula.setText("");
+            txtCell.setText("");
+            txtConven.setText("");
+            txtCorreo.setText("");
+            txtDireccion.setText("");
+            txtNombre.setText("");
+            txtObservacion.setText("");
+            cbGenero.setSelectedIndex(0);
+            cbRol.setSelectedIndex(0);
+            VaciarImagen();
         }
     }
 
