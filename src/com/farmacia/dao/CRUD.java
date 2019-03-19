@@ -2486,18 +2486,19 @@ public class CRUD {
         return valor;
     }
 
-    public String Iniciar_sesion(Usuario_S us) {
+    public String Iniciar_sesion(Listar_usuario us) {
         String valor = null;
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call iniciar_sesion(?,?,?,?,?) }");
+                    "{ call fc_login_bitacora(?,?,?,?,?,?) }");
             pro.setString(1, us.getCorreo());
             pro.setString(2, us.getPassword());
             pro.setString(3, us.getIp_equipo());
 //            pro.setString(4, us.getIp_publico());
             pro.setString(4, us.getUsuario_equipo());
+            pro.setString(5, us.getDir_ip_completa());
             pro.registerOutParameter("salida", Types.VARCHAR);
 //            pro.executeUpdate();
             pro.execute();
@@ -4307,6 +4308,40 @@ public class CRUD {
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
                 JoinListarNotaPedidosCabecera obj = EntidadesMappers.getListadoCabeceraNotaPedidoEnComprasRangoFechaFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }  
+  ///////////////////RANGO FECHA Venta
+  public ArrayList<JoinListarCabeceraVenta> RangoFechaVenta(int op,JoinListarCabeceraVenta cab) {
+        ArrayList<JoinListarCabeceraVenta> lista = new ArrayList<JoinListarCabeceraVenta>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call FiltroRangoFechaVenta(?,?,?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.setString(2,cab.getFecha1());
+            prcProcedimientoAlmacenado.setString(3,cab.getFecha2());
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                JoinListarCabeceraVenta obj = EntidadesMappers.getListadoCabeceraVentaFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();

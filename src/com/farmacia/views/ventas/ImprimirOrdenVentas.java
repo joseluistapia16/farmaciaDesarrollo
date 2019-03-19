@@ -127,7 +127,7 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
             parametro.put("_id_cabecera", Integer.parseInt(String.valueOf(obj.getId_cabecera_venta())));
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
-            JasperViewer view = new JasperViewer(jprint, false);
+            JasperViewer view;
 //            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
             view = new JasperViewer(jprint, false);

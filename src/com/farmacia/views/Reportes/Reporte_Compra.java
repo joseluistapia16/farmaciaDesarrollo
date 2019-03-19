@@ -262,10 +262,6 @@ public class Reporte_Compra extends javax.swing.JDialog {
         BigDecimal Suma = new BigDecimal("0.00");
         for (int i = 0; i < tbaCabeceraCompra.getRowCount(); i++) {
             total1 = total1 + Double.parseDouble("" + lista.get(i).getTotal());
-
-//            System.out.println(" Valorggg "+""+lista.get(i).getTotal());
-//            System.out.println(" Valor "+total1);
-//            System.out.println("TOTAL "+Suma);
         }
         Txt_Total.setText(Formato_Numeros.formatoNumero(total1.toString()));
     }

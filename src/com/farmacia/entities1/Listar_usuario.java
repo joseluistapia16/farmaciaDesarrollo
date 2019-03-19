@@ -29,12 +29,16 @@ public class Listar_usuario {
     private String estado;
     private Long id_genero;
     private Long id_estado;
+    private String ip_equipo;
+    private String ip_publico;
+    private String usuario_equipo;
+    private String dir_ip_completa;
     
 
     public Listar_usuario() {
     }
 
-    public Listar_usuario(Long id_sesion, String fecha_registro, String cedula, String apellidos, String nombres, String direccion, String telefono, String convencional, String correo, String password, Long id_rol, String ruta_imagen, Long id_usuario_registro, String cargo, String genero, String discapacidad, String porcentaje, String observacion, String estado, Long id_genero, Long id_estado) {
+    public Listar_usuario(Long id_sesion, String fecha_registro, String cedula, String apellidos, String nombres, String direccion, String telefono, String convencional, String correo, String password, Long id_rol, String ruta_imagen, Long id_usuario_registro, String cargo, String genero, String discapacidad, String porcentaje, String observacion, String estado, Long id_genero, Long id_estado, String ip_equipo, String ip_publico, String usuario_equipo, String dir_ip_completa) {
         this.id_sesion = id_sesion;
         this.fecha_registro = fecha_registro;
         this.cedula = cedula;
@@ -56,6 +60,10 @@ public class Listar_usuario {
         this.estado = estado;
         this.id_genero = id_genero;
         this.id_estado = id_estado;
+        this.ip_equipo = ip_equipo;
+        this.ip_publico = ip_publico;
+        this.usuario_equipo = usuario_equipo;
+        this.dir_ip_completa = dir_ip_completa;
     }
 
     public Long getId_sesion() {
@@ -224,6 +232,38 @@ public class Listar_usuario {
 
     public void setId_estado(Long id_estado) {
         this.id_estado = id_estado;
+    }
+
+    public String getIp_equipo() {
+        return ip_equipo;
+    }
+
+    public void setIp_equipo(String ip_equipo) {
+        this.ip_equipo = ip_equipo;
+    }
+
+    public String getIp_publico() {
+        return ip_publico;
+    }
+
+    public void setIp_publico(String ip_publico) {
+        this.ip_publico = ip_publico;
+    }
+
+    public String getUsuario_equipo() {
+        return usuario_equipo;
+    }
+
+    public void setUsuario_equipo(String usuario_equipo) {
+        this.usuario_equipo = usuario_equipo;
+    }
+
+    public String getDir_ip_completa() {
+        return dir_ip_completa;
+    }
+
+    public void setDir_ip_completa(String dir_ip_completa) {
+        this.dir_ip_completa = dir_ip_completa;
     }
 
 }

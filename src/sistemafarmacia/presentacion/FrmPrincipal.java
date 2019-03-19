@@ -1,5 +1,6 @@
 package sistemafarmacia.presentacion;
 
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.view.principal.Envases;
 import com.farmacia.view.principal.Tipo_Producto;
 import com.farmacia.views.clientes.Consulta_Clientes;
@@ -33,15 +34,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private static final String TITLE = "Principal";
     VariablesFunciones variables = new VariablesFunciones();
+    Listar_usuario objUsuario = null;
 //    private static Usuario usuarioSession;
 
 //    public static Usuario getUsuarioSession() {
 //        return usuarioSession;
 //    }
-    public FrmPrincipal(/*Usuario usuario*/) {
+//    public FrmPrincipal() {
+//        //initComponents();
+//    }
+    
+    public FrmPrincipal(Listar_usuario obj2) {
         initComponents();
 
-        this.setTitle(variables.getTitle() + TITLE);
+        this.setTitle(variables.getTitle() + TITLE+"  "+obj2.getCargo()+": "+obj2.getNombres()+"  "+obj2.getApellidos());
         this.setLocationRelativeTo(null);
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.setIconImage(variables.getIconoVentana());
@@ -56,6 +62,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //        usuarioSession = usuario;
 //        lblNombreUsuario.setText(usuario.getPersona().getNombres() + " " + usuario.getPersona().getApellidos());
 //        lblPrivilegio.setText(usuario.getPerfil());
+        objUsuario=obj2;
+        lblNombreUsuario.setText(obj2.getNombres()+" "+obj2.getApellidos());
+        lblPrivilegio.setText(" "+obj2.getCargo());
+    }
+
+    private FrmPrincipal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -676,8 +689,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new FrmPrincipal().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new FrmPrincipal().setVisible(true);
+            }
         });
     }
 
