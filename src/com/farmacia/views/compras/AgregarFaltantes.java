@@ -5,6 +5,7 @@
  */
 package com.farmacia.views.compras;
 
+import com.farmacia.entities1.Faltantes;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import java.awt.MouseInfo;
@@ -16,9 +17,9 @@ import java.awt.Point;
  */
 public class AgregarFaltantes extends javax.swing.JDialog {
 
-    int x, y;
+    int x, y,rep=0;
     joinProductoDetallesFaltantes objf = new joinProductoDetallesFaltantes();
-
+    Faltantes objf2 = new Faltantes();
     public AgregarFaltantes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
@@ -26,12 +27,12 @@ public class AgregarFaltantes extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
     }
 
-    public AgregarFaltantes(java.awt.Frame parent, boolean modal, FaltantesCabeceraDetalles obj1) {
+    public AgregarFaltantes(java.awt.Frame parent, boolean modal, Faltantes obj1) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-        llenarFormulario(obj1);
+        llenarFormulario2(obj1);
     }
 
     /**
@@ -257,9 +258,24 @@ public class AgregarFaltantes extends javax.swing.JDialog {
         objf.setNombre_producto(obj.getNombre());
 
     }
+    private void llenarFormulario2(Faltantes obj2) {
+        codigo.setText(obj2.getId_producto().toString());
+        producto.setText(obj2.getNombre());
+        marca.setText(obj2.getMarcas());
+        descripcion.setText(obj2.getDescripcion());
+//        tipo.setText(obj2.getTipo());
+        /////
+        objf2.setId_producto(obj2.getId_producto());
+        objf2.setMarcas(obj2.getMarcas());
+        objf2.setDescripcion(obj2.getDescripcion());
+        objf2.setNombre(obj2.getNombre());
+        objf2.setTotal((obj2.getTotal()));
+        objf2.setCantidad_minima((obj2.getCantidad_minima()));
+
+    }
     private void cantidadproKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidadproKeyTyped
         char car = evt.getKeyChar();
-        if (cantidadpro.getText().length() >= 10) {
+        if (cantidadpro.getText().length() >= 6) {
             evt.consume();
         }
         if ((car < '0' || car > '9')) {
@@ -283,13 +299,16 @@ public class AgregarFaltantes extends javax.swing.JDialog {
             num = cantidadpro.getText();
 
         }
-
-        objf.setCantidad(Integer.parseInt(num));
-        // System.out.println("  "+objf.getCantidad());
+        rep++;
+        objf2.setTotal(Integer.parseInt(num));
+        System.out.println(" cantidad cc " + objf2.getTotal());
         setVisible(false);
     }//GEN-LAST:event_btnAnadirActionPerformed
     public joinProductoDetallesFaltantes getObjf() {
         return objf;
+    }
+    public Faltantes getObjf2() {
+        return objf2;
     }
     private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
         // TODO add your handling code here:

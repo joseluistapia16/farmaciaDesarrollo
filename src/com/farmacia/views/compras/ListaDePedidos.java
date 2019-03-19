@@ -12,6 +12,7 @@ import com.farmacia.validaciones.ComponentesFaltantes;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.entities1.Faltantes;
 //import com.objetos.componentes.Tablas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,13 +52,14 @@ public class ListaDePedidos extends javax.swing.JDialog {
     DefaultTableModel model;
     FaltantesCabeceraDetalles objeto = null;
     Long id_detalle_faltantes;
+    Faltantes objeto2 = null;
 
     filtrosProductos fil = new filtrosProductos();
     static ArrayList<joinProductoDetallesFaltantes> listar = null;
 
     static ArrayList<FaltantesCabeceraDetalles> listar2 = null;
-    ArrayList<FaltantesCabeceraDetalles> lista = crud.listarJoinProductosFaltantes(0);
-    ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
+    ArrayList<Faltantes> lista = crud.listarJoinProductosFaltantes(0);
+    ArrayList<Faltantes> lista1 = new ArrayList<Faltantes>();
     ActualizarFaltantes lista_mod = new ActualizarFaltantes();
 
     /**
@@ -71,7 +73,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
         this.setResizable(false);
 
         txtFecha.setText(FechaActual());
-        Tablas.cargarJoinProducto(tbaProductosA, lista);
+       Tablas.cargarJoinFaltantes_cantidad(tbaProductosA, lista);
 
         Timer tiempo = new Timer(100, new ListaDePedidos.horas());
         tiempo.start();
@@ -425,26 +427,34 @@ public class ListaDePedidos extends javax.swing.JDialog {
     private void tbaProductosAMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaProductosAMousePressed
         int i = 0;
         String msg = null;
+        Faltantes objf2 = null;
         try {
             if (evt.getClickCount() == 2) {
 
                 i = tbaProductosA.getSelectedRow();
-                objeto = devuelveObjeto(tbaProductosA.getValueAt(i, 0).toString(), lista);
-                if (objeto != null) {
+                objeto2 = devuelveObjeto(tbaProductosA.getValueAt(i, 0).toString(), lista);
+                if (objeto2 != null) {
 
-                    AgregarFaltantes acc = new AgregarFaltantes(new javax.swing.JFrame(), true, objeto);
+                    AgregarFaltantes acc = new AgregarFaltantes(new javax.swing.JFrame(), true, objeto2);
                     acc.setVisible(true);
-                    msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantesB, objeto.getId_productos().toString());
+                    objf2 = acc.getObjf2();
+
+                    msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantesB, objeto2.getId_producto().toString());
                     if (msg == null) {
-                        Tablas.cargarJoinProducto(tbaProductosA, lista);
-                        if (acc.getObjf().getCantidad() > 0) {
-                            int suma = Integer.parseInt(tbaProductosA.getValueAt(i, 4).toString()) + acc.getObjf().getCantidad();
-                            getPosicion(objeto.getId_productos(), suma);
+                        Tablas.cargarJoinFaltantes_cantidad(tbaProductosA, lista);
 
-                            lista1.add(acc.getObjf());
-                            Tablas.cargarJoinProducto(tbaProductosA, lista);
-                            Tablas.cargarFaltantes(tbaListaFaltantesB, lista1);
+                        if (objf2.getTotal() > 0) {
+//                          System.out.println(" prueba 367 " + objf2.getNombre());
 
+                            int suma = Integer.parseInt((String) tbaProductosA.getValueAt(i, 2)) + objf2.getTotal();
+                            lista.get(i).setCantidad_faltantes(suma);
+                            getPosicion(objeto2.getId_producto(), suma);
+                            lista1.add(acc.getObjf2());
+
+                            Tablas.cargarJoinFaltantes_cantidad(tbaProductosA, lista);
+                            Tablas.cargarFaltantesB(tbaListaFaltantesB, lista1);
+
+                            System.out.println("suma: " + suma);
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, msg);
@@ -466,13 +476,24 @@ public class ListaDePedidos extends javax.swing.JDialog {
 
     private void getPosicion(Long id, int valor) {
         for (int i = 0; i < lista.size(); i++) {
-            if (id == lista.get(i).getId_productos()) {
+            if (id == lista.get(i).getId_producto()) {
                 lista.get(i).setCantidad(valor);
             }
         }
 
     }
+    private int getPosicion2(Long id) {
+        int po = -1;
+        System.out.println("metodo " + id);
+        for (int i = 0; i < lista.size(); i++) {
+            if (id == lista.get(i).getId_producto()) {
+                po = i;
+                break;
+            }
+        }
+        return po;
 
+    }
     private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
         String f = filtro.getText().toUpperCase();
         String query = "";
@@ -482,7 +503,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
         }
         if (pos == 0) {
             if ("".equals(f)) {
-                Tablas.cargarJoinProducto(tbaProductosA, lista);
+                Tablas.cargarJoinFaltantes_cantidad(tbaProductosA, lista);
             } else {
                 query = fil.codigoFaltantes() + f;
                 System.out.println(query);
@@ -499,7 +520,6 @@ public class ListaDePedidos extends javax.swing.JDialog {
         listar2 = crud.filtroBusqueda(query);
         Tablas.cargarJoinProductosFaltantes(tbaProductosA, listar2);
         query = "";
-
     }//GEN-LAST:event_filtrarActionPerformed
 
     private void filtroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filtroKeyTyped
@@ -521,21 +541,32 @@ public class ListaDePedidos extends javax.swing.JDialog {
     private void tbaListaFaltantesBMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesBMousePressed
 //        Integer Resta = 0;
         try {
+
             if (evt.getClickCount() == 2) {
+
                 int r = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este producto de la lista?", "", JOptionPane.YES_NO_OPTION);
                 if (r == JOptionPane.YES_OPTION) {
                     int i = tbaListaFaltantesB.getSelectedRow();
 
-                    objeto = devuelveObjeto(lista.get(i).getId_productos().toString(), lista);
+                    int pos2 = getPosicion2(Long.parseLong((String) tbaListaFaltantesB.getValueAt(i, 0)));
+                    int Resta = (lista.get(pos2).getCantidad_faltantes()) - (Integer.parseInt((String) tbaListaFaltantesB.getValueAt(i, 4)));
 
-//                    int Resta = Integer.parseInt(tbaListaFaltantesB.getValueAt(i, 4).toString()) -  objeto.getCantidad());
-//                    System.out.println("cant 1 "+tbaListaFaltantesB.getValueAt(i, 4).toString());
-//                    System.out.println("cant 2 "+tbaProductosA.getValueAt(i, 4).toString());
-//                    getPosicion(objeto.getId_productos(), Resta);
-//
-//                    System.out.println("Resta "+Resta);
+                    if (Resta < 0) {
+
+                        Resta = Resta * -1;
+
+                    }
+                    System.out.println(pos2 + "  resta 1 " + Resta);
+                    lista.get(pos2).setCantidad_faltantes(Resta);
+
                     lista1.remove(i);
-                    Tablas.cargarFaltantes(tbaListaFaltantesB, lista1);
+
+//                    System.out.println("cantidad 1: " + (Integer.parseInt((String) tbaProductosA.getValueAt(i, 5))));
+//                    System.out.println("cantidad 2: " + tbaListaFaltantesB.getValueAt(i, 4));
+//                    System.out.println("POS: " + pos2 + " ID: " + acc.getObjf2().getId_productos() + " Resta " + Resta);
+                    Tablas.cargarJoinFaltantes_cantidad(tbaProductosA, lista);
+                    Tablas.cargarFaltantesB(tbaListaFaltantesB, lista1);
+                    Resta = 0;
                 } else {
 
                 }
@@ -543,7 +574,6 @@ public class ListaDePedidos extends javax.swing.JDialog {
             }
         } catch (Exception e) {
         }
-
 
     }//GEN-LAST:event_tbaListaFaltantesBMousePressed
 
@@ -570,10 +600,10 @@ public class ListaDePedidos extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public FaltantesCabeceraDetalles devuelveObjeto(String datos, ArrayList<FaltantesCabeceraDetalles> listarobj) {
-        FaltantesCabeceraDetalles objeto1 = null;
+    public Faltantes devuelveObjeto(String datos, ArrayList<Faltantes> listarobj) {
+        Faltantes objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_productos().toString())) {
+            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
                 objeto1 = listarobj.get(i);
                 break;
             }
@@ -598,7 +628,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
 
             cad1 = "update detalle_faltantes set cantidad=" + cant + ",fecha_registro=" + "'"
                     + txtFecha.getText() + " " + txtHora.getText() + "'"
-                    + ", estado ='OK' where id_producto=" + (String) tbaListaFaltantesB.getValueAt(i, 0) + ";";
+                    + ", estado ='TR' where id_producto=" + (String) tbaListaFaltantesB.getValueAt(i, 0) + ";";
 
             queryL.add(cad);
             queryL1.add(cad1);
@@ -616,7 +646,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
         String cant = "0";
         for (int i = 0; i < tbaProductosA.getRowCount(); i++) {
             if (id.equals((String) tbaProductosA.getValueAt(i, 0))) {
-                cant = (String) tbaProductosA.getValueAt(i, 4);
+                cant = (String) tbaProductosA.getValueAt(i, 2);
                 break;
             }
         }
