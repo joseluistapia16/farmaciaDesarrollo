@@ -1,14 +1,18 @@
 package sistemafarmacia.presentacion;
 
 import com.farmacia.dao.CRUD;
-import com.farmacia.entities1.Bitacora_seguridad;
+import com.farmacia.entities1.Listar_usuario;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import com.farmacia.entities1.Usuario;
-import com.farmacia.entities1.Usuario_S;
 import com.farmacia.operaciones.Operaciones;
+import com.farmacia.views.usuario.Mostrar_usuario;
+import com.farmacia.views.usuario.Registrar_usuario;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sistemafarmacia.VariablesFunciones;
 
 public class FrmLogin extends javax.swing.JFrame {
@@ -16,6 +20,8 @@ public class FrmLogin extends javax.swing.JFrame {
     private static final String TITLE = "Login";
     VariablesFunciones variables = new VariablesFunciones();
     CRUD cr = new CRUD();
+    Listar_usuario objeto = null;
+    ArrayList<Listar_usuario> listar = null;
 
     public FrmLogin() {
         initComponents();
@@ -34,6 +40,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         btnAceptar.setIcon(variables.getIconoBoton(btnAceptar, 120, 10, "check"));
         btnSalir.setIcon(variables.getIconoBoton(btnSalir, 120, 10, "salir"));
+        listar = cr.get_listar_usuario();
     }
 
     @SuppressWarnings("unchecked")
@@ -43,37 +50,52 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         pnlBanner = new javax.swing.JPanel();
         lblBanner = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txpContrasenia = new javax.swing.JPasswordField();
-        btnSalir = new javax.swing.JButton();
+        txtContrasenia = new javax.swing.JPasswordField();
         btnAceptar = new javax.swing.JButton();
+        btnCrearUs = new javax.swing.JButton();
         lblPresentacion = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         lblBanner.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblBanner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBanner.setText("CABECERA");
 
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlBannerLayout = new javax.swing.GroupLayout(pnlBanner);
         pnlBanner.setLayout(pnlBannerLayout);
         pnlBannerLayout.setHorizontalGroup(
             pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBannerLayout.createSequentialGroup()
+            .addGroup(pnlBannerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(lblBanner, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         pnlBannerLayout.setVerticalGroup(
             pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBannerLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBannerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlBannerLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -83,17 +105,17 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Contraseña:");
 
-        txtUsuario.setText("farmacia");
+        txtUsuario.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
             }
         });
 
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
+        txtContrasenia.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        txtContrasenia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContraseniaKeyPressed(evt);
             }
         });
 
@@ -105,6 +127,14 @@ public class FrmLogin extends javax.swing.JFrame {
             }
         });
 
+        btnCrearUs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/agregarCliente.png"))); // NOI18N
+        btnCrearUs.setText("Usuario");
+        btnCrearUs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearUsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -113,8 +143,9 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addGap(11, 11, 11)
+                        .addComponent(btnCrearUs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -125,8 +156,8 @@ public class FrmLogin extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txpContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -139,11 +170,11 @@ public class FrmLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txpContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnCrearUs, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,9 +183,9 @@ public class FrmLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
                 .addComponent(lblPresentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -175,60 +206,61 @@ public class FrmLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        String username = txtUsuario.getText();
-        String password = txpContrasenia.getText();
-        Usuario usuario = new Usuario();
-        usuario.setUsername(username);
-        usuario.setPassword(password);
-        usuario.setUsername(username);
-        usuario.setPassword(password);
-        Bitacora_seguridad bs = new Bitacora_seguridad();
-            Usuario_S obj = new Usuario_S();
+    public void iniciarSesion() {
+        if (txtUsuario.getText().length() < 4 ) {
+            JOptionPane.showMessageDialog(null, "Ingrese un usuario válido");
+        }else if (txtUsuario.getText().length() < 8 ) {
+            JOptionPane.showMessageDialog(null, "Ingrese una contraseña válida");
+        }else {
+            Listar_usuario obj = new Listar_usuario();
             obj.setCorreo(txtUsuario.getText());
-            obj.setPassword(txpContrasenia.getText());
+            obj.setPassword(txtContrasenia.getText());
             obj.setIp_equipo(Operaciones.getIpDispositivo());
 //            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
+            obj.setDir_ip_completa(Operaciones.getIpLocalCompleta());
             obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
-
-            bs.setUser(txtUsuario.getText());
-            bs.setPassword(txpContrasenia.getText());
-            bs.setIp_equipo(Operaciones.getIpDispositivo());
-            bs.setUsuario_equipo(Operaciones.getNombreDispositivo());
-            bs.setDir_ip_completa(Operaciones.getIpLocalCompleta());
-            String salida = cr.Iniciar_sesion(obj);
-            cr.bitacoraSeguridad(bs);
-        
-         if ("farmacia".equals(usuario.getUsername()) && "1234".equals(usuario.getPassword())) {
-
-            FrmPrincipal frmp = new FrmPrincipal();
-
-//                if(usuario.getId()==2){
-//                    frmp.btnProducto.setEnabled(false);
-//                    frmp.mnuAdministracion.setEnabled(false);
-//                }
-            frmp.setVisible(true);
-            this.dispose();
+            try {
+            String a =  cr.Iniciar_sesion(obj);
+            JOptionPane.showMessageDialog(this, a);
+                if (!"Usuario no existe".equals(a)) {
+                objeto = devuelveObjeto(txtUsuario.getText(), listar);
+                if (objeto != null) {
+                    System.out.println("holaaaaa");
+                    FrmPrincipal acc = new FrmPrincipal(objeto);
+                    acc.setVisible(true);
+                    dispose();
+                    listar.clear();
+                    listar = cr.get_listar_usuario();
+                }
+                    //FrmPrincipal frm = new FrmPrincipal();
+                    //frm.setVisible(true);
+                    //dispose();
+                }else{
+                    txtUsuario.setText("");
+                    txtContrasenia.setText("");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e);
+            }
             
         }
-        else if("Bienvenido".equals(salida)){
-            FrmPrincipal frmp = new FrmPrincipal();
-
-//                if(usuario.getId()==2){
-//                    frmp.btnProducto.setEnabled(false);
-//                    frmp.mnuAdministracion.setEnabled(false);
-//                }
-            frmp.setVisible(true);
-            this.dispose();
-            }
-        
-       else {
-            JOptionPane.showMessageDialog(this, "Datos Incorrectos");
-        }
-
-
+    }
+    
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+    iniciarSesion();    
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    public Listar_usuario devuelveObjeto(String datos, ArrayList<Listar_usuario> listarobj) {
+        Listar_usuario objeto1 = null;
+        for (int i = 0; i < listarobj.size(); i++) {
+            if (datos.equals(listarobj.get(i).getCorreo())) {
+                objeto1 = listarobj.get(i);
+                break;
+            }
+        }
+        return objeto1;
+    }
+    
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -236,6 +268,17 @@ public class FrmLogin extends javax.swing.JFrame {
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtContraseniaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseniaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            iniciarSesion();
+        }
+    }//GEN-LAST:event_txtContraseniaKeyPressed
+
+    private void btnCrearUsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsActionPerformed
+        Registrar_usuario ru = new Registrar_usuario(new javax.swing.JFrame(), true);
+        ru.setVisible(true);
+    }//GEN-LAST:event_btnCrearUsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,6 +317,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnCrearUs;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -282,7 +326,7 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lblBanner;
     private javax.swing.JLabel lblPresentacion;
     private javax.swing.JPanel pnlBanner;
-    private javax.swing.JPasswordField txpContrasenia;
+    private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

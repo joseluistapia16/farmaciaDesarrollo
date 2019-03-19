@@ -18,6 +18,7 @@ import com.farmacia.validaciones.Validacion;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -49,6 +50,7 @@ public class Registrar_usuario extends javax.swing.JDialog {
         cbGenero.setModel(Formulario.listarComboGenero(lista1));
         cbRol.setModel(Formulario.listarComboRol(lista2));
         Habilitar(false);
+        imagenes();
     }
 
     /**
@@ -388,6 +390,13 @@ public class Registrar_usuario extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void imagenes(){
+        ImageIcon logo = new ImageIcon(getClass().getResource("/img/cliente.png"));
+        Icon fondoLogo = new ImageIcon(logo.getImage().getScaledInstance(lbImagen.getWidth(), lbImagen.getHeight(), Image.SCALE_DEFAULT));
+        lbImagen.setIcon(fondoLogo);
+        this.repaint();
+    }
+    
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         VaciarImagen();
     }//GEN-LAST:event_btnLimpiarActionPerformed

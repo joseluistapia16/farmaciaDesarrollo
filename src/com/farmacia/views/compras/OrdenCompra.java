@@ -888,7 +888,7 @@ public static String FechaActual() {
     }//GEN-LAST:event_cbxFormaPActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-        ArrayList tablac = new ArrayList();
+       ArrayList tablac = new ArrayList();
         for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
             ClaseReporte tabla1 = new ClaseReporte(txtNombre.getText(),
                     txtCodigoProveedor.getText(),

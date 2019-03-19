@@ -657,7 +657,8 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         ProveedorRep proveedor1 = new ProveedorRep(cedula.getText(),nombre1.getText(),contacto.getText(),dire.getText(),fecha.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),rutaimagen);
         proveedor.add(proveedor1);
         try {
-            JasperReport reporte =  (JasperReport) JRLoader.loadObject("Editar_Proveedor.jasper");            
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"Editar_Proveedor.jasper";
+            JasperReport reporte =  (JasperReport) JRLoader.loadObject(dir);            
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(proveedor));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

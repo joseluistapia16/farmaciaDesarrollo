@@ -313,43 +313,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
     }
     
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-filtroUsuario();
-//        String f = txtFiltro.getText().toUpperCase();
-//        String query = "";
-//        int pos = cbFiltro.getSelectedIndex();
-//        if ("".equals(f)) {
-//            query = fil.comboTodoUsuario();
-//        }
-//        if (pos == 0) {
-//            if ("".equals(f)) {
-//                query = fil.comboTodoUsuario();
-////                Tablas.cargarJoinUsuario(jtUsuario, listar);
-//            } else {
-//                query = fil.comboUsuarioId() + f;
-//                System.out.println(query);
-//            }
-//        }
-//        if (pos == 1) {
-//            query = fil.comboUsuarioCedula() + f + "%'";
-//        }
-//        if (pos == 2) {
-//            query = fil.comboUsuarioApellido() + f + "%'";
-//        }
-//        if (pos == 3) {
-//            query = fil.comboUsuarioFecha() + f + "%'";
-//        }
-//        
-//        if (pos == 4) {
-//            query = fil.comboUsuarioActivo();
-//        }
-//        if (pos == 4) {
-//            query = fil.comboUsuarioInactivo();
-//        }
-//        listar = crud.filtroBusquedaUsuario(query);
-//        // System.err.println(query);
-//        Tablas.cargarJoinUsuario(jtUsuario, listar);
-//        query = "";
-//        txtFiltro.setText("");
+    filtroUsuario();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
