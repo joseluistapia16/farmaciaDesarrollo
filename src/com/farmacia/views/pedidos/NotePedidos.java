@@ -816,8 +816,7 @@ public class NotePedidos extends javax.swing.JDialog {
             setVisible(false);
 
         } else {
-            
-            
+
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
@@ -844,28 +843,28 @@ public class NotePedidos extends javax.swing.JDialog {
 
             for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
                 /////////////////////////////
-                
+
                 cad1 = "INSERT INTO detalle_nota_pedidos"
                         + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
                         + "VALUES(" + id_cab + "," + lista1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + lista1.get(i).getPrecioBono().toString() + "," + lista1.get(i).getValor_descuento().toString() + "," + lista1.get(i).getImporte() + "," + lista1.get(i).getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
                 queryL1.add(cad1);
+                System.out.println(" "+cad1);
                 //////////////////////////////////
             }
             crud.InsertarDetallesNotaPedidos(queryL1);
+            System.out.println(" "+queryL1);
             queryL1.clear();
             JOptionPane.showMessageDialog(null, " Guardado con Exito ");
             btnGuardar.setEnabled(false);
             btnNuevo.setEnabled(true);
         } else {
-            
-            
-            
+
             JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
-        
+
         int i = 0;
         String msg = null;
         Integer cantidatabla = 0;
@@ -879,8 +878,8 @@ public class NotePedidos extends javax.swing.JDialog {
                 if (objeto != null) {
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
-//                    msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, objeto.getId_precios().toString());
-                    msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, objeto.getId_producto().toString());
+                    np.objf.getId_precios();
+                    msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, np.objf.getId_precios().toString());
 
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
@@ -893,7 +892,7 @@ public class NotePedidos extends javax.swing.JDialog {
                             ///////   
                             lista1.add(objx);
                             for (joinProductoDetallesFaltantes p : lista1) {
-
+                                System.out.println("idddddd "+lista1.get(0).getId_precios());
                             }
                             Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                             Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
@@ -901,18 +900,20 @@ public class NotePedidos extends javax.swing.JDialog {
                             TotalDescuento2();
                             TotalPro();
                             TotalIVA2();
-                        } else {
-                            JOptionPane.showMessageDialog(this, msg);
                         }
+//                        else {
+//                            JOptionPane.showMessageDialog(this, msg);
+//                        }
 
+                    } else {
+                        JOptionPane.showMessageDialog(this, msg);
                     }
 
                 }
 
             }
         } catch (Exception e) {
-            //Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
-           // JOptionPane.showMessageDialog(this,"elija un proveedor");
+            Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
 
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
@@ -1012,7 +1013,7 @@ public class NotePedidos extends javax.swing.JDialog {
         BigDecimal iva = new BigDecimal("0.00");
         BigDecimal descuento = new BigDecimal("0.00");
         BigDecimal total = new BigDecimal("0.00");
-        Integer Resta = 0;
+        Integer SUM = 0;
 
         try {
             if (evt.getClickCount() == 2) {
@@ -1022,13 +1023,18 @@ public class NotePedidos extends javax.swing.JDialog {
 
                     int i = tbaListaFaltantes.getSelectedRow();
 
-                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                    System.out.println("objetoP" + objeto.getCantidad());
+//                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
+                    objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
+                    System.out.println("objetoP cANTIDAD" + objeto.getCantidad());
                     System.out.println("lista1" + lista1.get(i).getCantidad());
-                    Resta = Integer.valueOf(objeto.getCantidad()) - lista1.get(i).getCantidad();
-                    System.out.println("Resta " + Resta);
+                    
+                    SUM = Integer.valueOf(objeto.getCantidad()) + lista1.get(i).getCantidad();
+                    getPosicion(objeto.getId_producto(), SUM);
+                    System.out.println("suma " + SUM);
                     lista1.remove(i);
+                    Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                     Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
+                    
                     TotalPro();
                     TotalIVA2();
                     TotalDescuento2();

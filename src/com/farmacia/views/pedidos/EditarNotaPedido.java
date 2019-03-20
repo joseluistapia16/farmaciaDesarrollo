@@ -839,7 +839,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             if (evt.getClickCount() == 2) {
                 i = t_Nota_faltantes.getSelectedRow();
 
-                objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
+//                objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
+                objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
                 if (objeto != null) {
                     AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
@@ -886,7 +887,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         cn.setIva(VGiva);
         cn.setDescuento(VGdescuento);
         cn.setTotal(VGtotal);
-       // cn.setId_cabecera_compra(Long.valueOf(idComprasCab));
+        // cn.setId_cabecera_compra(Long.valueOf(idComprasCab));
         cn.setIdcabecerapedido(Long.valueOf(txtNumero.getText()));
         crud.edicionCabeceraNotaPedido(cn);
     }
@@ -953,16 +954,18 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         Tablas.cargarFiltroProductosNota(t_Nota_faltantes, listar);
         query = "";
     }//GEN-LAST:event_btnBuscarActionPerformed
-    public JoinListarDetalleNotaPedido devuelveObjeto(String datos, ArrayList<JoinListarDetalleNotaPedido> listarobj) {
-        JoinListarDetalleNotaPedido objeto1 = null;
+    public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
+
+        joinProductoDetallesFaltantes objeto1 = null;
+
         for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_precio().toString())) {
+            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
                 objeto1 = listarobj.get(i);
                 break;
             }
         }
-        return objeto1;
 
+        return objeto1;
     }
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         x = evt.getX();
@@ -1014,7 +1017,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             tablac.add(tabla1);
         }
         try {
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"EditarNotaPedido.jasper";
+            String dir = System.getProperty("user.dir") + "/Reportes/" + "EditarNotaPedido.jasper";
             JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog(this);
@@ -1045,7 +1048,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
         if (evt.getClickCount() == 2) {
             i = tbaListaFaltantes.getSelectedRow();
-            objetop = devuelveObjeto(lista3.get(i).getId_precio().toString(), lista3);
+//            objetop = devuelveObjeto(lista3.get(i).getId_precio().toString(), lista3);
 
             if (objetop != null) {
                 EditarProductoNota Man = new EditarProductoNota(new javax.swing.JFrame(), true, objetop);

@@ -509,7 +509,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
 ////        DlgProducto producto= new DlgProducto(this, rootPaneCheckingEnabled);
 ////        producto.setVisible(rootPaneCheckingEnabled);
-        Products pr = new Products(new javax.swing.JFrame(), true);
+        Products pr = new Products(new javax.swing.JFrame(), true,objUsuario);
         pr.setVisible(true);
     }//GEN-LAST:event_btnProductoActionPerformed
 
@@ -580,7 +580,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        Products p1 = new Products(new javax.swing.JFrame(), true);
 //        p1.setVisible(true);
-        MantenimientoProducto p1 = new MantenimientoProducto(new javax.swing.JFrame(), true);
+        MantenimientoProducto p1 = new MantenimientoProducto(new javax.swing.JFrame(), true,objUsuario);
         p1.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
