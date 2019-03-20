@@ -1013,7 +1013,7 @@ public class NotePedidos extends javax.swing.JDialog {
         BigDecimal iva = new BigDecimal("0.00");
         BigDecimal descuento = new BigDecimal("0.00");
         BigDecimal total = new BigDecimal("0.00");
-        Integer Resta = 0;
+        Integer SUM = 0;
 
         try {
             if (evt.getClickCount() == 2) {
@@ -1023,13 +1023,18 @@ public class NotePedidos extends javax.swing.JDialog {
 
                     int i = tbaListaFaltantes.getSelectedRow();
 
-                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                    System.out.println("objetoP" + objeto.getCantidad());
+//                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
+                    objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
+                    System.out.println("objetoP cANTIDAD" + objeto.getCantidad());
                     System.out.println("lista1" + lista1.get(i).getCantidad());
-                    Resta = Integer.valueOf(objeto.getCantidad()) - lista1.get(i).getCantidad();
-                    System.out.println("Resta " + Resta);
+                    
+                    SUM = Integer.valueOf(objeto.getCantidad()) + lista1.get(i).getCantidad();
+                    getPosicion(objeto.getId_producto(), SUM);
+                    System.out.println("suma " + SUM);
                     lista1.remove(i);
+                    Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                     Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
+                    
                     TotalPro();
                     TotalIVA2();
                     TotalDescuento2();
