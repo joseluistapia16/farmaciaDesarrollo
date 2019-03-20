@@ -9,6 +9,7 @@ import com.farmacia.conponentes.Formulario;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Iva;
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
@@ -61,6 +62,23 @@ public class Products extends javax.swing.JDialog {
         Habilitar(false);
 
     }
+    public Products(java.awt.Frame parent, boolean modal,Listar_usuario obj) {
+        super(parent, modal);
+        setUndecorated(true);
+        initComponents();
+        this.setLocationRelativeTo(null);
+
+        cbxTipos.setModel(Formulario.listarComboTipoPro(lista));
+        cbxMedida.setModel(Formulario.listarComboMedidaPro(listam));
+        cbxEnvase.setModel(Formulario.listarComboEnvasePro(listae));
+        cbxMarca.setModel(Formulario.listarComboMarcaPro(listama));
+        cbxIva.setModel(Formulario.listarComboIva(listaIva));
+        txtFechaActual.setText(FechaActual());
+        usuario.setText(obj.getApellidos()+" "+obj.getNombres());
+        id_usuario.setText(obj.getId_sesion().toString());
+        Habilitar(false);
+
+    }
 
     public void Habilitar(boolean valor) {
         ingresoDePrecio.setEnabled(valor);
@@ -103,10 +121,11 @@ public class Products extends javax.swing.JDialog {
         txtcantMinima = new javax.swing.JTextField();
         ingresoDePrecio = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        id_usuario = new javax.swing.JTextField();
+        usuario = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txtFechaActual = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        id_usuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -388,15 +407,7 @@ public class Products extends javax.swing.JDialog {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("USUARIO:");
-
-        id_usuario.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        id_usuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                id_usuarioActionPerformed(evt);
-            }
-        });
+        usuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setText("FECHA:");
@@ -417,11 +428,13 @@ public class Products extends javax.swing.JDialog {
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(id_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(id_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -437,10 +450,11 @@ public class Products extends javax.swing.JDialog {
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(id_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(id_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -577,10 +591,6 @@ public class Products extends javax.swing.JDialog {
     private void txtcantMinimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantMinimaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcantMinimaActionPerformed
-
-    private void id_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id_usuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_id_usuarioActionPerformed
 
     private void cbxIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxIvaActionPerformed
         IVA = cbxIva.getSelectedItem().toString();
@@ -739,8 +749,9 @@ public class Products extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbxMarca;
     private javax.swing.JComboBox<String> cbxMedida;
     private javax.swing.JComboBox<String> cbxTipos;
-    public static javax.swing.JTextField id_usuario;
+    private javax.swing.JLabel id_usuario;
     private javax.swing.JButton ingresoDePrecio;
+    private javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     public static javax.swing.JLabel jLabel13;
@@ -752,7 +763,6 @@ public class Products extends javax.swing.JDialog {
     public static javax.swing.JLabel jLabel6;
     public static javax.swing.JLabel jLabel7;
     public static javax.swing.JLabel jLabel8;
-    public static javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField nombre1;
@@ -760,5 +770,6 @@ public class Products extends javax.swing.JDialog {
     private javax.swing.JTextField txtFechaActual;
     public static javax.swing.JTextField txtPeso;
     public static javax.swing.JTextField txtcantMinima;
+    public static javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }
