@@ -6,6 +6,7 @@
 package com.farmacia.views.pedidos;
 
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
+import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.validaciones.Validacion;
 import java.awt.MouseInfo;
@@ -22,6 +23,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
     int x, y;
     joinProductoDetallesFaltantes objf = null;
+    ListarJoinPrecioNotaPedido objeto = null;
     Validacion v = new Validacion();
 
     public AgregarProductoNotaPedido(java.awt.Frame parent, boolean modal) {
@@ -547,8 +549,9 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel7MouseDragged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PrecioNotaPedido Pnp = new PrecioNotaPedido(new javax.swing.JFrame(), true);
-        Pnp.setVisible(true);
+//        PrecioNotaPedido Pnp = new PrecioNotaPedido(new javax.swing.JFrame(), true, objeto);
+//        Pnp.setVisible(true);
+        
 //        txtBono.setEnabled(true);
 //        txtporcentajeDescuento.setEnabled(true);
 //        txtcantidadpro.setEnabled(true);

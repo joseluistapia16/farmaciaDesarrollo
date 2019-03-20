@@ -1795,14 +1795,14 @@ public class Tablas {
     }
     public static void cargarJoinPrecioNotaPedido(JTable Tabla, ArrayList<ListarJoinPrecioNotaPedido> lista) {
 
-        int[] a = {50, 50, 50, 50, 50};
+        int[] a = {50, 50, 50, 50};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
         String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION", "PRECIO"};
-        String[] Filas = new String[5];
+        String[] Filas = new String[4];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
@@ -1811,7 +1811,7 @@ public class Tablas {
             Filas[1] = lista.get(i).getNombre();
             Filas[2] = lista.get(i).getDescripcion();
             Filas[3] = lista.get(i).getPrecio_compra().toString();
-            Filas[4] = lista.get(i).getIva();
+//            Filas[4] = lista.get(i).getIva();
 
             model.addRow(Filas);
             Tabla.setModel(model);
@@ -1825,8 +1825,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
             Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
-            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
+//            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+//            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
 
         }
 

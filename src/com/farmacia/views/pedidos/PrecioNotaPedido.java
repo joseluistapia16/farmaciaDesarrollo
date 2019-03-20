@@ -30,7 +30,6 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         System.out.println("HOLA g ");
-        System.out.println(" fdgfg"+id_pro);
 
     }
 
@@ -45,6 +44,7 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
         
         String id_cab = id_pro1.toString();
         lista = crud.listarPrecioNota(1, id_cab);
+        System.out.println("vvvv "+lista.get(0).getPrecio_compra());
         Tablas.cargarJoinPrecioNotaPedido(tbaPrecioProd, lista);
     }
 
@@ -138,15 +138,16 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
 
         tbaPrecioProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        tbaPrecioProd.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane2.setViewportView(tbaPrecioProd);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
