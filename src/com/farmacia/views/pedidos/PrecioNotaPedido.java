@@ -8,9 +8,11 @@ package com.farmacia.views.pedidos;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
+import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 
 /**
  *
@@ -20,9 +22,10 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
 
     int x, y;
     CRUD crud = new CRUD();
-    ListarJoinPrecioNotaPedido precio = null;
+//    ListarJoinPrecioNotaPedido objf = null;
     ListarJoinPrecioNotaPedido objIdProd = null;
     ArrayList<ListarJoinPrecioNotaPedido> lista = null;
+    joinProductoDetallesFaltantes objf = null;
     Long id_pro;
 
     public PrecioNotaPedido(java.awt.Frame parent, boolean modal) {
@@ -30,31 +33,51 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         System.out.println("HOLA g ");
-        System.out.println(" fdgfg"+id_pro);
+        System.out.println(" fdgfg" + id_pro);
 
     }
 
-    public PrecioNotaPedido(java.awt.Frame parent, boolean modal, Long id_pro1, String producto1) {
+    public PrecioNotaPedido(java.awt.Frame parent, boolean modal, joinProductoDetallesFaltantes obj1) {
         super(parent, modal);
         initComponents();
-        this.setLocationRelativeTo(null);
-        
-        id_pro = id_pro1;
-        System.out.println("prod "+id_pro1);
-        llenarDatos(producto1);
-        
-        String id_cab = id_pro1.toString();
-        lista = crud.listarPrecioNota(1, id_cab);
-        Tablas.cargarJoinPrecioNotaPedido(tbaPrecioProd, lista);
+        setLocationRelativeTo(null);
+        llenarFormulario(obj1);
+//        System.out.println("obe "+obj1.getId_producto().toString());
+
     }
 
-    public void llenarDatos(String producto1) {
+    private void llenarFormulario(joinProductoDetallesFaltantes obj) {
         try {
-            txtProducto.setText(producto1);
+            objf = new joinProductoDetallesFaltantes();
+            txtCodigo.setText(obj.getId_producto().toString());
+            System.out.println("ID  " + obj.getId_producto().toString());
+            txtProducto.setText(obj.getNombre_producto());
+ /////////
+            objf.setId_producto(obj.getId_producto());
+            objf.setNombre_producto(obj.getNombre_producto());
         } catch (Exception e) {
         }
     }
+//    public PrecioNotaPedido(java.awt.Frame parent, boolean modal, Long id_pro1, String producto1) {
+//        super(parent, modal);
+//        initComponents();
+//        this.setLocationRelativeTo(null);
+//        
+//        id_pro = id_pro1;
+//        System.out.println("prod "+id_pro1);
+////        llenarDatos(producto1);
+//        
+//        String id_cab = id_pro1.toString();
+//        lista = crud.listarPrecioNota(1, id_cab);
+//        Tablas.cargarJoinPrecioNotaPedido(tbaPrecioProd, lista);
+//    }
 
+//    public void llenarDatos(String producto1) {
+//        try {
+//            txtProducto.setText(producto1);
+//        } catch (Exception e) {
+//        }
+//    }
     public ListarJoinPrecioNotaPedido buscarObjeto(String cedula, ArrayList<ListarJoinPrecioNotaPedido> lis) {
         ListarJoinPrecioNotaPedido pro = new ListarJoinPrecioNotaPedido();
         pro = null;
@@ -81,6 +104,7 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
         editarPrecioCompra = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbaPrecioProd = new javax.swing.JTable();
+        txtCodigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -129,7 +153,6 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("PRODUCTO: ");
 
-        editarPrecioCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/editar.png"))); // NOI18N
         editarPrecioCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarPrecioCompraActionPerformed(evt);
@@ -149,15 +172,19 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(tbaPrecioProd);
 
+        txtCodigo.setEditable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,13 +193,10 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(editarPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(104, 104, 104)
                         .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -181,7 +205,9 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editarPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(agregarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -289,6 +315,7 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbaPrecioProd;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JLabel txtProducto;
     // End of variables declaration//GEN-END:variables
 }
