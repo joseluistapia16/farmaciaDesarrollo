@@ -21,10 +21,12 @@ import javax.swing.JOptionPane;
  */
 public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
+    String CADENA = "";
     int x, y;
     joinProductoDetallesFaltantes objf = null;
     ListarJoinPrecioNotaPedido objeto = null;
     Validacion v = new Validacion();
+    joinProductoDetallesFaltantes objeto1 = null;
 
     public AgregarProductoNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -510,7 +512,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
-    String CADENA = "";
+
     private void txtporcentajeDescuentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtporcentajeDescuentoKeyReleased
         int largor = txtporcentajeDescuento.getText().length();
         if (largor > 2) {
@@ -549,12 +551,16 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel7MouseDragged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        PrecioNotaPedido Pnp = new PrecioNotaPedido(new javax.swing.JFrame(), true, objeto);
-//        Pnp.setVisible(true);
+        PrecioNotaPedido Pnp = new PrecioNotaPedido(new javax.swing.JFrame(), true, codigo.getText(),producto.getText());
+        Pnp.setVisible(true);
+        Pnp.getPrecio();
+        txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
         
-//        txtBono.setEnabled(true);
-//        txtporcentajeDescuento.setEnabled(true);
-//        txtcantidadpro.setEnabled(true);
+        txtBono.setEnabled(true);
+        txtporcentajeDescuento.setEnabled(true);
+        txtcantidadpro.setEnabled(true);
+        objf.setPrecios(Pnp.getPrecio().getPrecio_compra());
+        objf.setId_precios(Pnp.getPrecio().getId_precio());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

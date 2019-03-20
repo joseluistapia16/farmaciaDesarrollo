@@ -8,6 +8,8 @@ package com.farmacia.views.usuario;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.Nombre_local;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -17,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author carlos
  */
 public class Local extends javax.swing.JDialog {
-
+    int x,y;
     CRUD crud = new CRUD();
     ArrayList<Nombre_local> listar = null;
     
@@ -149,6 +151,7 @@ public class Local extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jtLocal);
 
+        btnRuc.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         btnRuc.setText("RUC");
         btnRuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,6 +234,16 @@ public class Local extends javax.swing.JDialog {
         });
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel4MouseDragged(evt);
+            }
+        });
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel4MousePressed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(254, 254, 254));
@@ -490,6 +503,16 @@ public class Local extends javax.swing.JDialog {
         listar = crud.listar_local();
         Tablas.cargarLocal(jtLocal, listar);
     }//GEN-LAST:event_btnRucActionPerformed
+
+    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jPanel4MousePressed
+
+    private void jPanel4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_jPanel4MouseDragged
 
     
     /**
