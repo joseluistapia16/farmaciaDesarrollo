@@ -55,9 +55,9 @@
                               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
-                                  <Component id="btnGuardar" min="-2" pref="105" max="-2" attributes="0"/>
+                                  <Component id="btnGuardar" min="-2" pref="110" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
-                                  <Component id="btnSalir" min="-2" pref="105" max="-2" attributes="0"/>
+                                  <Component id="btnSalir" min="-2" pref="110" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -115,8 +115,8 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnLimpiar" pref="142" max="32767" attributes="0"/>
-                                  <Component id="btnImagen" pref="142" max="32767" attributes="0"/>
+                                  <Component id="btnLimpiar" pref="145" max="32767" attributes="0"/>
+                                  <Component id="btnImagen" pref="145" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
@@ -128,13 +128,13 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" pref="23" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lbImagen" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnImagen" min="-2" pref="37" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnLimpiar" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -187,7 +187,7 @@
                   <Font name="Ubuntu" size="14" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="IMAGEN DEUSUARIO:"/>
+                <Property name="text" type="java.lang.String" value="IMAGEN DE USUARIO:"/>
               </Properties>
             </Component>
           </SubComponents>
