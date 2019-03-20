@@ -1014,6 +1014,7 @@ public class NotePedidos extends javax.swing.JDialog {
         BigDecimal descuento = new BigDecimal("0.00");
         BigDecimal total = new BigDecimal("0.00");
         Integer SUM = 0;
+        
 
         try {
             if (evt.getClickCount() == 2) {
