@@ -94,6 +94,7 @@ public class Registrar_usuario extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
@@ -383,7 +384,7 @@ public class Registrar_usuario extends javax.swing.JDialog {
 
         btnSalir.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/eliminar1.png"))); // NOI18N
-        btnSalir.setText("SALIR");
+        btnSalir.setText("CANCELAR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
