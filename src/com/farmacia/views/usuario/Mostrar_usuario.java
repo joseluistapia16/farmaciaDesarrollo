@@ -351,9 +351,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
                     String.valueOf(jtUsuario.getValueAt(i,5)),
                     jtUsuario.getValueAt(i,6).toString(),
                     String.valueOf(jtUsuario.getValueAt(i,7)),
-                    jtUsuario.getValueAt(i,8).toString(),
-                    jtUsuario.getValueAt(i,9).toString(),
-                    jtUsuario.getValueAt(i,10).toString());                   
+                    jtUsuario.getValueAt(i,8).toString());                   
             tablac.add(tabla1);}
         try{
             String dir = System.getProperty("user.dir")+"/Reportes/"+"Mostrar_usuario.jasper";
