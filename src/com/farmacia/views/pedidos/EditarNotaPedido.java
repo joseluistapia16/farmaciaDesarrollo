@@ -901,10 +901,10 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
     }
 
-    public joinProductoDetallesFaltantes devuelveObjeto2(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
-        joinProductoDetallesFaltantes objeto1 = null;
+    public JoinListarDetalleNotaPedido devuelveObjeto2(String datos, ArrayList<JoinListarDetalleNotaPedido> listarobj) {
+        JoinListarDetalleNotaPedido objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_precios().toString())) {
+            if (datos.equals(listarobj.get(i).getId_precio().toString())) {
                 objeto1 = listarobj.get(i);
                 break;
             }
@@ -912,6 +912,20 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         return objeto1;
 
     }
+
+//    public joinProductoDetallesFaltantes devuelveObjeto3(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
+//
+//        joinProductoDetallesFaltantes objeto1 = null;
+//
+//        for (int i = 0; i < listarobj.size(); i++) {
+//            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
+//                objeto1 = listarobj.get(i);
+//                break;
+//            }
+//        }
+//
+//        return objeto1;
+//    }
     private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
 
     }//GEN-LAST:event_filtroActionPerformed
@@ -1049,8 +1063,13 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         if (evt.getClickCount() == 2) {
             i = tbaListaFaltantes.getSelectedRow();
 //            objetop = devuelveObjeto(lista3.get(i).getId_precio().toString(), lista3);
-
+//            objetop = devuelveObjeto(codigocabecera, lista);
+            objetop = devuelveObjeto2(lista3.get(i).getId_precio().toString(), lista3);
+            System.out.println("ghollllllaaaaaaaaaaa");
+            System.out.println(" objetogggggg "+t_Nota_faltantes.getValueAt(i, 0).toString());
+            System.out.println(" objeto "+objeto);
             if (objetop != null) {
+                System.out.println(" gggggggg");
                 EditarProductoNota Man = new EditarProductoNota(new javax.swing.JFrame(), true, objetop);
                 Man.setVisible(true);
                 lista3.clear();
