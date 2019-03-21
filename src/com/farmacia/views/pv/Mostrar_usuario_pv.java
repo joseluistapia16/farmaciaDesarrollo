@@ -1,6 +1,7 @@
 
-package com.farmacia.views.usuario;
+package com.farmacia.views.pv;
 
+import com.farmacia.views.usuario.*;
 import com.farmacia.conponentes.Filtros_modulo_seguridad;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
@@ -27,7 +28,7 @@ import net.sf.jasperreports.view.JRViewer;
  *
  * @author carlos
  */
-public class Mostrar_usuario extends javax.swing.JDialog {
+public class Mostrar_usuario_pv extends javax.swing.JDialog {
     int x,y;
     CRUD crud = new CRUD();
     ArrayList<Listar_usuario> listar = null;
@@ -36,12 +37,13 @@ public class Mostrar_usuario extends javax.swing.JDialog {
     Filtros_modulo_seguridad fil = new Filtros_modulo_seguridad();
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-    public Mostrar_usuario(java.awt.Frame parent, boolean modal) {
+    public Mostrar_usuario_pv(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         listar = crud.get_listar_usuario();
         Tablas.cargarJoinUsuario(jtUsuario, listar);
+//        txtFiltro.setEnabled(false);
     }
 
     
@@ -142,11 +144,6 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE...", "CODIGO", "CEDULA", "APELLIDO", "FECHA", "ACTIVO", "INACTIVO" }));
 
         txtFiltro.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        txtFiltro.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtFiltroFocusLost(evt);
-            }
-        });
 
         jButton2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/agregarCliente.png"))); // NOI18N
@@ -184,22 +181,22 @@ public class Mostrar_usuario extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
                         .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132)
-                        .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(135, 135, 135)
+                        .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(303, 303, 303))
         );
         jPanel3Layout.setVerticalGroup(
@@ -208,17 +205,17 @@ public class Mostrar_usuario extends javax.swing.JDialog {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -269,7 +266,6 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             if (f=="" && pos == 0) {
             listar = crud.get_listar_usuario();
             Tablas.cargarJoinUsuario(jtUsuario, listar);
-            //JOptionPane.showMessageDialog(this, "por favor seleccione un filtro");
         }
         if (pos == 1) {
             lu.setId_sesion(Long.valueOf(f));
@@ -356,7 +352,9 @@ public class Mostrar_usuario extends javax.swing.JDialog {
                     String.valueOf(jtUsuario.getValueAt(i,5)),
                     jtUsuario.getValueAt(i,6).toString(),
                     String.valueOf(jtUsuario.getValueAt(i,7)),
-                    jtUsuario.getValueAt(i,8).toString());                   
+                    jtUsuario.getValueAt(i,8).toString(),
+                    jtUsuario.getValueAt(i,9).toString(),
+                    jtUsuario.getValueAt(i,10).toString());                   
             tablac.add(tabla1);}
         try{
             String dir = System.getProperty("user.dir")+"/Reportes/"+"Mostrar_usuario.jasper";
@@ -370,7 +368,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
         } catch (JRException ex) {
-            Logger.getLogger(Mostrar_usuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Mostrar_usuario_pv.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnReporteActionPerformed
 
@@ -395,7 +393,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
 
             }
         } catch (Exception e) {
-            Logger.getLogger(Mostrar_usuario.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Mostrar_usuario_pv.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_jtUsuarioMousePressed
 
@@ -408,10 +406,6 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel1MouseDragged
-
-    private void txtFiltroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFiltroFocusLost
-        txtFiltro.setText(txtFiltro.getText().toUpperCase());
-    }//GEN-LAST:event_txtFiltroFocusLost
 
     /**
      * @param args the command line arguments
@@ -430,20 +424,21 @@ public class Mostrar_usuario extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Mostrar_usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Mostrar_usuario_pv.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Mostrar_usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Mostrar_usuario_pv.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Mostrar_usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Mostrar_usuario_pv.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Mostrar_usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Mostrar_usuario_pv.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Mostrar_usuario dialog = new Mostrar_usuario(new javax.swing.JFrame(), true);
+                Mostrar_usuario_pv dialog = new Mostrar_usuario_pv(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

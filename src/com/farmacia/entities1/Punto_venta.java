@@ -12,17 +12,18 @@ package com.farmacia.entities1;
 public class Punto_venta {
 
     private Long id_punto_venta;
-    private String id_localidad;
+    private Long id_localidad;
     private String nombre;
     private String dir_ip;
     private String direccion;
     private String estado;
     private String observacion; 
+    private String localidad;
     
     public Punto_venta() {
     }
 
-    public Punto_venta(Long id_punto_venta, String id_localidad, String nombre, String dir_ip, String direccion, String estado, String observacion) {
+    public Punto_venta(Long id_punto_venta, Long id_localidad, String nombre, String dir_ip, String direccion, String estado, String observacion, String localidad) {
         this.id_punto_venta = id_punto_venta;
         this.id_localidad = id_localidad;
         this.nombre = nombre;
@@ -30,6 +31,7 @@ public class Punto_venta {
         this.direccion = direccion;
         this.estado = estado;
         this.observacion = observacion;
+        this.localidad = localidad;
     }
 
     public Long getId_punto_venta() {
@@ -40,11 +42,11 @@ public class Punto_venta {
         this.id_punto_venta = id_punto_venta;
     }
 
-    public String getId_localidad() {
+    public Long getId_localidad() {
         return id_localidad;
     }
 
-    public void setId_localidad(String id_localidad) {
+    public void setId_localidad(Long id_localidad) {
         this.id_localidad = id_localidad;
     }
 
@@ -88,5 +90,12 @@ public class Punto_venta {
         this.observacion = observacion;
     }
 
-    
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
 }

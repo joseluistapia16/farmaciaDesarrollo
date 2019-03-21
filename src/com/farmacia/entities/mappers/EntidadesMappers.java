@@ -19,7 +19,6 @@ import com.farmacia.entities1.Faltantes;
 import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
-import com.farmacia.entities1.ListarPuntoVenta;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
@@ -28,6 +27,7 @@ import com.farmacia.entities1.Nombre_local;
 import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Productos_Stock;
+import com.farmacia.entities1.Punto_venta;
 import com.farmacia.entities1.Rol_U;
 import com.farmacia.entities1.StockVentas;
 import com.farmacia.entities1.Telefono;
@@ -145,19 +145,6 @@ public class EntidadesMappers {
         return obj;
     }
     
-    public static ListarPuntoVenta getJoinLocalidadGyFromResultSet(ResultSet rs) {
-        ListarPuntoVenta obj = new ListarPuntoVenta();
-        try {
-            obj.setId_punto_venta(rs.getLong("id_punto_venta"));
-            obj.setNombre(rs.getString("nombre"));
-            obj.setLocalidad(rs.getString("localidad"));
-            obj.setDireccion(rs.getString("direccion"));
-            obj.setObservacion(rs.getString("observacion"));
-        } catch (SQLException ex) {
-            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return obj;
-    }
 
     public static TipoProducto getTipoProductoFromResultSet(ResultSet rs) {
         TipoProducto obj = new TipoProducto();
@@ -660,15 +647,15 @@ public class EntidadesMappers {
         return obj;
     }
             
-    public static ListarPuntoVenta getPuntoVentaFromResultSet(ResultSet rs) {
-        ListarPuntoVenta obj = new ListarPuntoVenta();
+    public static Punto_venta getPuntoVentaFromResultSet(ResultSet rs) {
+        Punto_venta obj = new Punto_venta();
         try {
             obj.setId_punto_venta(rs.getLong("id_punto_venta"));
             obj.setNombre(rs.getString("nombre"));
             obj.setLocalidad(rs.getString("localidad"));
             obj.setDireccion(rs.getString("direccion"));
             obj.setObservacion(rs.getString("observacion"));
-         
+            obj.setEstado(rs.getString("Estado"));            
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -718,6 +705,7 @@ public class EntidadesMappers {
         }
         return obj;
     }
+    
     /////////// mapper identidad listar producto ventas
     public static JoinListarProductosVentas getJoinTodosProductosVentasFromResultSet(ResultSet rs) {
         JoinListarProductosVentas obj = new JoinListarProductosVentas();
