@@ -23,6 +23,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import com.farmacia.filtros.filtrosProductos;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -42,7 +43,6 @@ import net.sf.jasperreports.view.JRViewer;
  *
  * @author alumno
  */
-
 public class ListaDePedidos extends javax.swing.JDialog {
 
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
@@ -73,10 +73,24 @@ public class ListaDePedidos extends javax.swing.JDialog {
         this.setResizable(false);
 
         txtFecha.setText(FechaActual());
-       Tablas.cargarJoinFaltantes_cantidad(tbaProductosA, lista);
-
+        Tablas.cargarJoinFaltantes_cantidad(tbaProductosA, lista);
+       // colorTabla();
         Timer tiempo = new Timer(100, new ListaDePedidos.horas());
         tiempo.start();
+    }
+
+    public void colorTabla() {
+        for (int i = 0; i <= tbaProductosA.getColumnCount(); i++) {
+            int a = Integer.valueOf(tbaProductosA.getValueAt(i, 2).toString());
+            int b = Integer.valueOf(tbaProductosA.getValueAt(i, 3).toString());
+            System.out.println(a+"  "+b);
+            if (b >= a) {
+                tbaProductosA.setForeground(Color.blue);
+            }
+            if(b<=a){
+                tbaProductosA.setForeground(Color.RED);
+            }
+        }
     }
 
     /**
@@ -482,6 +496,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
         }
 
     }
+
     private int getPosicion2(Long id) {
         int po = -1;
         System.out.println("metodo " + id);
@@ -584,7 +599,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
             tabla.add(tabla1);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"ListaDePedidos.jasper";
+            String dir = System.getProperty("user.dir") + "/Reportes/" + "ListaDePedidos.jasper";
             JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
             JDialog frame = new JDialog(this);

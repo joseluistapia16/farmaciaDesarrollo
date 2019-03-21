@@ -15,6 +15,7 @@ import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Detalle_compra;
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.views.pedidos.EditarNotaPedido;
@@ -68,6 +69,7 @@ public class OrdenCompra extends javax.swing.JDialog {
     DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
     String FechaActual;
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
+    Listar_usuario objUsuario=null;
 
     public OrdenCompra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -103,6 +105,34 @@ public class OrdenCompra extends javax.swing.JDialog {
         TotalIVA();
         TotalDescuento();
         // t_Nota_faltantes.setEnabled(false);
+    }
+    public OrdenCompra(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera Obj,Listar_usuario obj) {
+        super(parent, modal);
+        setUndecorated(true);
+        initComponents();
+        this.setLocationRelativeTo(null);
+        setLayout(null);
+        objCabecera = Obj;
+        //txtFecha.setText(FechaActual());
+        llenarProveedor();
+        //FECHA DEL SISTEMA
+        java.util.Date sistFecha = new java.util.Date();
+        SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-dd");
+        //    txtFecha.setText(formato.format(sistFecha));
+
+        //HORA DEL SISTEMA
+        Timer tiempo = new Timer(100, new OrdenCompra.horas());
+        tiempo.start();
+        // Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, listaCompra);
+        // Tablas.cargarJoinProductosMCompra(tbacargarProductosA, lista);
+        String id_cab = txt_Numero.getText().toString();
+        lista3 = crud.listarDetalleNotaPedido(1, id_cab);
+        Tablas.cargarJoinRegistroDetalleCompras(tbaListaComprasB, lista3);
+        Total();
+        TotalIVA();
+        TotalDescuento();
+        // t_Nota_faltantes.setEnabled(false);
+         objUsuario =obj;
     }
 
     /**
@@ -683,7 +713,7 @@ public static String FechaActual() {
         return formatoFecha.format(fecha);
     }
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
-        Products Prod = new Products(new javax.swing.JFrame(), true);
+        Products Prod = new Products(new javax.swing.JFrame(), true,objUsuario);
         Prod.setVisible(true);
         listapro.clear();
         listapro = crud.listarTodoJoinProductos(1);

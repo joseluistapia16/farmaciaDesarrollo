@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import sistemafarmacia.presentacion.FrmPrincipal;
 
 /**
  *
@@ -60,7 +61,7 @@ public class Products extends javax.swing.JDialog {
         cbxIva.setModel(Formulario.listarComboIva(listaIva));
         txtFechaActual.setText(FechaActual());
         Habilitar(false);
-
+        
     }
     public Products(java.awt.Frame parent, boolean modal,Listar_usuario obj) {
         super(parent, modal);

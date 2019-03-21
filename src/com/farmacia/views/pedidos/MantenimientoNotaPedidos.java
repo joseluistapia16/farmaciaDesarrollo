@@ -3,6 +3,7 @@ package com.farmacia.views.pedidos;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
@@ -34,13 +35,22 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     ArrayList<JoinListarNotaPedidosCabecera> lista = crud.listarCabeceraNotaPedido(1);
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-
+    Listar_usuario objUsuario=null;
+    
     public MantenimientoNotaPedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
         Tablas.CargarJoinListadoCabeceraNotaPedidos(tblRegistrodeNotas, lista);
+    }
+     public MantenimientoNotaPedidos(java.awt.Frame parent, boolean modal,Listar_usuario obj) {
+        super(parent, modal);
+        setUndecorated(true);
+        initComponents();
+        this.setLocationRelativeTo(null);
+        Tablas.CargarJoinListadoCabeceraNotaPedidos(tblRegistrodeNotas, lista);
+        objUsuario =obj;
     }
 
     @SuppressWarnings("unchecked")
@@ -283,7 +293,7 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
 
             if (objeto != null) {
                 
-                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true, objeto,2);
+                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true, objeto,2,objUsuario);
                 this.setVisible(false);
                 Man.setVisible(true);
 

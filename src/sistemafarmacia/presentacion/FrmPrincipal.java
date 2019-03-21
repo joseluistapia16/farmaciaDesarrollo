@@ -590,7 +590,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
     private void mnuRegistrarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarVenta1ActionPerformed
-        NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true);
+        NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true,objUsuario);
         np.setVisible(true);
     }//GEN-LAST:event_mnuRegistrarVenta1ActionPerformed
 
@@ -601,12 +601,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuCliente1ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        CabeceraCompra CB = new CabeceraCompra(new javax.swing.JFrame(), true);
+        CabeceraCompra CB = new CabeceraCompra(new javax.swing.JFrame(), true,objUsuario);
         CB.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        MantenimientoNotaPedidos mp = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
+        MantenimientoNotaPedidos mp = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true,objUsuario);
         mp.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
@@ -660,7 +660,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Reporte_Venta Rv = new Reporte_Venta(this, rootPaneCheckingEnabled);
         Rv.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
-
+   
+    public Listar_usuario getUsuario(){
+        return objUsuario;
+    }
     /**
      * @param args the command line arguments
      */

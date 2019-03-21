@@ -4,6 +4,7 @@ import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.CabeceraNotaPedido;
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
@@ -41,7 +42,7 @@ public class NotePedidos extends javax.swing.JDialog {
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
-
+    Listar_usuario objUsuario=null;
     joinProductoDetallesFaltantes objx = new joinProductoDetallesFaltantes();
 
     public NotePedidos(java.awt.Frame parent, boolean modal) {
@@ -72,6 +73,35 @@ public class NotePedidos extends javax.swing.JDialog {
         Timer tiempo = new Timer(100, new NotePedidos.horas());
         tiempo.start();
 
+    }
+    public NotePedidos(java.awt.Frame parent, boolean modal,Listar_usuario obj) {
+        super(parent, modal);
+
+        setUndecorated(true);
+        initComponents();
+        PanelSec.setEnabled(false);
+        filtro.setEnabled(false);
+        t_Nota_faltantes.setEnabled(false);
+        tbaListaFaltantes.setEnabled(false);
+        btnBuscar.setEnabled(false);
+        btnGuardar.setEnabled(false);
+        btnNuevo.setEnabled(false);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        TotalDescuento2();
+        TotalPro();
+        TotalIVA2();
+        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+
+        //FECHA DEL SISTEMA
+        java.util.Date sistFecha = new java.util.Date();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+        txtFecha.setText(formato.format(sistFecha));
+
+        //HORA DEL SISTEMA
+        Timer tiempo = new Timer(100, new NotePedidos.horas());
+        tiempo.start();
+        objUsuario =obj;
     }
 
     class horas implements ActionListener {
@@ -1119,7 +1149,7 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        MantenimientoProducto Prod = new MantenimientoProducto(new javax.swing.JFrame(), true);
+        MantenimientoProducto Prod = new MantenimientoProducto(new javax.swing.JFrame(), true,objUsuario);
         Prod.setVisible(true);
         listapro.clear();
         listapro = crud.listarTodoJoinProductos(1);

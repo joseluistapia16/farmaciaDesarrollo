@@ -6,6 +6,7 @@ import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
@@ -53,7 +54,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     String codigocabecera = "";
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
     JoinListarDetalleNotaPedido objetop = null;
-
+    Listar_usuario objUsuario=null;
     public EditarNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
 
@@ -80,6 +81,26 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         Total();
 
         variableCerrar = vari;
+    }
+    public EditarNotaPedido(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1, int vari,Listar_usuario obj) {
+        super(parent, modal);
+        setUndecorated(true);
+        initComponents();
+        this.setLocationRelativeTo(null);
+        setLayout(null);
+        llenarFormulario(obj1);
+        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+        codigocabecera = txtNumero.getText().toString();
+
+        lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
+        Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+
+        TotalIVA();
+        TotalDescuento();
+        Total();
+
+        variableCerrar = vari;
+        objUsuario =obj;
     }
 
     private void llenarFormulario(JoinListarNotaPedidosCabecera obj) {
@@ -1084,7 +1105,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_tbaListaFaltantesMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MantenimientoProducto Prod = new MantenimientoProducto(new javax.swing.JFrame(), true);
+        MantenimientoProducto Prod = new MantenimientoProducto(new javax.swing.JFrame(), true,objUsuario);
         Prod.setVisible(true);
         listapro.clear();
         listapro = crud.listarTodoJoinProductos(1);
