@@ -11,6 +11,7 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.validaciones.ComponentesFaltantes;
 import com.farmacia.dao.CRUD;
 import com.farmacia.conponentes.Tablas;
+import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Detalle_compra;
@@ -873,16 +874,29 @@ public static String FechaActual() {
                 if (valor != null) {
                     JOptionPane.showMessageDialog(this, valor);
                     actualizarTabla2();
+                   // actualizarcabeceraNota();
                     btnSalir2.setEnabled(false);
                 }
             } else {
                 EditarProductoEnCompras1 epc = new EditarProductoEnCompras1(new javax.swing.JFrame(), true, detalle);
                 epc.setVisible(true);
                 actualizarTabla2();
+                actualizarcabeceraNota();
             }
         }
     }//GEN-LAST:event_tbaListaComprasBMousePressed
-
+    public void actualizarcabeceraNota(){
+        String valor="";
+        CabeceraNotaPedido cn = new CabeceraNotaPedido();
+            cn.setPlazo(cbxPlazo.getSelectedItem().toString());
+            cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
+            cn.setIva(VGiva);
+            cn.setDescuento(VGdescuento);
+            cn.setTotal(VGtotal);
+            cn.setId_cabecera_nota_pedidos(Long.valueOf(txt_Numero.getText()));
+            valor = crud.ActualizarNotaPedidosCabecera(cn);
+            System.out.println("que paso? "+valor);
+    }
     private void cbxFormaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFormaPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxFormaPActionPerformed
