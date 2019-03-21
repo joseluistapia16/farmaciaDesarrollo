@@ -58,6 +58,19 @@ public class Fecha {
             return "";
         }
     }
+    
+        public static String getStringFecha1(String fecha) {
+            String msg="";
+        if (fecha != null) {
+            String cad[] = fecha.toString().split(" ");
+            msg = msg + cad[0];
+//            return cad[2] + "/"
+//                    + getStringMes(Integer.parseInt(cad[1])) + "/" + cad[0];
+        }
+       
+            return msg;
+       
+    }
 
     public static String getStringMes(int mes) {
         String gui = null;

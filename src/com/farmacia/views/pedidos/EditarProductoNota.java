@@ -113,7 +113,6 @@ public class EditarProductoNota extends javax.swing.JDialog {
         Reporte = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         txtPrecio1.setEditable(false);
 
@@ -239,7 +238,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         });
 
         jLabel18.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jLabel18.setText("IVA :");
+        jLabel18.setText("VALOR IVA :");
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel1.setText("$");
@@ -351,13 +350,6 @@ public class EditarProductoNota extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setText("Prueba");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -423,8 +415,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
                                 .addComponent(jButton2))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txtBono, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
@@ -473,8 +464,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBono, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(txtBono, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -813,21 +803,6 @@ public class EditarProductoNota extends javax.swing.JDialog {
         objf.setId_precio(Pnp.getPrecio().getId_precio());
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-//        String IVA2="";
-//            for (int i = 0; i < IVA.size(); i++) {
-//
-//                String Ivaget = ""+IVA.get(i).getIva();
-//                System.out.println("ivaaa pendejp "+Ivaget);
-//                BigDecimal Iva = new BigDecimal(Ivaget);
-//                IVA2=Iva.toString();
-//            }
-//        JOptionPane.showMessageDialog(this, "iva " + IVA2+"ggggg");
-//
-//        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void EliminarDetalleNotaPedido() {
         DetalleNotaPedido obj = new DetalleNotaPedido();
         obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedido());
@@ -925,7 +900,6 @@ public class EditarProductoNota extends javax.swing.JDialog {
     private javax.swing.JTextField codigo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
