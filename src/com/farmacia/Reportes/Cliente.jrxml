@@ -14,13 +14,13 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="54" splitType="Stretch">
+		<band height="47" splitType="Stretch">
 			<staticText>
-				<reportElement x="87" y="14" width="381" height="32" uuid="542e0d02-855d-428f-a4e0-335851f39fdb"/>
+				<reportElement x="10" y="6" width="535" height="32" uuid="542e0d02-855d-428f-a4e0-335851f39fdb"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="24" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Ficha de Cliente]]></text>
+				<text><![CDATA[DATOS DEL CLIENTE]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -28,12 +28,12 @@
 		<band height="14" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="12" splitType="Stretch"/>
+		<band height="11" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="171" splitType="Stretch">
+		<band height="157" splitType="Stretch">
 			<textField>
-				<reportElement x="282" y="11" width="199" height="20" uuid="4e3ef779-87f9-4cf9-98dc-25b55304232f"/>
+				<reportElement x="273" y="11" width="199" height="20" uuid="4e3ef779-87f9-4cf9-98dc-25b55304232f"/>
 				<textElement verticalAlignment="Middle">
 					<font size="13" isBold="true"/>
 				</textElement>
@@ -47,7 +47,7 @@
 				<text><![CDATA[CEDULA:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="282" y="31" width="199" height="20" uuid="14468088-3558-437e-893a-08c822edac25"/>
+				<reportElement x="273" y="31" width="199" height="20" uuid="14468088-3558-437e-893a-08c822edac25"/>
 				<textElement verticalAlignment="Middle">
 					<font size="13" isBold="true"/>
 				</textElement>
@@ -61,7 +61,7 @@
 				<text><![CDATA[NOMBRE:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="282" y="51" width="199" height="20" uuid="79d8cb07-a141-449f-a040-568b140c91fb"/>
+				<reportElement x="273" y="51" width="199" height="20" uuid="79d8cb07-a141-449f-a040-568b140c91fb"/>
 				<textElement verticalAlignment="Middle">
 					<font size="13" isBold="true"/>
 				</textElement>
@@ -89,7 +89,7 @@
 				<text><![CDATA[CORREO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="282" y="111" width="199" height="20" uuid="d1b2a7ee-7726-4802-a392-c44d42179d67"/>
+				<reportElement x="273" y="111" width="199" height="20" uuid="d1b2a7ee-7726-4802-a392-c44d42179d67"/>
 				<textElement verticalAlignment="Middle">
 					<font size="13" isBold="true"/>
 				</textElement>
@@ -110,21 +110,21 @@
 				<text><![CDATA[FECHA DE INGRESO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="282" y="131" width="199" height="20" uuid="7008cdac-bccb-4bb0-a623-cef7f177ac06"/>
+				<reportElement x="273" y="131" width="199" height="20" uuid="7008cdac-bccb-4bb0-a623-cef7f177ac06"/>
 				<textElement verticalAlignment="Middle">
 					<font size="13" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="282" y="71" width="199" height="20" uuid="05b37199-cc0d-4417-8c99-a4c9c9de3eb0"/>
+				<reportElement x="273" y="71" width="199" height="20" uuid="05b37199-cc0d-4417-8c99-a4c9c9de3eb0"/>
 				<textElement verticalAlignment="Middle">
 					<font size="13" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{str_telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="282" y="91" width="199" height="20" uuid="1820a314-9e27-415e-aaa0-04d1f9895a6d"/>
+				<reportElement x="273" y="91" width="199" height="20" uuid="1820a314-9e27-415e-aaa0-04d1f9895a6d"/>
 				<textElement verticalAlignment="Middle">
 					<font size="13" isBold="true"/>
 				</textElement>

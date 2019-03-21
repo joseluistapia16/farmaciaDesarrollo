@@ -9,18 +9,18 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="50" splitType="Stretch">
+		<band height="41" splitType="Stretch">
 			<staticText>
-				<reportElement x="120" y="10" width="309" height="29" uuid="bbea14e2-c6fa-4f69-8bc1-e0ef54746164"/>
+				<reportElement x="120" y="5" width="309" height="29" uuid="bbea14e2-c6fa-4f69-8bc1-e0ef54746164"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="22" isBold="true" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[Marcas]]></text>
+				<text><![CDATA[MARCAS]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="12" splitType="Stretch"/>
+		<band height="7" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="26" splitType="Stretch">
