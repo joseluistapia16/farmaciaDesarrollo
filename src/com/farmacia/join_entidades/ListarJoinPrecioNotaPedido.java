@@ -17,7 +17,7 @@ public class ListarJoinPrecioNotaPedido {
     private String nombre;
     private String descripcion;
     private Long id_producto;
-    private Double precio_compra;
+    private BigDecimal precio_compra;
     private String estado_precio;
     private Long id_productos;
     private String fecha_registro;
@@ -33,7 +33,7 @@ public class ListarJoinPrecioNotaPedido {
     public ListarJoinPrecioNotaPedido() {
     }
 
-    public ListarJoinPrecioNotaPedido(Long id_precio, String nombre, String descripcion, Long id_producto, Double precio_compra, String estado_precio, Long id_productos, String fecha_registro, Double peso, Long id_tipo, Long id_medidas, Long id_envase, Long id_marcas, String estado_producto, String iva, String fecha_registroProducto) {
+    public ListarJoinPrecioNotaPedido(Long id_precio, String nombre, String descripcion, Long id_producto, BigDecimal precio_compra, String estado_precio, Long id_productos, String fecha_registro, Double peso, Long id_tipo, Long id_medidas, Long id_envase, Long id_marcas, String estado_producto, String iva, String fecha_registroProducto) {
         this.id_precio = id_precio;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -84,11 +84,11 @@ public class ListarJoinPrecioNotaPedido {
         this.id_producto = id_producto;
     }
 
-    public Double getPrecio_compra() {
+    public BigDecimal getPrecio_compra() {
         return precio_compra;
     }
 
-    public void setPrecio_compra(Double precio_compra) {
+    public void setPrecio_compra(BigDecimal precio_compra) {
         this.precio_compra = precio_compra;
     }
 
@@ -179,5 +179,5 @@ public class ListarJoinPrecioNotaPedido {
     public void setFecha_registroProducto(String fecha_registroProducto) {
         this.fecha_registroProducto = fecha_registroProducto;
     }
-    
+
 }

@@ -298,7 +298,7 @@ public class ComprasEfectuadas extends javax.swing.JDialog {
             lista.add(medida);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"ComprasEfectuadas";
+            String dir = System.getProperty("user.dir") + "/Reportes/" +"ComprasEfectuadas.jasper";
             JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);

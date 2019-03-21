@@ -7,6 +7,8 @@ package com.farmacia.views.pedidos;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.dao.Consultas;
+import com.farmacia.entities1.Precios;
 import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import java.awt.MouseInfo;
@@ -22,11 +24,14 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
 
     int x, y;
     CRUD crud = new CRUD();
+    Consultas llamar = new Consultas();
 //    ListarJoinPrecioNotaPedido objf = null;
     ListarJoinPrecioNotaPedido objIdProd = null;
+    ListarJoinPrecioNotaPedido PrecioN = null;
     ArrayList<ListarJoinPrecioNotaPedido> lista = null;
     joinProductoDetallesFaltantes objf = null;
-    Long id_pro;
+    String id_pro;
+    ArrayList<Precios> listaPrecios = null;
 
     public PrecioNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -37,53 +42,35 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
 
     }
 
-    public PrecioNotaPedido(java.awt.Frame parent, boolean modal, joinProductoDetallesFaltantes obj1) {
+    public PrecioNotaPedido(java.awt.Frame parent, boolean modal, String idproducto,String nombre) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        llenarFormulario(obj1);
+        id_pro = idproducto;
+        llenarFormulario(idproducto,nombre);
 //        System.out.println("obe "+obj1.getId_producto().toString());
+        lista = crud.listarPrecioNota(1, id_pro.toString());
+        Tablas.cargarJoinPrecioNotaPedido(tbaPrecioProd, lista);
+    }
+
+    private void llenarFormulario(String idproducto,String nombre) {
+
+        objf = new joinProductoDetallesFaltantes();
+
+        txtCodigo.setText(idproducto);
+        txtProducto.setText(nombre);
+        /////////
+//        objf.setId_producto(obj.getId_producto());
+//        objf.setNombre_producto(obj.getNombre_producto());
 
     }
 
-    private void llenarFormulario(joinProductoDetallesFaltantes obj) {
-        try {
-            objf = new joinProductoDetallesFaltantes();
-            txtCodigo.setText(obj.getId_producto().toString());
-            System.out.println("ID  " + obj.getId_producto().toString());
-            txtProducto.setText(obj.getNombre_producto());
- /////////
-            objf.setId_producto(obj.getId_producto());
-            objf.setNombre_producto(obj.getNombre_producto());
-        } catch (Exception e) {
-        }
-    }
-//    public PrecioNotaPedido(java.awt.Frame parent, boolean modal, Long id_pro1, String producto1) {
-//        super(parent, modal);
-//        initComponents();
-//        this.setLocationRelativeTo(null);
-//        
-//        id_pro = id_pro1;
-//        System.out.println("prod "+id_pro1);
-////        llenarDatos(producto1);
-//        
-//        String id_cab = id_pro1.toString();
-//        lista = crud.listarPrecioNota(1, id_cab);
-//        Tablas.cargarJoinPrecioNotaPedido(tbaPrecioProd, lista);
-//    }
-
-//    public void llenarDatos(String producto1) {
-//        try {
-//            txtProducto.setText(producto1);
-//        } catch (Exception e) {
-//        }
-//    }
     public ListarJoinPrecioNotaPedido buscarObjeto(String cedula, ArrayList<ListarJoinPrecioNotaPedido> lis) {
         ListarJoinPrecioNotaPedido pro = new ListarJoinPrecioNotaPedido();
         pro = null;
         //int ced = Integer.valueOf(cedula);
         for (int i = 0; i < lis.size(); i++) {
-            if (cedula.equals(lis.get(i).getId_producto())) {
+            if (cedula.equals(lis.get(i).getId_precio().toString())) {
                 pro = lis.get(i);
             }
         }
@@ -161,15 +148,24 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
 
         tbaPrecioProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
+        tbaPrecioProd.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tbaPrecioProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbaPrecioProdMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tbaPrecioProdMouseReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbaPrecioProd);
 
         txtCodigo.setEditable(false);
@@ -262,6 +258,26 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_editarPrecioCompraActionPerformed
+
+    private void tbaPrecioProdMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaPrecioProdMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbaPrecioProdMouseReleased
+
+    private void tbaPrecioProdMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaPrecioProdMousePressed
+        int id = 0;
+
+        if (evt.getClickCount() == 2) {
+            id = tbaPrecioProd.getSelectedRow();
+            lista = crud.listarPrecioNota(1, id_pro.toString());
+            PrecioN = buscarObjeto(tbaPrecioProd.getValueAt(id, 0).toString(), lista);
+            System.out.println(PrecioN.getId_precio());
+            lista.clear();
+            setVisible(false);
+        }
+    }//GEN-LAST:event_tbaPrecioProdMousePressed
+    public ListarJoinPrecioNotaPedido getPrecio() {
+        return PrecioN;
+    }
 
     /**
      * @param args the command line arguments

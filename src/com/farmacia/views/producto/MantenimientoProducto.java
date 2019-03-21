@@ -8,6 +8,7 @@ package com.farmacia.views.producto;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.filtros.filtrosProductos;
 
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
@@ -42,11 +43,19 @@ public class MantenimientoProducto extends javax.swing.JDialog {
     ArrayList<listarJoinProductosCompras> lista = crud.listarTodoJoinProductos(1);
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+    Listar_usuario objUsuario=null;
     public MantenimientoProducto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
+    }
+    public MantenimientoProducto(java.awt.Frame parent, boolean modal,Listar_usuario obj) {
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);
+        Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
+        objUsuario=obj;
     }
 
     /**
@@ -341,7 +350,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
-        Products Prod = new Products(new javax.swing.JFrame(), true);
+        Products Prod = new Products(new javax.swing.JFrame(), true,objUsuario);
         Prod.setVisible(true);
         lista.clear();
         lista = crud.listarTodoJoinProductos(1);

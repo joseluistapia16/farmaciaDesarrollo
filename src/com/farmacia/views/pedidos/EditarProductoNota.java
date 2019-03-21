@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.entities1.Iva;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -38,6 +39,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
     int x, y;
     JoinListarDetalleNotaPedido objf = new JoinListarDetalleNotaPedido();
     JoinListarDetalleNotaPedido obj2 = null;
+    ArrayList<Iva> IVA = new ArrayList<Iva>();
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     CRUD crud = new CRUD();
@@ -74,7 +76,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         jLabel12 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         marca = new javax.swing.JTextField();
-        txtcantidad = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -110,6 +112,8 @@ public class EditarProductoNota extends javax.swing.JDialog {
         txtBono = new javax.swing.JTextField();
         Reporte = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         txtPrecio1.setEditable(false);
 
@@ -132,14 +136,14 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
         marca.setEditable(false);
 
-        txtcantidad.addActionListener(new java.awt.event.ActionListener() {
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcantidadActionPerformed(evt);
+                txtCantidadActionPerformed(evt);
             }
         });
-        txtcantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtcantidadKeyTyped(evt);
+                txtCantidadKeyTyped(evt);
             }
         });
 
@@ -340,6 +344,20 @@ public class EditarProductoNota extends javax.swing.JDialog {
             }
         });
 
+        jButton2.setText("Elija Precio");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Prueba");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -361,41 +379,53 @@ public class EditarProductoNota extends javax.swing.JDialog {
                     .addComponent(jLabel20)
                     .addComponent(jLabel18)
                     .addComponent(jLabel19))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEnvase3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(producto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Medida, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel8)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel11)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtBono, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEnvase3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(producto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Medida, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(txtporcentajeDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel13)))
+                        .addGap(35, 53, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtporcentajeDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel13)))
-                .addGap(35, 35, 35))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(11, 11, 11)
+                                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(txtBono, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3)))
+                        .addContainerGap())))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -405,7 +435,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
                 .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -438,17 +468,19 @@ public class EditarProductoNota extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBono, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBono, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -492,17 +524,21 @@ public class EditarProductoNota extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadActionPerformed
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcantidadActionPerformed
+    }//GEN-LAST:event_txtCantidadActionPerformed
     public void Total() {
+
 //        BigDecimal total = new BigDecimal("0.00");
         BigDecimal PorcentajeDescuento = new BigDecimal("0.00");
-        Integer Cant = Integer.parseInt(txtcantidad.getText());
+        Integer Cant = Integer.parseInt(txtCantidad.getText());
         BigDecimal Cantidad = new BigDecimal(Cant);
         BigDecimal Precio = new BigDecimal(txtPrecio.getText());
         BigDecimal Subtotal = Cantidad.multiply(Precio);
+
         BigDecimal Cien = new BigDecimal("100");
+        BigDecimal ValorIva = Cantidad.multiply(Precio);
+
         if (txtporcentajeDescuento.getText().equals("")) {
 //            PorcentajeDescuento = "0.00";
             BigDecimal ValorDescuento = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
@@ -528,7 +564,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
             System.out.println("das" + ValorDescuento);
 //           ValorDescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
             txtDescuento.setText(ValorDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-           // BigDecimal IVA = new BigDecimal(txtIva.getText());
+            // BigDecimal IVA = new BigDecimal(txtIva.getText());
             BigDecimal IVA = obj2.getIva();
 
             VGtotal = Subtotal.add(IVA).subtract(ValorDescuento);
@@ -537,6 +573,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
             System.out.println("Total con Descuento" + VGtotal);
         }
 //        }
+
     }
 
     public void ValorDescuento() {
@@ -568,13 +605,13 @@ public class EditarProductoNota extends javax.swing.JDialog {
     public static String removeScientificNotation(String value) {
         return new BigDecimal(value).toPlainString();
     }
-    private void txtcantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadKeyTyped
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
         char c = evt.getKeyChar();
         if (c < '0' || c > '9') {
             evt.consume();
 //            JOptionPane.showMessageDialog(null, "INGRESE NUMEROS");
         }
-    }//GEN-LAST:event_txtcantidadKeyTyped
+    }//GEN-LAST:event_txtCantidadKeyTyped
 
     private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
 
@@ -693,7 +730,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
     private void Guardar() {
-        int Cantidad = Integer.parseInt(txtcantidad.getText());
+        int Cantidad = Integer.parseInt(txtCantidad.getText());
         int Bono = Integer.parseInt(txtBono.getText());
         int CantidadTotal = Cantidad;
 
@@ -732,10 +769,10 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
         ArrayList producto1 = new ArrayList();
-        ClaseReporte producto2 = new ClaseReporte(codigo.getText(), Medida.getText(), producto.getText(), marca.getText(), txtEnvase3.getText(), txtTipo.getText(), txtcantidad.getText(), txtPrecio.getText(), txtporcentajeDescuento.getText(), txtDescuento.getText(), txtIva.getText(), txtTotal.getText());
+        ClaseReporte producto2 = new ClaseReporte(codigo.getText(), Medida.getText(), producto.getText(), marca.getText(), txtEnvase3.getText(), txtTipo.getText(), txtCantidad.getText(), txtPrecio.getText(), txtporcentajeDescuento.getText(), txtDescuento.getText(), txtIva.getText(), txtTotal.getText());
         producto1.add(producto2);
         try {
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"modificarProducto.jasper";
+            String dir = System.getProperty("user.dir") + "/Reportes/" + "modificarProducto.jasper";
             JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(producto1));
             JDialog frame = new JDialog(this);
@@ -763,6 +800,34 @@ public class EditarProductoNota extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel7MouseDragged
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        EditarPrecioNotaPedido Pnp = new EditarPrecioNotaPedido(new javax.swing.JFrame(), true, codigo.getText(), producto.getText());
+        Pnp.setVisible(true);
+        Pnp.getPrecio();
+        txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
+
+        txtBono.setEnabled(true);
+        txtporcentajeDescuento.setEnabled(true);
+        txtCantidad.setEnabled(true);
+        objf.setPrecio(Pnp.getPrecio().getPrecio_compra());
+        objf.setId_precio(Pnp.getPrecio().getId_precio());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+//        String IVA2="";
+//            for (int i = 0; i < IVA.size(); i++) {
+//
+//                String Ivaget = ""+IVA.get(i).getIva();
+//                System.out.println("ivaaa pendejp "+Ivaget);
+//                BigDecimal Iva = new BigDecimal(Ivaget);
+//                IVA2=Iva.toString();
+//            }
+//        JOptionPane.showMessageDialog(this, "iva " + IVA2+"ggggg");
+//
+//        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void EliminarDetalleNotaPedido() {
         DetalleNotaPedido obj = new DetalleNotaPedido();
         obj.setId_detalle_nota_pedidos(obj2.getId_detalle_nota_pedido());
@@ -782,7 +847,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         txtIva.setText(removeScientificNotation(obj.getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
         txtDescuento.setText(removeScientificNotation(obj.getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
         txtPrecio.setText(removeScientificNotation(obj.getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
-        txtcantidad.setText("" + obj.getCantidad());
+        txtCantidad.setText("" + obj.getCantidad());
         txtBono.setText("" + obj.getBono());
         txtTotal.setText(removeScientificNotation(obj.getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
         // txtDescuento.setText(removeScientificNotation(obj.getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
@@ -859,6 +924,8 @@ public class EditarProductoNota extends javax.swing.JDialog {
     private javax.swing.JButton btnSalir;
     private javax.swing.JTextField codigo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -883,6 +950,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
     private javax.swing.JTextField marca;
     private javax.swing.JTextField producto;
     private javax.swing.JTextField txtBono;
+    private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtDescuento;
     private javax.swing.JTextField txtEnvase3;
     private javax.swing.JTextField txtIva;
@@ -890,7 +958,6 @@ public class EditarProductoNota extends javax.swing.JDialog {
     private javax.swing.JTextField txtPrecio1;
     private javax.swing.JTextField txtTipo;
     private javax.swing.JTextField txtTotal;
-    private javax.swing.JTextField txtcantidad;
     private javax.swing.JTextField txtporcentajeDescuento;
     // End of variables declaration//GEN-END:variables
 }

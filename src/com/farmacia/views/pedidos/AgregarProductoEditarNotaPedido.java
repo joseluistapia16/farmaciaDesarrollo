@@ -45,6 +45,9 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         llenarFormulario(obj1);
+        txtBono.setEnabled(false);
+        txtcantidadpro.setEnabled(false);
+        txtporcentajeDescuento.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -79,6 +82,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         jLabel18 = new javax.swing.JLabel();
         txtBono = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -263,6 +267,13 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("Elija Precio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -282,13 +293,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
                     .addComponent(jLabel5)
                     .addComponent(jLabel16))
                 .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel17)
-                        .addGap(3, 3, 3)
-                        .addComponent(txtIva))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtBono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -301,8 +306,18 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
                     .addComponent(producto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Medida, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcantidadpro, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(txtcantidadpro, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel17)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -350,13 +365,14 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcantidadpro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtcantidadpro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -388,7 +404,8 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         marca.setText(obj.getMarca());
         txtEnvase3.setText(obj.getEnvase());
         txtTipo.setText(obj.getNombre_tipo());
-        txtPrecio.setText(String.valueOf(obj.getPrecios()));
+//        txtPrecio.setText(obj.getPrecios().toString());
+        System.out.println("ddddd" + obj.getPrecios());
         txtIva.setText(obj.getIva());
         //
         objf.setId_producto(obj.getId_producto());
@@ -397,7 +414,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         objf.setMarca(obj.getMarca());
         objf.setEnvase(obj.getEnvase());
         objf.setNombre_tipo(obj.getNombre_tipo());
-        objf.setPrecios(obj.getPrecios());
+//        objf.setPrecios(obj.getPrecios());
         objf.setIva(obj.getIva());
         objf.setId_precios(obj.getId_precios());
 
@@ -413,7 +430,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
     private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
         String cant;
         String porc;
-        String bono="0";
+        String bono = "0";
         if (txtcantidadpro.getText() == null || "".equals(txtcantidadpro.getText())) {
             JOptionPane.showMessageDialog(null, "Ingrese Cantidad");
         } else {
@@ -460,13 +477,13 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         obj.setId_cabecera_nota_pedidos(obj2.getId_cabecera_nota_pedidos());
         obj.setCantidad(Integer.parseInt(txtcantidadpro.getText()));
         obj.setPrecio(PrecioBono);
-        String descuento=txtporcentajeDescuento.getText();
+        String descuento = txtporcentajeDescuento.getText();
         BigDecimal DESCUENTO = new BigDecimal(descuento);
         obj.setDescuento(DESCUENTO);
-        String iva=txtIva.getText();
+        String iva = txtIva.getText();
         BigDecimal IVA = new BigDecimal(iva);
         obj.setIva(IVA);
-        String total=txtporcentajeDescuento.getText();
+        String total = txtporcentajeDescuento.getText();
         BigDecimal TOTAL = new BigDecimal(total);
         obj.setTotal(TOTAL);
 
@@ -567,14 +584,27 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_txtBonoKeyTyped
 
     private void jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MousePressed
-       x=evt.getX();
-       y=evt.getY();
+        x = evt.getX();
+        y = evt.getY();
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void jLabel7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseDragged
-       Point point = MouseInfo.getPointerInfo().getLocation();
-       setLocation(point.x-x,point.y-y);
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel7MouseDragged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        EditarPrecioNotaPedido Pnp = new EditarPrecioNotaPedido(new javax.swing.JFrame(), true, codigo.getText(), producto.getText());
+        Pnp.setVisible(true);
+        Pnp.getPrecio();
+        txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
+
+        txtBono.setEnabled(true);
+        txtporcentajeDescuento.setEnabled(true);
+        txtcantidadpro.setEnabled(true);
+        objf.setPrecios(Pnp.getPrecio().getPrecio_compra());
+        objf.setId_precios(Pnp.getPrecio().getId_precio());
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -878,6 +908,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
     private javax.swing.JButton btnAnadir;
     private javax.swing.JButton btnSalir;
     private javax.swing.JTextField codigo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;

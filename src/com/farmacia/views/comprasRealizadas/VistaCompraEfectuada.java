@@ -67,17 +67,12 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
     }
 
     public VistaCompraEfectuada(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1, int vari) {
-//        super(parent, modal);
-//
-//        setUndecorated(true);
-//        setLocationRelativeTo(null);
-//        initComponents();        
-//        this.setResizable(false);
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
         setLayout(null);
+        
         llenarFormulario(obj1);
         buscador = obj1;
 //        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);

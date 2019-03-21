@@ -19,9 +19,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="49" splitType="Stretch">
+		<band height="39" splitType="Stretch">
 			<textField>
-				<reportElement x="143" y="11" width="314" height="25" uuid="19aefecd-d1e1-429b-952c-b8eb332dcb6a"/>
+				<reportElement x="10" y="7" width="534" height="25" uuid="19aefecd-d1e1-429b-952c-b8eb332dcb6a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true" isItalic="false" isUnderline="false"/>
 				</textElement>
