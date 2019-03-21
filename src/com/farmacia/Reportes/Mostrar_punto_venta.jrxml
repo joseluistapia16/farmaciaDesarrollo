@@ -12,11 +12,11 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="48" splitType="Stretch">
+		<band height="36" splitType="Stretch">
 			<staticText>
-				<reportElement x="154" y="9" width="252" height="32" uuid="45c11046-017a-4a2e-b00e-968e38218070"/>
+				<reportElement x="3" y="4" width="549" height="26" uuid="45c11046-017a-4a2e-b00e-968e38218070"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="22" isBold="true"/>
+					<font size="20" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PUNTOS DE VENTA]]></text>
 			</staticText>

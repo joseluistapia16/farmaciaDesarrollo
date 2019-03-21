@@ -42,7 +42,6 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         listar = crud.get_listar_usuario();
         Tablas.cargarJoinUsuario(jtUsuario, listar);
-//        txtFiltro.setEnabled(false);
     }
 
     
@@ -143,6 +142,11 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE...", "CODIGO", "CEDULA", "APELLIDO", "FECHA", "ACTIVO", "INACTIVO" }));
 
         txtFiltro.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtFiltro.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtFiltroFocusLost(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/agregarCliente.png"))); // NOI18N
@@ -265,6 +269,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             if (f=="" && pos == 0) {
             listar = crud.get_listar_usuario();
             Tablas.cargarJoinUsuario(jtUsuario, listar);
+            //JOptionPane.showMessageDialog(this, "por favor seleccione un filtro");
         }
         if (pos == 1) {
             lu.setId_sesion(Long.valueOf(f));
@@ -403,6 +408,10 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel1MouseDragged
+
+    private void txtFiltroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtFiltroFocusLost
+        txtFiltro.setText(txtFiltro.getText().toUpperCase());
+    }//GEN-LAST:event_txtFiltroFocusLost
 
     /**
      * @param args the command line arguments
