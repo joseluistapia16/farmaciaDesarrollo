@@ -104,7 +104,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
             }
         });
 
-        btnSalir2.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnSalir2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,10 +159,12 @@ public class Reporte_Compra extends javax.swing.JDialog {
         });
 
         Chooser1.setDateFormatString("yyyy/MM/dd");
+        Chooser1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         Chooser2.setDateFormatString("yyyy/MM/dd");
+        Chooser2.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
-        buscar1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        buscar1.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         buscar1.setPreferredSize(new java.awt.Dimension(6, 28));
         buscar1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -171,6 +173,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
         });
 
         Txt_Total.setEditable(false);
+        Txt_Total.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         Txt_Total.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -183,7 +186,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
             }
         });
 
-        btnimprimir.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnimprimir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnimprimir.setText("IMPRIMIR");
         btnimprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -104,7 +104,7 @@ public class Tipo_Producto extends javax.swing.JDialog {
             }
         });
 
-        busqueda_tf.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        busqueda_tf.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         busqueda_tf.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 busqueda_tfKeyReleased(evt);
