@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eef98107-54aa-473e-a5d9-7af6f92b3a9b">
-	<property name="ireport.zoom" value="3.797498335832527"/>
+	<property name="ireport.zoom" value="1.1000000000000334"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="436"/>
+	<property name="ireport.y" value="0"/>
 	<field name="valor1" class="java.lang.String"/>
 	<field name="valor2" class="java.lang.String"/>
 	<field name="valor3" class="java.lang.String"/>
@@ -41,7 +41,7 @@
 				<textElement textAlignment="Right">
 					<font size="24" isBold="true" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[Orden de Compra N°]]></text>
+				<text><![CDATA[ORDEN DE COMPRA N°]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="534" y="3" width="184" height="33" uuid="0db9d5eb-3d2e-4639-9692-45ea592e97b1"/>
@@ -215,21 +215,21 @@
 			<staticText>
 				<reportElement mode="Opaque" x="2" y="4" width="60" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="8afff2ca-0669-48e1-8fe1-1d61be11be33"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="8" isBold="true"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NUMERO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="63" y="4" width="60" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="8769a2a2-f1be-44c4-882c-814c6507aa91"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="8" isBold="true"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CODIGO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="124" y="4" width="74" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="50baa94f-b0ec-4c55-8e72-af907afefed6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="8" isBold="true"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MARCA]]></text>
 			</staticText>
@@ -242,7 +242,7 @@
 			<staticText>
 				<reportElement mode="Opaque" x="199" y="4" width="65" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="c287f15e-d57b-4328-b98c-5d0da4d0cab1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="8" isBold="true"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TIPO]]></text>
 			</staticText>
@@ -261,35 +261,35 @@
 			<staticText>
 				<reportElement mode="Opaque" x="265" y="4" width="76" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="731c7982-0bb9-4a1d-85e4-4c7e601b5966"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="8" isBold="true"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PRODUCTO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="342" y="4" width="70" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="78f40315-4250-42a3-b705-5b843209b032"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="8" isBold="true"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ENVASE]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="413" y="4" width="65" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="4d56d13e-58f7-4718-bdfd-e802789dd6bc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="8" isBold="true"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[MEDIDA]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="479" y="4" width="60" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="4b861484-c2c9-4d2e-b28c-42955a1f29ca"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="8" isBold="true"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CANTIDAD]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="540" y="4" width="60" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="9ed66265-e0cc-41bf-a74f-61d1ddc5c922"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="8" isBold="true"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PRECIO]]></text>
 			</staticText>
@@ -311,21 +311,21 @@
 			<staticText>
 				<reportElement mode="Opaque" x="601" y="4" width="65" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="921e9675-c82a-4f9b-b3b9-6db4b962d59d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="8" isBold="true"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DESCUENTO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="667" y="4" width="65" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="0b0812f4-bbaf-4efd-a458-c1789df9b124"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="8" isBold="true"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[IVA]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="733" y="4" width="61" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="e4acb837-6d90-43fe-9dbd-1a65185db593"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="8" isBold="true"/>
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL]]></text>
 			</staticText>
@@ -348,21 +348,21 @@
 			<textField>
 				<reportElement x="2" y="2" width="60" height="17" uuid="f25ad221-145a-493a-95d7-242452b6f730"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="7" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor13}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="63" y="2" width="60" height="17" uuid="50ab5dfa-0bce-43de-a92e-c7bd8cf2b180"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="7" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor14}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="124" y="2" width="74" height="17" uuid="35e2ff38-d804-473e-a874-bbbf279be323"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="7" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor15}]]></textFieldExpression>
 			</textField>
@@ -387,7 +387,7 @@
 			<textField>
 				<reportElement x="199" y="2" width="65" height="17" uuid="2a2d5718-43d1-4b56-9620-1aea1c05acff"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="7" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor16}]]></textFieldExpression>
 			</textField>
@@ -397,7 +397,7 @@
 			<textField>
 				<reportElement x="265" y="2" width="76" height="17" uuid="37e95c7a-14a3-479d-9c10-d21285cbc220"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="7" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor17}]]></textFieldExpression>
 			</textField>
@@ -413,49 +413,49 @@
 			<textField>
 				<reportElement x="342" y="2" width="70" height="17" uuid="61e757ad-42b0-4c7c-afd6-a6b998169c36"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="7" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor18}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="413" y="2" width="65" height="17" uuid="f6a097f5-a1a3-41c1-bcbc-fe4c265fb108"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="7" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor19}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="479" y="2" width="60" height="17" uuid="0960aad4-be01-4bae-9b21-0fcba5306bc4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="7" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor20}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="540" y="2" width="60" height="17" uuid="b9ad3d3a-360e-4b99-9946-0d0203910323"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="7" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor21}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="601" y="2" width="65" height="17" uuid="3f90a72a-6f79-4e2f-91a3-c98c24d731a9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="7" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor22}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="667" y="2" width="65" height="17" uuid="d66e73a3-a2d2-4245-9f83-0eb6644a37b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="7" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor23}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="733" y="2" width="61" height="17" uuid="4a25eb80-7723-4a6e-96ae-e61c1b41f99f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="7" isBold="true"/>
+					<font fontName="SansSerif" size="7" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor24}]]></textFieldExpression>
 			</textField>
