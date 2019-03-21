@@ -1146,6 +1146,7 @@ public class NotePedidos extends javax.swing.JDialog {
         x = evt.getX();
         y = evt.getY();
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
