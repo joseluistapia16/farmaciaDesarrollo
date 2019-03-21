@@ -104,7 +104,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         jLabel10.setBackground(new java.awt.Color(0, 153, 153));
         jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -135,13 +135,13 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel3.setText("DIRECCION:");
 
         txtTipo.setEditable(false);
-        txtTipo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtTipo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel12.setText("TIPO:");
 
         txtRepresentante.setEditable(false);
-        txtRepresentante.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtRepresentante.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtRepresentante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtRepresentanteKeyReleased(evt);
@@ -152,13 +152,13 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel14.setText("REPRESENTANTE:");
 
         txtNombre.setEditable(false);
-        txtNombre.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel6.setText("RUC :");
 
         txtRuc.setEditable(false);
-        txtRuc.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtRuc.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtRuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRucActionPerformed(evt);
@@ -170,13 +170,13 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel20.setText("DATOS DEL CLIENTE");
 
         txtCorreo.setEditable(false);
-        txtCorreo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtCorreo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         txtTelefono.setEditable(false);
-        txtTelefono.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         txtDireccion.setEditable(false);
-        txtDireccion.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel4.setText("TELEFONO:");
@@ -184,14 +184,14 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel2.setText("NOMBRE:");
 
-        txtCodigoProveedor.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtCodigoProveedor.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtCodigoProveedor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel7.setText("APELLIDO:");
 
         txtApellido.setEditable(false);
-        txtApellido.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtApellido.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -212,7 +212,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -282,20 +282,20 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel11.setText("PLAZO:");
 
         txtFechaCreacion.setEditable(false);
-        txtFechaCreacion.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtFechaCreacion.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel9.setText("FECHA :");
 
         txt_Numero.setEditable(false);
-        txt_Numero.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txt_Numero.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("#");
 
-        cbxFormaP.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cbxFormaP.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contado", "Credito" }));
         cbxFormaP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,7 +303,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
             }
         });
 
-        cbxTipoVenta.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cbxTipoVenta.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbxTipoVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -319,32 +319,30 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                                 .addComponent(jLabel11)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(cbxTipoVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtFechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbxTipoVenta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtFechaCreacion)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addGap(18, 18, 18)
-                        .addComponent(cbxFormaP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbxFormaP, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -367,15 +365,18 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel21.setText("TOTAL:");
 
         txtIva.setEditable(false);
+        txtIva.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtIva.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel18.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel18.setText("DESCUENTO:");
 
         txtDescuento.setEditable(false);
+        txtDescuento.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtDescuento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtTotal.setEditable(false);
+        txtTotal.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,7 +414,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 178, Short.MAX_VALUE)
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -458,7 +459,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -499,8 +500,8 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

@@ -213,13 +213,13 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         jLabel3.setText("DIRECCION:");
 
         txtTipo.setEditable(false);
-        txtTipo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtTipo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel12.setText("TIPO:");
 
         txtRepresentante.setEditable(false);
-        txtRepresentante.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtRepresentante.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtRepresentante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtRepresentanteKeyReleased(evt);
@@ -230,13 +230,13 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         jLabel14.setText("REPRESENTANTE:");
 
         txtNombre.setEditable(false);
-        txtNombre.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel6.setText("RUC :");
 
         txtRuc.setEditable(false);
-        txtRuc.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtRuc.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtRuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRucActionPerformed(evt);
@@ -248,13 +248,13 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         jLabel20.setText("DATOS DEL PROVEEDOR");
 
         txtCorreo.setEditable(false);
-        txtCorreo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtCorreo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         txtTelefono.setEditable(false);
-        txtTelefono.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         txtDireccion.setEditable(false);
-        txtDireccion.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel4.setText("TELEFONO:");
@@ -262,7 +262,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel2.setText("NOMBRE:");
 
-        txtCodigoProveedor.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtCodigoProveedor.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtCodigoProveedor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -281,8 +281,8 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                     .addComponent(txtRepresentante, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                    .addComponent(txtCodigoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -335,13 +335,13 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        cbxPlazo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cbxPlazo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
 
         jLabel16.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel16.setText("FORMA DE PAGO:");
 
-        cbxFormaP.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cbxFormaP.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contado", "Credito" }));
         cbxFormaP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -353,13 +353,13 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         jLabel11.setText("PLAZO:");
 
         txtFechaCreacion.setEditable(false);
-        txtFechaCreacion.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtFechaCreacion.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel9.setText("FECHA :");
 
         txt_Numero.setEditable(false);
-        txt_Numero.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txt_Numero.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -425,15 +425,18 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         jLabel21.setText("TOTAL:");
 
         txtIva.setEditable(false);
+        txtIva.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtIva.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel18.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel18.setText("DESCUENTO:");
 
         txtDescuento.setEditable(false);
+        txtDescuento.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtDescuento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         txtTotal.setEditable(false);
+        txtTotal.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -452,7 +455,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("$");
 
-        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnSalir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/action_exit_close_remove_13915.png"))); // NOI18N
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
@@ -461,7 +464,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
             }
         });
 
-        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnReporte.setText("IMPRIMIR");
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -570,7 +573,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
