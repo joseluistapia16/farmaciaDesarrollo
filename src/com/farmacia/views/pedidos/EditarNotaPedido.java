@@ -988,7 +988,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         String valor = "";
-        int r = JOptionPane.showConfirmDialog(null, "¿Desea Actualizar?", "", JOptionPane.YES_NO_OPTION);
+        int r = JOptionPane.showConfirmDialog(null, "¿Desea Actualizar?", "", JOptionPane.YES_NO_CANCEL_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
             CabeceraNotaPedido cn = new CabeceraNotaPedido();
