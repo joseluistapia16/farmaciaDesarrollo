@@ -957,6 +957,8 @@ public static String FechaActual() {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         EditarNotaPedido NP = new EditarNotaPedido(new javax.swing.JFrame(), true, objCabecera, 1);
         NP.setVisible(true);
+        actualizarTabla2();
+        //actualizarcabeceraNota();
 
     }//GEN-LAST:event_jButton1ActionPerformed
     public int getvariablecerrar() {
