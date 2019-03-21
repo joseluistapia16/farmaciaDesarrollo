@@ -50,75 +50,73 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jLabel9" alignment="0" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                          <Component id="BotonActualizar" min="-2" pref="115" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="BotonEliminar" min="-2" pref="115" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="BotonSalir1" min="-2" pref="115" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="BotonSalir" min="-2" pref="115" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="direccion" min="-2" pref="160" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" min="-2" pref="140" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Component id="fecha_reg" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <Component id="nombre" min="-2" pref="160" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="cedula" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
-                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="direccion" min="-2" pref="160" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cbx1" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <Component id="cbx2" min="-2" pref="130" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jLabel2" max="-2" attributes="0"/>
-                                      <Component id="jLabel8" min="-2" pref="140" max="-2" attributes="0"/>
-                                      <Component id="jLabel3" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Component id="fecha_reg" min="-2" pref="160" max="-2" attributes="0"/>
-                                          <Component id="nombre" min="-2" pref="160" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="cedula" min="-2" pref="160" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="cbx1" min="-2" pref="130" max="-2" attributes="0"/>
-                                              <Component id="cbx2" min="-2" pref="130" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="BotonAgregarT" min="-2" pref="27" max="-2" attributes="0"/>
-                                              <Component id="BotonAgregarC" min="-2" pref="27" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Component id="apellido" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Component id="BotonAgregarT" max="32767" attributes="0"/>
+                                      <Component id="BotonAgregarC" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Component id="apellido" min="-2" pref="175" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="33" max="32767" attributes="0"/>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="BotonActualizar" min="-2" pref="128" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="BotonEliminar" min="-2" pref="128" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="BotonSalir1" min="-2" pref="128" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="BotonSalir" min="-2" pref="128" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -126,46 +124,49 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Component id="jLabel9" min="-2" pref="45" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel8" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="cedula" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="fecha_reg" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="nombre" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="apellido" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="jLabel4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="BotonAgregarT" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="cbx1" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel2" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel8" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="cedula" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="fecha_reg" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="nombre" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="jLabel4" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="apellido" min="-2" pref="25" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="BotonAgregarT" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="cbx1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                          <Component id="jLabel5" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="cbx2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="BotonAgregarC" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="89" pref="89" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cbx2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="BotonAgregarC" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                          <Component id="jLabel5" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -176,12 +177,12 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="BotonEliminar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="BotonSalir" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="BotonSalir1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="BotonActualizar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="BotonEliminar" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="BotonSalir" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="BotonSalir1" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="BotonActualizar" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="17" max="32767" attributes="0"/>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -205,7 +206,7 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
@@ -230,7 +231,7 @@
         <Component class="javax.swing.JTextField" name="nombre">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
           </Properties>
           <Events>
@@ -243,7 +244,7 @@
               <Color blue="99" green="99" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Cambria" size="24" style="1"/>
+              <Font name="Arial" size="24" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fe" green="fe" red="fe" type="rgb"/>
@@ -260,7 +261,7 @@
         <Component class="javax.swing.JTextField" name="apellido">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
           </Properties>
           <Events>
@@ -270,7 +271,7 @@
         <Component class="javax.swing.JComboBox" name="cbx1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -286,7 +287,7 @@
         <Component class="javax.swing.JComboBox" name="cbx2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
@@ -307,7 +308,7 @@
         <Component class="javax.swing.JButton" name="BotonAgregarT">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="+"/>
           </Properties>
@@ -326,7 +327,7 @@
         <Component class="javax.swing.JButton" name="BotonAgregarC">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="+"/>
           </Properties>
@@ -362,7 +363,7 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
@@ -414,7 +415,7 @@
         <Component class="javax.swing.JTextField" name="direccion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
           </Properties>
           <Events>
