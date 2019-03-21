@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6d5ea5dd-64e9-4be5-8170-31f086dc7197">
-	<property name="ireport.zoom" value="2.1435888100000056"/>
-	<property name="ireport.x" value="308"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.6105100000000039"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="441"/>
 	<parameter name="parameter1" class="java.lang.String"/>
 	<field name="valor1" class="java.lang.String"/>
 	<field name="valor2" class="java.lang.String"/>
@@ -40,7 +40,7 @@
 		<band height="10" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="315" splitType="Stretch">
+		<band height="296" splitType="Stretch">
 			<textField>
 				<reportElement x="153" y="24" width="189" height="19" uuid="0f817a4f-de35-4786-b69f-544a28458463"/>
 				<textElement>

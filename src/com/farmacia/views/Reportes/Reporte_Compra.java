@@ -15,7 +15,9 @@ import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -46,7 +48,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
      * Creates new form Reporte_Compra
      */
     public Reporte_Compra(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+        super(parent, modal=false);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -360,13 +362,19 @@ public class Reporte_Compra extends javax.swing.JDialog {
 
     private void btnimprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimirActionPerformed
         ArrayList tabla = new ArrayList();
+        String formato = Chooser1.getDateFormatString();
+        String formato2 = Chooser2.getDateFormatString();
+        Date date = Chooser1.getDate();
+        Date date2 = Chooser2.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+        SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
         for(int i=0;i<tbaCabeceraCompra.getRowCount();i++){
-            ClaseReporte componentes = new ClaseReporte(tbaCabeceraCompra.getValueAt(i,0).toString(),tbaCabeceraCompra.getValueAt(i,1).toString(),tbaCabeceraCompra.getValueAt(i,2).toString(),tbaCabeceraCompra.getValueAt(i,3).toString(),tbaCabeceraCompra.getValueAt(i,4).toString(),tbaCabeceraCompra.getValueAt(i,5).toString(),tbaCabeceraCompra.getValueAt(i,6).toString(),tbaCabeceraCompra.getValueAt(i,7).toString());
+            ClaseReporte componentes = new ClaseReporte(tbaCabeceraCompra.getValueAt(i,0).toString(),tbaCabeceraCompra.getValueAt(i,1).toString(),tbaCabeceraCompra.getValueAt(i,2).toString(),tbaCabeceraCompra.getValueAt(i,3).toString(),tbaCabeceraCompra.getValueAt(i,4).toString(),tbaCabeceraCompra.getValueAt(i,5).toString(),tbaCabeceraCompra.getValueAt(i,6).toString(),tbaCabeceraCompra.getValueAt(i,7).toString(),String.valueOf(sdf.format(date)),String.valueOf(sdf2.format(date2)),Txt_Total.getText());
         tabla.add(componentes);
         }
         
         try {
-        String dir = System.getProperty("user.dir")+"/Reportes/"+"Reporte_Compra";
+        String dir = System.getProperty("user.dir")+"/Reportes/"+"Reporte_Compra.jasper";
         JasperReport reporte = (JasperReport)JRLoader.loadObject(dir);
         JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tabla));
         JDialog frame = new JDialog();
