@@ -67,9 +67,9 @@ public class AgregarFaltantes extends javax.swing.JDialog {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         marca.setEditable(false);
-        marca.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        marca.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
-        cantidadpro.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cantidadpro.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cantidadpro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cantidadproActionPerformed(evt);
@@ -82,10 +82,10 @@ public class AgregarFaltantes extends javax.swing.JDialog {
         });
 
         numeroLista.setEditable(false);
-        numeroLista.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        numeroLista.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         descripcion.setEditable(false);
-        descripcion.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        descripcion.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         descripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 descripcionActionPerformed(evt);
@@ -123,7 +123,7 @@ public class AgregarFaltantes extends javax.swing.JDialog {
         jLabel2.setText("PRODUCTO:");
 
         codigo.setEditable(false);
-        codigo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        codigo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codigoActionPerformed(evt);
@@ -131,7 +131,7 @@ public class AgregarFaltantes extends javax.swing.JDialog {
         });
 
         producto.setEditable(false);
-        producto.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        producto.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel14.setText("CANTIDAD:");
@@ -187,10 +187,10 @@ public class AgregarFaltantes extends javax.swing.JDialog {
                 .addContainerGap(35, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,8 +222,8 @@ public class AgregarFaltantes extends javax.swing.JDialog {
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 

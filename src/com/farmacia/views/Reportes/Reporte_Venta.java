@@ -143,10 +143,12 @@ public class Reporte_Venta extends javax.swing.JDialog {
         });
 
         Chooser1.setDateFormatString("yyyy/MM/dd");
+        Chooser1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         Chooser2.setDateFormatString("yyyy/MM/dd");
+        Chooser2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        buscar1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        buscar1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         buscar1.setPreferredSize(new java.awt.Dimension(6, 28));
         buscar1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -155,6 +157,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
         });
 
         Txt_Total.setEditable(false);
+        Txt_Total.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Txt_Total.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

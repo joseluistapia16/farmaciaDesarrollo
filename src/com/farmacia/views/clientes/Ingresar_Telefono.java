@@ -108,7 +108,7 @@ public class Ingresar_Telefono extends javax.swing.JDialog {
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 2, true));
 
-        nuevo1.setFont(new java.awt.Font("Cambria", 1, 10)); // NOI18N
+        nuevo1.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         nuevo1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 nuevo1FocusLost(evt);
@@ -140,7 +140,7 @@ public class Ingresar_Telefono extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel2.setText("TIPO:");
 
-        cbx1.setFont(new java.awt.Font("Cambria", 1, 10)); // NOI18N
+        cbx1.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         cbx1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CONVENCIONAL", "CELULAR", "OTRO"}));
 
         BotonSalir.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
@@ -207,7 +207,7 @@ public class Ingresar_Telefono extends javax.swing.JDialog {
                     .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())

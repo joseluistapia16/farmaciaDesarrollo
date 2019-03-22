@@ -109,7 +109,7 @@ public class Ingresar_Correo1 extends javax.swing.JDialog {
             }
         });
 
-        email.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        email.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         email.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 emailFocusLost(evt);
