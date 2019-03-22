@@ -32,6 +32,7 @@ public class Mostrar_iva extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+    
     public Mostrar_iva(java.awt.Frame parent, boolean modal) {
 
         super(parent, modal);
