@@ -29,6 +29,7 @@ import com.farmacia.views.stock.Stock_Productos;
 import com.farmacia.views.usuario.Local;
 import com.farmacia.views.usuario.Mostrar_usuario;
 import com.farmacia.views.ventas.MenuPreVentas;
+import javax.swing.JOptionPane;
 
 public class FrmPrincipal extends javax.swing.JFrame {
 
@@ -43,11 +44,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //    public FrmPrincipal() {
 //        //initComponents();
 //    }
-    
     public FrmPrincipal(Listar_usuario obj2) {
         initComponents();
 
-        this.setTitle(variables.getTitle() + TITLE+"  "+obj2.getCargo()+": "+obj2.getNombres()+"  "+obj2.getApellidos());
+        this.setTitle(variables.getTitle() + TITLE + "  " + obj2.getCargo() + ": " + obj2.getNombres() + "  " + obj2.getApellidos());
         this.setLocationRelativeTo(null);
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.setIconImage(variables.getIconoVentana());
@@ -62,9 +62,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //        usuarioSession = usuario;
 //        lblNombreUsuario.setText(usuario.getPersona().getNombres() + " " + usuario.getPersona().getApellidos());
 //        lblPrivilegio.setText(usuario.getPerfil());
-        objUsuario=obj2;
-        lblNombreUsuario.setText(obj2.getNombres()+" "+obj2.getApellidos());
-        lblPrivilegio.setText(" "+obj2.getCargo());
+        objUsuario = obj2;
+        lblNombreUsuario.setText(obj2.getNombres() + " " + obj2.getApellidos());
+        lblPrivilegio.setText(" " + obj2.getCargo());
     }
 
     private FrmPrincipal() {
@@ -360,6 +360,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu2.add(mnuCliente);
 
         jMenuItem1.setText("Lista de Ventas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuBar1.add(jMenu2);
@@ -507,40 +512,58 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGenVentaActionPerformed
 
     private void btnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoActionPerformed
-////        DlgProducto producto= new DlgProducto(this, rootPaneCheckingEnabled);
-////        producto.setVisible(rootPaneCheckingEnabled);
-        Products pr = new Products(new javax.swing.JFrame(), true,objUsuario);
-        pr.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo())|| "BODEGUERO".equals(objUsuario.getCargo())) {
+            Products pr = new Products(new javax.swing.JFrame(), true, objUsuario);
+            pr.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
+//        Products pr = new Products(new javax.swing.JFrame(), true, objUsuario);
+//        pr.setVisible(true);
     }//GEN-LAST:event_btnProductoActionPerformed
 
     private void mnuLaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLaboratorioActionPerformed
-//        DlgLaboratorio laboratorio= new DlgLaboratorio(this, rootPaneCheckingEnabled,0);
-//        laboratorio.setVisible(rootPaneCheckingEnabled);
-
-        Consulta_Lab cl = new Consulta_Lab(new javax.swing.JFrame(), true);
-        cl.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo())) {
+            Consulta_Lab cl = new Consulta_Lab(new javax.swing.JFrame(), true);
+            cl.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
+//        Consulta_Lab cl = new Consulta_Lab(new javax.swing.JFrame(), true);
+//        cl.setVisible(true);
     }//GEN-LAST:event_mnuLaboratorioActionPerformed
 
     private void mnuRegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarVentaActionPerformed
-//        DlgGenerarVenta generarVenta= new DlgGenerarVenta(this, rootPaneCheckingEnabled);
-//        generarVenta.setVisible(rootPaneCheckingEnabled);
-        MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true);
-        mp.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "VENDEDOR".equals(objUsuario.getCargo())) {
+            MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true);
+            mp.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
+//        MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true);
+//        mp.setVisible(true);
     }//GEN-LAST:event_mnuRegistrarVentaActionPerformed
 
     private void mnuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClienteActionPerformed
-//        DlgCliente cliente= new DlgCliente(this, rootPaneCheckingEnabled);
-//        cliente.setVisible(rootPaneCheckingEnabled);
-
-        Consulta_Clientes cl = new Consulta_Clientes(new javax.swing.JFrame(), true);
-        cl.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "VENDEDOR".equals(objUsuario.getCargo())) {
+            MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true);
+            mp.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
+//        Consulta_Clientes cl = new Consulta_Clientes(new javax.swing.JFrame(), true);
+//        cl.setVisible(true);
     }//GEN-LAST:event_mnuClienteActionPerformed
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-//        DlgCliente cliente= new DlgCliente(this, rootPaneCheckingEnabled);
-//        cliente.setVisible(rootPaneCheckingEnabled);
-        Consulta_Clientes cliente = new Consulta_Clientes(new javax.swing.JFrame(), true);
-        cliente.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "VENDEDOR".equals(objUsuario.getCargo())) {
+            Consulta_Clientes cliente = new Consulta_Clientes(new javax.swing.JFrame(), true);
+            cliente.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
+//        Consulta_Clientes cliente = new Consulta_Clientes(new javax.swing.JFrame(), true);
+//        cliente.setVisible(true);
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void mnuAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAcercaActionPerformed
@@ -550,24 +573,48 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        Envases e = new Envases(new javax.swing.JFrame(), true);
-        e.setVisible(true);
+//        Envases e = new Envases(new javax.swing.JFrame(), true);
+//        e.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo())) {
+            Envases e = new Envases(new javax.swing.JFrame(), true);
+            e.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        Tipo_Producto t = new Tipo_Producto(new javax.swing.JFrame(), true);
-        t.setVisible(true);
+//        Tipo_Producto t = new Tipo_Producto(new javax.swing.JFrame(), true);
+//        t.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo())) {
+            Tipo_Producto t = new Tipo_Producto(new javax.swing.JFrame(), true);
+            t.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        ConsultaMarcas cmx = new ConsultaMarcas(new javax.swing.JFrame(), true);
-        cmx.setVisible(true);
+//        ConsultaMarcas cmx = new ConsultaMarcas(new javax.swing.JFrame(), true);
+//        cmx.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo())) {
+            Tipo_Producto t = new Tipo_Producto(new javax.swing.JFrame(), true);
+            t.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        ConsultaMedidas cm = new ConsultaMedidas(new javax.swing.JFrame(), true);
-        cm.setVisible(true);
+//        ConsultaMedidas cm = new ConsultaMedidas(new javax.swing.JFrame(), true);
+//        cm.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo())) {
+            ConsultaMedidas cm = new ConsultaMedidas(new javax.swing.JFrame(), true);
+            cm.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -577,93 +624,186 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
-//        Products p1 = new Products(new javax.swing.JFrame(), true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo())) {
+            MantenimientoProducto p1 = new MantenimientoProducto(new javax.swing.JFrame(), true, objUsuario);
+            p1.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
+//        MantenimientoProducto p1 = new MantenimientoProducto(new javax.swing.JFrame(), true, objUsuario);
 //        p1.setVisible(true);
-        MantenimientoProducto p1 = new MantenimientoProducto(new javax.swing.JFrame(), true,objUsuario);
-        p1.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-        Consulta_Proveedor p = new Consulta_Proveedor(new javax.swing.JFrame(), true);
-        p.setVisible(true);
+//        Consulta_Proveedor p = new Consulta_Proveedor(new javax.swing.JFrame(), true);
+//        p.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo())) {
+            Consulta_Proveedor p = new Consulta_Proveedor(new javax.swing.JFrame(), true);
+            p.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
     private void mnuRegistrarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarVenta1ActionPerformed
-        NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true,objUsuario);
-        np.setVisible(true);
+//        NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
+//        np.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo())) {
+            NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
+            np.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_mnuRegistrarVenta1ActionPerformed
 
     private void mnuCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCliente1ActionPerformed
-        Consulta_Proveedor pro = new Consulta_Proveedor(new javax.swing.JFrame(), true);
-        pro.setVisible(true);
-
+//        Consulta_Proveedor pro = new Consulta_Proveedor(new javax.swing.JFrame(), true);
+//        pro.setVisible(true);
+        if ("VENDEDOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo())) {
+            Consulta_Proveedor pro = new Consulta_Proveedor(new javax.swing.JFrame(), true);
+            pro.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_mnuCliente1ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        CabeceraCompra CB = new CabeceraCompra(new javax.swing.JFrame(), true,objUsuario);
-        CB.setVisible(true);
+//        CabeceraCompra CB = new CabeceraCompra(new javax.swing.JFrame(), true, objUsuario);
+//        CB.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo())) {
+            CabeceraCompra CB = new CabeceraCompra(new javax.swing.JFrame(), true, objUsuario);
+            CB.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        MantenimientoNotaPedidos mp = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true,objUsuario);
-        mp.setVisible(true);
+//        MantenimientoNotaPedidos mp = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true, objUsuario);
+//        mp.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo())) {
+            MantenimientoNotaPedidos mp = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true, objUsuario);
+            mp.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        Mostrar_iva MI = new Mostrar_iva(new javax.swing.JFrame(), true);
-        MI.setVisible(true);
+//        Mostrar_iva MI = new Mostrar_iva(new javax.swing.JFrame(), true);
+//        MI.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo())) {
+            Mostrar_iva MI = new Mostrar_iva(new javax.swing.JFrame(), true);
+            MI.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        Local lc = new Local(new javax.swing.JFrame(), true);
-        lc.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo())) {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+
+        } else {
+            Local lc = new Local(new javax.swing.JFrame(), true);
+            lc.setVisible(true);
+        }
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void btnEmpeladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpeladosActionPerformed
-        Mostrar_usuario mu = new Mostrar_usuario(new javax.swing.JFrame(), true);
-        mu.setVisible(true);
+//        Mostrar_usuario mu = new Mostrar_usuario(new javax.swing.JFrame(), true);
+//        mu.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo())) {
+            Mostrar_usuario mu = new Mostrar_usuario(new javax.swing.JFrame(), true);
+            mu.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_btnEmpeladosActionPerformed
 
     private void jmEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEmpleadosActionPerformed
-        Mostrar_usuario mu = new Mostrar_usuario(new javax.swing.JFrame(), true);
-        mu.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo())/* || "SUPERVISOR".equals(objUsuario.getCargo())*/) {
+            Mostrar_usuario mu = new Mostrar_usuario(new javax.swing.JFrame(), true);
+            mu.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jmEmpleadosActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-
-        ListaDePedidos Lp = new ListaDePedidos(new javax.swing.JFrame(), true);
-        Lp.setVisible(true);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo())) {
+            ListaDePedidos Lp = new ListaDePedidos(new javax.swing.JFrame(), true);
+            Lp.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
+//        ListaDePedidos Lp = new ListaDePedidos(new javax.swing.JFrame(), true);
+//        Lp.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        Stock_Productos sp = new Stock_Productos(this, rootPaneCheckingEnabled);
-        sp.setVisible(rootPaneCheckingEnabled);
+//        Stock_Productos sp = new Stock_Productos(this, rootPaneCheckingEnabled);
+//        sp.setVisible(rootPaneCheckingEnabled);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "VENDEDOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo())) {
+            Stock_Productos sp = new Stock_Productos(this, rootPaneCheckingEnabled);
+            sp.setVisible(rootPaneCheckingEnabled);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        ComprasEfectuadas ce = new ComprasEfectuadas(this, rootPaneCheckingEnabled);
-        ce.setVisible(rootPaneCheckingEnabled);
+//        ComprasEfectuadas ce = new ComprasEfectuadas(this, rootPaneCheckingEnabled);
+//        ce.setVisible(rootPaneCheckingEnabled);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo())) {
+            ComprasEfectuadas ce = new ComprasEfectuadas(this, rootPaneCheckingEnabled);
+            ce.setVisible(rootPaneCheckingEnabled);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        ComprasDevueltas cd = new ComprasDevueltas(this, rootPaneCheckingEnabled);
-        cd.setVisible(rootPaneCheckingEnabled);
+//        ComprasDevueltas cd = new ComprasDevueltas(this, rootPaneCheckingEnabled);
+//        cd.setVisible(rootPaneCheckingEnabled);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo())) {
+            ComprasDevueltas cd = new ComprasDevueltas(this, rootPaneCheckingEnabled);
+            cd.setVisible(rootPaneCheckingEnabled);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        Reporte_Compra Rc = new Reporte_Compra(this, rootPaneCheckingEnabled);
-        Rc.setVisible(rootPaneCheckingEnabled);
+//        Reporte_Compra Rc = new Reporte_Compra(this, rootPaneCheckingEnabled);
+//        Rc.setVisible(rootPaneCheckingEnabled);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "BODEGUERO".equals(objUsuario.getCargo())) {
+            Reporte_Compra Rc = new Reporte_Compra(this, rootPaneCheckingEnabled);
+            Rc.setVisible(rootPaneCheckingEnabled);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        Reporte_Venta Rv = new Reporte_Venta(this, rootPaneCheckingEnabled);
-        Rv.setVisible(rootPaneCheckingEnabled);
+//        Reporte_Venta Rv = new Reporte_Venta(this, rootPaneCheckingEnabled);
+//        Rv.setVisible(rootPaneCheckingEnabled);
+        if ("ADMINISTRADOR".equals(objUsuario.getCargo()) || "SUPERVISOR".equals(objUsuario.getCargo()) || "VENDEDOR".equals(objUsuario.getCargo())) {
+            Reporte_Venta Rv = new Reporte_Venta(this, rootPaneCheckingEnabled);
+            Rv.setVisible(rootPaneCheckingEnabled);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
+        }
     }//GEN-LAST:event_jMenuItem17ActionPerformed
-   
-    public Listar_usuario getUsuario(){
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    public Listar_usuario getUsuario() {
         return objUsuario;
     }
+
     /**
      * @param args the command line arguments
      */
