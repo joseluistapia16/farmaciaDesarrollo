@@ -702,11 +702,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         if ("ADMINISTRADOR".equals(objUsuario.getCargo())) {
-            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
-
-        } else {
             Local lc = new Local(new javax.swing.JFrame(), true);
             lc.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "NO PUEDE INGRESAR A ESTE MÓDULO");
         }
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
