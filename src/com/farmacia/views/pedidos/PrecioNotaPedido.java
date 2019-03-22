@@ -11,6 +11,7 @@ import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Precios;
 import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
+import com.farmacia.views.precios.Agregar_Precios_Productos;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -88,7 +89,6 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
         txtProducto = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        editarPrecioCompra = new javax.swing.JButton();
         txtCodigo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -144,13 +144,6 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("PRODUCTO: ");
 
-        editarPrecioCompra.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        editarPrecioCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarPrecioCompraActionPerformed(evt);
-            }
-        });
-
         txtCodigo.setEditable(false);
         txtCodigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
@@ -205,9 +198,7 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(agregarCompra)
-                        .addGap(17, 17, 17)
-                        .addComponent(editarPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(agregarCompra))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(140, 140, 140)
@@ -226,7 +217,6 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editarPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(agregarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,7 +242,13 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarCompraActionPerformed
-
+        Agregar_Precios_Productos ic = new Agregar_Precios_Productos(new javax.swing.JFrame(), true, Long.valueOf(id_pro));
+        ic.setVisible(true);
+        
+        //id_precio = ic.getId_precio();
+        lista.clear();
+        lista = crud.listarPrecioNota(1, id_pro.toString());
+        Tablas.cargarJoinPrecioNotaPedido(tbaPrecioProd, lista);
     }//GEN-LAST:event_agregarCompraActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
@@ -274,11 +270,6 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
         y = evt.getY();
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MousePressed
-
-    private void editarPrecioCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPrecioCompraActionPerformed
-
-
-    }//GEN-LAST:event_editarPrecioCompraActionPerformed
 
     private void tbaPrecioProdMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaPrecioProdMouseReleased
         // TODO add your handling code here:
@@ -345,7 +336,6 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarCompra;
     private javax.swing.JButton cerrar;
-    private javax.swing.JButton editarPrecioCompra;
     private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
