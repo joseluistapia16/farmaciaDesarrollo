@@ -413,6 +413,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         if (car < '0' || car > '9') {
             evt.consume();
         }
+        
     }//GEN-LAST:event_txtprocientoKeyTyped
 
     private void txtprocientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprocientoKeyReleased
