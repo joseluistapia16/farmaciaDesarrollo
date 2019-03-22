@@ -134,7 +134,7 @@
                       <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel21" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnSalir2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="btnReporte" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -190,9 +190,9 @@
                           <Component id="txtRepresentante" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                           <Component id="txtNombre" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                           <Component id="txtTelefono" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                          <Component id="txtCodigoProveedor" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                          <Component id="txtCodigoProveedor" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="6" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -295,7 +295,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -317,7 +317,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
               <Events>
@@ -342,7 +342,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -364,7 +364,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
               <Events>
@@ -387,7 +387,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -398,7 +398,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -409,7 +409,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -441,7 +441,7 @@
             <Component class="javax.swing.JLabel" name="txtCodigoProveedor">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -533,7 +533,7 @@
             <Component class="javax.swing.JComboBox" name="cbxPlazo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="6">
@@ -561,7 +561,7 @@
             <Component class="javax.swing.JComboBox" name="cbxFormaP">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
@@ -589,7 +589,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
             </Component>
@@ -605,7 +605,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
             </Component>
@@ -646,6 +646,9 @@
         <Component class="javax.swing.JTextField" name="txtIva">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Ubuntu" size="12" style="1"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
           <AuxValues>
@@ -666,6 +669,9 @@
         <Component class="javax.swing.JTextField" name="txtDescuento">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Ubuntu" size="12" style="1"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
           <AuxValues>
@@ -675,6 +681,9 @@
         <Component class="javax.swing.JTextField" name="txtTotal">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Ubuntu" size="12" style="1"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
           <Events>
@@ -716,7 +725,7 @@
         <Component class="javax.swing.JButton" name="btnSalir2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="11" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/com/farmacia/icon/action_exit_close_remove_13915.png"/>
@@ -730,7 +739,7 @@
         <Component class="javax.swing.JButton" name="btnReporte">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="11" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="IMPRIMIR"/>
           </Properties>

@@ -167,7 +167,7 @@ public class Envases extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(1, 1, 1));
         jLabel1.setText("BUSQUEDA:");
 
-        busqueda_tf.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        busqueda_tf.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         busqueda_tf.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 busqueda_tfKeyReleased(evt);
