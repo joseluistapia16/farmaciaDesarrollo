@@ -205,7 +205,7 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         });
 
         btnSalir2.setBackground(new java.awt.Color(153, 0, 0));
-        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnSalir2.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnSalir2.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir2.setText("SALIR");
         btnSalir2.addActionListener(new java.awt.event.ActionListener() {
@@ -218,21 +218,21 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         jLabel14.setText("TOTAL:");
 
         txtTotal.setEditable(false);
-        txtTotal.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtTotal.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel17.setText("IVA:");
 
         txtIva.setEditable(false);
-        txtIva.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtIva.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtIva.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel18.setText("DESCUENTO:");
 
         txtDescuento.setEditable(false);
-        txtDescuento.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtDescuento.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtDescuento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -266,10 +266,10 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         jLabel15.setText("#");
 
         txtNumero.setEditable(false);
-        txtNumero.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtNumero.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel7.setBackground(new java.awt.Color(2, 184, 184));
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel7.setForeground(java.awt.Color.white);
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("DETALLE COMPRAS EFECTUADAS");
@@ -321,25 +321,25 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         jLabel2.setText("NOMBRE:");
 
         txtDireccion1.setEditable(false);
-        txtDireccion1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtDireccion1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         txtCorreo1.setEditable(false);
-        txtCorreo1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtCorreo1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         txtRuc1.setEditable(false);
-        txtRuc1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtRuc1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("RUC :");
 
         txtNombre1.setEditable(false);
-        txtNombre1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtNombre1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("REPRESENTANTE:");
 
         txtRepresentante.setEditable(false);
-        txtRepresentante.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtRepresentante.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtRepresentante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtRepresentanteKeyReleased(evt);
@@ -350,19 +350,19 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         jLabel12.setText("TIPO:");
 
         txtTipo1.setEditable(false);
-        txtTipo1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtTipo1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("CODIGO:");
 
-        txtCodigoProveedor.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtCodigoProveedor.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtCodigoProveedor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("TELEFONO:");
 
         txtTelefono1.setEditable(false);
-        txtTelefono1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtTelefono1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -459,7 +459,7 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         jLabel9.setText("FECHA:");
 
         txtFechaCreacion.setEditable(false);
-        txtFechaCreacion.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtFechaCreacion.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtFechaCreacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaCreacionActionPerformed(evt);
@@ -469,13 +469,13 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("PLAZO:");
 
-        cbxFormaP.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cbxFormaP.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contado", "Credito" }));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("FORMA DE PAGO:");
 
-        cbxPlazo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cbxPlazo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -567,7 +567,7 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         );
 
         btnDevolver.setBackground(new java.awt.Color(51, 51, 255));
-        btnDevolver.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnDevolver.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnDevolver.setForeground(new java.awt.Color(255, 255, 255));
         btnDevolver.setText("DEVOLVER TODO");
         btnDevolver.addActionListener(new java.awt.event.ActionListener() {
@@ -576,7 +576,7 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
             }
         });
 
-        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnReporte.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnReporte.setText("IMPRIMIR");
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -618,12 +618,12 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
                             .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(183, 183, 183)
-                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(138, 138, 138)
+                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(110, 110, 110)
-                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(104, 104, 104)
-                .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110)
+                .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -663,12 +663,12 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
                         .addComponent(jLabel19))
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(97, 97, 97))
+                .addGap(71, 71, 71))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
