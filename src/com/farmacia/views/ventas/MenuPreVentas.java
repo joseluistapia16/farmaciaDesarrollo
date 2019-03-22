@@ -47,6 +47,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        TxtCedula.setText("9999999999");
         this.setLocationRelativeTo(null);
         TxtDescuentoPorcentaje.setEnabled(false);
 
