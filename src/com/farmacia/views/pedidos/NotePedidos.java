@@ -963,7 +963,7 @@ public class NotePedidos extends javax.swing.JDialog {
                         JOptionPane.showMessageDialog(this, msg);
                     }
 
-                }
+                }else{}
 
             }
         } catch (Exception e) {
