@@ -89,7 +89,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
             System.out.println(223 + " hol" + id_producto + " " + lista_t.get(i).getPrecio_compra());
         }
         //llenarPrecios();
-        
+        nuevo2.setEditable(false);
    
     }
     public void llenarPrecios(){
@@ -114,6 +114,8 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nuevo2 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtprociento = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -197,6 +199,19 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("%");
+
+        txtprociento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtprocientoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtprocientoKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -217,7 +232,11 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
                         .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtprociento, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,12 +245,14 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtprociento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -384,6 +405,39 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_nuevo2KeyTyped
 
+    private void txtprocientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprocientoKeyTyped
+       char car = evt.getKeyChar();
+       if (txtprociento.getText().length() >= 3) {
+            evt.consume();
+        }
+        if (car < '0' || car > '9') {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_txtprocientoKeyTyped
+
+    private void txtprocientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprocientoKeyReleased
+        try{
+        Double procentaje=(Double.parseDouble(txtprociento.getText())/100);
+        System.out.println(procentaje);
+        Double valor1 = Double.parseDouble(nuevo1.getText())*procentaje;
+            System.out.println(valor1);
+        Double suma = Double.parseDouble(nuevo1.getText())+valor1;
+            System.out.println(suma);
+            Double result= redondearDecimales(suma,2);
+            nuevo2.setText(result.toString());
+        }catch(Exception e){}
+    }//GEN-LAST:event_txtprocientoKeyReleased
+     
+    public static double redondearDecimales(Double valorInicial, int numeroDecimales) {
+        double parteEntera, resultado;
+        resultado = valorInicial;
+        parteEntera = Math.floor(resultado);
+        resultado=(resultado-parteEntera)*Math.pow(10, numeroDecimales);
+        resultado=Math.round(resultado);
+        resultado=(resultado/Math.pow(10, numeroDecimales))+parteEntera;
+        return resultado;
+    }
     /**
      * @param args the command line arguments
      */
@@ -437,8 +491,10 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nuevo1;
     private javax.swing.JTextField nuevo2;
+    private javax.swing.JTextField txtprociento;
     // End of variables declaration//GEN-END:variables
 }
