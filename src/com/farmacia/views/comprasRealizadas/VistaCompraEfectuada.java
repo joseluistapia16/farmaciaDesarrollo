@@ -87,6 +87,7 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
 
         variableCerrar = vari;
         idComprasCab = buscarIDcabCompras();
+        btnDevolver.setEnabled(false);
     }
 
     private void llenarFormulario(JoinListarNotaPedidosCabecera obj) {
@@ -832,67 +833,67 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
-        try {
-            int i = 0;
-            if (evt.getClickCount() == 2) {
-                i = tbaListaFaltantes.getSelectedRow();
-                // lista = crud.listarCabeceraNotaPedidoEnCompras(3);
-                objetop = devuelveObjeto(tbaListaFaltantes.getValueAt(i, 0).toString(), tbaListaFaltantes.getValueAt(i, 11).toString(), tbaListaFaltantes.getValueAt(i, 10).toString(), lista3);
-                if (objetop != null) {
-                    int seleccion = JOptionPane.showOptionDialog(null, "Seleccione una opcion",
-                            "Selector de opciones", JOptionPane.YES_NO_CANCEL_OPTION,
-                            JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
-                            new Object[]{"Devolver", "Modificar"}, "opcion 1");
-                    System.out.println(seleccion);
-                    switch (seleccion) {
-                        case 0://eliminar
-                            String valor = "";
-                            int seleccion1 = JOptionPane.showOptionDialog(null, "Esta Seguro de Elimnar el Item Seleccionado ",
-                                    "Selector de opciones", JOptionPane.YES_NO_CANCEL_OPTION,
-                                    JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
-                                    new Object[]{"SI", "NO"}, "NO");
-                            if (seleccion1 == 0) {
-                                valor = EliminarDetalleDevolucion(objetop);
-                                if ("EXITO".equals(valor)) {
-                                    JOptionPane.showMessageDialog(rootPane, valor);
-                                    actualizarTabla2();
-                                    Cabecera_compra cn = new Cabecera_compra();
-                                    cn.setIva(VGiva);
-                                    cn.setDescuento(VGdescuento);
-                                    cn.setTotal(VGtotal);
-                                    cn.setId_cabecera_compra(Long.valueOf(idComprasCab));
-                                    cn.setIdcabecerapedido(Long.valueOf(txtNumero.getText()));
-                                    crud.edicionCompra(cn);
-                                }
-                            }
-                            break;
-                        case 1://modificar
-                            EditarProductoCompra1 Man = new EditarProductoCompra1(new javax.swing.JFrame(), true, objetop);
-                            Man.setVisible(true);
-                            actualizarTabla2();
-                            if ("2".equals(Man.getop())) {
-                                Cabecera_compra cn = new Cabecera_compra();
-                                cn.setIva(VGiva);
-                                cn.setDescuento(VGdescuento);
-                                cn.setTotal(VGtotal);
-                                cn.setId_cabecera_compra(Long.valueOf(idComprasCab));
-                                cn.setIdcabecerapedido(Long.valueOf(txtNumero.getText()));
-                                crud.edicionCompra(cn);
-                            } else {
-                            }
-                            break;
-                        case -1:
-                            System.out.println("lala");
-                            break;
-                        default:
-                            System.out.println("error");
-                            break;
-                    }
-                }
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(VistaCompraEfectuada.class.getName()).log(Level.SEVERE, null, ex);
-        }
+////        try {
+////            int i = 0;
+////            if (evt.getClickCount() == 2) {
+////                i = tbaListaFaltantes.getSelectedRow();
+////                // lista = crud.listarCabeceraNotaPedidoEnCompras(3);
+////                objetop = devuelveObjeto(tbaListaFaltantes.getValueAt(i, 0).toString(), tbaListaFaltantes.getValueAt(i, 11).toString(), tbaListaFaltantes.getValueAt(i, 10).toString(), lista3);
+////                if (objetop != null) {
+////                    int seleccion = JOptionPane.showOptionDialog(null, "Seleccione una opcion",
+////                            "Selector de opciones", JOptionPane.YES_NO_CANCEL_OPTION,
+////                            JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+////                            new Object[]{"Devolver", "Modificar"}, "opcion 1");
+////                    System.out.println(seleccion);
+////                    switch (seleccion) {
+////                        case 0://eliminar
+////                            String valor = "";
+////                            int seleccion1 = JOptionPane.showOptionDialog(null, "Esta Seguro de Elimnar el Item Seleccionado ",
+////                                    "Selector de opciones", JOptionPane.YES_NO_CANCEL_OPTION,
+////                                    JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+////                                    new Object[]{"SI", "NO"}, "NO");
+////                            if (seleccion1 == 0) {
+////                                valor = EliminarDetalleDevolucion(objetop);
+////                                if ("EXITO".equals(valor)) {
+////                                    JOptionPane.showMessageDialog(rootPane, valor);
+////                                    actualizarTabla2();
+////                                    Cabecera_compra cn = new Cabecera_compra();
+////                                    cn.setIva(VGiva);
+////                                    cn.setDescuento(VGdescuento);
+////                                    cn.setTotal(VGtotal);
+////                                    cn.setId_cabecera_compra(Long.valueOf(idComprasCab));
+////                                    cn.setIdcabecerapedido(Long.valueOf(txtNumero.getText()));
+////                                    crud.edicionCompra(cn);
+////                                }
+////                            }
+////                            break;
+////                        case 1://modificar
+////                            EditarProductoCompra1 Man = new EditarProductoCompra1(new javax.swing.JFrame(), true, objetop);
+////                            Man.setVisible(true);
+////                            actualizarTabla2();
+////                            if ("2".equals(Man.getop())) {
+////                                Cabecera_compra cn = new Cabecera_compra();
+////                                cn.setIva(VGiva);
+////                                cn.setDescuento(VGdescuento);
+////                                cn.setTotal(VGtotal);
+////                                cn.setId_cabecera_compra(Long.valueOf(idComprasCab));
+////                                cn.setIdcabecerapedido(Long.valueOf(txtNumero.getText()));
+////                                crud.edicionCompra(cn);
+////                            } else {
+////                            }
+////                            break;
+////                        case -1:
+////                            System.out.println("lala");
+////                            break;
+////                        default:
+////                            System.out.println("error");
+////                            break;
+////                    }
+////                }
+////            }
+////        } catch (Exception ex) {
+////            Logger.getLogger(VistaCompraEfectuada.class.getName()).log(Level.SEVERE, null, ex);
+////        }
     }//GEN-LAST:event_tbaListaFaltantesMousePressed
     private String EliminarDetalleDevolucion(JoinListarDetalleNotaPedido dt) {
         String valor = "";

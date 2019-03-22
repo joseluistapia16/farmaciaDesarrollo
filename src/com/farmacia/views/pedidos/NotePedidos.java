@@ -933,8 +933,9 @@ public class NotePedidos extends javax.swing.JDialog {
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
                     np.objf.getId_precios();
+                    
                     msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, np.objf.getId_precios().toString());
-
+                    
                     if (msg == null) {
                         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
                         if (np.getObjf().getCantidad() > 0) {
@@ -967,7 +968,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
             }
         } catch (Exception e) {
-            Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
+           // Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
 
     }//GEN-LAST:event_t_Nota_faltantesMousePressed
