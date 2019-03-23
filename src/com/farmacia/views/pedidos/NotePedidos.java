@@ -51,7 +51,7 @@ public class NotePedidos extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         PanelSec.setEnabled(false);
-        filtro.setEnabled(false);
+        TxtFiltro.setEnabled(false);
         t_Nota_faltantes.setEnabled(false);
         tbaListaFaltantes.setEnabled(false);
         btnBuscar.setEnabled(false);
@@ -81,7 +81,7 @@ public class NotePedidos extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         PanelSec.setEnabled(false);
-        filtro.setEnabled(false);
+        TxtFiltro.setEnabled(false);
         t_Nota_faltantes.setEnabled(false);
         tbaListaFaltantes.setEnabled(false);
         btnBuscar.setEnabled(false);
@@ -239,7 +239,7 @@ public class NotePedidos extends javax.swing.JDialog {
         tipofiltro = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        filtro = new javax.swing.JTextField();
+        TxtFiltro = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -642,7 +642,7 @@ public class NotePedidos extends javax.swing.JDialog {
         PanelSec.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         tipofiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
+        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("FALTANTES");
@@ -660,15 +660,15 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         });
 
-        filtro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        filtro.addActionListener(new java.awt.event.ActionListener() {
+        TxtFiltro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TxtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtroActionPerformed(evt);
+                TxtFiltroActionPerformed(evt);
             }
         });
-        filtro.addKeyListener(new java.awt.event.KeyAdapter() {
+        TxtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                filtroKeyReleased(evt);
+                TxtFiltroKeyReleased(evt);
             }
         });
 
@@ -688,7 +688,7 @@ public class NotePedidos extends javax.swing.JDialog {
                 .addGap(84, 84, 84)
                 .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -703,7 +703,7 @@ public class NotePedidos extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(PanelSecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -827,7 +827,7 @@ public class NotePedidos extends javax.swing.JDialog {
             proveedorC = Prov.getProveedor();
             if (proveedorC != null) {
                 PanelSec.setEnabled(true);
-                filtro.setEnabled(true);
+                TxtFiltro.setEnabled(true);
                 t_Nota_faltantes.setEnabled(true);
                 tbaListaFaltantes.setEnabled(true);
                 btnBuscar.setEnabled(true);
@@ -922,7 +922,7 @@ public class NotePedidos extends javax.swing.JDialog {
                     System.out.println("hello");
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objeto);
                     np.setVisible(true);
-                    
+
                     np.objf.getId_precios();
                     System.out.println(" id precio " + np.objf.getId_precios());
                     np.objf.getId_precios();
@@ -1015,47 +1015,85 @@ public class NotePedidos extends javax.swing.JDialog {
         }
 
     }
-    private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
+    private void TxtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFiltroActionPerformed
 
-    }//GEN-LAST:event_filtroActionPerformed
+    }//GEN-LAST:event_TxtFiltroActionPerformed
 
-    private void filtroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filtroKeyReleased
+    private void TxtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyReleased
 //        String buscar = filtro.getText();
 //        Tablas.filtro(buscar, t_Nota_faltantes);
-    }//GEN-LAST:event_filtroKeyReleased
+    }//GEN-LAST:event_TxtFiltroKeyReleased
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        String f = filtro.getText().toUpperCase();
+//        String f = filtro.getText().toUpperCase();
+//        String query = "";
+//        int pos = tipofiltro.getSelectedIndex();
+//        if ("".equals(f)) {
+//            query = fil.comboProductoTodoNotaPedido();
+//        }
+//        if (pos == 0) {
+//            if ("".equals(f)) {
+//                Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+//            } else {
+//                query = fil.comboProductoCodigoNotaPedido() + f;
+//            }
+//        }
+//        if (pos == 1) {
+//            query = fil.comboProductoNombreNotaPedido() + f + "%'";
+//        }
+//        if (pos == 2) {
+//            query = fil.comboProductoTipoNotaPedido() + f + "%'";
+//        }
+//        if (pos == 3) {
+//            query = fil.comboProductoMedidaNotaPedido() + f + "%'";
+//        }
+//        if (pos == 4) {
+//            query = fil.comboProductoEnvaseNotaPedido() + f + "%'";
+//        }
+//        if (pos == 5) {
+//            query = fil.comboProductoMarcaNotaPedido() + f + "%'";
+//        }
+//        listar = crud.filtroBusquedaProductoNotaPedido(query);
+//
+//        Tablas.cargarFiltroProductosNota(t_Nota_faltantes, listar);
+//        query = "";
         String query = "";
+
+        query = TxtFiltro.getText() + "%";
+
         int pos = tipofiltro.getSelectedIndex();
-        if ("".equals(f)) {
-            query = fil.comboProductoTodoNotaPedido();
-        }
         if (pos == 0) {
-            if ("".equals(f)) {
-                Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-            } else {
-                query = fil.comboProductoCodigoNotaPedido() + f;
-            }
+            lista = crud.FiltrosProductosNota(query, "TODO");
+
         }
         if (pos == 1) {
-            query = fil.comboProductoNombreNotaPedido() + f + "%'";
+            lista = crud.FiltrosProductosNota(query, "CODIGO");
+
         }
         if (pos == 2) {
-            query = fil.comboProductoTipoNotaPedido() + f + "%'";
+            lista = crud.FiltrosProductosNota(query, "NOMBRE");
+
         }
         if (pos == 3) {
-            query = fil.comboProductoMedidaNotaPedido() + f + "%'";
+            lista = crud.FiltrosProductosNota(query, "TIPO");
+
         }
         if (pos == 4) {
-            query = fil.comboProductoEnvaseNotaPedido() + f + "%'";
+            lista = crud.FiltrosProductosNota(query, "MEDIDA");
+
         }
         if (pos == 5) {
-            query = fil.comboProductoMarcaNotaPedido() + f + "%'";
-        }
-        listar = crud.filtroBusquedaProductoNotaPedido(query);
+            lista = crud.FiltrosProductosNota(query, "ENVASE");
 
-        Tablas.cargarFiltroProductosNota(t_Nota_faltantes, listar);
+        }
+        if (pos == 6) {
+            lista = crud.FiltrosProductosNota(query, "MARCA");
+
+        }
+
+        TxtFiltro.setText("");
+
+        Tablas.cargarFiltroProductosNota(t_Nota_faltantes, lista);
         query = "";
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -1239,13 +1277,13 @@ public class NotePedidos extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelSec;
+    private javax.swing.JTextField TxtFiltro;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnProveedor;
     private javax.swing.JComboBox<String> cbxFormaP;
     private javax.swing.JComboBox<String> cbxPlazo;
-    private javax.swing.JTextField filtro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

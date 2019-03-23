@@ -154,7 +154,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         txtNumero = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        filtro = new javax.swing.JTextField();
+        TxtFiltro = new javax.swing.JTextField();
         tipofiltro = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -343,15 +343,15 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             }
         });
 
-        filtro.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        filtro.addActionListener(new java.awt.event.ActionListener() {
+        TxtFiltro.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        TxtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtroActionPerformed(evt);
+                TxtFiltroActionPerformed(evt);
             }
         });
-        filtro.addKeyListener(new java.awt.event.KeyAdapter() {
+        TxtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                filtroKeyReleased(evt);
+                TxtFiltroKeyReleased(evt);
             }
         });
 
@@ -700,7 +700,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 .addGap(260, 260, 260)
                 .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -742,7 +742,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -763,7 +763,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -958,46 +957,52 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //
 //        return objeto1;
 //    }
-    private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
+    private void TxtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFiltroActionPerformed
 
-    }//GEN-LAST:event_filtroActionPerformed
+    }//GEN-LAST:event_TxtFiltroActionPerformed
 
-    private void filtroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filtroKeyReleased
+    private void TxtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyReleased
 
-    }//GEN-LAST:event_filtroKeyReleased
+    }//GEN-LAST:event_TxtFiltroKeyReleased
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        String f = filtro.getText().toUpperCase();
         String query = "";
+
+        query = TxtFiltro.getText() + "%";
+
         int pos = tipofiltro.getSelectedIndex();
-        if ("".equals(f)) {
-            query = fil.comboProductoTodoNotaPedido();
-        }
         if (pos == 0) {
-            if ("".equals(f)) {
-                Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-            } else {
-                query = fil.comboProductoCodigoNotaPedido() + f;
-            }
+            lista = crud.FiltrosProductosNota(query, "TODO");
+
         }
         if (pos == 1) {
-            query = fil.comboProductoNombreNotaPedido() + f + "%'";
+            lista = crud.FiltrosProductosNota(query, "CODIGO");
+
         }
         if (pos == 2) {
-            query = fil.comboProductoTipoNotaPedido() + f + "%'";
+            lista = crud.FiltrosProductosNota(query, "NOMBRE");
+
         }
         if (pos == 3) {
-            query = fil.comboProductoMedidaNotaPedido() + f + "%'";
+            lista = crud.FiltrosProductosNota(query, "TIPO");
+
         }
         if (pos == 4) {
-            query = fil.comboProductoEnvaseNotaPedido() + f + "%'";
+            lista = crud.FiltrosProductosNota(query, "MEDIDA");
+
         }
         if (pos == 5) {
-            query = fil.comboProductoMarcaNotaPedido() + f + "%'";
-        }
-        listar = crud.filtroBusquedaProductoNotaPedido(query);
+            lista = crud.FiltrosProductosNota(query, "ENVASE");
 
-        Tablas.cargarFiltroProductosNota(t_Nota_faltantes, listar);
+        }
+        if (pos == 6) {
+            lista = crud.FiltrosProductosNota(query, "MARCA");
+
+        }
+
+        TxtFiltro.setText("");
+
+        Tablas.cargarFiltroProductosNota(t_Nota_faltantes, lista);
         query = "";
     }//GEN-LAST:event_btnBuscarActionPerformed
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
@@ -1173,13 +1178,13 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TxtFiltro;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnReporte;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JComboBox<String> cbxFormaP;
     private javax.swing.JComboBox<String> cbxPlazo;
-    private javax.swing.JTextField filtro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

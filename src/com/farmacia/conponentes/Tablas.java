@@ -888,7 +888,7 @@ public class Tablas {
         return resultado;
     }
 
-    public static void cargarFiltroProductosNota(JTable Tabla, ArrayList<listarJoinProductosNotaPedidos> lista) {
+    public static void cargarFiltroProductosNota(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
 
         int[] a = {10, 30, 32, 52, 15, 30, 10};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
@@ -901,12 +901,12 @@ public class Tablas {
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
-            Filas[0] = lista.get(i).getId_productos().toString();
-            Filas[1] = lista.get(i).getNombreMarca();
-            Filas[2] = lista.get(i).getNombreTipo();
-            Filas[3] = lista.get(i).getNombreProductos();
-            Filas[4] = lista.get(i).getNombreEnvase();
-            Filas[5] = lista.get(i).getNombreMedida();
+            Filas[0] = ""+lista.get(i).getId_producto();
+            Filas[1] = lista.get(i).getMarca();
+            Filas[2] = lista.get(i).getNombre_tipo();
+            Filas[3] = lista.get(i).getNombre_producto();
+            Filas[4] = lista.get(i).getEnvase();
+            Filas[5] = lista.get(i).getMedida();
             Filas[6] = "" + lista.get(i).getCantidad();
             model.addRow(Filas);
             Tabla.setModel(model);

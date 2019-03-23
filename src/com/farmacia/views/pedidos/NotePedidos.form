@@ -999,7 +999,7 @@
                       <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                       <Component id="tipofiltro" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="filtro" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="TxtFiltro" min="-2" pref="200" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnBuscar" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -1016,7 +1016,7 @@
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="tipofiltro" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="filtro" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="TxtFiltro" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="btnBuscar" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jButton2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jButton3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
@@ -1033,13 +1033,14 @@
                   <Font name="Tahoma" size="11" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="6">
-                    <StringItem index="0" value="CODIGO"/>
-                    <StringItem index="1" value="NOMBRE"/>
-                    <StringItem index="2" value="TIPO"/>
-                    <StringItem index="3" value="MEDIDA"/>
-                    <StringItem index="4" value="ENVASE"/>
-                    <StringItem index="5" value="MARCA"/>
+                  <StringArray count="7">
+                    <StringItem index="0" value="TODO"/>
+                    <StringItem index="1" value="CODIGO"/>
+                    <StringItem index="2" value="NOMBRE"/>
+                    <StringItem index="3" value="TIPO"/>
+                    <StringItem index="4" value="MEDIDA"/>
+                    <StringItem index="5" value="ENVASE"/>
+                    <StringItem index="6" value="MARCA"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -1069,15 +1070,15 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="filtro">
+            <Component class="javax.swing.JTextField" name="TxtFiltro">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="1"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="filtroActionPerformed"/>
-                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="filtroKeyReleased"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtFiltroActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtFiltroKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton3">
