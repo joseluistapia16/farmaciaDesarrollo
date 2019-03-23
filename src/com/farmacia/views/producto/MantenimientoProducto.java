@@ -46,12 +46,14 @@ public class MantenimientoProducto extends javax.swing.JDialog {
     Listar_usuario objUsuario=null;
     public MantenimientoProducto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
         Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
     }
     public MantenimientoProducto(java.awt.Frame parent, boolean modal,Listar_usuario obj) {
         super(parent, modal);
+        setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
         Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);

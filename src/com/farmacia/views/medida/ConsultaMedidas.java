@@ -151,23 +151,15 @@ public class ConsultaMedidas extends javax.swing.JDialog {
 
         tablamedidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "               ID", "        MEDIDA "
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
+        ));
         tablamedidas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tablamedidas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -175,10 +167,6 @@ public class ConsultaMedidas extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(tablamedidas);
-        if (tablamedidas.getColumnModel().getColumnCount() > 0) {
-            tablamedidas.getColumnModel().getColumn(0).setResizable(false);
-            tablamedidas.getColumnModel().getColumn(1).setResizable(false);
-        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

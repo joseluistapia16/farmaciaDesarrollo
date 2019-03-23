@@ -112,6 +112,7 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
         });
 
         btnInactivos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnInactivos.setForeground(new java.awt.Color(198, 28, 28));
         btnInactivos.setText("INACTIVOS");
         btnInactivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

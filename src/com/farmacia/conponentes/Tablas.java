@@ -533,7 +533,7 @@ public class Tablas {
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"ID", "Tipo"};
+        String[] Co = {"CODIGO", "Tipo"};
         String[] Filas = new String[2];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -557,7 +557,7 @@ public class Tablas {
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"ID", "Tipo"};
+        String[] Co = {"CODIGO", "Tipo"};
         String[] Filas = new String[2];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -581,7 +581,7 @@ public class Tablas {
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = VaciarTabla(Tabla);
-        String[] Co = {"#", "Medidas"};
+        String[] Co = {"CODIGO", "Medidas"};
         //   Date[] Ca = {Date.valueOf("Fecha")};
         String[] Filas = new String[5];
         //  Date[] Fila = new Date [1];

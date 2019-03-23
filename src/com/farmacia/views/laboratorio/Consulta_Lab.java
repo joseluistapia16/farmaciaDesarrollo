@@ -167,23 +167,15 @@ public class Consulta_Lab extends javax.swing.JDialog {
         Tabla.setFont(new java.awt.Font("Cambria", 0, 13)); // NOI18N
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "RUC", "Nombre", "Direccion", "Telefono", "Fecha"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
-        });
+        ));
         Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 TablaMousePressed(evt);
