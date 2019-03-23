@@ -1020,7 +1020,8 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_filtroActionPerformed
 
     private void filtroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filtroKeyReleased
-
+//        String buscar = filtro.getText();
+//        Tablas.filtro(buscar, t_Nota_faltantes);
     }//GEN-LAST:event_filtroKeyReleased
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed

@@ -201,17 +201,29 @@ public class filtrosProductos {
     /////////////////
     public static String comboProductoCodigoNotaPedido() {
 
-        String query = "SELECT df.id_detalle_faltantes,df.id_producto,p.nombre AS producto,m.id_marcas,m.nombre AS marca,"
-                + "p.id_envase,en.nombre AS envase,p.id_medidas,me.nombre_medida AS medida,t.id_tipo,t.nombre AS tipo,"
-                + "df.cantidad,df.estado,pr.precio_compra AS precio"
-                + " FROM detalle_faltantes df "
+//        String query = "SELECT df.id_detalle_faltantes,df.id_producto,p.nombre AS producto,m.id_marcas,m.nombre AS marca,"
+//                + "p.id_envase,en.nombre AS envase,p.id_medidas,me.nombre_medida AS medida,t.id_tipo,t.nombre AS tipo,"
+//                + "df.cantidad,df.estado,pr.precio_compra AS precio"
+//                + " FROM detalle_faltantes df "
+//                + "JOIN productos p ON  p.id_productos= df.id_producto "
+//                + "JOIN tipo t ON t.id_tipo=p.id_tipo"
+//                + " JOIN marcas m ON m.id_marcas=p.id_marcas "
+//                + "JOIN envase en ON en.id_envase = p.id_envase "
+//                + "JOIN medidas me ON me.id_medidas = p.id_medidas "
+//                + "JOIN precios pr ON pr.id_producto = p.id_productos "
+//                + "WHERE df.estado= 'OK' AND pr.estado ='A' AND p.`id_productos`=";
+        String query = "SELECT DISTINCT df.id_detalle_faltantes,pr.id_precio,df.id_producto,p.nombre AS producto,m.id_marcas,m.nombre AS marca,"
+                + "p.id_envase,en.nombre AS envase,p.id_medidas,me.nombre_medida AS medida,t.id_tipo,t.nombre AS tipo ,"
+                + "df.cantidad,df.estado,pr.precio_compra AS precio,p.iva AS IVA "
+                + "FROM detalle_faltantes df "
                 + "JOIN productos p ON  p.id_productos= df.id_producto "
-                + "JOIN tipo t ON t.id_tipo=p.id_tipo"
-                + " JOIN marcas m ON m.id_marcas=p.id_marcas "
+                + "JOIN tipo t ON t.id_tipo=p.id_tipo "
+                + "JOIN marcas m ON m.id_marcas=p.id_marcas "
                 + "JOIN envase en ON en.id_envase = p.id_envase "
                 + "JOIN medidas me ON me.id_medidas = p.id_medidas "
                 + "JOIN precios pr ON pr.id_producto = p.id_productos "
-                + "WHERE df.estado= 'OK' AND pr.estado ='A' AND p.`id_productos`=";
+                + "WHERE df.estado= 'TR' AND p.`estado`='A' AND pr.`estado`='A' AND m.`estado`='A' AND t.`estado`='A' AND en.`estado`='A' AND me.`estado`='A'AND p.`id_productos`=";
+//                + "GROUP BY df.id_detalle_faltantes ORDER BY df.id_detalle_faltantes";
         return query;
     }
 

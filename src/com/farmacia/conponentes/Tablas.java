@@ -890,14 +890,14 @@ public class Tablas {
 
     public static void cargarFiltroProductosNota(JTable Tabla, ArrayList<listarJoinProductosNotaPedidos> lista) {
 
-        int[] a = {10, 30, 32, 52, 15, 30, 10, 10};
+        int[] a = {10, 30, 32, 52, 15, 30, 10};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD", "PRECIO"};
-        String[] Filas = new String[8];
+        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD"};
+        String[] Filas = new String[7];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
@@ -908,7 +908,6 @@ public class Tablas {
             Filas[4] = lista.get(i).getNombreEnvase();
             Filas[5] = lista.get(i).getNombreMedida();
             Filas[6] = "" + lista.get(i).getCantidad();
-            Filas[7] = "" + lista.get(i).getPrecio();
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -925,8 +924,6 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
             Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
-            Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
         }
 
     }
