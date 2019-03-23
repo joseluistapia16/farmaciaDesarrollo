@@ -48,6 +48,10 @@ public class MenuPreVentas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         TxtCedula.setText("9999999999");
+        TxtNombre.setText("CONSUMIDOR FINAL");
+        TxtCorreo.setText("*************************************");
+        TxtDirec.setText("*************************************");
+        TxtTelefono.setText("*************************************");
         this.setLocationRelativeTo(null);
         TxtDescuentoPorcentaje.setEnabled(false);
 
@@ -262,7 +266,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jButton1.setBackground(new java.awt.Color(153, 0, 51));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("CANCELAR");
+        jButton1.setText("SALIR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
