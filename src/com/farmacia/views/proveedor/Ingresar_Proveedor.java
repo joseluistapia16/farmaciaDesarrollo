@@ -133,7 +133,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
         jLabel7.setText("DIRECCION:");
 
         fecha.setEditable(false);
-        fecha.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        fecha.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         fecha.setPreferredSize(new java.awt.Dimension(6, 28));
         fecha.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +142,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        nombre.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        nombre.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         nombre.setMinimumSize(new java.awt.Dimension(6, 28));
         nombre.setPreferredSize(new java.awt.Dimension(6, 28));
         nombre.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -156,7 +156,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        contacto.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        contacto.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         contacto.setPreferredSize(new java.awt.Dimension(6, 28));
         contacto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -164,7 +164,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        cbx1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cbx1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbx1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...." }));
         cbx1.setPreferredSize(new java.awt.Dimension(126, 28));
         cbx1.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +173,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        cbx2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cbx2.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbx2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...." }));
         cbx2.setPreferredSize(new java.awt.Dimension(126, 28));
         cbx2.addActionListener(new java.awt.event.ActionListener() {
@@ -182,7 +182,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton1.setText("AGREGAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,7 +190,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton2.setText("AGREGAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,7 +201,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel8.setText("CEDULA/RUC:");
 
-        cedula.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cedula.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         cedula.setPreferredSize(new java.awt.Dimension(6, 28));
         cedula.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -213,7 +213,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        dir.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        dir.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         dir.setMinimumSize(new java.awt.Dimension(6, 28));
         dir.setPreferredSize(new java.awt.Dimension(6, 28));
         dir.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -315,7 +315,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 6, Short.MAX_VALUE))
+                        .addGap(0, 10, Short.MAX_VALUE))
                     .addComponent(imagen, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -335,7 +335,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        Guardar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        Guardar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         Guardar.setForeground(new java.awt.Color(87, 152, 80));
         Guardar.setText("GUARDAR");
         Guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -344,7 +344,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton4.setForeground(new java.awt.Color(198, 28, 28));
         jButton4.setText("CANCELAR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
