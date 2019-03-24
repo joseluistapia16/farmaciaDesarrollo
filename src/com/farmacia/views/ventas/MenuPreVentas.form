@@ -97,7 +97,7 @@
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder title="DATOS">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder/>
+                    <LineBorder roundedCorners="true" thickness="2"/>
                   </Border>
                   <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
                 </TitledBorder>
@@ -244,7 +244,7 @@
                 <Component class="javax.swing.JTextField" name="TxtCedula">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -270,7 +270,7 @@
                 <Component class="javax.swing.JTextField" name="TxtNombre">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -285,7 +285,7 @@
                 <Component class="javax.swing.JTextField" name="TxtDirec">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -308,14 +308,14 @@
                 <Component class="javax.swing.JTextField" name="TxtTelefono">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtCorreo">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                   <AuxValues>
@@ -327,7 +327,7 @@
             <Component class="javax.swing.JComboBox" name="CbxFormaPago">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="12" style="1"/>
+                  <Font name="Ubuntu" size="11" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
@@ -343,7 +343,7 @@
             <Component class="javax.swing.JComboBox" name="CbxTipoVenta">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="12" style="1"/>
+                  <Font name="Ubuntu" size="11" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
@@ -359,7 +359,7 @@
             <Component class="javax.swing.JButton" name="BtnGenerarVenta">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="10" style="1"/>
+                  <Font name="Ubuntu" size="11" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="GENERAR VENTA"/>
               </Properties>
@@ -384,7 +384,7 @@
                   <Color blue="33" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="10" style="1"/>
+                  <Font name="Ubuntu" size="11" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -403,7 +403,7 @@
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder title="DETALLE">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder/>
+                    <LineBorder roundedCorners="true" thickness="2"/>
                   </Border>
                   <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
                 </TitledBorder>
@@ -522,7 +522,7 @@
             <Component class="javax.swing.JTextField" name="TxtSubtotalconIva">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
             </Component>
@@ -537,7 +537,7 @@
             <Component class="javax.swing.JTextField" name="TxtDescuento">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
             </Component>
@@ -552,14 +552,14 @@
             <Component class="javax.swing.JTextField" name="TxtIva">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtTotal">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
             </Component>
@@ -571,7 +571,7 @@
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder>
                       <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder/>
+                        <LineBorder roundedCorners="true" thickness="2"/>
                       </Border>
                     </TitledBorder>
                   </Border>
@@ -608,19 +608,23 @@
                                               <Component id="jLabel19" alignment="0" max="-2" attributes="0"/>
                                               <Component id="jLabel18" alignment="0" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                                                  <Component id="BtnAddIten" min="-2" pref="115" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="TxtProdIva" min="-2" pref="100" max="-2" attributes="0"/>
+                                                      <Component id="TxtProdDescuento" min="-2" pref="100" max="-2" attributes="0"/>
+                                                      <Component id="TxtProdtotal" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                                      <Component id="TxtDescuentoPorcentaje" min="-2" pref="100" max="-2" attributes="0"/>
+                                                      <Component id="TxtProdSubtotal" min="-2" pref="100" max="-2" attributes="0"/>
+                                                      <Component id="TxtProdCantidad" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                                      <Component id="TxtProdPrecio" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
-                                              <Component id="TxtProdIva" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <Component id="TxtProdDescuento" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <Component id="TxtProdtotal" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <Component id="TxtDescuentoPorcentaje" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <Component id="TxtProdSubtotal" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <Component id="TxtProdCantidad" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <Component id="TxtProdPrecio" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                                  <Component id="BtnAddIten" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -694,7 +698,7 @@
                 <Component class="javax.swing.JTextField" name="TxtProdNombre">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -760,7 +764,7 @@
                 <Component class="javax.swing.JTextField" name="TxtProdCantidad">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -771,14 +775,14 @@
                 <Component class="javax.swing.JTextField" name="TxtProdSubtotal">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtProdIva">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -793,21 +797,21 @@
                 <Component class="javax.swing.JTextField" name="TxtProdPrecio">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtProdtotal">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="BtnAddIten">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="11" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="ADICIONAR ITEM"/>
                   </Properties>
@@ -818,14 +822,14 @@
                 <Component class="javax.swing.JTextField" name="TxtProdDescuento">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="TxtDescuentoPorcentaje">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="10" style="1"/>
+                      <Font name="Ubuntu" size="12" style="1"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -862,14 +866,14 @@
             <Component class="javax.swing.JTextField" name="TxtSubtotalsinIva">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="TxtSubtotal">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="10" style="1"/>
+                  <Font name="Ubuntu" size="12" style="1"/>
                 </Property>
               </Properties>
             </Component>

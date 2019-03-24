@@ -92,7 +92,7 @@ public class Local extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel3.setText("TELEFONO:");
 
-        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNombreFocusLost(evt);
@@ -104,7 +104,7 @@ public class Local extends javax.swing.JDialog {
             }
         });
 
-        txtTelefono.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtTelefonoFocusLost(evt);
@@ -124,22 +124,22 @@ public class Local extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel4.setText("DIRECCION:");
 
-        txtDireccion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtDireccionFocusLost(evt);
             }
         });
         txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDireccionKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtDireccionKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyTyped(evt);
+            }
         });
 
-        btnRuc.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnRuc.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnRuc.setText("RUC");
         btnRuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,7 +224,7 @@ public class Local extends javax.swing.JDialog {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        btnGuardar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/guardar1.jpg"))); // NOI18N
         btnGuardar.setText("GUARDAR");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -233,7 +233,7 @@ public class Local extends javax.swing.JDialog {
             }
         });
 
-        btnSalir.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnSalir.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/eliminar1.png"))); // NOI18N
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -242,7 +242,7 @@ public class Local extends javax.swing.JDialog {
             }
         });
 
-        btnHabilitar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnHabilitar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnHabilitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/Activar.png"))); // NOI18N
         btnHabilitar.setText("HABILTAR");
         btnHabilitar.addActionListener(new java.awt.event.ActionListener() {
@@ -298,18 +298,17 @@ public class Local extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(btnHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

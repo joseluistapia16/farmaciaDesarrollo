@@ -54,9 +54,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="jButton2" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                           <Component id="jButton1" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="txtTotal" min="-2" pref="100" max="-2" attributes="0"/>
@@ -64,12 +64,12 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtbusqueda" min="-2" pref="200" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="txtbusqueda" min="-2" pref="160" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -86,7 +86,7 @@
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtTotal" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="jButton2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jButton1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -120,7 +120,7 @@
         <Component class="javax.swing.JTextField" name="txtbusqueda">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="12" style="1"/>
             </Property>
           </Properties>
           <Events>
@@ -138,7 +138,7 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="11" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/com/farmacia/icon/action_exit_close_remove_13915.png"/>
@@ -199,7 +199,7 @@
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="10" style="1"/>
+              <Font name="Ubuntu" size="11" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/impresora.png"/>

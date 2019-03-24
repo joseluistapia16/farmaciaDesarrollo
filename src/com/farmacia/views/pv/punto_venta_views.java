@@ -94,7 +94,7 @@ public class punto_venta_views extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        btnSalir.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnSalir.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/eliminar1.png"))); // NOI18N
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +103,7 @@ public class punto_venta_views extends javax.swing.JDialog {
             }
         });
 
-        btnAgregar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnAgregar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/folder_add_icon-icons.com_74436.png"))); // NOI18N
         btnAgregar.setText("NUEVO");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +137,7 @@ public class punto_venta_views extends javax.swing.JDialog {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(167, 167, 167)
+                .addGap(158, 158, 158)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,13 +146,13 @@ public class punto_venta_views extends javax.swing.JDialog {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(lbRuc))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
+        cbFiltro.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Codigo", "Nombre" }));
 
         txtFiltro.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
@@ -167,7 +167,7 @@ public class punto_venta_views extends javax.swing.JDialog {
             }
         });
 
-        btnBuscar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnBuscar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/buscar1.jpg"))); // NOI18N
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -192,18 +192,18 @@ public class punto_venta_views extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(76, 76, 76)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)

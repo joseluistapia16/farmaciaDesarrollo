@@ -148,14 +148,14 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "DATOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "DATOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("CEDULA/RUC:");
 
-        TxtCedula.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtCedula.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         BtnBuscarcedula.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BtnBuscarcedula.setText("BUSCAR");
@@ -168,12 +168,12 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("NOMBRE:");
 
-        TxtNombre.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtNombre.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("DIRECCION:");
 
-        TxtDirec.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtDirec.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("TELEFONO:");
@@ -181,9 +181,9 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("CORREO:");
 
-        TxtTelefono.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtTelefono.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
-        TxtCorreo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtCorreo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -241,13 +241,13 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        CbxFormaPago.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        CbxFormaPago.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         CbxFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "contado", "credito" }));
 
-        CbxTipoVenta.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        CbxTipoVenta.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         CbxTipoVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Factura", "Nota de venta" }));
 
-        BtnGenerarVenta.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        BtnGenerarVenta.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         BtnGenerarVenta.setText("GENERAR VENTA");
         BtnGenerarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,7 +264,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         });
 
         jButton1.setBackground(new java.awt.Color(153, 0, 51));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("SALIR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -311,7 +311,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "DETALLE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "DETALLE", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel25.setText("IVA:");
@@ -319,23 +319,23 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel22.setText("SUBTOTAL CON 12%:");
 
-        TxtSubtotalconIva.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtSubtotalconIva.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel23.setText("TOTAL:");
 
-        TxtDescuento.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtDescuento.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel24.setText("DESCUENTO:");
 
-        TxtIva.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtIva.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
-        TxtTotal.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtTotal.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true)));
 
-        TxtProdNombre.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtProdNombre.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         BtnBuscarprodnombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         BtnBuscarprodnombre.setText("BUSCAR");
@@ -363,7 +363,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("DESCUENTO:");
 
-        TxtProdCantidad.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtProdCantidad.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         TxtProdCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtProdCantidadKeyReleased(evt);
@@ -373,18 +373,18 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
         });
 
-        TxtProdSubtotal.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtProdSubtotal.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
-        TxtProdIva.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtProdIva.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("PRECIO:");
 
-        TxtProdPrecio.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtProdPrecio.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
-        TxtProdtotal.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtProdtotal.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
-        BtnAddIten.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        BtnAddIten.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         BtnAddIten.setText("ADICIONAR ITEM");
         BtnAddIten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -392,9 +392,9 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
         });
 
-        TxtProdDescuento.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtProdDescuento.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
-        TxtDescuentoPorcentaje.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtDescuentoPorcentaje.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         TxtDescuentoPorcentaje.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtDescuentoPorcentajeKeyReleased(evt);
@@ -432,18 +432,20 @@ public class MenuPreVentas extends javax.swing.JDialog {
                                     .addComponent(jLabel20)
                                     .addComponent(jLabel19)
                                     .addComponent(jLabel18))
-                                .addGap(27, 27, 27)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(BtnAddIten, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(TxtProdIva, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TxtProdDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TxtProdtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TxtDescuentoPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TxtProdSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TxtProdCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TxtProdPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(27, 27, 27)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TxtProdIva, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TxtProdDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TxtProdtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TxtDescuentoPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TxtProdSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TxtProdCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TxtProdPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(33, 33, 33)
+                                        .addComponent(BtnAddIten)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -501,9 +503,9 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel27.setText("SUBTOTAL SIN IMPUESTO:");
 
-        TxtSubtotalsinIva.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtSubtotalsinIva.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
-        TxtSubtotal.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtSubtotal.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 

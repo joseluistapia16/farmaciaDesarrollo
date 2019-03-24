@@ -146,7 +146,6 @@ public class actualizar_usuario extends javax.swing.JDialog {
         lbImagen = new javax.swing.JLabel();
         btnLimpiarImg = new javax.swing.JButton();
         btnImagen = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -177,7 +176,6 @@ public class actualizar_usuario extends javax.swing.JDialog {
         jLabel16 = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
         txtConPass = new javax.swing.JPasswordField();
-        jLabel11 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnHabilitar = new javax.swing.JButton();
@@ -189,13 +187,13 @@ public class actualizar_usuario extends javax.swing.JDialog {
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(1, 1, 1), 2));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "FOTO DE USUARIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        lbImagen.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        lbImagen.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnLimpiarImg.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         btnLimpiarImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/salir1.png"))); // NOI18N
-        btnLimpiarImg.setText("LIMPIAR");
+        btnLimpiarImg.setText("BORRAR FOTO");
         btnLimpiarImg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarImgActionPerformed(evt);
@@ -204,7 +202,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
 
         btnImagen.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         btnImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/agregarCliente.png"))); // NOI18N
-        btnImagen.setText("AGREGAR IMAGEN");
+        btnImagen.setText("AGREGAR FOTO");
         btnImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImagenActionPerformed(evt);
@@ -216,37 +214,25 @@ public class actualizar_usuario extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("IMAGEN DE USUARIO:");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(lbImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(btnImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(btnLimpiarImg, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbImagen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
-                        .addContainerGap())))
+                    .addComponent(btnImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpiarImg, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
                 .addComponent(lbImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,7 +241,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(1, 1, 1), 2));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "DATOS PERSONALES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel2.setText("NOMBRES:");
@@ -266,7 +252,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel4.setText("CEDULA:");
 
-        txtCedula.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtCedula.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
@@ -282,7 +268,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
         jLabel15.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel15.setText("GENERO:");
 
-        txtNombre.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNombreFocusLost(evt);
@@ -294,7 +280,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
             }
         });
 
-        txtApellido.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtApellido.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtApellidoFocusLost(evt);
@@ -315,7 +301,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel6.setText("CORREO:");
 
-        txtDireccion.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtDireccion.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtDireccionFocusLost(evt);
@@ -327,7 +313,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
             }
         });
 
-        cbGenero.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cbGenero.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbGenero.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -336,7 +322,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
         });
 
         txtObservacion.setColumns(20);
-        txtObservacion.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtObservacion.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtObservacion.setRows(5);
         txtObservacion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -353,21 +339,21 @@ public class actualizar_usuario extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(txtObservacion);
 
-        txtCell.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtCell.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtCell.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCellKeyTyped(evt);
             }
         });
 
-        txtConven.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtConven.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtConven.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtConvenKeyTyped(evt);
             }
         });
 
-        txtCorreo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtCorreo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCorreoKeyTyped(evt);
@@ -377,19 +363,19 @@ public class actualizar_usuario extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel7.setText("ROL:");
 
-        cbRol.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cbRol.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel8.setText("ESTADO:");
 
-        cbEstado.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        cbEstado.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel9.setText("CODIGO:");
 
-        txtId.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtId.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel10.setText("CONTRASEÑA:");
@@ -397,9 +383,9 @@ public class actualizar_usuario extends javax.swing.JDialog {
         jLabel16.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel16.setText("CONFIRMAR:");
 
-        txtPass.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtPass.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
-        txtConPass.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtConPass.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -462,8 +448,8 @@ public class actualizar_usuario extends javax.swing.JDialog {
                                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel13)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -514,17 +500,16 @@ public class actualizar_usuario extends javax.swing.JDialog {
                         .addComponent(cbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbRol, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel11.setText("Datos personales");
-
-        btnSalir.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnSalir.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/eliminar1.png"))); // NOI18N
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -533,7 +518,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
             }
         });
 
-        btnGuardar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/guardar.jpg"))); // NOI18N
         btnGuardar.setText("ACTUALIZAR");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -542,7 +527,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
             }
         });
 
-        btnHabilitar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnHabilitar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnHabilitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/Activar.png"))); // NOI18N
         btnHabilitar.setText("HABILITAR");
         btnHabilitar.addActionListener(new java.awt.event.ActionListener() {
@@ -551,7 +536,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton1.setText("IMPRIMIR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -575,21 +560,18 @@ public class actualizar_usuario extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(btnHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(114, 114, 114)
+                        .addComponent(btnHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -597,17 +579,15 @@ public class actualizar_usuario extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -956,9 +936,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbGenero;
     private javax.swing.JComboBox<String> cbRol;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
