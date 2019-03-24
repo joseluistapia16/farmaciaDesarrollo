@@ -430,7 +430,8 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
             System.out.println("suma: "+suma);
             String result= Formato_Numeros.formatoNumero(String.valueOf(suma));
             nuevo2.setText(result.replace(',', '.'));
-        }catch(Exception e){}
+        }catch(Exception e){
+        }
     }//GEN-LAST:event_txtprocientoKeyReleased
      
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
