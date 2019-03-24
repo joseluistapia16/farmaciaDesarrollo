@@ -70,7 +70,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         id_pro = id_pro1;
         System.out.println("id:pro " + id_pro);
         llenarDatos(producto1);
-        listaPrecios= llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado FROM `precios` WHERE `id_producto`= " + id_pro);
+        listaPrecios= llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado,porcentaje FROM `precios` WHERE `id_producto`= " + id_pro);
  
         t.visualizar(jtbPrecios,id_pro);
         //FECHA DEL SISTEMA
@@ -232,6 +232,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtbPrecios.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jtbPrecios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jtbPreciosMousePressed(evt);
@@ -320,7 +321,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         
         id_precio = ic.getId_precio();
         listaPrecios.clear();
-        listaPrecios=llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado FROM `precios` WHERE `id_producto`= " + id_pro);
+        listaPrecios=llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado,porcentaje FROM `precios` WHERE `id_producto`= " + id_pro);
         t.visualizar(jtbPrecios,id_pro);
 //        System.out.println(objeto.getId_precio()+"  "+objeto.getPrecio_compra());
     }//GEN-LAST:event_agregarCompraActionPerformed

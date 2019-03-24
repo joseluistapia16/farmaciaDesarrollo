@@ -15,6 +15,7 @@ package com.farmacia.views.precios;
 //import com.objetos.dao.Consultas;
 //import com.objetos.entities.Precios;
 //import com.objetos.entities.Telefono_Cliente;
+import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Precios;
@@ -84,7 +85,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         // Habilitar(false);
         id_producto = id;
        
-        lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,estado FROM `precios` WHERE `id_producto`= " + id_producto);
+        lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,estado,porcentaje FROM `precios` WHERE `id_producto`= " + id_producto);
         for (int i = 0; i < lista_t.size(); i++) {
             System.out.println(223 + " hol" + id_producto + " " + lista_t.get(i).getPrecio_compra());
         }
@@ -300,6 +301,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
             pr.setPrecio_venta(Double.valueOf(nuevo2.getText()));
             pr.setFecha_registro(FechaActual);
             pr.setId_usuario(Long.valueOf("2"));
+            pr.setPorcentaje(Long.valueOf(txtprociento.getText()));
             valor = crud.actualizarPrecioCompra(pr);
             if (valor != null) {
                 JOptionPane.showMessageDialog(null, valor);
@@ -314,7 +316,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     public boolean Validar() {
         boolean pos = false;
 //        lista_t = llamar.listarTelefonoCliente("Modulo_Cliente", "select * from Telefono");
-        lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,estado FROM `precios` WHERE `id_producto`= " + id_producto);
+        lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`,estado,porcentaje FROM `precios` WHERE `id_producto`= " + id_producto);
         // System.out.println(id_producto + " " + lista_t.get(0).getId_producto());
         for (int i = 0; i < lista_t.size(); i++) {
             // System.out.println(223 + " hol"+id_producto +" " +lista_t.get(i).getPrecio_compra());
@@ -419,18 +421,18 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
 
     private void txtprocientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtprocientoKeyReleased
         try{
-        Double procentaje=(Double.parseDouble(txtprociento.getText())/100);
+        double procentaje=(Double.parseDouble(txtprociento.getText())/100);
         System.out.println(procentaje);
-        Double valor1 = Double.parseDouble(nuevo1.getText())*procentaje;
+        double valor1 = Double.parseDouble(nuevo1.getText())*procentaje;
             System.out.println(valor1);
-        Double suma = Double.parseDouble(nuevo1.getText())+valor1;
-            System.out.println(suma);
-            Double result= redondearDecimales(suma,2);
-            nuevo2.setText(result.toString());
+        double suma = Double.parseDouble(nuevo1.getText())+valor1;
+            System.out.println("suma: "+suma);
+            String result= Formato_Numeros.formatoNumero(String.valueOf(suma));
+            nuevo2.setText(result.replace(',', '.'));
         }catch(Exception e){}
     }//GEN-LAST:event_txtprocientoKeyReleased
      
-    public static double redondearDecimales(Double valorInicial, int numeroDecimales) {
+    public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
         resultado = valorInicial;
         parteEntera = Math.floor(resultado);

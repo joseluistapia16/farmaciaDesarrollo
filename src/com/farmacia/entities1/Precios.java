@@ -18,11 +18,12 @@ public class Precios {
     private String estadoPrecio;
     private String fecha_registro;
     private Long id_usuario;
+    private Long porcentaje;
 
     public Precios() {
     }
 
-    public Precios(Long id_precio, Long id_producto, Double precio_compra, Double precio_venta, String estado, String estadoPrecio, String fecha_registro, Long id_usuario) {
+    public Precios(Long id_precio, Long id_producto, Double precio_compra, Double precio_venta, String estado, String estadoPrecio, String fecha_registro, Long id_usuario, Long porcentaje) {
         this.id_precio = id_precio;
         this.id_producto = id_producto;
         this.precio_compra = precio_compra;
@@ -31,6 +32,7 @@ public class Precios {
         this.estadoPrecio = estadoPrecio;
         this.fecha_registro = fecha_registro;
         this.id_usuario = id_usuario;
+        this.porcentaje = porcentaje;
     }
 
     public Long getId_precio() {
@@ -95,6 +97,14 @@ public class Precios {
 
     public void setId_usuario(Long id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    public Long getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(Long porcentaje) {
+        this.porcentaje = porcentaje;
     }
 
    
