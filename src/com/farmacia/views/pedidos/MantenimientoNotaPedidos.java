@@ -249,14 +249,8 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_tblRegistrodeNotasMouseClicked
 
     private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
-        int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
 
-        if (r == JOptionPane.YES_OPTION) {
             setVisible(false);
-
-        } else {
-
-        }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed

@@ -1102,11 +1102,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //            objetop = devuelveObjeto(lista3.get(i).getId_precio().toString(), lista3);
 //            objetop = devuelveObjeto(codigocabecera, lista);
             objetop = devuelveObjeto2(lista3.get(i).getId_precio().toString(), lista3);
-            System.out.println("ghollllllaaaaaaaaaaa");
-            System.out.println(" objetogggggg "+t_Nota_faltantes.getValueAt(i, 0).toString());
-            System.out.println(" objeto "+objeto);
             if (objetop != null) {
-                System.out.println(" gggggggg");
                 EditarProductoNota Man = new EditarProductoNota(new javax.swing.JFrame(), true, objetop);
                 Man.setVisible(true);
                 lista3.clear();

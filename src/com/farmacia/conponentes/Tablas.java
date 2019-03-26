@@ -650,7 +650,9 @@ public class Tablas {
             Filas[2] = lista.get(i).getEntidad();
             Filas[3] = lista.get(i).getRepresentante();
             Filas[4] = lista.get(i).getTelefono();
-            Filas[5] = lista.get(i).getFecha_creacion().toString();
+            String j = Fecha.getStringFecha1(lista.get(i).getFecha_creacion());
+            Filas[5] = Fecha.getStringFecha(Date.valueOf(j));
+//            Filas[5] = lista.get(i).getFecha_creacion().toString();
             Filas[6] = Formato_Numeros.formatoNumero("" + lista.get(i).getIva().toString());
             Filas[7] = Formato_Numeros.formatoNumero("" + lista.get(i).getDescuento().toString());
             Filas[8] = Formato_Numeros.formatoNumero("" + lista.get(i).getTotal().toString());
@@ -697,10 +699,10 @@ public class Tablas {
             Filas[2] = lista.get(i).getEntidad();
             Filas[3] = lista.get(i).getRepresentante();
             Filas[4] = lista.get(i).getTelefono();
-            String j=Fecha.getStringFecha1(lista.get(i).getFecha_creacion());
-            System.out.println(" fec "+j);
+            String j = Fecha.getStringFecha1(lista.get(i).getFecha_creacion());
+            System.out.println(" fec " + j);
             Filas[5] = Fecha.getStringFecha(Date.valueOf(j));
-         //   Filas[5] = lista.get(i).getFecha_creacion();
+            //   Filas[5] = lista.get(i).getFecha_creacion();
             Filas[6] = "" + lista.get(i).getPlazo();
             Filas[7] = Formato_Numeros.formatoNumero("" + lista.get(i).getTotal().toString());
 
@@ -901,7 +903,7 @@ public class Tablas {
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
-            Filas[0] = ""+lista.get(i).getId_producto();
+            Filas[0] = "" + lista.get(i).getId_producto();
             Filas[1] = lista.get(i).getMarca();
             Filas[2] = lista.get(i).getNombre_tipo();
             Filas[3] = lista.get(i).getNombre_producto();
@@ -1121,10 +1123,10 @@ public class Tablas {
     public void visualizar(JTable tabla, Long id) {
 
         tabla.setDefaultRenderer(Object.class, new Render());
-        DefaultTableModel dt = new DefaultTableModel(new String[]{"CODIGO PRECIO", "CODIGO PRODUCTO", "PRECIO COMPRA", "PRECIO VENTA","PORCENTAJE","UTILIDAD", "ESTADO",}, 0) {
+        DefaultTableModel dt = new DefaultTableModel(new String[]{"CODIGO PRECIO", "CODIGO PRODUCTO", "PRECIO COMPRA", "PRECIO VENTA", "PORCENTAJE", "UTILIDAD", "ESTADO",}, 0) {
 
             Class[] types = new Class[]{
-                java.lang.Object.class,java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,java.lang.Object.class,java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1153,8 +1155,8 @@ public class Tablas {
                 fila[2] = vo.getPrecio_compra();
                 fila[3] = vo.getPrecio_venta();
                 fila[4] = vo.getPorcentaje();
-                Double por = Double.parseDouble(vo.getPorcentaje().toString())/100;
-                Double envio = vo.getPrecio_compra()*por;
+                Double por = Double.parseDouble(vo.getPorcentaje().toString()) / 100;
+                Double envio = vo.getPrecio_compra() * por;
                 fila[5] = Formato_Numeros.formatoNumero(envio.toString());
                 String ac = (String) vo.getEstado();
                 if ("A".equals(ac)) {
@@ -1667,7 +1669,7 @@ public class Tablas {
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
         String[] Co = {"N° ", "CODIGO", "NOMBRE", "APELLIDO", "CORREO", "DIRECCION", "RUC", "CEDULA", "FECHA DE CREACION",
-             "TELEFONO", "FORMA DE PAGO", "VENTA", "IVA", "DESCUENTO", "TOTAL"};
+            "TELEFONO", "FORMA DE PAGO", "VENTA", "IVA", "DESCUENTO", "TOTAL"};
         String[] Filas = new String[15];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -1679,11 +1681,11 @@ public class Tablas {
             Filas[4] = lista.get(i).getCorreo();
             Filas[8] = lista.get(i).getDireccion();
             Filas[6] = lista.get(i).getRuc();
-            Filas[7] = lista.get(i).getCedula();         
-            String j=Fecha.getStringFecha1(lista.get(i).getFecha_creacion());
+            Filas[7] = lista.get(i).getCedula();
+            String j = Fecha.getStringFecha1(lista.get(i).getFecha_creacion());
 //            System.out.println(" fec "+j);
 //            Filas[5] = Fecha.getStringFecha(Date.valueOf(j));
-            
+
             Filas[5] = Fecha.getStringFecha(Date.valueOf(j));
             Filas[9] = lista.get(i).getTelefono();
             Filas[10] = lista.get(i).getTipo_pago();
