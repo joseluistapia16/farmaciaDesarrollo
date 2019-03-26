@@ -214,7 +214,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 objeto = devuelveObjeto(txtUsuario.getText(), listar);
                 if (objeto != null) {
                     //System.out.println("holaaaaa");
-                    FrmPrincipal acc = new FrmPrincipal(objeto);
+                    FrmPrincipal acc = new FrmPrincipal(objeto,objeto.getCargo());
                     acc.setVisible(true);
                     dispose();
                     listar.clear();
