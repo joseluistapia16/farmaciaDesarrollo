@@ -32,6 +32,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
 public class MenuPreVentas extends javax.swing.JDialog {
+    String ImagenLogo = System.getProperty("user.dir")+"/src/com/farmacia/imagenes/"+"logoasofar.jpg";
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
@@ -1089,26 +1090,23 @@ public class MenuPreVentas extends javax.swing.JDialog {
                TxtNombre.getText(),
                TxtCorreo.getText(),
                CbxTipoVenta.getSelectedItem().toString(),
-               CbxFormaPago.getSelectedItem().toString(),
-               TablaListarVentas.getValueAt(i, 0).toString(),
-               TablaListarVentas.getValueAt(i, 1).toString(),
-               TablaListarVentas.getValueAt(i, 2).toString(),
+               CbxFormaPago.getSelectedItem().toString(),               
+               TablaListarVentas.getValueAt(i, 2).toString(),     
+               TablaListarVentas.getValueAt(i, 1).toString(),               
                TablaListarVentas.getValueAt(i, 3).toString(),
-               TablaListarVentas.getValueAt(i, 4).toString(),
-               TablaListarVentas.getValueAt(i, 5).toString(),
-               TablaListarVentas.getValueAt(i, 6).toString(),
                TablaListarVentas.getValueAt(i, 7).toString(),
                TxtSubtotalconIva.getText(),
                TxtSubtotalsinIva.getText(),
                TxtSubtotal.getText(),
                TxtDescuento.getText(),
                TxtIva.getText(),
-               TxtTotal.getText()
-                );
+               TxtTotal.getText(),
+               ImagenLogo
+               );
             lista.add(cabecera);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" + "MenuPreVentas.jasper";
+            String dir = System.getProperty("user.dir") + "/Reportes/" + "MenuPreVenta.jasper";
             JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
