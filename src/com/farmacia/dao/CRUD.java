@@ -360,7 +360,7 @@ public class CRUD {
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
-                listarJoinProductosCompras obj = EntidadesMappers.getJoinConvertidorProductoFromResultSet(rs);
+                listarJoinProductosCompras obj = EntidadesMappers.getJoinTodosProductosFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();
