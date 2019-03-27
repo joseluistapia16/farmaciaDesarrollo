@@ -17,6 +17,7 @@ import com.farmacia.views.Reportes.Reporte_Venta;
 import com.farmacia.views.compras.CabeceraCompra;
 import com.farmacia.views.compras.ListaDePedidos;
 import com.farmacia.views.comprasRealizadas.ComprasEfectuadas;
+import com.farmacia.views.covertidor.Convertidor_lista_Productos;
 import com.farmacia.views.devoluciones.ComprasDevueltas;
 import com.farmacia.views.iva.Mostrar_iva;
 import com.farmacia.views.pedidos.MantenimientoNotaPedidos;
@@ -141,6 +142,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmDevoluciones = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jmReporteCompra = new javax.swing.JMenuItem();
@@ -470,6 +473,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jmDevoluciones);
 
+        jMenu2.setText("Convertidor");
+
+        jMenuItem10.setText("Convertir");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem10);
+
+        jMenuBar1.add(jMenu2);
+
         jMenu8.setText("Reportes");
         jMenu8.add(jSeparator3);
 
@@ -732,6 +747,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_jmLocalActionPerformed
 
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+       Convertidor_lista_Productos scc = new Convertidor_lista_Productos(this, rootPaneCheckingEnabled);
+       scc.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     public Listar_usuario getUsuario() {
         return objUsuario;
     }
@@ -781,11 +801,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;

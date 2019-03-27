@@ -40,7 +40,8 @@ public class Convertidor_lista_Productos extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     ArrayList<listarJoinProductosCompras> listaStock = null;
     String Buscar = "";
-    listarJoinProductosCompras objeto=null;
+    listarJoinProductosCompras objeto = null;
+
     public Convertidor_lista_Productos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
@@ -48,7 +49,7 @@ public class Convertidor_lista_Productos extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         listaStock = crud.listarConvertidorProducto(3);
         Tablas.ListarConvertidorProductos(listaStock, tabla_stock);
-       // this.sumarTotalStock();
+        // this.sumarTotalStock();
     }
 
     public void sumarTotalStock() {
@@ -255,9 +256,16 @@ public class Convertidor_lista_Productos extends javax.swing.JDialog {
         try {
             if (evt.getClickCount() == 2) {
                 i = tabla_stock.getSelectedRow();
-                objeto = devuelveObjeto(tabla_stock.getValueAt(i, 0).toString(),tabla_stock.getValueAt(i, 1).toString(),tabla_stock.getValueAt(i, 3).toString(), listaStock);
+                objeto = devuelveObjeto(tabla_stock.getValueAt(i, 0).toString(), tabla_stock.getValueAt(i, 1).toString(), tabla_stock.getValueAt(i, 3).toString(), listaStock);
+
+                if (objeto != null) {
                     covertidor acc = new covertidor(new javax.swing.JFrame(), true, objeto);
                     acc.setVisible(true);
+                    listaStock.clear();
+                    listaStock = crud.listarConvertidorProducto(3);
+                    Tablas.ListarConvertidorProductos(listaStock, tabla_stock);
+                }
+
             }
         } catch (Exception e) {
             Logger.getLogger(Stock_Productos.class.getName()).log(Level.SEVERE, null, e);
@@ -267,13 +275,13 @@ public class Convertidor_lista_Productos extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-    public listarJoinProductosCompras devuelveObjeto(String datos,String nom,String pre, ArrayList<listarJoinProductosCompras> listarobj) {
+    public listarJoinProductosCompras devuelveObjeto(String datos, String nom, String pre, ArrayList<listarJoinProductosCompras> listarobj) {
         listarJoinProductosCompras objeto1 = null;
-        pre=pre.replace(',', '.');
+        pre = pre.replace(',', '.');
         for (int i = 0; i < listarobj.size(); i++) {
             if (datos.equals(listarobj.get(i).getId_productos().toString())) {
-                if(nom.equals(listarobj.get(i).getNombreProductos())){
-                    if(pre.equals(listarobj.get(i).getPrecioCompra().toString())){
+                if (nom.equals(listarobj.get(i).getNombreProductos())) {
+                    if (pre.equals(listarobj.get(i).getPrecioCompra().toString())) {
                         objeto1 = listarobj.get(i);
                         break;
                     }
@@ -282,6 +290,7 @@ public class Convertidor_lista_Productos extends javax.swing.JDialog {
         }
         return objeto1;
     }
+
     /**
      * @param args the command line arguments
      */
