@@ -5,6 +5,7 @@
  */
 package com.farmacia.views.pedidos;
 
+import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
@@ -27,6 +28,7 @@ import javax.swing.JDialog;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.Dimension;
+import java.math.RoundingMode;
 
 /**
  *
@@ -321,6 +323,9 @@ public class EditarProductoNota extends javax.swing.JDialog {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtBonoKeyTyped(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBonoKeyReleased(evt);
+            }
         });
 
         Reporte.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
@@ -390,7 +395,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
                 .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,7 +428,6 @@ public class EditarProductoNota extends javax.swing.JDialog {
                             .addComponent(producto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Medida, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                     .addComponent(jLabel1)
@@ -437,8 +441,9 @@ public class EditarProductoNota extends javax.swing.JDialog {
                                     .addComponent(jLabel11)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtporcentajeDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 58, Short.MAX_VALUE))
+                            .addComponent(txtporcentajeDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -571,8 +576,8 @@ public class EditarProductoNota extends javax.swing.JDialog {
         BigDecimal Precio = new BigDecimal(txtPrecio.getText());
         BigDecimal Subtotal = Cantidad.multiply(Precio);
         BigDecimal Cien = new BigDecimal("100");
-        String IV = txtIVA.getText();
-        BigDecimal IVA5 = new BigDecimal(IV);
+        String iva = txtIVA.getText();
+        BigDecimal IVA5 = new BigDecimal(iva);
         BigDecimal ValorIva = Cantidad.multiply(Precio).multiply(IVA5);
 
         if (txtIVA.getText().equals("NO")) {
@@ -582,38 +587,38 @@ public class EditarProductoNota extends javax.swing.JDialog {
         }
         if (txtIVA.getText() != "NO") {
 
-            txtValorIva.setText(ValorIva.toString());
+            txtValorIva.setText(Formato_Numeros.formatoNumero(ValorIva.toString()));
 
         }
-        if (txtporcentajeDescuento.getText().equals("")) {
+        if (txtporcentajeDescuento.getText().equals("0")) {
             BigDecimal ValorDescuento = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
             VGdescuento = ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP);
             txtDescuento.setText(ValorDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
 
             BigDecimal IVA = obj2.getIva();
+            System.out.println("Cantidad " + Cantidad.toString());
+            System.out.println("Precio  " + Precio.toString());
+            System.out.println("Valor IVa  " + ValorIva.toString());
+//            System.out.println("Total "+VGtotal.toString());
+            VGtotal = Subtotal.add(ValorIva);
 
-            VGtotal = Subtotal.add(IVA5).subtract(ValorDescuento);
-
+            System.out.println("Total " + VGtotal.toString());
             VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(VGtotal.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
             txtTotal.setText(VGtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        } else {  
+        } else {
 
             PorcentajeDescuento = new BigDecimal(txtporcentajeDescuento.getText());
-            System.out.println("Porcentaje Des" + PorcentajeDescuento);
 
             BigDecimal ValorDescuento = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
             VGdescuento = ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP);
 
-            System.out.println("das" + ValorDescuento);
-//           ValorDescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
             txtDescuento.setText(ValorDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            // BigDecimal IVA = new BigDecimal(txtIva.getText());
+
             BigDecimal IVA = obj2.getIva();
 
             VGtotal = Subtotal.add(IVA).subtract(ValorDescuento);
             VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(VGtotal.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
             txtTotal.setText(VGtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            System.out.println("Total con Descuento" + VGtotal);
         }
     }
 
@@ -731,8 +736,26 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        Total1();
-        Total();
-        btnEditar.setEnabled(true);
+        try {
+            if (!"0".equals(txtBono.getText())) {
+                Integer Cant = Integer.parseInt(txtCantidad.getText());
+                BigDecimal Cantidad = new BigDecimal(Cant);
+                Integer Bon = Integer.parseInt(txtBono.getText());
+                BigDecimal Bono = new BigDecimal(Bon);
+                BigDecimal CantBono = Cantidad.add(Bono).setScale(7, BigDecimal.ROUND_HALF_UP);
+                BigDecimal Precio = new BigDecimal(txtPrecio.getText());
+                BigDecimal Subtotal = Cantidad.multiply(Precio).setScale(7, BigDecimal.ROUND_HALF_UP);
+                BigDecimal PrecioBono = Subtotal.divide(CantBono, 7, RoundingMode.HALF_UP);
+                String regresa = Formato_Numeros.formatoNumero(PrecioBono.toString());
+                txtPrecio.setText(regresa.replace(',', '.'));
+                Total();
+            } else {
+                Total();
+                btnEditar.setEnabled(true);
+            }
+        } catch (Exception e) {
+
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
     String CADENA = "";
     private void txtporcentajeDescuentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtporcentajeDescuentoKeyReleased
@@ -804,7 +827,12 @@ public class EditarProductoNota extends javax.swing.JDialog {
     }//GEN-LAST:event_txtBonoActionPerformed
 
     private void txtBonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBonoKeyTyped
-        // TODO add your handling code here:
+             
+        if(txtBono.getText().equals("0")){
+            
+      txtPrecio.setText(objf.getPrecio().toString());
+          System.out.println("Precio Normal "+objf.getPrecio().toString());
+      }
     }//GEN-LAST:event_txtBonoKeyTyped
 
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
@@ -865,6 +893,15 @@ public class EditarProductoNota extends javax.swing.JDialog {
     private void txtIVAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIVAActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIVAActionPerformed
+
+    private void txtBonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBonoKeyReleased
+      
+        if(txtBono.equals("0")){
+            
+      txtPrecio.setText(objf.getPrecio().toString());
+          System.out.println("Precio Normal "+objf.getPrecio().toString());
+      }
+    }//GEN-LAST:event_txtBonoKeyReleased
 
     private void EliminarDetalleNotaPedido() {
         DetalleNotaPedido obj = new DetalleNotaPedido();
