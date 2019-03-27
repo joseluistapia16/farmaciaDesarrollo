@@ -360,7 +360,7 @@ public class CRUD {
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
-                listarJoinProductosCompras obj = EntidadesMappers.getJoinTodosProductosFromResultSet(rs);
+                listarJoinProductosCompras obj = EntidadesMappers.getJoinConvertidorProductoFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();
@@ -4547,6 +4547,40 @@ public class CRUD {
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
                 joinProductoDetallesFaltantes obj = EntidadesMappers.getJoinDetallesFaltantesFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+
+    }
+      public ArrayList<listarJoinProductosCompras> listarConvertidorProducto(int op) {
+        ArrayList<listarJoinProductosCompras> lista = new ArrayList<listarJoinProductosCompras>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{call listarPoductosCompras(?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                listarJoinProductosCompras obj = EntidadesMappers.getJoinConvertidorProductoFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();

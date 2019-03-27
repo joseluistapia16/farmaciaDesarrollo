@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.farmacia.views.stock;
+package com.farmacia.views.covertidor;
 
+import com.farmacia.views.stock.*;
 import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Productos_Stock;
+import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.views.covertidor.covertidor;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
@@ -30,23 +32,23 @@ import net.sf.jasperreports.view.JRViewer;
  *
  * @author usuario
  */
-public class Stock_Productos extends javax.swing.JDialog {
+public class Convertidor_lista_Productos extends javax.swing.JDialog {
 
     int x, y;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     CRUD crud = new CRUD();
-    ArrayList<Productos_Stock> listaStock = null;
+    ArrayList<listarJoinProductosCompras> listaStock = null;
     String Buscar = "";
-
-    public Stock_Productos(java.awt.Frame parent, boolean modal) {
+    listarJoinProductosCompras objeto=null;
+    public Convertidor_lista_Productos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-        listaStock = crud.listarStockProducto(3);
-        Tablas.ListarStockProductos(listaStock, tabla_stock);
-        this.sumarTotalStock();
+        listaStock = crud.listarConvertidorProducto(3);
+        Tablas.ListarConvertidorProductos(listaStock, tabla_stock);
+       // this.sumarTotalStock();
     }
 
     public void sumarTotalStock() {
@@ -77,9 +79,9 @@ public class Stock_Productos extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_stock = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         txtTotal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -90,7 +92,7 @@ public class Stock_Productos extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("PRODUCTOS EN STOCK");
+        jLabel1.setText("CONVERTIDOR");
         jLabel1.setOpaque(true);
         jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -147,29 +149,27 @@ public class Stock_Productos extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impresora.png"))); // NOI18N
-        jButton2.setText("IMPRIMIR");
-        jButton2.setMaximumSize(new java.awt.Dimension(213, 137));
-        jButton2.setMinimumSize(new java.awt.Dimension(213, 137));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         txtTotal.setEditable(false);
         txtTotal.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel3.setText("TOTAL:");
+
+        jButton3.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/producto.png"))); // NOI18N
+        jButton3.setText("mantenimiento");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -182,8 +182,8 @@ public class Stock_Productos extends javax.swing.JDialog {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
+                        .addComponent(jButton3)
+                        .addGap(42, 42, 42)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jLabel3)
@@ -193,9 +193,9 @@ public class Stock_Productos extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtbusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(222, 222, 222))
+                .addGap(18, 18, 18)
+                .addComponent(txtbusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(175, 175, 175))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,9 +211,9 @@ public class Stock_Productos extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,42 +250,38 @@ public class Stock_Productos extends javax.swing.JDialog {
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel1MouseDragged
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ArrayList tabla = new ArrayList();
-        for (int i = 0; i < tabla_stock.getRowCount(); i++) {
-            ClaseReporte tabla1 = new ClaseReporte(tabla_stock.getValueAt(i, 0).toString(), tabla_stock.getValueAt(i, 1).toString(), tabla_stock.getValueAt(i, 2).toString(), tabla_stock.getValueAt(i, 3).toString(), tabla_stock.getValueAt(i, 4).toString(), tabla_stock.getValueAt(i, 5).toString(),txtTotal.getText());
-            tabla.add(tabla1);
-        }
-        try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" + "Stock_Productos.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
-            JDialog frame = new JDialog(this);
-            JRViewer viewer = new JRViewer(jprint);
-            frame.add(viewer);
-            frame.setSize(new Dimension(ancho / 2, alto / 2));
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-            viewer.setFitWidthZoomRatio();
-        } catch (JRException ex) {
-            Logger.getLogger(Stock_Productos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void tabla_stockMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_stockMousePressed
-//        int i = 0;
-//        try {
-//            if (evt.getClickCount() == 2) {
-//                i = tabla_stock.getSelectedRow();
-//                    covertidor acc = new covertidor(new javax.swing.JFrame(), true, tabla_stock.getValueAt(i, 0).toString());
-//                    acc.setVisible(true);
-//            }
-//        } catch (Exception e) {
-//            Logger.getLogger(Stock_Productos.class.getName()).log(Level.SEVERE, null, e);
-//        }
+        int i = 0;
+        try {
+            if (evt.getClickCount() == 2) {
+                i = tabla_stock.getSelectedRow();
+                objeto = devuelveObjeto(tabla_stock.getValueAt(i, 0).toString(),tabla_stock.getValueAt(i, 1).toString(),tabla_stock.getValueAt(i, 3).toString(), listaStock);
+                    covertidor acc = new covertidor(new javax.swing.JFrame(), true, objeto);
+                    acc.setVisible(true);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Stock_Productos.class.getName()).log(Level.SEVERE, null, e);
+        }
     }//GEN-LAST:event_tabla_stockMousePressed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+    public listarJoinProductosCompras devuelveObjeto(String datos,String nom,String pre, ArrayList<listarJoinProductosCompras> listarobj) {
+        listarJoinProductosCompras objeto1 = null;
+        pre=pre.replace(',', '.');
+        for (int i = 0; i < listarobj.size(); i++) {
+            if (datos.equals(listarobj.get(i).getId_productos().toString())) {
+                if(nom.equals(listarobj.get(i).getNombreProductos())){
+                    if(pre.equals(listarobj.get(i).getPrecioCompra().toString())){
+                        objeto1 = listarobj.get(i);
+                        break;
+                    }
+                }
+            }
+        }
+        return objeto1;
+    }
     /**
      * @param args the command line arguments
      */
@@ -303,20 +299,21 @@ public class Stock_Productos extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Stock_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Convertidor_lista_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Stock_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Convertidor_lista_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Stock_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Convertidor_lista_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Stock_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Convertidor_lista_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Stock_Productos dialog = new Stock_Productos(new javax.swing.JFrame(), true);
+                Convertidor_lista_Productos dialog = new Convertidor_lista_Productos(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -330,7 +327,7 @@ public class Stock_Productos extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
