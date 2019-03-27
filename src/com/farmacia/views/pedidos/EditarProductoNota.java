@@ -619,7 +619,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
             BigDecimal IVA = obj2.getIva();
 
-            VGtotal = Subtotal.add(IVA).subtract(ValorDescuento);
+            VGtotal = Subtotal.add(ValorIva).subtract(ValorDescuento);
             VGtotal = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(VGtotal.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
             txtTotal.setText(VGtotal.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         }
@@ -736,31 +736,72 @@ public class EditarProductoNota extends javax.swing.JDialog {
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
+    public void CalcularDescuento() {
+        Integer Cant = Integer.parseInt(txtCantidad.getText());
+        BigDecimal Cantidad = new BigDecimal(Cant);
+        Integer PorcDes = Integer.parseInt(txtporcentajeDescuento.getText());
+        BigDecimal Precio = new BigDecimal(txtPrecio.getText());
+        BigDecimal Subtotal = Cantidad.multiply(Precio);
+        BigDecimal PorcentajeDescuento = new BigDecimal(PorcDes);
+        BigDecimal Cien = new BigDecimal(100);
+        BigDecimal ValorDesc = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
+        txtDescuento.setText(Formato_Numeros.formatoNumero(ValorDesc.toString()));
+        System.out.println("Valor Descuento " + ValorDesc);
+    }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        try {
-            if (!"0".equals(txtBono.getText())) {
-                Integer Cant = Integer.parseInt(txtCantidad.getText());
-                BigDecimal Cantidad = new BigDecimal(Cant);
-                Integer Bon = Integer.parseInt(txtBono.getText());
-                BigDecimal Bono = new BigDecimal(Bon);
-                BigDecimal CantBono = Cantidad.add(Bono).setScale(7, BigDecimal.ROUND_HALF_UP);
-                BigDecimal Precio = new BigDecimal(txtPrecio.getText());
-                BigDecimal Subtotal = Cantidad.multiply(Precio).setScale(7, BigDecimal.ROUND_HALF_UP);
-                BigDecimal PrecioBono = Subtotal.divide(CantBono, 7, RoundingMode.HALF_UP);
-                String regresa = Formato_Numeros.formatoNumero(PrecioBono.toString());
-                txtPrecio.setText(regresa.replace(',', '.'));
-                Total();
-            }
-            if (txtBono.getText().equals("0")) {
-                Total();
-                System.out.println("entro perro");
-                btnEditar.setEnabled(true);
-            }
-        } catch (Exception e) {
-
+    public void CalcularTotal() {
+        Integer Cant = Integer.parseInt(txtCantidad.getText());
+        BigDecimal Cantidad = new BigDecimal(Cant);
+        Integer PorcDes = Integer.parseInt(txtporcentajeDescuento.getText());
+        BigDecimal Precio = new BigDecimal(txtPrecio.getText());       
+        BigDecimal Subtotal = Cantidad.multiply(Precio);      
+        BigDecimal PorcentajeDescuento = new BigDecimal(PorcDes);
+        BigDecimal Cien = new BigDecimal(100);
+        BigDecimal ValorDesc = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
+        
+        if (!"NO".equals(txtIVA.getText())) {
+            BigDecimal Iva1 = new BigDecimal(txtIVA.getText());
+            BigDecimal TotalIva = Subtotal.multiply(Iva1);
+            BigDecimal Total = Subtotal.add(TotalIva).subtract(ValorDesc);
+            System.out.println("Total" + Total);
+            txtTotal.setText(Formato_Numeros.formatoNumero(Total.toString()));
         }
+        if (txtIVA.getText().equals("NO")) {
+            BigDecimal Total = Subtotal.subtract(ValorDesc);
+            System.out.println("Total" + Total);
+            txtTotal.setText(Formato_Numeros.formatoNumero(Total.toString()));
+        }
+    }
+
+    public void CalcularIva() {
+        Integer Cant = Integer.parseInt(txtCantidad.getText());
+        BigDecimal Cantidad = new BigDecimal(Cant);
+        BigDecimal Precio = new BigDecimal(txtPrecio.getText());
+        
+        if (txtIVA.getText()=="NO") {
+            System.out.println("hellooo ");
+            BigDecimal Iva1 = new BigDecimal(0.00);
+            BigDecimal TotalIva = Cantidad.multiply(Precio).multiply(Iva1);
+            txtValorIva.setText(Formato_Numeros.formatoNumero(TotalIva.toString()));
+        }
+        if (!"NO".equals(txtIVA.getText())) {
+            BigDecimal Iva1 = new BigDecimal(txtIVA.getText());
+            BigDecimal TotalIva = Cantidad.multiply(Precio).multiply(Iva1);
+            txtValorIva.setText(Formato_Numeros.formatoNumero(TotalIva.toString()));
+            System.out.println("Holaaaaaaaaaaaa");
+            System.out.println(" Cantidad " + Cantidad);
+            System.out.println(" Precio " + Precio);
+            System.out.println(" iva s " + Iva1);
+            System.out.println(" valor iva " + Iva1);
+            System.out.println("Total Iva " + TotalIva);
+        }
+
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CalcularIva();
+        CalcularDescuento();
+        CalcularTotal();
+        btnEditar.setEnabled(true);
     }//GEN-LAST:event_jButton1ActionPerformed
     String CADENA = "";
     private void txtporcentajeDescuentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtporcentajeDescuentoKeyReleased
