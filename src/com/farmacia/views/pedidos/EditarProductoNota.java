@@ -65,6 +65,9 @@ public class EditarProductoNota extends javax.swing.JDialog {
         ValorDescuento();
         IVA = crud.listarIva();
         txtIVA.setText(Miva());
+        txtCantidad.setEnabled(false);
+        txtDescuento.setEnabled(false);
+        txtBono.setEnabled(false);
     }
 
     /**
@@ -735,7 +738,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        Total1();
+
         try {
             if (!"0".equals(txtBono.getText())) {
                 Integer Cant = Integer.parseInt(txtCantidad.getText());
@@ -749,8 +752,10 @@ public class EditarProductoNota extends javax.swing.JDialog {
                 String regresa = Formato_Numeros.formatoNumero(PrecioBono.toString());
                 txtPrecio.setText(regresa.replace(',', '.'));
                 Total();
-            } else {
+            }
+            if (txtBono.getText().equals("0")) {
                 Total();
+                System.out.println("entro perro");
                 btnEditar.setEnabled(true);
             }
         } catch (Exception e) {
@@ -827,12 +832,12 @@ public class EditarProductoNota extends javax.swing.JDialog {
     }//GEN-LAST:event_txtBonoActionPerformed
 
     private void txtBonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBonoKeyTyped
-             
-        if(txtBono.getText().equals("0")){
-            
-      txtPrecio.setText(objf.getPrecio().toString());
-          System.out.println("Precio Normal "+objf.getPrecio().toString());
-      }
+
+        if (txtBono.getText().equals("0")) {
+
+            txtPrecio.setText(objf.getPrecio().toString());
+            System.out.println("Precio Normal " + objf.getPrecio().toString());
+        }
     }//GEN-LAST:event_txtBonoKeyTyped
 
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
@@ -870,16 +875,23 @@ public class EditarProductoNota extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel7MouseDragged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        EditarPrecioNotaPedido Pnp = new EditarPrecioNotaPedido(new javax.swing.JFrame(), true, codigo.getText(), producto.getText());
-        Pnp.setVisible(true);
-        Pnp.getPrecio();
-        txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
+        try {
+            EditarPrecioNotaPedido Pnp = new EditarPrecioNotaPedido(new javax.swing.JFrame(), true, codigo.getText(), producto.getText());
+            Pnp.setVisible(true);
+            Pnp.getPrecio();
+            txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
 
-        txtBono.setEnabled(true);
-        txtporcentajeDescuento.setEnabled(true);
-        txtCantidad.setEnabled(true);
-        objf.setPrecio(Pnp.getPrecio().getPrecio_compra());
-        objf.setId_precio(Pnp.getPrecio().getId_precio());
+            txtBono.setEnabled(true);
+            txtporcentajeDescuento.setEnabled(true);
+            txtCantidad.setEnabled(true);
+            objf.setPrecio(Pnp.getPrecio().getPrecio_compra());
+            objf.setId_precio(Pnp.getPrecio().getId_precio());
+            /////////////////////
+            txtCantidad.setEnabled(true);
+            txtDescuento.setEnabled(true);
+            txtBono.setEnabled(true);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtIVAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIVAKeyTyped
@@ -895,12 +907,12 @@ public class EditarProductoNota extends javax.swing.JDialog {
     }//GEN-LAST:event_txtIVAActionPerformed
 
     private void txtBonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBonoKeyReleased
-      
-        if(txtBono.equals("0")){
-            
-      txtPrecio.setText(objf.getPrecio().toString());
-          System.out.println("Precio Normal "+objf.getPrecio().toString());
-      }
+
+        if (txtBono.equals("0")) {
+
+            txtPrecio.setText(objf.getPrecio().toString());
+            System.out.println("Precio Normal " + objf.getPrecio().toString());
+        }
     }//GEN-LAST:event_txtBonoKeyReleased
 
     private void EliminarDetalleNotaPedido() {
