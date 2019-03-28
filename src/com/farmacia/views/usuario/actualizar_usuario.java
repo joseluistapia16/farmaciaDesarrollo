@@ -252,6 +252,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel4.setText("CEDULA:");
 
+        txtCedula.setEditable(false);
         txtCedula.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
