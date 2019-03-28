@@ -4601,4 +4601,26 @@ public class CRUD {
         return lista;
 
     }
+      public String iniciarConversion(listarJoinProductosCompras obj1 ,listarJoinProductosCompras obj2,Integer valorA,Integer valorB) {
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement cs = conect.prepareCall(
+                    "{ call convertirStock(?,?,?,?,?) }");
+            cs.setLong(1, obj1.getIdStock());
+            cs.setLong(2, obj2.getIdStock());
+            cs.setInt(3, valorA);
+            cs.setInt(4, valorB);
+            cs.registerOutParameter("valor", Types.VARCHAR);
+            cs.executeUpdate();
+            valor = cs.getString("valor");
+            conect.commit();
+        } catch (SQLException e) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, e);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return valor;
+    }
 }
