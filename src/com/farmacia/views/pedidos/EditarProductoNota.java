@@ -62,6 +62,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         obj2 = obj1;
         btnEditar.setEnabled(false);
+        btnCalcular.setEnabled(false);
         ValorDescuento();
         IVA = crud.listarIva();
         txtIVA.setText(Miva());
@@ -108,7 +109,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         jLabel19 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCalcular = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
@@ -267,11 +268,11 @@ public class EditarProductoNota extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel11.setText("$");
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        jButton1.setText("Calcular");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCalcular.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnCalcular.setText("Calcular");
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCalcularActionPerformed(evt);
             }
         });
 
@@ -323,11 +324,11 @@ public class EditarProductoNota extends javax.swing.JDialog {
             }
         });
         txtBono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBonoKeyTyped(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBonoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBonoKeyTyped(evt);
             }
         });
 
@@ -462,7 +463,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel13)
                                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(btnCalcular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
@@ -497,7 +498,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -753,12 +754,12 @@ public class EditarProductoNota extends javax.swing.JDialog {
         Integer Cant = Integer.parseInt(txtCantidad.getText());
         BigDecimal Cantidad = new BigDecimal(Cant);
         Integer PorcDes = Integer.parseInt(txtporcentajeDescuento.getText());
-        BigDecimal Precio = new BigDecimal(txtPrecio.getText());       
-        BigDecimal Subtotal = Cantidad.multiply(Precio);      
+        BigDecimal Precio = new BigDecimal(txtPrecio.getText());
+        BigDecimal Subtotal = Cantidad.multiply(Precio);
         BigDecimal PorcentajeDescuento = new BigDecimal(PorcDes);
         BigDecimal Cien = new BigDecimal(100);
         BigDecimal ValorDesc = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
-        
+
         if (!"NO".equals(txtIVA.getText())) {
             BigDecimal Iva1 = new BigDecimal(txtIVA.getText());
             BigDecimal TotalIva = Subtotal.multiply(Iva1);
@@ -773,13 +774,26 @@ public class EditarProductoNota extends javax.swing.JDialog {
         }
     }
 
+    public void CalcularPrecioBono() {
+        Integer Cant = Integer.parseInt(txtCantidad.getText());
+        BigDecimal Cantidad = new BigDecimal(Cant);
+        BigDecimal Precio = new BigDecimal(txtPrecio.getText());
+        BigDecimal Subtotal = Cantidad.multiply(Precio);
+
+        if (!"0".equals(txtBono.getText())) {
+            BigDecimal Bono = new BigDecimal(txtBono.getText());
+            BigDecimal CantBono = Cantidad.add(Bono);
+            BigDecimal TotalPrecioBono = Subtotal.divide(CantBono,7, RoundingMode.HALF_UP);
+            txtPrecio.setText(Formato_Numeros.formatoNumero(TotalPrecioBono.toString()));
+        }
+    }
+
     public void CalcularIva() {
         Integer Cant = Integer.parseInt(txtCantidad.getText());
         BigDecimal Cantidad = new BigDecimal(Cant);
         BigDecimal Precio = new BigDecimal(txtPrecio.getText());
-        
-        if (txtIVA.getText()=="NO") {
-            System.out.println("hellooo ");
+
+        if (txtIVA.getText() == "NO") {
             BigDecimal Iva1 = new BigDecimal(0.00);
             BigDecimal TotalIva = Cantidad.multiply(Precio).multiply(Iva1);
             txtValorIva.setText(Formato_Numeros.formatoNumero(TotalIva.toString()));
@@ -788,21 +802,16 @@ public class EditarProductoNota extends javax.swing.JDialog {
             BigDecimal Iva1 = new BigDecimal(txtIVA.getText());
             BigDecimal TotalIva = Cantidad.multiply(Precio).multiply(Iva1);
             txtValorIva.setText(Formato_Numeros.formatoNumero(TotalIva.toString()));
-            System.out.println("Holaaaaaaaaaaaa");
-            System.out.println(" Cantidad " + Cantidad);
-            System.out.println(" Precio " + Precio);
-            System.out.println(" iva s " + Iva1);
-            System.out.println(" valor iva " + Iva1);
-            System.out.println("Total Iva " + TotalIva);
         }
 
     }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         CalcularIva();
         CalcularDescuento();
         CalcularTotal();
+        CalcularPrecioBono();
         btnEditar.setEnabled(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCalcularActionPerformed
     String CADENA = "";
     private void txtporcentajeDescuentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtporcentajeDescuentoKeyReleased
         int largor = txtporcentajeDescuento.getText().length();
@@ -873,12 +882,12 @@ public class EditarProductoNota extends javax.swing.JDialog {
     }//GEN-LAST:event_txtBonoActionPerformed
 
     private void txtBonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBonoKeyTyped
-
-        if (txtBono.getText().equals("0")) {
-
-            txtPrecio.setText(objf.getPrecio().toString());
-            System.out.println("Precio Normal " + objf.getPrecio().toString());
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+//            JOptionPane.showMessageDialog(null, "INGRESE NUMEROS");
         }
+
     }//GEN-LAST:event_txtBonoKeyTyped
 
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
@@ -931,6 +940,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
             txtCantidad.setEnabled(true);
             txtDescuento.setEnabled(true);
             txtBono.setEnabled(true);
+            btnCalcular.setEnabled(true);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -949,11 +959,6 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
     private void txtBonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBonoKeyReleased
 
-        if (txtBono.equals("0")) {
-
-            txtPrecio.setText(objf.getPrecio().toString());
-            System.out.println("Precio Normal " + objf.getPrecio().toString());
-        }
     }//GEN-LAST:event_txtBonoKeyReleased
 
     private void EliminarDetalleNotaPedido() {
@@ -1048,11 +1053,11 @@ public class EditarProductoNota extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Medida;
     private javax.swing.JButton Reporte;
+    private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JTextField codigo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
