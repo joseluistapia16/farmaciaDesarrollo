@@ -1174,14 +1174,15 @@ public class covertidor extends javax.swing.JDialog {
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         FrmCalcular fr = new FrmCalcular(null, rootPaneCheckingEnabled, obj1, objeto);
         fr.setVisible(rootPaneCheckingEnabled);
-        if (fr.getvalorTotal() != null) {
+
+        if (fr.getvalorTotal() == null || fr.getvalorTotal() == -1) {
+            btnGuardar.setEnabled(false);
+        } else {
             resta = Integer.valueOf(txtcant.getText()) - fr.getvalorA();
             txtcant.setText(resta.toString());
             suma = Integer.valueOf(txtcant3.getText()) + fr.getvalorB();
             txtcant3.setText(suma.toString());
             btnGuardar.setEnabled(true);
-        } else {
-            btnGuardar.setEnabled(false);
         }
 
     }//GEN-LAST:event_btnCalcularActionPerformed
