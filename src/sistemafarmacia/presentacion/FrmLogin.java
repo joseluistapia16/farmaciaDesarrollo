@@ -204,6 +204,7 @@ public class FrmLogin extends javax.swing.JFrame {
             Listar_usuario obj = new Listar_usuario();
             obj.setCorreo(txtUsuario.getText());
             obj.setPassword(txtContrasenia.getText());
+            System.out.println("contraseña "+txtContrasenia.getText());
             obj.setIp_equipo(Operaciones.getIpDispositivo());
 //            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
             obj.setDir_ip_completa(Operaciones.getIpLocalCompleta());
