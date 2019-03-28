@@ -882,12 +882,12 @@ public class EditarProductoNota extends javax.swing.JDialog {
     }//GEN-LAST:event_txtBonoActionPerformed
 
     private void txtBonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBonoKeyTyped
-
-        if (txtBono.getText().equals("0")) {
-
-            txtPrecio.setText(objf.getPrecio().toString());
-            System.out.println("Precio Normal " + objf.getPrecio().toString());
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+//            JOptionPane.showMessageDialog(null, "INGRESE NUMEROS");
         }
+
     }//GEN-LAST:event_txtBonoKeyTyped
 
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
@@ -959,11 +959,6 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
     private void txtBonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBonoKeyReleased
 
-        if (txtBono.equals("0")) {
-
-            txtPrecio.setText(objf.getPrecio().toString());
-            System.out.println("Precio Normal " + objf.getPrecio().toString());
-        }
     }//GEN-LAST:event_txtBonoKeyReleased
 
     private void EliminarDetalleNotaPedido() {
