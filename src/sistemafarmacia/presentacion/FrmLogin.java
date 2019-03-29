@@ -198,7 +198,7 @@ public class FrmLogin extends javax.swing.JFrame {
     public void iniciarSesion() {
         if (txtUsuario.getText().length() < 4) {
             JOptionPane.showMessageDialog(null, "Ingrese un usuario válido");
-        } else if (txtContrasenia.getText().length() < 7) {
+        } else if (txtContrasenia.getText().length() < 2) {
             JOptionPane.showMessageDialog(null, "Ingrese una contraseña válida");
         } else {
             Listar_usuario obj = new Listar_usuario();

@@ -25,6 +25,7 @@ import com.farmacia.entities1.Obcx;
 import com.farmacia.entities1.ProveedorRep;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.filtros.filtrosProductos;
+import static com.farmacia.views.proveedor.Ingresar_Proveedor.listac;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.MouseInfo;
@@ -618,7 +619,9 @@ public class Editar_Proveedor extends javax.swing.JDialog {
             p.setFecha_registro(fecha_registro);
             p.setEstado(tip2);
             p.setTelefono(cbx1.getSelectedItem().toString());
+            if(cbx2.getSelectedIndex() >= 1){
             p.setMail(cbx2.getSelectedItem().toString());
+            }
             p.setId_proveedor(tip3);
             p.setDireccionImagen(rutaimagen);
             String valor = crud.insertarProveedor(p);

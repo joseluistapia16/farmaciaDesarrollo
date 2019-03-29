@@ -491,14 +491,14 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
 //        }
 //    }
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-       if(cbx1.getSelectedIndex()==0 || cbx2.getSelectedIndex()==0){
+       if(cbx1.getSelectedIndex()==0 ){
           
-           JOptionPane.showMessageDialog(this, "escoja correo y telefono");
+           JOptionPane.showMessageDialog(this, "escoja telefono");
        
            
        }else{
        
-        if (listat.size() >=1 && listac.size() >= 1) {
+        if (listat.size() >=1) {
             
             ListarJoinProveedor p =new ListarJoinProveedor();
             p.setId_proveedor_clase(Long.valueOf("1"));
@@ -508,7 +508,9 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             p.setDireccion(dir.getText());
             p.setFecha_registro(fecha_registro);
             p.setTelefono(cbx1.getSelectedItem().toString());
+            if(listac.size() >= 1){
             p.setMail(cbx2.getSelectedItem().toString());
+            }
             p.setDireccionImagen(rutaimagen);
             
             String pro = crud.insertarNuevoProveedor(p);
