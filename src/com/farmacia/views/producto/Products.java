@@ -47,6 +47,7 @@ public class Products extends javax.swing.JDialog {
     ArrayList<Iva> listaIva = crud.listarTodoIvaProducto();
     Long id_tipo, id_medida, id_envase, id_marca;
     String error = "", IVA = "", valorIDProd = "";
+            //,RECETA = "";
 
     public Products(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -121,6 +122,7 @@ public class Products extends javax.swing.JDialog {
         cbxMedida = new javax.swing.JComboBox<>();
         btnAgregarMedida = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        cbxReceta = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         usuario = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -296,6 +298,8 @@ public class Products extends javax.swing.JDialog {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("TIPO:");
 
+        cbxReceta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SIN RECETA ", "CON RECETA" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -324,9 +328,9 @@ public class Products extends javax.swing.JDialog {
                             .addComponent(cbxTipos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAgreEnvase, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAgregarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgreMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnAgreMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgreEnvase, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cbxMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,8 +345,10 @@ public class Products extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel20)
                         .addGap(9, 9, 9)
-                        .addComponent(cbxIva, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                        .addComponent(cbxIva, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbxReceta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +358,8 @@ public class Products extends javax.swing.JDialog {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxIva, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxIva, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxReceta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -475,7 +482,9 @@ public class Products extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -505,6 +514,7 @@ public class Products extends javax.swing.JDialog {
                 p.setId_usuario(Long.valueOf(id_usuario.getText()));
                 p.setIva(IVA);
                 p.setCantidad_minima(Long.valueOf(txtcantMinima.getText()));
+                p.setReceta(cbxReceta.getSelectedItem().toString());
                 valor = crud.insertarProductoNuevo(p);
                 JOptionPane.showMessageDialog(this, valor);
 
@@ -520,6 +530,7 @@ public class Products extends javax.swing.JDialog {
                 p2.setId_usuario(Long.valueOf(id_usuario.getText()));
                 p2.setIva(IVA);
                 p2.setCantidad_minima(Long.valueOf(txtcantMinima.getText()));
+                p2.setReceta(cbxReceta.getSelectedItem().toString());
                 valorIDProd = crud.BuscarIDProductoNuevo(p2);
                 if (valorIDProd != null) {
                     Habilitar(true);
@@ -751,6 +762,7 @@ public class Products extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbxIva;
     private javax.swing.JComboBox<String> cbxMarca;
     private javax.swing.JComboBox<String> cbxMedida;
+    private javax.swing.JComboBox<String> cbxReceta;
     private javax.swing.JComboBox<String> cbxTipos;
     private javax.swing.JLabel id_usuario;
     private javax.swing.JButton ingresoDePrecio;

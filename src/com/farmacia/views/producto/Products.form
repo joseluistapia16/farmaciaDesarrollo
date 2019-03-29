@@ -29,7 +29,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -169,9 +172,9 @@
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnAgreEnvase" min="-2" pref="90" max="-2" attributes="0"/>
                                   <Component id="btnAgregarTipo" min="-2" pref="90" max="-2" attributes="0"/>
                                   <Component id="btnAgreMarca" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Component id="btnAgreEnvase" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="txtDescripcion" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
@@ -190,9 +193,11 @@
                               <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                               <Component id="cbxIva" min="-2" pref="105" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="cbxReceta" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="49" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -205,6 +210,7 @@
                           <Component id="nombre1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel20" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="cbxIva" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="cbxReceta" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -545,6 +551,19 @@
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cbxReceta">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="SIN RECETA "/>
+                    <StringItem index="1" value="CON RECETA"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
           </SubComponents>
