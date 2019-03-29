@@ -190,6 +190,7 @@ public class FrmCalcularConPrecio extends javax.swing.JDialog {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("%");
 
+        txtprociento.setText("0");
         txtprociento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtprocientoKeyReleased(evt);
@@ -334,11 +335,13 @@ public class FrmCalcularConPrecio extends javax.swing.JDialog {
         valorB=Integer.valueOf(valor2.getText());
         result = Integer.valueOf(valor1.getText()) * Integer.valueOf(valor2.getText());
         valor3.setText(result.toString());
-        
+        nuevo1.setText(Obj1.getPrecioCompra().toString());
         Double Precio =Obj1.getPrecioCompra();
         Precio=(Precio/valorB);
-        nuevo1.setText(Formato_Numeros.formatoNumero(Precio.toString()).replace(',', '.'));
-        
+        nuevo2.setText(Formato_Numeros.formatoNumero(Precio.toString()).replace(',', '.'));
+        if(valor2.getText().length()>=1){
+            btnAceptar.setEnabled(true);
+            }else{btnAceptar.setEnabled(false);}
        }catch(Exception e){}
     }//GEN-LAST:event_valor2KeyReleased
 
@@ -432,9 +435,9 @@ public class FrmCalcularConPrecio extends javax.swing.JDialog {
             System.out.println("suma: "+suma);
             String result= Formato_Numeros.formatoNumero(String.valueOf(suma));
             nuevo2.setText(result.replace(',', '.'));
-            if(txtprociento.getText().length()>1){
-            btnAceptar.setEnabled(true);
-            }else{btnAceptar.setEnabled(false);}
+//            if(txtprociento.getText().length()>=1){
+//            btnAceptar.setEnabled(true);
+//            }else{btnAceptar.setEnabled(false);}
         }catch(Exception e){
         }
     }//GEN-LAST:event_txtprocientoKeyReleased

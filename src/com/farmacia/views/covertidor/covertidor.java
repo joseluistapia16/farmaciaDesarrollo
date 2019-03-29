@@ -638,8 +638,20 @@ public class covertidor extends javax.swing.JDialog {
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel26.setText("PRODUCTO:");
 
+        descripcion4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                descripcion4FocusLost(evt);
+            }
+        });
+
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel28.setText("DESCRIPCION:");
+
+        producto4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                producto4FocusLost(evt);
+            }
+        });
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel29.setText("UNIDAD DE MEDIDA:");
@@ -1163,16 +1175,15 @@ public class covertidor extends javax.swing.JDialog {
         AgregarTipo nuevotipo = new AgregarTipo(new javax.swing.JFrame(), true);
         nuevotipo.setVisible(true);
         lista = crud.listarTodoTipoProductos1();
-        cbxTipos1.setModel(Formulario.listarComboTipoPro(lista));
+        cbxTipos4.setModel(Formulario.listarComboTipoPro(lista));
     }//GEN-LAST:event_btnAgregarTipo4ActionPerformed
 
     private void btnAgregarMedida4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedida4ActionPerformed
         AgregarMedida agremed = new AgregarMedida(new javax.swing.JFrame(), true);
         agremed.setVisible(true);
-        //        listam.clear();
-        //        cbxMedida.removeAll();
-        //        listam = crud.listarTodoMedidasProductos();//     listarTodoTipoProductos1();
-        //        cbxMedida.setModel(Formulario.listarComboMedidaPro(listam));
+                listam.clear();
+                listam = crud.listarTodoMedidasProductos();//     listarTodoTipoProductos1();
+                cbxMedida4.setModel(Formulario.listarComboMedidaPro(listam));
         listarCombos(obj1);
     }//GEN-LAST:event_btnAgregarMedida4ActionPerformed
 
@@ -1180,14 +1191,14 @@ public class covertidor extends javax.swing.JDialog {
         AgregarMarca agremar = new AgregarMarca(new javax.swing.JFrame(), true);
         agremar.setVisible(true);
         listama = crud.listarTodoMarcaProductos();//     listarTodoTipoProductos1();
-        cbxMarca1.setModel(Formulario.listarComboMarcaPro(listama));
+        cbxMarca4.setModel(Formulario.listarComboMarcaPro(listama));
     }//GEN-LAST:event_btnAgreMarca4ActionPerformed
 
     private void btnAgreEnvase4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreEnvase4ActionPerformed
         AgregarEnvase agreenv = new AgregarEnvase(new javax.swing.JFrame(), true);
         agreenv.setVisible(true);
         listae = crud.listarTodoEnvaseProductos();
-        cbxEnvase1.setModel(Formulario.listarComboEnvasePro(listae));
+        cbxEnvase4.setModel(Formulario.listarComboEnvasePro(listae));
     }//GEN-LAST:event_btnAgreEnvase4ActionPerformed
 
     private void cbxEnvase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEnvase1ActionPerformed
@@ -1216,19 +1227,19 @@ public class covertidor extends javax.swing.JDialog {
     }//GEN-LAST:event_cbxMarca3ActionPerformed
 
     private void cbxMedida4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMedida4ActionPerformed
-        // TODO add your handling code here:
+       seleccionId();
     }//GEN-LAST:event_cbxMedida4ActionPerformed
 
     private void cbxTipos4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipos4ActionPerformed
-        // TODO add your handling code here:
+        seleccionId();
     }//GEN-LAST:event_cbxTipos4ActionPerformed
 
     private void cbxEnvase4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEnvase4ActionPerformed
-        // TODO add your handling code here:
+       seleccionId();
     }//GEN-LAST:event_cbxEnvase4ActionPerformed
 
     private void cbxMarca4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMarca4ActionPerformed
-        // TODO add your handling code here:
+        seleccionId();
     }//GEN-LAST:event_cbxMarca4ActionPerformed
 
     private void cbxElaineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxElaineActionPerformed
@@ -1239,11 +1250,39 @@ public class covertidor extends javax.swing.JDialog {
         } else if (valor == 2) {
             HabilitarPanel4(true);
             HabilitarPanel3(false);
+            listarCombosJpanel4(obj1);
         } else if (valor == 0) {
             Habilitar(false);
         }
     }//GEN-LAST:event_cbxElaineActionPerformed
-
+     public void listarCombosJpanel4(listarJoinProductosCompras obj) {
+        lista.clear();
+        listam.clear();
+        listae.clear();
+        listama.clear();
+        
+        lista = crud.listarTodoTipoProductos1();
+        listam = crud.listarTodoMedidasProductos();
+        listae = crud.listarTodoEnvaseProductos();
+        listama = crud.listarTodoMarcaProductos();
+        
+        cbxTipos4.setModel(Formulario.listarComboTipoPro(lista));
+        cbxMedida4.setModel(Formulario.listarComboMedidaPro(listam));
+        cbxEnvase4.setModel(Formulario.listarComboEnvasePro(listae));
+        cbxMarca4.setModel(Formulario.listarComboMarcaPro(listama));
+        
+        str_tipo = crud.getNombreComboProducto(Long.valueOf("1"), obj.getId_tipo());
+        cbxTipos4.setSelectedItem(str_tipo);
+        str_medidas = crud.getNombreComboProducto(Long.valueOf("2"), obj.getId_medida());
+        cbxMedida4.setSelectedItem(str_medidas);
+        str_envase = crud.getNombreComboProducto(Long.valueOf("3"), obj.getId_envase());
+        cbxEnvase4.setSelectedItem(str_envase);
+        str_marcas = crud.getNombreComboProducto(Long.valueOf("4"), obj.getId_marca());
+        cbxMarca4.setSelectedItem(str_marcas);
+        //id_usuario.setText(obj.getId_usuario().toString());
+        strIva = crud.getNombreComboProducto(Long.valueOf("5"), obj.getId_productos());
+        
+    }
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
         x = evt.getX();
         y = evt.getY();
@@ -1339,16 +1378,18 @@ public class covertidor extends javax.swing.JDialog {
                 FrmCalcularConPrecio fg = new FrmCalcularConPrecio(null, rootPaneCheckingEnabled, obj1, valor);
                 fg.setVisible(rootPaneCheckingEnabled);
                 if (fg.getvalorTotal() == null || fg.getvalorTotal() == -1) {
-                    btnGuardar.setEnabled(false);
+                    btnGuardar4.setEnabled(false);
                 } else {
-                    resta = Integer.valueOf(txtcant.getText()) - fg.getvalorA();
+                    resta = Integer.valueOf(txtcant.getText()) - Integer.valueOf(fg.getvalorA());
                     txtcant.setText(resta.toString());
-                    suma = Integer.valueOf(txtcant3.getText()) + fg.getvalorB();
-                    txtcant3.setText(suma.toString());
+                    suma = Integer.valueOf(cant4.getText()) + Integer.valueOf(fg.getvalorB());
+                    cant4.setText(suma.toString());
                     id_PrecioNuevo = Long.valueOf(fg.getIdPrecio());
-                    btnGuardar.setEnabled(true);
+                    btnGuardar4.setEnabled(true);
                 }
             }
+        }else{
+        JOptionPane.showMessageDialog(rootPane, "complete los campos po favo");
         }
 
     }//GEN-LAST:event_btnCalcular4ActionPerformed
@@ -1417,6 +1458,14 @@ public class covertidor extends javax.swing.JDialog {
     private void btnGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardar5ActionPerformed
+
+    private void producto4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_producto4FocusLost
+         producto4.setText(producto4.getText().toUpperCase());
+    }//GEN-LAST:event_producto4FocusLost
+
+    private void descripcion4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descripcion4FocusLost
+         descripcion4.setText(descripcion4.getText().toUpperCase());
+    }//GEN-LAST:event_descripcion4FocusLost
     public void llenarJpanel3() {
         codigo3.setText(objeto.getId_productos().toString());
         producto3.setText(objeto.getNombreProductos());

@@ -4662,7 +4662,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call ingresarProducto(?,?,?,?,?,?,?,?,?,?,?,?) }");
+                    "{ call ingresarProductoConvertidor(?,?,?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setString(1, obj.getNombre());
             prodProAlm.setString(2, obj.getDescripcion());
             prodProAlm.setDate(3, obj.getFecha_registro());
@@ -4707,7 +4707,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call actualizarPrecioCompra(?,?,?,?,?,?,?) }");
+                    "{ call actualizarPrecioConvertidor(?,?,?,?,?,?,?) }");
             prodProAlm.setLong(1, obj.getId_producto());
             prodProAlm.setDouble(2, obj.getPrecio_compra());
             prodProAlm.setDouble(3, obj.getPrecio_venta());

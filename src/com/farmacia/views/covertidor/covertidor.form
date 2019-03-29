@@ -981,6 +981,9 @@
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="descripcion4">
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="descripcion4FocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel28">
                   <Properties>
@@ -994,6 +997,9 @@
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="producto4">
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="producto4FocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel29">
                   <Properties>
