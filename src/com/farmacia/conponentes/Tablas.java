@@ -27,6 +27,7 @@ import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Productos_Stock;
 import com.farmacia.entities1.Punto_venta;
+import com.farmacia.entities1.Punto_venta_usuario;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.fecha.Fecha;
 import com.farmacia.join_entidades.JoinListarCabeceraVenta;
@@ -977,7 +978,7 @@ public class Tablas {
 
     }
 
-    public static void cargarJoinPuntoVenta(JTable Tabla, ArrayList<Punto_venta> lista) {
+    public static void cargarJoinPuntoVenta(JTable Tabla, ArrayList<Punto_venta_usuario> lista) {
 
         int[] a = {5, 30, 32, 52, 80};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();

@@ -29,6 +29,7 @@ import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Productos_Stock;
 import com.farmacia.entities1.Punto_venta;
+import com.farmacia.entities1.Punto_venta_usuario;
 import com.farmacia.entities1.Rol_U;
 import com.farmacia.entities1.StockVentas;
 import com.farmacia.entities1.Telefono;
@@ -944,6 +945,21 @@ public class EntidadesMappers {
             obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
             obj.setIva(rs.getBigDecimal("IVA"));
             obj.setTotal(rs.getBigDecimal("TOTAL"));
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+        
+        public static Punto_venta_usuario getPuntoVentaUsuarioFromResultSet(ResultSet rs) {
+        Punto_venta_usuario obj = new Punto_venta_usuario();
+        try {
+            obj.setId_punto_venta(rs.getLong("id_punto_venta"));
+            obj.setNombre(rs.getString("nombre"));
+            obj.setLocalidad(rs.getString("localidad"));
+            obj.setDireccion(rs.getString("direccion"));
+            obj.setObservacion(rs.getString("observacion"));
+            obj.setEstado(rs.getString("Estado"));            
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }

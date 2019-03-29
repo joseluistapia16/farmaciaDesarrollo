@@ -35,6 +35,7 @@ import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Productos_Stock;
 import com.farmacia.entities1.Punto_venta;
+import com.farmacia.entities1.Punto_venta_usuario;
 import com.farmacia.entities1.Rol;
 import com.farmacia.entities1.Rol_U;
 import com.farmacia.entities1.StockVentas;
@@ -2329,17 +2330,18 @@ public class CRUD {
         return lista;
     }
 
-    public String insertarPunto_venta(Punto_venta pv) {
+    public String insertarPunto_venta(Punto_venta_usuario pv) {
         String valor = null;
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call nuevo_punto_venta(?,?,?,?,?)}");
-            pro.setLong(1, pv.getId_localidad());
+                    "{ call fc_nuevo_punto_venta(?,?,?,?,?,?)}");
+            pro.setString(1, pv.getLocalidad());
             pro.setString(2, pv.getNombre());
             pro.setString(3, pv.getDireccion());
-            pro.setString(4, pv.getDir_ip());
+            pro.setString(4, pv.getRuc_local());
+            pro.setString(5, pv.getTelefono_pv());
             pro.registerOutParameter("salida", Types.VARCHAR);
             pro.executeUpdate();
             valor = pro.getString("salida");
@@ -2359,7 +2361,7 @@ public class CRUD {
             }
         }
         return valor;
-    }//usuario
+    }
 
     public String CrearLocal(Nombre_local pv) {
         String valor = null;
@@ -2453,19 +2455,20 @@ public class CRUD {
         return valor;
     }
 
-    public String actualizarPunto_venta(Punto_venta pv) {
+    public String actualizarPunto_venta(Punto_venta_usuario pv) {
         String valor = null;
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call actualizar_punto_venta(?,?,?,?,?,?,?) }");
+                    "{ call actualizar_punto_venta(?,?,?,?,?,?,?,?) }");
             pro.setLong(1, pv.getId_punto_venta());
             pro.setLong(2, pv.getId_localidad());
             pro.setString(3, pv.getNombre());
             pro.setString(4, pv.getDireccion());
             pro.setString(5, pv.getDir_ip());
             pro.setString(6, pv.getObservacion());
+            pro.setLong(7, pv.getId_punto_venta());
             pro.registerOutParameter("salida", Types.VARCHAR);
             pro.executeUpdate();
             valor = pro.getString("salida");
@@ -2882,8 +2885,8 @@ public class CRUD {
         return valor;
     }
 
-    public ArrayList<Punto_venta> listarPuntoVenta() {
-        ArrayList<Punto_venta> valor = new ArrayList<Punto_venta>();
+    public ArrayList<Punto_venta_usuario> listarPuntoVenta() {
+        ArrayList<Punto_venta_usuario> valor = new ArrayList<Punto_venta_usuario>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
@@ -2891,7 +2894,7 @@ public class CRUD {
                     "{ call fc_punto_venta_prueba() }");
             rs = pro.executeQuery();
             while (rs.next()) {
-                Punto_venta obj = EntidadesMappers.getPuntoVentaFromResultSet(rs);
+                Punto_venta_usuario obj = EntidadesMappers.getPuntoVentaUsuarioFromResultSet(rs);
                 valor.add(obj);
             }
             conect.commit();
@@ -4113,8 +4116,8 @@ public class CRUD {
         return valor;
     }
 
-    public ArrayList<Punto_venta> filtroPvNombre(Punto_venta lu) {
-        ArrayList<Punto_venta> valor = new ArrayList<Punto_venta>();
+    public ArrayList<Punto_venta_usuario> filtroPvNombre(Punto_venta_usuario lu) {
+        ArrayList<Punto_venta_usuario> valor = new ArrayList<Punto_venta_usuario>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
@@ -4125,7 +4128,7 @@ public class CRUD {
             //pro.setLong(3, lu.getId_punto_venta());
             rs = pro.executeQuery();
             while (rs.next()) {
-                Punto_venta obj = EntidadesMappers.getPuntoVentaFromResultSet(rs);
+                Punto_venta_usuario obj = EntidadesMappers.getPuntoVentaUsuarioFromResultSet(rs);
                 valor.add(obj);
             }
             conect.commit();
@@ -4146,8 +4149,8 @@ public class CRUD {
         return valor;
     }
 
-    public ArrayList<Punto_venta> filtroPvCodigo(Punto_venta lu) {
-        ArrayList<Punto_venta> valor = new ArrayList<Punto_venta>();
+    public ArrayList<Punto_venta_usuario> filtroPvCodigo(Punto_venta_usuario lu) {
+        ArrayList<Punto_venta_usuario> valor = new ArrayList<Punto_venta_usuario>();
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
@@ -4156,7 +4159,7 @@ public class CRUD {
             pro.setLong(1, lu.getId_punto_venta());
             rs = pro.executeQuery();
             while (rs.next()) {
-                Punto_venta obj = EntidadesMappers.getPuntoVentaFromResultSet(rs);
+                Punto_venta_usuario obj = EntidadesMappers.getPuntoVentaUsuarioFromResultSet(rs);
                 valor.add(obj);
             }
             conect.commit();
