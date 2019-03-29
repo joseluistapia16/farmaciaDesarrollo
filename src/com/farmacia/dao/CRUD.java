@@ -11,6 +11,8 @@ import com.farmacia.entities1.Bitacora_seguridad;
 import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.Cabecera_ventas;
+import com.farmacia.entities1.Cantidad_Ventas;
+import com.farmacia.entities1.Cantidad_compras;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
@@ -56,6 +58,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -4768,5 +4771,138 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return valor;
+    }
+    public ArrayList<Cantidad_compras> listarCabeceraCantidadCompras(Date op1, Date op2) {
+        ArrayList<Cantidad_compras> lista = new ArrayList<Cantidad_compras>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call cantidad_compras(?,?)}");
+            prcProcedimientoAlmacenado.setDate(1, op1);
+            prcProcedimientoAlmacenado.setDate(2, op2);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                Cantidad_compras obj = EntidadesMappers.getCantidadComprasFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+
+    public ArrayList<Cantidad_compras> Rango2(int op, Cantidad_compras cab) {
+        ArrayList<Cantidad_compras> lista = new ArrayList<Cantidad_compras>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call FiltroRangoFecha2(?,?,?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.setString(2, cab.getFecha1());
+            prcProcedimientoAlmacenado.setString(3, cab.getFecha2());
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                Cantidad_compras obj = EntidadesMappers.getCantidadComprasFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+
+    public ArrayList<Cantidad_Ventas> listarCabeceraCantidadVentas(Date op1, Date op2) {
+        ArrayList<Cantidad_Ventas> lista = new ArrayList<Cantidad_Ventas>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call cantidad_ventas(?,?)}");
+            prcProcedimientoAlmacenado.setDate(1, op1);
+            prcProcedimientoAlmacenado.setDate(2, op2);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                Cantidad_Ventas obj = EntidadesMappers.getCantidadVentasFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+
+    public ArrayList<Cantidad_Ventas> Rango3(int op, Cantidad_Ventas cab) {
+        ArrayList<Cantidad_Ventas> lista = new ArrayList<Cantidad_Ventas>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call FiltroRangoFecha3(?,?,?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.setString(2, cab.getFecha1());
+            prcProcedimientoAlmacenado.setString(3, cab.getFecha2());
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                Cantidad_Ventas obj = EntidadesMappers.getCantidadVentasFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
     }
 }
