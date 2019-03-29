@@ -9,7 +9,6 @@ import com.farmacia.conponentes.Formulario;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.join_entidades.JoinListarCabeceraVenta;
-import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -64,6 +63,8 @@ public class Reporte_Venta extends javax.swing.JDialog {
         Txt_Total = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        Txt_Utilidad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -114,9 +115,6 @@ public class Reporte_Venta extends javax.swing.JDialog {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbaCabeceraVentaMousePressed(evt);
             }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbaCabeceraVentaMouseClicked(evt);
-            }
         });
         tblProduc.setViewportView(tbaCabeceraVenta);
 
@@ -124,7 +122,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tblProduc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE)
+            .addComponent(tblProduc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 897, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +159,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
         Txt_Total.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("TOTAL:");
+        jLabel2.setText("TOTAL VENTAS:");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/flechas-de-progreso.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +167,13 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("TOTAL UTILIDAD:");
+
+        Txt_Utilidad.setEditable(false);
+        Txt_Utilidad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Txt_Utilidad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -195,9 +200,13 @@ public class Reporte_Venta extends javax.swing.JDialog {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Txt_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(Txt_Utilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(417, 417, 417)
@@ -222,7 +231,9 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Txt_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Txt_Utilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -232,7 +243,10 @@ public class Reporte_Venta extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,7 +279,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
     public JoinListarCabeceraVenta devuelveObjeto(String datos, ArrayList<JoinListarCabeceraVenta> listarobj) {
         JoinListarCabeceraVenta objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_cabecera_venta().toString())) {
+            if (datos.equals(listarobj.get(i).getMun_venta())) {
                 objeto1 = listarobj.get(i);
                 break;
             }
@@ -280,6 +294,8 @@ public class Reporte_Venta extends javax.swing.JDialog {
             i = tbaCabeceraVenta.getSelectedRow();
             lista = crud.ListarCabeceraVentas(1);
             objeto = devuelveObjeto(tbaCabeceraVenta.getValueAt(i, 0).toString(), lista);
+            
+            System.out.println("ventas "+ objeto.getNombre_completo_cliente());
 
             if (objeto != null) {
                 Reporte_DetalleVenta Rdv = new Reporte_DetalleVenta(new javax.swing.JFrame(), true, objeto);
@@ -289,34 +305,30 @@ public class Reporte_Venta extends javax.swing.JDialog {
 
     }//GEN-LAST:event_tbaCabeceraVentaMousePressed
 
-    private void tbaCabeceraVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraVentaMouseClicked
-
-    }//GEN-LAST:event_tbaCabeceraVentaMouseClicked
-
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-        JoinListarCabeceraVenta dc = new JoinListarCabeceraVenta();
-        String F1 = F.getFecha(Chooser1);
-        String F2 = F.getFecha(Chooser2);
-        dc.setFecha1(F1);
-        dc.setFecha2(F2);
-
-        if (F1 == null) {
-            JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
-        }
-        if (F1 != null && F2 == null) {
-
-            dc.setFecha1(F1);
-            dc.setFecha2((F1) + " 23:59:59");
-            lista = crud.RangoFechaVenta(1, dc);
-            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
-        }
-        if (F1 != null && F2 != null) {
-
-            dc.setFecha1(F.getFecha(Chooser1));
-            dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
-            lista = crud.RangoFechaVenta(1, dc);
-            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
-        }
+//        JoinListarCabeceraVenta dc = new JoinListarCabeceraVenta();
+//        String F1 = F.getFecha(Chooser1);
+//        String F2 = F.getFecha(Chooser2);
+//        dc.setFecha1(F1);
+//        dc.setFecha2(F2);
+//
+//        if (F1 == null) {
+//            JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
+//        }
+//        if (F1 != null && F2 == null) {
+//
+//            dc.setFecha1(F1);
+//            dc.setFecha2((F1) + " 23:59:59");
+//            lista = crud.RangoFechaVenta(1, dc);
+//            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+//        }
+//        if (F1 != null && F2 != null) {
+//
+//            dc.setFecha1(F.getFecha(Chooser1));
+//            dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
+//            lista = crud.RangoFechaVenta(1, dc);
+//            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+//        }
 
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
@@ -378,11 +390,13 @@ public class Reporte_Venta extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser Chooser1;
     private com.toedter.calendar.JDateChooser Chooser2;
     private javax.swing.JTextField Txt_Total;
+    private javax.swing.JTextField Txt_Utilidad;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JTextField buscar1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

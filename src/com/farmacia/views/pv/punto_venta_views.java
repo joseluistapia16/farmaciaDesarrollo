@@ -8,6 +8,7 @@ package com.farmacia.views.pv;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.Punto_venta;
+import com.farmacia.entities1.Punto_venta_usuario;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import javax.swing.JOptionPane;
 public class punto_venta_views extends javax.swing.JDialog {
     int x,y;
     CRUD crud = new CRUD();
-    ArrayList<Punto_venta> listar = null;
+    ArrayList<Punto_venta_usuario> listar = null;
     Punto_venta objeto = null;
     
     /**
@@ -265,7 +266,7 @@ public class punto_venta_views extends javax.swing.JDialog {
     public void filtro(){
         String tex = txtFiltro.getText().toUpperCase();
         int pos = cbFiltro.getSelectedIndex();
-        Punto_venta lu = new Punto_venta();
+        Punto_venta_usuario lu = new Punto_venta_usuario();
         
         
         if ("".equals(tex) && pos == 0) {
@@ -303,8 +304,8 @@ public class punto_venta_views extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFiltroActionPerformed
 
-    public Punto_venta devuelveObjeto(String datos, ArrayList<Punto_venta> listarobj) {
-        Punto_venta objeto1 = null;
+    public Punto_venta_usuario devuelveObjeto(String datos, ArrayList<Punto_venta_usuario> listarobj) {
+        Punto_venta_usuario objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
             if (datos.equals(listarobj.get(i).getId_punto_venta().toString())) {
                 objeto1 = listarobj.get(i);

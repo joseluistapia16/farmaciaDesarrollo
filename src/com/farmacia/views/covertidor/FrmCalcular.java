@@ -28,6 +28,7 @@ public class FrmCalcular extends javax.swing.JDialog {
     public FrmCalcular(java.awt.Frame parent, boolean modal, listarJoinProductosCompras obj1, listarJoinProductosCompras obj2) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(this);
         jLabel1.setText(obj1.getNombreEnvase());
         jLabel3.setText(obj2.getNombreEnvase());
         jLabel5.setText(obj1.getNombreProductos()+" "+obj1.getCantidadStock());

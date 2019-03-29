@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Jomugue
+ * @author jorge
  */
 public class ConsultarClienteVentas extends javax.swing.JDialog {
 
@@ -32,9 +32,8 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        listaCliente = crud.ListarTodoClienteVentas("", "todo");
+        listaCliente = crud.ListarTodoClienteVentas("1");
         Tablas.cargarClienteVentas(TablaClienteVentas, listaCliente);
-
     }
 
     /**
@@ -52,18 +51,10 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaClienteVentas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        BtnBuscar = new javax.swing.JButton();
         TxtFiltro = new javax.swing.JTextField();
-        CbxFiltro = new javax.swing.JComboBox<>();
-        jPanel4 = new javax.swing.JPanel();
-        CbxFiltro1 = new javax.swing.JComboBox<>();
-        TxtFiltro1 = new javax.swing.JTextField();
-        BtnBuscar1 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
 
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
@@ -123,23 +114,15 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
             }
         });
 
-        BtnBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        BtnBuscar.setText("Buscar");
-        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBuscarActionPerformed(evt);
-            }
-        });
-
         TxtFiltro.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-
-        CbxFiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        CbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "CODIGO", "CEDULA", "NOMBRE", "APELLIDO", "DIRECCION", "TELEFONO", "CORREO", "" }));
-        CbxFiltro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CbxFiltroActionPerformed(evt);
+        TxtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxtFiltroKeyReleased(evt);
             }
         });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("BUSCAR");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -152,13 +135,11 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(CbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(168, 168, 168)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
                         .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
+                        .addGap(143, 143, 143)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -169,56 +150,11 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        CbxFiltro1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        CbxFiltro1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "CODIGO", "CEDULA", "NOMBRE", "APELLIDO", "DIRECCION", "TELEFONO", "CORREO", "" }));
-        CbxFiltro1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CbxFiltroActionPerformed(evt);
-            }
-        });
-        jPanel4.add(CbxFiltro1);
-
-        TxtFiltro1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel4.add(TxtFiltro1);
-
-        BtnBuscar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        BtnBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/buscar1.jpg"))); // NOI18N
-        BtnBuscar1.setText("Buscar");
-        BtnBuscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBuscarActionPerformed(evt);
-            }
-        });
-        jPanel4.add(BtnBuscar1);
-
-        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
-        jLabel2.setText("CLIENTES");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -229,61 +165,21 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-        String query = "";
+    private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_jLabel1MouseDragged
 
-        query = TxtFiltro.getText() + "%";
-
-        int pos = CbxFiltro.getSelectedIndex();
-        if (pos == 0) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "todo");
-
-        }
-        if (pos == 1) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "codigo");
-
-        }
-        if (pos == 2) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "cedula");
-
-        }
-        if (pos == 3) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "nombre");
-
-        }
-        if (pos == 4) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "apellido");
-
-        }
-        if (pos == 5) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "direccion");
-
-        }
-        if (pos == 6) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "telefono");
-
-        }
-        if (pos == 7) {
-            listaCliente = crud.ListarTodoClienteVentas(query, "correo");
-
-        }
-
-        TxtFiltro.setText("");
-
-        //lista = crud.ListarTodoJoinProductosVentas(query, "buscar_nombre");
-        Tablas.cargarClienteVentas(TablaClienteVentas, listaCliente);
-        query = "";
-    }//GEN-LAST:event_BtnBuscarActionPerformed
-
-    private void CbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbxFiltroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CbxFiltroActionPerformed
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jLabel1MousePressed
 
     private void TablaClienteVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClienteVentasMousePressed
 
@@ -301,23 +197,22 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TablaClienteVentasMousePressed
 
-    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
-        x = evt.getX();
-        y = evt.getY();
-    }//GEN-LAST:event_jLabel1MousePressed
-
-    private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
-        Point point = MouseInfo.getPointerInfo().getLocation();
-        setLocation(point.x - x, point.y - y);
-    }//GEN-LAST:event_jLabel1MouseDragged
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TxtFiltro.setText("");
+        TablaClienteVentas.setRowSorter(null); // quitar el filtro
+           
         Ingresar_Cliente_Venta Icv = new Ingresar_Cliente_Venta(new javax.swing.JFrame(), true);
         Icv.setVisible(true);
-        listaCliente = crud.ListarTodoClienteVentas("", "todo");
-        Tablas.cargarClienteVentas(TablaClienteVentas, listaCliente);
 
+        Tablas.cargarClienteVentas(TablaClienteVentas, listaCliente);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void TxtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyReleased
+
+        Tablas.filtro(TxtFiltro.getText(), TablaClienteVentas);
+
+
+    }//GEN-LAST:event_TxtFiltroKeyReleased
 
     public Persona getCliente() {
         return objeto;
@@ -362,12 +257,6 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -385,20 +274,13 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnBuscar;
-    private javax.swing.JButton BtnBuscar1;
-    private javax.swing.JComboBox<String> CbxFiltro;
-    private javax.swing.JComboBox<String> CbxFiltro1;
     private javax.swing.JTable TablaClienteVentas;
     private javax.swing.JTextField TxtFiltro;
-    private javax.swing.JTextField TxtFiltro1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

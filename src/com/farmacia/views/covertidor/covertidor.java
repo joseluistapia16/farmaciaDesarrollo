@@ -10,8 +10,14 @@ import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
+import com.farmacia.entities1.Productos;
 import com.farmacia.entities1.TipoProducto;
+import com.farmacia.fecha.Fecha;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
+import com.farmacia.views.compras.AgregarEnvase;
+import com.farmacia.views.compras.AgregarMarca;
+import com.farmacia.views.compras.AgregarMedida;
+import com.farmacia.views.compras.AgregarTipo;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -22,7 +28,7 @@ import javax.swing.JOptionPane;
  * @author usuario
  */
 public class covertidor extends javax.swing.JDialog {
-
+    
     CRUD crud = new CRUD();
     listarJoinProductosCompras obj1 = null;
     int x, y;
@@ -32,21 +38,22 @@ public class covertidor extends javax.swing.JDialog {
     ArrayList<MarcaProducto> listama = null;
     String str_tipo = null, str_medidas = null, str_envase = null, str_marcas = null, strIva = null;
     String error = "", IVA = "";
-    Long id_tipo, id_medida, id_envase, id_marca;
+    Long id_tipo, id_medida, id_envase, id_marca, id_PrecioNuevo;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     listarJoinProductosCompras objeto = null;
     Integer resta = 0, suma = 0;
-
+    
     public covertidor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
         listarCombos(obj1);
         llenarFormulario(obj1);
         Habilitar(false);
     }
-
+    
     public covertidor(java.awt.Frame parent, boolean modal, listarJoinProductosCompras obj) {
         super(parent, modal);
         this.setUndecorated(true);
@@ -58,19 +65,19 @@ public class covertidor extends javax.swing.JDialog {
         llenarFormulario(obj1);
         Habilitar(false);
     }
-
+    
     public void listarCombos(listarJoinProductosCompras obj) {
-
+        
         lista = crud.listarTodoTipoProductos1();
         listam = crud.listarTodoMedidasProductos();
         listae = crud.listarTodoEnvaseProductos();
         listama = crud.listarTodoMarcaProductos();
-
+        
         cbxTipos1.setModel(Formulario.listarComboTipoPro(lista));
         cbxMedida1.setModel(Formulario.listarComboMedidaPro(listam));
         cbxEnvase1.setModel(Formulario.listarComboEnvasePro(listae));
         cbxMarca1.setModel(Formulario.listarComboMarcaPro(listama));
-
+        
         str_tipo = crud.getNombreComboProducto(Long.valueOf("1"), obj.getId_tipo());
         cbxTipos1.setSelectedItem(str_tipo);
         str_medidas = crud.getNombreComboProducto(Long.valueOf("2"), obj.getId_medida());
@@ -81,9 +88,9 @@ public class covertidor extends javax.swing.JDialog {
         cbxMarca1.setSelectedItem(str_marcas);
         //id_usuario.setText(obj.getId_usuario().toString());
         strIva = crud.getNombreComboProducto(Long.valueOf("5"), obj.getId_productos());
-
+        
     }
-
+    
     private void llenarFormulario(listarJoinProductosCompras obj) {
         txtcodgo.setText(obj.getId_productos().toString());
         txtProducto.setText(obj.getNombreProductos());
@@ -99,7 +106,7 @@ public class covertidor extends javax.swing.JDialog {
 //                            "id_marca"+obj.getId_marca());
 //        
     }
-
+    
     public void Habilitar(boolean valor) {
         cbxEnvase1.disable();
         cbxMedida1.disable();
@@ -116,14 +123,11 @@ public class covertidor extends javax.swing.JDialog {
         cbxMarca3.setEnabled(valor);
         cbxMedida3.setEnabled(valor);
         cbxTipos3.setEnabled(valor);
-        btnAgreEnvase3.setEnabled(valor);
-        btnAgreMarca3.setEnabled(valor);
-        btnAgregarMedida3.setEnabled(valor);
-        btnAgregarTipo3.setEnabled(valor);
+
         ///////////
         jPanel4.setEnabled(valor);
         cant4.setEnabled(valor);
-        codigo4.setEnabled(valor);
+        
         producto4.setEnabled(valor);
         descripcion4.setEnabled(valor);
         cant4.setEnabled(valor);
@@ -132,13 +136,15 @@ public class covertidor extends javax.swing.JDialog {
         cbxMedida4.setEnabled(valor);
         cbxTipos4.setEnabled(valor);
         btnGuardar.setEnabled(valor);
+        btnGuardar4.setEnabled(valor);
+        btnAgregarMedida4.setEnabled(valor);
         btnAgreEnvase4.setEnabled(valor);
         btnAgreMarca4.setEnabled(valor);
-        btnAgregarMedida4.setEnabled(valor);
         btnAgregarTipo4.setEnabled(valor);
-
+        btnCalcular4.setEnabled(valor);
+        
     }
-
+    
     public void HabilitarPanel3(boolean valor) {
         jPanel3.setEnabled(valor);
         txtcant3.setEnabled(valor);
@@ -150,17 +156,14 @@ public class covertidor extends javax.swing.JDialog {
         cbxMarca3.setEnabled(valor);
         cbxMedida3.setEnabled(valor);
         cbxTipos3.setEnabled(valor);
-        btnAgreEnvase3.setEnabled(valor);
-        btnAgreMarca3.setEnabled(valor);
-        btnAgregarMedida3.setEnabled(valor);
-        btnAgregarTipo3.setEnabled(valor);
+        
         btnCalcular.setEnabled(false);
     }
-
+    
     public void HabilitarPanel4(boolean valor) {
         jPanel4.setEnabled(valor);
         cant4.setEnabled(valor);
-        codigo4.setEnabled(valor);
+        
         producto4.setEnabled(valor);
         descripcion4.setEnabled(valor);
         cant4.setEnabled(valor);
@@ -169,49 +172,51 @@ public class covertidor extends javax.swing.JDialog {
         cbxMedida4.setEnabled(valor);
         cbxTipos4.setEnabled(valor);
         // btnGuardar.setEnabled(valor);
+        btnAgregarMedida4.setEnabled(valor);
         btnAgreEnvase4.setEnabled(valor);
         btnAgreMarca4.setEnabled(valor);
-        btnAgregarMedida4.setEnabled(valor);
         btnAgregarTipo4.setEnabled(valor);
+        btnCalcular4.setEnabled(valor);
+        
     }
-
+    
     private String seleccionId() {
         error = "";
-
-        if (txtdescripcion.getText().length() < 5) {
+        
+        if (producto4.getText().length() < 5) {
             error = error + "\nNombre invalido!";
         }
-        if (txtdescripcion.getText().length() < 5) {
+        if (descripcion4.getText().length() < 5) {
             error = error + "\nDescripcion invalida!";
         }
 //        if (txtPeso1.getText() == null || "".equals(txtPeso1.getText())) {
 //            error = error + "\nCantidad invalida!";
 //        }
-        int pos = (cbxTipos1.getSelectedIndex() - 1);
+        int pos = (cbxTipos4.getSelectedIndex() - 1);
         if (pos < 0) {
             error = error + "\nTipo de producto invalido !";
         } else {
             id_tipo = lista.get(pos).getId_tipo();
             System.err.println(id_tipo);
         }
-
-        pos = (cbxMedida1.getSelectedIndex() - 1);
+        
+        pos = (cbxMedida4.getSelectedIndex() - 1);
         if (pos < 0) {
             error = error + "\nMedida invalida !";
         } else {
             id_medida = listam.get(pos).getId_medidas();
             System.err.println(id_medida);
         }
-
-        pos = (cbxMarca1.getSelectedIndex() - 1);
+        
+        pos = (cbxMarca4.getSelectedIndex() - 1);
         if (pos < 0) {
             error = error + "\nMarca invalida !";
         } else {
             id_marca = listama.get(pos).getId_Marcas();
             System.err.println(id_marca);
         }
-
-        pos = (cbxEnvase1.getSelectedIndex() - 1);
+        
+        pos = (cbxEnvase4.getSelectedIndex() - 1);
         if (pos < 0) {
             error = error + "\nEnvase invalido !";
         } else {
@@ -239,10 +244,6 @@ public class covertidor extends javax.swing.JDialog {
         cbxMedida1 = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
         cbxTipos1 = new javax.swing.JComboBox<>();
-        btnAgregarTipo1 = new javax.swing.JButton();
-        btnAgregarMedida1 = new javax.swing.JButton();
-        btnAgreMarca1 = new javax.swing.JButton();
-        btnAgreEnvase1 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         cbxEnvase1 = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
@@ -260,10 +261,6 @@ public class covertidor extends javax.swing.JDialog {
         cbxMedida3 = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
         cbxTipos3 = new javax.swing.JComboBox<>();
-        btnAgregarTipo3 = new javax.swing.JButton();
-        btnAgregarMedida3 = new javax.swing.JButton();
-        btnAgreMarca3 = new javax.swing.JButton();
-        btnAgreEnvase3 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         cbxEnvase3 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
@@ -281,17 +278,11 @@ public class covertidor extends javax.swing.JDialog {
         btnGuardar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         cbxTipos4 = new javax.swing.JComboBox<>();
-        btnAgregarTipo4 = new javax.swing.JButton();
-        btnAgregarMedida4 = new javax.swing.JButton();
-        btnAgreMarca4 = new javax.swing.JButton();
-        btnAgreEnvase4 = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
         cbxEnvase4 = new javax.swing.JComboBox<>();
         jLabel25 = new javax.swing.JLabel();
         cbxMarca4 = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
-        codigo4 = new javax.swing.JTextField();
-        jLabel27 = new javax.swing.JLabel();
         descripcion4 = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
         producto4 = new javax.swing.JTextField();
@@ -300,8 +291,35 @@ public class covertidor extends javax.swing.JDialog {
         jLabel23 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         cant4 = new javax.swing.JTextField();
+        btnAgregarMedida4 = new javax.swing.JButton();
+        btnAgregarTipo4 = new javax.swing.JButton();
+        btnAgreEnvase4 = new javax.swing.JButton();
+        btnAgreMarca4 = new javax.swing.JButton();
+        btnCalcular4 = new javax.swing.JButton();
+        btnGuardar4 = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
         txtcant = new javax.swing.JTextField();
+        jPanel5 = new javax.swing.JPanel();
+        cbxTipos5 = new javax.swing.JComboBox<>();
+        jLabel27 = new javax.swing.JLabel();
+        cbxEnvase5 = new javax.swing.JComboBox<>();
+        jLabel33 = new javax.swing.JLabel();
+        cbxMarca5 = new javax.swing.JComboBox<>();
+        jLabel34 = new javax.swing.JLabel();
+        descripcion5 = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        producto5 = new javax.swing.JTextField();
+        jLabel36 = new javax.swing.JLabel();
+        cbxMedida5 = new javax.swing.JComboBox<>();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        cant5 = new javax.swing.JTextField();
+        btnAgregarMedida5 = new javax.swing.JButton();
+        btnAgregarTipo5 = new javax.swing.JButton();
+        btnAgreEnvase5 = new javax.swing.JButton();
+        btnAgreMarca5 = new javax.swing.JButton();
+        btnCalcular5 = new javax.swing.JButton();
+        btnGuardar5 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -357,38 +375,6 @@ public class covertidor extends javax.swing.JDialog {
             }
         });
 
-        btnAgregarTipo1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgregarTipo1.setText("AGREGAR");
-        btnAgregarTipo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarTipo1ActionPerformed(evt);
-            }
-        });
-
-        btnAgregarMedida1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgregarMedida1.setText("AGREGAR");
-        btnAgregarMedida1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarMedida1ActionPerformed(evt);
-            }
-        });
-
-        btnAgreMarca1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgreMarca1.setText("AGREGAR");
-        btnAgreMarca1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgreMarca1ActionPerformed(evt);
-            }
-        });
-
-        btnAgreEnvase1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgreEnvase1.setText("AGREGAR");
-        btnAgreEnvase1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgreEnvase1ActionPerformed(evt);
-            }
-        });
-
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setText("PRESENTACION:");
 
@@ -425,7 +411,7 @@ public class covertidor extends javax.swing.JDialog {
         jLabel4.setText("CONVERTIR A:");
 
         cbxElaine.setEditable(true);
-        cbxElaine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "ELEGIR PRODUCTO", "NUEVO PRODUCTO" }));
+        cbxElaine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "ELEGIR PRODUCTO", "NUEVO PRODUCTO", "PRODUCTO NUEVO PRECIO" }));
         cbxElaine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxElaineActionPerformed(evt);
@@ -454,38 +440,6 @@ public class covertidor extends javax.swing.JDialog {
         cbxTipos3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxTipos3ActionPerformed(evt);
-            }
-        });
-
-        btnAgregarTipo3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgregarTipo3.setText("AGREGAR");
-        btnAgregarTipo3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarTipo3ActionPerformed(evt);
-            }
-        });
-
-        btnAgregarMedida3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgregarMedida3.setText("AGREGAR");
-        btnAgregarMedida3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarMedida3ActionPerformed(evt);
-            }
-        });
-
-        btnAgreMarca3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgreMarca3.setText("AGREGAR");
-        btnAgreMarca3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgreMarca3ActionPerformed(evt);
-            }
-        });
-
-        btnAgreEnvase3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgreEnvase3.setText("AGREGAR");
-        btnAgreEnvase3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgreEnvase3ActionPerformed(evt);
             }
         });
 
@@ -582,29 +536,21 @@ public class covertidor extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtcant3, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                .addComponent(txtcant3, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
                                 .addContainerGap())
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbxTipos3, 0, 176, Short.MAX_VALUE)
-                                    .addComponent(cbxMedida3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAgregarMedida3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAgregarTipo3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbxMedida3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbxTipos3, 0, 242, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel10)
                                     .addComponent(jLabel19))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbxMarca3, 0, 174, Short.MAX_VALUE)
-                                    .addComponent(cbxEnvase3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAgreEnvase3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAgreMarca3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(14, 14, 14))))
+                                    .addComponent(cbxEnvase3, 0, 233, Short.MAX_VALUE)
+                                    .addComponent(cbxMarca3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(63, 63, 63))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -639,15 +585,10 @@ public class covertidor extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbxMedida3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(btnAgregarMedida3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(13, 13, 13)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxMedida3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbxTipos3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -658,12 +599,7 @@ public class covertidor extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxMarca3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregarTipo3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnAgreEnvase3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAgreMarca3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbxMarca3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONVERTIR A NUEVO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 11))); // NOI18N
@@ -674,38 +610,6 @@ public class covertidor extends javax.swing.JDialog {
         cbxTipos4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxTipos4ActionPerformed(evt);
-            }
-        });
-
-        btnAgregarTipo4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgregarTipo4.setText("AGREGAR");
-        btnAgregarTipo4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarTipo4ActionPerformed(evt);
-            }
-        });
-
-        btnAgregarMedida4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgregarMedida4.setText("AGREGAR");
-        btnAgregarMedida4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarMedida4ActionPerformed(evt);
-            }
-        });
-
-        btnAgreMarca4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgreMarca4.setText("AGREGAR");
-        btnAgreMarca4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgreMarca4ActionPerformed(evt);
-            }
-        });
-
-        btnAgreEnvase4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgreEnvase4.setText("AGREGAR");
-        btnAgreEnvase4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgreEnvase4ActionPerformed(evt);
             }
         });
 
@@ -734,11 +638,20 @@ public class covertidor extends javax.swing.JDialog {
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel26.setText("PRODUCTO:");
 
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel27.setText("CODIGO:");
+        descripcion4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                descripcion4FocusLost(evt);
+            }
+        });
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel28.setText("DESCRIPCION:");
+
+        producto4.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                producto4FocusLost(evt);
+            }
+        });
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel29.setText("UNIDAD DE MEDIDA:");
@@ -757,6 +670,58 @@ public class covertidor extends javax.swing.JDialog {
         jLabel32.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel32.setText("CANT:");
 
+        cant4.setEditable(false);
+        cant4.setText("0");
+
+        btnAgregarMedida4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnAgregarMedida4.setText("AGREGAR");
+        btnAgregarMedida4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarMedida4ActionPerformed(evt);
+            }
+        });
+
+        btnAgregarTipo4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnAgregarTipo4.setText("AGREGAR");
+        btnAgregarTipo4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarTipo4ActionPerformed(evt);
+            }
+        });
+
+        btnAgreEnvase4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnAgreEnvase4.setText("AGREGAR");
+        btnAgreEnvase4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgreEnvase4ActionPerformed(evt);
+            }
+        });
+
+        btnAgreMarca4.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnAgreMarca4.setText("AGREGAR");
+        btnAgreMarca4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgreMarca4ActionPerformed(evt);
+            }
+        });
+
+        btnCalcular4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        btnCalcular4.setText("CALCULAR");
+        btnCalcular4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcular4ActionPerformed(evt);
+            }
+        });
+
+        btnGuardar4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        btnGuardar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/guardar.jpg"))); // NOI18N
+        btnGuardar4.setText("GUARDAR");
+        btnGuardar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardar4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -766,21 +731,16 @@ public class covertidor extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23)
                     .addComponent(jLabel29)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel27)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(codigo4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel26))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel26)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(producto4, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(27, 27, 27)
                         .addComponent(jLabel28)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(descripcion4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
+                        .addComponent(descripcion4, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
                         .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cant4)
@@ -790,9 +750,9 @@ public class covertidor extends javax.swing.JDialog {
                             .addComponent(cbxMedida4, 0, 180, Short.MAX_VALUE)
                             .addComponent(cbxTipos4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAgregarTipo4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregarMedida4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgregarMedida4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarTipo4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel24)
@@ -806,48 +766,52 @@ public class covertidor extends javax.swing.JDialog {
                             .addComponent(btnAgreEnvase4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAgreMarca4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(176, 176, 176)
+                .addComponent(btnCalcular4)
+                .addGap(35, 35, 35)
+                .addComponent(btnGuardar4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 544, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(7, 7, 7)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCalcular4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cant4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(producto4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(codigo4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(descripcion4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(descripcion4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAgregarMedida4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cbxEnvase4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbxMarca4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btnAgreEnvase4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAgreMarca4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxMedida4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbxTipos4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnAgregarTipo4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxEnvase4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgreEnvase4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxMarca4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgreMarca4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxMedida4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarMedida4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxTipos4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarTipo4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -855,6 +819,206 @@ public class covertidor extends javax.swing.JDialog {
         jLabel30.setText("CANT:");
 
         txtcant.setEditable(false);
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONVERTIR CON NUEVO PRECIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 11))); // NOI18N
+
+        cbxTipos5.setEditable(true);
+        cbxTipos5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbxTipos5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxTipos5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTipos5ActionPerformed(evt);
+            }
+        });
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel27.setText("PRESENTACION:");
+
+        cbxEnvase5.setEditable(true);
+        cbxEnvase5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbxEnvase5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxEnvase5ActionPerformed(evt);
+            }
+        });
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel33.setText("MARCA/LABORATORIO:");
+
+        cbxMarca5.setEditable(true);
+        cbxMarca5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbxMarca5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxMarca5ActionPerformed(evt);
+            }
+        });
+
+        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel34.setText("PRODUCTO:");
+
+        jLabel35.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel35.setText("DESCRIPCION:");
+
+        jLabel36.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel36.setText("UNIDAD DE MEDIDA:");
+
+        cbxMedida5.setEditable(true);
+        cbxMedida5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbxMedida5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxMedida5ActionPerformed(evt);
+            }
+        });
+
+        jLabel37.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel37.setText("TIPO:");
+
+        jLabel38.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel38.setText("CANT:");
+
+        cant5.setEditable(false);
+
+        btnAgregarMedida5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnAgregarMedida5.setText("AGREGAR");
+        btnAgregarMedida5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarMedida5ActionPerformed(evt);
+            }
+        });
+
+        btnAgregarTipo5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnAgregarTipo5.setText("AGREGAR");
+        btnAgregarTipo5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarTipo5ActionPerformed(evt);
+            }
+        });
+
+        btnAgreEnvase5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnAgreEnvase5.setText("AGREGAR");
+        btnAgreEnvase5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgreEnvase5ActionPerformed(evt);
+            }
+        });
+
+        btnAgreMarca5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnAgreMarca5.setText("AGREGAR");
+        btnAgreMarca5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgreMarca5ActionPerformed(evt);
+            }
+        });
+
+        btnCalcular5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        btnCalcular5.setText("CALCULAR");
+        btnCalcular5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcular5ActionPerformed(evt);
+            }
+        });
+
+        btnGuardar5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        btnGuardar5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/guardar.jpg"))); // NOI18N
+        btnGuardar5.setText("GUARDAR");
+        btnGuardar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardar5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel37)
+                    .addComponent(jLabel36)
+                    .addComponent(jLabel34))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(producto5, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel35)
+                        .addGap(18, 18, 18)
+                        .addComponent(descripcion5, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cant5)
+                        .addGap(22, 22, 22))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbxMedida5, 0, 180, Short.MAX_VALUE)
+                            .addComponent(cbxTipos5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgregarMedida5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarTipo5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel27)
+                            .addComponent(jLabel33))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbxEnvase5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxMarca5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAgreEnvase5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgreMarca5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20))))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(176, 176, 176)
+                .addComponent(btnCalcular5)
+                .addGap(35, 35, 35)
+                .addComponent(btnGuardar5, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 544, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCalcular5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardar5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cant5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(producto5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(descripcion5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxEnvase5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgreEnvase5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxMarca5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgreMarca5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxMedida5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarMedida5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxTipos5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarTipo5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -890,28 +1054,20 @@ public class covertidor extends javax.swing.JDialog {
                                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtcant, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 39, Short.MAX_VALUE))
+                                        .addGap(0, 43, Short.MAX_VALUE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cbxTipos1, 0, 216, Short.MAX_VALUE)
-                                            .addComponent(cbxMedida1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(cbxMedida1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(cbxTipos1, 0, 248, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnAgregarMedida1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnAgregarTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel18)
                                             .addComponent(jLabel9))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cbxEnvase1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cbxMarca1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnAgreEnvase1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnAgreMarca1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(20, 20, 20))))
+                                            .addComponent(cbxEnvase1, 0, 231, Short.MAX_VALUE)
+                                            .addComponent(cbxMarca1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(49, 49, 49))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -920,7 +1076,9 @@ public class covertidor extends javax.swing.JDialog {
                 .addGap(24, 24, 24))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -941,12 +1099,10 @@ public class covertidor extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxMedida1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregarMedida1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbxMedida1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbxTipos1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregarTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -955,19 +1111,17 @@ public class covertidor extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxMarca1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnAgreEnvase1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAgreMarca1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24)
+                            .addComponent(cbxMarca1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbxElaine, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(25, 25, 25)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -991,7 +1145,7 @@ public class covertidor extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(888, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
@@ -999,11 +1153,11 @@ public class covertidor extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 833, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(12, 12, 12))
+                .addContainerGap())
         );
 
         pack();
@@ -1017,36 +1171,35 @@ public class covertidor extends javax.swing.JDialog {
         seleccionId();
     }//GEN-LAST:event_cbxTipos1ActionPerformed
 
-    private void btnAgregarTipo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTipo1ActionPerformed
-//        AgregarTipo nuevotipo = new AgregarTipo(new javax.swing.JFrame(), true);
-//        nuevotipo.setVisible(true);
-//        lista = crud.listarTodoTipoProductos1();
-//        cbxTipos1.setModel(Formulario.listarComboTipoPro(lista));
-    }//GEN-LAST:event_btnAgregarTipo1ActionPerformed
+    private void btnAgregarTipo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTipo4ActionPerformed
+        AgregarTipo nuevotipo = new AgregarTipo(new javax.swing.JFrame(), true);
+        nuevotipo.setVisible(true);
+        lista = crud.listarTodoTipoProductos1();
+        cbxTipos4.setModel(Formulario.listarComboTipoPro(lista));
+    }//GEN-LAST:event_btnAgregarTipo4ActionPerformed
 
-    private void btnAgregarMedida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedida1ActionPerformed
-//        AgregarMedida agremed = new AgregarMedida(new javax.swing.JFrame(), true);
-//        agremed.setVisible(true);
-//        //        listam.clear();
-//        //        cbxMedida.removeAll();
-//        //        listam = crud.listarTodoMedidasProductos();//     listarTodoTipoProductos1();
-//        //        cbxMedida.setModel(Formulario.listarComboMedidaPro(listam));
-//        listarCombos(obj1);
-    }//GEN-LAST:event_btnAgregarMedida1ActionPerformed
+    private void btnAgregarMedida4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedida4ActionPerformed
+        AgregarMedida agremed = new AgregarMedida(new javax.swing.JFrame(), true);
+        agremed.setVisible(true);
+                listam.clear();
+                listam = crud.listarTodoMedidasProductos();//     listarTodoTipoProductos1();
+                cbxMedida4.setModel(Formulario.listarComboMedidaPro(listam));
+        listarCombos(obj1);
+    }//GEN-LAST:event_btnAgregarMedida4ActionPerformed
 
-    private void btnAgreMarca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreMarca1ActionPerformed
-//        AgregarMarca agremar = new AgregarMarca(new javax.swing.JFrame(), true);
-//        agremar.setVisible(true);
-//        listama = crud.listarTodoMarcaProductos();//     listarTodoTipoProductos1();
-//        cbxMarca1.setModel(Formulario.listarComboMarcaPro(listama));
-    }//GEN-LAST:event_btnAgreMarca1ActionPerformed
+    private void btnAgreMarca4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreMarca4ActionPerformed
+        AgregarMarca agremar = new AgregarMarca(new javax.swing.JFrame(), true);
+        agremar.setVisible(true);
+        listama = crud.listarTodoMarcaProductos();//     listarTodoTipoProductos1();
+        cbxMarca4.setModel(Formulario.listarComboMarcaPro(listama));
+    }//GEN-LAST:event_btnAgreMarca4ActionPerformed
 
-    private void btnAgreEnvase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreEnvase1ActionPerformed
-//        AgregarEnvase agreenv = new AgregarEnvase(new javax.swing.JFrame(), true);
-//        agreenv.setVisible(true);
-//        listae = crud.listarTodoEnvaseProductos();
-//        cbxEnvase1.setModel(Formulario.listarComboEnvasePro(listae));
-    }//GEN-LAST:event_btnAgreEnvase1ActionPerformed
+    private void btnAgreEnvase4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreEnvase4ActionPerformed
+        AgregarEnvase agreenv = new AgregarEnvase(new javax.swing.JFrame(), true);
+        agreenv.setVisible(true);
+        listae = crud.listarTodoEnvaseProductos();
+        cbxEnvase4.setModel(Formulario.listarComboEnvasePro(listae));
+    }//GEN-LAST:event_btnAgreEnvase4ActionPerformed
 
     private void cbxEnvase1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEnvase1ActionPerformed
         seleccionId();
@@ -1065,22 +1218,6 @@ public class covertidor extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxTipos3ActionPerformed
 
-    private void btnAgregarTipo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTipo3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarTipo3ActionPerformed
-
-    private void btnAgregarMedida3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedida3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarMedida3ActionPerformed
-
-    private void btnAgreMarca3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreMarca3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgreMarca3ActionPerformed
-
-    private void btnAgreEnvase3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreEnvase3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgreEnvase3ActionPerformed
-
     private void cbxEnvase3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEnvase3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxEnvase3ActionPerformed
@@ -1090,35 +1227,19 @@ public class covertidor extends javax.swing.JDialog {
     }//GEN-LAST:event_cbxMarca3ActionPerformed
 
     private void cbxMedida4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMedida4ActionPerformed
-        // TODO add your handling code here:
+       seleccionId();
     }//GEN-LAST:event_cbxMedida4ActionPerformed
 
     private void cbxTipos4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipos4ActionPerformed
-        // TODO add your handling code here:
+        seleccionId();
     }//GEN-LAST:event_cbxTipos4ActionPerformed
 
-    private void btnAgregarTipo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTipo4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarTipo4ActionPerformed
-
-    private void btnAgregarMedida4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedida4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarMedida4ActionPerformed
-
-    private void btnAgreMarca4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreMarca4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgreMarca4ActionPerformed
-
-    private void btnAgreEnvase4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreEnvase4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgreEnvase4ActionPerformed
-
     private void cbxEnvase4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEnvase4ActionPerformed
-        // TODO add your handling code here:
+       seleccionId();
     }//GEN-LAST:event_cbxEnvase4ActionPerformed
 
     private void cbxMarca4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMarca4ActionPerformed
-        // TODO add your handling code here:
+        seleccionId();
     }//GEN-LAST:event_cbxMarca4ActionPerformed
 
     private void cbxElaineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxElaineActionPerformed
@@ -1129,11 +1250,39 @@ public class covertidor extends javax.swing.JDialog {
         } else if (valor == 2) {
             HabilitarPanel4(true);
             HabilitarPanel3(false);
+            listarCombosJpanel4(obj1);
         } else if (valor == 0) {
             Habilitar(false);
         }
     }//GEN-LAST:event_cbxElaineActionPerformed
-
+     public void listarCombosJpanel4(listarJoinProductosCompras obj) {
+        lista.clear();
+        listam.clear();
+        listae.clear();
+        listama.clear();
+        
+        lista = crud.listarTodoTipoProductos1();
+        listam = crud.listarTodoMedidasProductos();
+        listae = crud.listarTodoEnvaseProductos();
+        listama = crud.listarTodoMarcaProductos();
+        
+        cbxTipos4.setModel(Formulario.listarComboTipoPro(lista));
+        cbxMedida4.setModel(Formulario.listarComboMedidaPro(listam));
+        cbxEnvase4.setModel(Formulario.listarComboEnvasePro(listae));
+        cbxMarca4.setModel(Formulario.listarComboMarcaPro(listama));
+        
+        str_tipo = crud.getNombreComboProducto(Long.valueOf("1"), obj.getId_tipo());
+        cbxTipos4.setSelectedItem(str_tipo);
+        str_medidas = crud.getNombreComboProducto(Long.valueOf("2"), obj.getId_medida());
+        cbxMedida4.setSelectedItem(str_medidas);
+        str_envase = crud.getNombreComboProducto(Long.valueOf("3"), obj.getId_envase());
+        cbxEnvase4.setSelectedItem(str_envase);
+        str_marcas = crud.getNombreComboProducto(Long.valueOf("4"), obj.getId_marca());
+        cbxMarca4.setSelectedItem(str_marcas);
+        //id_usuario.setText(obj.getId_usuario().toString());
+        strIva = crud.getNombreComboProducto(Long.valueOf("5"), obj.getId_productos());
+        
+    }
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
         x = evt.getX();
         y = evt.getY();
@@ -1152,7 +1301,7 @@ public class covertidor extends javax.swing.JDialog {
         try {
             productosRegistrados pr = new productosRegistrados(null, rootPaneCheckingEnabled);
             pr.setVisible(rootPaneCheckingEnabled);
-
+            
             if (pr.getDevuelvePro() != null) {
                 if (obj1.getIdStock() != pr.getDevuelvePro().getIdStock()) {
                     objeto = pr.getDevuelvePro();
@@ -1161,11 +1310,11 @@ public class covertidor extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "es el mismo producto, escoja otro");
                 }
-
+                
             } else {
                 btnCalcular.setEnabled(false);
             }
-
+            
         } catch (Exception e) {
             System.out.println("sms " + e.getMessage());
         }
@@ -1174,7 +1323,7 @@ public class covertidor extends javax.swing.JDialog {
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         FrmCalcular fr = new FrmCalcular(null, rootPaneCheckingEnabled, obj1, objeto);
         fr.setVisible(rootPaneCheckingEnabled);
-
+        
         if (fr.getvalorTotal() == null || fr.getvalorTotal() == -1) {
             btnGuardar.setEnabled(false);
         } else {
@@ -1195,7 +1344,11 @@ public class covertidor extends javax.swing.JDialog {
         System.out.println(seleccion);
         switch (seleccion) {
             case 0:
-                crud.iniciarConversion(obj1, objeto, resta, suma);
+                String valor = "";
+                valor = crud.iniciarConversion(obj1, objeto, resta, suma);
+                if ("EXITO".equals(valor)) {
+                    this.setVisible(false);
+                }
                 break;
             case 1:
                 break;
@@ -1204,6 +1357,115 @@ public class covertidor extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnCalcular4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcular4ActionPerformed
+        if ("".equals(seleccionId())) {
+            String valor = "";
+            Productos p = new Productos();
+            p.setNombre(producto4.getText());
+            p.setDescripcion(descripcion4.getText());
+            p.setFecha_registro(Fecha.FechaSql());
+            p.setPeso(Double.parseDouble(obj1.getPeso().toString()));
+            p.setId_tipo(id_tipo);
+            p.setId_medidas(id_medida);
+            p.setId_envase(id_envase);
+            p.setId_marcas(id_marca);
+            p.setId_usuario(Long.valueOf("3"));
+            p.setIva(obj1.getIva());
+            p.setCantidad_minima(Long.valueOf(obj1.getCantidad_minima()));
+            valor = crud.insertarProductoNuevoConvertidor(p);
+            if (!"".equals(valor)) {
+                FrmCalcularConPrecio fg = new FrmCalcularConPrecio(null, rootPaneCheckingEnabled, obj1, valor);
+                fg.setVisible(rootPaneCheckingEnabled);
+                if (fg.getvalorTotal() == null || fg.getvalorTotal() == -1) {
+                    btnGuardar4.setEnabled(false);
+                } else {
+                    resta = Integer.valueOf(txtcant.getText()) - Integer.valueOf(fg.getvalorA());
+                    txtcant.setText(resta.toString());
+                    suma = Integer.valueOf(cant4.getText()) + Integer.valueOf(fg.getvalorB());
+                    cant4.setText(suma.toString());
+                    id_PrecioNuevo = Long.valueOf(fg.getIdPrecio());
+                    btnGuardar4.setEnabled(true);
+                }
+            }
+        }else{
+        JOptionPane.showMessageDialog(rootPane, "complete los campos po favo");
+        }
+
+    }//GEN-LAST:event_btnCalcular4ActionPerformed
+    private boolean validarBoton() {
+        boolean bandera = false;
+        
+        return bandera;
+    }
+    private void btnGuardar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar4ActionPerformed
+        int seleccion = JOptionPane.showOptionDialog(null, "ESTA SEGURO DE CONVERTIR ESTE PRODUCTO",
+                "Selector de opciones", JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null,// null para icono por defecto.
+                new Object[]{"SI", "NO"}, "NO");
+        System.out.println(seleccion);
+        switch (seleccion) {
+            case 0:
+                String valor = "";
+                valor = crud.iniciarConversionProductoNuevo(obj1, id_PrecioNuevo, resta, suma);
+                if ("EXITO".equals(valor)) {
+                    this.setVisible(false);
+                }
+                break;
+            case 1:
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_btnGuardar4ActionPerformed
+
+    private void cbxTipos5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipos5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxTipos5ActionPerformed
+
+    private void cbxEnvase5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEnvase5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxEnvase5ActionPerformed
+
+    private void cbxMarca5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMarca5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxMarca5ActionPerformed
+
+    private void cbxMedida5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMedida5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxMedida5ActionPerformed
+
+    private void btnAgregarMedida5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedida5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarMedida5ActionPerformed
+
+    private void btnAgregarTipo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTipo5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarTipo5ActionPerformed
+
+    private void btnAgreEnvase5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreEnvase5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgreEnvase5ActionPerformed
+
+    private void btnAgreMarca5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreMarca5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgreMarca5ActionPerformed
+
+    private void btnCalcular5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcular5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCalcular5ActionPerformed
+
+    private void btnGuardar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardar5ActionPerformed
+
+    private void producto4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_producto4FocusLost
+         producto4.setText(producto4.getText().toUpperCase());
+    }//GEN-LAST:event_producto4FocusLost
+
+    private void descripcion4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descripcion4FocusLost
+         descripcion4.setText(descripcion4.getText().toUpperCase());
+    }//GEN-LAST:event_descripcion4FocusLost
     public void llenarJpanel3() {
         codigo3.setText(objeto.getId_productos().toString());
         producto3.setText(objeto.getNombreProductos());
@@ -1218,7 +1480,7 @@ public class covertidor extends javax.swing.JDialog {
         cbxMedida3.setModel(Formulario.listarComboMedidaPro(listam));
         cbxEnvase3.setModel(Formulario.listarComboEnvasePro(listae));
         cbxMarca3.setModel(Formulario.listarComboMarcaPro(listama));
-
+        
         str_tipo = crud.getNombreComboProducto(Long.valueOf("1"), objeto.getId_tipo());
         cbxTipos3.setSelectedItem(str_tipo);
         str_medidas = crud.getNombreComboProducto(Long.valueOf("2"), objeto.getId_medida());
@@ -1278,39 +1540,44 @@ public class covertidor extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgreEnvase1;
-    private javax.swing.JButton btnAgreEnvase3;
     private javax.swing.JButton btnAgreEnvase4;
-    private javax.swing.JButton btnAgreMarca1;
-    private javax.swing.JButton btnAgreMarca3;
+    private javax.swing.JButton btnAgreEnvase5;
     private javax.swing.JButton btnAgreMarca4;
-    private javax.swing.JButton btnAgregarMedida1;
-    private javax.swing.JButton btnAgregarMedida3;
+    private javax.swing.JButton btnAgreMarca5;
     private javax.swing.JButton btnAgregarMedida4;
-    private javax.swing.JButton btnAgregarTipo1;
-    private javax.swing.JButton btnAgregarTipo3;
+    private javax.swing.JButton btnAgregarMedida5;
     private javax.swing.JButton btnAgregarTipo4;
+    private javax.swing.JButton btnAgregarTipo5;
     private javax.swing.JButton btnCalcular;
+    private javax.swing.JButton btnCalcular4;
+    private javax.swing.JButton btnCalcular5;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardar4;
+    private javax.swing.JButton btnGuardar5;
     private javax.swing.JButton buscarProducto3;
     private javax.swing.JTextField cant4;
+    private javax.swing.JTextField cant5;
     private javax.swing.JComboBox<String> cbxElaine;
     private javax.swing.JComboBox<String> cbxEnvase1;
     private javax.swing.JComboBox<String> cbxEnvase3;
     private javax.swing.JComboBox<String> cbxEnvase4;
+    private javax.swing.JComboBox<String> cbxEnvase5;
     private javax.swing.JComboBox<String> cbxMarca1;
     private javax.swing.JComboBox<String> cbxMarca3;
     private javax.swing.JComboBox<String> cbxMarca4;
+    private javax.swing.JComboBox<String> cbxMarca5;
     private javax.swing.JComboBox<String> cbxMedida1;
     private javax.swing.JComboBox<String> cbxMedida3;
     private javax.swing.JComboBox<String> cbxMedida4;
+    private javax.swing.JComboBox<String> cbxMedida5;
     private javax.swing.JComboBox<String> cbxTipos1;
     private javax.swing.JComboBox<String> cbxTipos3;
     private javax.swing.JComboBox<String> cbxTipos4;
+    private javax.swing.JComboBox<String> cbxTipos5;
     private javax.swing.JTextField codigo3;
-    private javax.swing.JTextField codigo4;
     private javax.swing.JTextField descripcion3;
     private javax.swing.JTextField descripcion4;
+    private javax.swing.JTextField descripcion5;
     private javax.swing.JButton jButton2;
     public static javax.swing.JLabel jLabel10;
     public static javax.swing.JLabel jLabel11;
@@ -1337,15 +1604,23 @@ public class covertidor extends javax.swing.JDialog {
     public static javax.swing.JLabel jLabel30;
     public static javax.swing.JLabel jLabel31;
     public static javax.swing.JLabel jLabel32;
+    public static javax.swing.JLabel jLabel33;
+    public static javax.swing.JLabel jLabel34;
+    public static javax.swing.JLabel jLabel35;
+    public static javax.swing.JLabel jLabel36;
+    public static javax.swing.JLabel jLabel37;
+    public static javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     public static javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField producto3;
     private javax.swing.JTextField producto4;
+    private javax.swing.JTextField producto5;
     private javax.swing.JTextField txtProducto;
     private javax.swing.JTextField txtcant;
     private javax.swing.JTextField txtcant3;

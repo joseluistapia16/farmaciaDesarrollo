@@ -11,6 +11,7 @@ import com.farmacia.entities1.Cabecera_ventas;
 import com.farmacia.entities1.Detalle_ventas;
 import com.farmacia.entities1.Calcular_totales;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.StockVentas;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
@@ -32,27 +33,29 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
 public class MenuPreVentas extends javax.swing.JDialog {
-    String ImagenLogo = System.getProperty("user.dir")+"/src/com/farmacia/imagenes/"+"logoasofar.jpg";
+
+    String ImagenLogo = System.getProperty("user.dir") + "/src/com/farmacia/imagenes/" + "logoasofar.jpg";
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
     ArrayList<StockVentas> listaStockVentas = null;
+    Listar_usuario objUsuario = null;
     CRUD crud = new CRUD();
     JoinListarProductosVentas objProd = new JoinListarProductosVentas();
     Persona objCliente = new Persona();
     Calcular_totales ct = new Calcular_totales();
-    int x,y;
+    int x, y;
     Cabecera_ventas objeto = new Cabecera_ventas();
     Detalle_ventas objeto1 = new Detalle_ventas();
 
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        TxtCedula.setText("9999999999");
-        TxtNombre.setText("CONSUMIDOR FINAL");
-        TxtCorreo.setText("*************************************");
-        TxtDirec.setText("*************************************");
-        TxtTelefono.setText("*************************************");
+//        TxtCedula.setText("9999999999");
+//        TxtNombre.setText("CONSUMIDOR FINAL");
+//        TxtCorreo.setText("*************************************");
+//        TxtDirec.setText("*************************************");
+//        TxtTelefono.setText("*************************************");
         this.setLocationRelativeTo(null);
         TxtDescuentoPorcentaje.setEnabled(false);
 
@@ -88,7 +91,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         CbxFormaPago = new javax.swing.JComboBox<>();
         CbxTipoVenta = new javax.swing.JComboBox<>();
         BtnGenerarVenta = new javax.swing.JButton();
-        Reporte = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -136,6 +138,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(254, 254, 254));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("VENTA");
         jLabel2.setText("VENTAS");
         jLabel2.setOpaque(true);
         jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -256,14 +259,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
         });
 
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        Reporte.setText("IMPRIMIR");
-        Reporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReporteActionPerformed(evt);
-            }
-        });
-
         jButton1.setBackground(new java.awt.Color(153, 0, 51));
         jButton1.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -288,7 +283,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BtnGenerarVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Reporte, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -299,16 +293,14 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(CbxTipoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CbxTipoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnGenerarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
-                        .addComponent(CbxFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(BtnGenerarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CbxFormaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -746,46 +738,46 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 String msg = "Stock disponible: " + objProd.getStock();
 
                 JOptionPane.showMessageDialog(rootPane, msg);
-            }
-
-            System.out.println(" se repite  " + verificarObjeto(objProd.getId_producto().toString()));
-            if (verificarObjeto(objProd.getId_producto().toString()).equals("si")) {
-
-                JOptionPane.showMessageDialog(rootPane, "SE REPITE EL ITEM");
             } else {
-                Detalle_ventas RegDetalleVentas = new Detalle_ventas();
+                System.out.println(" se repite  " + verificarObjeto(objProd.getId_producto().toString()));
+                if (verificarObjeto(objProd.getId_producto().toString()).equals("si")) {
 
-                RegDetalleVentas.setId_control(objProd.getId_control());
-                RegDetalleVentas.setId_producto(objProd.getId_producto());
-                RegDetalleVentas.setNombre_producto(objProd.getProducto_nombre());
-                RegDetalleVentas.setCantidad(Integer.parseInt(TxtProdCantidad.getText()));
-                RegDetalleVentas.setPrecio(objProd.getPrecio_venta());
-                RegDetalleVentas.setPrecio_compra(objProd.getPrecio_compra());
-                RegDetalleVentas.setSubtotal(objeto1.getSubtotal());
-                RegDetalleVentas.setDescuento(objeto1.getDescuento());
-                RegDetalleVentas.setIva(objeto1.getIva());
-                RegDetalleVentas.setTotal(objeto1.getTotal());
+                    JOptionPane.showMessageDialog(rootPane, "SE REPITE EL ITEM");
+                } else {
+                    Detalle_ventas RegDetalleVentas = new Detalle_ventas();
 
-                ListarDetalle.add(RegDetalleVentas);
+                    RegDetalleVentas.setId_control(objProd.getId_control());
+                    RegDetalleVentas.setId_producto(objProd.getId_producto());
+                    RegDetalleVentas.setNombre_producto(objProd.getProducto_nombre());
+                    RegDetalleVentas.setCantidad(Long.parseLong(TxtProdCantidad.getText()));
+                    RegDetalleVentas.setPrecio(objProd.getPrecio_venta());
+                    RegDetalleVentas.setPrecio_compra(objProd.getPrecio_compra());
+                    RegDetalleVentas.setSubtotal(objeto1.getSubtotal());
+                    RegDetalleVentas.setDescuento(objeto1.getDescuento());
+                    RegDetalleVentas.setIva(objeto1.getIva());
+                    RegDetalleVentas.setTotal(objeto1.getTotal());
 
-                for (int i = 0; i < ListarDetalle.size(); i++) {
-                    System.out.println(ListarDetalle.get(i).getNombre_producto());
+                    ListarDetalle.add(RegDetalleVentas);
+
+                    for (int i = 0; i < ListarDetalle.size(); i++) {
+                        System.out.println(ListarDetalle.get(i).getNombre_producto());
+                    }
+                    Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
+
+                    TxtProdNombre.setText("");
+                    TxtProdPrecio.setText("");
+                    TxtProdCantidad.setText("");
+                    TxtProdPrecio.setText("");
+                    TxtProdSubtotal.setText("");
+                    TxtProdDescuento.setText("");
+                    TxtProdIva.setText("");
+                    TxtProdtotal.setText("");
+                    TxtDescuentoPorcentaje.setText("");
+                    TxtDescuentoPorcentaje.setEnabled(false);
+
+                    CalcularDetalle();
+
                 }
-                Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
-
-                TxtProdNombre.setText("");
-                TxtProdPrecio.setText("");
-                TxtProdCantidad.setText("");
-                TxtProdPrecio.setText("");
-                TxtProdSubtotal.setText("");
-                TxtProdDescuento.setText("");
-                TxtProdIva.setText("");
-                TxtProdtotal.setText("");
-                TxtDescuentoPorcentaje.setText("");
-                TxtDescuentoPorcentaje.setEnabled(false);
-
-                CalcularDetalle();
-
             }
         }
     }//GEN-LAST:event_BtnAddItenActionPerformed
@@ -899,7 +891,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
         for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
 
-            Integer Cant = ListarDetalle.get(i).getCantidad();
+            Long Cant = ListarDetalle.get(i).getCantidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
             System.out.println("cantidad " + Cantidad);
             BigDecimal Precio = ListarDetalle.get(i).getPrecio();
@@ -1010,6 +1002,16 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
             Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
             CalcularDetalle();
+            TxtProdNombre.setText("");
+            TxtProdPrecio.setText("");
+            TxtProdCantidad.setText("");
+            TxtProdPrecio.setText("");
+            TxtProdSubtotal.setText("");
+            TxtProdDescuento.setText("");
+            TxtProdIva.setText("");
+            TxtProdtotal.setText("");
+            TxtDescuentoPorcentaje.setText("");
+            TxtDescuentoPorcentaje.setEnabled(false);
 
         } catch (Exception e) {
         }
@@ -1081,46 +1083,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     }//GEN-LAST:event_TxtDescuentoPorcentajeKeyReleased
 
-    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
-        java.util.List lista = new ArrayList();
-        for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
-            ClaseReporte cabecera = new ClaseReporte(TxtCedula.getText(),
-               TxtDirec.getText(),
-               TxtTelefono.getText(),
-               TxtNombre.getText(),
-               TxtCorreo.getText(),
-               CbxTipoVenta.getSelectedItem().toString(),
-               CbxFormaPago.getSelectedItem().toString(),               
-               TablaListarVentas.getValueAt(i, 2).toString(),     
-               TablaListarVentas.getValueAt(i, 1).toString(),               
-               TablaListarVentas.getValueAt(i, 3).toString(),
-               TablaListarVentas.getValueAt(i, 7).toString(),
-               TxtSubtotalconIva.getText(),
-               TxtSubtotalsinIva.getText(),
-               TxtSubtotal.getText(),
-               TxtDescuento.getText(),
-               TxtIva.getText(),
-               TxtTotal.getText(),
-               ImagenLogo
-               );
-            lista.add(cabecera);
-        }
-        try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" + "MenuPreVenta.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
-            JDialog frame = new JDialog(this);
-            JRViewer viewer = new JRViewer(jprint);
-            frame.add(viewer);
-            frame.setSize(new Dimension(ancho / 2, alto / 2));
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-            viewer.setFitWidthZoomRatio();
-        } catch (JRException ex) {
-            Logger.getLogger(MenuPreVentas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_ReporteActionPerformed
-
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
         x = evt.getX();
         y = evt.getY();
@@ -1132,7 +1094,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel2MouseDragged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -1191,7 +1153,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private javax.swing.JButton BtnGenerarVenta;
     private javax.swing.JComboBox<String> CbxFormaPago;
     private javax.swing.JComboBox<String> CbxTipoVenta;
-    private javax.swing.JButton Reporte;
     private javax.swing.JTable TablaListarVentas;
     private javax.swing.JTextField TxtCedula;
     public static javax.swing.JTextField TxtCorreo;
