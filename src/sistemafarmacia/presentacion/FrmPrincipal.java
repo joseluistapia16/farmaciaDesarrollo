@@ -65,6 +65,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
             if ("SUPERVISOR".equals(tipo)) {
                 jmLocal.setVisible(false);
+                jmIva.setVisible(false);
             }
         }
         this.setTitle(variables.getTitle() + TITLE + "  " + obj2.getCargo() + ": " + obj2.getNombres() + "  " + obj2.getApellidos());
