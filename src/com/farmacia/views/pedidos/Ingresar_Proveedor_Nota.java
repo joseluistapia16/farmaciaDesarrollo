@@ -175,7 +175,6 @@ public class Ingresar_Proveedor_Nota extends javax.swing.JDialog {
         });
 
         cbx2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        cbx2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...." }));
         cbx2.setPreferredSize(new java.awt.Dimension(126, 28));
         cbx2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -270,7 +269,7 @@ public class Ingresar_Proveedor_Nota extends javax.swing.JDialog {
                             .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -492,14 +491,16 @@ public class Ingresar_Proveedor_Nota extends javax.swing.JDialog {
 //        }
 //    }
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-       if(cbx1.getSelectedIndex()==0 || cbx2.getSelectedIndex()==0){
+       if(cbx1.getSelectedIndex()==0 
+//               || cbx2.getSelectedIndex()==0
+               ){
           
-           JOptionPane.showMessageDialog(this, "escoja correo y telefono");
+           JOptionPane.showMessageDialog(this, "telefono");
        
            
        }else{
        
-        if (listat.size() >=1 && listac.size() >= 1) {
+        if (listat.size() >=1 ) {
             
             ListarJoinProveedor p =new ListarJoinProveedor();
             p.setId_proveedor_clase(Long.valueOf("1"));
@@ -509,7 +510,9 @@ public class Ingresar_Proveedor_Nota extends javax.swing.JDialog {
             p.setDireccion(dir.getText());
             p.setFecha_registro(fecha_registro);
             p.setTelefono(cbx1.getSelectedItem().toString());
+            if(listac.size() >= 1){
             p.setMail(cbx2.getSelectedItem().toString());
+            }
             p.setDireccionImagen(rutaimagen);
             
             String pro = crud.insertarNuevoProveedor(p);

@@ -197,44 +197,59 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void iniciarSesion() {
-        if (txtUsuario.getText().length() < 4 ) {
+        if (txtUsuario.getText().length() < 4) {
             JOptionPane.showMessageDialog(null, "Ingrese un usuario válido");
-        }else if (txtUsuario.getText().length() < 8 ) {
+        } else if (txtContrasenia.getText().length() < 2) {
             JOptionPane.showMessageDialog(null, "Ingrese una contraseña válida");
-        }else {
+        } else {
             Listar_usuario obj = new Listar_usuario();
             obj.setCorreo(txtUsuario.getText());
             obj.setPassword(txtContrasenia.getText());
-            System.out.println("contraseña "+txtContrasenia.getText());
+            System.out.println("contraseña " + txtContrasenia.getText());
             obj.setIp_equipo(Operaciones.getIpDispositivo());
 //            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
             obj.setDir_ip_completa(Operaciones.getIpLocalCompleta());
             obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
             try {
-            String a =  cr.Iniciar_sesion(obj);
-            //JOptionPane.showMessageDialog(this, a);
-                objeto = devuelveObjeto(txtUsuario.getText(), listar);
-                if (objeto != null) {
-                    //System.out.println("holaaaaa");
-                    FrmPrincipal acc = new FrmPrincipal(objeto,objeto.getCargo());
-                    acc.setVisible(true);
-                    dispose();
-                    listar.clear();
-                    listar = cr.get_listar_usuario();
+                String a = cr.Iniciar_sesion(obj);
+                //JOptionPane.showMessageDialog(this, a);
+                if (!"Usuario no existe".equals(a)) {
+                    objeto = devuelveObjeto(txtUsuario.getText(), listar);
+                    if (objeto != null) {
+                        //System.out.println("holaaaaa");
+                        FrmPrincipal acc = new FrmPrincipal(objeto, objeto.getCargo());
+                        acc.setVisible(true);
+                        dispose();
+                        listar.clear();
+                        listar = cr.get_listar_usuario();
+                    }
                 }else{
                     JOptionPane.showMessageDialog(this, "Usuario no existe!!!");
                     txtUsuario.setText("");
                     txtContrasenia.setText("");
                 }
+//                objeto = devuelveObjeto(txtUsuario.getText(), listar);
+//                if (objeto != null) {
+//                    //System.out.println("holaaaaa");
+//                    FrmPrincipal acc = new FrmPrincipal(objeto, objeto.getCargo());
+//                    acc.setVisible(true);
+//                    dispose();
+//                    listar.clear();
+//                    listar = cr.get_listar_usuario();
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Usuario no existe!!!");
+//                    txtUsuario.setText("");
+//                    txtContrasenia.setText("");
+//                }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e);
             }
-            
+
         }
     }
-    
+
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-    iniciarSesion();    
+        iniciarSesion();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     public Listar_usuario devuelveObjeto(String datos, ArrayList<Listar_usuario> listarobj) {
@@ -247,7 +262,7 @@ public class FrmLogin extends javax.swing.JFrame {
         }
         return objeto1;
     }
-    
+
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -264,16 +279,16 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
         char c = evt.getKeyChar();
-        char mas = '+', por='*', div='/', dp=':', pc=';', c2=',', p1='{', p2='}';
-        char lla1='[',el='^', lla2=']',el2='¿', co='?', co2='¡',c3='!', d='"',e='#';
-        char col='$', a='!',b='=',e2='%',f='&',g='=',h='º',i='ª',j='(',k=')',l='<',m='>';
-        char n='ç',o='´',p='`',q='¨',r='Ñ',s='·',t='ñ';
-        if (Character.isWhitespace(c) || c == mas || c == por || c ==  div || c == dp 
-                || c == pc || c == c2 || c == p1 || c == p2 || c == lla1 || c == lla2 
-                || c == el || c == el2 || c == co || c == co2 || c == c3 || c == d || c == e 
-                || c ==  col || c == a || c == b || c == e2 || c == f || c == g || c == h 
-                || c == i || c == j || c == k || c == l || c == m || c == n || c == o || c == p 
-                || c ==  q || c == r || c == s || c == t) {
+        char mas = '+', por = '*', div = '/', dp = ':', pc = ';', c2 = ',', p1 = '{', p2 = '}';
+        char lla1 = '[', el = '^', lla2 = ']', el2 = '¿', co = '?', co2 = '¡', c3 = '!', d = '"', e = '#';
+        char col = '$', a = '!', b = '=', e2 = '%', f = '&', g = '=', h = 'º', i = 'ª', j = '(', k = ')', l = '<', m = '>';
+        char n = 'ç', o = '´', p = '`', q = '¨', r = 'Ñ', s = '·', t = 'ñ';
+        if (Character.isWhitespace(c) || c == mas || c == por || c == div || c == dp
+                || c == pc || c == c2 || c == p1 || c == p2 || c == lla1 || c == lla2
+                || c == el || c == el2 || c == co || c == co2 || c == c3 || c == d || c == e
+                || c == col || c == a || c == b || c == e2 || c == f || c == g || c == h
+                || c == i || c == j || c == k || c == l || c == m || c == n || c == o || c == p
+                || c == q || c == r || c == s || c == t) {
             getToolkit().beep();
             evt.consume();
         }
