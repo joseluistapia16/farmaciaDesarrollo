@@ -22,12 +22,12 @@ public class Productos {
     private Long id_usuario;
     private String iva;
     private Long cantidad_minima;
-    
+    private String receta;
 
     public Productos() {
     }
 
-    public Productos(Long id_productos, Long id_tipo, Long id_marcas, Long id_medidas, Long id_envase, String nombre, String descripcion, double peso, Date fecha_registro, String estado, Long id_usuario, String iva, Long cantidad_minima) {
+    public Productos(Long id_productos, Long id_tipo, Long id_marcas, Long id_medidas, Long id_envase, String nombre, String descripcion, double peso, Date fecha_registro, String estado, Long id_usuario, String iva, Long cantidad_minima, String receta) {
         this.id_productos = id_productos;
         this.id_tipo = id_tipo;
         this.id_marcas = id_marcas;
@@ -41,6 +41,7 @@ public class Productos {
         this.id_usuario = id_usuario;
         this.iva = iva;
         this.cantidad_minima = cantidad_minima;
+        this.receta = receta;
     }
 
     public Long getId_productos() {
@@ -147,6 +148,13 @@ public class Productos {
         this.cantidad_minima = cantidad_minima;
     }
 
-    
+    public String getReceta() {
+        return receta;
+    }
+
+    public void setReceta(String receta) {
+        this.receta = receta;
+    }
+
     
 }
