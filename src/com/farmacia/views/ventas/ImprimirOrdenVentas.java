@@ -67,6 +67,7 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
         TxtNumeroOrden = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -83,7 +84,7 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
         });
 
         jButton1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jButton1.setText("REALIZAR VENTA");
+        jButton1.setText("IMPRIMIR VENTA");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -107,6 +108,13 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
             }
         });
 
+        jButton3.setText("CERRAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,7 +131,9 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
                         .addGap(67, 67, 67))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(90, 90, 90)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -136,7 +146,9 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
                 .addComponent(TxtNumeroOrden, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,6 +223,10 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel2MouseDragged
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -259,6 +275,7 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TxtNumeroOrden;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import com.farmacia.operaciones.Operaciones;
 import com.farmacia.views.usuario.Mostrar_usuario;
 import com.farmacia.views.usuario.Registrar_usuario;
+import com.farmacia.views.ventas.MenuPreVentas;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
