@@ -294,12 +294,15 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
     }//GEN-LAST:event_ReporteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        buscar1.setText("");
+        tabla.setRowSorter(null);
+        
         Ingresar_Proveedor_Nota ip = new Ingresar_Proveedor_Nota(new javax.swing.JFrame(), true);
         ip.setVisible(true);
-        lista.clear();
+        
+        lista = crud.listarProveedoresNotaPedido(Long.valueOf("1"));
         Tablas.listarProveedorNotaPedido(lista, tabla);
-//        lista = crud.listarProveedores(Long.valueOf("1"));
-//        Tablas.listarProveedor(lista, tabla);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
