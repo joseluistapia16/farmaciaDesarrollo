@@ -8,69 +8,56 @@ import java.sql.Date;
 public class JoinListarCabeceraVenta {
     private Long id_cabecera_venta;
     private String mun_venta;
-    private Long id_cliente;
-    private String forma_de_pago;
-    private String nombre;   
-    private String apellido;   
-    private String correo;   
-    private String direccion;   
-    private String cedula; 
-    private String fecha_creacion;
-    private String telefono;
-    private String fecha_registro;
-    private String estado;
-    private Long id_usuario;
     private Long id_sucursal;
+    private String surcusal;
+    private String ruc;
+    private String direccion;
+    private String telefono;
+    private Long id_cliente;
+    private String nombre_completo_cliente;
+    private String cedula_cliente;
+    private Long id_usuario;
+    private String nombre_completo_usuario;
+    private String fecha_creacion; 
     private String tipo_pago;
     private String tipo_venta;
     private BigDecimal subtotal_con_iva;
     private BigDecimal subtotal_sin_iva;
+    private BigDecimal subtotal;
     private BigDecimal iva_total;
     private BigDecimal descuento_total;
     private BigDecimal total;
     private BigDecimal utilidad;
-    private String ruc;
-    private String sucursal_nombre;
-    private String sucursal_representante;
-    private String sucursal_direccion;
-    private Long sucursal_id_proveedor;
-    private String fecha2;
-    private String fecha1;
+    private String estado;
+
 
     public JoinListarCabeceraVenta() {
     }
 
-    public JoinListarCabeceraVenta(Long id_cabecera_venta, String mun_venta, Long id_cliente, String forma_de_pago, String nombre, String apellido, String correo, String direccion, String cedula, String fecha_creacion, String telefono, String fecha_registro, String estado, Long id_usuario, Long id_sucursal, String tipo_pago, String tipo_venta, BigDecimal subtotal_con_iva, BigDecimal subtotal_sin_iva, BigDecimal iva_total, BigDecimal descuento_total, BigDecimal total, BigDecimal utilidad, String ruc, String sucursal_nombre, String sucursal_representante, String sucursal_direccion, Long sucursal_id_proveedor, String fecha2, String fecha1) {
+    public JoinListarCabeceraVenta(Long id_cabecera_venta, String mun_venta, Long id_sucursal, String surcusal, String ruc, String direccion, String telefono, Long id_cliente, String nombre_completo_cliente, String cedula_cliente, Long id_usuario, String nombre_completo_usuario, String fecha_creacion, String tipo_pago, String tipo_venta, BigDecimal subtotal_con_iva, BigDecimal subtotal_sin_iva, BigDecimal subtotal, BigDecimal iva_total, BigDecimal descuento_total, BigDecimal total, BigDecimal utilidad, String estado) {
         this.id_cabecera_venta = id_cabecera_venta;
         this.mun_venta = mun_venta;
-        this.id_cliente = id_cliente;
-        this.forma_de_pago = forma_de_pago;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
-        this.direccion = direccion;
-        this.cedula = cedula;
-        this.fecha_creacion = fecha_creacion;
-        this.telefono = telefono;
-        this.fecha_registro = fecha_registro;
-        this.estado = estado;
-        this.id_usuario = id_usuario;
         this.id_sucursal = id_sucursal;
+        this.surcusal = surcusal;
+        this.ruc = ruc;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.id_cliente = id_cliente;
+        this.nombre_completo_cliente = nombre_completo_cliente;
+        this.cedula_cliente = cedula_cliente;
+        this.id_usuario = id_usuario;
+        this.nombre_completo_usuario = nombre_completo_usuario;
+        this.fecha_creacion = fecha_creacion;
         this.tipo_pago = tipo_pago;
         this.tipo_venta = tipo_venta;
         this.subtotal_con_iva = subtotal_con_iva;
         this.subtotal_sin_iva = subtotal_sin_iva;
+        this.subtotal = subtotal;
         this.iva_total = iva_total;
         this.descuento_total = descuento_total;
         this.total = total;
         this.utilidad = utilidad;
-        this.ruc = ruc;
-        this.sucursal_nombre = sucursal_nombre;
-        this.sucursal_representante = sucursal_representante;
-        this.sucursal_direccion = sucursal_direccion;
-        this.sucursal_id_proveedor = sucursal_id_proveedor;
-        this.fecha2 = fecha2;
-        this.fecha1 = fecha1;
+        this.estado = estado;
     }
 
     public Long getId_cabecera_venta() {
@@ -89,44 +76,28 @@ public class JoinListarCabeceraVenta {
         this.mun_venta = mun_venta;
     }
 
-    public Long getId_cliente() {
-        return id_cliente;
+    public Long getId_sucursal() {
+        return id_sucursal;
     }
 
-    public void setId_cliente(Long id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setId_sucursal(Long id_sucursal) {
+        this.id_sucursal = id_sucursal;
     }
 
-    public String getForma_de_pago() {
-        return forma_de_pago;
+    public String getSurcusal() {
+        return surcusal;
     }
 
-    public void setForma_de_pago(String forma_de_pago) {
-        this.forma_de_pago = forma_de_pago;
+    public void setSurcusal(String surcusal) {
+        this.surcusal = surcusal;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getRuc() {
+        return ruc;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
     }
 
     public String getDireccion() {
@@ -137,22 +108,6 @@ public class JoinListarCabeceraVenta {
         this.direccion = direccion;
     }
 
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getFecha_creacion() {
-        return fecha_creacion;
-    }
-
-    public void setFecha_creacion(String fecha_creacion) {
-        this.fecha_creacion = fecha_creacion;
-    }
-
     public String getTelefono() {
         return telefono;
     }
@@ -161,20 +116,28 @@ public class JoinListarCabeceraVenta {
         this.telefono = telefono;
     }
 
-    public String getFecha_registro() {
-        return fecha_registro;
+    public Long getId_cliente() {
+        return id_cliente;
     }
 
-    public void setFecha_registro(String fecha_registro) {
-        this.fecha_registro = fecha_registro;
+    public void setId_cliente(Long id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getNombre_completo_cliente() {
+        return nombre_completo_cliente;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setNombre_completo_cliente(String nombre_completo_cliente) {
+        this.nombre_completo_cliente = nombre_completo_cliente;
+    }
+
+    public String getCedula_cliente() {
+        return cedula_cliente;
+    }
+
+    public void setCedula_cliente(String cedula_cliente) {
+        this.cedula_cliente = cedula_cliente;
     }
 
     public Long getId_usuario() {
@@ -185,12 +148,20 @@ public class JoinListarCabeceraVenta {
         this.id_usuario = id_usuario;
     }
 
-    public Long getId_sucursal() {
-        return id_sucursal;
+    public String getNombre_completo_usuario() {
+        return nombre_completo_usuario;
     }
 
-    public void setId_sucursal(Long id_sucursal) {
-        this.id_sucursal = id_sucursal;
+    public void setNombre_completo_usuario(String nombre_completo_usuario) {
+        this.nombre_completo_usuario = nombre_completo_usuario;
+    }
+
+    public String getFecha_creacion() {
+        return fecha_creacion;
+    }
+
+    public void setFecha_creacion(String fecha_creacion) {
+        this.fecha_creacion = fecha_creacion;
     }
 
     public String getTipo_pago() {
@@ -225,6 +196,14 @@ public class JoinListarCabeceraVenta {
         this.subtotal_sin_iva = subtotal_sin_iva;
     }
 
+    public BigDecimal getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(BigDecimal subtotal) {
+        this.subtotal = subtotal;
+    }
+
     public BigDecimal getIva_total() {
         return iva_total;
     }
@@ -257,61 +236,15 @@ public class JoinListarCabeceraVenta {
         this.utilidad = utilidad;
     }
 
-    public String getRuc() {
-        return ruc;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setRuc(String ruc) {
-        this.ruc = ruc;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public String getSucursal_nombre() {
-        return sucursal_nombre;
-    }
-
-    public void setSucursal_nombre(String sucursal_nombre) {
-        this.sucursal_nombre = sucursal_nombre;
-    }
-
-    public String getSucursal_representante() {
-        return sucursal_representante;
-    }
-
-    public void setSucursal_representante(String sucursal_representante) {
-        this.sucursal_representante = sucursal_representante;
-    }
-
-    public String getSucursal_direccion() {
-        return sucursal_direccion;
-    }
-
-    public void setSucursal_direccion(String sucursal_direccion) {
-        this.sucursal_direccion = sucursal_direccion;
-    }
-
-    public Long getSucursal_id_proveedor() {
-        return sucursal_id_proveedor;
-    }
-
-    public void setSucursal_id_proveedor(Long sucursal_id_proveedor) {
-        this.sucursal_id_proveedor = sucursal_id_proveedor;
-    }
-
-    public String getFecha2() {
-        return fecha2;
-    }
-
-    public void setFecha2(String fecha2) {
-        this.fecha2 = fecha2;
-    }
-
-    public String getFecha1() {
-        return fecha1;
-    }
-
-    public void setFecha1(String fecha1) {
-        this.fecha1 = fecha1;
-    }
-
+    
+    
 
 }

@@ -1287,13 +1287,13 @@ public class Tablas {
 
     public static void cargarJoinProductosVentas(JTable Tabla, ArrayList<JoinListarProductosVentas> lista) {
 
-        int[] a = {10, 30, 52, 30, 30, 30, 30, 30, 30, 30, 30};
+        int[] a = {10, 30, 52, 30, 30, 30, 30, 30, 30, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION", "TIPO", "MEDIDA", "ENVASE", "MARCA", "STOCK", "IVA", "PRECIO VENTA", "PRECIO COMPRA"};
+        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION", "TIPO", "MEDIDA", "ENVASE", "MARCA", "STOCK", "IVA", "PRECIO VENTA"};
         String[] Filas = new String[11];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -1308,7 +1308,7 @@ public class Tablas {
             Filas[7] = lista.get(i).getStock().toString();
             Filas[8] = lista.get(i).getIva();
             Filas[9] = lista.get(i).getPrecio_venta().toString();
-            Filas[10] = lista.get(i).getPrecio_compra().toString();
+
 
             model.addRow(Filas);
             Tabla.setModel(model);
@@ -1332,9 +1332,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(8).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(9).setPreferredWidth(a[9]);
             Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
-            Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
 
+            
         }
     }
     ///////// cargar tabla  Join cliente ventas
@@ -1662,37 +1661,33 @@ public class Tablas {
 
     public static void CargarJoinListaCabeceraVenta(JTable Tabla, ArrayList<JoinListarCabeceraVenta> lista) {
 
-        int[] a = {50, 80, 120, 120, 150, 110, 100, 100, 180, 180, 180, 100, 100, 100, 100};
+        int[] a = {100, 100, 100, 100, 100, 110, 100, 100, 100, 100, 100, 100, 100, 100};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"N° ", "CODIGO", "NOMBRE", "APELLIDO", "CORREO", "DIRECCION", "RUC", "CEDULA", "FECHA DE CREACION",
-            "TELEFONO", "FORMA DE PAGO", "VENTA", "IVA", "DESCUENTO", "TOTAL"};
-        String[] Filas = new String[15];
+        String[] Co = {"NUMERO_VENTA ", "SUCURSAL", "FECHA", "CLIENTE", "CEDULA_CLIENTE", "USUARIO",
+            "FORMA DE PAGO", "TIPO DE VENTA", "SUBTOTAL", "IVA", "DESCUENTO", "TOTAL", "UTILIDAD", "ESTADO"};
+        String[] Filas = new String[14];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
-            Filas[0] = "" + lista.get(i).getId_cabecera_venta().toString();
-            Filas[1] = "" + lista.get(i).getId_cliente().toString();
-            Filas[2] = lista.get(i).getNombre();
-            Filas[3] = lista.get(i).getApellido();
-            Filas[4] = lista.get(i).getCorreo();
-            Filas[8] = lista.get(i).getDireccion();
-            Filas[6] = lista.get(i).getRuc();
-            Filas[7] = lista.get(i).getCedula();
+            Filas[0] = lista.get(i).getMun_venta();
+            Filas[1] = lista.get(i).getSurcusal();
             String j = Fecha.getStringFecha1(lista.get(i).getFecha_creacion());
-//            System.out.println(" fec "+j);
-//            Filas[5] = Fecha.getStringFecha(Date.valueOf(j));
-
-            Filas[5] = Fecha.getStringFecha(Date.valueOf(j));
-            Filas[9] = lista.get(i).getTelefono();
-            Filas[10] = lista.get(i).getTipo_pago();
-            Filas[11] = lista.get(i).getTipo_venta();
-            Filas[12] = Formato_Numeros.formatoNumero(lista.get(i).getIva_total().toString());
-            Filas[13] = Formato_Numeros.formatoNumero(lista.get(i).getDescuento_total().toString());
-            Filas[14] = Formato_Numeros.formatoNumero(lista.get(i).getTotal().toString());
+            Filas[2] = Fecha.getStringFecha(Date.valueOf(j));
+            Filas[3] = lista.get(i).getNombre_completo_cliente();
+            Filas[4] = lista.get(i).getCedula_cliente();
+            Filas[5] = lista.get(i).getNombre_completo_usuario();
+            Filas[6] = lista.get(i).getTipo_pago();
+            Filas[7] = lista.get(i).getTipo_venta();
+            Filas[8] = Formato_Numeros.formatoNumero(lista.get(i).getSubtotal().toString());
+            Filas[9] = Formato_Numeros.formatoNumero(lista.get(i).getIva_total().toString());
+            Filas[10] = Formato_Numeros.formatoNumero(lista.get(i).getDescuento_total().toString());
+            Filas[11] = Formato_Numeros.formatoNumero(lista.get(i).getTotal().toString());
+            Filas[12] = Formato_Numeros.formatoNumero(lista.get(i).getUtilidad().toString());
+            Filas[13] = lista.get(i).getEstado();
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -1723,8 +1718,6 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(12).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(13).setPreferredWidth(a[13]);
             Tabla.getColumnModel().getColumn(13).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(14).setPreferredWidth(a[14]);
-            Tabla.getColumnModel().getColumn(14).setCellRenderer(tcr);
 
         }
 

@@ -30,7 +30,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
-        listaProducto = crud.ListarTodoJoinProductosVentas("", "todo");
+        listaProducto = crud.ListarTodoJoinProductosVentas("1");
         Tablas.cargarJoinProductosVentas(TablaProductoVentas, listaProducto);
 
     }
@@ -49,9 +49,8 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaProductoVentas = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        CbxFiltro = new javax.swing.JComboBox<>();
         TxtFiltro = new javax.swing.JTextField();
-        BtnBuscar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -62,13 +61,13 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
         TablaProductoVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         TablaProductoVentas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -106,23 +105,20 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             }
         });
 
-        CbxFiltro.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        CbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
-
         TxtFiltro.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         TxtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtFiltroActionPerformed(evt);
             }
         });
-
-        BtnBuscar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        BtnBuscar.setText("BUSCAR");
-        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBuscarActionPerformed(evt);
+        TxtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxtFiltroKeyReleased(evt);
             }
         });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("BUSCAR");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -135,12 +131,10 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(CbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -149,9 +143,8 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -174,49 +167,6 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
     private void TxtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtFiltroActionPerformed
-
-    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-        String query = "";
-        query = TxtFiltro.getText() + "%";
-
-        int pos = CbxFiltro.getSelectedIndex();
-        if (pos == 0) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "todo");
-
-        }
-
-        if (pos == 1) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "codigo");
-
-        }
-        if (pos == 2) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "nombre");
-
-        }
-        if (pos == 3) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "tipo");
-
-        }
-        if (pos == 4) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "medida");
-
-        }
-        if (pos == 5) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "envase");
-
-        }
-        if (pos == 6) {
-            listaProducto = crud.ListarTodoJoinProductosVentas(query, "marca");
-
-        }
-
-        TxtFiltro.setText("");
-
-        Tablas.cargarJoinProductosVentas(TablaProductoVentas, listaProducto);
-        query = "";
-
-
-    }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void TablaProductoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductoVentasMousePressed
 
@@ -244,6 +194,10 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel1MouseDragged
+
+    private void TxtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyReleased
+        Tablas.filtro(TxtFiltro.getText(), TablaProductoVentas);
+    }//GEN-LAST:event_TxtFiltroKeyReleased
 
     public JoinListarProductosVentas getProducto() {
         return objeto;
@@ -307,11 +261,10 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnBuscar;
-    private javax.swing.JComboBox<String> CbxFiltro;
     private javax.swing.JTable TablaProductoVentas;
     private javax.swing.JTextField TxtFiltro;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;

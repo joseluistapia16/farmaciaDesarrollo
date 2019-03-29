@@ -2815,7 +2815,6 @@ public class CRUD {
         return lista;
     }
 
-
     public String getLocalidadComboGuayas(Long op, Long id) {
         //ArrayList<Productos> lista = new ArrayList<Productos>();
         String valor = "";
@@ -2882,7 +2881,7 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public ArrayList<Punto_venta> listarPuntoVenta() {
         ArrayList<Punto_venta> valor = new ArrayList<Punto_venta>();
         try {
@@ -2947,16 +2946,15 @@ public class CRUD {
     }
 
     //////  listar Producto venta  
-    public ArrayList<JoinListarProductosVentas> ListarTodoJoinProductosVentas(String op1, String op2) {
+    public ArrayList<JoinListarProductosVentas> ListarTodoJoinProductosVentas(String op1) {
         ArrayList<JoinListarProductosVentas> lista = new ArrayList<JoinListarProductosVentas>();
 
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
-                    "{call ListarProductosVentas(?,?)}");
+                    "{call ListarProductosVentas(?)}");
             prcProcedimientoAlmacenado.setString(1, op1);
-            prcProcedimientoAlmacenado.setString(2, op2);
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
@@ -2982,16 +2980,15 @@ public class CRUD {
     }
 
     //////// Listar Cliente Ventas
-    public ArrayList<Persona> ListarTodoClienteVentas(String op1, String op2) {
+    public ArrayList<Persona> ListarTodoClienteVentas(String op1) {
         ArrayList<Persona> lista = new ArrayList<Persona>();
 
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
-                    "{call ListarClientesVentas(?,?)}");
+                    "{call ListarClientesVentas(?)}");
             prcProcedimientoAlmacenado.setString(1, op1);
-            prcProcedimientoAlmacenado.setString(2, op2);
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
@@ -4115,7 +4112,7 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public ArrayList<Punto_venta> filtroPvNombre(Punto_venta lu) {
         ArrayList<Punto_venta> valor = new ArrayList<Punto_venta>();
         try {
@@ -4148,7 +4145,7 @@ public class CRUD {
         }
         return valor;
     }
-    
+
     public ArrayList<Punto_venta> filtroPvCodigo(Punto_venta lu) {
         ArrayList<Punto_venta> valor = new ArrayList<Punto_venta>();
         try {
@@ -4378,8 +4375,6 @@ public class CRUD {
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
                     "{ call FiltroRangoFechaVenta(?,?,?)}");
             prcProcedimientoAlmacenado.setInt(1, op);
-            prcProcedimientoAlmacenado.setString(2, cab.getFecha1());
-            prcProcedimientoAlmacenado.setString(3, cab.getFecha2());
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
@@ -4468,7 +4463,8 @@ public class CRUD {
         }
         return lista;
     }
-  public ArrayList<ListarJoinPrecioNotaPedido> listarPrecioNota(int op, String id) {
+
+    public ArrayList<ListarJoinPrecioNotaPedido> listarPrecioNota(int op, String id) {
         ArrayList<ListarJoinPrecioNotaPedido> lista = new ArrayList<ListarJoinPrecioNotaPedido>();
 
         try {
@@ -4533,7 +4529,8 @@ public class CRUD {
 //        }
 //        return lista;
 //    }
-      public ArrayList<joinProductoDetallesFaltantes> FiltrosProductosNota(String op1, String op2) {
+
+    public ArrayList<joinProductoDetallesFaltantes> FiltrosProductosNota(String op1, String op2) {
         ArrayList<joinProductoDetallesFaltantes> lista = new ArrayList<joinProductoDetallesFaltantes>();
 
         try {
@@ -4567,7 +4564,8 @@ public class CRUD {
         return lista;
 
     }
-      public ArrayList<listarJoinProductosCompras> listarConvertidorProducto(int op) {
+
+    public ArrayList<listarJoinProductosCompras> listarConvertidorProducto(int op) {
         ArrayList<listarJoinProductosCompras> lista = new ArrayList<listarJoinProductosCompras>();
 
         try {
@@ -4601,7 +4599,8 @@ public class CRUD {
         return lista;
 
     }
-      public String iniciarConversion(listarJoinProductosCompras obj1 ,listarJoinProductosCompras obj2,Integer valorA,Integer valorB) {
+
+    public String iniciarConversion(listarJoinProductosCompras obj1, listarJoinProductosCompras obj2, Integer valorA, Integer valorB) {
         String valor = "";
         try {
             conect = con.conectar();
@@ -4623,4 +4622,38 @@ public class CRUD {
         }
         return valor;
     }
+
+    public ArrayList<Detalle_ventas> ListarDetallesVentas(int idCab) {
+        ArrayList<Detalle_ventas> lista = new ArrayList<Detalle_ventas>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement proced = conect.prepareCall(
+                    "{ call ListarRegistroDetalleVenta(?) }");
+            proced.setInt(1, idCab);
+            proced.execute();
+            rs = proced.getResultSet();
+            while (rs.next()) {
+                Detalle_ventas obj = EntidadesMappers.getJoinDetallesVentas(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+
 }
