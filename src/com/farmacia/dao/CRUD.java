@@ -4655,5 +4655,111 @@ public class CRUD {
         }
         return lista;
     }
+    public String insertarProductoNuevoConvertidor(Productos obj) {
+        //ArrayList<Productos> lista = new ArrayList<Productos>();
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call ingresarProducto(?,?,?,?,?,?,?,?,?,?,?,?) }");
+            prodProAlm.setString(1, obj.getNombre());
+            prodProAlm.setString(2, obj.getDescripcion());
+            prodProAlm.setDate(3, obj.getFecha_registro());
+            prodProAlm.setDouble(4, obj.getPeso());
+            prodProAlm.setLong(5, obj.getId_tipo());
+            prodProAlm.setLong(6, obj.getId_medidas());
+            prodProAlm.setLong(7, obj.getId_envase());
+            prodProAlm.setLong(8, obj.getId_marcas());
+            prodProAlm.setLong(9, obj.getId_usuario());
+            prodProAlm.setString(10, obj.getIva());
+            prodProAlm.setLong(11, obj.getCantidad_minima());
+            prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor1");
+            //  rs = prodProAlm.getResultSet();
+//            while (rs.next()) {
+//                MarcaProducto obj = EntidadesMappers.getMarcaProductoFromResultSet(rs);
+//                lista.add(obj);
+//            }
 
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    public String actualizarPrecioCompraConvertidor(Precios obj) {
+        //ArrayList<Productos> lista = new ArrayList<Productos>();
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call actualizarPrecioCompra(?,?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_producto());
+            prodProAlm.setDouble(2, obj.getPrecio_compra());
+            prodProAlm.setDouble(3, obj.getPrecio_venta());
+            prodProAlm.setString(4, obj.getFecha_registro());
+            prodProAlm.setLong(5, obj.getId_usuario());
+            prodProAlm.setLong(6, obj.getPorcentaje());
+            prodProAlm.registerOutParameter("valor2", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor2");
+            //  rs = prodProAlm.getResultSet();
+//            while (rs.next()) {
+//                MarcaProducto obj = EntidadesMappers.getMarcaProductoFromResultSet(rs);
+//                lista.add(obj);
+//            }
+
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    public String iniciarConversionProductoNuevo(listarJoinProductosCompras obj1, Long idPrecioNuevo , Integer valorA, Integer valorB) {
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement cs = conect.prepareCall(
+                    "{ call convertirStockProductoNuevo(?,?,?,?,?) }");
+            cs.setLong(1, obj1.getIdStock());
+            cs.setLong(2, idPrecioNuevo);
+            cs.setInt(3, valorA);
+            cs.setInt(4, valorB);
+            cs.registerOutParameter("valor", Types.VARCHAR);
+            cs.executeUpdate();
+            valor = cs.getString("valor");
+            conect.commit();
+        } catch (SQLException e) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, e);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return valor;
+    }
 }
