@@ -9,7 +9,8 @@
 		</parameter>
 		<queryString>
 			<![CDATA[SELECT `detalle_venta`.`cantidad` AS 'Cantidad', `productos`.`nombre` AS 'Detalle', 
-TRUNCATE (detalle_venta.`precio`,2 )AS 'P.Unitario', TRUNCATE ((`detalle_venta`.`cantidad` * `detalle_venta`.`precio`),2)AS 'P.total' 
+ROUND (detalle_venta.`precio`,2 )AS 'P.Unitario', 
+ROUND ((`detalle_venta`.`cantidad` * `detalle_venta`.`precio`),2)AS 'P.total' 
 FROM detalle_venta INNER JOIN `precios`
 ON
 `detalle_venta`.`id_control` = `precios`.`id_precio` INNER JOIN `productos`
@@ -34,12 +35,12 @@ CONCAT (`clientes`.`Nombre`," ",`clientes`.`Apellido`)AS 'Nombre_completos',
 `clientes`.`Cedula`, 
 cabecera_venta.`fecha_creacion` AS 'Fecha',
 `cabecera_venta`.`tipo_pago`,
-TRUNCATE (`cabecera_venta`.`subtotal_con_iva`,2) AS 'Subtotal_con_iva',
-TRUNCATE (cabecera_venta.`subtotal_sin_iva`,2)AS 'Subtotal_sin_iva',
-TRUNCATE ((`cabecera_venta`.`subtotal_con_iva` + cabecera_venta.`subtotal_sin_iva`),2)  AS 'Subtotal' , 
-TRUNCATE (cabecera_venta.`iva_total`,2) AS 'Iva',
-TRUNCATE (cabecera_venta.`descuento_total`,2) AS 'Descuento',
-TRUNCATE (cabecera_venta.`total`,2)AS 'Total'
+ROUND (`cabecera_venta`.`subtotal_con_iva`,2) AS 'Subtotal_con_iva',
+ROUND (cabecera_venta.`subtotal_sin_iva`,2)AS 'Subtotal_sin_iva',
+ROUND ((`cabecera_venta`.`subtotal_con_iva` + cabecera_venta.`subtotal_sin_iva`),2)  AS 'Subtotal' , 
+ROUND (cabecera_venta.`iva_total`,2) AS 'Iva',
+ROUND (cabecera_venta.`descuento_total`,2) AS 'Descuento',
+ROUND (cabecera_venta.`total`,2)AS 'Total'
 FROM `cabecera_venta` INNER JOIN `clientes` 
 ON
 cabecera_venta.`id_cliente` = `clientes`.`id_Clientes` INNER JOIN `sucursal`

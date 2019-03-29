@@ -11,6 +11,7 @@ import com.farmacia.entities1.Cabecera_ventas;
 import com.farmacia.entities1.Detalle_ventas;
 import com.farmacia.entities1.Calcular_totales;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.StockVentas;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
@@ -36,6 +37,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
     ArrayList<StockVentas> listaStockVentas = null;
+    Listar_usuario objUsuario = null;
     CRUD crud = new CRUD();
     JoinListarProductosVentas objProd = new JoinListarProductosVentas();
     Persona objCliente = new Persona();

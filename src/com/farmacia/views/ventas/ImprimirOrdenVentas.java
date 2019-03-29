@@ -175,7 +175,8 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
 //            dialog.setIconImage(Toolkit.getDefaultToolkit().getImage(
 //                    getClass().getResource("URL IMG")));
             dialog.setVisible(true);
-
+            
+            
 //            view.setTitle("My Reports");
 //            setModal(false);
 //            view.setVisible(true);

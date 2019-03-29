@@ -9,7 +9,6 @@ import com.farmacia.conponentes.Formulario;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.join_entidades.JoinListarCabeceraVenta;
-import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -113,9 +112,6 @@ public class Reporte_Venta extends javax.swing.JDialog {
         tbaCabeceraVenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tbaCabeceraVentaMousePressed(evt);
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbaCabeceraVentaMouseClicked(evt);
             }
         });
         tblProduc.setViewportView(tbaCabeceraVenta);
@@ -261,7 +257,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
     public JoinListarCabeceraVenta devuelveObjeto(String datos, ArrayList<JoinListarCabeceraVenta> listarobj) {
         JoinListarCabeceraVenta objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
-            if (datos.equals(listarobj.get(i).getId_cabecera_venta().toString())) {
+            if (datos.equals(listarobj.get(i).getMun_venta())) {
                 objeto1 = listarobj.get(i);
                 break;
             }
@@ -276,6 +272,8 @@ public class Reporte_Venta extends javax.swing.JDialog {
             i = tbaCabeceraVenta.getSelectedRow();
             lista = crud.ListarCabeceraVentas(1);
             objeto = devuelveObjeto(tbaCabeceraVenta.getValueAt(i, 0).toString(), lista);
+            
+            System.out.println("ventas "+ objeto.getNombre_completo_cliente());
 
             if (objeto != null) {
                 Reporte_DetalleVenta Rdv = new Reporte_DetalleVenta(new javax.swing.JFrame(), true, objeto);
@@ -285,34 +283,30 @@ public class Reporte_Venta extends javax.swing.JDialog {
 
     }//GEN-LAST:event_tbaCabeceraVentaMousePressed
 
-    private void tbaCabeceraVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaCabeceraVentaMouseClicked
-
-    }//GEN-LAST:event_tbaCabeceraVentaMouseClicked
-
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-        JoinListarCabeceraVenta dc = new JoinListarCabeceraVenta();
-        String F1 = F.getFecha(Chooser1);
-        String F2 = F.getFecha(Chooser2);
-        dc.setFecha1(F1);
-        dc.setFecha2(F2);
-
-        if (F1 == null) {
-            JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
-        }
-        if (F1 != null && F2 == null) {
-
-            dc.setFecha1(F1);
-            dc.setFecha2((F1) + " 23:59:59");
-            lista = crud.RangoFechaVenta(1, dc);
-            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
-        }
-        if (F1 != null && F2 != null) {
-
-            dc.setFecha1(F.getFecha(Chooser1));
-            dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
-            lista = crud.RangoFechaVenta(1, dc);
-            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
-        }
+//        JoinListarCabeceraVenta dc = new JoinListarCabeceraVenta();
+//        String F1 = F.getFecha(Chooser1);
+//        String F2 = F.getFecha(Chooser2);
+//        dc.setFecha1(F1);
+//        dc.setFecha2(F2);
+//
+//        if (F1 == null) {
+//            JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
+//        }
+//        if (F1 != null && F2 == null) {
+//
+//            dc.setFecha1(F1);
+//            dc.setFecha2((F1) + " 23:59:59");
+//            lista = crud.RangoFechaVenta(1, dc);
+//            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+//        }
+//        if (F1 != null && F2 != null) {
+//
+//            dc.setFecha1(F.getFecha(Chooser1));
+//            dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
+//            lista = crud.RangoFechaVenta(1, dc);
+//            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+//        }
 
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
