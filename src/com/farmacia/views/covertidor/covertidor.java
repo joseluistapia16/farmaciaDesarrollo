@@ -389,7 +389,7 @@ public class covertidor extends javax.swing.JDialog {
         jLabel4.setText("CONVERTIR A:");
 
         cbxElaine.setEditable(true);
-        cbxElaine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "ELEGIR PRODUCTO", "NUEVO PRODUCTO" }));
+        cbxElaine.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODOS", "ELEGIR PRODUCTO", "NUEVO PRODUCTO", "PRODUCTO NUEVO PRECIO" }));
         cbxElaine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxElaineActionPerformed(evt);
