@@ -22,6 +22,7 @@ import com.farmacia.views.producto.Products;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -54,7 +55,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     String codigocabecera = "";
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
     JoinListarDetalleNotaPedido objetop = null;
-    Listar_usuario objUsuario=null;
+    Listar_usuario objUsuario = null;
+
     public EditarNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
 
@@ -82,7 +84,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
         variableCerrar = vari;
     }
-    public EditarNotaPedido(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1, int vari,Listar_usuario obj) {
+
+    public EditarNotaPedido(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera obj1, int vari, Listar_usuario obj) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
@@ -100,7 +103,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         Total();
 
         variableCerrar = vari;
-        objUsuario =obj;
+        objUsuario = obj;
     }
 
     private void llenarFormulario(JoinListarNotaPedidosCabecera obj) {
@@ -154,7 +157,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         txtNumero = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        TxtFiltro = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -190,6 +192,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbaListaFaltantes = new javax.swing.JTable();
         tipofiltro1 = new javax.swing.JComboBox<>();
+        TxtFiltro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -340,18 +343,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
-            }
-        });
-
-        TxtFiltro.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        TxtFiltro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtFiltroActionPerformed(evt);
-            }
-        });
-        TxtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                TxtFiltroKeyReleased(evt);
             }
         });
 
@@ -676,6 +667,21 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         tipofiltro1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tipofiltro1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
 
+        TxtFiltro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TxtFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxtFiltroActionPerformed(evt);
+            }
+        });
+        TxtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TxtFiltroKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxtFiltroKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -700,8 +706,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 .addGap(234, 234, 234)
                 .addComponent(tipofiltro1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBuscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
@@ -741,9 +747,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipofiltro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipofiltro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -944,28 +950,10 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
     }
 
-//    public joinProductoDetallesFaltantes devuelveObjeto3(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
-//
-//        joinProductoDetallesFaltantes objeto1 = null;
-//
-//        for (int i = 0; i < listarobj.size(); i++) {
-//            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
-//                objeto1 = listarobj.get(i);
-//                break;
-//            }
-//        }
-//
-//        return objeto1;
-//    }
-    private void TxtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFiltroActionPerformed
-
-    }//GEN-LAST:event_TxtFiltroActionPerformed
-
-    private void TxtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyReleased
-
-    }//GEN-LAST:event_TxtFiltroKeyReleased
-
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
+    public void Buscar() {
         String query = "";
 
         query = TxtFiltro.getText() + "%";
@@ -1004,7 +992,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
         Tablas.cargarFiltroProductosNota(t_Nota_faltantes, lista);
         query = "";
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    }
+
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
 
         joinProductoDetallesFaltantes objeto1 = null;
@@ -1117,7 +1106,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_tbaListaFaltantesMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MantenimientoProducto Prod = new MantenimientoProducto(new javax.swing.JFrame(), true,objUsuario);
+        MantenimientoProducto Prod = new MantenimientoProducto(new javax.swing.JFrame(), true, objUsuario);
         Prod.setVisible(true);
         listapro.clear();
         listapro = crud.listarTodoJoinProductos(1);
@@ -1156,6 +1145,21 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     private void txtFechaCreacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaCreacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaCreacionActionPerformed
+
+    private void TxtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFiltroActionPerformed
+
+    }//GEN-LAST:event_TxtFiltroActionPerformed
+
+    private void TxtFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Buscar();
+        }
+    }//GEN-LAST:event_TxtFiltroKeyPressed
+
+    private void TxtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyReleased
+        //        String buscar = filtro.getText();
+        //        Tablas.filtro(buscar, t_Nota_faltantes);
+    }//GEN-LAST:event_TxtFiltroKeyReleased
 
     public static void main(String args[]) {
 

@@ -18,6 +18,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -569,11 +570,11 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         });
         t_Nota_faltantes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                t_Nota_faltantesMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 t_Nota_faltantesMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                t_Nota_faltantesMouseClicked(evt);
             }
         });
         tblProduc.setViewportView(t_Nota_faltantes);
@@ -667,6 +668,9 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         });
         TxtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TxtFiltroKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtFiltroKeyReleased(evt);
             }
@@ -1025,38 +1029,48 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtFiltroKeyReleased
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-//        String f = filtro.getText().toUpperCase();
+
 //        String query = "";
+//
+//        query = TxtFiltro.getText() + "%";
+//
 //        int pos = tipofiltro.getSelectedIndex();
-//        if ("".equals(f)) {
-//            query = fil.comboProductoTodoNotaPedido();
-//        }
 //        if (pos == 0) {
-//            if ("".equals(f)) {
-//                Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-//            } else {
-//                query = fil.comboProductoCodigoNotaPedido() + f;
-//            }
+//            lista = crud.FiltrosProductosNota(query, "TODO");
+//
 //        }
 //        if (pos == 1) {
-//            query = fil.comboProductoNombreNotaPedido() + f + "%'";
+//            lista = crud.FiltrosProductosNota(query, "CODIGO");
+//
 //        }
 //        if (pos == 2) {
-//            query = fil.comboProductoTipoNotaPedido() + f + "%'";
+//            lista = crud.FiltrosProductosNota(query, "NOMBRE");
+//
 //        }
 //        if (pos == 3) {
-//            query = fil.comboProductoMedidaNotaPedido() + f + "%'";
+//            lista = crud.FiltrosProductosNota(query, "TIPO");
+//
 //        }
 //        if (pos == 4) {
-//            query = fil.comboProductoEnvaseNotaPedido() + f + "%'";
+//            lista = crud.FiltrosProductosNota(query, "MEDIDA");
+//
 //        }
 //        if (pos == 5) {
-//            query = fil.comboProductoMarcaNotaPedido() + f + "%'";
-//        }
-//        listar = crud.filtroBusquedaProductoNotaPedido(query);
+//            lista = crud.FiltrosProductosNota(query, "ENVASE");
 //
-//        Tablas.cargarFiltroProductosNota(t_Nota_faltantes, listar);
+//        }
+//        if (pos == 6) {
+//            lista = crud.FiltrosProductosNota(query, "MARCA");
+//
+//        }
+//
+//        TxtFiltro.setText("");
+//
+//        Tablas.cargarFiltroProductosNota(t_Nota_faltantes, lista);
 //        query = "";
+        Buscar();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+    public void Buscar() {
         String query = "";
 
         query = TxtFiltro.getText() + "%";
@@ -1095,8 +1109,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
         Tablas.cargarFiltroProductosNota(t_Nota_faltantes, lista);
         query = "";
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
+    }
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
 
         BigDecimal iva = new BigDecimal("0.00");
@@ -1228,6 +1241,12 @@ public class NotePedidos extends javax.swing.JDialog {
         setVisible(false);
         //        cp.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void TxtFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Buscar();
+        }
+    }//GEN-LAST:event_TxtFiltroKeyPressed
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
 
         joinProductoDetallesFaltantes objeto1 = null;
