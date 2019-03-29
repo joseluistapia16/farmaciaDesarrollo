@@ -5,6 +5,8 @@
  */
 package com.farmacia.entities.mappers;
 
+import com.farmacia.entities1.Cantidad_Ventas;
+import com.farmacia.entities1.Cantidad_compras;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 
@@ -960,6 +962,37 @@ public class EntidadesMappers {
             obj.setDireccion(rs.getString("direccion"));
             obj.setObservacion(rs.getString("observacion"));
             obj.setEstado(rs.getString("Estado"));            
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    public static Cantidad_compras getCantidadComprasFromResultSet(ResultSet rs) {
+        Cantidad_compras obj = new Cantidad_compras();
+        try {
+
+            obj.setId_producto(rs.getLong("id_producto"));
+            obj.setNombre(rs.getString("nombre"));
+            obj.setDescripcion(rs.getString("descripcion"));
+            obj.setCantidad_comprado(rs.getInt("cantidad_comprado"));
+            obj.setTotal(rs.getDouble("total"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+
+    public static Cantidad_Ventas getCantidadVentasFromResultSet(ResultSet rs) {
+        Cantidad_Ventas obj = new Cantidad_Ventas();
+        try {
+
+            obj.setId_productos(rs.getLong("id_productos"));
+            obj.setNombre(rs.getString("nombre"));
+            obj.setDescripcion(rs.getString("descripcion"));
+            obj.setTotal_venta(rs.getInt("cantidad_venta"));
+            obj.setTotal(rs.getDouble("total"));
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
