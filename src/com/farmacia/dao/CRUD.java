@@ -1881,12 +1881,13 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call actualizarPrecioCompra(?,?,?,?,?,?) }");
+                    "{ call actualizarPrecioCompra(?,?,?,?,?,?,?) }");
             prodProAlm.setLong(1, obj.getId_producto());
             prodProAlm.setDouble(2, obj.getPrecio_compra());
             prodProAlm.setDouble(3, obj.getPrecio_venta());
             prodProAlm.setString(4, obj.getFecha_registro());
             prodProAlm.setLong(5, obj.getId_usuario());
+            prodProAlm.setLong(6, obj.getPorcentaje());
             prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
             valor = prodProAlm.getString("valor1");
@@ -4530,4 +4531,94 @@ public class CRUD {
 //        }
 //        return lista;
 //    }
+      public ArrayList<joinProductoDetallesFaltantes> FiltrosProductosNota(String op1, String op2) {
+        ArrayList<joinProductoDetallesFaltantes> lista = new ArrayList<joinProductoDetallesFaltantes>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{call FiltrosProductosNota(?,?)}");
+            prcProcedimientoAlmacenado.setString(1, op1);
+            prcProcedimientoAlmacenado.setString(2, op2);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                joinProductoDetallesFaltantes obj = EntidadesMappers.getJoinDetallesFaltantesFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+
+    }
+      public ArrayList<listarJoinProductosCompras> listarConvertidorProducto(int op) {
+        ArrayList<listarJoinProductosCompras> lista = new ArrayList<listarJoinProductosCompras>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{call listarPoductosCompras(?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                listarJoinProductosCompras obj = EntidadesMappers.getJoinConvertidorProductoFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+
+    }
+      public String iniciarConversion(listarJoinProductosCompras obj1 ,listarJoinProductosCompras obj2,Integer valorA,Integer valorB) {
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement cs = conect.prepareCall(
+                    "{ call convertirStock(?,?,?,?,?) }");
+            cs.setLong(1, obj1.getIdStock());
+            cs.setLong(2, obj2.getIdStock());
+            cs.setInt(3, valorA);
+            cs.setInt(4, valorB);
+            cs.registerOutParameter("valor", Types.VARCHAR);
+            cs.executeUpdate();
+            valor = cs.getString("valor");
+            conect.commit();
+        } catch (SQLException e) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, e);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return valor;
+    }
 }

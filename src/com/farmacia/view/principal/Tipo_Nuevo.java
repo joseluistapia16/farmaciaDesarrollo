@@ -69,7 +69,7 @@ public class Tipo_Nuevo extends javax.swing.JDialog {
             }
         });
 
-        insertar_tf.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        insertar_tf.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         insertar_tf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 insertar_tfFocusLost(evt);

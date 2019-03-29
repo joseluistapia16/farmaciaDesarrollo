@@ -96,7 +96,7 @@ public final class Tipo_Actualizado extends javax.swing.JDialog {
             }
         });
 
-        actualizar_tf.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        actualizar_tf.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         actualizar_tf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 actualizar_tfFocusLost(evt);

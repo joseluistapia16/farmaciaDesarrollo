@@ -28,11 +28,14 @@ public class listarJoinProductosCompras {
     private Long id_usuario;
     private String iva;
     private Long cantidad_minima;
+    private Double precioCompra;
+    private Long cantidadStock;
+    private Long idStock;
     
     public listarJoinProductosCompras() {
     }
 
-    public listarJoinProductosCompras(Long id_productos, String nombreProductos, String descripcion, Date fecha_registro, Double peso, Long id_tipo, String nombreTipo, Long id_medida, String nombreMedida, Long id_envase, String nombreEnvase, Long id_marca, String nombreMarca, Long id_usuario, String iva, Long cantidad_minima) {
+    public listarJoinProductosCompras(Long id_productos, String nombreProductos, String descripcion, Date fecha_registro, Double peso, Long id_tipo, String nombreTipo, Long id_medida, String nombreMedida, Long id_envase, String nombreEnvase, Long id_marca, String nombreMarca, Long id_usuario, String iva, Long cantidad_minima, Double precioCompra, Long cantidadStock, Long idStock) {
         this.id_productos = id_productos;
         this.nombreProductos = nombreProductos;
         this.descripcion = descripcion;
@@ -49,6 +52,9 @@ public class listarJoinProductosCompras {
         this.id_usuario = id_usuario;
         this.iva = iva;
         this.cantidad_minima = cantidad_minima;
+        this.precioCompra = precioCompra;
+        this.cantidadStock = cantidadStock;
+        this.idStock = idStock;
     }
 
     public Long getId_productos() {
@@ -179,6 +185,29 @@ public class listarJoinProductosCompras {
         this.cantidad_minima = cantidad_minima;
     }
 
+    public Double getPrecioCompra() {
+        return precioCompra;
+    }
+
+    public void setPrecioCompra(Double precioCompra) {
+        this.precioCompra = precioCompra;
+    }
+
+    public Long getCantidadStock() {
+        return cantidadStock;
+    }
+
+    public void setCantidadStock(Long cantidadStock) {
+        this.cantidadStock = cantidadStock;
+    }
+
+    public Long getIdStock() {
+        return idStock;
+    }
+
+    public void setIdStock(Long idStock) {
+        this.idStock = idStock;
+    }
     
-       
+   
 }

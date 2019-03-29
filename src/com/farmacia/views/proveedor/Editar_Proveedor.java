@@ -168,7 +168,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         jLabel7.setText("DIRECCION:");
 
         fecha.setEditable(false);
-        fecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        fecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         fecha.setPreferredSize(new java.awt.Dimension(10, 25));
         fecha.addActionListener(new java.awt.event.ActionListener() {
@@ -177,21 +177,21 @@ public class Editar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         nombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 nombreFocusLost(evt);
             }
         });
 
-        contacto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        contacto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         contacto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 contactoFocusLost(evt);
             }
         });
 
-        cbx1.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
+        cbx1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbx1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbx1ActionPerformed(evt);
@@ -202,7 +202,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         jLabel8.setText("CEDULA/RUC:");
 
         cedula.setEditable(false);
-        cedula.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cedula.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         cedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,7 +215,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        dire.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        dire.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         dire.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 direFocusLost(evt);
@@ -241,7 +241,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         imagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imagen.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
-        btnagregarTelf.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnagregarTelf.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnagregarTelf.setText("AGREGAR");
         btnagregarTelf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,9 +249,9 @@ public class Editar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        cbx2.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
+        cbx2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        btnagregarCorreo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnagregarCorreo.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnagregarCorreo.setText("AGREGAR");
         btnagregarCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,8 +302,8 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnagregarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnagregarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbx2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(13, 13, 13))))))
         );
@@ -357,7 +357,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Guardar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        Guardar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         Guardar.setForeground(new java.awt.Color(71, 151, 69));
         Guardar.setText("ACTUALIZAR");
         Guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -366,7 +366,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton4.setText("ATRAS");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -375,7 +375,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         });
 
         btnInactivar.setBackground(new java.awt.Color(204, 0, 0));
-        btnInactivar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnInactivar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         btnInactivar.setForeground(new java.awt.Color(255, 255, 255));
         btnInactivar.setText("INACTIVAR");
         btnInactivar.addActionListener(new java.awt.event.ActionListener() {
@@ -385,7 +385,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         });
 
         Reporte.setBackground(new java.awt.Color(254, 254, 254));
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -401,17 +401,17 @@ public class Editar_Proveedor extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnInactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnInactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

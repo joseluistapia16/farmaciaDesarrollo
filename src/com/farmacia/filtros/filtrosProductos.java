@@ -212,6 +212,7 @@ public class filtrosProductos {
                 + "JOIN medidas me ON me.id_medidas = p.id_medidas "
                 + "JOIN precios pr ON pr.id_producto = p.id_productos "
                 + "WHERE df.estado= 'OK' AND pr.estado ='A' AND p.`id_productos`=";
+
         return query;
     }
 

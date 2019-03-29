@@ -119,11 +119,12 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         Recuperar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         Reporte.setBackground(new java.awt.Color(254, 254, 254));
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,6 +170,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         jLabel7.setText("DIRECCION:");
 
         fecha.setEditable(false);
+        fecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         fecha.setPreferredSize(new java.awt.Dimension(6, 28));
         fecha.addActionListener(new java.awt.event.ActionListener() {
@@ -177,11 +179,13 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             }
         });
 
+        dire.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         dire.setPreferredSize(new java.awt.Dimension(6, 28));
 
+        contacto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         contacto.setPreferredSize(new java.awt.Dimension(6, 28));
 
-        cbx1.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
+        cbx1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbx1.setPreferredSize(new java.awt.Dimension(35, 28));
         cbx1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +193,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             }
         });
 
-        cbx2.setFont(new java.awt.Font("Ubuntu", 0, 13)); // NOI18N
+        cbx2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbx2.setPreferredSize(new java.awt.Dimension(35, 28));
         cbx2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,6 +223,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         jLabel8.setText("CEDULA/RUC:");
 
         cedula.setEditable(false);
+        cedula.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         cedula.setPreferredSize(new java.awt.Dimension(6, 28));
         cedula.addActionListener(new java.awt.event.ActionListener() {
@@ -232,6 +237,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             }
         });
 
+        nombre1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         nombre1.setPreferredSize(new java.awt.Dimension(6, 28));
         nombre1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,7 +352,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Guardar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        Guardar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         Guardar.setText("ACTUALIZAR");
         Guardar.setEnabled(false);
         Guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -355,7 +361,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton4.setText("REGRESAR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -364,7 +370,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         });
 
         Recuperar.setBackground(new java.awt.Color(70, 146, 67));
-        Recuperar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        Recuperar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         Recuperar.setForeground(new java.awt.Color(255, 255, 255));
         Recuperar.setText("ACTIVAR");
         Recuperar.addActionListener(new java.awt.event.ActionListener() {

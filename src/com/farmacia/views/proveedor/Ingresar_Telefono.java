@@ -127,7 +127,7 @@ public class Ingresar_Telefono extends javax.swing.JDialog {
             }
         });
 
-        aceptar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        aceptar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         aceptar.setForeground(new java.awt.Color(52, 130, 46));
         aceptar.setText("ACEPTAR");
         aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +137,7 @@ public class Ingresar_Telefono extends javax.swing.JDialog {
         });
 
         jButton2.setBackground(new java.awt.Color(204, 0, 0));
-        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("CANCELAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +146,7 @@ public class Ingresar_Telefono extends javax.swing.JDialog {
             }
         });
 
-        nuevo1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        nuevo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         nuevo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nuevo1ActionPerformed(evt);
@@ -164,7 +164,7 @@ public class Ingresar_Telefono extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel2.setText("TIPO:");
 
-        cbx1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        cbx1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbx1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "INSTITUCIONAL", "PERSONAL", "OTRO"}));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -173,9 +173,9 @@ public class Ingresar_Telefono extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
@@ -184,10 +184,9 @@ public class Ingresar_Telefono extends javax.swing.JDialog {
                             .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

@@ -94,7 +94,7 @@ public class Consulta_Proveedor_Compra extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton2.setText("ACTUALIZAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +102,7 @@ public class Consulta_Proveedor_Compra extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton3.setText("INACTIVOS");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +110,7 @@ public class Consulta_Proveedor_Compra extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton1.setForeground(new java.awt.Color(70, 154, 66));
         jButton1.setText("NUEVO");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +119,7 @@ public class Consulta_Proveedor_Compra extends javax.swing.JDialog {
             }
         });
 
-        buscar1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        buscar1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buscar1.setPreferredSize(new java.awt.Dimension(6, 28));
         buscar1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -179,7 +179,7 @@ public class Consulta_Proveedor_Compra extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         Reporte.setText("IMPRIMIR");
         Reporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,7 +188,7 @@ public class Consulta_Proveedor_Compra extends javax.swing.JDialog {
         });
 
         jButton4.setBackground(new java.awt.Color(204, 0, 0));
-        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
         jButton4.setForeground(new java.awt.Color(254, 254, 254));
         jButton4.setText("SALIR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {

@@ -383,6 +383,7 @@ public class EntidadesMappers {
             obj.setPrecio_compra(rs.getDouble("precio_compra"));
             obj.setPrecio_venta(rs.getDouble("precio_venta"));
             obj.setEstado(rs.getString("estado"));
+            obj.setPorcentaje(rs.getLong("porcentaje"));
 
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
@@ -895,6 +896,33 @@ public class EntidadesMappers {
             obj.setIva(rs.getString("IVA"));
             obj.setFecha_registroProducto(rs.getString("FECHA_REGISTROPRECIO"));
 
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    public static listarJoinProductosCompras getJoinConvertidorProductoFromResultSet(ResultSet rs) {
+        listarJoinProductosCompras obj = new listarJoinProductosCompras();
+        try {
+            obj.setId_productos(rs.getLong("ID_PRODUCTOS"));
+            obj.setNombreProductos(rs.getString("NOMBRE"));
+            obj.setDescripcion(rs.getString("DESCRIPCION"));
+            obj.setFecha_registro(rs.getDate("FECHA_REGISTRO"));
+            obj.setPeso(rs.getDouble("peso"));
+            obj.setId_tipo(rs.getLong("ID_TIPO"));
+            obj.setNombreTipo(rs.getString("TIPO"));
+            obj.setId_medida(rs.getLong("ID_MEDIDAS"));
+            obj.setNombreMedida(rs.getString("MEDIDA"));
+            obj.setId_envase(rs.getLong("ID_ENVASE"));
+            obj.setNombreEnvase(rs.getString("ENVASE"));
+            obj.setId_marca(rs.getLong("ID_MARCAS"));
+            obj.setNombreMarca(rs.getString("MARCA"));
+            obj.setId_usuario(rs.getLong("ID_USUARIO"));
+            obj.setIva(rs.getString("IVA"));
+            obj.setCantidad_minima(rs.getLong("CANTIDAD_MINIMA"));
+            obj.setPrecioCompra(rs.getDouble("PRECIO_COMPRA"));
+            obj.setCantidadStock(rs.getLong("CANTIDAD"));
+            obj.setIdStock(rs.getLong("ID_STOCK"));
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }

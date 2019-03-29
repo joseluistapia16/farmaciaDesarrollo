@@ -132,9 +132,9 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         });
 
         marca.setEditable(false);
-        marca.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        marca.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
-        txtcantidad.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtcantidad.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtcantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcantidadActionPerformed(evt);
@@ -156,7 +156,7 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         jLabel2.setText("PRODUCTO:");
 
         codigo.setEditable(false);
-        codigo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        codigo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codigoActionPerformed(evt);
@@ -164,13 +164,13 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         });
 
         producto.setEditable(false);
-        producto.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        producto.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel14.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel14.setText("CANTIDAD:");
 
         Medida.setEditable(false);
-        Medida.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        Medida.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         Medida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MedidaActionPerformed(evt);
@@ -189,7 +189,7 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         jLabel10.setText("ENVASE:");
 
         txtEnvase3.setEditable(false);
-        txtEnvase3.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtEnvase3.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtEnvase3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEnvase3ActionPerformed(evt);
@@ -200,7 +200,7 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         jLabel15.setText("TIPO:");
 
         txtTipo.setEditable(false);
-        txtTipo.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtTipo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTipoActionPerformed(evt);
@@ -216,7 +216,7 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         jLabel16.setText("PRECIO:");
 
         txtPrecio.setEditable(false);
-        txtPrecio.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtPrecio.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioActionPerformed(evt);
@@ -229,19 +229,19 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         });
 
         txtIva.setEditable(false);
-        txtIva.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtIva.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel5.setText("VALOR DESCUENTO:");
 
         txtDescuento.setEditable(false);
-        txtDescuento.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtDescuento.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDescuentoKeyTyped(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtDescuentoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescuentoKeyTyped(evt);
             }
         });
 
@@ -261,7 +261,7 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         jLabel19.setText("TOTAL:");
 
         txtTotal.setEditable(false);
-        txtTotal.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtTotal.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel11.setText("$");
@@ -282,7 +282,9 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
             }
         });
 
+        btnSalir.setBackground(new java.awt.Color(153, 0, 51));
         btnSalir.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,13 +298,13 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         jLabel13.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel13.setText("%");
 
-        txtporcentajeDescuento.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtporcentajeDescuento.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtporcentajeDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtporcentajeDescuentoKeyTyped(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtporcentajeDescuentoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtporcentajeDescuentoKeyTyped(evt);
             }
         });
 
@@ -317,7 +319,7 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         jLabel20.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel20.setText("BONO:");
 
-        txtBono.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        txtBono.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         txtBono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBonoActionPerformed(evt);
@@ -338,7 +340,7 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         });
 
         jLabel7.setBackground(new java.awt.Color(2, 184, 184));
-        jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(254, 254, 254));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("EDITAR  CANTIDAD ");
@@ -363,9 +365,9 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,28 +387,18 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addGap(12, 12, 12)
                         .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(producto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Medida, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtporcentajeDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13))
-                    .addComponent(txtEnvase3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBono, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -418,7 +410,18 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(12, 12, 12)
-                        .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(codigo, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Medida, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(producto, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(marca, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtEnvase3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtTipo, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                            .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton1))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -489,7 +492,7 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -500,7 +503,7 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
