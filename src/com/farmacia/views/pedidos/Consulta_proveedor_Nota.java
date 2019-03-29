@@ -297,6 +297,7 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
         buscar1.setText("");
         tabla.setRowSorter(null);
         
+        
         Ingresar_Proveedor_Nota ip = new Ingresar_Proveedor_Nota(new javax.swing.JFrame(), true);
         ip.setVisible(true);
         
