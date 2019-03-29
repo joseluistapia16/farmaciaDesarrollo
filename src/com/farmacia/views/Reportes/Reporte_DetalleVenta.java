@@ -7,8 +7,10 @@ package com.farmacia.views.Reportes;
 
 import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Formulario;
+import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.Detalle_ventas;
+import com.farmacia.fecha.Fecha;
 import com.farmacia.join_entidades.JoinListarCabeceraVenta;
 
 import java.awt.MouseInfo;
@@ -26,10 +28,8 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
     int x, y;
     String buscar = "";
     Formulario F = new Formulario();
-    ArrayList<JoinListarCabeceraVenta> lista = null;
     ArrayList<Detalle_ventas> listadetalles = null;
-    JoinListarCabeceraVenta objeto = null;
-    JoinListarCabeceraVenta cliente = null;
+
 
     /**
      * Creates new form Reporte_DetalleVenta111
@@ -46,7 +46,9 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         objCabecera = Obj;
         llenarDatos();
-//        listadetalles=crud.ListarDetallesVentas(Integer.valueOf(objeto.getId_cabecera_venta().toString()));
+        listadetalles=crud.ListarDetallesVentas(Integer.valueOf(objCabecera.getId_cabecera_venta().toString()));
+        Tablas.cargarListaVentasDetalle(jTable1, listadetalles);
+        
     }
 
     /**
@@ -123,7 +125,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         TxtCliente.setEditable(false);
-        TxtCliente.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtCliente.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -133,7 +135,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel2.setText("CLIENTE:");
 
         TxtCedula.setEditable(false);
-        TxtCedula.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtCedula.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel22.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel22.setText("CI/RUC:");
@@ -178,7 +180,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel11.setText("TIPO DE VENTA:");
 
         TxtFecha.setEditable(false);
-        TxtFecha.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtFecha.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel9.setText("FECHA :");
@@ -192,10 +194,10 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel15.setText("VENTA #");
 
         TxtTipoVenta.setEditable(false);
-        TxtTipoVenta.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtTipoVenta.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         TxtFormaPago.setEditable(false);
-        TxtFormaPago.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
+        TxtFormaPago.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -224,12 +226,6 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -502,7 +498,8 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
             TxtCliente.setText(objCabecera.getNombre_completo_cliente());
             TxtCedula.setText(objCabecera.getCedula_cliente());
             txt_Numero.setText(objCabecera.getMun_venta());
-            TxtFecha.setText(objCabecera.getFecha_creacion());
+            String j = Fecha.getStringFecha1(objCabecera.getFecha_creacion());
+            TxtFecha.setText(j);
             TxtTipoVenta.setText(objCabecera.getTipo_venta());
             TxtFormaPago.setText(objCabecera.getTipo_pago());
             TxtSubConIva.setText(Formato_Numeros.formatoNumero(objCabecera.getSubtotal_con_iva().toString()));
@@ -559,13 +556,13 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TxtCedula;
-    private javax.swing.JTextField TxtCliente;
+    public static javax.swing.JTextField TxtCedula;
+    public static javax.swing.JTextField TxtCliente;
     private javax.swing.JTextField TxtFecha;
     private javax.swing.JTextField TxtFormaPago;
-    private javax.swing.JTextField TxtSubConIva;
-    private javax.swing.JTextField TxtSubSinIva;
-    private javax.swing.JTextField TxtSubtotal;
+    public static javax.swing.JTextField TxtSubConIva;
+    public static javax.swing.JTextField TxtSubSinIva;
+    public static javax.swing.JTextField TxtSubtotal;
     private javax.swing.JTextField TxtTipoVenta;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JLabel jLabel1;
@@ -573,16 +570,16 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
+    public static javax.swing.JLabel jLabel17;
+    public static javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
+    public static javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
+    public static javax.swing.JLabel jLabel21;
+    public static javax.swing.JLabel jLabel22;
+    public static javax.swing.JLabel jLabel23;
+    public static javax.swing.JLabel jLabel24;
+    public static javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -594,9 +591,9 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtDescuento;
-    private javax.swing.JTextField txtIva;
-    private javax.swing.JTextField txtTotal;
+    public static javax.swing.JTextField txtDescuento;
+    public static javax.swing.JTextField txtIva;
+    public static javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txt_Numero;
     // End of variables declaration//GEN-END:variables
 }

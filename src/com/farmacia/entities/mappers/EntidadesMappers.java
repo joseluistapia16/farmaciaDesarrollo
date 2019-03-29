@@ -13,6 +13,7 @@ import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.entities1.Clientes;
 import com.farmacia.entities1.Correo;
 import com.farmacia.entities1.Correo_Cliente;
+import com.farmacia.entities1.Detalle_ventas;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Estado_usuario;
 import com.farmacia.entities1.Faltantes;
@@ -923,6 +924,26 @@ public class EntidadesMappers {
             obj.setPrecioCompra(rs.getDouble("PRECIO_COMPRA"));
             obj.setCantidadStock(rs.getLong("CANTIDAD"));
             obj.setIdStock(rs.getLong("ID_STOCK"));
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
+        public static Detalle_ventas getJoinDetallesVentas(ResultSet rs) {
+        Detalle_ventas obj = new Detalle_ventas();
+        try {
+            obj.setId_detalle_venta(rs.getLong("ID"));
+            obj.setId_cabecera_venta(rs.getLong("ID_CABECERA"));
+            obj.setId_control(rs.getLong("ID_CONTROL"));
+            obj.setId_producto(rs.getLong("CODIGO"));
+            obj.setNombre_producto(rs.getString("DETALLE"));
+            obj.setPrecio(rs.getBigDecimal("PRECIO"));
+            obj.setCantidad(rs.getLong("CANTIDAD"));
+            obj.setSubtotal(rs.getBigDecimal("SUBTOTAL"));
+            obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
+            obj.setIva(rs.getBigDecimal("IVA"));
+            obj.setTotal(rs.getBigDecimal("TOTAL"));
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
