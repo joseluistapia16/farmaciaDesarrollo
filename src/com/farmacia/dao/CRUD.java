@@ -559,7 +559,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call ingresarProducto(?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+                    "{ call ingresarProducto(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setString(1, obj.getNombre());
             prodProAlm.setString(2, obj.getDescripcion());
             prodProAlm.setDate(3, obj.getFecha_registro());
@@ -572,6 +572,7 @@ public class CRUD {
             prodProAlm.setString(10, obj.getIva());
             prodProAlm.setLong(11, obj.getCantidad_minima());
             prodProAlm.setString(12, obj.getReceta());
+            prodProAlm.setLong(13, obj.getDescuento_venta());
             prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
             valor = prodProAlm.getString("valor1");
@@ -2030,7 +2031,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call BuscarIDProductoNuevo(?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+                    "{ call BuscarIDProductoNuevo(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setString(1, obj.getNombre());
             prodProAlm.setString(2, obj.getDescripcion());
             prodProAlm.setDate(3, obj.getFecha_registro());
@@ -2043,6 +2044,7 @@ public class CRUD {
             prodProAlm.setString(10, obj.getIva());
             prodProAlm.setLong(11, obj.getCantidad_minima());
             prodProAlm.setString(12, obj.getReceta());
+            prodProAlm.setLong(13, obj.getDescuento_venta());
             prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
             valor = prodProAlm.getString("valor1");
