@@ -177,6 +177,7 @@ public class Consulta_Clientes extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tabla.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tablaMousePressed(evt);
