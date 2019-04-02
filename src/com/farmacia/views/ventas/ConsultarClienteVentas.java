@@ -203,7 +203,9 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
            
         Ingresar_Cliente_Venta Icv = new Ingresar_Cliente_Venta(new javax.swing.JFrame(), true);
         Icv.setVisible(true);
-
+        
+        
+        listaCliente = crud.ListarTodoClienteVentas("1");
         Tablas.cargarClienteVentas(TablaClienteVentas, listaCliente);
     }//GEN-LAST:event_jButton1ActionPerformed
 

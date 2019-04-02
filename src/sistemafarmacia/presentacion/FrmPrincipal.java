@@ -577,7 +577,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuLaboratorioActionPerformed
 
     private void mnuRegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarVentaActionPerformed
-        MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true);
+        MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true,objUsuario);
         mp.setVisible(true);
 //        MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true);
 //        mp.setVisible(true);

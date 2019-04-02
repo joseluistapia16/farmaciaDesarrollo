@@ -47,6 +47,9 @@ public class MenuPreVentas extends javax.swing.JDialog {
     int x, y;
     Cabecera_ventas objeto = new Cabecera_ventas();
     Detalle_ventas objeto1 = new Detalle_ventas();
+    
+    
+   
 
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -58,6 +61,24 @@ public class MenuPreVentas extends javax.swing.JDialog {
 //        TxtTelefono.setText("*************************************");
         this.setLocationRelativeTo(null);
         TxtDescuentoPorcentaje.setEnabled(false);
+       
+        
+  
+
+    }
+    public MenuPreVentas(java.awt.Frame parent, boolean modal,Listar_usuario objlogin) {
+        super(parent, modal);
+        initComponents();
+//        TxtCedula.setText("9999999999");
+//        TxtNombre.setText("CONSUMIDOR FINAL");
+//        TxtCorreo.setText("*************************************");
+//        TxtDirec.setText("*************************************");
+//        TxtTelefono.setText("*************************************");
+        this.setLocationRelativeTo(null);
+        TxtDescuentoPorcentaje.setEnabled(false);
+        objUsuario = objlogin;
+        
+  
 
     }
 
@@ -671,7 +692,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
             cv.setMun_venta(String.format("%06d", can));
             cv.setId_cliente(objCliente.getId_Clientes());
             cv.setId_usuario(Long.parseLong("36"));
-
+            cv.setId_usuario(objUsuario.getId_sesion());
+//            System.out.println("usuario :" + objUsuario.getApellidos());
             cv.setId_sucursal(Long.parseLong("2"));
             cv.setForma_de_pago(CbxFormaPago.getSelectedItem().toString());
             cv.setTipo_de_venta(CbxTipoVenta.getSelectedItem().toString());
@@ -714,7 +736,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 crud.ActulizarStockVentas(listaStockVentas.get(i));
 
             }
-
+            this.setVisible(false);
             ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
             ov.setVisible(true);
 
