@@ -75,6 +75,7 @@ public class Consulta_Clientes extends javax.swing.JDialog {
         setIconImage(null);
         setIconImages(null);
         setUndecorated(true);
+        setResizable(false);
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 2, true));
         jPanel1.setOpaque(false);

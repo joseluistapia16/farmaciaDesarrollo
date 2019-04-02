@@ -273,7 +273,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,14 +302,15 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
                                     .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nombre1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
+                                .addGap(40, 40, 40)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
                                 .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(72, 72, 72))))))
         );
@@ -361,8 +362,11 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(175, 36, 52));
         jButton4.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(254, 254, 254));
         jButton4.setText("REGRESAR");
+        jButton4.setBorderPainted(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -707,7 +711,7 @@ public void VaciarImagen() {
         ImageIcon icon = new ImageIcon(fot);
         Image img = icon.getImage();
         System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
-        Image newimg = img.getScaledInstance(259, 221, java.awt.Image.SCALE_SMOOTH);
+        Image newimg = img.getScaledInstance(148,147, java.awt.Image.SCALE_SMOOTH);
         ImageIcon newIcono = new ImageIcon(newimg);
         imagen.setIcon(newIcono);
         rutaimagen = fot;
@@ -724,7 +728,7 @@ public void VaciarImagen() {
             imagen.setIcon(new ImageIcon(fot));
             ImageIcon icon = new ImageIcon(fot);
             Image img = icon.getImage();
-            Image newimg = img.getScaledInstance(110,106, java.awt.Image.SCALE_SMOOTH);
+            Image newimg = img.getScaledInstance(148,147, java.awt.Image.SCALE_SMOOTH);
             ImageIcon newIcono = new ImageIcon(newimg);
             imagen.setIcon(newIcono);            
             System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
@@ -745,7 +749,7 @@ public void VaciarImagen() {
             imagen.setIcon(new ImageIcon(path));
             ImageIcon icon = new ImageIcon(path);
             Image img = icon.getImage();
-            Image newimg = img.getScaledInstance(110,106, java.awt.Image.SCALE_SMOOTH);
+            Image newimg = img.getScaledInstance(148,147, java.awt.Image.SCALE_SMOOTH);
             ImageIcon newIcono = new ImageIcon(newimg);
             imagen.setIcon(newIcono);            
             System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
