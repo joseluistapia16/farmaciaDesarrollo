@@ -42,6 +42,7 @@ import javax.swing.Timer;
 public class Agregar_Precios_Productos extends javax.swing.JDialog {
 
     int x, y;
+    
     private Double precio;
     private Double precioCompra;
     private Double precioVenta;
