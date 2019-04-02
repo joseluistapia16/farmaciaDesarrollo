@@ -78,7 +78,7 @@ public class Products extends javax.swing.JDialog {
         cbxMarca.setModel(Formulario.listarComboMarcaPro(listama));
         cbxIva.setModel(Formulario.listarComboIva(listaIva));
         txtFechaActual.setText(FechaActual());
-        txtDescuentoVenta.setText("0");
+      //  txtDescuentoVenta.setText("0");
        usuario.setText(obj.getApellidos()+" "+obj.getNombres());
         id_usuario.setText(obj.getId_sesion().toString());
         Habilitar(false);
@@ -509,7 +509,7 @@ public class Products extends javax.swing.JDialog {
                 p.setNombre(nombre1.getText());
                 p.setDescripcion(txtDescripcion.getText());
                 p.setFecha_registro(Fecha.FechaSql());
-                p.setPeso(Double.parseDouble(txtDescuentoVenta.getText()));
+             //   p.setPeso(Double.parseDouble(txtDescuentoVenta.getText()));
                 p.setId_tipo(id_tipo);
                 p.setId_medidas(id_medida);
                 p.setId_envase(id_envase);
@@ -518,7 +518,7 @@ public class Products extends javax.swing.JDialog {
                 p.setIva(IVA);
                 p.setCantidad_minima(Long.valueOf(txtcantMinima.getText()));
                 p.setReceta(cbxReceta.getSelectedItem().toString());
-                p.setDescuento_venta(Long.valueOf(txtDescuentoVenta.getText()));
+              //  p.setDescuento_venta(Long.valueOf(txtDescuentoVenta.getText()));
                 valor = crud.insertarProductoNuevo(p);
                 JOptionPane.showMessageDialog(this, valor);
 
@@ -526,7 +526,7 @@ public class Products extends javax.swing.JDialog {
                 p2.setNombre(nombre1.getText());
                 p2.setDescripcion(txtDescripcion.getText());
                 p2.setFecha_registro(Fecha.FechaSql());
-                p2.setPeso(Double.parseDouble(txtDescuentoVenta.getText()));
+            //    p2.setPeso(Double.parseDouble(txtDescuentoVenta.getText()));
                 p2.setId_tipo(id_tipo);
                 p2.setId_medidas(id_medida);
                 p2.setId_envase(id_envase);
@@ -535,7 +535,7 @@ public class Products extends javax.swing.JDialog {
                 p2.setIva(IVA);
                 p2.setCantidad_minima(Long.valueOf(txtcantMinima.getText()));
                 p2.setReceta(cbxReceta.getSelectedItem().toString());
-                p2.setDescuento_venta(Long.valueOf(txtDescuentoVenta.getText()));
+            //    p2.setDescuento_venta(Long.valueOf(txtDescuentoVenta.getText()));
                 valorIDProd = crud.BuscarIDProductoNuevo(p2);
                 if (valorIDProd != null) {
                     Habilitar(true);
@@ -662,9 +662,9 @@ public class Products extends javax.swing.JDialog {
         if (txtDescripcion.getText().length() < 5) {
             error = error + "\nDescripcion invalida!";
         }
-        if (txtDescuentoVenta.getText() == null || "".equals(txtDescuentoVenta.getText())) {
-            error = error + "\nCantidad invalida!";
-        }
+////        if (txtDescuentoVenta.getText() == null || "".equals(txtDescuentoVenta.getText())) {
+////            error = error + "\nCantidad invalida!";
+////        }
         int pos = (cbxTipos.getSelectedIndex() - 1);
         if (pos < 0) {
             error = error + "\nTipo de producto invalido !";
