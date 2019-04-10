@@ -1043,6 +1043,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             if (!"".equals(valor)) {
                 JOptionPane.showMessageDialog(null, valor);
                 setVisible(false);
+                
+                MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
+                Man.setVisible(true);
             }
         } else {
 
