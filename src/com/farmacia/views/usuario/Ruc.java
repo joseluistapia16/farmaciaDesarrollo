@@ -174,9 +174,10 @@ public class Ruc extends javax.swing.JDialog {
             setVisible(false);
         }
         }  
-        if (ruc.length() < 10 ) {
-            JOptionPane.showMessageDialog(this, "Ingrese un número de cédula o ruc válido");
-        }if (ruc.length() > 13) {
+//        if (ruc.length() < 10 ) {
+//            JOptionPane.showMessageDialog(this, "Ingrese un número de cédula o ruc válido");
+//        }
+        if (ruc.length() > 13) {
             JOptionPane.showMessageDialog(this, "Ha sobrepasado la cantidad de números válidos");
         }
     }
