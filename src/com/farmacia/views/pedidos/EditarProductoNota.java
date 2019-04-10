@@ -43,7 +43,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
     JoinListarDetalleNotaPedido obj2 = null;
     ArrayList<Iva> IVA = new ArrayList<Iva>();
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
-    BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
+    BigDecimal VGiva = null, VGtotal = null, VGdescuento = null,PrecioOrig=null;
     CRUD crud = new CRUD();
 
     /**
@@ -577,7 +577,10 @@ public class EditarProductoNota extends javax.swing.JDialog {
         BigDecimal PorcentajeDescuento = new BigDecimal("0.00");
         Integer Cant = Integer.parseInt(txtCantidad.getText());
         BigDecimal Cantidad = new BigDecimal(Cant);
-        BigDecimal Precio = new BigDecimal(txtPrecio.getText());
+//        BigDecimal Precio = new BigDecimal(txtPrecio.getText());
+        BigDecimal Precio = new BigDecimal(PrecioOrig.toString());
+        System.out.println("Precio asdaf" + Precio);
+        System.out.println("Preciodsfsdgf" + Precio);
         BigDecimal Subtotal = Cantidad.multiply(Precio);
         BigDecimal Cien = new BigDecimal("100");
         String iva = txtIVA.getText();
@@ -737,43 +740,42 @@ public class EditarProductoNota extends javax.swing.JDialog {
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
-    public void CalcularDescuento() {
-        Integer Cant = Integer.parseInt(txtCantidad.getText());
-        BigDecimal Cantidad = new BigDecimal(Cant);
-        Integer PorcDes = Integer.parseInt(txtporcentajeDescuento.getText());
-        BigDecimal Precio = new BigDecimal(txtPrecio.getText().replace(',', '.'));
-        BigDecimal Subtotal = Cantidad.multiply(Precio);
-        BigDecimal PorcentajeDescuento = new BigDecimal(PorcDes);
-        BigDecimal Cien = new BigDecimal(100);
-        BigDecimal ValorDesc = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
-        txtDescuento.setText(Formato_Numeros.formatoNumero(ValorDesc.toString()));
-        System.out.println("Valor Descuento " + ValorDesc);
-    }
+//    public void CalcularDescuento() {
+//        Integer Cant = Integer.parseInt(txtCantidad.getText());
+//        BigDecimal Cantidad = new BigDecimal(Cant);
+//        Integer PorcDes = Integer.parseInt(txtporcentajeDescuento.getText());
+//        BigDecimal Precio = new BigDecimal(txtPrecio.getText().replace(',', '.'));
+//        BigDecimal Subtotal = Cantidad.multiply(Precio);
+//        BigDecimal PorcentajeDescuento = new BigDecimal(PorcDes);
+//        BigDecimal Cien = new BigDecimal(100);
+//        BigDecimal ValorDesc = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
+//        txtDescuento.setText(Formato_Numeros.formatoNumero(ValorDesc.toString()));
+//        System.out.println("Valor Descuento " + ValorDesc);
+//    }
 
-    public void CalcularTotal() {
-        Integer Cant = Integer.parseInt(txtCantidad.getText());
-        BigDecimal Cantidad = new BigDecimal(Cant);
-        Integer PorcDes = Integer.parseInt(txtporcentajeDescuento.getText());
-        BigDecimal Precio = new BigDecimal(txtPrecio.getText().replace(',', '.'));
-        BigDecimal Subtotal = Cantidad.multiply(Precio);
-        BigDecimal PorcentajeDescuento = new BigDecimal(PorcDes);
-        BigDecimal Cien = new BigDecimal(100);
-        BigDecimal ValorDesc = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
-
-        if (!"NO".equals(txtIVA.getText())) {
-            BigDecimal Iva1 = new BigDecimal(txtIVA.getText());
-            BigDecimal TotalIva = Subtotal.multiply(Iva1);
-            BigDecimal Total = Subtotal.add(TotalIva).subtract(ValorDesc);
-            System.out.println("Total" + Total);
-            txtTotal.setText(Formato_Numeros.formatoNumero(Total.toString()).replace(',', '.'));
-        }
-        if (txtIVA.getText().equals("NO")) {
-            BigDecimal Total = Subtotal.subtract(ValorDesc);
-            System.out.println("Total" + Total);
-            txtTotal.setText(Formato_Numeros.formatoNumero(Total.toString()));
-        }
-    }
-
+//    public void CalcularTotal() {
+//        Integer Cant = Integer.parseInt(txtCantidad.getText());
+//        BigDecimal Cantidad = new BigDecimal(Cant);
+//        Integer PorcDes = Integer.parseInt(txtporcentajeDescuento.getText());
+//        BigDecimal Precio = new BigDecimal(txtPrecio.getText().replace(',', '.'));
+//        BigDecimal Subtotal = Cantidad.multiply(Precio);
+//        BigDecimal PorcentajeDescuento = new BigDecimal(PorcDes);
+//        BigDecimal Cien = new BigDecimal(100);
+//        BigDecimal ValorDesc = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
+//
+//        if (!"NO".equals(txtIVA.getText())) {
+//            BigDecimal Iva1 = new BigDecimal(txtIVA.getText());
+//            BigDecimal TotalIva = Subtotal.multiply(Iva1);
+//            BigDecimal Total = Subtotal.add(TotalIva).subtract(ValorDesc);
+//            System.out.println("Total" + Total);
+//            txtTotal.setText(Formato_Numeros.formatoNumero(Total.toString()).replace(',', '.'));
+//        }
+//        if (txtIVA.getText().equals("NO")) {
+//            BigDecimal Total = Subtotal.subtract(ValorDesc);
+//            System.out.println("Total" + Total);
+//            txtTotal.setText(Formato_Numeros.formatoNumero(Total.toString()));
+//        }
+//    }
     public void CalcularPrecioBono() {
         Integer Cant = Integer.parseInt(txtCantidad.getText());
         BigDecimal Cantidad = new BigDecimal(Cant);
@@ -783,33 +785,33 @@ public class EditarProductoNota extends javax.swing.JDialog {
         if (!"0".equals(txtBono.getText())) {
             BigDecimal Bono = new BigDecimal(txtBono.getText().replace(',', '.'));
             BigDecimal CantBono = Cantidad.add(Bono);
-            BigDecimal TotalPrecioBono = Subtotal.divide(CantBono,7, RoundingMode.HALF_UP);
+            BigDecimal TotalPrecioBono = Subtotal.divide(CantBono, 7, RoundingMode.HALF_UP);
             txtPrecio.setText(Formato_Numeros.formatoNumero(TotalPrecioBono.toString()).replace(',', '.'));
         }
     }
 
-    public void CalcularIva() {
-        Integer Cant = Integer.parseInt(txtCantidad.getText());
-        BigDecimal Cantidad = new BigDecimal(Cant);
-        BigDecimal Precio = new BigDecimal(txtPrecio.getText().replace(',', '.'));
-
-        if (txtIVA.getText() == "NO") {
-            BigDecimal Iva1 = new BigDecimal(0.00);
-            BigDecimal TotalIva = Cantidad.multiply(Precio).multiply(Iva1);
-            txtValorIva.setText(Formato_Numeros.formatoNumero(TotalIva.toString()));
-        }
-        if (!"NO".equals(txtIVA.getText())) {
-            BigDecimal Iva1 = new BigDecimal(txtIVA.getText());
-            BigDecimal TotalIva = Cantidad.multiply(Precio).multiply(Iva1);
-            txtValorIva.setText(Formato_Numeros.formatoNumero(TotalIva.toString()));
-        }
-
-    }
+//    public void CalcularIva() {
+//        Integer Cant = Integer.parseInt(txtCantidad.getText());
+//        BigDecimal Cantidad = new BigDecimal(Cant);
+//        BigDecimal Precio = new BigDecimal(txtPrecio.getText().replace(',', '.'));
+//
+//        if (txtIVA.getText() == "NO") {
+//            BigDecimal Iva1 = new BigDecimal(0.00);
+//            BigDecimal TotalIva = Cantidad.multiply(Precio).multiply(Iva1);
+//            txtValorIva.setText(Formato_Numeros.formatoNumero(TotalIva.toString()));
+//        }
+//        if (!"NO".equals(txtIVA.getText())) {
+//            BigDecimal Iva1 = new BigDecimal(txtIVA.getText());
+//            BigDecimal TotalIva = Cantidad.multiply(Precio).multiply(Iva1);
+//            txtValorIva.setText(Formato_Numeros.formatoNumero(TotalIva.toString()));
+//        }
+//
+//    }
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        CalcularIva();
-        CalcularDescuento();
-        CalcularTotal();
         CalcularPrecioBono();
+
+        Total();
+        btnCalcular.setEnabled(false);
         btnEditar.setEnabled(true);
     }//GEN-LAST:event_btnCalcularActionPerformed
     String CADENA = "";
@@ -928,7 +930,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         try {
             EditarPrecioNotaPedido Pnp = new EditarPrecioNotaPedido(new javax.swing.JFrame(), true, codigo.getText(), producto.getText());
             Pnp.setVisible(true);
-            Pnp.getPrecio();
+            PrecioOrig=Pnp.getPrecio().getPrecio_compra();
             txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
 
             txtBono.setEnabled(true);
