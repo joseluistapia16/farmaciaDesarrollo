@@ -513,10 +513,11 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     }//GEN-LAST:event_preciobaseKeyReleased
 
     private void preciobaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_preciobaseKeyTyped
-        char c = evt.getKeyChar();
-        if (c < '0' || c > '9') {
+         if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
             evt.consume();
-            //            JOptionPane.showMessageDialog(null, "INGRESE NUMEROS");
+        }
+        if (evt.getKeyChar() == '.' && nuevo1.getText().contains(".")) {
+            evt.consume();
         }
     }//GEN-LAST:event_preciobaseKeyTyped
 
