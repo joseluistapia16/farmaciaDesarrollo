@@ -784,6 +784,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
 
         if (!"0".equals(txtBono.getText())) {
             BigDecimal Bono = new BigDecimal(txtBono.getText().replace(',', '.'));
+            System.out.println("bono "+Bono);
             BigDecimal CantBono = Cantidad.add(Bono);
             BigDecimal TotalPrecioBono = Subtotal.divide(CantBono, 7, RoundingMode.HALF_UP);
             txtPrecio.setText(Formato_Numeros.formatoNumero(TotalPrecioBono.toString()).replace(',', '.'));

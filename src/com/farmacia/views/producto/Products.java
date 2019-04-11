@@ -40,7 +40,7 @@ public class Products extends javax.swing.JDialog {
 
     int x, y;
     CRUD crud = new CRUD();
-     String CADENA = "";
+    String CADENA = "";
     ArrayList<TipoProducto> lista = crud.listarTodoTipoProductos1();
     ArrayList<MedidaProducto> listam = crud.listarTodoMedidasProductos();
     ArrayList<EnvaseProducto> listae = crud.listarTodoEnvaseProductos();
@@ -48,9 +48,8 @@ public class Products extends javax.swing.JDialog {
     ArrayList<Iva> listaIva = crud.listarTodoIvaProducto();
     Long id_tipo, id_medida, id_envase, id_marca;
     String error = "", IVA = "", valorIDProd = "";
-    
-            //,RECETA = "";
 
+    //,RECETA = "";
     public Products(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
@@ -64,9 +63,10 @@ public class Products extends javax.swing.JDialog {
         cbxIva.setModel(Formulario.listarComboIva(listaIva));
         txtFechaActual.setText(FechaActual());
         Habilitar(false);
-        
+
     }
-    public Products(java.awt.Frame parent, boolean modal,Listar_usuario obj) {
+
+    public Products(java.awt.Frame parent, boolean modal, Listar_usuario obj) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
@@ -78,11 +78,11 @@ public class Products extends javax.swing.JDialog {
         cbxMarca.setModel(Formulario.listarComboMarcaPro(listama));
         cbxIva.setModel(Formulario.listarComboIva(listaIva));
         txtFechaActual.setText(FechaActual());
-      //  txtDescuentoVenta.setText("0");
-       usuario.setText(obj.getApellidos()+" "+obj.getNombres());
+        //  txtDescuentoVenta.setText("0");
+        usuario.setText(obj.getApellidos() + " " + obj.getNombres());
         id_usuario.setText(obj.getId_sesion().toString());
         Habilitar(false);
-
+        txtUnidades.setEnabled(false);
     }
 
     public void Habilitar(boolean valor) {
@@ -126,6 +126,8 @@ public class Products extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         cbxReceta = new javax.swing.JComboBox<>();
         txtPeso1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtUnidades = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         usuario = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -289,6 +291,7 @@ public class Products extends javax.swing.JDialog {
         cbxReceta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SIN RECETA ", "CON RECETA" }));
 
         txtPeso1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtPeso1.setText("0");
         txtPeso1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPeso1ActionPerformed(evt);
@@ -300,6 +303,25 @@ public class Products extends javax.swing.JDialog {
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPeso1KeyTyped(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("UNIDADES:");
+
+        txtUnidades.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtUnidades.setText("0");
+        txtUnidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUnidadesActionPerformed(evt);
+            }
+        });
+        txtUnidades.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUnidadesKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUnidadesKeyTyped(evt);
             }
         });
 
@@ -349,7 +371,11 @@ public class Products extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPeso1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPeso1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -392,9 +418,13 @@ public class Products extends javax.swing.JDialog {
                     .addComponent(txtcantMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ingresoDePrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPeso1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPeso1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -496,7 +526,7 @@ public class Products extends javax.swing.JDialog {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         String valor = "";
         if (cbxIva.getSelectedIndex() == 0) {
-           
+
             JOptionPane.showMessageDialog(this, "Elija Iva");
             getToolkit().beep();
         } else {
@@ -509,7 +539,7 @@ public class Products extends javax.swing.JDialog {
                 p.setNombre(nombre1.getText());
                 p.setDescripcion(txtDescripcion.getText());
                 p.setFecha_registro(Fecha.FechaSql());
-             //   p.setPeso(Double.parseDouble(txtDescuentoVenta.getText()));
+                p.setPeso(Double.parseDouble(txtPeso1.getText()));
                 p.setId_tipo(id_tipo);
                 p.setId_medidas(id_medida);
                 p.setId_envase(id_envase);
@@ -518,7 +548,7 @@ public class Products extends javax.swing.JDialog {
                 p.setIva(IVA);
                 p.setCantidad_minima(Long.valueOf(txtcantMinima.getText()));
                 p.setReceta(cbxReceta.getSelectedItem().toString());
-              //  p.setDescuento_venta(Long.valueOf(txtDescuentoVenta.getText()));
+                p.setUnidades(Long.valueOf(txtUnidades.getText()));
                 valor = crud.insertarProductoNuevo(p);
                 JOptionPane.showMessageDialog(this, valor);
 
@@ -526,7 +556,7 @@ public class Products extends javax.swing.JDialog {
                 p2.setNombre(nombre1.getText());
                 p2.setDescripcion(txtDescripcion.getText());
                 p2.setFecha_registro(Fecha.FechaSql());
-            //    p2.setPeso(Double.parseDouble(txtDescuentoVenta.getText()));
+                p2.setPeso(Double.parseDouble(txtPeso1.getText()));
                 p2.setId_tipo(id_tipo);
                 p2.setId_medidas(id_medida);
                 p2.setId_envase(id_envase);
@@ -535,7 +565,8 @@ public class Products extends javax.swing.JDialog {
                 p2.setIva(IVA);
                 p2.setCantidad_minima(Long.valueOf(txtcantMinima.getText()));
                 p2.setReceta(cbxReceta.getSelectedItem().toString());
-            //    p2.setDescuento_venta(Long.valueOf(txtDescuentoVenta.getText()));
+                p2.setUnidades(Long.valueOf(txtUnidades.getText()));
+                //    p2.setDescuento_venta(Long.valueOf(txtDescuentoVenta.getText()));
                 valorIDProd = crud.BuscarIDProductoNuevo(p2);
                 if (valorIDProd != null) {
                     Habilitar(true);
@@ -556,8 +587,13 @@ public class Products extends javax.swing.JDialog {
 
     private void cbxMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMedidaActionPerformed
         seleccionId();
+        
     }//GEN-LAST:event_cbxMedidaActionPerformed
-
+    public void validar_unidades() {
+        if (cbxEnvase.getSelectedItem().equals("CAJAS")) {
+            txtUnidades.setEnabled(true);
+        }
+    }
     private void cbxTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTiposActionPerformed
         seleccionId();
     }//GEN-LAST:event_cbxTiposActionPerformed
@@ -592,7 +628,7 @@ public class Products extends javax.swing.JDialog {
 
     private void cbxEnvaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEnvaseActionPerformed
         seleccionId();
-        // System.out.println(" " + listae.get(pos_envase).getId_envase() + " " + listae.get(pos_envase).getNombreEnvase());
+       validar_unidades(); // System.out.println(" " + listae.get(pos_envase).getId_envase() + " " + listae.get(pos_envase).getNombreEnvase());
     }//GEN-LAST:event_cbxEnvaseActionPerformed
 
     private void nombre1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nombre1FocusLost
@@ -642,6 +678,22 @@ public class Products extends javax.swing.JDialog {
     private void txtPeso1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPeso1KeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPeso1KeyReleased
+
+    private void txtUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnidadesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUnidadesActionPerformed
+
+    private void txtUnidadesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadesKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUnidadesKeyReleased
+
+    private void txtUnidadesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnidadesKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || Character.isSpaceChar(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtUnidadesKeyTyped
 //    public void keyTyped(KeyEvent e) {
 //        char caracter = e.getKeyChar();
 //        String P = "..";
@@ -764,6 +816,7 @@ public class Products extends javax.swing.JDialog {
     private javax.swing.JButton ingresoDePrecio;
     private javax.swing.JLabel jLabel1;
     public static javax.swing.JLabel jLabel10;
+    public static javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     public static javax.swing.JLabel jLabel2;
@@ -780,6 +833,7 @@ public class Products extends javax.swing.JDialog {
     public static javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtFechaActual;
     public static javax.swing.JTextField txtPeso1;
+    public static javax.swing.JTextField txtUnidades;
     public static javax.swing.JTextField txtcantMinima;
     public static javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables

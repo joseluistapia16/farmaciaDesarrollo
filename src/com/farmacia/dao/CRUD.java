@@ -575,7 +575,7 @@ public class CRUD {
             prodProAlm.setString(10, obj.getIva());
             prodProAlm.setLong(11, obj.getCantidad_minima());
             prodProAlm.setString(12, obj.getReceta());
-            prodProAlm.setLong(13, obj.getDescuento_venta());
+            prodProAlm.setLong(13, obj.getUnidades());
             prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
             valor = prodProAlm.getString("valor1");
@@ -2047,7 +2047,7 @@ public class CRUD {
             prodProAlm.setString(10, obj.getIva());
             prodProAlm.setLong(11, obj.getCantidad_minima());
             prodProAlm.setString(12, obj.getReceta());
-            prodProAlm.setLong(13, obj.getDescuento_venta());
+            prodProAlm.setLong(13, obj.getUnidades());
             prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
             valor = prodProAlm.getString("valor1");
