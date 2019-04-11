@@ -141,6 +141,8 @@ public class EntidadesMappers {
             obj.setId_usuario(rs.getLong("ID_USUARIO"));
             obj.setIva(rs.getString("IVA"));
             obj.setCantidad_minima(rs.getLong("CANTIDAD_MINIMA"));
+            obj.setReceta(rs.getString("RECETA"));
+            obj.setUnidades(rs.getLong("UNIDADES"));
 
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);

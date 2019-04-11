@@ -31,11 +31,13 @@ public class listarJoinProductosCompras {
     private Double precioCompra;
     private Long cantidadStock;
     private Long idStock;
+    private String receta;
+    private Long unidades;
     
     public listarJoinProductosCompras() {
     }
 
-    public listarJoinProductosCompras(Long id_productos, String nombreProductos, String descripcion, Date fecha_registro, Double peso, Long id_tipo, String nombreTipo, Long id_medida, String nombreMedida, Long id_envase, String nombreEnvase, Long id_marca, String nombreMarca, Long id_usuario, String iva, Long cantidad_minima, Double precioCompra, Long cantidadStock, Long idStock) {
+    public listarJoinProductosCompras(Long id_productos, String nombreProductos, String descripcion, Date fecha_registro, Double peso, Long id_tipo, String nombreTipo, Long id_medida, String nombreMedida, Long id_envase, String nombreEnvase, Long id_marca, String nombreMarca, Long id_usuario, String iva, Long cantidad_minima, Double precioCompra, Long cantidadStock, Long idStock, String receta, Long unidades) {
         this.id_productos = id_productos;
         this.nombreProductos = nombreProductos;
         this.descripcion = descripcion;
@@ -55,6 +57,8 @@ public class listarJoinProductosCompras {
         this.precioCompra = precioCompra;
         this.cantidadStock = cantidadStock;
         this.idStock = idStock;
+        this.receta = receta;
+        this.unidades = unidades;
     }
 
     public Long getId_productos() {
@@ -208,6 +212,22 @@ public class listarJoinProductosCompras {
     public void setIdStock(Long idStock) {
         this.idStock = idStock;
     }
-    
+
+    public String getReceta() {
+        return receta;
+    }
+
+    public void setReceta(String receta) {
+        this.receta = receta;
+    }
+
+    public Long getUnidades() {
+        return unidades;
+    }
+
+    public void setUnidades(Long unidades) {
+        this.unidades = unidades;
+    }
+
    
 }
