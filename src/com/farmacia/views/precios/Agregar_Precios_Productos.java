@@ -119,7 +119,9 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         txtprociento = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtDescuentoVenta = new javax.swing.JTextField();
+        preciobase = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtDescVent = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -205,8 +207,9 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("%");
+        jLabel4.setText("Gan.:");
 
+        txtprociento.setText("0");
         txtprociento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtprocientoKeyReleased(evt);
@@ -219,18 +222,38 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("PRECIO BASE:");
 
-        txtDescuentoVenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtDescuentoVenta.addActionListener(new java.awt.event.ActionListener() {
+        preciobase.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        preciobase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescuentoVentaActionPerformed(evt);
+                preciobaseActionPerformed(evt);
             }
         });
-        txtDescuentoVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+        preciobase.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtDescuentoVentaKeyReleased(evt);
+                preciobaseKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDescuentoVentaKeyTyped(evt);
+                preciobaseKeyTyped(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("DESC. VENTA:");
+
+        txtDescVent.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtDescVent.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDescVentFocusLost(evt);
+            }
+        });
+        txtDescVent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescVentActionPerformed(evt);
+            }
+        });
+        txtDescVent.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescVentKeyTyped(evt);
             }
         });
 
@@ -240,27 +263,31 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addGap(62, 62, 62))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nuevo1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                    .addComponent(nuevo2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                    .addComponent(txtDescuentoVenta))
+                    .addComponent(txtDescVent, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(nuevo1, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                        .addComponent(nuevo2)
+                        .addComponent(preciobase)))
                 .addGap(19, 19, 19)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtprociento, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,11 +296,11 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDescuentoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(preciobase, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtprociento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,16 +311,20 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
                     .addComponent(nuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescVent, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,11 +356,14 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
             setPrecio(Double.valueOf(nuevo1.getText()));
             Precios pr = new Precios();
             pr.setId_producto(id_producto);
+            
+            pr.setPrecio_base(Double.valueOf(preciobase.getText()));
             pr.setPrecio_compra(Double.valueOf(nuevo1.getText()));
             pr.setPrecio_venta(Double.valueOf(nuevo2.getText()));
             pr.setFecha_registro(FechaActual);
             pr.setId_usuario(Long.valueOf("2"));
             pr.setPorcentaje(Long.valueOf(txtprociento.getText()));
+            pr.setDescuentoVenta(Long.valueOf(txtDescVent.getText()));
             valor = crud.actualizarPrecioCompra(pr);
             if (valor != null) {
                 JOptionPane.showMessageDialog(null, valor);
@@ -461,11 +495,11 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtprocientoKeyReleased
 
-    private void txtDescuentoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoVentaActionPerformed
+    private void preciobaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_preciobaseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescuentoVentaActionPerformed
+    }//GEN-LAST:event_preciobaseActionPerformed
 
-    private void txtDescuentoVentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoVentaKeyReleased
+    private void preciobaseKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_preciobaseKeyReleased
 //        int largor = txtDescuentoVenta.getText().length();
 //        if (largor > 2) {
 //            if (Integer.parseInt(txtDescuentoVenta.getText()) == 100) {
@@ -477,15 +511,31 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
 //                JOptionPane.showMessageDialog(null, "INGRESE VALOR CORRECTO");
 //            }
 //        }
-    }//GEN-LAST:event_txtDescuentoVentaKeyReleased
+    }//GEN-LAST:event_preciobaseKeyReleased
 
-    private void txtDescuentoVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoVentaKeyTyped
+    private void preciobaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_preciobaseKeyTyped
         char c = evt.getKeyChar();
         if (c < '0' || c > '9') {
             evt.consume();
             //            JOptionPane.showMessageDialog(null, "INGRESE NUMEROS");
         }
-    }//GEN-LAST:event_txtDescuentoVentaKeyTyped
+    }//GEN-LAST:event_preciobaseKeyTyped
+
+    private void txtDescVentFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescVentFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescVentFocusLost
+
+    private void txtDescVentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescVentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescVentActionPerformed
+
+    private void txtDescVentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescVentKeyTyped
+       char c = evt.getKeyChar();
+        if (!Character.isDigit(c) || Character.isSpaceChar(c)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDescVentKeyTyped
      
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
@@ -551,10 +601,12 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nuevo1;
     private javax.swing.JTextField nuevo2;
-    public static javax.swing.JTextField txtDescuentoVenta;
+    public static javax.swing.JTextField preciobase;
+    private javax.swing.JTextField txtDescVent;
     private javax.swing.JTextField txtprociento;
     // End of variables declaration//GEN-END:variables
 }

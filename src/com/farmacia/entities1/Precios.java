@@ -12,6 +12,7 @@ package com.farmacia.entities1;
 public class Precios {
     private Long id_precio;
     private Long id_producto;
+    private Double precio_base;
     private Double precio_compra;
     private Double precio_venta;
     private String estado;
@@ -19,13 +20,15 @@ public class Precios {
     private String fecha_registro;
     private Long id_usuario;
     private Long porcentaje;
+    private Long descuentoVenta;
 
     public Precios() {
     }
 
-    public Precios(Long id_precio, Long id_producto, Double precio_compra, Double precio_venta, String estado, String estadoPrecio, String fecha_registro, Long id_usuario, Long porcentaje) {
+    public Precios(Long id_precio, Long id_producto, Double precio_base, Double precio_compra, Double precio_venta, String estado, String estadoPrecio, String fecha_registro, Long id_usuario, Long porcentaje, Long descuentoVenta) {
         this.id_precio = id_precio;
         this.id_producto = id_producto;
+        this.precio_base = precio_base;
         this.precio_compra = precio_compra;
         this.precio_venta = precio_venta;
         this.estado = estado;
@@ -33,6 +36,7 @@ public class Precios {
         this.fecha_registro = fecha_registro;
         this.id_usuario = id_usuario;
         this.porcentaje = porcentaje;
+        this.descuentoVenta = descuentoVenta;
     }
 
     public Long getId_precio() {
@@ -49,6 +53,14 @@ public class Precios {
 
     public void setId_producto(Long id_producto) {
         this.id_producto = id_producto;
+    }
+
+    public Double getPrecio_base() {
+        return precio_base;
+    }
+
+    public void setPrecio_base(Double precio_base) {
+        this.precio_base = precio_base;
     }
 
     public Double getPrecio_compra() {
@@ -107,5 +119,13 @@ public class Precios {
         this.porcentaje = porcentaje;
     }
 
-   
+    public Long getDescuentoVenta() {
+        return descuentoVenta;
+    }
+
+    public void setDescuentoVenta(Long descuentoVenta) {
+        this.descuentoVenta = descuentoVenta;
+    }
+
+    
 }

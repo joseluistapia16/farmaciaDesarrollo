@@ -1887,13 +1887,15 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call actualizarPrecioCompra(?,?,?,?,?,?,?) }");
+                    "{ call actualizarPrecioCompra(?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setLong(1, obj.getId_producto());
-            prodProAlm.setDouble(2, obj.getPrecio_compra());
-            prodProAlm.setDouble(3, obj.getPrecio_venta());
-            prodProAlm.setString(4, obj.getFecha_registro());
-            prodProAlm.setLong(5, obj.getId_usuario());
-            prodProAlm.setLong(6, obj.getPorcentaje());
+            prodProAlm.setDouble(2, obj.getPrecio_base());
+            prodProAlm.setDouble(3, obj.getPrecio_compra());
+            prodProAlm.setDouble(4, obj.getPrecio_venta());
+            prodProAlm.setString(5, obj.getFecha_registro());
+            prodProAlm.setLong(6, obj.getId_usuario());
+            prodProAlm.setLong(7, obj.getPorcentaje());
+            prodProAlm.setLong(8, obj.getDescuentoVenta());
             prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
             valor = prodProAlm.getString("valor1");
