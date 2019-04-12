@@ -173,6 +173,11 @@ public class Stock_Productos extends javax.swing.JDialog {
         jLabel3.setText("TOTAL:");
 
         jButton3.setText("Por Caducar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -258,7 +263,7 @@ public class Stock_Productos extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ArrayList tabla = new ArrayList();
         for (int i = 0; i < tabla_stock.getRowCount(); i++) {
-            ClaseReporte tabla1 = new ClaseReporte(tabla_stock.getValueAt(i, 0).toString(), tabla_stock.getValueAt(i, 1).toString(), tabla_stock.getValueAt(i, 2).toString(), tabla_stock.getValueAt(i, 3).toString(), tabla_stock.getValueAt(i, 4).toString(), tabla_stock.getValueAt(i, 5).toString(),txtTotal.getText());
+            ClaseReporte tabla1 = new ClaseReporte(tabla_stock.getValueAt(i, 0).toString(), tabla_stock.getValueAt(i, 1).toString(), tabla_stock.getValueAt(i, 2).toString(), tabla_stock.getValueAt(i, 3).toString(), tabla_stock.getValueAt(i, 4).toString(), tabla_stock.getValueAt(i, 5).toString(), txtTotal.getText());
             tabla.add(tabla1);
         }
         try {
@@ -290,6 +295,11 @@ public class Stock_Productos extends javax.swing.JDialog {
 //            Logger.getLogger(Stock_Productos.class.getName()).log(Level.SEVERE, null, e);
 //        }
     }//GEN-LAST:event_tabla_stockMousePressed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Productos_Caducar Pc = new Productos_Caducar(new javax.swing.JFrame(), true);
+        Pc.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

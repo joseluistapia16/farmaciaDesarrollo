@@ -21,7 +21,9 @@ public class Productos_Caducar extends javax.swing.JDialog {
      */
     public Productos_Caducar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        setUndecorated(true);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
