@@ -1013,7 +1013,7 @@ public static String FechaActual() {
 
     public int confirmarAccion() {
         String[] options = {"Colocar Fecha Caducidad","Eliminar", "Editar"};
-        int seleccion = JOptionPane.showOptionDialog(null, "Desea Eliminar o Editar?", "EDITAR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        int seleccion = JOptionPane.showOptionDialog(null, "Desea Eliminar , Editar o Añadir Fecha de Caducidad?", "EDITAR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         System.out.println("la eleccion es " + seleccion);
         return seleccion;
     }

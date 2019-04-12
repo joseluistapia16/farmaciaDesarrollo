@@ -154,7 +154,7 @@ public class FechaCaducidad extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void btnSalir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir3ActionPerformed
-        setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnSalir3ActionPerformed
 
     /**
