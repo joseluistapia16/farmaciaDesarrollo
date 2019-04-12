@@ -1126,10 +1126,10 @@ public class Tablas {
     public void visualizar(JTable tabla, Long id) {
 
         tabla.setDefaultRenderer(Object.class, new Render());
-        DefaultTableModel dt = new DefaultTableModel(new String[]{"CODIGO PRECIO", "CODIGO PRODUCTO", "PRECIO COMPRA", "PRECIO VENTA", "PORCENTAJE", "UTILIDAD", "ESTADO",}, 0) {
+        DefaultTableModel dt = new DefaultTableModel(new String[]{"COD.PRECIO", "COD.PRODUCTO","PRE.FARMAC.", "PRE.COMPRA", "PRE.VENTA", "PORCENTAJE", "GANANCIA", "ESTADO",}, 0) {
 
             Class[] types = new Class[]{
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class,java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1146,26 +1146,36 @@ public class Tablas {
         Consultas llamar = new Consultas();
         Precios vo = new Precios();
         //Long id= Long.valueOf("22");
-        ArrayList<Precios> list = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado,porcentaje FROM `precios` WHERE `id_producto`= " + id);
+        ArrayList<Precios> list = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado,porcentaje FROM `precios` WHERE `id_producto`= " + id);
 
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
                 // model.addRow(new Object[]{});
-                Object fila[] = new Object[7];
+                Object fila[] = new Object[8];
                 vo = list.get(i);
                 fila[0] = vo.getId_precio();
                 fila[1] = vo.getId_producto();
-                fila[2] = vo.getPrecio_compra();
-                fila[3] = vo.getPrecio_venta();
-                fila[4] = vo.getPorcentaje();
-                Double por = Double.parseDouble(vo.getPorcentaje().toString()) / 100;
-                Double envio = vo.getPrecio_compra() * por;
-                fila[5] = Formato_Numeros.formatoNumero(envio.toString());
+                fila[2] = vo.getPrecio_base();
+                fila[3] = vo.getPrecio_compra();
+                fila[4] = vo.getPrecio_venta();
+                fila[5] = vo.getPorcentaje();
+                Double por=0.00; Double envio=0.00;
+                if(vo.getPorcentaje()==0){
+                    Double valor1= vo.getPrecio_compra();
+                    Double valor2= vo.getPrecio_venta();
+                    envio= valor2-valor1;
+                }
+                if(vo.getPorcentaje()!=0){
+                 por = Double.parseDouble(vo.getPorcentaje().toString()) / 100;
+                 envio = vo.getPrecio_compra() * por;
+                }
+                
+                fila[6] = Formato_Numeros.formatoNumero(envio.toString());
                 String ac = (String) vo.getEstado();
                 if ("A".equals(ac)) {
-                    fila[6] = true;
+                    fila[7] = true;
                 } else {
-                    fila[6] = false;
+                    fila[7] = false;
                 }
                 //  fila[5] = btn_visualizar;
 

@@ -70,7 +70,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         id_pro = id_pro1;
         System.out.println("id:pro " + id_pro);
         llenarDatos(producto1);
-        listaPrecios= llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado,porcentaje FROM `precios` WHERE `id_producto`= " + id_pro);
+        listaPrecios= llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado,porcentaje FROM `precios` WHERE `id_producto`= " + id_pro);
  
         t.visualizar(jtbPrecios,id_pro);
         //FECHA DEL SISTEMA
@@ -321,7 +321,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         
         id_precio = ic.getId_precio();
         listaPrecios.clear();
-        listaPrecios=llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado,porcentaje FROM `precios` WHERE `id_producto`= " + id_pro);
+        listaPrecios=llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado,porcentaje FROM `precios` WHERE `id_producto`= " + id_pro);
         t.visualizar(jtbPrecios,id_pro);
 //        System.out.println(objeto.getId_precio()+"  "+objeto.getPrecio_compra());
     }//GEN-LAST:event_agregarCompraActionPerformed
@@ -406,7 +406,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         Editar_Precio_Productos ic = new Editar_Precio_Productos(new javax.swing.JFrame(), true, id_pro,objeto);
         ic.setVisible(true);
         listaPrecios.clear();
-        listaPrecios=llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado FROM `precios` WHERE `id_producto`= " + id_pro);
+        listaPrecios=llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado FROM `precios` WHERE `id_producto`= " + id_pro);
         t.visualizar(jtbPrecios,id_pro);
         }else{
         JOptionPane.showMessageDialog(this, "escoja una fila");
@@ -425,7 +425,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         Editar_Precio_Productos ic = new Editar_Precio_Productos(new javax.swing.JFrame(), true, id_pro,objeto);
         ic.setVisible(true);
         listaPrecios.clear();
-        listaPrecios=llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_compra`,`precio_venta`, estado FROM `precios` WHERE `id_producto`= " + id_pro);
+        listaPrecios=llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado FROM `precios` WHERE `id_producto`= " + id_pro);
          t.visualizar(jtbPrecios,id_pro);
 //        id_precio = ic.getId_precio();
 //        listaPrecios.clear();
