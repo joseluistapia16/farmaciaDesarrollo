@@ -602,10 +602,15 @@
                                                       <Component id="TxtProdIva" min="-2" pref="100" max="-2" attributes="0"/>
                                                       <Component id="TxtProdDescuento" min="-2" pref="100" max="-2" attributes="0"/>
                                                       <Component id="TxtProdtotal" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                                      <Component id="TxtDescuentoPorcentaje" min="-2" pref="100" max="-2" attributes="0"/>
                                                       <Component id="TxtProdSubtotal" min="-2" pref="100" max="-2" attributes="0"/>
                                                       <Component id="TxtProdCantidad" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                                                       <Component id="TxtProdPrecio" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                                      <Component id="TxtProdNombre" min="-2" pref="137" max="-2" attributes="0"/>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="TxtDescuentoPorcentaje" min="-2" pref="100" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
@@ -620,8 +625,6 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel13" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="TxtProdNombre" min="-2" pref="137" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="BtnBuscarprodnombre" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -658,6 +661,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="TxtDescuentoPorcentaje" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="jButton2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -831,6 +835,14 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="%DESCUENTO:"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="editar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

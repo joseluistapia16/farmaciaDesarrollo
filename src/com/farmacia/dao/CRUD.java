@@ -27,6 +27,7 @@ import com.farmacia.entities1.Faltantes;
 import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
+import com.farmacia.entities1.ListarAdministrador;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
@@ -4909,4 +4910,38 @@ public class CRUD {
         }
         return lista;
     }
+    
+        public ArrayList<ListarAdministrador> ListarAdministradorAccesos(int op) {
+        ArrayList<ListarAdministrador> lista = new ArrayList<ListarAdministrador>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call ListarAdministrador(?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                ListarAdministrador obj = EntidadesMappers.getListarAdministradorFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+    
+    
 }

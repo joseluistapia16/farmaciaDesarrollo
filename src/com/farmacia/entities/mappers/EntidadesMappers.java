@@ -22,6 +22,7 @@ import com.farmacia.entities1.Faltantes;
 import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
+import com.farmacia.entities1.ListarAdministrador;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
@@ -149,7 +150,6 @@ public class EntidadesMappers {
         }
         return obj;
     }
-    
 
     public static TipoProducto getTipoProductoFromResultSet(ResultSet rs) {
         TipoProducto obj = new TipoProducto();
@@ -197,6 +197,7 @@ public class EntidadesMappers {
         }
         return obj;
     }
+
     public static Iva getIvaProductoFromResultSet(ResultSet rs) {
         Iva obj = new Iva();
         try {
@@ -440,6 +441,7 @@ public class EntidadesMappers {
         }
         return obj;
     }
+
     public static JoinListarNotaPedidosCabecera getListadoCabeceraNotaPedidoEnComprasFromResultSet(ResultSet rs) {
         JoinListarNotaPedidosCabecera obj = new JoinListarNotaPedidosCabecera();
         try {
@@ -466,7 +468,8 @@ public class EntidadesMappers {
         }
         return obj;
     }
-     public static JoinListarDetalleNotaPedido getDetallePedidosFromResultSet(ResultSet rs) {
+
+    public static JoinListarDetalleNotaPedido getDetallePedidosFromResultSet(ResultSet rs) {
         JoinListarDetalleNotaPedido obj = new JoinListarDetalleNotaPedido();
         try {
             obj.setId_detalle_nota_pedido(rs.getLong("ID_DETALLE_NOTA_PEDIDOS"));
@@ -490,7 +493,8 @@ public class EntidadesMappers {
         }
         return obj;
     }
-     public static JoinListarDetalleNotaPedido getDetallePedidoEnCompraFromResultSet(ResultSet rs) {
+
+    public static JoinListarDetalleNotaPedido getDetallePedidoEnCompraFromResultSet(ResultSet rs) {
         JoinListarDetalleNotaPedido obj = new JoinListarDetalleNotaPedido();
         try {
             obj.setId_detalle_nota_pedido(rs.getLong("ID_DETALLE_NOTA_PEDIDOS"));
@@ -602,58 +606,55 @@ public class EntidadesMappers {
         }
         return obj;
     }
+
     public static fc_localidad_guayas getLocalidadGuayasFromResultSet(ResultSet rs) {
         fc_localidad_guayas obj = new fc_localidad_guayas();
         try {
             obj.setId_localidad_guayas(rs.getLong("ID_LOCALIDAD_GUAYAS"));
             obj.setLocalidad(rs.getString("LOCALIDAD"));
-            
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-    
+
     public static Genero getGeneroFromResultSet(ResultSet rs) {
         Genero obj = new Genero();
         try {
             obj.setId_genero(rs.getLong("Id_genero"));
             obj.setGenero(rs.getString("genero"));
-            
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-    
+
     public static Rol_U getRolFromResultSet(ResultSet rs) {
         Rol_U obj = new Rol_U();
         try {
             obj.setId_rol(rs.getLong("id_rol"));
             obj.setCargo(rs.getString("cargo"));
-            
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-    
-            public static Estado_usuario getEstadoUsuarioFromResultSet(ResultSet rs) {
+
+    public static Estado_usuario getEstadoUsuarioFromResultSet(ResultSet rs) {
         Estado_usuario obj = new Estado_usuario();
         try {
             obj.setId_estado(rs.getLong("id_estado"));
             obj.setEstado(rs.getString("estado"));
-            
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-            
+
     public static Punto_venta getPuntoVentaFromResultSet(ResultSet rs) {
         Punto_venta obj = new Punto_venta();
         try {
@@ -662,13 +663,13 @@ public class EntidadesMappers {
             obj.setLocalidad(rs.getString("localidad"));
             obj.setDireccion(rs.getString("direccion"));
             obj.setObservacion(rs.getString("observacion"));
-            obj.setEstado(rs.getString("Estado"));            
+            obj.setEstado(rs.getString("Estado"));
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-    
+
     public static Nombre_local getListarLocalFromResultSet(ResultSet rs) {
         Nombre_local obj = new Nombre_local();
         try {
@@ -683,7 +684,7 @@ public class EntidadesMappers {
         }
         return obj;
     }
-    
+
     public static Listar_usuario getUsuarioFromResultSet(ResultSet rs) {
         Listar_usuario obj = new Listar_usuario();
         try {
@@ -706,17 +707,17 @@ public class EntidadesMappers {
             obj.setId_genero(rs.getLong("id_genero"));
             obj.setId_rol(rs.getLong("id_rol"));
             obj.setRuta_imagen(rs.getString("ruta_imagen"));
-         
+
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-    
+
     /////////// mapper identidad listar producto ventas
     public static JoinListarProductosVentas getJoinTodosProductosVentasFromResultSet(ResultSet rs) {
         JoinListarProductosVentas obj = new JoinListarProductosVentas();
-       
+
         try {
             obj.setId_control(rs.getLong("Control"));
             obj.setId_producto(rs.getLong("Codigo"));
@@ -735,20 +736,21 @@ public class EntidadesMappers {
             obj.setIva(rs.getString("Iva"));
             //obj.setId_precio(rs.getLong("ID_PRECIO"));
             obj.setPrecio_venta(rs.getBigDecimal("Precio de Venta"));
+            obj.setDescuento(rs.getLong("Descuento de Venta"));
             obj.setPrecio_compra(rs.getBigDecimal("Precio de Compra"));
-            
 
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
+
     /////////// mapper identidad listar cliente ventas
     public static Persona getTodosClienteVentasFromResultSet(ResultSet rs) {
         Persona obj = new Persona();
-       
+
         try {
-    
+
             obj.setId_Clientes(rs.getLong("Codigo"));
             obj.setCedula(rs.getString("Cedula"));
             obj.setNombre(rs.getString("Nombre"));
@@ -756,14 +758,13 @@ public class EntidadesMappers {
             obj.setDireccion(rs.getString("Direccion"));
             obj.setStr_telefono(rs.getString("Telefono"));
             obj.setStr_correo(rs.getString("correo"));
-     
-            
 
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
+
     public static Iva getIva(ResultSet rs) {
         Iva obj = new Iva();
         try {
@@ -773,10 +774,11 @@ public class EntidadesMappers {
             obj.setId_usuario(rs.getLong("id_usuario"));
 
         } catch (Exception ex) {
-            
+
         }
         return obj;
     }
+
     public static Productos_Stock getStockProductosFromResultSet(ResultSet rs) {
         Productos_Stock obj = new Productos_Stock();
         try {
@@ -791,27 +793,27 @@ public class EntidadesMappers {
             obj.setMedida(rs.getString("MEDIDA"));
             obj.setEnvase(rs.getString("ENVASE"));
             obj.setMarca(rs.getString("MARCA"));
-             obj.setCantidad(rs.getLong("CANTIDAD"));
+            obj.setCantidad(rs.getLong("CANTIDAD"));
 
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-    
-       public static StockVentas getStockVentasFromResultSet(ResultSet rs) {
+
+    public static StockVentas getStockVentasFromResultSet(ResultSet rs) {
         StockVentas obj = new StockVentas();
         try {
             obj.setId_control(rs.getLong("id_control"));
             obj.setCantidad(rs.getLong("cantidad"));
 
-
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
-       public static JoinListarNotaPedidosCabecera getListadoCabeceraNotaPedidoEnComprasRangoFechaFromResultSet(ResultSet rs) {
+
+    public static JoinListarNotaPedidosCabecera getListadoCabeceraNotaPedidoEnComprasRangoFechaFromResultSet(ResultSet rs) {
         JoinListarNotaPedidosCabecera obj = new JoinListarNotaPedidosCabecera();
         try {
 //   id_cabecera_nota_pedidos id_proveedor  fecha_creacion estado plazo forma_pago iva descuento total
@@ -837,8 +839,9 @@ public class EntidadesMappers {
         }
         return obj;
     }
-       //////////////Venta
-       public static JoinListarCabeceraVenta getListadoCabeceraVentaFromResultSet(ResultSet rs) {
+    //////////////Venta
+
+    public static JoinListarCabeceraVenta getListadoCabeceraVentaFromResultSet(ResultSet rs) {
         JoinListarCabeceraVenta obj = new JoinListarCabeceraVenta();
         try {
             obj.setId_cabecera_venta(rs.getLong("ID"));
@@ -866,10 +869,10 @@ public class EntidadesMappers {
         }
         return obj;
     }
-       
-       public static Faltantes getJoinFaltantesCantidadFromResultSet(ResultSet rs) {
+
+    public static Faltantes getJoinFaltantesCantidadFromResultSet(ResultSet rs) {
         Faltantes obj = new Faltantes();
-       try { 
+        try {
             obj.setId_detalle_faltantes(rs.getLong("ID_DETALLE_FALTANTES"));
             obj.setId_producto(rs.getLong("id_producto"));
             obj.setNombre(rs.getString("NOMBRE"));
@@ -879,15 +882,16 @@ public class EntidadesMappers {
             obj.setMarcas(rs.getString("MARCAS"));
             obj.setDescripcion(rs.getString("DESCRIPCION"));
 //            obj.setTotal(rs.getInt("TOTAL"));
-                } catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
-    
-       }
-           public static ListarJoinPrecioNotaPedido getJoinListarPrecioNotaFromResultSet(ResultSet rs) {
+
+    }
+
+    public static ListarJoinPrecioNotaPedido getJoinListarPrecioNotaFromResultSet(ResultSet rs) {
         ListarJoinPrecioNotaPedido obj = new ListarJoinPrecioNotaPedido();
-        try {        
+        try {
             obj.setId_precio(rs.getLong("ID_PRECIO"));
             obj.setNombre(rs.getString("NOMBRE"));
             obj.setDescripcion(rs.getString("DESCRIPCION"));
@@ -908,6 +912,7 @@ public class EntidadesMappers {
         }
         return obj;
     }
+
     public static listarJoinProductosCompras getJoinConvertidorProductoFromResultSet(ResultSet rs) {
         listarJoinProductosCompras obj = new listarJoinProductosCompras();
         try {
@@ -935,8 +940,8 @@ public class EntidadesMappers {
         }
         return obj;
     }
-    
-        public static Detalle_ventas getJoinDetallesVentas(ResultSet rs) {
+
+    public static Detalle_ventas getJoinDetallesVentas(ResultSet rs) {
         Detalle_ventas obj = new Detalle_ventas();
         try {
             obj.setId_detalle_venta(rs.getLong("ID"));
@@ -955,8 +960,8 @@ public class EntidadesMappers {
         }
         return obj;
     }
-        
-        public static Punto_venta_usuario getPuntoVentaUsuarioFromResultSet(ResultSet rs) {
+
+    public static Punto_venta_usuario getPuntoVentaUsuarioFromResultSet(ResultSet rs) {
         Punto_venta_usuario obj = new Punto_venta_usuario();
         try {
             obj.setId_punto_venta(rs.getLong("id_punto_venta"));
@@ -964,12 +969,13 @@ public class EntidadesMappers {
             obj.setLocalidad(rs.getString("localidad"));
             obj.setDireccion(rs.getString("direccion"));
             obj.setObservacion(rs.getString("observacion"));
-            obj.setEstado(rs.getString("Estado"));            
+            obj.setEstado(rs.getString("Estado"));
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
         return obj;
     }
+
     public static Cantidad_compras getCantidadComprasFromResultSet(ResultSet rs) {
         Cantidad_compras obj = new Cantidad_compras();
         try {
@@ -1001,4 +1007,20 @@ public class EntidadesMappers {
         }
         return obj;
     }
+
+    public static ListarAdministrador getListarAdministradorFromResultSet(ResultSet rs) {
+        ListarAdministrador obj = new ListarAdministrador();
+        try {
+
+            obj.setCorreo(rs.getString("CORREO"));
+            obj.setPassword(rs.getString("PASSWORD"));
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+
 }
