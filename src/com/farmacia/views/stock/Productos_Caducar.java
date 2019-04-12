@@ -153,6 +153,7 @@ public class Productos_Caducar extends javax.swing.JDialog {
 
     private void tabla_stockMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_stockMousePressed
 
+        
     }//GEN-LAST:event_tabla_stockMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
