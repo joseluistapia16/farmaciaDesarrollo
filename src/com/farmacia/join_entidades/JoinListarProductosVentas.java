@@ -31,6 +31,7 @@ public class JoinListarProductosVentas {
     private BigDecimal precio_venta;
     private Long id_descuento;
     private BigDecimal descuento_venta;
+    private Long descuento;
     private String iva;
     private BigDecimal precio_compra;
     private BigDecimal descuento_compra;
@@ -42,7 +43,7 @@ public class JoinListarProductosVentas {
         
     }
 
-    public JoinListarProductosVentas(Long id_control, Long id_producto, String producto_nombre, String producto_descripcion, Long id_tipo, String tipo_nombre, Long id_medida, String medida_nombre, Long id_envase, String envase_nombre, Long id_marca, String marca_nombre, Long id_stock, Long stock, Long id_precio, BigDecimal precio_venta, Long id_descuento, BigDecimal descuento_venta, String iva, BigDecimal precio_compra, BigDecimal descuento_compra, String estado) {
+    public JoinListarProductosVentas(Long id_control, Long id_producto, String producto_nombre, String producto_descripcion, Long id_tipo, String tipo_nombre, Long id_medida, String medida_nombre, Long id_envase, String envase_nombre, Long id_marca, String marca_nombre, Long id_stock, Long stock, Long id_precio, BigDecimal precio_venta, Long id_descuento, BigDecimal descuento_venta, Long descuento, String iva, BigDecimal precio_compra, BigDecimal descuento_compra, String estado) {
         this.id_control = id_control;
         this.id_producto = id_producto;
         this.producto_nombre = producto_nombre;
@@ -61,6 +62,7 @@ public class JoinListarProductosVentas {
         this.precio_venta = precio_venta;
         this.id_descuento = id_descuento;
         this.descuento_venta = descuento_venta;
+        this.descuento = descuento;
         this.iva = iva;
         this.precio_compra = precio_compra;
         this.descuento_compra = descuento_compra;
@@ -211,6 +213,14 @@ public class JoinListarProductosVentas {
         this.descuento_venta = descuento_venta;
     }
 
+    public Long getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(Long descuento) {
+        this.descuento = descuento;
+    }
+
     public String getIva() {
         return iva;
     }
@@ -243,10 +253,5 @@ public class JoinListarProductosVentas {
         this.estado = estado;
     }
 
-   
-
     
-
-
-
 }

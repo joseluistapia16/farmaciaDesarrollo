@@ -900,7 +900,10 @@ public static String FechaActual() {
             int sele = confirmarAccion();
             i = tbaListaComprasB.getSelectedRow();
             detalle = devuelveObjetoDetalle(tbaListaComprasB.getValueAt(i, 0).toString(), lista3);
-            if (sele == 0) {
+            if(sele ==0){
+                FechaCaducidad fc = new FechaCaducidad(new javax.swing.JFrame(), true);
+                fc.setVisible(true);            
+            }else if (sele == 1) {
                 // System.out.println("id detalle nota pedido"+detalle.getId_detalle_nota_pedido()+detalle.getCantidad()+detalle.getPrecio()+detalle.getTotal()+" "+detalle.getId_precio()+detalle.getId_cabecera_nota_pedido());
                 String valor = crud.eliminardetalleCompra(detalle);
                 if (valor != null) {
@@ -1008,8 +1011,8 @@ public static String FechaActual() {
     }
 
     public int confirmarAccion() {
-        String[] options = {"Eliminar", "Editar"};
-        int seleccion = JOptionPane.showOptionDialog(null, "Desea Eliminar o Editar?", "EDITAR", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        String[] options = {"Colocar Fecha Caducidad","Eliminar", "Editar"};
+        int seleccion = JOptionPane.showOptionDialog(null, "Desea Añadir Fecha de Caducidad,Editar  ,Eliminar o Editar?", "Colocar Fecha Caducidad", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         System.out.println("la eleccion es " + seleccion);
         return seleccion;
     }
