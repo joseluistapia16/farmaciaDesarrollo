@@ -33,12 +33,14 @@ public class Listar_usuario {
     private String ip_publico;
     private String usuario_equipo;
     private String dir_ip_completa;
-    
+    private Long rol_anterior;
+    private String desde;
+    private String hasta;
 
     public Listar_usuario() {
     }
 
-    public Listar_usuario(Long id_sesion, String fecha_registro, String cedula, String apellidos, String nombres, String direccion, String telefono, String convencional, String correo, String password, Long id_rol, String ruta_imagen, Long id_usuario_registro, String cargo, String genero, String discapacidad, String porcentaje, String observacion, String estado, Long id_genero, Long id_estado, String ip_equipo, String ip_publico, String usuario_equipo, String dir_ip_completa) {
+    public Listar_usuario(Long id_sesion, String fecha_registro, String cedula, String apellidos, String nombres, String direccion, String telefono, String convencional, String correo, String password, Long id_rol, String ruta_imagen, Long id_usuario_registro, String cargo, String genero, String discapacidad, String porcentaje, String observacion, String estado, Long id_genero, Long id_estado, String ip_equipo, String ip_publico, String usuario_equipo, String dir_ip_completa, Long rol_anterior, String desde, String hasta) {
         this.id_sesion = id_sesion;
         this.fecha_registro = fecha_registro;
         this.cedula = cedula;
@@ -64,8 +66,13 @@ public class Listar_usuario {
         this.ip_publico = ip_publico;
         this.usuario_equipo = usuario_equipo;
         this.dir_ip_completa = dir_ip_completa;
+        this.rol_anterior = rol_anterior;
+        this.desde = desde;
+        this.hasta = hasta;
     }
 
+    
+    
     public Long getId_sesion() {
         return id_sesion;
     }
@@ -266,4 +273,28 @@ public class Listar_usuario {
         this.dir_ip_completa = dir_ip_completa;
     }
 
+    public Long getRol_anterior() {
+        return rol_anterior;
+    }
+
+    public void setRol_anterior(Long rol_anterior) {
+        this.rol_anterior = rol_anterior;
+    }
+
+    public String getDesde() {
+        return desde;
+    }
+
+    public void setDesde(String desde) {
+        this.desde = desde;
+    }
+
+    public String getHasta() {
+        return hasta;
+    }
+
+    public void setHasta(String hasta) {
+        this.hasta = hasta;
+    }
+    
 }

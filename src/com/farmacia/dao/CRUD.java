@@ -78,7 +78,40 @@ public class CRUD {
     Conexion con = new Conexion();
 
     String query;
-
+    
+    public String Ingresar_Permiso(Listar_usuario lus){
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call fc_permiso_temporal(?,?,?,?,?)}");
+            pro.setLong(1, lus.getId_sesion());
+            pro.setString(2, lus.getCargo());
+            pro.setString(3, lus.getDesde());
+            pro.setString(4, lus.getHasta());    
+            pro.registerOutParameter("salida", Types.VARCHAR);
+            pro.executeUpdate();
+            valor = pro.getString("salida");
+            pro.executeUpdate();
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
     public void insertarListaFaltantes(ArrayList<String> queryL) {
         try {
             conect = con.conectar();
@@ -92,7 +125,7 @@ public class CRUD {
         }
 
     }
-
+    
     public String insertarCabeceraCompras(Cabecera_compra obj) {
         String valor = "";
         try {
