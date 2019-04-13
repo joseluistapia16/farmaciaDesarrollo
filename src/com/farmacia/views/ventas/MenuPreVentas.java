@@ -47,8 +47,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
     int x, y;
     Cabecera_ventas objeto = new Cabecera_ventas();
     Detalle_ventas objeto1 = new Detalle_ventas();
-    
-    
 
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -67,9 +65,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdDescuento.setEnabled(false);
         TxtProdIva.setEnabled(false);
         TxtProdtotal.setEnabled(false);
-        
-        
-        
+
     }
 
     public MenuPreVentas(java.awt.Frame parent, boolean modal, Listar_usuario objlogin) {
@@ -90,8 +86,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdDescuento.setEnabled(false);
         TxtProdIva.setEnabled(false);
         TxtProdtotal.setEnabled(false);
-        
-        
 
     }
 
@@ -708,7 +702,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
             Cabecera_ventas cv = new Cabecera_ventas();
             String id_cab;
-            int can ;
+            int can;
             String query = "SELECT COUNT(*)+1 AS 'cantidad' FROM cabecera_venta";
             can = crud.obtenerNumeroOrdenes(query);
 
@@ -1092,7 +1086,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private void TxtDescuentoPorcentajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtDescuentoPorcentajeKeyTyped
 
         char car = evt.getKeyChar();
-        if (car < '0' || car > '9') {
+        if (car < '0' || car > '9' ) {
             evt.consume();
         }
 
@@ -1169,17 +1163,20 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        VerificarAcceso va = new VerificarAcceso(new javax.swing.JFrame(), true);
-        
-        va.setVisible(true);
-        
 
-            
-        
-        
-        
-        
+        if (!TxtProdSubtotal.getText().equals("")) {
+
+            VerificarAcceso va = new VerificarAcceso(new javax.swing.JFrame(), true);
+
+            va.setVisible(true);
+
+            if (va.devolverBandera().equals("si")) {
+                TxtDescuentoPorcentaje.setEditable(true);
+            }
+
+        }
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

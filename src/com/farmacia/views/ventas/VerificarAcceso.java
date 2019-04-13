@@ -8,24 +8,22 @@ package com.farmacia.views.ventas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.ListarAdministrador;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author admin1
  */
 public class VerificarAcceso extends javax.swing.JDialog {
-
-    
     CRUD crud = new CRUD();
-    ArrayList<ListarAdministrador> ListaAdmin = null;
-    
-    
+    ArrayList<ListarAdministrador> ListarAdmin = null;
+    String objeto1="";
     public VerificarAcceso(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        
-        ListaAdmin = crud.ListarAdministradorAccesos(1);
+
+        ListarAdmin = crud.ListarAdministradorAccesos(1);
     }
 
     /**
@@ -42,6 +40,7 @@ public class VerificarAcceso extends javax.swing.JDialog {
         TxtCorreo = new javax.swing.JTextField();
         TxtPassword = new javax.swing.JTextField();
         BtnVerificar = new javax.swing.JButton();
+        BtnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -56,12 +55,19 @@ public class VerificarAcceso extends javax.swing.JDialog {
             }
         });
 
+        BtnSalir.setText("salir");
+        BtnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -75,7 +81,9 @@ public class VerificarAcceso extends javax.swing.JDialog {
                                 .addComponent(TxtPassword))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(139, 139, 139)
-                        .addComponent(BtnVerificar)))
+                        .addComponent(BtnVerificar)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -90,7 +98,9 @@ public class VerificarAcceso extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(BtnVerificar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnVerificar)
+                    .addComponent(BtnSalir))
                 .addGap(42, 42, 42))
         );
 
@@ -98,11 +108,46 @@ public class VerificarAcceso extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerificarActionPerformed
+
         
-        //        if(ListaAdmin)
+         objeto1 = "no";
+
+         
+         
+        for (int i = 0; i < ListarAdmin.size(); i++) {
+
+            if (ListarAdmin.get(i).getCorreo().equals(TxtCorreo.getText()) && ListarAdmin.get(i).getPassword().equals(TxtPassword.getText())) {
+
+                objeto1 = "si";
+                
+
+                this.setVisible(false);
+
+            } else {
+                objeto1 = "no";
+  
+                
+                JOptionPane.showMessageDialog(rootPane, "Usuario o Clave  erroneo");
+            }
+
+        }
         
+        
+
+
     }//GEN-LAST:event_BtnVerificarActionPerformed
 
+    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_BtnSalirActionPerformed
+
+    
+   public String devolverBandera(){
+       return objeto1;
+   }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -146,6 +191,7 @@ public class VerificarAcceso extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnSalir;
     private javax.swing.JButton BtnVerificar;
     private javax.swing.JTextField TxtCorreo;
     private javax.swing.JTextField TxtPassword;
