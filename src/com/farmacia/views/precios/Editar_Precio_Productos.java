@@ -66,6 +66,7 @@ public class Editar_Precio_Productos extends javax.swing.JDialog {
     }
 
     private void llenar() {
+        
         nuevo1.setText(precios.getPrecio_compra().toString());
         nuevo2.setText(precios.getPrecio_venta().toString());
 

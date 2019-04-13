@@ -391,6 +391,7 @@ public class EntidadesMappers {
             obj.setPrecio_venta(rs.getDouble("precio_venta"));
             obj.setEstado(rs.getString("estado"));
             obj.setPorcentaje(rs.getLong("porcentaje"));
+            obj.setDescuentoVenta(rs.getLong("descuentoVenta"));
 
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
