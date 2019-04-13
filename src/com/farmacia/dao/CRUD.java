@@ -4943,6 +4943,36 @@ public class CRUD {
         }
         return lista;
     }
+    public String InsertarfechaCad(DetalleNotaPedido det) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call insertar_fecha_caducidad(?,?,?)}");
+            pro.setString(1, det.getFecha_caducidad());
+            pro.setLong(2, det.getId_detalle_nota_pedidos());
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
     
         public ArrayList<ListarAdministrador> ListarAdministradorAccesos(int op) {
         ArrayList<ListarAdministrador> lista = new ArrayList<ListarAdministrador>();
