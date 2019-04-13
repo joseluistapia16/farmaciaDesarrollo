@@ -33,8 +33,7 @@ public final class Frm_CargarSistema extends javax.swing.JFrame {
     public Frm_CargarSistema() {
         setUndecorated(true);
         initComponents();
-        Image logof = new ImageIcon(System.getProperty("user.dir")+"/src/Frm/imagen/Asofar.jpeg").getImage();
-        
+        Image logof = new ImageIcon(System.getProperty("user.dir")+"/src/Frm/imagen/Asofar.jpeg").getImage();        
         this.setIconImage(logof);
         setLocationRelativeTo(null);
         carga_pb.setStringPainted(true);
@@ -54,28 +53,58 @@ public final class Frm_CargarSistema extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        carga_pb = new javax.swing.JProgressBar();
+        jPanel1 = new javax.swing.JPanel();
         lbImagen = new javax.swing.JLabel();
+        carga_pb = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        carga_pb.setBackground(java.awt.Color.black);
-        carga_pb.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        carga_pb.setForeground(new java.awt.Color(153, 0, 0));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+
+        carga_pb.setBackground(new java.awt.Color(254, 254, 254));
+        carga_pb.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        carga_pb.setForeground(new java.awt.Color(12, 25, 168));
+        carga_pb.setBorderPainted(false);
         carga_pb.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 carga_pbStateChanged(evt);
             }
         });
-        getContentPane().add(carga_pb, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 287, 730, -1));
-        getContentPane().add(lbImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 290));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(carga_pb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(lbImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(carga_pb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
         public void imagenes(){
-        Image logof = new ImageIcon(System.getProperty("user.dir")+"/src/Frm/imagen/fondofinal.jpg").getImage();
+        Image logof = new ImageIcon(System.getProperty("user.dir")+"/src/img/logoasofar.jpg").getImage();
         Icon fondoLogo = new ImageIcon(logof.getScaledInstance(lbImagen.getWidth(), lbImagen.getHeight(), Image.SCALE_DEFAULT));
         lbImagen.setIcon(fondoLogo);
         this.repaint();
@@ -132,6 +161,7 @@ public final class Frm_CargarSistema extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar carga_pb;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbImagen;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,18 +5,32 @@
  */
 package com.farmacia.views.permisos;
 
+import com.farmacia.conponentes.Filtros_modulo_seguridad;
+import com.farmacia.conponentes.Tablas;
+import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.Listar_usuario;
+import java.util.ArrayList;
+import com.farmacia.views.permisos.Permiso;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author admin1
  */
 public class ConsultaUsuarios extends javax.swing.JDialog {
-
-    /**
-     * Creates new form ConsultaUsuarios
-     */
+    int x,y;
+    CRUD crud = new CRUD();
+    ArrayList<Listar_usuario> listar = null;
+    ArrayList<Listar_usuario> listar2 = null;
+    Listar_usuario objeto = null;
+    Filtros_modulo_seguridad fil = new Filtros_modulo_seguridad();
     public ConsultaUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        listar = crud.get_listar_usuario();
+        Tablas.cargarusuario(jtUsuario, listar);
+        
     }
 
     /**
@@ -33,8 +47,11 @@ public class ConsultaUsuarios extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtUsuario = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        txtfiltro = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
@@ -69,7 +86,7 @@ public class ConsultaUsuarios extends javax.swing.JDialog {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
         );
 
         jLabel1.setBackground(new java.awt.Color(0, 153, 153));
@@ -79,11 +96,31 @@ public class ConsultaUsuarios extends javax.swing.JDialog {
         jLabel1.setText("USUARIOS");
         jLabel1.setOpaque(true);
 
+        txtfiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfiltroActionPerformed(evt);
+            }
+        });
+        txtfiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtfiltroKeyReleased(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel2.setText("BUSCAR:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -94,12 +131,16 @@ public class ConsultaUsuarios extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addContainerGap(173, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(59, 59, 59)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(82, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,36 +151,59 @@ public class ConsultaUsuarios extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    public Listar_usuario devuelveObjeto(String datos, ArrayList<Listar_usuario> listarobj) {
+        Listar_usuario objeto1 = null;
+        for (int i = 0; i < listarobj.size(); i++) {
+            if (datos.equals(listarobj.get(i).getId_sesion().toString())) {
+                objeto1 = listarobj.get(i);
+                break;
+            }
+        }
+        return objeto1;
+    }
     private void jtUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtUsuarioMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jtUsuarioMouseClicked
 
     private void jtUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtUsuarioMousePressed
-        /*int i = 0;
+        int i = 0;
         try {
             if (evt.getClickCount() == 2) {
                 i = jtUsuario.getSelectedRow();
                 objeto = devuelveObjeto(jtUsuario.getValueAt(i, 0).toString(), listar);
                 if (objeto != null) {
                     System.out.println("holaaaaa");
-                    actualizar_usuario acc = new actualizar_usuario(new javax.swing.JFrame(), true, objeto);
-                    acc.setVisible(true);
+                    Permiso framepermiso = new Permiso(new javax.swing.JFrame(), true, objeto);
+                    framepermiso.setVisible(true);
                     listar.clear();
                     listar = crud.get_listar_usuario();
                     Tablas.cargarJoinUsuario(jtUsuario, listar);
+                    dispose();
                 }
 
             }
         } catch (Exception e) {
-            Logger.getLogger(Mostrar_usuario.class.getName()).log(Level.SEVERE, null, e);
-        }*/
+            Logger.getLogger(ConsultaUsuarios.class.getName()).log(Level.SEVERE, null, e);
+        }
     }//GEN-LAST:event_jtUsuarioMousePressed
+
+    private void txtfiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfiltroActionPerformed
+
+    private void txtfiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyReleased
+        String buscar = txtfiltro.getText();
+        Tablas.filtro(buscar,jtUsuario);
+    }//GEN-LAST:event_txtfiltroKeyReleased
 
     /**
      * @param args the command line arguments
@@ -185,9 +249,11 @@ public class ConsultaUsuarios extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtUsuario;
+    private javax.swing.JTextField txtfiltro;
     // End of variables declaration//GEN-END:variables
 }

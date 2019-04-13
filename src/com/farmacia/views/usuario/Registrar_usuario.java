@@ -278,6 +278,11 @@ public class Registrar_usuario extends javax.swing.JDialog {
 
         cbRol.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbRolActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -589,6 +594,10 @@ public class Registrar_usuario extends javax.swing.JDialog {
             Habilitar(false);
         }
     }//GEN-LAST:event_txtCedulaKeyReleased
+
+    private void cbRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbRolActionPerformed
 
     public void VaciarImagen() {
         // String fil = "\\G:\\sin-imagen.png";

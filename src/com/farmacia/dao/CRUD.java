@@ -79,7 +79,40 @@ public class CRUD {
     Conexion con = new Conexion();
 
     String query;
-
+    
+    public String Ingresar_Permiso(Listar_usuario lus){
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call fc_permiso_temporal(?,?,?,?,?)}");
+            pro.setLong(1, lus.getId_sesion());
+            pro.setString(2, lus.getCargo());
+            pro.setString(3, lus.getDesde());
+            pro.setString(4, lus.getHasta());    
+            pro.registerOutParameter("salida", Types.VARCHAR);
+            pro.executeUpdate();
+            valor = pro.getString("salida");
+            pro.executeUpdate();
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
     public void insertarListaFaltantes(ArrayList<String> queryL) {
         try {
             conect = con.conectar();
@@ -93,7 +126,7 @@ public class CRUD {
         }
 
     }
-
+    
     public String insertarCabeceraCompras(Cabecera_compra obj) {
         String valor = "";
         try {
@@ -1126,8 +1159,8 @@ public class CRUD {
 //        }
 //        return lista;
 //    }
-    public ArrayList<FaltantesCabeceraDetalles> filtroBusqueda(String query) {//piguiFaltantes
-        ArrayList<FaltantesCabeceraDetalles> lista = new ArrayList<FaltantesCabeceraDetalles>();
+    public ArrayList<Faltantes> filtroBusqueda(String query) {//piguiFaltantes
+        ArrayList<Faltantes> lista = new ArrayList<Faltantes>();
 
         try {
             conect = con.conectar();
@@ -1138,7 +1171,7 @@ public class CRUD {
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
-                FaltantesCabeceraDetalles obj = EntidadesMappers.getJoinTodosProductosFaltantesFromResultSet(rs);
+                Faltantes obj = EntidadesMappers.getJoinTodosProductosFaltantesFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();
@@ -4909,6 +4942,36 @@ public class CRUD {
             }
         }
         return lista;
+    }
+    public String InsertarfechaCad(DetalleNotaPedido det) {
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call insertar_fecha_caducidad(?,?,?)}");
+            pro.setString(1, det.getFecha_caducidad());
+            pro.setLong(2, det.getId_detalle_nota_pedidos());
+            pro.registerOutParameter("valor", Types.VARCHAR);
+            pro.executeUpdate();
+            //pro.execute();
+            valor = pro.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
     }
     
         public ArrayList<ListarAdministrador> ListarAdministradorAccesos(int op) {

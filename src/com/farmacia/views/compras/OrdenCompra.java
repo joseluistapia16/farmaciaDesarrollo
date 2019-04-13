@@ -901,7 +901,7 @@ public static String FechaActual() {
             i = tbaListaComprasB.getSelectedRow();
             detalle = devuelveObjetoDetalle(tbaListaComprasB.getValueAt(i, 0).toString(), lista3);
             if(sele ==0){
-                FechaCaducidad fc = new FechaCaducidad(new javax.swing.JFrame(), true);
+                FechaCaducidad fc = new FechaCaducidad(new javax.swing.JFrame(), true,detalle);
                 fc.setVisible(true);            
             }else if (sele == 1) {
                 // System.out.println("id detalle nota pedido"+detalle.getId_detalle_nota_pedido()+detalle.getCantidad()+detalle.getPrecio()+detalle.getTotal()+" "+detalle.getId_precio()+detalle.getId_cabecera_nota_pedido());
