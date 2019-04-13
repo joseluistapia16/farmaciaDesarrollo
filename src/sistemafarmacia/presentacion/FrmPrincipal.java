@@ -49,7 +49,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     public FrmPrincipal(Listar_usuario obj2, String tipo) {
         initComponents();
         if ("ADMINISTRADOR".equals(tipo)) {
-
         } else {
             if ("VENDEDOR".equals(tipo)) {
                 menuProducto.setVisible(false);
@@ -159,6 +158,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jMenu5.setText("jMenu5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -205,7 +205,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnGenVenta.setText("Generar Venta");
+        btnGenVenta.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnGenVenta.setText("GENERAR VENTA");
         btnGenVenta.setFocusable(false);
         btnGenVenta.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnGenVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -214,7 +215,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnProducto.setText("Productos");
+        btnProducto.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnProducto.setText("PRODUCTOS");
         btnProducto.setFocusable(false);
         btnProducto.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -223,7 +225,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnClientes.setText("Clientes");
+        btnClientes.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnClientes.setText("CLIENTES");
         btnClientes.setFocusable(false);
         btnClientes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -232,7 +235,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnProveedores.setText("Proveedores");
+        btnProveedores.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnProveedores.setText("PROVEEDORES");
         btnProveedores.setFocusable(false);
         btnProveedores.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnProveedores.addActionListener(new java.awt.event.ActionListener() {
@@ -241,8 +245,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnEmpelados.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnEmpelados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/Activar.png"))); // NOI18N
-        btnEmpelados.setText("Empleados");
+        btnEmpelados.setText("EMPLEADOS");
         btnEmpelados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEmpeladosActionPerformed(evt);
@@ -261,10 +266,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEmpelados, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEmpelados, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGenVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addComponent(btnGenVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnlBannerLayout.setVerticalGroup(
             pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,20 +278,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addGroup(pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBannerLayout.createSequentialGroup()
                         .addGroup(pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnGenVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnEmpelados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEmpelados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGenVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        menuProducto.setText("Productos");
+        menuProducto.setText("PRODUCTOS");
+        menuProducto.setToolTipText("");
+        menuProducto.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
 
-        jMenu6.setText("Componentes");
+        jMenu6.setText("COMPONENTES");
+        jMenu6.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
 
-        jMenuItem2.setText("Envases");
+        jMenuItem2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem2.setText("ENVASES");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -294,7 +304,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem2);
 
-        jMenuItem3.setText("Marcas");
+        jMenuItem3.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem3.setText("MARCAS");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -302,7 +313,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem3);
 
-        jMenuItem4.setText("Medidas");
+        jMenuItem4.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem4.setText("MEDIDAS");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -310,7 +322,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem4);
 
-        jMenuItem5.setText("Tipo de Producto");
+        jMenuItem5.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem5.setText("CATEGORIAS");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -318,7 +331,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem5);
 
-        mnuLaboratorio.setText("Laboratorio");
+        mnuLaboratorio.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        mnuLaboratorio.setText("LABORATORIOS");
         mnuLaboratorio.setToolTipText("");
         mnuLaboratorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,6 +341,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(mnuLaboratorio);
 
+        jmIva.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jmIva.setText("IVA");
         jmIva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,7 +353,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         menuProducto.add(jMenu6);
         menuProducto.add(jSeparator2);
 
-        jMenuItem7.setText("Mantenimiento");
+        jMenuItem7.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem7.setText("MANTENIMIENTO");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -348,14 +364,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuProducto);
 
-        jmLocal.setText("Usuario");
+        jmLocal.setText("USUARIO");
+        jmLocal.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jmLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmLocalActionPerformed(evt);
             }
         });
 
-        jmLocal2.setText("Local");
+        jmLocal2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jmLocal2.setText("LOCAL");
         jmLocal2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmLocal2ActionPerformed(evt);
@@ -363,7 +381,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmLocal.add(jmLocal2);
 
-        jmEmpleados.setText("Empleados");
+        jmEmpleados.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jmEmpleados.setText("EMPLEADOS");
         jmEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmEmpleadosActionPerformed(evt);
@@ -371,14 +390,17 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmLocal.add(jmEmpleados);
 
+        jMenuItem16.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jMenuItem16.setText("PERMISOS");
         jmLocal.add(jMenuItem16);
 
         jMenuBar1.add(jmLocal);
 
-        jmVenta.setText("Ventas");
+        jmVenta.setText("VENTAS");
+        jmVenta.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
 
-        mnuRegistrarVenta.setText("Registrar Venta");
+        mnuRegistrarVenta.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        mnuRegistrarVenta.setText("REGISTRAR VENTA");
         mnuRegistrarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuRegistrarVentaActionPerformed(evt);
@@ -386,7 +408,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmVenta.add(mnuRegistrarVenta);
 
-        mnuCliente.setText("Clientes");
+        mnuCliente.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        mnuCliente.setText("CLIENTES");
         mnuCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuClienteActionPerformed(evt);
@@ -394,7 +417,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmVenta.add(mnuCliente);
 
-        jMenuItem1.setText("Lista de Ventas");
+        jMenuItem1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem1.setText("LISTA DE VENTAS");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -404,9 +428,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jmVenta);
 
-        jmCompras.setText("Compras");
+        jmCompras.setText("COMPRAS");
+        jmCompras.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
 
-        mnuRegistrarVenta1.setText("Registrar Nota Pedido");
+        mnuRegistrarVenta1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        mnuRegistrarVenta1.setText("REGISTRAR NOTA DE PEDIDO");
         mnuRegistrarVenta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuRegistrarVenta1ActionPerformed(evt);
@@ -414,7 +440,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmCompras.add(mnuRegistrarVenta1);
 
-        mnuCliente1.setText("Proveedores");
+        mnuCliente1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        mnuCliente1.setText("PROVEEDORES");
         mnuCliente1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuCliente1ActionPerformed(evt);
@@ -422,7 +449,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmCompras.add(mnuCliente1);
 
-        jMenuItem8.setText("Registrar Compra");
+        jMenuItem8.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem8.setText("REGISTRAR COMPRA");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
@@ -430,7 +458,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmCompras.add(jMenuItem8);
 
-        jMenuItem9.setText("Mantenimiento Nota Pedido");
+        jMenuItem9.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem9.setText("MANTENIMIENTO NOTA PEDIDO");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem9ActionPerformed(evt);
@@ -438,7 +467,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmCompras.add(jMenuItem9);
 
-        jMenuItem12.setText("Productos Faltantes");
+        jMenuItem12.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem12.setText("PRODUCTOS FALTANTES");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem12ActionPerformed(evt);
@@ -448,9 +478,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jmCompras);
 
-        jMenu1.setText("Stock");
+        jMenu1.setText("STOCK");
+        jMenu1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
 
-        jMenuItem13.setText("Productos en Stock");
+        jMenuItem13.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem13.setText("PRODUCTOS EN STOCK");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem13ActionPerformed(evt);
@@ -460,9 +492,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jmDevoluciones.setText("Devoluciones");
+        jmDevoluciones.setText("DEVOLUCIONES");
+        jmDevoluciones.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
 
-        jMenuItem14.setText("Compras Efectuadas");
+        jMenuItem14.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem14.setText("COMPRAS EFECTUADAS");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem14ActionPerformed(evt);
@@ -470,7 +504,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmDevoluciones.add(jMenuItem14);
 
-        jMenuItem15.setText("Compras Devueltas");
+        jMenuItem15.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem15.setText("COMPRAS DEVUELTAS");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem15ActionPerformed(evt);
@@ -480,9 +515,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jmDevoluciones);
 
-        jMenu2.setText("Convertidor");
+        jMenu2.setText("CONVERTIDOR");
+        jMenu2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
 
-        jMenuItem10.setText("Convertir");
+        jMenuItem10.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem10.setText("CONVERTIR");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem10ActionPerformed(evt);
@@ -492,10 +529,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu8.setText("Reportes");
+        jMenu8.setText("REPORTES");
+        jMenu8.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jMenu8.add(jSeparator3);
 
-        jmReporteCompra.setText("Compra");
+        jmReporteCompra.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jmReporteCompra.setText("COMPRAS");
         jmReporteCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmReporteCompraActionPerformed(evt);
@@ -503,7 +542,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu8.add(jmReporteCompra);
 
-        jmVentaReporte.setText("Venta");
+        jmVentaReporte.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jmVentaReporte.setText("VENTAS");
         jmVentaReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmVentaReporteActionPerformed(evt);
@@ -511,7 +551,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu8.add(jmVentaReporte);
 
-        jMenuItem11.setText("Movimiento de Productos");
+        jMenuItem11.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem11.setText("MOVIMIENTO DE PRODUCTOS");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem11ActionPerformed(evt);
@@ -521,9 +562,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu8);
 
-        mnuAyuda.setText("Ayuda");
+        mnuAyuda.setText("AYUDA");
+        mnuAyuda.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
 
-        mnuAcerca.setText("Acerca de ...");
+        mnuAcerca.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        mnuAcerca.setText("ACERCA DE...");
         mnuAcerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuAcercaActionPerformed(evt);
@@ -531,7 +574,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mnuAyuda.add(mnuAcerca);
 
-        jMenuItem6.setText("Salir");
+        jMenuItem6.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMenuItem6.setText("SALIR");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -554,7 +598,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, Short.MAX_VALUE)
                 .addComponent(pnlPie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
