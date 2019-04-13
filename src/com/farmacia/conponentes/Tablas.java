@@ -60,7 +60,7 @@ import javax.swing.table.TableRowSorter;
 public class Tablas {
 
 //<<<<<<< HEAD
-    private boolean[] editable = {false, false, false, false, true, false};
+    private boolean[] editable = {false, false, false, false,false, false,false,true};
 //>>>>>>> origin/JoseLuis
     static DefaultTableModel model;
 
@@ -1176,7 +1176,7 @@ public class Tablas {
         Consultas llamar = new Consultas();
         Precios vo = new Precios();
         //Long id= Long.valueOf("22");
-        ArrayList<Precios> list = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado,porcentaje FROM `precios` WHERE `id_producto`= " + id);
+        ArrayList<Precios> list = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado,porcentaje,descuentoVenta FROM `precios` WHERE `id_producto`= " + id);
 
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {

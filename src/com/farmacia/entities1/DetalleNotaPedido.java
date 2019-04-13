@@ -24,12 +24,13 @@ public class DetalleNotaPedido {
     private BigDecimal total;
     private Integer cantAnt;
     private Integer idCompra;
+    private String fecha_caducidad;
     
 
     public DetalleNotaPedido() {
     }
 
-    public DetalleNotaPedido(Long id_detalle_nota_pedidos, Long id_precio, Long id_cabecera_nota_pedidos, Integer cantidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total, Integer cantAnt, Integer idCompra) {
+    public DetalleNotaPedido(Long id_detalle_nota_pedidos, Long id_precio, Long id_cabecera_nota_pedidos, Integer cantidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total, Integer cantAnt, Integer idCompra, String fecha_caducidad) {
         this.id_detalle_nota_pedidos = id_detalle_nota_pedidos;
         this.id_precio = id_precio;
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
@@ -41,6 +42,7 @@ public class DetalleNotaPedido {
         this.total = total;
         this.cantAnt = cantAnt;
         this.idCompra = idCompra;
+        this.fecha_caducidad = fecha_caducidad;
     }
 
     public Long getId_detalle_nota_pedidos() {
@@ -131,5 +133,12 @@ public class DetalleNotaPedido {
         this.idCompra = idCompra;
     }
 
-    
+    public String getFecha_caducidad() {
+        return fecha_caducidad;
+    }
+
+    public void setFecha_caducidad(String fecha_caducidad) {
+        this.fecha_caducidad = fecha_caducidad;
+    }
+
 }
