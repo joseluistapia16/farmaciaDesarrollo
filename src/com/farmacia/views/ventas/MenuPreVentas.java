@@ -49,7 +49,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
     Detalle_ventas objeto1 = new Detalle_ventas();
     
     
-   
 
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -60,13 +59,20 @@ public class MenuPreVentas extends javax.swing.JDialog {
 //        TxtDirec.setText("*************************************");
 //        TxtTelefono.setText("*************************************");
         this.setLocationRelativeTo(null);
+        TxtProdNombre.setEnabled(false);
+        TxtProdPrecio.setEnabled(false);
+        TxtProdCantidad.setEnabled(false);
+        TxtProdSubtotal.setEnabled(false);
         TxtDescuentoPorcentaje.setEnabled(false);
-       
+        TxtProdDescuento.setEnabled(false);
+        TxtProdIva.setEnabled(false);
+        TxtProdtotal.setEnabled(false);
         
-  
-
+        
+        
     }
-    public MenuPreVentas(java.awt.Frame parent, boolean modal,Listar_usuario objlogin) {
+
+    public MenuPreVentas(java.awt.Frame parent, boolean modal, Listar_usuario objlogin) {
         super(parent, modal);
         initComponents();
 //        TxtCedula.setText("9999999999");
@@ -75,10 +81,17 @@ public class MenuPreVentas extends javax.swing.JDialog {
 //        TxtDirec.setText("*************************************");
 //        TxtTelefono.setText("*************************************");
         this.setLocationRelativeTo(null);
-        TxtDescuentoPorcentaje.setEnabled(false);
         objUsuario = objlogin;
+        TxtProdNombre.setEnabled(false);
+        TxtProdPrecio.setEnabled(false);
+        TxtProdCantidad.setEnabled(false);
+        TxtProdSubtotal.setEnabled(false);
+        TxtDescuentoPorcentaje.setEnabled(false);
+        TxtProdDescuento.setEnabled(false);
+        TxtProdIva.setEnabled(false);
+        TxtProdtotal.setEnabled(false);
         
-  
+        
 
     }
 
@@ -142,6 +155,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdDescuento = new javax.swing.JTextField();
         TxtDescuentoPorcentaje = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         TxtSubtotalsinIva = new javax.swing.JTextField();
@@ -159,7 +173,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(254, 254, 254));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("VENTA");
         jLabel2.setText("VENTAS");
         jLabel2.setOpaque(true);
         jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -421,6 +434,13 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("%DESCUENTO:");
 
+        jButton2.setText("editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -453,10 +473,14 @@ public class MenuPreVentas extends javax.swing.JDialog {
                                             .addComponent(TxtProdIva, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(TxtProdDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(TxtProdtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(TxtDescuentoPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(TxtProdSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(TxtProdCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(TxtProdPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(TxtProdPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TxtProdNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(TxtDescuentoPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButton2))))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(33, 33, 33)
                                         .addComponent(BtnAddIten)))
@@ -464,8 +488,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel13)
-                        .addGap(51, 51, 51)
-                        .addComponent(TxtProdNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BtnBuscarprodnombre)
                         .addContainerGap())))
@@ -493,7 +515,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtDescuentoPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -684,8 +707,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
         if (!TxtTotal.getText().equals("") && !TxtCedula.getText().equals("")) {
 
             Cabecera_ventas cv = new Cabecera_ventas();
-            String id_cab = "";
-            int can = 0;
+            String id_cab;
+            int can ;
             String query = "SELECT COUNT(*)+1 AS 'cantidad' FROM cabecera_venta";
             can = crud.obtenerNumeroOrdenes(query);
 
@@ -714,7 +737,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
             for (int i = 0; i < ListarDetalle.size(); i++) {
 
                 Detalle_ventas dv = new Detalle_ventas();
-                String id_det = "";
+                String id_det;
 
                 dv.setId_cabecera_venta(cv.getId_cabecera_venta());
                 dv.setId_control(ListarDetalle.get(i).getId_control());
@@ -791,11 +814,19 @@ public class MenuPreVentas extends javax.swing.JDialog {
                     TxtProdCantidad.setText("");
                     TxtProdPrecio.setText("");
                     TxtProdSubtotal.setText("");
+                    TxtDescuentoPorcentaje.setText("");
                     TxtProdDescuento.setText("");
                     TxtProdIva.setText("");
                     TxtProdtotal.setText("");
-                    TxtDescuentoPorcentaje.setText("");
+
+                    TxtProdNombre.setEnabled(false);
+                    TxtProdPrecio.setEnabled(false);
+                    TxtProdCantidad.setEnabled(false);
+                    TxtProdSubtotal.setEnabled(false);
                     TxtDescuentoPorcentaje.setEnabled(false);
+                    TxtProdDescuento.setEnabled(false);
+                    TxtProdIva.setEnabled(false);
+                    TxtProdtotal.setEnabled(false);
 
                     CalcularDetalle();
 
@@ -990,11 +1021,28 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdCantidad.setText("");
         TxtProdPrecio.setText("");
         TxtProdSubtotal.setText("");
+        TxtDescuentoPorcentaje.setText("");
         TxtProdDescuento.setText("");
         TxtProdIva.setText("");
         TxtProdtotal.setText("");
-        TxtDescuentoPorcentaje.setText("");
-        TxtDescuentoPorcentaje.setEnabled(false);
+
+        TxtProdNombre.setEnabled(true);
+        TxtProdPrecio.setEnabled(true);
+        TxtProdCantidad.setEnabled(true);
+        TxtProdSubtotal.setEnabled(true);
+        TxtDescuentoPorcentaje.setEnabled(true);
+        TxtProdDescuento.setEnabled(true);
+        TxtProdIva.setEnabled(true);
+        TxtProdtotal.setEnabled(true);
+
+        TxtProdNombre.setEditable(false);
+        TxtProdPrecio.setEditable(false);
+        TxtProdCantidad.setEditable(true);
+        TxtProdSubtotal.setEditable(false);
+        TxtDescuentoPorcentaje.setEditable(false);
+        TxtProdDescuento.setEditable(false);
+        TxtProdIva.setEditable(false);
+        TxtProdtotal.setEditable(false);
 
         ConsultarProductoVentas cp = new ConsultarProductoVentas(new javax.swing.JFrame(), true);
         cp.setVisible(true);
@@ -1003,6 +1051,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
             TxtProdNombre.setText(objProd.getProducto_nombre());
             TxtProdPrecio.setText(objProd.getPrecio_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+            TxtDescuentoPorcentaje.setText(objProd.getDescuento().toString());
         }
 
 
@@ -1119,6 +1168,20 @@ public class MenuPreVentas extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        VerificarAcceso va = new VerificarAcceso(new javax.swing.JFrame(), true);
+        
+        va.setVisible(true);
+        
+
+            
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1196,6 +1259,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private javax.swing.JTextField TxtTelefono;
     private javax.swing.JTextField TxtTotal;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

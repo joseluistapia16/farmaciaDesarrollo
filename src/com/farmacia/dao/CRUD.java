@@ -27,6 +27,7 @@ import com.farmacia.entities1.Faltantes;
 import com.farmacia.entities1.Genero;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
+import com.farmacia.entities1.ListarAdministrador;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.MedidaProducto;
 import com.farmacia.entities1.Productos;
@@ -78,7 +79,40 @@ public class CRUD {
     Conexion con = new Conexion();
 
     String query;
-
+    
+    public String Ingresar_Permiso(Listar_usuario lus){
+        String valor = null;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement pro = conect.prepareCall(
+                    "{ call fc_permiso_temporal(?,?,?,?,?)}");
+            pro.setLong(1, lus.getId_sesion());
+            pro.setString(2, lus.getCargo());
+            pro.setString(3, lus.getDesde());
+            pro.setString(4, lus.getHasta());    
+            pro.registerOutParameter("salida", Types.VARCHAR);
+            pro.executeUpdate();
+            valor = pro.getString("salida");
+            pro.executeUpdate();
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
     public void insertarListaFaltantes(ArrayList<String> queryL) {
         try {
             conect = con.conectar();
@@ -92,7 +126,7 @@ public class CRUD {
         }
 
     }
-
+    
     public String insertarCabeceraCompras(Cabecera_compra obj) {
         String valor = "";
         try {
@@ -4939,4 +4973,38 @@ public class CRUD {
         }
         return valor;
     }
+    
+        public ArrayList<ListarAdministrador> ListarAdministradorAccesos(int op) {
+        ArrayList<ListarAdministrador> lista = new ArrayList<ListarAdministrador>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call ListarAdministrador(?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                ListarAdministrador obj = EntidadesMappers.getListarAdministradorFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+    
+    
 }
