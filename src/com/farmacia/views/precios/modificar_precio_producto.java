@@ -349,6 +349,7 @@ public class modificar_precio_producto extends javax.swing.JDialog {
     public void Habilitar(boolean lock) {
         BotonGuardar.setEnabled(lock);
         // cbx1.setEnabled(lock);
+        
 
     }
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
