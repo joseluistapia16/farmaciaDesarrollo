@@ -306,16 +306,15 @@ public class EntidadesMappers {
         return obj;
     }
 
-    public static FaltantesCabeceraDetalles getJoinTodosProductosFaltantesFromResultSet(ResultSet rs) {//piguiFaltantes
-        FaltantesCabeceraDetalles obj = new FaltantesCabeceraDetalles();
+  public static Faltantes getJoinTodosProductosFaltantesFromResultSet(ResultSet rs) {//piguiFaltantes
+        Faltantes obj = new Faltantes();
         try {
-            obj.setId_productos(rs.getLong("ID_PRODUCTOS"));
-            obj.setMarca(rs.getString("MARCA"));;
-            obj.setNombre(rs.getString("NOMBRE"));
-            obj.setDescripcion(rs.getString("DESCRIPCION"));
-            obj.setCantidad(rs.getInt("CANTIDAD"));
-            obj.setEstado(rs.getString("ESTADO"));
 
+            obj.setId_producto(rs.getLong("id_producto"));
+            obj.setNombre(rs.getString("nombre"));
+            obj.setCantidad_faltantes(rs.getInt("cantidad_faltantes"));
+            obj.setCantidad_minima(rs.getInt("can_minima"));
+            obj.setEstado(rs.getString("estado"));
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }

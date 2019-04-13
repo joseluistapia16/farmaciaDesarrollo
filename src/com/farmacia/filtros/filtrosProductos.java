@@ -122,16 +122,10 @@ public class filtrosProductos {
     public String codigoFaltantes() {
 
         String query = "";
-        query = query = "SELECT \n"
-                + "    p.id_productos, ma.nombre AS marca, p.nombre, p.descripcion, df.cantidad, df.estado\n"
-                + "FROM\n"
-                + "    productos p\n"
-                + "        JOIN\n"
-                + "    marcas ma ON ma.id_marcas = p.id_marcas\n"
-                + "    join\n"
-                + "    detalle_faltantes df ON df.id_producto = p.id_productos\n"
-                + "WHERE\n"
-                + "    p.id_productos = ";
+        query = query = "SELECT  df.`id_detalle_faltantes`,df.`id_producto`,p.`nombre`,df.`cantidad`AS cantidad_Faltantes,p.`cantidad_minima` AS can_minima,df.`estado`\n"
+                + "FROM `detalle_faltantes` df\n"
+                + "JOIN `productos` p ON p.`id_productos` = df.`id_producto`\n"
+                + "where p.id_productos = ";
 
         return query;
     }
@@ -139,19 +133,14 @@ public class filtrosProductos {
     public String productosFaltantes() {
 
         String query = "";
-        query = query = "SELECT \n"
-                + "    p.id_productos,\n"
-                + "    ma.nombre AS marca,\n"
-                + "    p.nombre,\n"
-                + "    p.descripcion,\n"
-                + "    df.cantidad,\n"
-                + "    df.estado\n"
-                + "FROM\n"
-                + "    productos p\n"
-                + "        JOIN\n"
-                + "    marcas ma ON ma.id_marcas = p.id_marcas\n"
-                + "        JOIN\n"
-                + "    detalle_faltantes df ON df.id_producto = p.id_productos";
+        query = query = "SELECT DISTINCT (df.`id_detalle_faltantes`),df.`id_producto`,p.`nombre`, df.`cantidad`AS cantidad_Faltantes,\n"
+                + "p.`cantidad_minima` AS can_minima,df.`estado`\n"
+                + "FROM `detalle_faltantes` df\n"
+                + "JOIN `productos` p ON p.`id_productos` = df.`id_producto`\n"
+                + "JOIN `precios` pr ON pr.`id_producto`= p.`id_productos`\n"
+                + "JOIN `marcas` m ON p.`id_marcas` = m.`id_marcas`    \n"
+                + "WHERE `df`.cantidad <= cantidad_minima OR `df`.cantidad = 0\n"
+                + "AND `df`.estado = 'NO' OR `df`.estado = 'OK'";
 
         return query;
     }
@@ -159,20 +148,10 @@ public class filtrosProductos {
     public String nombreProductoFaltantes() {
 
         String query = "";
-        query = query = "SELECT \n"
-                + "    p.id_productos,\n"
-                + "    ma.nombre AS marca,\n"
-                + "    p.nombre,\n"
-                + "    p.descripcion,\n"
-                + "    df.cantidad,\n"
-                + "    df.estado\n"
-                + "FROM\n"
-                + "    productos p\n"
-                + "        JOIN\n"
-                + "    marcas ma ON ma.id_marcas = p.id_marcas\n"
-                + "        JOIN\n"
-                + "    detalle_faltantes df ON df.id_producto = p.id_productos\n"
-                + "    where p.nombre like '%";
+        query = query = "SELECT  df.`id_detalle_faltantes`,df.`id_producto`,p.`nombre`,df.`cantidad`AS cantidad_Faltantes,p.`cantidad_minima` AS can_minima,df.`estado`\n"
+                + "FROM `detalle_faltantes` df\n"
+                + "JOIN `productos` p ON p.`id_productos` = df.`id_producto`\n"
+                + "where p.nombre like '%";
 
         return query;
     }
