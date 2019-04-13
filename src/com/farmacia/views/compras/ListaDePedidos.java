@@ -171,7 +171,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnAceptar.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
@@ -209,7 +209,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
         jLabel9.setText("FECHA:");
 
         tipofiltro.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE", "MARCA" }));
+        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE" }));
 
         filtro.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         filtro.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, null));
@@ -510,10 +510,12 @@ public class ListaDePedidos extends javax.swing.JDialog {
 
     }
     private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
-        String f = filtro.getText().toUpperCase();
+         String f = filtro.getText().toUpperCase();
         String query = "";
         int pos = tipofiltro.getSelectedIndex();
         if ("".equals(f)) {
+
+//            JOptionPane.showMessageDialog(null, "Campo vacío, ingrese un valor");
             query = fil.productosFaltantes();
         }
         if (pos == 0) {
@@ -528,12 +530,8 @@ public class ListaDePedidos extends javax.swing.JDialog {
             query = fil.nombreProductoFaltantes() + f + "%'";
         }
 
-        if (pos == 2) {
-            query = fil.marcaProductoFaltantes() + f + "%'";
-        }
-
-        listar2 = crud.filtroBusqueda(query);
-        Tablas.cargarJoinProductosFaltantes(tbaProductosA, listar2);
+        lista = crud.filtroBusqueda(query);
+        Tablas.cargarJoinFaltantes_cantidad(tbaProductosA, lista);
         query = "";
     }//GEN-LAST:event_filtrarActionPerformed
 

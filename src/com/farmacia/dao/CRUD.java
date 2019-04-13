@@ -1159,8 +1159,8 @@ public class CRUD {
 //        }
 //        return lista;
 //    }
-    public ArrayList<FaltantesCabeceraDetalles> filtroBusqueda(String query) {//piguiFaltantes
-        ArrayList<FaltantesCabeceraDetalles> lista = new ArrayList<FaltantesCabeceraDetalles>();
+    public ArrayList<Faltantes> filtroBusqueda(String query) {//piguiFaltantes
+        ArrayList<Faltantes> lista = new ArrayList<Faltantes>();
 
         try {
             conect = con.conectar();
@@ -1171,7 +1171,7 @@ public class CRUD {
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
-                FaltantesCabeceraDetalles obj = EntidadesMappers.getJoinTodosProductosFaltantesFromResultSet(rs);
+                Faltantes obj = EntidadesMappers.getJoinTodosProductosFaltantesFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();
