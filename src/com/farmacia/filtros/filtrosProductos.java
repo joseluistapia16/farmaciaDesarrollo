@@ -153,6 +153,7 @@ public class filtrosProductos {
                 + "JOIN `productos` p ON p.`id_productos` = df.`id_producto`\n"
                 + "where p.nombre like '%";
 
+        
         return query;
     }
 
