@@ -133,6 +133,7 @@ public class CodigoBarras extends javax.swing.JDialog {
               JOptionPane.showMessageDialog(this, "INGRESE CODIGO");
           }else{
             setVisible(false);
+            
           }
     }//GEN-LAST:event_jButton1ActionPerformed
         public String getCodigoBarra(){
