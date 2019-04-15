@@ -24,11 +24,12 @@ public class Productos {
     private Long cantidad_minima;
     private String receta;
     private Long unidades;
-
+     private String codigo_barras;
+     
     public Productos() {
     }
 
-    public Productos(Long id_productos, Long id_tipo, Long id_marcas, Long id_medidas, Long id_envase, String nombre, String descripcion, double peso, Date fecha_registro, String estado, Long id_usuario, String iva, Long cantidad_minima, String receta, Long unidades) {
+    public Productos(Long id_productos, Long id_tipo, Long id_marcas, Long id_medidas, Long id_envase, String nombre, String descripcion, double peso, Date fecha_registro, String estado, Long id_usuario, String iva, Long cantidad_minima, String receta, Long unidades, String codigo_barras) {
         this.id_productos = id_productos;
         this.id_tipo = id_tipo;
         this.id_marcas = id_marcas;
@@ -44,6 +45,7 @@ public class Productos {
         this.cantidad_minima = cantidad_minima;
         this.receta = receta;
         this.unidades = unidades;
+        this.codigo_barras = codigo_barras;
     }
 
     public Long getId_productos() {
@@ -164,6 +166,14 @@ public class Productos {
 
     public void setUnidades(Long unidades) {
         this.unidades = unidades;
+    }
+
+    public String getCodigo_barras() {
+        return codigo_barras;
+    }
+
+    public void setCodigo_barras(String codigo_barras) {
+        this.codigo_barras = codigo_barras;
     }
 
    
