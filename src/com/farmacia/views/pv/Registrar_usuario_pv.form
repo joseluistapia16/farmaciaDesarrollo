@@ -106,8 +106,8 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnLimpiar" max="32767" attributes="0"/>
-                                  <Component id="btnImagen" max="32767" attributes="0"/>
+                                  <Component id="btnLimpiar" min="-2" pref="138" max="-2" attributes="0"/>
+                                  <Component id="btnImagen" min="-2" pref="138" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="lbImagen" min="-2" pref="165" max="-2" attributes="0"/>
