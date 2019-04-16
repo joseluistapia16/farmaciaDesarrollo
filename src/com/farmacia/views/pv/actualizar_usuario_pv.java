@@ -16,6 +16,8 @@ import com.farmacia.entities1.Usuario_S;
 import com.farmacia.operaciones.Operaciones;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -39,7 +41,8 @@ import net.sf.jasperreports.view.JRViewer;
  * @author alumno
  */
 public class actualizar_usuario_pv extends javax.swing.JDialog {
-     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int x,y;
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     CRUD crud = new CRUD();
     String imagen = "";
@@ -64,6 +67,7 @@ public class actualizar_usuario_pv extends javax.swing.JDialog {
     public actualizar_usuario_pv(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     public actualizar_usuario_pv(java.awt.Frame parent, boolean modal,Listar_usuario obj2) {
@@ -550,6 +554,16 @@ public class actualizar_usuario_pv extends javax.swing.JDialog {
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("ACTUALIZAR USUARIO");
         jLabel17.setOpaque(true);
+        jLabel17.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel17MouseDragged(evt);
+            }
+        });
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel17MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -726,10 +740,24 @@ public class actualizar_usuario_pv extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     ArrayList dato = new ArrayList();
-    ClaseReporte datos = new ClaseReporte(txtId.getText(),cbEstado.getSelectedItem().toString(),txtCedula.getText(),txtNombre.getText(),txtApellido.getText(),cbGenero.getSelectedItem().toString(),cbRol.getSelectedItem().toString(),txtObservacion.getText(),txtCell.getText(),txtConven.getText(),txtCorreo.getText(),txtDireccion.getText(),txtPass.getText(),txtConPass.getText(),lbImagen.toString());
+    ClaseReporte datos = new ClaseReporte(txtId.getText(),
+            cbEstado.getSelectedItem().toString(),
+            txtCedula.getText(),
+            txtNombre.getText(),
+            txtApellido.getText(),
+            cbGenero.getSelectedItem().toString(),
+            cbRol.getSelectedItem().toString(),
+            txtObservacion.getText(),
+            txtCell.getText(),
+            txtConven.getText(),
+            txtCorreo.getText(),
+            txtDireccion.getText(),
+            txtPass.getText(),
+            txtConPass.getText(),
+            lbImagen.toString());
     dato.add(datos);   
     try {
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"actualizar_usuario";
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"actualizar_usuario.jasper";
             JasperReport reporte = (JasperReport)JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(dato));
             JDialog frame = new JDialog(this);
@@ -747,6 +775,16 @@ public class actualizar_usuario_pv extends javax.swing.JDialog {
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
+
+    private void jLabel17MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jLabel17MousePressed
+
+    private void jLabel17MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_jLabel17MouseDragged
 
     public void VaciarImagen() {
         // String fil = "\\G:\\sin-imagen.png";
