@@ -8,10 +8,13 @@ package com.farmacia.views.compras;
 import com.farmacia.conponentes.Formulario;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.DetalleNotaPedido;
+import com.farmacia.fecha.Fecha;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +26,7 @@ public class FechaCaducidad extends javax.swing.JDialog {
     private Date fecha_cad;
     Formulario F = new Formulario();
     CRUD crud = new CRUD();
+    String fecha;
 
     /**
      * Creates new form FechaCaducidad
@@ -33,16 +37,19 @@ public class FechaCaducidad extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    public FechaCaducidad(java.awt.Frame parent, boolean modal,JoinListarDetalleNotaPedido obj1) {
+
+    public FechaCaducidad(java.awt.Frame parent, boolean modal, JoinListarDetalleNotaPedido obj1) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         llenarFormulario(obj1);
         this.setLocationRelativeTo(null);
     }
+
     private void llenarFormulario(JoinListarDetalleNotaPedido obj) {
-    txtCodigo.setText(obj.getId_detalle_nota_pedido().toString());
+        txtCodigo.setText(obj.getId_detalle_nota_pedido().toString());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -183,22 +190,26 @@ public class FechaCaducidad extends javax.swing.JDialog {
         this.fecha_cad = fecha_cad;
     }
     private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
-        String F1 = F.getFecha(Chooser1);
-        System.out.println("fecha " + F1);
-        DetalleNotaPedido dn = new DetalleNotaPedido();
-        dn.setFecha_caducidad(F1);
-        dn.setId_detalle_nota_pedidos(Long.parseLong(txtCodigo.getText()));
-        crud.InsertarfechaCad(dn);
-        
-       
-        
-        
+        java.util.Date sistFecha = new java.util.Date();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        fecha = formato.format(sistFecha);
+        System.out.println("Fecha Sistema " + fecha);
 
-//        String fecha = calendario.getCalendar().getWeekYear() + "-" +
-//                       (calendario.getDate().getMonth()+1)+ "-" +
-//                       calendario.getDayChooser().getDay();
-//        System.out.println("fecha "+java.sql.Date.valueOf(fecha));
-//        setfecha_cad(java.sql.Date.valueOf(fecha));
+        String F1 = F.getFecha(Chooser1);
+        System.out.println("fecha seleccionada " + F1);
+
+        System.out.println(" comparacion " + Fecha.compararFecha(Date.valueOf(F1), Date.valueOf(fecha)));
+
+        if (Fecha.compararFecha(Date.valueOf(F1), Date.valueOf(fecha)) >= 1) {
+            System.out.println(" guarda");
+            DetalleNotaPedido dn = new DetalleNotaPedido();
+            dn.setFecha_caducidad(F1);
+            dn.setId_detalle_nota_pedidos(Long.parseLong(txtCodigo.getText()));
+            crud.InsertarfechaCad(dn);
+            setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "INGRESE UNA FECHA VALIDA!!!");
+        }
 
     }//GEN-LAST:event_btnSalir2ActionPerformed
 

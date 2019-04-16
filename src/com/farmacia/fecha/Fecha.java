@@ -6,6 +6,7 @@
 package com.farmacia.fecha;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -19,8 +20,14 @@ public class Fecha {
         val = fecha1.compareTo(fecha2);
 
         return val;
-
     }
+    public static Date fechaSitstema(){
+        String fechaActual;
+            java.util.Date sistFecha = new java.util.Date();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        fechaActual = formato.format(sistFecha);
+        return Date.valueOf(fechaActual);
+    } 
 
     public static Date FechaSql() {
         String dias = "" + Dia(), mes = "" + Mes();
