@@ -33,11 +33,12 @@ public class listarJoinProductosCompras {
     private Long idStock;
     private String receta;
     private Long unidades;
+    private String codigo_barras;
     
     public listarJoinProductosCompras() {
     }
 
-    public listarJoinProductosCompras(Long id_productos, String nombreProductos, String descripcion, Date fecha_registro, Double peso, Long id_tipo, String nombreTipo, Long id_medida, String nombreMedida, Long id_envase, String nombreEnvase, Long id_marca, String nombreMarca, Long id_usuario, String iva, Long cantidad_minima, Double precioCompra, Long cantidadStock, Long idStock, String receta, Long unidades) {
+    public listarJoinProductosCompras(Long id_productos, String nombreProductos, String descripcion, Date fecha_registro, Double peso, Long id_tipo, String nombreTipo, Long id_medida, String nombreMedida, Long id_envase, String nombreEnvase, Long id_marca, String nombreMarca, Long id_usuario, String iva, Long cantidad_minima, Double precioCompra, Long cantidadStock, Long idStock, String receta, Long unidades, String codigo_barras) {
         this.id_productos = id_productos;
         this.nombreProductos = nombreProductos;
         this.descripcion = descripcion;
@@ -59,6 +60,7 @@ public class listarJoinProductosCompras {
         this.idStock = idStock;
         this.receta = receta;
         this.unidades = unidades;
+        this.codigo_barras = codigo_barras;
     }
 
     public Long getId_productos() {
@@ -229,5 +231,13 @@ public class listarJoinProductosCompras {
         this.unidades = unidades;
     }
 
-   
+    public String getCodigo_barras() {
+        return codigo_barras;
+    }
+
+    public void setCodigo_barras(String codigo_barras) {
+        this.codigo_barras = codigo_barras;
+    }
+
+    
 }

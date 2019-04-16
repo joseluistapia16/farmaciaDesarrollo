@@ -17,11 +17,20 @@ public class CodigoBarras extends javax.swing.JDialog {
      * Creates new form CodigoBarras
      */
     String codigoBarra="";
+    int op1=0;
     public CodigoBarras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
+    }
+    public CodigoBarras(java.awt.Frame parent, boolean modal,int op,String codBar) {
+        super(parent, modal);
+        setUndecorated(true);
+        initComponents();
+        setLocationRelativeTo(null);
+        op1=op; 
+        codigo.setText(codBar);
     }
 
     /**
@@ -55,6 +64,11 @@ public class CodigoBarras extends javax.swing.JDialog {
         });
 
         jButton2.setText("CANCELAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("GUARDAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +150,10 @@ public class CodigoBarras extends javax.swing.JDialog {
             
           }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
         public String getCodigoBarra(){
         return codigoBarra;
         }

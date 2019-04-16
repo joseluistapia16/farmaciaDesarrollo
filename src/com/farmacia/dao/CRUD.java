@@ -596,7 +596,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call ingresarProducto(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+                    "{ call ingresarProducto(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setString(1, obj.getCodigo_barras());
             prodProAlm.setString(2, obj.getNombre());
             prodProAlm.setString(3, obj.getDescripcion());

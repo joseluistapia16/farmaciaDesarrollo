@@ -127,6 +127,7 @@ public class EntidadesMappers {
         listarJoinProductosCompras obj = new listarJoinProductosCompras();
         try {
             obj.setId_productos(rs.getLong("ID_PRODUCTOS"));
+            obj.setCodigo_barras(rs.getString("CODIGO_BARRAS"));
             obj.setNombreProductos(rs.getString("NOMBRE"));
             obj.setDescripcion(rs.getString("DESCRIPCION"));
             obj.setFecha_registro(rs.getDate("FECHA_REGISTRO"));
