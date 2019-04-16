@@ -135,14 +135,14 @@ public class Actualizar_pv extends javax.swing.JDialog {
         });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Estado:");
+        jLabel7.setText("ESTADO:");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Codigo:");
+        jLabel8.setText("CODIGO:");
 
-        txtCod.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCod.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        cbEstado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbEstado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECIONE...", "ACTIVO", "INACTIVO" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
