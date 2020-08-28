@@ -15,6 +15,8 @@ import com.farmacia.entities1.Usuario;
 import com.farmacia.views.Reportes.Reporte_Compra;
 import com.farmacia.views.Reportes.Reporte_Productos_Compras;
 import com.farmacia.views.Reportes.Reporte_Venta;
+import com.farmacia.views.ayuda.Acerca;
+//import com.farmacia.views.ayuda.AcercaDe;
 import com.farmacia.views.compras.CabeceraCompra;
 import com.farmacia.views.compras.ListaDePedidos;
 import com.farmacia.views.comprasRealizadas.ComprasEfectuadas;
@@ -567,6 +569,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         mnuAcerca.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         mnuAcerca.setText("ACERCA DE...");
+        mnuAcerca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuAcercaMouseClicked(evt);
+            }
+        });
         mnuAcerca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuAcercaActionPerformed(evt);
@@ -648,6 +655,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void mnuAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAcercaActionPerformed
 //        DlgAcerca acerca = new DlgAcerca(this, rootPaneCheckingEnabled);
 //        acerca.setVisible(rootPaneCheckingEnabled);
+            Acerca a = new Acerca();
+            a.setVisible(true);
+            a.setLocationRelativeTo(null);
     }//GEN-LAST:event_mnuAcercaActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -815,6 +825,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Reporte_Productos_Compras rpc = new Reporte_Productos_Compras(new javax.swing.JFrame(), true);
         rpc.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void mnuAcercaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAcercaMouseClicked
+
+    }//GEN-LAST:event_mnuAcercaMouseClicked
 
     public Listar_usuario getUsuario() {
         return objUsuario;
