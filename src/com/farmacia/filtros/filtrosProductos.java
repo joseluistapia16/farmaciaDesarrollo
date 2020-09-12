@@ -11,18 +11,18 @@ package com.farmacia.filtros;
  */
 public class filtrosProductos {
     
-  public String comboProductoCodigo() {
-        String query = "";
-        query = "SELECT p.`id_productos`,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n"
-                + "      p.`id_envase`,e.`nombre`AS envase ,p.`id_marcas`,ma.`nombre` AS marca,p.receta,p.unidades, p.id_usuario, p.iva ,p.codigo_barras, p.cantidad_minima\n"
-                + "      FROM `productos` p\n"
-                + "      JOIN `tipo` t ON t.`id_tipo`= p.`id_tipo` \n"
-                + "      JOIN `medidas` m ON m.`id_medidas`= p.`id_medidas`\n"
-                + "      JOIN `envase` e ON e.`id_envase`= p.`id_envase`\n"
-                + "      JOIN `marcas` ma ON ma.`id_marcas`= p.`id_marcas`\n"
-                + "      WHERE p.`id_productos` = ";
+    public String comboProductoCodigo (){
+        String query="";
+        query="SELECT p.`id_productos`,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
+            "      p.`id_envase`,e.`nombre`AS envase ,p.`id_marcas`,ma.`nombre` AS marca, p.id_usuario, p.iva , p.cantidad_minima\n" +
+            "      FROM `productos` p\n" +
+            "      JOIN `tipo` t ON t.`id_tipo`= p.`id_tipo` \n" +
+            "      JOIN `medidas` m ON m.`id_medidas`= p.`id_medidas`\n" +
+            "      JOIN `envase` e ON e.`id_envase`= p.`id_envase`\n" +
+            "      JOIN `marcas` ma ON ma.`id_marcas`= p.`id_marcas`\n" +
+            "      WHERE p.`id_productos` = ";
         return query;
-
+    
     }
     public String comboProductoNombre (){
         String query="SELECT p.`id_productos`,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
@@ -75,28 +75,18 @@ public class filtrosProductos {
         return query;
     
     }
-    public String comboProductoMarca() {
-        String query = "";
-
-        query = "SELECT p.`id_productos`,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n"
-                + "      p.`id_envase`,e.`nombre`AS envase ,p.`id_marcas`,ma.`nombre` AS marca,p.receta,p.unidades, p.id_usuario, p.iva ,p.codigo_barras, p.cantidad_minima\n"
-                + "      FROM `productos` p\n"
-                + "      JOIN `tipo` t ON t.`id_tipo`= p.`id_tipo` \n"
-                + "      JOIN `medidas` m ON m.`id_medidas`= p.`id_medidas`\n"
-                + "      JOIN `envase` e ON e.`id_envase`= p.`id_envase`\n"
-                + "      JOIN `marcas` ma ON ma.`id_marcas`= p.`id_marcas`\n"
-                + "      WHERE ma.`nombre` LIKE '%";
-
-//        query="SELECT p.`id_productos`,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
-//            "      p.`id_envase`,e.`nombre`AS envase ,p.`id_marcas`,ma.`nombre` AS marca, p.id_usuario, p.iva , p.cantidad_minima\n" +
-//            "      FROM `productos` p\n" +
-//            "      JOIN `tipo` t ON t.`id_tipo`= p.`id_tipo` \n" +
-//            "      JOIN `medidas` m ON m.`id_medidas`= p.`id_medidas`\n" +
-//            "      JOIN `envase` e ON e.`id_envase`= p.`id_envase`\n" +
-//            "      JOIN `marcas` ma ON ma.`id_marcas`= p.`id_marcas`\n" +
-//            "      WHERE ma.`nombre` LIKE '%";
+    public String comboProductoMarca (){
+        String query="";
+        query="SELECT p.`id_productos`,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
+            "      p.`id_envase`,e.`nombre`AS envase ,p.`id_marcas`,ma.`nombre` AS marca, p.id_usuario, p.iva , p.cantidad_minima\n" +
+            "      FROM `productos` p\n" +
+            "      JOIN `tipo` t ON t.`id_tipo`= p.`id_tipo` \n" +
+            "      JOIN `medidas` m ON m.`id_medidas`= p.`id_medidas`\n" +
+            "      JOIN `envase` e ON e.`id_envase`= p.`id_envase`\n" +
+            "      JOIN `marcas` ma ON ma.`id_marcas`= p.`id_marcas`\n" +
+            "      WHERE ma.`nombre` LIKE '%";
         return query;
-
+    
     }
     public String comboProductoTodo (){
         String query="";

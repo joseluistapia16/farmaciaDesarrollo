@@ -786,7 +786,7 @@ public class Products extends javax.swing.JDialog {
         if (pos < 0) {
             error = error + "\nEnvase invalido !";
         } else {
-            id_envase = listae.get(pos).getId_envase();
+            id_envase = listae.get(pos).getId_presentaciones();
             System.err.println(id_envase);
         }
         return error;

@@ -136,8 +136,8 @@ public class EntidadesMappers {
             obj.setNombreTipo(rs.getString("TIPO"));
             obj.setId_medida(rs.getLong("ID_MEDIDAS"));
             obj.setNombreMedida(rs.getString("MEDIDA"));
-            obj.setId_envase(rs.getLong("ID_ENVASE"));
-            obj.setNombreEnvase(rs.getString("ENVASE"));
+            obj.setId_envase(rs.getLong("id_presentacion"));
+            obj.setNombreEnvase(rs.getString("PRESENTACION"));
             obj.setId_marca(rs.getLong("ID_MARCAS"));
             obj.setNombreMarca(rs.getString("MARCA"));
             obj.setId_usuario(rs.getLong("ID_USUARIO"));
@@ -179,7 +179,7 @@ public class EntidadesMappers {
     public static EnvaseProducto getEnvaseProductoFromResultSet(ResultSet rs) {
         EnvaseProducto obj = new EnvaseProducto();
         try {
-            obj.setId_envase(rs.getLong("ID_ENVASE"));
+            obj.setId_presentaciones(rs.getLong("IDPRESENTACIONES"));
             obj.setNombreEnvase(rs.getString("NOMBRE"));
 
         } catch (SQLException ex) {
@@ -729,7 +729,7 @@ public class EntidadesMappers {
             //obj.setId_medida(rs.getLong("ID_MEDIDAS"));
             obj.setMedida_nombre(rs.getString("Medida"));
             //obj.setId_envase(rs.getLong("ID_ENVASE"));
-            obj.setEnvase_nombre(rs.getString("Envase"));
+            obj.setEnvase_nombre(rs.getString("Presentaciones"));
             //obj.setId_marca(rs.getLong("ID_MARCAS"));
             obj.setMarca_nombre(rs.getString("Marca"));
             //obj.setId_stock(rs.getLong("ID_PRODUCTO"));
@@ -737,7 +737,7 @@ public class EntidadesMappers {
             obj.setIva(rs.getString("Iva"));
             //obj.setId_precio(rs.getLong("ID_PRECIO"));
             obj.setPrecio_venta(rs.getBigDecimal("Precio de Venta"));
-            obj.setDescuento(rs.getLong("Descuento de Venta"));
+            //obj.setDescuento(rs.getLong("Descuento de Venta"));
             obj.setPrecio_compra(rs.getBigDecimal("Precio de Compra"));
 
         } catch (SQLException ex) {

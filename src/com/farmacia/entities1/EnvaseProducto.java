@@ -10,32 +10,30 @@ package com.farmacia.entities1;
  * @author User
  */
 public class EnvaseProducto {
-    private Long id_envase;
+    private Long id_presentaciones;
     private String nombreEnvase;
     private String estado;
 
     public EnvaseProducto() {
     }
 
-    public EnvaseProducto(Long id_envase, String nombreEnvase) {
-        this.id_envase = id_envase;
+    public EnvaseProducto(Long id_presentaciones, String nombreEnvase) {
+        this.id_presentaciones = id_presentaciones;
         this.nombreEnvase = nombreEnvase;
     }
 
-    public EnvaseProducto(Long id_envase, String nombreEnvase, String estado) {
-        this.id_envase = id_envase;
+    public EnvaseProducto(Long id_presentaciones, String nombreEnvase, String estado) {
+        this.id_presentaciones = id_presentaciones;
         this.nombreEnvase = nombreEnvase;
         this.estado = estado;
     }
-    
-    
 
-    public Long getId_envase() {
-        return id_envase;
+    public Long getId_presentaciones() {
+        return id_presentaciones;
     }
 
-    public void setId_envase(Long id_envase) {
-        this.id_envase = id_envase;
+    public void setId_presentaciones(Long id_presentaciones) {
+        this.id_presentaciones = id_presentaciones;
     }
 
     public String getNombreEnvase() {
@@ -53,6 +51,10 @@ public class EnvaseProducto {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
+
+
+
+     
     
 }
