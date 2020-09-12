@@ -1722,7 +1722,7 @@ public class CRUD {
             CallableStatement cs = conect.prepareCall(
                     "{ call Actualizar_Envase(?,?,?) }");
             cs.setString(1, valor);
-            cs.setLong(2, en.getId_envase());
+            cs.setLong(2, en.getId_presentaciones());
             cs.registerOutParameter("salida", Types.VARCHAR);
             cs.executeUpdate();
             msg = cs.getString("salida");
@@ -1746,7 +1746,7 @@ public class CRUD {
             conect.setAutoCommit(false);
             CallableStatement cs = conect.prepareCall(
                     "{ call Eliminar_Envase(?,?) }");
-            cs.setLong(1, en.getId_envase());
+            cs.setLong(1, en.getId_presentaciones());
             cs.registerOutParameter("salida", Types.VARCHAR);
             cs.executeUpdate();
             msg = cs.getString("salida");

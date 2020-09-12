@@ -565,7 +565,7 @@ public class Tablas {
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
-            Filas[0] = String.valueOf(lista.get(i).getId_envase());
+            Filas[0] = String.valueOf(lista.get(i).getId_presentaciones());
             Filas[1] = lista.get(i).getNombreEnvase();
             model.addRow(Filas);
             Tabla.setModel(model);
@@ -1351,7 +1351,7 @@ public class Tablas {
             Filas[7] = lista.get(i).getStock().toString();
             Filas[8] = lista.get(i).getIva();
             Filas[9] = lista.get(i).getPrecio_venta().toString();
-            Filas[10] = lista.get(i).getDescuento().toString();
+//            Filas[10] = lista.get(i).getDescuento().toString();
 
 
             model.addRow(Filas);
@@ -1376,8 +1376,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(8).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(9).setPreferredWidth(a[9]);
             Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
-            Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
+          //  Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
+          //  Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
 
             
         }

@@ -335,7 +335,7 @@ public class Envases extends javax.swing.JDialog {
     public EnvaseProducto devuelveObjeto(int id, ArrayList<EnvaseProducto> lista) {
         EnvaseProducto gh = new EnvaseProducto();
         for (int i = 0; i < lista.size(); i++) {
-            if (id == lista.get(i).getId_envase()) {
+            if (id == lista.get(i).getId_presentaciones()) {
                 gh = lista.get(i);
             }
         }
